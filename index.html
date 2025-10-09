@@ -1,55 +1,339 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>英语学习导航</title>
+    <title>英语阅读导航</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 40px auto;
+            max-width: 500px;
+            margin: 0 auto;
             padding: 0 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: linear-gradient(to bottom, #87ceeb, #e0f7fa 70%, #fffbeb 90%, #ffd700 100%);
+            position: relative;
+            overflow: hidden;
         }
-        .nav-list {
-            list-style-type: disc; /* 无序标志（圆点） */
-            padding-left: 40px; /* 给无序标志留出空间 */
+
+        /* 沙滩底部 */
+        .beach {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 15%;
+            background-color: #ffd700;
+            z-index: 0;
         }
-        .nav-list li {
-            margin: 15px 0;
-            transition: transform 0.2s;
+
+        /* 海浪效果 */
+        .wave {
+            position: absolute;
+            bottom: 15%;
+            left: 0;
+            width: 200%;
+            height: 60px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23e0f7fa' fill-opacity='1' d='M0,192L48,181.3C96,171,192,149,288,149.3C384,149,480,171,576,181.3C672,192,768,192,864,181.3C960,171,1056,149,1152,138.7C1248,128,1344,128,1392,128L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: 50% 100%;
+            animation: waveMove 15s linear infinite;
+            z-index: 0;
         }
-        /* 第一个导航项（杂志收集） */
-        .nav-list li:first-child {
-            font-size: 26px;
-            font-weight: bold;
-            color: #1a73e8;
-            margin-bottom: 20px; /* 与后面项拉开距离 */
+
+        @keyframes waveMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
-        /* 第2-4个导航项 */
-        .nav-list li:nth-child(2),
-        .nav-list li:nth-child(3),
-        .nav-list li:nth-child(4) {
-            font-size: 20px;
-            color: #333;
-            transform: translateX(10px); /* 整体右移，形成靠后效果 */
+
+        /* 鱼群容器 */
+        .fish-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 85%;
+            pointer-events: none;
+            z-index: 0;
         }
-        .nav-list a {
-            color: inherit; /* 继承父元素颜色 */
+
+        /* 鱼的基础样式 */
+        .fish {
+            position: absolute;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: swim linear infinite;
+        }
+
+        .fish::before { /* 鱼鳍 */
+            content: '';
+            position: absolute;
+            top: 30%;
+            left: -5px;
+            width: 10px;
+            height: 6px;
+            background-color: inherit;
+            border-radius: 50%;
+        }
+
+        .fish::after { /* 鱼尾 */
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: -8px;
+            width: 12px;
+            height: 10px;
+            background-color: inherit;
+            border-radius: 50% 0 0 50%;
+            animation: tail 0.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes tail {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(20deg); }
+        }
+
+        /* 不同大小和颜色的鱼 */
+        .fish1 { /* 大鱼 */
+            width: 50px;
+            height: 25px;
+            background-color: rgba(52, 152, 219, 0.8);
+            animation-duration: 40s;
+            top: 20%;
+        }
+        .fish2 { /* 中鱼 */
+            width: 35px;
+            height: 18px;
+            background-color: rgba(46, 204, 113, 0.8);
+            animation-duration: 30s;
+            top: 40%;
+            animation-delay: -15s;
+        }
+        .fish3 { /* 小鱼 */
+            width: 25px;
+            height: 12px;
+            background-color: rgba(231, 76, 60, 0.8);
+            animation-duration: 25s;
+            top: 60%;
+            animation-delay: -5s;
+        }
+        .fish4 { /* 中鱼 */
+            width: 40px;
+            height: 20px;
+            background-color: rgba(155, 89, 182, 0.8);
+            animation-duration: 35s;
+            top: 30%;
+            animation-delay: -10s;
+        }
+        .fish5 { /* 小鱼 */
+            width: 20px;
+            height: 10px;
+            background-color: rgba(241, 196, 15, 0.8);
+            animation-duration: 20s;
+            top: 70%;
+            animation-delay: -8s;
+        }
+
+        @keyframes swim {
+            0% { transform: translateX(-100px) scaleX(1); }
+            49% { transform: translateX(calc(100vw + 100px)) scaleX(1); }
+            50% { transform: translateX(calc(100vw + 100px)) scaleX(-1); }
+            100% { transform: translateX(-100px) scaleX(-1); }
+        }
+
+        /* 远处的小船 */
+        .boat {
+            position: absolute;
+            top: 15%;
+            right: -100px;
+            width: 60px;
+            height: 20px;
+            background-color: #8B4513;
+            border-radius: 3px 3px 0 0;
+            animation: boatMove 60s linear infinite;
+            z-index: 0;
+        }
+        .boat::after {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 25px;
+            width: 3px;
+            height: 20px;
+            background-color: #A0522D;
+        }
+        .boat::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 15px;
+            width: 30px;
+            height: 10px;
+            background-color: #CD853F;
+            border-radius: 50% 50% 0 0;
+        }
+
+        @keyframes boatMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-120vw); }
+        }
+
+        /* 页面内容样式 */
+        .date-info {
+            color: #2c3e50;
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 20px;
+            z-index: 1;
+        }
+
+        .nav-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 20px 0;
+            z-index: 1;
+        }
+
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-decoration: none;
-            padding: 5px 0;
+            padding: 16px 20px;
+            border-radius: 6px;
+            transition: all 0.2s;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
         }
-        .nav-list a:hover {
-            text-decoration: underline;
+
+        .star {
+            color: #ffc107;
+            transition: color 0.2s;
+        }
+        .star.big { font-size: 22px; }
+        .star.small { font-size: 18px; }
+
+        .nav-btn.magazine {
+            font-size: 22px;
+            font-weight: bold;
+            color: white;
+            background-color: #1a73e8;
+            box-shadow: 0 2px 4px rgba(26, 115, 232, 0.2);
+        }
+        .nav-btn.ielts {
+            font-size: 19px;
+            color: white;
+            background-color: #2ecc71;
+            box-shadow: 0 2px 4px rgba(46, 204, 113, 0.2);
+        }
+        .nav-btn.cet4 {
+            font-size: 19px;
+            color: white;
+            background-color: #9b59b6;
+            box-shadow: 0 2px 4px rgba(155, 89, 182, 0.2);
+        }
+        .nav-btn.pending {
+            font-size: 19px;
+            color: #94a3b8;
+            background-color: #f7fafc;
+            border: 1px dashed #cbd5e1;
+            cursor: not-allowed;
+        }
+
+        .badge {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-left: 8px;
+            font-weight: normal;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .nav-btn:hover .star {
+            color: #ffd700;
+            transform: scale(1.1);
+        }
+
+        .nav-btn.loading::after {
+            content: "";
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            border-top-color: white;
+            right: 20px;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .footer {
+            color: #2c3e50;
+            font-size: 12px;
+            text-align: center;
+            margin-top: 30px;
+            padding-bottom: 20px;
+            z-index: 1;
         }
     </style>
 </head>
 <body>
-    <ul class="nav-list">
-        <li><a href="https://www.notion.so/233a1512fdf08020a891e61df0f537a7?source=copy_link">杂志收集</a></li>
-        <li><a href="https://www.notion.so/287a1512fdf08067b0e3db0e4fb327d3?source=copy_link">雅思阅读</a></li>
-        <li><a href="https://www.notion.so/287a1512fdf08040aa2ac9d7d59c09ff?source=copy_link">四级阅读</a></li>
-        <li><a href="">待补充</a></li>
-    </ul>
+    <!-- 海景元素 -->
+    <div class="beach"></div>
+    <div class="wave"></div>
+    <div class="boat"></div>
+    
+    <!-- 鱼群 -->
+    <div class="fish-container">
+        <div class="fish fish1"></div>
+        <div class="fish fish2"></div>
+        <div class="fish fish3"></div>
+        <div class="fish fish4"></div>
+        <div class="fish fish5"></div>
+    </div>
+
+    <div class="date-info" id="currentDate"></div>
+
+    <div class="nav-container">
+        <a href="https://www.notion.so/233a1512fdf08020a891e61df0f537a7?source=copy_link" class="nav-btn magazine" onclick="this.classList.add('loading')">
+            <span class="star big">★</span>
+            <span>杂志收集 <span class="badge">12篇</span></span>
+        </a>
+        <a href="https://www.notion.so/287a1512fdf08067b0e3db0e4fb327d3?source=copy_link" class="nav-btn ielts" onclick="this.classList.add('loading')">
+            <span class="star small">☆</span>
+            <span>雅思阅读 <span class="badge">8套题</span></span>
+        </a>
+        <a href="https://www.notion.so/287a1512fdf08040aa2ac9d7d59c09ff?source=copy_link" class="nav-btn cet4" onclick="this.classList.add('loading')">
+            <span class="star small">☆</span>
+            <span>四级阅读 <span class="badge">10篇</span></span>
+        </a>
+        <a href="" class="nav-btn pending">
+            <span>待补充</span>
+        </a>
+    </div>
+
+    <div class="footer">
+        英语阅读导航 · 持续更新中
+    </div>
+
+    <script>
+        // 显示当前日期
+        const dateElement = document.getElementById('currentDate');
+        const now = new Date();
+        const options = { year: 'numeric', month: 'long' };
+        dateElement.textContent = `📅 ${now.toLocaleDateString('zh-CN', options)}`;
+
+        // 移除加载状态
+        setTimeout(() => {
+            document.querySelectorAll('.nav-btn.loading').forEach(btn => {
+                btn.classList.remove('loading');
+            });
+        }, 3000);
+    </script>
 </body>
 </html>
     
