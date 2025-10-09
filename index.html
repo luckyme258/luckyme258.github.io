@@ -1,11 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>我的页面</title>
+    <title>英语学习导航</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .nav-list {
+            list-style-type: disc; /* 无序标志（圆点） */
+            padding-left: 40px; /* 给无序标志留出空间 */
+        }
+        .nav-list li {
+            margin: 15px 0;
+            transition: transform 0.2s;
+        }
+        /* 第一个导航项（杂志收集） */
+        .nav-list li:first-child {
+            font-size: 26px;
+            font-weight: bold;
+            color: #1a73e8;
+            margin-bottom: 20px; /* 与后面项拉开距离 */
+        }
+        /* 第2-4个导航项 */
+        .nav-list li:nth-child(2),
+        .nav-list li:nth-child(3),
+        .nav-list li:nth-child(4) {
+            font-size: 20px;
+            color: #333;
+            transform: translateX(10px); /* 整体右移，形成靠后效果 */
+        }
+        .nav-list a {
+            color: inherit; /* 继承父元素颜色 */
+            text-decoration: none;
+            padding: 5px 0;
+        }
+        .nav-list a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h1>欢迎访问我的页面</h1>
-    <p>这是通过GitHub Pages展示的内容</p>
-    <!-- 这里可以粘贴你之前的HTML代码 -->
+    <ul class="nav-list">
+        <li><a href="https://www.notion.so/233a1512fdf08020a891e61df0f537a7?source=copy_link">杂志收集</a></li>
+        <li><a href="https://www.notion.so/287a1512fdf08067b0e3db0e4fb327d3?source=copy_link">雅思阅读</a></li>
+        <li><a href="https://www.notion.so/287a1512fdf08040aa2ac9d7d59c09ff?source=copy_link">四级阅读</a></li>
+        <li><a href="">待补充</a></li>
+    </ul>
 </body>
 </html>
+    
