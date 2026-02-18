@@ -1,12 +1,41 @@
 {
-  "lastUpdated": 1771446557732,
-  "totalBooks": 2,
-  "totalCategories": 2,
+  "lastUpdated": 1771446819615,
+  "totalBooks": 13,
+  "totalCategories": 9,
   "categories": [
+    "侦探",
+    "校园",
     "传记",
-    "社科"
+    "虚构",
+    "古典",
+    "历史",
+    "心理",
+    "社科",
+    "剧情"
   ],
   "books": [
+    {
+      "id": "侦探_The Sherlock Holmes福尔摩斯策略_瑞格.html",
+      "file": "侦探_The Sherlock Holmes福尔摩斯策略_瑞格.html",
+      "filename": "侦探_The Sherlock Holmes福尔摩斯策略_瑞格.html",
+      "title": "The Sherlock Holmes福尔摩斯策略",
+      "category": "侦探",
+      "author": "瑞格",
+      "size": 295411,
+      "lastModified": 1771446789000,
+      "addedTime": 1771446789000
+    },
+    {
+      "id": "校园_The Summer I Turned Pretty_珍妮.html",
+      "file": "校园_The Summer I Turned Pretty_珍妮.html",
+      "filename": "校园_The Summer I Turned Pretty_珍妮.html",
+      "title": "The Summer I Turned Pretty",
+      "category": "校园",
+      "author": "珍妮",
+      "size": 445384,
+      "lastModified": 1771446789000,
+      "addedTime": 1771446789000
+    },
     {
       "id": "传记_光电帝国：爱迪生、特斯拉、威斯汀豪斯三大巨头的世界电力之争_琼斯.html",
       "file": "传记_光电帝国：爱迪生、特斯拉、威斯汀豪斯三大巨头的世界电力之争_琼斯.html",
@@ -19,6 +48,94 @@
       "addedTime": 1771445285000
     },
     {
+      "id": "虚构_分成两半的子爵 _卡尔维诺.html",
+      "file": "虚构_分成两半的子爵 _卡尔维诺.html",
+      "filename": "虚构_分成两半的子爵 _卡尔维诺.html",
+      "title": "分成两半的子爵 ",
+      "category": "虚构",
+      "author": "卡尔维诺",
+      "size": 202147,
+      "lastModified": 1771446789000,
+      "addedTime": 1771446789000
+    },
+    {
+      "id": "古典_吴氏石头记（癸酉本）108回全本_吴梅村，曹雪芹.html",
+      "file": "古典_吴氏石头记（癸酉本）108回全本_吴梅村，曹雪芹.html",
+      "filename": "古典_吴氏石头记（癸酉本）108回全本_吴梅村，曹雪芹.html",
+      "title": "吴氏石头记（癸酉本）108回全本",
+      "category": "古典",
+      "author": "吴梅村，曹雪芹",
+      "size": 4770747,
+      "lastModified": 1771446789000,
+      "addedTime": 1771446789000
+    },
+    {
+      "id": "历史_时间的战争：五百年钟表博弈史_范主.html",
+      "file": "历史_时间的战争：五百年钟表博弈史_范主.html",
+      "filename": "历史_时间的战争：五百年钟表博弈史_范主.html",
+      "title": "时间的战争：五百年钟表博弈史",
+      "category": "历史",
+      "author": "范主",
+      "size": 1073923,
+      "lastModified": 1771446789000,
+      "addedTime": 1771446789000
+    },
+    {
+      "id": "心理_欲罢不能：刷屏时代如何摆脱行为上瘾_亚当 · 奥尔特.html",
+      "file": "心理_欲罢不能：刷屏时代如何摆脱行为上瘾_亚当 · 奥尔特.html",
+      "filename": "心理_欲罢不能：刷屏时代如何摆脱行为上瘾_亚当 · 奥尔特.html",
+      "title": "欲罢不能：刷屏时代如何摆脱行为上瘾",
+      "category": "心理",
+      "author": "亚当 · 奥尔特",
+      "size": 648667,
+      "lastModified": 1771446789000,
+      "addedTime": 1771446789000
+    },
+    {
+      "id": "历史_百年战争简史_戴蒙德.html",
+      "file": "历史_百年战争简史_戴蒙德.html",
+      "filename": "历史_百年战争简史_戴蒙德.html",
+      "title": "百年战争简史",
+      "category": "历史",
+      "author": "戴蒙德",
+      "size": 548059,
+      "lastModified": 1771446789000,
+      "addedTime": 1771446789000
+    },
+    {
+      "id": "社科_社交媒体简史：从莎草纸到互联网 _汤姆 · 斯丹迪奇.html",
+      "file": "社科_社交媒体简史：从莎草纸到互联网 _汤姆 · 斯丹迪奇.html",
+      "filename": "社科_社交媒体简史：从莎草纸到互联网 _汤姆 · 斯丹迪奇.html",
+      "title": "社交媒体简史：从莎草纸到互联网 ",
+      "category": "社科",
+      "author": "汤姆 · 斯丹迪奇",
+      "size": 602382,
+      "lastModified": 1771446789000,
+      "addedTime": 1771446789000
+    },
+    {
+      "id": "剧情_神秘博士_BBC.html",
+      "file": "剧情_神秘博士_BBC.html",
+      "filename": "剧情_神秘博士_BBC.html",
+      "title": "神秘博士",
+      "category": "剧情",
+      "author": "BBC",
+      "size": 5619247,
+      "lastModified": 1771446789000,
+      "addedTime": 1771446789000
+    },
+    {
+      "id": "传记_纽约餐桌：美食城市的缔造者_艾娜·雅洛夫.html",
+      "file": "传记_纽约餐桌：美食城市的缔造者_艾娜·雅洛夫.html",
+      "filename": "传记_纽约餐桌：美食城市的缔造者_艾娜·雅洛夫.html",
+      "title": "纽约餐桌：美食城市的缔造者",
+      "category": "传记",
+      "author": "艾娜·雅洛夫",
+      "size": 685175,
+      "lastModified": 1771446789000,
+      "addedTime": 1771446789000
+    },
+    {
       "id": "社科_维多利亚时代的互联网_汤姆.html",
       "file": "社科_维多利亚时代的互联网_汤姆.html",
       "filename": "社科_维多利亚时代的互联网_汤姆.html",
@@ -28,16 +145,62 @@
       "size": 351557,
       "lastModified": 1771446549000,
       "addedTime": 1771446549000
+    },
+    {
+      "id": "历史_美国四百年  冒险、创新与财富塑造的历史_布·斯里尼瓦桑.html",
+      "file": "历史_美国四百年  冒险、创新与财富塑造的历史_布·斯里尼瓦桑.html",
+      "filename": "历史_美国四百年  冒险、创新与财富塑造的历史_布·斯里尼瓦桑.html",
+      "title": "美国四百年  冒险、创新与财富塑造的历史",
+      "category": "历史",
+      "author": "布·斯里尼瓦桑",
+      "size": 1222978,
+      "lastModified": 1771446789000,
+      "addedTime": 1771446789000
     }
   ],
   "categoryStats": [
     {
-      "name": "传记",
+      "name": "侦探",
       "count": 1,
+      "icon": "📘"
+    },
+    {
+      "name": "校园",
+      "count": 1,
+      "icon": "📘"
+    },
+    {
+      "name": "传记",
+      "count": 2,
       "icon": "📜"
     },
     {
+      "name": "虚构",
+      "count": 1,
+      "icon": "📘"
+    },
+    {
+      "name": "古典",
+      "count": 1,
+      "icon": "📘"
+    },
+    {
+      "name": "历史",
+      "count": 3,
+      "icon": "🏛️"
+    },
+    {
+      "name": "心理",
+      "count": 1,
+      "icon": "📘"
+    },
+    {
       "name": "社科",
+      "count": 2,
+      "icon": "📘"
+    },
+    {
+      "name": "剧情",
       "count": 1,
       "icon": "📘"
     }
