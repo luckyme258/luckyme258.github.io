@@ -1,8 +1,28 @@
 {
-  "lastUpdated": 1771441289362,
-  "totalBooks": 0,
-  "totalCategories": 0,
-  "categories": [],
-  "books": [],
-  "categoryStats": []
+  "lastUpdated": 1771441411884,
+  "totalBooks": 1,
+  "totalCategories": 1,
+  "categories": [
+    "未分类"
+  ],
+  "books": [
+    {
+      "id": "美国的耻辱：珍珠港事件内幕 (美国著名大众历史学家、普利策奖获得者 约翰·托兰 力作！) ([美国] 约翰·托兰) (Z-Library).html",
+      "file": "美国的耻辱：珍珠港事件内幕 (美国著名大众历史学家、普利策奖获得者 约翰·托兰 力作！) ([美国] 约翰·托兰) (Z-Library).html",
+      "filename": "美国的耻辱：珍珠港事件内幕 (美国著名大众历史学家、普利策奖获得者 约翰·托兰 力作！) ([美国] 约翰·托兰) (Z-Library).html",
+      "title": "美国的耻辱：珍珠港事件内幕 (美国著名大众历史学家、普利策奖获得者 约翰·托兰 力作！) ([美国] 约翰·托兰) (Z-Library)",
+      "category": "未分类",
+      "author": "",
+      "size": 727694,
+      "lastModified": 1771441403000,
+      "addedTime": 1771441403000
+    }
+  ],
+  "categoryStats": [
+    {
+      "name": "未分类",
+      "count": 1,
+      "icon": "📘"
+    }
+  ]
 }
