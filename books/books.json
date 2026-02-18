@@ -1,10 +1,9 @@
 {
-  "lastUpdated": 1771445315276,
-  "totalBooks": 2,
-  "totalCategories": 2,
+  "lastUpdated": 1771446519517,
+  "totalBooks": 1,
+  "totalCategories": 1,
   "categories": [
-    "传记",
-    "未分类"
+    "传记"
   ],
   "books": [
     {
@@ -17,17 +16,6 @@
       "size": 784929,
       "lastModified": 1771445285000,
       "addedTime": 1771445285000
-    },
-    {
-      "id": "纽约餐桌：美食城市的缔造者【纽约餐饮界幕后，大都会中的50个美味之梦】 (（美）艾娜·雅洛夫) (Z-Library).html",
-      "file": "纽约餐桌：美食城市的缔造者【纽约餐饮界幕后，大都会中的50个美味之梦】 (（美）艾娜·雅洛夫) (Z-Library).html",
-      "filename": "纽约餐桌：美食城市的缔造者【纽约餐饮界幕后，大都会中的50个美味之梦】 (（美）艾娜·雅洛夫) (Z-Library).html",
-      "title": "纽约餐桌：美食城市的缔造者【纽约餐饮界幕后，大都会中的50个美味之梦】 (（美）艾娜·雅洛夫) (Z-Library)",
-      "category": "未分类",
-      "author": "",
-      "size": 683514,
-      "lastModified": 1771443463000,
-      "addedTime": 1771443463000
     }
   ],
   "categoryStats": [
@@ -35,11 +23,6 @@
       "name": "传记",
       "count": 1,
       "icon": "📜"
-    },
-    {
-      "name": "未分类",
-      "count": 1,
-      "icon": "📘"
     }
   ]
 }
