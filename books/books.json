@@ -1,11 +1,23 @@
 {
-  "lastUpdated": 1771443472164,
-  "totalBooks": 2,
-  "totalCategories": 1,
+  "lastUpdated": 1771445293653,
+  "totalBooks": 3,
+  "totalCategories": 2,
   "categories": [
+    "传记",
     "未分类"
   ],
   "books": [
+    {
+      "id": "传记_光电帝国：爱迪生、特斯拉、威斯汀豪斯三大巨头的世界电力之争_琼斯.html",
+      "file": "传记_光电帝国：爱迪生、特斯拉、威斯汀豪斯三大巨头的世界电力之争_琼斯.html",
+      "filename": "传记_光电帝国：爱迪生、特斯拉、威斯汀豪斯三大巨头的世界电力之争_琼斯.html",
+      "title": "光电帝国：爱迪生、特斯拉、威斯汀豪斯三大巨头的世界电力之争",
+      "category": "传记",
+      "author": "琼斯",
+      "size": 784929,
+      "lastModified": 1771445285000,
+      "addedTime": 1771445285000
+    },
     {
       "id": "纽约餐桌：美食城市的缔造者【纽约餐饮界幕后，大都会中的50个美味之梦】 (（美）艾娜·雅洛夫) (Z-Library).html",
       "file": "纽约餐桌：美食城市的缔造者【纽约餐饮界幕后，大都会中的50个美味之梦】 (（美）艾娜·雅洛夫) (Z-Library).html",
@@ -30,6 +42,11 @@
     }
   ],
   "categoryStats": [
+    {
+      "name": "传记",
+      "count": 1,
+      "icon": "📜"
+    },
     {
       "name": "未分类",
       "count": 2,
