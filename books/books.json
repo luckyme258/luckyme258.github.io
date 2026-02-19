@@ -1,31 +1,20 @@
 {
-  "lastUpdated": 1771505214804,
-  "totalBooks": 21,
+  "lastUpdated": 1771523025669,
+  "totalBooks": 20,
   "totalCategories": 10,
   "categories": [
-    "心理",
     "校园",
     "侦探",
     "传记",
     "虚构",
     "奇幻",
     "历史",
+    "心理",
     "推理",
     "剧情",
     "社科"
   ],
   "books": [
-    {
-      "id": "心理_Dopamine Nation Finding Balance in the Age of Indulgence_安娜.html",
-      "file": "心理_Dopamine Nation Finding Balance in the Age of Indulgence_安娜.html",
-      "filename": "心理_Dopamine Nation Finding Balance in the Age of Indulgence_安娜.html",
-      "title": "Dopamine Nation Finding Balance in the Age of Indulgence",
-      "category": "心理",
-      "author": "安娜",
-      "size": 511835,
-      "lastModified": 1771480874000,
-      "addedTime": 1771480874000
-    },
     {
       "id": "校园_Same Time Next Summer_安娜贝尔.html",
       "file": "校园_Same Time Next Summer_安娜贝尔.html",
@@ -249,11 +238,6 @@
   ],
   "categoryStats": [
     {
-      "name": "心理",
-      "count": 2,
-      "icon": "📘"
-    },
-    {
       "name": "校园",
       "count": 2,
       "icon": "📘"
@@ -282,6 +266,11 @@
       "name": "历史",
       "count": 5,
       "icon": "🏛️"
+    },
+    {
+      "name": "心理",
+      "count": 1,
+      "icon": "📘"
     },
     {
       "name": "推理",
