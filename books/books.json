@@ -1,6 +1,6 @@
 {
-  "lastUpdated": 1771481458443,
-  "totalBooks": 19,
+  "lastUpdated": 1771481745329,
+  "totalBooks": 18,
   "totalCategories": 9,
   "categories": [
     "心理",
@@ -57,17 +57,6 @@
       "size": 445384,
       "lastModified": 1771446789000,
       "addedTime": 1771446789000
-    },
-    {
-      "id": "传记_人类群星闪耀时：十四篇历史特写_茨威格 .html",
-      "file": "传记_人类群星闪耀时：十四篇历史特写_茨威格 .html",
-      "filename": "传记_人类群星闪耀时：十四篇历史特写_茨威格 .html",
-      "title": "人类群星闪耀时：十四篇历史特写",
-      "category": "传记",
-      "author": "茨威格 ",
-      "size": 58107,
-      "lastModified": 1771480874000,
-      "addedTime": 1771480874000
     },
     {
       "id": "传记_光电帝国：爱迪生、特斯拉、威斯汀豪斯三大巨头的世界电力之争_琼斯.html",
@@ -242,7 +231,7 @@
     },
     {
       "name": "传记",
-      "count": 3,
+      "count": 2,
       "icon": "📜"
     },
     {
