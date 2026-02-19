@@ -35,6 +35,22 @@ jobs:
           from datetime import datetime
           import glob
           
+          def get_category_icon(category):
+              """为分类分配图标"""
+              icons = {
+                  '童话': '🧚',
+                  '科幻': '🚀',
+                  '文学': '📚',
+                  '历史': '🏛️',
+                  '哲学': '🤔',
+                  '诗歌': '🎭',
+                  '传记': '📜',
+                  '技术': '💻',
+                  '艺术': '🎨',
+                  '教育': '📖'
+              }
+              return icons.get(category, '📘')
+          
           def parse_filename(filename):
               """解析文件名，提取分类和书名"""
               name = filename.replace('.html', '')
@@ -77,7 +93,24 @@ jobs:
               return int(os.path.getmtime(filepath) * 1000)
           
           def main():
-              books_dir = 'books'
+              books_dir = 'books4me'  # 修正：与触发路径保持一致
+              # 确保目录存在
+              if not os.path.exists(books_dir):
+                  print(f"⚠️ 目录 {books_dir} 不存在，创建空目录")
+                  os.makedirs(books_dir)
+                  # 写入空的JSON文件避免提交错误
+                  empty_data = {
+                      'lastUpdated': int(time.time() * 1000),
+                      'totalBooks': 0,
+                      'totalCategories': 0,
+                      'categories': [],
+                      'books': [],
+                      'categoryStats': []
+                  }
+                  with open(f'{books_dir}/books.json', 'w', encoding='utf-8') as f:
+                      json.dump(empty_data, f, ensure_ascii=False, indent=2)
+                  return
+              
               all_books = []
               
               # 扫描所有HTML文件（包括子目录）
@@ -148,22 +181,6 @@ jobs:
               
               print(f'✅ 生成完成：{len(all_books)} 本书，{len(categories)} 个分类')
           
-          def get_category_icon(category):
-              """为分类分配图标"""
-              icons = {
-                  '童话': '🧚',
-                  '科幻': '🚀',
-                  '文学': '📚',
-                  '历史': '🏛️',
-                  '哲学': '🤔',
-                  '诗歌': '🎭',
-                  '传记': '📜',
-                  '技术': '💻',
-                  '艺术': '🎨',
-                  '教育': '📖'
-              }
-              return icons.get(category, '📘')
-          
           if __name__ == '__main__':
               main()
           EOF
@@ -174,6 +191,9 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add books/books.json
+          # 拉取最新代码，避免冲突
+          git pull origin ${{ github.ref_name }} --rebase
+          git add books4me/books.json
+          # 检查是否有更改，有则提交
           git diff --quiet && git diff --staged --quiet || git commit -m "🤖 自动更新书籍列表 [skip ci]"
           git push
