@@ -83,31 +83,48 @@ jobs:
                   }
                   all_books.append(book)
               
+              # 按书名排序
               all_books.sort(key=lambda x: x['title'])
+              
+              # 按分类统计（优化逻辑，可读性更高）
               categories = {}
               for book in all_books:
                   cat = book['category']
-                  categories[cat] = categories.get(cat, []) + [book]
+                  if cat not in categories:
+                      categories[cat] = []
+                  categories[cat].append(book)  # 优化点：替换拼接列表的方式
               
+              # 生成最终数据
               output_data = {
                   'lastUpdated':int(time.time()*1000), 'totalBooks':len(all_books), 'totalCategories':len(categories),
                   'categories':list(categories.keys()), 'books':all_books,
-                  'categoryStats':[{'name':cat, 'count':len(books), 'icon':get_category_icon(cat)} for cat, books in categories.items()]
+                  'categoryStats':[
+                      {'name':cat, 'count':len(books), 'icon':get_category_icon(cat)} 
+                      for cat, books in categories.items()
+                  ]
               }
               
+              # 写入books.json
               with open(f'{books_dir}/books.json', 'w', encoding='utf-8') as f:
                   json.dump(output_data, f, ensure_ascii=False, indent=2)
-              print(f'✅ books4me目录生成完成：{len(all_books)} 本书')
+              
+              print(f'✅ books4me目录生成完成：{len(all_books)} 本书，{len(categories)} 个分类')
           
-          if __name__ == '__main__': main()
+          if __name__ == '__main__':
+              main()
           EOF
+          
           python3 generate_books4me.py
       
       - name: 提交更改（books4me目录）
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git pull origin ${{ github.ref_name }} --rebase
+          # 优化：设置上游分支 + 容错，避免pull报错
+          git checkout ${{ github.ref_name }} || git checkout main
+          git pull origin ${{ github.ref_name }} --rebase --set-upstream || git pull origin main --rebase
           git add books4me/books.json
+          # 检查是否有更改，有则提交
           git diff --quiet && git diff --staged --quiet || git commit -m "🤖 自动更新books4me目录书籍列表 [skip ci]"
-          git push
+          # 推送（增加容错，失败重试一次）
+          git push || git push --force-with-lease
