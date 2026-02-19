@@ -1,0 +1,1832 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
+    <title>两性_In Case Youre Curious  Questions about Sex from Young People with Answers from the Experts_Planned Parenthood - 未知作者</title>
+    <style>
+:root {
+    --bg: #ffffff;
+    --bg-rgb: 255, 255, 255;
+    --text: #2d3748;
+    --accent: #4299e1;
+    --light-accent: #e8f4f8;
+    --card-bg: #f5fafe;
+    --card-shadow: 0 2px 8px rgba(66, 153, 225, 0.15);
+    --border-radius: 12px;
+    --line-height: 1.8;
+    --container-width: 800px;
+    --spacing: 32px;
+    --progress-height: 4px;
+    --header-height: 80px;
+    --nav-height: 70px;
+}
+
+.dark-mode {
+    --bg: #0a0c10;
+    --bg-rgb: 26, 32, 44;
+    --text: #ffffff;
+    --accent: #7472FE;
+    --light-accent: #2d3748;
+    --card-bg: #2d3748;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "思源黑体", "Source Han Sans CN", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: var(--line-height);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ===== 进度条（独立fixed） ===== */
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: var(--progress-height);
+    background: linear-gradient(90deg, var(--accent), #7472FE);
+    z-index: 101;
+    transition: width 0.1s ease;
+    pointer-events: none;
+}
+
+/* ===== 头部玻璃区域（优化版） ===== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(var(--bg-rgb), 0.4);
+    backdrop-filter: blur(11px);
+    border-bottom: 1px solid var(--light-accent);
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    min-height: var(--header-height);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+}
+
+/* 书架链接 - 始终显示文字 */
+.shelf-link {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    color: var(--accent);
+    padding: 8px 4px;
+    margin-left: -4px;
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+/* 微动效：首次加载跳动 */
+@keyframes shelfBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+.shelf-link.first-load {
+    animation: shelfBounce 0.5s ease 2;
+}
+
+/* 点击反馈 */
+.shelf-link:active {
+    transform: scale(0.95);
+}
+
+.shelf-icon {
+    font-size: 24px;
+    line-height: 1;
+}
+
+.shelf-text {
+    font-size: 12px;
+    color: var(--accent);
+    opacity: 0.8;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+/* 极端小屏才隐藏文字（几乎不会触发） */
+@media (max-width: 280px) {
+    .shelf-text {
+        display: none;
+    }
+}
+
+.header-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 1;
+    min-width: 30px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.progress-text {
+    font-size: 18px;
+    color: var(--text);
+    opacity: 0.9;
+    white-space: nowrap;
+    font-weight: 500;
+    flex-shrink: 0;
+}
+
+/* 移动端进度文字前缀控制 */
+.progress-text::before {
+    content: "阅读进度 ";
+    font-size: inherit;
+    color: inherit;
+    opacity: 0.8;
+}
+
+.theme-toggle {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    color: var(--text);
+    font-size: 14px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+    background: var(--accent);
+    color: white;
+}
+
+/* 移动端头部响应式 */
+@media (max-width: 428px) {
+    .progress-text::before {
+        content: "";
+    }
+}
+
+@media (max-width: 375px) {
+    .header-title {
+        font-size: 16px;
+        max-width: 150px;
+    }
+    .progress-text {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 320px) {
+    .header-title {
+        max-width: 120px;
+        font-size: 15px;
+    }
+    .progress-text {
+        font-size: 15px;
+        min-width: 45px;
+    }
+    .theme-toggle {
+        padding: 6px 8px;
+        font-size: 13px;
+    }
+}
+
+/* ===== 正文容器 ===== */
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: calc(var(--header-height) + 20px) 16px 120px;
+}
+
+/* ===== 章节样式 ===== */
+.chapter-section {
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--light-accent);
+}
+
+.chapter-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--text);
+    border-left: 6px solid var(--accent);
+    padding-left: 20px;
+    line-height: 1.3;
+    transition: border-left-color 0.3s ease;
+}
+
+.chapter-title.flash {
+    animation: titleFlash 0.5s ease;
+}
+
+@keyframes titleFlash {
+    0% { border-left-color: var(--accent); }
+    50% { border-left-color: #ffaa00; }
+    100% { border-left-color: var(--accent); }
+}
+
+.chapter-subtitle {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 40px 0 20px;
+    color: var(--text);
+}
+
+.content p {
+    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+/* 段落节奏控制 */
+.content p.short-para {
+    margin-bottom: 24px;
+}
+
+.content p.medium-para {
+    margin-bottom: 16px;
+}
+
+.content p.long-para {
+    margin-bottom: 32px;
+}
+
+/* 视觉分隔 */
+.para-break {
+    height: 8px;
+    margin: 16px 0;
+    opacity: 0.3;
+    border-bottom: 1px dashed var(--light-accent);
+}
+
+/* ===== 工具卡片 ===== */
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin: 32px 0;
+}
+
+.tool-card {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 24px;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    border: 1px solid rgba(66, 153, 225, 0.1);
+}
+
+.tool-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(66, 153, 225, 0.2);
+}
+
+.tool-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.tool-tag {
+    background-color: var(--accent);
+    color: white;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.tool-expand {
+    color: var(--accent);
+    font-size: 14px;
+}
+
+.tool-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text);
+}
+
+.tool-content {
+    font-size: 15px;
+    margin-bottom: 12px;
+    line-height: 1.7;
+}
+
+.tool-example {
+    display: none;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--light-accent);
+    font-size: 14px;
+    color: var(--text);
+    opacity: 0.9;
+}
+
+.tool-example.active {
+    display: block;
+}
+
+/* ===== 章节小结 ===== */
+.chapter-summary {
+    background-color: var(--light-accent);
+    border-radius: var(--border-radius);
+    padding: 28px;
+    margin: 40px 0;
+    border-left: 6px solid var(--accent);
+}
+
+.summary-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--accent);
+}
+
+/* ===== PC端侧边栏 ===== */
+.chapter-sidebar {
+    position: fixed;
+    left: 30px;
+    top: 100px;
+    width: 220px;
+    z-index: 85;
+    display: none;
+    overflow-y: auto;
+    max-height: calc(100vh - 150px);
+}
+
+.chapter-sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chapter-sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chapter-sidebar::-webkit-scrollbar-thumb {
+    background: rgba(66, 153, 225, 0.2);
+    border-radius: 4px;
+}
+
+@media (min-width: 1200px) {
+    .chapter-sidebar {
+        display: block;
+    }
+    .container {
+        margin-left: 260px;
+    }
+}
+
+.sidebar-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--light-accent);
+    position: sticky;
+    top: 0;
+    background-color: var(--bg);
+    z-index: 86;
+    padding-top: 4px;
+}
+
+.sidebar-chapters {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar-chapter {
+    margin-bottom: 4px;
+}
+
+.sidebar-chapter a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 15px;
+    padding: 8px 12px;
+    display: block;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+    word-break: break-word;
+    line-height: 1.4;
+}
+
+.sidebar-chapter.active a {
+    background-color: var(--light-accent);
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.sidebar-chapter.level-1 a {
+    font-weight: 600;
+}
+
+.sidebar-chapter.level-2 a {
+    padding-left: 24px;
+    font-size: 14px;
+}
+
+.sidebar-chapter.level-3 a {
+    padding-left: 36px;
+    font-size: 14px;
+}
+
+.sidebar-chapter.level-4 a {
+    padding-left: 48px;
+    font-size: 13px;
+}
+
+/* ===== 移动端专属样式 ===== */
+@media (max-width: 1199px) {
+    .chapter-sidebar {
+        display: none !important;
+    }
+    
+    .container {
+        max-width: 100%;
+        padding: calc(var(--header-height) + 20px) 16px 100px;
+        margin-left: 0;
+    }
+    
+    /* 正文左边距为触发器留出空间 */
+    .content {
+        margin-left: 48px;
+        padding-left: 0;
+    }
+    
+    /* 章节标题也留出空间 */
+    .chapter-title {
+        margin-left: 48px;
+        padding-left: 0;
+    }
+    
+    .chapter-subtitle {
+        margin-left: 48px;
+        padding-left: 0;
+    }
+    
+    /* 工具卡片和摘要左对齐 */
+    .tools-grid {
+        margin-left: 48px;
+    }
+    
+    .chapter-summary {
+        margin-left: 48px;
+    }
+    
+    /* 移动端字体优化 */
+    .chapter-title {
+        font-size: 26px;
+    }
+    
+    .chapter-subtitle {
+        font-size: 20px;
+    }
+    
+    .content p {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+    
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===== 左侧目录触发器（底部导航条上方） ===== */
+.mobile-drawer-trigger {
+    position: fixed;
+    left: 0;
+    bottom: calc(70px + 16px + env(safe-area-inset-bottom, 0));
+    width: 32px;
+    height: 50px;
+    background: rgba(var(--bg-rgb), 0.4);
+    backdrop-filter: blur(11px);
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    border-right: 1px solid rgba(66, 153, 225, 0.2);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 95;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-drawer-trigger .menu-icon {
+    color: var(--accent);
+    font-size: 20px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+/* 微动效：首次加载呼吸效果 */
+@keyframes breathe {
+    0% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0.4; }
+}
+
+.mobile-drawer-trigger.first-load {
+    animation: breathe 1s ease 2;
+}
+
+/* 向上滚动展开效果 */
+.mobile-drawer-trigger.expand {
+    width: 80px;
+}
+
+.mobile-drawer-trigger.expand .menu-icon {
+    margin-right: 4px;
+}
+
+.mobile-drawer-trigger.expand::after {
+    content: "📖 目录";
+    color: var(--text);
+    font-size: 13px;
+    white-space: nowrap;
+    opacity: 0.9;
+}
+
+/* 闲置脉搏效果（仅前3次） */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.mobile-drawer-trigger.idle {
+    animation: pulse 2s ease infinite;
+}
+
+/* 抽屉面板 */
+.drawer-panel {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 80%;
+    max-width: 320px;
+    background: rgba(var(--bg-rgb), 0.95);
+    backdrop-filter: blur(10px);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 100;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+    border-right: 1px solid rgba(66, 153, 225, 0.2);
+    overflow-y: auto;
+    padding: 20px 0;
+}
+
+.drawer-panel.open {
+    transform: translateX(0);
+}
+
+.drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--light-accent);
+    margin-bottom: 10px;
+}
+
+.drawer-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.drawer-close {
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: var(--text);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+}
+
+.drawer-close:hover {
+    background: var(--accent);
+    color: white;
+}
+
+.drawer-chapters {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.drawer-chapter {
+    margin: 2px 0;
+}
+
+.drawer-chapter a {
+    text-decoration: none;
+    color: var(--text);
+    display: block;
+    padding: 10px 20px;
+    font-size: 15px;
+    line-height: 1.4;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+}
+
+.drawer-chapter a:active {
+    background: var(--light-accent);
+    border-left-color: var(--accent);
+}
+
+.drawer-chapter.active a {
+    background: var(--light-accent);
+    border-left-color: var(--accent);
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.drawer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.drawer-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ===== 底部导航条（全宽覆盖，透明度优化） ===== */
+.chapter-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background: rgba(var(--bg-rgb), 0.4);
+    backdrop-filter: blur(11px);
+    border-top: 1px solid rgba(66, 153, 225, 0.2);
+    padding: 0 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 90;
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
+    /* 安全区适配 */
+    padding-bottom: env(safe-area-inset-bottom, 0);
+    height: calc(70px + env(safe-area-inset-bottom, 0));
+}
+
+.nav-btn {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(66, 153, 225, 0.3);
+    padding: 0 20px;
+    height: 52px;
+    border-radius: 26px;
+    cursor: pointer;
+    color: #4299e1;
+    font-size: 15px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    min-width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 1 auto;
+}
+
+.nav-btn:hover:not(:disabled) {
+    background: #4299e1;
+    color: white;
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3);
+    border-color: transparent;
+}
+
+.nav-btn:disabled {
+    background: rgba(200, 200, 200, 0.3);
+    color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(200, 200, 200, 0.2);
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+/* 超小屏按钮文字调整 */
+@media (max-width: 375px) {
+    .nav-btn {
+        padding: 0 12px;
+        min-width: 80px;
+        font-size: 14px;
+    }
+}
+
+/* ===== 一键顶部按钮 ===== */
+.back-to-top {
+    position: fixed;
+    bottom: calc(70px + 16px + env(safe-area-inset-bottom, 0));
+    right: 16px;
+    width: 44px;
+    height: 44px;
+    border-radius: 22px;
+    background: rgba(var(--bg-rgb), 0.4);
+    backdrop-filter: blur(11px);
+    border: 1px solid rgba(66, 153, 225, 0.2);
+    color: var(--accent);
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 91;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.back-to-top.show {
+    display: flex;
+}
+
+.back-to-top:hover {
+    background: var(--accent);
+    color: white;
+}
+
+/* ===== 智能提示卡片（底部位置） ===== */
+.reading-tip {
+    position: fixed;
+    bottom: calc(70px + 16px + env(safe-area-inset-bottom, 0));
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(var(--bg-rgb), 0.2);
+    backdrop-filter: blur(8px);
+    border-radius: 16px;
+    padding: 8px 12px;
+    color: var(--text);
+    font-size: 14px;
+    z-index: 96;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    animation: tipFadeIn 0.3s ease;
+    pointer-events: none;
+    white-space: nowrap;
+    max-width: 80%;
+    border: 1px solid rgba(66, 153, 225, 0.2);
+}
+
+.reading-tip .tip-icon {
+    font-size: 14px;
+}
+
+.reading-tip.fade-out {
+    animation: tipFadeOut 0.2s ease forwards;
+}
+
+@keyframes tipFadeIn {
+    from { opacity: 0; transform: translate(-50%, 10px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes tipFadeOut {
+    from { opacity: 1; transform: translate(-50%, 0); }
+    to { opacity: 0; transform: translate(-50%, 10px); }
+}
+
+/* 进度条闪烁效果 */
+@keyframes progressFlash {
+    0% { height: var(--progress-height); }
+    50% { height: 6px; }
+    100% { height: var(--progress-height); }
+}
+
+.progress-bar.flash {
+    animation: progressFlash 0.3s ease;
+}
+
+/* 移动端显示触发器 */
+@media (max-width: 1199px) {
+    .mobile-drawer-trigger {
+        display: flex;
+    }
+}
+
+/* ===== 深色模式适配 ===== */
+.dark-mode .mobile-drawer-trigger {
+    background: rgba(26, 32, 44, 0.6);
+    border-color: rgba(116, 114, 254, 0.3);
+}
+
+.dark-mode .drawer-panel {
+    background: rgba(10, 12, 16, 0.98);
+    border-right-color: rgba(116, 114, 254, 0.2);
+}
+
+.dark-mode .chapter-nav {
+    background: rgba(26, 32, 44, 0.4);
+    border-color: rgba(116, 114, 254, 0.2);
+}
+
+.dark-mode .nav-btn {
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid rgba(116, 114, 254, 0.4);
+    color: #7472FE;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.dark-mode .nav-btn:hover:not(:disabled) {
+    background: #7472FE;
+    color: white;
+    box-shadow: 0 4px 12px rgba(116, 114, 254, 0.3);
+}
+
+.dark-mode .nav-btn:disabled {
+    background: rgba(50, 50, 50, 0.5);
+    color: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(100, 100, 100, 0.2);
+}
+
+.dark-mode .back-to-top {
+    background: rgba(26, 32, 44, 0.6);
+    border-color: rgba(116, 114, 254, 0.3);
+}
+
+.dark-mode .reading-tip {
+    background: rgba(26, 32, 44, 0.8);
+    border-color: rgba(116, 114, 254, 0.3);
+}
+
+.dark-mode .shelf-link,
+.dark-mode .shelf-text {
+    color: #7472FE;
+}
+</style>
+    <script>
+        window.__CHAPTER_DATA__ = [{"total_units": 27, "language_type": "english"}, {"total_units": 121, "language_type": "english"}, {"total_units": 91, "language_type": "english"}, {"total_units": 146, "language_type": "english"}, {"total_units": 937, "language_type": "english"}, {"total_units": 306, "language_type": "english"}, {"total_units": 14, "language_type": "english"}, {"total_units": 12, "language_type": "english"}, {"total_units": 14, "language_type": "english"}, {"total_units": 24, "language_type": "english"}, {"total_units": 18, "language_type": "english"}, {"total_units": 14, "language_type": "english"}, {"total_units": 11, "language_type": "english"}, {"total_units": 14, "language_type": "english"}, {"total_units": 54, "language_type": "english"}, {"total_units": 284, "language_type": "english"}, {"total_units": 5684, "language_type": "english"}, {"total_units": 289, "language_type": "english"}, {"total_units": 931, "language_type": "english"}, {"total_units": 1, "language_type": "english"}];
+    </script>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <header class="header">
+        <div class="header-left">
+            <a href="https://luckyme258.github.io/books4me/index.html" class="shelf-link">
+                <span class="shelf-icon">📚</span>
+                <span class="shelf-text">书架</span>
+            </a>
+            <span class="header-title" title="两性_In Case Youre Curious  Questions about Sex from Young People with Answers from the Experts_Planned Parenthood">两性_In Case Youre Curious  Questions about Sex from Young People with Answers from the Experts_Planned Parenthood</span>
+        </div>
+        <div class="header-right">
+            <span class="progress-text" id="progressText">0%</span>
+            <button class="theme-toggle" id="themeToggle">🌙 夜间</button>
+        </div>
+    </header>
+    
+    <div class="chapter-sidebar"><div class="sidebar-title">📖 目录</div><ul class="sidebar-chapters">
+<li class="sidebar-chapter level-1">
+    <a href="#chapter-0" title="In Case You’re Curious">In Case You’re Curio...</a>
+</li>
+<li class="sidebar-chapter level-1">
+    <a href="#chapter-1" title="Publishing Details">Publishing Details</a>
+</li>
+<li class="sidebar-chapter level-1">
+    <a href="#chapter-2" title="Dedication">Dedication</a>
+</li>
+<li class="sidebar-chapter level-1">
+    <a href="#chapter-3" title="Table of Contents">Table of Contents</a>
+</li>
+<li class="sidebar-chapter level-1">
+    <a href="#chapter-4" title="Preface">Preface</a>
+</li>
+<li class="sidebar-chapter level-1">
+    <a href="#chapter-5" title="Introduction">Introduction</a>
+</li>
+<li class="sidebar-chapter level-1">
+    <a href="#chapter-6" title="Chapter One: “Can You Die From Masturbating Too Much?” And Other Questions About Sex">Chapter One: “Can Yo...</a>
+</li>
+<li class="sidebar-chapter level-1">
+    <a href="#chapter-7" title="Chapter Two: “Can You Break A Penis?” And Other Questions About Anatomy">Chapter Two: “Can Yo...</a>
+</li>
+<li class="sidebar-chapter level-1">
+    <a href="#chapter-8" title="Chapter Three: “Do Guys Really Cum In Their Sleep?” And Other Questions About Puberty">Chapter Three: “Do G...</a>
+</li>
+<li class="sidebar-chapter level-1">
+    <a href="#chapter-9" title="Chapter Four: “Is Twelve Too Young To Know I’m Bi?” And Other Questions About Sexual Attraction, Sexual Orientation, Gender Identity, And Gender Expresssion">Chapter Four: “Is Tw...</a>
+</li>
+<li class="sidebar-chapter level-1">
+    <a href="#chapter-10" title="Chapter Five: “Can You Get an STI from a Toilet Seat ?” and Other Questions About Sexually Transmitted Infections">Chapter Five: “Can Y...</a>
+</li>
+<li class="sidebar-chapter level-1">
+    <a href="#chapter-11" title="Chapter Six: “Do Babies Come Out of the Butt?” and Other Questions About Pregnancy">Chapter Six: “Do Bab...</a>
+</li>
+<li class="sidebar-chapter level-1">
+    <a href="#chapter-12" title="Chapter Seven: “Wait, Condoms Expire?” and Other Questions About Birth Control">Chapter Seven: “Wait...</a>
+</li>
+<li class="sidebar-chapter level-1">
+    <a href="#chapter-13" title="Chapter Eight: “Why Do Broken Hearts Hurt So Badly?” and Other Questions about Relationships">Chapter Eight: “Why ...</a>
+</li>
+<li class="sidebar-chapter level-1">
+    <a href="#chapter-14" title="Chapter Nine: “How Do I Tell My Partner No?” and Other Questions About Consent">Chapter Nine: “How D...</a>
+</li>
+<li class="sidebar-chapter level-1">
+    <a href="#chapter-15" title="Wrap Up">Wrap Up</a>
+</li>
+<li class="sidebar-chapter level-1">
+    <a href="#chapter-16" title="Glossary">Glossary</a>
+</li>
+<li class="sidebar-chapter level-1">
+    <a href="#chapter-17" title="Acknowledgments">Acknowledgments</a>
+</li>
+<li class="sidebar-chapter level-1">
+    <a href="#chapter-18" title="End Notes">End Notes</a>
+</li>
+<li class="sidebar-chapter level-1">
+    <a href="#chapter-19" title="Notes">Notes</a>
+</li></ul></div>
+    
+    <div class="container">
+        <section class="chapter-section">
+<h1 class="chapter-title" id="chapter-0">
+    In Case You’re Curious
+</h1>
+<div class="content"><p class="short-para">IN CASEYOU’RECURIOUS</p><p class="short-para">WRITTEN BY:</p><p class="short-para">Molly Alderton, Daniela Fellman</p><p class="short-para">Meghan Hilton, Julie LaBarr</p><p class="short-para">Planned Parenthood of the Rocky Mountains</p><p class="short-para">ILLUSTRATED BY:</p><p class="short-para">Meghan Hilton</p><p class="short-para">EDITED BY:</p><p class="short-para">Alison Macklin</p></div></section><section class="chapter-section">
+<h1 class="chapter-title" id="chapter-1">
+    Publishing Details
+</h1>
+<div class="content"><p class="medium-para">Copyright © 2019 by Planned Parenthood Federation of America.</p><p class="long-para">All rights reserved. Except for brief passages quoted in newspaper, magazine, radio, television, or online reviews, no part of this book may be reproduced in any form or by any means, electronic or mechanical, including photocopying or recording, or by information storage or retrieval system, without permission in writing from the publisher.</p><p class="medium-para">Published in the United States by Viva Editions, an imprint of Start Midnight, LLC, 101 Hudson Street, Thirty-Seventh Floor, Suite 3705, Jersey City, NJ 07302.</p><p class="short-para">Printed in the United States.</p><div class="para-break"></div><p class="short-para">Cover design: Allyson Fields</p><p class="short-para">Cover illustrations: Meghan Hilton</p><p class="short-para">Illustrations: Meghan Hilton</p><p class="short-para">Text design: Frank Wiedemann</p><div class="para-break"></div><p class="short-para">First Edition.</p><p class="short-para">10 9 8 7 6 5 4 3 2 1</p><p class="short-para">Trade paper ISBN: 978-1-63228-067-1</p><p class="short-para">E-book ISBN: 978-1-63228-123-4</p><div class="para-break"></div><p class="medium-para">Library of Congress Cataloging-in-Publication Data is available on file.</p></div></section><section class="chapter-section">
+<h1 class="chapter-title" id="chapter-2">
+    Dedication
+</h1>
+<div class="content"><p class="short-para">[内容提取可能不完整]</p></div></section><section class="chapter-section">
+<h1 class="chapter-title" id="chapter-3">
+    Table of Contents
+</h1>
+<div class="content"><p class="short-para">TABLE OF CONTENTS</p><p class="short-para">Preface</p><p class="short-para">Introduction</p><p class="short-para">CHAPTER ONE:</p><div class="para-break"></div><p class="medium-para">“Can You Die From Masturbating Too Much?” And Other Questions About Sex</p><p class="short-para">CHAPTER TWO:</p><p class="medium-para">“Can You Break A Penis?” And Other Questions About Anatomy</p><p class="short-para">CHAPTER THREE:</p><div class="para-break"></div><p class="medium-para">“Do Guys Really Cum In Their Sleep?” And Other Questions About Puberty</p><p class="short-para">CHAPTER FOUR:</p><p class="medium-para">“Is Twelve Too Young To Know I’m Bi?” And Other Questions About Sexual Attraction, Sexual Orientation, Gender Identity, And Gender Expresssion</p><p class="short-para">CHAPTER FIVE:</p><div class="para-break"></div><p class="medium-para">“Can You Get an STI from a Toilet Seat ?” and Other Questions About Sexually Transmitted Infections</p><p class="short-para">CHAPTER SIX:</p><p class="medium-para">“Do Babies Come Out of the Butt?” and Other Questions About Pregnancy</p><p class="short-para">CHAPTER SEVEN:</p><div class="para-break"></div><p class="medium-para">“Wait, Condoms Expire?” and Other Questions About Birth Control</p><p class="short-para">CHAPTER EIGHT:</p><p class="medium-para">“Why Do Broken Hearts Hurt So Badly?” and Other Questions about Relationships</p><p class="short-para">CHAPTER NINE:</p><div class="para-break"></div><p class="medium-para">“How Do I Tell My Partner No?” and Other Questions About Consent</p><p class="short-para">Wrap Up</p><p class="short-para">Glossary</p><p class="short-para">Acknowledgments</p><div class="para-break"></div><p class="short-para">End Notes</p></div></section><section class="chapter-section">
+<h1 class="chapter-title" id="chapter-4">
+    Preface
+</h1>
+<div class="content"><p class="short-para">PREFACE</p><p class="long-para">Sex. It’s everywhere. Or at least that’s what people always say. And honestly, it’s not totally untrue—we are surrounded by sex all day, every day. We see sexual images in commercials and sing along without much care to sexual lyrics in our favorite songs. And still, the topic of sex is often hushed, shamed, and policed in ways that other areas of healthcare are not. Sexuality is part of being human and is experienced in every stage of life, so why is it so hard to talk about?</p><p class="long-para">Well, there are countless answers to that question. One major part of the problem lies in how the United States approaches sex education. Most adults think young people are learning everything they need to know about sex, relationships, and their bodies in school. And while we know parents support teaching sex ed in middle and high school, it just isn’t happening.1Believe it or not, only 24 states and the District of Columbia make schools teach sex education, and of those, only 13 states require the information provided be medically accurate.2Some states even have laws that dictate whether information provided on topics like sexual orientation is presented in a negative or a positive light.3There is a noticeable gap between what young people should be learning and what information they are actually receiving in the classroom.</p><p class="long-para">At Planned Parenthood, we have beenthetrusted provider and advocate of high-quality sexual healthcare for over 100 years, and we are the largest provider of sex education in the nation. And that means when it comes to sex ed, we’ve heard it all: the good, the bad, and the ugly! From comparisons of sexually active people to chewed-up gum or used tape, young people in the United States have gotten some pretty dismal messages about sex and relationships over the past several decades, the sentiment regularly being that sex is unmentionable and often shameful.</p><div class="para-break"></div><p class="long-para">But we’re here to help change that! As sex educators, it’s our mission to ensure young people—and all people, really—have access to the information they need, when they need it. We came to this profession because we want all sex to be consensual and pleasurable. We want everyone to be able to make their own decisions about whom they have sex with, and when, and how! We believe all people have the right to access this information free from shame. We believe that a person’s sexual identity, expression, and activity istheirs, and it is deeply personal and unique. Because these beliefs are so intrinsic to who we are, we, the sex educators, pride ourselves on providing open and honest information in a safe and nonjudgmental way. We also recognize that we can’t be everywhere for everyone. Or can we?</p><p class="long-para">As a trusted leader and innovator, Planned Parenthood of the Rocky Mountains launched its textlineIn Case You’re Curious, or ICYC, in 2009 to do just that—to make ourselves available to young people everywhere. So no matter where a young person lives, they can get real, personalized, confidential answers to their questions about sex and sexuality. And all of this happens exactly where young people are—on their phones! We have real sex educators who are there to answer questions, link to healthcare information, and provide additional resources—all in 160 characters or less.</p><p class="long-para">The sex educators who staff the line are from diverse backgrounds and are highly trained with over 100 years of combined experience teaching sex ed. We work with a number of Planned Parenthood affiliates and health departments across the United States, growing from just 76 incoming and outgoing texts in that first year to over 7,281 texts in 2018. Our goal in providing this service is ensuring we are accessible whenever and wherever we are needed. Staff respond to questions within 24 hours and have thousands of repeat users.</p><p class="long-para">ICYC isn’t a hotline—it’s not intended to be used for emergency situations. But we can help you navigate tough situations. We know there are lots of other really great hotlines out there doing great work (check out the resource in the wrap-up), so our goal is to connect you to those, instead of duplicating them. However, if a texter is under 18 and tells us they are being hurt, hurting someone else, or thinking of hurting themselves, we will report our conversation to police in order to help keep them safe. ICYC is a place where you can be sure you are getting current, nonjudgmental information right on your phone. The service is free (standard text messaging rates apply) and, while marketed specifically for teens, anyone can use it.</p><div class="para-break"></div><p class="long-para">So why a book, you might ask? Well, because in the last six years we’ve been running ICYC, we have had over 47,000 new texts, and over 79,000 different interactions/conversations. In those numbers we have seen a lot of people have really similar questions, and we wanted to show folks that having questions is okay. Everyone (no, really—everyone) has questions about sex and sexuality. That is completely normal. We wanted to show you that you shouldn’t be embarrassed to ask us. That probably, what you are asking about has been asked many times already. That even if you might think it’s a totally bizarre question, we’ve probably heard it.</p><p class="medium-para">Like I said, we are sex educators. We are proud of what we do, and we will continue to be here, answering your questions, every day.</p><p class="short-para">Enjoy the book!</p><p class="short-para">Alison Macklin</p><div class="para-break"></div><p class="medium-para">Author,Making Sense of “It”: A Guide to Sex for Teens (and Their Parents, Too!)</p></div></section><section class="chapter-section">
+<h1 class="chapter-title" id="chapter-5">
+    Introduction
+</h1>
+<div class="content"><p class="short-para">INTRODUCTION</p><p class="medium-para">Who’s this book for? Have you ever had questions about sex? Is the book currently in your hands? Then the answer isyou!</p><p class="long-para">Welcome toIn Case You’re Curious!Teens (and, let’s face it, pretty muchall people) have so many questions about their changing bodies, what’s normal, how sex works, and how to have healthy relationships. Have you always wanted to know why broken hearts hurt so bad? Has someone once told you that you can’t get pregnant from precum? Well, you’ve come to the right place (or book)! That’s why we’re here. We have these answers and some you never knew you always wanted to know. Planned Parenthood’s ICYC (In Case You’re Curious) offers teens a confidential text-line where trained sex educators answer questions and connect teens to accurate sexual health information. ICYC has been operating since 2009, and we’ve heard alotof questions over the years. And, interestingly, many folks out there ask questions about the same stuff. So, we decided to put this book together.</p><p class="long-para">This book represents some of the most commonly asked questions we get. But, lucky for you, here we aren’t limited to 160 characters in our answers! The information we are providing is basic and a quick reference. It isn’t meant to replace having conversations with your family or doing further research. It is meant to help answer some of those private questions that maybe you don’t want to ask your parent, teacher, or friends. Maybe you do want to ask those people, but you aren’t sure how to get the conversation started. This book can help with that, too! We’ve also included some not-so-common questions to show you that no question is off-limits. All questions about sexual health are welcome at ICYC!</p></div></section><section class="chapter-section">
+<h1 class="chapter-title" id="chapter-6">
+    Chapter One: “Can You Die From Masturbating Too Much?” And Other Questions About Sex
+</h1>
+<div class="content"><p class="short-para">CHAPTER ONE</p><p class="short-para">“CAN YOU DIE FROM MASTURBATING TOO MUCH?”</p><p class="short-para">AND OTHER QUESTIONS ABOUT SEX</p></div></section><section class="chapter-section">
+<h1 class="chapter-title" id="chapter-7">
+    Chapter Two: “Can You Break A Penis?” And Other Questions About Anatomy
+</h1>
+<div class="content"><p class="short-para">CHAPTER TWO</p><p class="short-para">“CAN YOU BREAK A PENIS?”</p><p class="short-para">AND OTHER QUESTIONS ABOUT ANATOMY</p></div></section><section class="chapter-section">
+<h1 class="chapter-title" id="chapter-8">
+    Chapter Three: “Do Guys Really Cum In Their Sleep?” And Other Questions About Puberty
+</h1>
+<div class="content"><p class="short-para">CHAPTER THREE</p><p class="short-para">“DO GUYS REALLY CUM IN THEIR SLEEP?”</p><p class="short-para">AND OTHER QUESTIONS ABOUT PUBERTY</p></div></section><section class="chapter-section">
+<h1 class="chapter-title" id="chapter-9">
+    Chapter Four: “Is Twelve Too Young To Know I’m Bi?” And Other Questions About Sexual Attraction, Sexual Orientation, Gender Identity, And Gender Expresssion
+</h1>
+<div class="content"><p class="short-para">CHAPTER FOUR</p><p class="short-para">“IS TWELVE TOO YOUNG TO KNOW I’M BI?”</p><p class="medium-para">AND OTHER QUESTIONS ABOUT SEXUAL ATTRACTION, SEXUAL ORIENTATION, GENDER IDENTITY, AND GENDER EXPRESSION</p></div></section><section class="chapter-section">
+<h1 class="chapter-title" id="chapter-10">
+    Chapter Five: “Can You Get an STI from a Toilet Seat ?” and Other Questions About Sexually Transmitted Infections
+</h1>
+<div class="content"><p class="short-para">CHAPTER FIVE</p><p class="short-para">“CAN YOU GET AN STI FROM A TOILET SEAT?”</p><p class="medium-para">AND OTHER QUESTIONS ABOUT SEXUALLY TRANSMITTED INFECTIONS</p></div></section><section class="chapter-section">
+<h1 class="chapter-title" id="chapter-11">
+    Chapter Six: “Do Babies Come Out of the Butt?” and Other Questions About Pregnancy
+</h1>
+<div class="content"><p class="short-para">CHAPTER SIX</p><p class="short-para">“DO BABIES COME OUT OF THE BUTT?”</p><p class="short-para">AND OTHER QUESTIONS ABOUT PREGNANCY</p></div></section><section class="chapter-section">
+<h1 class="chapter-title" id="chapter-12">
+    Chapter Seven: “Wait, Condoms Expire?” and Other Questions About Birth Control
+</h1>
+<div class="content"><p class="short-para">CHAPTER SEVEN</p><p class="short-para">“WAIT, CONDOMS EXPIRE?”</p><p class="short-para">AND OTHER QUESTIONS ABOUT BIRTH CONTROL</p></div></section><section class="chapter-section">
+<h1 class="chapter-title" id="chapter-13">
+    Chapter Eight: “Why Do Broken Hearts Hurt So Badly?” and Other Questions about Relationships
+</h1>
+<div class="content"><p class="short-para">CHAPTER EIGHT</p><p class="short-para">“WHY DO BROKEN HEARTS HURT SO SADLY?”</p><p class="short-para">AND OTHER QUESTIONS ABOUT RELATIONSHIPS</p></div></section><section class="chapter-section">
+<h1 class="chapter-title" id="chapter-14">
+    Chapter Nine: “How Do I Tell My Partner No?” and Other Questions About Consent
+</h1>
+<div class="content"><p class="short-para">CHAPTER NINE</p><p class="short-para">“HOW DO I TELL MY PARTNER NO?”</p><p class="short-para">AND OTHER QUESTIONS ABOUT CONSENT</p><p class="short-para">*Trigger Warning*</p><p class="long-para">Talking about consent andsexual abusecan cause many emotions. This chapter covers topics about physical, emotional, andsexual abuse. Please take care of yourself when reading, and talk to a trusted adult if you need support. For resources,Click Here.</p></div></section><section class="chapter-section">
+<h1 class="chapter-title" id="chapter-15">
+    Wrap Up
+</h1>
+<div class="content"><p class="short-para">WRAP UP</p><p class="long-para">You did it! You got through all the questions in this book! Or you just flipped to the back and started reading—either way, we are thrilled. Answering questions is the best part of our jobs at ICYC. ICYC makes sure that the information people actually want gets to them when they need it. While the questions we put in this book cover a lot of information, we know we couldn’t answer everything. So below you will find a few extras to help connect you even further to answers and support.</p><p class="long-para">First, you will find some conversation starters. It’s likely you noticed that we kept telling you to go talk with people—trusted adults, friends, and partners. You might be thinking, “How do I do that? What would I say?” Those are great questions to be asking yourself, and this next section is for you. If you’re still feeling like you need more support, you can always text “ICYC?” to 57890 or visit our Instagram page@incaseyourecurious.</p><p class="long-para">After the conversation starters, you will see links for resources that relate to all of the chapters of the book. These links can help continue the learning started here. Finally, the book ends with a glossary, so if there were any words you didn’t know in the book, or if you just want to explore terms related to sexual health, go and take a look.</p><p class="long-para">So now you’re finishing up yourICYCbook experience. What’s the big takeaway?ICYCwants you to remember, even if it’s the only thing you remember,you deserve to have your questions answered, and we are here for you. Thanks for reading, and text us any time.</p></div></section><section class="chapter-section">
+<h1 class="chapter-title" id="chapter-16">
+    Glossary
+</h1>
+<div class="content"><p class="short-para">GLOSSARY</p><p class="medium-para">(Glossary created by Planned Parenthood Federation of America 9.28.18)</p><p class="short-para">A:</p><p class="short-para">Abortion:Ending apregnancy.</p><div class="para-break"></div><p class="medium-para">Abortion pill:Describes the process ofmedication abortion, which includes the use of two medications, mifepristone and misoprostol, to safely end apregnancy.</p><p class="short-para">Abstinence:Not havingsexwith anyone.</p><p class="medium-para">Ace:Short for asexual, meaning thesexual orientation, or spectrum of identities, associated with experiencing no sexual attraction towards anyone.</p><p class="medium-para">Acquaintance rape: Sexual assaultby someone the victim knows.</p><div class="para-break"></div><p class="medium-para">Adolescence:Theperiodof physical and emotional change between the beginning ofpubertyand early adulthood.</p><p class="medium-para">Age of consent:The age at which state law considers a person old enough to decide to havesexwith someone.</p><p class="short-para">Agender:Not identifying with anygender.</p><p class="medium-para">AIDS(acquired immune deficiency syndrome): The most advanced stage ofHIV.</p><div class="para-break"></div><p class="long-para">Ally:Someone who’s on the same side as you. Often used to describe someone who takes a stand against oppression or discrimination who is not a member of the oppressed group—for example, a white person who speaks out against racism or astraightperson who speaks out againsthomophobia.</p><p class="medium-para">Anal sex: Sexin which thepenisor asextoy goes in the anus.</p><p class="medium-para">Androgynous:Appearing to have both, neither, or in between traditionally male and female physical characteristics.</p><p class="medium-para">Antibiotics:Medicines that are used to cure infections caused by bacteria.</p><div class="para-break"></div><p class="medium-para">Asymptomatic:Having no signs or symptoms. ManySTIsare asymptomatic in their early stages.</p><p class="short-para">B:</p><p class="long-para">Backup birth control:Anybirth controlmethod—likecondomsorwithdrawal—that’s used while waiting for hormonalbirth controlmethods to become effective (or to become effective again after a mistake or problem). Some people also refer toemergency contraceptionas backupbirth control.</p><p class="long-para">Bacterial vaginosis (bv):Inflammation of thevulva/vagina(vaginitis) caused by a change in the balance ofvaginalbacteria. It’s not anSTI. Things like douching or havingsexwith a new partner can lead to BV.</p><div class="para-break"></div><p class="long-para">Barrier methods of birth control: Birth controlthat blocksspermfrom passing through thecervix(the barrier between thevaginaanduterus). These include thecondom, femalecondom, diaphragm, cervical cap, sper-micide, and sponge.</p><p class="medium-para">Bigender:Having twogenders. Identifying as both a man and a woman, for example.</p><p class="medium-para">Birth canal:The passage from theuterusthrough thecervixandvaginathrough which a baby is born.</p><p class="short-para">Birth control:Something that preventspregnancy.</p><div class="para-break"></div><p class="medium-para">Bisexual:Being sexually attracted to both men and women. Sometimes used to describe people who are sexually attracted to people of allgenders, includingnon-binary genders.</p><p class="medium-para">Bladder:The organ that collects and stores urine (pee). The bladder is emptied through theurethra.</p><p class="medium-para">Blue balls:Slang for an uncomfortable—but not dangerous—feeling in thepenis/testiclesthat may occur when you don’t ejaculate after being very turned on.</p><p class="medium-para">Body image:Attitudes and feelings that a person has about their body and appearance.</p><div class="para-break"></div><p class="short-para">Boner:Slang for an erect (hard)penis.</p><p class="medium-para">Breastfeeding:Feeding a baby with human milk from the breast. Can also be used as abirth controlmethod for the first 6 months after birth, if done correctly.</p><p class="long-para">Breasts:The two glands on the chest. Consideredsexorgans because they’re often sexually sensitive and may inspire sexual desire. Like mammary glands in other mammals, they produce milk during and afterpregnancy.</p><p class="short-para">C:</p><div class="para-break"></div><p class="medium-para">C-section:Giving birth when a doctor surgically removes the baby from theuterus. Short for caesarian section.</p><p class="medium-para">Casual sex: Sexbetween people who aren’t in a relationship with each other.</p><p class="short-para">Celibacy:Not havingsex.</p><p class="medium-para">Censorship:When something is forbidden because it’s thought to be offensive or dangerous.</p><div class="para-break"></div><p class="long-para">Cervical mucus:The secretion that comes from the divider between theuterusandvagina. The amount of cervical mucus and what it looks like changes throughout themenstrual cycle, especially around the time ofovulation. It can naturally helpspermmove, or help stopspermfrom moving if you’re using hormonalbirth control.</p><p class="medium-para">Cervix:The narrow, lower part of theuterus, with a small opening connecting theuterusto thevagina.</p><p class="medium-para">Chest binding:Wrapping breast tissue in order to flatten it and create a moremasculine-appearing chest.</p><p class="medium-para">Child pornography:Images of children designed to be sexually arousing. Making, distributing, and consumingchild pornographyare serious crimes.</p><div class="para-break"></div><p class="medium-para">Chlamydia:A very commonSTIthat’s caused by a bacteria and can be cured withantibiotics. If left untreated,chlamydiacan causeinfertilityand arthritis.</p><p class="medium-para">Circumcision:A surgical procedure to remove the foreskin of thepenisor part of theclitoris.</p><p class="medium-para">Cis man:Short forcisgenderman. A man who identifies as thegenderhe was assigned at birth—in this case, male. A man who isn’ttransgender.</p><p class="medium-para">Cis woman:Short forcisgenderwoman. A woman who identifies as thegendershe was assigned at birth—in this case, female. A woman who isn’ttransgender.</p><div class="para-break"></div><p class="long-para">Cisgender:Those who identify as thegenderthey were assigned at birth. For example, a baby born with avulvais categorized a girl. If she also identifies as a girl or woman throughout her life, she’s consideredcisgender. In other words,cisgenderdescribes someone who is nottransgender.</p><p class="short-para">Climax:Anorgasmor to have anorgasm.</p><p class="medium-para">Clinician:A qualified health care professional, such as a doctor, nurse,nurse practitioner, or physician assistant. Also called“health care provider.”</p><p class="short-para">Clit:Short for clitoris.</p><div class="para-break"></div><p class="medium-para">Clitoral hood:A small flap of skin formed by the innerlabiathat covers and protects theclitoris.</p><p class="long-para">Clitoris: Sexorgan whose only known purpose is sexual pleasure. Theclitorisswells with blood during sexualexcitement. The outer part of theclitorisis located at the top/front of thevulva, right next to theurethra(hole you pee out of). The inner part of theclitoris, which is much larger, includes ashaftand two crura (roots or legs) of tissue that extend up to five inches into the body on both sides of thevaginato attach to the pubic bone.</p><p class="medium-para">Closet:“Being in thecloset,”or “being closeted,” means not sharing or not being able to share yourLGBTQ+identity with yourself or others.</p><p class="medium-para">Coercion:Forcing someone to do something they don’t want to do, often with threats or emotional manipulation.</p><div class="para-break"></div><p class="medium-para">Combination pill:Abirth control pillthat contains twohormones: estrogenand progestin.</p><p class="medium-para">Combined hormone contraceptives: Birth controlmethods—the pill, the patch, the ring—that contain twohormones: estrogenand progestin.</p><p class="medium-para">Combined oral contraceptives: Birth control pillsthat contain twohormones: estrogenand progestin.</p><p class="medium-para">Coming out:The process of accepting and being open about one’s identity, such as beinglesbian, gay, bisexual, transgender, queer, orquestioning. Short for“coming outof thecloset.”</p><div class="para-break"></div><p class="medium-para">Conception:The beginning ofpregnancy. The moment when thepre-embryoattaches to the lining of theuterusandpregnancybegins.</p><p class="long-para">Condom:Thin, stretchy pouch worn on thepenisduringsex. Mostly made from latex or plastics (like polyurethane and polyisoprene). Sometimes made from lambskin.Condomsare anover-the-counterbarrier method ofbirth controlthat also provide protection fromSTIs, with one exception—lambskincondomsdon’t protect againstSTIs.</p><p class="medium-para">Contraception/contraceptive:Any behavior, device, medication, or procedure used to preventpregnancy. Also known asbirth control.</p><p class="medium-para">Contraction:The on-again, off-again tightening of theuterusduring childbirth, which causes intense cramping.</p><div class="para-break"></div><p class="medium-para">Cowper’s glands:Produce pre-ejaculate (AKAprecum), a clear fluid that prepares theurethraforejaculation. Pre-ejaculate also reduces friction in theurethra, making it easier forsemento pass through.</p><p class="medium-para">Cum:Slang for “ejaculate,” thesperm-containing fluid that comes out of thepenisusually during anorgasm. Also another way of saying “to have anorgasm.”</p><p class="medium-para">Cybersex:Sexual encounters that take place online, using video cams, e-mail, or instant messaging.</p><p class="medium-para">Cyberstalking:To track and follow someone’s online presence and communications in a threatening way.</p><div class="para-break"></div><p class="short-para">D:</p><p class="medium-para">Date rape:Forced sexual contact from someone the victim knows or is dating. Also sometimes called“acquaintance rape.”</p><p class="medium-para">Dental dam:A thin, square piece of latex that helps prevent the spread ofSTIswhen placed over thevulvaor anus duringoral sex.</p><p class="medium-para">Depo-provera:The brand name of thebirth controlshot. The shot is ahormonethat’s injected into the butt or arm every three months to preventpregnancy.</p><div class="para-break"></div><p class="medium-para">Desire phase:The first stage of the sexual response cycle.</p><p class="medium-para">Domestic partnership:A committed, long-term relationship of two unmarried people who live together.</p><p class="long-para">Double standard:Unequal expectations, moral standards, or rules that allow one group to have more privileges than another group within a society. A sexual double standard, for example, usually places more restrictions on women than on men.</p><p class="medium-para">Douche:A spray of water, medication, or cleanser, which goes into thevagina.</p><div class="para-break"></div><p class="medium-para">Drag:Exaggerated cross-dressing for entertainment.</p><p class="short-para">E:</p><p class="medium-para">Ectopic pregnancy:A life-threateningpregnancythat develops outside theuterus, often in afallopian tube.</p><p class="medium-para">Egg:Thereproductive cellstored in theovariesand released duringovulation. Pregnancyhappens whenspermenters anegg, grows into a ball of cells, andimplantsinto theuterus.</p><div class="para-break"></div><p class="medium-para">Ejaculation:The moment whensemenspurts out of the opening of theurethrain theglansof thepenis.</p><p class="medium-para">Embryo:The organism that develops from apre-embryoduring the second month ofpregnancy. This stage of thepregnancylasts about five weeks.Embryosthen develop intofetuses.</p><p class="medium-para">Emergency contraception:A safe and effective way to preventpregnancyafter unprotectedsex. Emergency contraception pillsmade fromhormonesand copperIUDsare the two methods ofemergency contraception.</p><p class="medium-para">Endometriosis:A condition in which endometrial tissue (the tissue that lines theuterus)grows outside theuterus, causing pain, especially before and during menstruation.</p><div class="para-break"></div><p class="medium-para">Epididymis:The tube that leads from thetestesto thevas deferens. Spermare stored in theepididymisbeforeejaculation. It’s tightly coiled on top of and behind thetestes.</p><p class="medium-para">Epidural:An injection of painkillers used during childbirth.</p><p class="medium-para">Erectile tissue:Spongy tissue in thepenis/clitoristhat stiffens when filled with blood.</p><p class="medium-para">Erection:A “hard”penis—when it becomes full of blood and stiffens. See “vasocongestion.”</p><div class="para-break"></div><p class="short-para">Erotic:Sexually arousing.</p><p class="long-para">Estrogen:Ahormonemade in theovaries, and in much smaller amounts in the adrenal glands at the top of your kidneys, and sometimes even in fat tissue.Estrogenplays a part inpuberty, themenstrual cycle, andpregnancy. Many people take extraestrogenaftermenopauseor as part oftransgendercare.</p><p class="medium-para">Excitement:The body’s physical response to desire and to stimulation. The second stage of the sexual response cycle.</p><p class="medium-para">External sex and reproductive organs:Thesexorgans and structures that you can see. These include thevulva, penis, andscrotum.</p><div class="para-break"></div><p class="short-para">F:</p><p class="medium-para">Fallopian tube:One of two narrow tubes that carry aneggfrom theovaryto theuterusduringovulation.</p><p class="medium-para">Family planning:Making plans and taking actions, like usingbirth control, to have the number of children you want, when you want them.</p><p class="long-para">Female condom:A polyurethane pouch that goes inside thevaginaor anus forpregnancyand/orSTIprevention.Female condomsare sometimes called internalcondomsor referred to by their brand name, FC2Female Condom®.</p><div class="para-break"></div><p class="medium-para">Feminine:Characteristics and ways of appearing and behaving that a culture associates with being a girl or a woman.</p><p class="medium-para">Feminism:The belief that people of allgendersshould have equitable economic, political, sexual, and social rights.</p><p class="medium-para">Femme:An identity associated with agenderpresentation that is considered“feminine.”</p><p class="medium-para">Fertility:The ability to have children or cause apregnancy.</p><div class="para-break"></div><p class="medium-para">Fertility cycle:Another way of saying themenstrual cycle. The monthly pattern ofovulation, the shedding of the lining of theuterus(menstruation), and the body’s preparation for anotherovulation.</p><p class="medium-para">Fertility rate:The number of live births per 1,000 women of reproductive age (15–44).</p><p class="short-para">Fertilization:The joining of aneggandsperm.</p><p class="medium-para">Fetus:Develops from theembryoat 10 weeks ofpregnancyand receives nourishment through theplacenta.</p><div class="para-break"></div><p class="medium-para">First trimester:The first three months ofpregnancy.</p><p class="medium-para">Foreplay:Kissing, rubbing, stroking, and/or touching that leads tosex. Foreplaycan prolong and/or increase sexualexcitementand pleasure.</p><p class="medium-para">Foreskin:A tube of skin that covers and protects theglans(head) of thepenis, and rolls back when thepenisbecomes erect. A circumcisedpenishas had the foreskin removed.</p><p class="short-para">G:</p><div class="para-break"></div><p class="long-para">G-spot(Gräfenburg spot): An area inside thevaginathat’s highly sensitive to touch, along the upper wall of thevagina. Stimulation of theG spotcan lead to intensesexual arousalandorgasmfor some people.</p><p class="medium-para">Gay:When someone is only attracted to people of the samegender.</p><p class="long-para">Gender:A social and legal status of male or female. A set of expectations from society about behaviors and characteristics. Each culture has standards about the way that people should behave based on whether they’re male or female.</p><p class="medium-para">Gender affirming surgery:Surgery onsexorgans orsecondary sex characteristicsto match one’sgender identity.</p><div class="para-break"></div><p class="medium-para">Gender assignment:The medical and legal description of one’ssex, determined at birth.</p><p class="medium-para">Gender binary:The idea that there are only two categories ofgender(male and female) that are mutually exclusive and different from each other.</p><p class="long-para">Gender fluidity:The flexibility ofgenderexpressions and identities that may change over time or even from day to day. Agender fluidperson may feel male on some days, female on others, both male and female, or neither. Agender fluidperson might also identify asgenderqueer.</p><p class="medium-para">Gender identity:An individual’s inner feelings and outer expressions of theirgender.</p><div class="para-break"></div><p class="long-para">Gender nonconforming or non-binary:When a person’sgenderexpression doesn’t fit inside traditional male or female categories (sometimes called thegender binary). These labels can include someone who identifies as both male and female, neither male nor female, or some othergenderaltogether. It’s not the same as beingtransgenderand should only be used if someone self-identifies asgender nonconforming or non-binary.</p><p class="medium-para">Gender norms:Social standards on appropriatefeminineandmasculinebehavior.</p><p class="medium-para">Gender roles:Social standards on appropriatefeminineandmasculinebehavior.</p><p class="medium-para">Gender stereotype:Exaggerated expectations of the way boys/men or girls/women should behave.</p><div class="para-break"></div><p class="long-para">Genderqueer:A term for people who don’t identify as a man or a woman or whose identity lies outside the traditionalgender binaryof male and female. Some people usegenderqueer, gender nonconforming, andnon-binaryinterchangeably, but others don’t.Genderqueerhas a political history, so many use the term to identify theirgenderas non-normative in some way. For example, someone could identify as bothcisgenderfemale andgenderqueer.</p><p class="long-para">Genes:Microscopic chains in your cells that carry information about you that’s unique to you, but includes pieces from your biological family—everything from eye color, to height, to body type, to personality.</p><p class="long-para">Genital herpes:A commonSTIin the area of the anus,cervix, penis, vagina, orvulva. Very often there are no symptoms, while the most common symptom is a cluster of blistery sores. Since it’s a virus, there is no cure, but there is treatment available.</p><p class="medium-para">Genital warts:Soft, flesh-colored growths on or near thepenis/vulva, caused by some types ofHPV (human papilloma virus). They are usually painless, but may itch.</p><div class="para-break"></div><p class="medium-para">Genitals:Externalsexandreproductive organs, like the thevulva, penis, andscrotum.</p><p class="medium-para">Glans:The soft, highly sensitive tip of theclitorisorpenis. Also called the “head” of thepenis.</p><p class="medium-para">Gonorrhea:A bacterialSTIthat’s easy to treat, but if left untreated can lead toinfertility, arthritis, and heart problems. Often has no symptoms.</p><p class="medium-para">Gynecologist:A doctor who specializes in health care for thevulva, vagina, uterus, ovaries, andbreasts.</p><div class="para-break"></div><p class="short-para">H:</p><p class="medium-para">Health care provider:A licensed doctor, nurse,nurse practitioner, nurse-midwife, or physician assistant.</p><p class="medium-para">Health insurance:A plan or program that helps pay for the medical expenses of their members, like medicine, doctor visits, and surgery.</p><p class="medium-para">Heavy petting:Touching a partner’sgenitalsin a sexual way.</p><div class="para-break"></div><p class="medium-para">Hepatitis b virus (HBV):A viral infection that can be sexually transmitted. It can lead to dangerous liver problems in some people.</p><p class="long-para">Herpes:A commonSTIcaused by two different but similar viruses:herpessimplex virus type 1 (HSV-1) andherpessimplex virus type 2 (HSV-2). Both kinds can make blistery sores show up on and around thegenitalsor mouth.</p><p class="medium-para">Heteronormativity:The cultural assumption that everyone isstraight (heterosexual)until they tell you otherwise.</p><p class="medium-para">Heterosexism:The belief thatheterosexualityis better than othersexual orientations.</p><div class="para-break"></div><p class="medium-para">Heterosexual:Being attracted to people of the othergender.</p><p class="medium-para">High-risk pregnancy:Apregnancythat is more likely to have complications for the pregnant person or theirfetus.</p><p class="medium-para">HIV (human immunodeficiency virus):A chronic virus that breaks down theimmune system. Can lead toAIDSif not treated.</p><p class="medium-para">Homophobia:Fear or hatred of people who aregay, lesbian, orbisexual.</p><div class="para-break"></div><p class="medium-para">Homosexual:Being attracted to people of the samegender.</p><p class="medium-para">Hormonal contraceptives: Birth controlmethods that usehormonesto preventpregnancy. These include theimplant, the hormonalIUD, the pill, the patch, the ring, and the shot.</p><p class="medium-para">Hormones:Chemicals that cause changes in our bodies and brains. They naturally exist and can also be made in a lab.</p><p class="medium-para">Horny:Slang for wanting to havesexor for being sexually aroused.</p><div class="para-break"></div><p class="long-para">HPV (human papilloma virus):The most commonSTI. Some types ofHPVmay causegenital warts. Others may cause cancer of the anus,cervix, penis, throat, orvulva. Most of the timeHPVis harmless and goes away on its own.</p><p class="medium-para">Hymen:A thin, fleshy piece of tissue that stretches across part of the opening to thevagina.</p><p class="short-para">Hysterectomy:Surgery to remove theuterus.</p><p class="short-para">I:</p><div class="para-break"></div><p class="medium-para">Immune system:The body’s natural protection against infection and disease.</p><p class="long-para">Implant:A small rod, about the size of a matchstick, that preventspregnancyfor up to four years. A doctor or nurse inserts theimplantunder the skin of the upper arm. It releases thehormoneprogestin to preventpregnancy.</p><p class="long-para">Implantation:When apre-embryoattaches to the lining of theuterus. This is whenpregnancybegins. Usually starts about six days afterfertilization(wheneggandspermmeet) and takes three to four days to complete.</p><p class="medium-para">In vitro fertilization (IVF):Any method of assisted reproduction in whichfertilizationtakes place outside the body (usually in a lab) in an effort to get someone pregnant.</p><div class="para-break"></div><p class="medium-para">In-clinic abortion:A procedure done in a health center, doctor’s office, or hospital that ends apregnancy.</p><p class="medium-para">Infatuation:Intense, usually short-lived, emotional or sexual attraction to another person.</p><p class="medium-para">Infertility:The inability to become pregnant or to cause apregnancy.</p><p class="medium-para">Insemination:Puttingsperminto thevagina, cervix, uterus, orfallopian tubesto cause apregnancy.</p><div class="para-break"></div><p class="medium-para">Intact penis:Apeniswith a foreskin, also called uncircumcised.</p><p class="medium-para">Intercourse:Sexual activity in which thepenisgoes into thevagina (vaginal intercourse)or the anus (analintercourse).</p><p class="long-para">Internal sex and reproductive organs:The organs inside the body that are responsible for reproduction.Internal reproductive organsthat respond to sexual stimulation (like thevagina)are also calledsexorgans.</p><p class="medium-para">Internalized homophobia:Fear of beinghomosexualor negative feelings towards oneself for beinghomosexual.</p><div class="para-break"></div><p class="long-para">Intersex:A general term used for a variety of conditions in which a person is born with a reproductive or sexual anatomy that doesn’t fit the typical definitions of female or male. Sometimes a female or malegenderis assigned to anintersexperson at birth through surgery, if externalgenitalsare not obviously male or female.Intersexbabies are always assigned a legalgender, but sometimes when they grow up, they don’t identify with thegenderselected for them.</p><p class="medium-para">Intimacy:The closeness you feel when you share your private and personal self with someone else.</p><p class="long-para">Intimate partner violence (IPV):A pattern of emotional, verbal, physical, orsexual abusein the context of an intimate relationship. Also called “domestic violence,” “partner abuse,” “relationship abuse,” and “dating violence.”</p><p class="long-para">Intrauterine device (IUD):A tiny device that’s placed in theuterusto preventpregnancy. It’s safe, long-term, reversible, and one of the most effectivebirth controlmethods available. OneIUD, the ParaGard, uses copper to preventpregnancy. Others usehormonesto preventpregnancy.</p><div class="para-break"></div><p class="short-para">J:</p><p class="medium-para">Jealousy:Feelings of anxiety about a partner or crush’s attention,love, or commitment. Fear that a partner has feelings for someone else.</p><p class="long-para">Jock itch:A very common fungal skin infection on thescrotum, penis, or groin area. Caused by wearing tight clothing, sweating a lot, or not drying thegenitalscarefully after bathing.Jock itchcan cause a reddish, scaly rash that can become inflamed, itchy, and painful.</p><p class="short-para">K:</p><div class="para-break"></div><p class="long-para">Kegel exercises:The tightening and releasing of the muscles that stop urination in order to prevent and improve urinary incontinence, improve sexual sensation, and aid recovery ofvaginalmuscle tone after childbirth. Because they exercise internal muscles,kegelscan be done anywhere, anytime.</p><p class="short-para">L:</p><p class="short-para">Labia:The lips of thevulva.</p><p class="short-para">Labia majora:The outer lips of thevulva.</p><div class="para-break"></div><p class="short-para">Labia minora:The inner lips of thevulva.</p><p class="medium-para">Labor:The process of childbirth, including everything from thecontractionsof theuterusand dilation of thecervixto delivery of the infant and finally theplacenta.</p><p class="medium-para">Lesbian:A woman who’s sexually or romantically attracted to other women.</p><p class="medium-para">LGBTQ+:Stands forlesbian, gay, bisexual, transgender, andquestioning(or, alternatively,“queer”).</p><div class="para-break"></div><p class="short-para">Libido:Feeling of sexual desire.</p><p class="long-para">Love:A strong caring for someone else. It comes in many forms. There can belovefor romantic partners and also for close friends, for parents and children, for pets, for nature, or for something religious/spiritual.</p><p class="medium-para">Lube/lubricant:A water-based, silicone-based, or oil-based product used to increase slipperiness and reduce friction duringsex.</p><p class="short-para">Lust:Sexual desire for someone.</p><div class="para-break"></div><p class="short-para">M:</p><p class="medium-para">Mammogram:Breast cancer screening that takes X-rays of thebreaststo detect cancer before they can be felt.</p><p class="medium-para">Marriage:The socially and legally recognized union of a couple as spouses.</p><p class="medium-para">Masculine:Characteristics and ways of appearing and behaving that society associates with being a boy or a man.</p><div class="para-break"></div><p class="short-para">Mastectomy:The surgical removal of a breast.</p><p class="medium-para">Masturbation:Touching one’s own body/genitalsfor sexual pleasure.</p><p class="medium-para">Medication abortion / medical abortion:The use of a combination of drugs to end apregnancy. Also called the “abortion pill.”</p><p class="medium-para">Menopause:When menstruation stops because of hormonal changes. Usually happens between the ages of 45 and 55, but sometimesmenopausehappens earlier due to certain medical conditions.</p><div class="para-break"></div><p class="medium-para">Menstrual cup:A latex or silicone receptacle that fits in thevaginato collectmenstrual flow.</p><p class="long-para">Menstrual cycle:The time from the first day of oneperiodto the first day of the nextperiod. During themenstrual cycle, the lining of theuterusgrows, aneggis released by theovaries, and the uterine lining sheds.</p><p class="medium-para">Menstrual flow:Blood and discharge that are passed out of theuterusthrough thevaginaduring the beginning of themenstrual cycle.</p><p class="medium-para">Method effectiveness:How well a particular type ofbirth controlpreventspregnancy.</p><div class="para-break"></div><p class="medium-para">Miscarriage:When anembryoorfetusdies before the 20th week ofpregnancy.</p><p class="medium-para">Misogyny:Dislike, contempt for, or hatred of women.</p><p class="medium-para">Monogamy:When two people decide to havesexonly with each other and no one else.</p><p class="medium-para">Morning sickness:Nausea and vomiting that happens during thefirst trimesterofpregnancy.</p><div class="para-break"></div><p class="long-para">Morning wood:Slang for having an erectpeniswhen waking up. People who havepenisescan have severalerectionsat night as part of their sleep cycle. Very often, when they wake up, they’re still erect. Also called “nocturnal penile tumescence.”</p><p class="medium-para">Morning-after pill: Emergency contraceptionthat can be used within 120 hours (five days) of unprotectedvaginal sexto decrease the chance ofpregnancy.</p><p class="medium-para">Multiple orgasms:The occurrence of more than oneorgasmwithin one sexual experience.</p><p class="medium-para">Mutual masturbation:When people masturbate in each other’s presence.</p><div class="para-break"></div><p class="short-para">N:</p><p class="long-para">Nipple:The dark tissue in the center of the areola of each breast in someone of anygender. Nipplescan stand erect when stimulated by touch or cold. Thenipplescan also release milk in people who are breastfeeding.</p><p class="medium-para">Nocturnal emission:Commonly known as a“wet dream”; ejaculationwhile sleeping, which most often occurs duringpuberty.</p><p class="short-para">Nocturnal orgasm:A sexualclimaxduring sleep.</p><div class="para-break"></div></div></section><section class="chapter-section">
+<h1 class="chapter-title" id="chapter-17">
+    Acknowledgments
+</h1>
+<div class="content"><p class="short-para">ACKNOWLEDGMENTS</p><p class="long-para">First, it is important to thank all the sex educators out there. All of them. Some of you are in schools, some of you work for non-profits, some of you do it just because young people trust you and know you are a safe adult to talk to. To all of you, thank you. This book is dedicated to your service and passion and we, the educators at the Responsible Sex Education Institute of Planned Parenthood of the Rocky Mountains, are proud to stand with you in this work.</p><p class="medium-para">A special thank-you to all of the young people who have texted us your questions. We are committed to being a resource for you, regardless of where you live. Thank you for trusting us.</p><p class="long-para">Thank you to Planned Parenthood Federation of America and Trans Student Education Resources. It is an honor to work in this space with you, and we greatly appreciate your support as we work to arm young people with the information they need to live healthy lives.</p><p class="long-para">We want to thank Planned Parenthoods everywhere, especially Planned Parenthood of the Rocky Mountains. We will continue to fight for the reproductive freedom thatallpeople deserve, and we are proud to be a part of this work.</p><p class="long-para">Finally, we want to thank the incredible staff at the Responsible Sex Education Institute. Specifically, we would like to thank: Molly Alderton, Daniela Fellman, Meghan Hilton, Julie LaBarr, Alison Macklin, Elizabeth Weyer-Hudson, Becki Jones, Liza Bley, Rebekkah Abeyta, Tati Santos, Lizzie Smalls, Ryan Garcia, Brandi Lucero, Jax Sugars, Myra Llerenas, Andy Nuanhngam, Persephone Wilson, Brenda Hernandez, Julissa Salas, Dawn Canty, Rosita Castillo, and Robert Thurmond.</p><p class="medium-para">We are greatly appreciative of your contributions to the book and the ICYC text line.</p></div></section><section class="chapter-section">
+<h1 class="chapter-title" id="chapter-18">
+    End Notes
+</h1>
+<div class="content"><p class="short-para">END NOTES</p><p class="long-para">1Parenthood, Planned. “State of Sex Education in USA | Health Education in Schools.” Planned Parenthood. Accessed February 01, 2019.https://www.plannedparenthood.org/learn/for-educators/whats-state-sex-education-us.</p><p class="medium-para">2“Sex and HIV Education.” Guttmacher Institute. January 02, 2019. Accessed February 01, 2019.https://www.guttmacher.org/state-policy/explore/sex-and-hiv-education.</p><p class="medium-para">3“Sex and HIV Education.” Guttmacher Institute. January 02, 2019. Accessed February 01, 2019.https://www.guttmacher.org/state-policy/explore/sex-and-hiv-education.</p><div class="para-break"></div><p class="long-para">4Jio, Sarah. “All the Ways You Can Burn Calories During Sex.” Woman’s Day. January 06, 2019. Accessed February 01, 2019.https://www.womansday.com/relationships/sex-tips/advice/a1922/8-sexy-ways-to-burn-calories-110923/.</p><p class="medium-para">5MacGill, Markus. “What Is the Average Penis Size?” Medical News Today. July 09, 2018. Accessed February 01, 2019.https://www.medicalnewstoday.com/articles/271647.php.</p><p class="medium-para">6“How Many Eggs Does a Woman Have?” WebMD. Accessed February 01, 2019.https://www.webmd.com/menopause/qa/how-many-eggs-does-a-woman-have.</p><p class="long-para">7“How a Man Produces 1,500 Sperm a Second.” National Geographic. March 19, 2010. Accessed February 01, 2019.https://news.nationalgeographic.com/news/2010/03/100318-men-sperm-1500-stem-cells-second-male-birth-control/.</p><div class="para-break"></div><p class="medium-para">8Pappas, Stephanie. “Bears Not Attracted to Menstruating Women.” LiveScience. August 25, 2012. Accessed February 01, 2019.https://www.livescience.com/22688-myth-bears-attack-menstruating-women.html.)</p><p class="medium-para">9“Science & Nature - Human Body and Mind - Teenagers.” BBC. Accessed February 01, 2019.http://www.bbc.co.uk/science/humanbody/body/articles/lifecycle/teenagers/breast_development.shtml.</p><p class="long-para">10Stöppler, Melissa Conrad. “Symptoms of Menopause: At What Age Does It Start?” EMedicineHealth - Health and Medical Information Produced by Doctors. Accessed February 01, 2019.https://www.emedicinehealth.com/menopause/article_em.htm.</p><p class="long-para">11Maguire, Katie, and Katie Maguire. “Does Sleeping in a Bra Lead to Breast Cancer?” Well+Good. October 17, 2018. Accessed February 01, 2019.https://www.wellandgood.com/good-advice/sleeping-in-bra-breast-cancer-connection/slide/2/.</p><div class="para-break"></div><p class="medium-para">12Teen Rights to Sex Ed, Birth Control and More in New Mexico - Sex, Etc. Accessed February 01, 2019.https://sexetc.org/about/.</p><p class="long-para">13Parenthood, Planned. “Is My Menstrual Cycle Normal? | Facts & Information.” Planned Parenthood. Accessed February 01, 2019.https://www.plannedparenthood.org/learn/health-and-wellness/menstruation/how-do-i-know-if-my-menstrual-cycle-normal.</p><p class="long-para">14“Why Do You Get Morning Wood? Believe It Or Not, There’s an Important Scientific Reason.” Men’s Health. July 23, 2018. Accessed February 01, 2019.https://www.menshealth.com/sex-women/a19548523/what-is-morning-wood/.</p><p class="medium-para">15Care.com, Inc. “When Do Girls Stop Growing?” Care.com. Accessed February 01, 2019.https://www.care.com/c/stories/4218/when-do-girls-stop-growing/.</p><div class="para-break"></div><p class="medium-para">16“What’s an Adam’s Apple? (for Kids).” KidsHealth. June 2016. Accessed February 01, 2019.https://kidshealth.org/en/kids/adams-apple.html.</p><p class="medium-para">17“The Gender Unicorn.” Trans Student Educational Resources. Accessed February 01, 2019.http://www.transstudent.org/gender/.</p><p class="long-para">18Parenthood, Planned. “LGBTQ Info For Teens | Sexual Orientation & Gender Identity.” Planned Parenthood. Accessed February 01, 2019.https://www.plannedparenthood.org/learn/teens/lgbtq/sexual-orientation.</p><p class="medium-para">19Parenthood, Planned. “Teens Coming Out | How to Come Out to Your Parents & Family.” Planned Parenthood. Accessed February 01, 2019.https://www.plannedparenthood.org/learn/teens/lgbtq/coming-out.</p><div class="para-break"></div><p class="medium-para">20“STD Facts - Human Papillomavirus (HPV).” Centers for Disease Control and Prevention. Accessed February 01, 2019.https://www.cdc.gov/std/hpv/stdfact-hpv.htm.</p><p class="long-para">21Escobar, Samantha. “The Condom Timeline: A Detailed History Of Wrapping It Up.” YourTango. August 06, 2013. Accessed February 01, 2019.https://www.yourtango.com/2013189729/condom-timeline-detailed-history-wrapping-it.</p><p class="medium-para">22“Detailed STD Facts - Chlamydia.” Centers for Disease Control and Prevention. Accessed February 01, 2019.https://www.cdc.gov/std/chlamydia/stdfact-chlamydia-detailed.htm.</p><p class="long-para">23Boskey, Elizabeth, and Susan Olender. “Waiting for the Right Time to Get Tested If You Have an STD.” Verywell Health. Accessed February 01, 2019.https://www.verywellhealth.com/how-long-should-i-wait-for-std-testing-3132737.</p><div class="para-break"></div><p class="medium-para">24“Early Pregnancy Symptoms.” HealthLine. September 5, 2018. Accessed February 1, 2019.https://www.healthline.com/health/pregnancy/early-symptoms-timeline.</p><p class="medium-para">25“How Common Are Miscarriages?” WebMD. Accessed February 01, 2019.http://www.webmd.com/baby/qa/how-common-are-miscarriages.</p><p class="long-para">26“Patterned Breathing During Labor: Techniques and Benefits.” American Pregnancy Association. September 26, 2017. Accessed February 01, 2019.http://americanpregnancy.org/labor-and-birth/patterned-breathing/.</p><p class="long-para">27“Sex after Pregnancy: Set Your Own Timeline.” Mayo Clinic. July 07, 2018. Accessed February 01, 2019.https://www.mayoclinic.org/healthy-lifestyle/labor-and-delivery/in-depth/sex-after-pregnancy/art-20045669.</p><div class="para-break"></div><p class="long-para">28“Is It Possible to Get Pregnant from Swimming in a Pool? How Fast Is Sperm Killed by Chlorine and Other Chemicals?” U by Kotex®. Accessed February 01, 2019.https://www.ubykotex.com/en-us/periods/vaginal-and-reproductive-health/is-it-possible-to-get-pregnant-from-swimming-in-a-pool-how.</p><p class="medium-para">29CBS News. “Sperm: 15 Crazy Things You Should Know.” CBS News. September 19, 2011. Accessed February 01, 2019.https://www.cbsnews.com/pictures/sperm-15-crazy-things-you-should-know/7/.</p><p class="medium-para">30Callahan, Alice. “What Causes Morning Sickness?” The New York Times. August 03, 2018. Accessed February 01, 2019.https://www.nytimes.com/2018/08/03/well/what-causes-morning-sickness.html.</p><p class="medium-para">31“Promoting Pregnancy Wellness.” American Pregnancy Association. Accessed February 01, 2019.http://americanpregnancy.org/.</p><div class="para-break"></div><p class="long-para">32Raine-Bennett, Tina. “Does Using Birth Control Hurt My Chances of Getting Pregnant Later?” Bedsider. Accessed February 01, 2019.https://www.bedsider.org/features/76-birth-control-and-infertility-does-using-birth-control-hurt-my-chances-of-getting-pregnant-later.</p><p class="long-para">33Gallo MF, Lopez LM, Grimes DA, Carayon F, Schulz KF, Helmerhorst FM. “Combination contraceptives: effects on weight.” Cochrane Database of Systematic Reviews 2014, Issue 1. Art. No.: CD003987.https://www.cochrane.org/CD003987/FERTILREG_effect-of-birth-control-pills-and-patches-on-weight.</p><p class="long-para">34Parenthood, Planned. “What Kind of Emergency Contraception Is Best For Me?” Planned Parenthood. Accessed February 01, 2019.https://www.plannedparenthood.org/learn/morning-after-pill-emergency-contraception/which-kind-emergency-contraception-should-i-use.</p><p class="long-para">35“Fertility Awareness: Natural Family Planning (NFP).” American Pregnancy Association. September 02, 2016. Accessed February 01, 2019.http://americanpregnancy.org/preventing-pregnancy/natural-family-planning/.</p><div class="para-break"></div><p class="medium-para">36Ppfaq. “Plannedparenthood.” Planned Parenthood. August 05, 2016. Accessed February 01, 2019.http://plannedparenthood.tumblr.com/post/148506806862/understanding-consent-is-as-easy-as-fries-consent.</p><p class="medium-para">37“Bystander Intervention Tips.” It’s On Us. Accessed February 1, 2019.https://www.itsonus.org/wp-content/uploads/2017/04/IOU-Bystander-Intervention-Tips.pdf.</p></div></section><section class="chapter-section">
+<h1 class="chapter-title" id="chapter-19">
+    Notes
+</h1>
+<div class="content"><p class="short-para">[内容提取可能不完整]</p></div></section>
+    </div>
+    
+    <div class="chapter-nav">
+        <button class="nav-btn" id="prevChapter" disabled>← 上一章</button>
+        <button class="nav-btn" id="nextChapter">下一章 →</button>
+    </div>
+    
+    <script>
+// ===== 统一的导航管理器 =====
+(function() {
+    'use strict';
+    
+    // ========== 核心状态 ==========
+    const state = {
+        currentChapter: 0,
+        totalChapters: 0,
+        mode: 'desktop',
+        chapters: [],
+        chapterData: [],
+        readingStartTime: Date.now(),
+        chaptersCompleted: 0,
+        lastTipTime: 0,
+        fatigueLevel: 1.0,
+        lastLanguageSwitch: 0,
+        technicalTermCount: 0,
+        tipCount: 0,
+        drawerClickCount: 0,
+        shelfClickCount: 0  // 记录书架点击次数
+    };
+    
+    // ========== DOM元素缓存 ==========
+    const elements = {
+        header: null,
+        chapters: [],
+        sidebarChapters: [],
+        progressBar: null,
+        progressText: null,
+        prevBtn: null,
+        nextBtn: null,
+        themeToggle: null,
+        shelfLink: null
+    };
+    
+    // ========== 移动端元素 ==========
+    const mobile = {
+        drawerTrigger: null,
+        drawerPanel: null,
+        drawerClose: null,
+        drawerOverlay: null,
+        drawerChapters: null,
+        backToTop: null
+    };
+    
+    // ========== 章节数据 ==========
+    window.__CHAPTER_DATA__ = window.__CHAPTER_DATA__ || [];
+    
+    // ========== 提示语库 ==========
+    const tipMessages = {
+        chinese: {
+            short: [
+                { icon: "✌️", text: "这一节get到了" },
+                { icon: "📖", text: "又读完一小节" },
+                { icon: "✨", text: "知识点+1" }
+            ],
+            medium: [
+                { icon: "🌱", text: "理解加深中" },
+                { icon: "💪", text: "状态不错，继续" },
+                { icon: "🔍", text: "这个观点有意思" }
+            ],
+            long: [
+                { icon: "🏃", text: "已经读完1/3了" },
+                { icon: "⛰️", text: "半山腰了，加油" },
+                { icon: "🎪", text: "快到章节结尾了" }
+            ]
+        },
+        mixed: {
+            short: [
+                { icon: "🌐", text: "中英切换自如" },
+                { icon: "🎯", text: "Technical terms get!" },
+                { icon: "📚", text: "Bilingual reading" }
+            ],
+            medium: [
+                { icon: "🌍", text: "Great progress!" },
+                { icon: "⚡", text: "You're on fire!" },
+                { icon: "💡", text: "理解无国界" }
+            ],
+            long: [
+                { icon: "📊", text: "Halfway through" },
+                { icon: "🚀", text: "保持这个节奏" },
+                { icon: "🎯", text: "目标越来越近" }
+            ]
+        },
+        english: {
+            short: [
+                { icon: "🌍", text: "Great progress!" },
+                { icon: "⚡", text: "You're on fire!" },
+                { icon: "🎯", text: "Nailing it!" }
+            ],
+            medium: [
+                { icon: "💪", text: "Keep going!" },
+                { icon: "🌟", text: "You're doing great" },
+                { icon: "📈", text: "Making progress" }
+            ],
+            long: [
+                { icon: "🏃", text: "1/3 done, keep it up" },
+                { icon: "⛰️", text: "Halfway there" },
+                { icon: "🎪", text: "Almost there" }
+            ]
+        },
+        milestone: {
+            25: { icon: "🏁", text: "征程开始，已完成1/4" },
+            50: { icon: "🎪", text: "半程回顾，收获满满" },
+            75: { icon: "🚀", text: "冲刺阶段，即将完成" },
+            100: { icon: "🏆", text: "恭喜！你读完了整本书" }
+        },
+        rest: [
+            { icon: "☕", text: "累了？休息一下" },
+            { icon: "🧘", text: "眼睛需要放松" },
+            { icon: "🌙", text: "读完这章就休息" }
+        ],
+        timeBased: {
+            morning: { icon: "🌅", text: "早安，用阅读开启新的一天" },
+            night: { icon: "🌙", text: "夜深了，读完这章就休息吧" },
+            long: { icon: "⏰", text: "已专注阅读 {minutes} 分钟" }
+        }
+    };
+    
+    // ========== 初始化 ==========
+    function init() {
+        cacheElements();
+        loadChapterData();
+        detectMode();
+        setupMobileElements();
+        setupEventListeners();
+        setupResizeListener();
+        loadThemePreference();
+        initReadingTracker();
+        initShelfAnimation();
+        
+        if (elements.chapters.length > 0) {
+            state.totalChapters = elements.chapters.length;
+            state.chapterData = window.__CHAPTER_DATA__;
+            goToChapter(0);
+            
+            // 首次加载显示欢迎提示
+            setTimeout(() => {
+                const hour = new Date().getHours();
+                if (hour >= 5 && hour <= 8) {
+                    showTip(tipMessages.timeBased.morning.icon, tipMessages.timeBased.morning.text, 2000);
+                } else if (hour >= 22 || hour <= 4) {
+                    showTip(tipMessages.timeBased.night.icon, tipMessages.timeBased.night.text, 2000);
+                }
+            }, 1000);
+        }
+    }
+    
+    // ========== 书架按钮动画初始化 ==========
+    function initShelfAnimation() {
+        if (!elements.shelfLink) return;
+        
+        // 从localStorage读取书架点击次数
+        const saved = localStorage.getItem('shelfClickCount');
+        state.shelfClickCount = saved ? parseInt(saved) : 0;
+        
+        // 前3次显示动效
+        if (state.shelfClickCount < 3) {
+            elements.shelfLink.classList.add('first-load');
+            
+            // 3秒后移除动效（避免一直跳动）
+            setTimeout(() => {
+                elements.shelfLink.classList.remove('first-load');
+            }, 3000);
+        }
+        
+        // 点击事件
+        elements.shelfLink.addEventListener('click', (e) => {
+            // 增加点击次数
+            state.shelfClickCount++;
+            localStorage.setItem('shelfClickCount', state.shelfClickCount);
+            
+            // 移除动效
+            elements.shelfLink.classList.remove('first-load');
+            
+            // 实际跳转由href处理，不需要额外操作
+        });
+    }
+    
+    // ========== 加载章节数据 ==========
+    function loadChapterData() {
+        console.log('📚 加载章节数据:', window.__CHAPTER_DATA__.length, '章');
+    }
+    
+    // ========== 缓存DOM元素 ==========
+    function cacheElements() {
+        elements.header = document.querySelector('.header');
+        elements.chapters = document.querySelectorAll('.chapter-section');
+        elements.sidebarChapters = document.querySelectorAll('.sidebar-chapter');
+        elements.progressBar = document.getElementById('progressBar');
+        elements.progressText = document.getElementById('progressText');
+        elements.prevBtn = document.getElementById('prevChapter');
+        elements.nextBtn = document.getElementById('nextChapter');
+        elements.themeToggle = document.getElementById('themeToggle');
+        elements.shelfLink = document.querySelector('.shelf-link');
+    }
+    
+    // ========== 模式检测 ==========
+    function detectMode() {
+        state.mode = window.innerWidth > 1200 ? 'desktop' : 'mobile';
+        document.body.setAttribute('data-mode', state.mode);
+    }
+    
+    // ========== 设置响应式监听 ==========
+    function setupResizeListener() {
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                const newMode = window.innerWidth > 1200 ? 'desktop' : 'mobile';
+                if (newMode !== state.mode) {
+                    state.mode = newMode;
+                    document.body.setAttribute('data-mode', state.mode);
+                }
+            }, 250);
+        });
+    }
+    
+    // ========== 阅读追踪初始化 ==========
+    function initReadingTracker() {
+        state.readingStartTime = Date.now();
+        
+        const saved = localStorage.getItem('readingStats');
+        if (saved) {
+            try {
+                const stats = JSON.parse(saved);
+                state.chaptersCompleted = stats.chaptersCompleted || 0;
+                state.tipCount = stats.tipCount || 0;
+                state.drawerClickCount = stats.drawerClickCount || 0;
+            } catch (e) {}
+        }
+        
+        // 每10分钟更新疲劳度
+        setInterval(updateFatigueLevel, 60000);
+    }
+    
+    // ========== 更新疲劳度 ==========
+    function updateFatigueLevel() {
+        const minutes = Math.floor((Date.now() - state.readingStartTime) / 60000);
+        state.fatigueLevel = 1.0 + (minutes * 0.1);
+        
+        const lastSwitch = (Date.now() - state.lastLanguageSwitch) / 60000;
+        if (lastSwitch < 5) {
+            state.fatigueLevel += 0.2;
+        }
+        
+        state.fatigueLevel += state.technicalTermCount * 0.01;
+        state.fatigueLevel = Math.min(state.fatigueLevel, 3.0);
+        
+        if (state.fatigueLevel > 2.0) {
+            showRestTip();
+        }
+    }
+    
+    // ========== 保存阅读数据 ==========
+    function saveReadingStats() {
+        const stats = {
+            chaptersCompleted: state.chaptersCompleted,
+            tipCount: state.tipCount,
+            drawerClickCount: state.drawerClickCount,
+            lastRead: new Date().toISOString()
+        };
+        localStorage.setItem('readingStats', JSON.stringify(stats));
+    }
+    
+    // ========== 显示智能提示 ==========
+    function showTip(icon, text, duration = 3000) {
+        const now = Date.now();
+        const hourAgo = now - 3600000;
+        if (state.lastTipTime > hourAgo && state.tipCount >= 3) {
+            return;
+        }
+        
+        if (state.fatigueLevel > 2.5 && Math.random() > 0.3) {
+            return;
+        }
+        
+        state.lastTipTime = now;
+        state.tipCount++;
+        saveReadingStats();
+        
+        const oldTip = document.querySelector('.reading-tip');
+        if (oldTip) oldTip.remove();
+        
+        const tip = document.createElement('div');
+        tip.className = 'reading-tip';
+        tip.innerHTML = `<span class="tip-icon">${icon}</span><span class="tip-text">${text}</span>`;
+        document.body.appendChild(tip);
+        
+        setTimeout(() => {
+            tip.classList.add('fade-out');
+            setTimeout(() => tip.remove(), 200);
+        }, duration);
+    }
+    
+    // ========== 显示休息提示 ==========
+    function showRestTip() {
+        const rest = tipMessages.rest[Math.floor(Math.random() * tipMessages.rest.length)];
+        showTip(rest.icon, rest.text, 2000);
+    }
+    
+    // ========== 根据场景获取章节提示 ==========
+    function getChapterTip(chapterIndex, progress) {
+        const chapter = state.chapterData[chapterIndex];
+        if (!chapter) return null;
+        
+        const languageType = chapter.language_type || 'chinese';
+        const totalUnits = chapter.total_units || 500;
+        
+        let lengthType = 'medium';
+        if (totalUnits < 500) lengthType = 'short';
+        else if (totalUnits > 1500) lengthType = 'long';
+        
+        let tipPool;
+        if (progress === 'complete') {
+            if (languageType === 'chinese') tipPool = tipMessages.chinese[lengthType];
+            else if (languageType === 'english') tipPool = tipMessages.english[lengthType];
+            else tipPool = tipMessages.mixed[lengthType];
+        } else {
+            if (languageType === 'chinese') tipPool = tipMessages.chinese.medium;
+            else if (languageType === 'english') tipPool = tipMessages.english.medium;
+            else tipPool = tipMessages.mixed.medium;
+        }
+        
+        if (!tipPool || tipPool.length === 0) return null;
+        
+        return tipPool[Math.floor(Math.random() * tipPool.length)];
+    }
+    
+    // ========== 检查并触发章节提示 ==========
+    function checkChapterTip(chapterIndex, isComplete = false) {
+        const chapter = state.chapterData[chapterIndex];
+        if (!chapter) return;
+        
+        const totalUnits = chapter.total_units || 500;
+        const languageType = chapter.language_type || 'chinese';
+        
+        let baseProbability = 0.3;
+        
+        if (isComplete) {
+            if (totalUnits < 500) baseProbability = 0.2;
+            else if (totalUnits < 1500) baseProbability = 1.0;
+            else baseProbability = 1.0;
+        } else {
+            if (languageType === 'chinese') baseProbability = 0.4;
+            else if (languageType === 'english') baseProbability = 0.8;
+            else baseProbability = 0.6;
+        }
+        
+        baseProbability *= (1 + (state.fatigueLevel - 1.0) * 0.5);
+        
+        if (Math.random() > baseProbability) return;
+        
+        const tip = getChapterTip(chapterIndex, isComplete ? 'complete' : 'midway');
+        if (tip) {
+            showTip(tip.icon, tip.text);
+            
+            if (isComplete) {
+                if (elements.progressBar) {
+                    elements.progressBar.classList.add('flash');
+                    setTimeout(() => elements.progressBar.classList.remove('flash'), 300);
+                }
+                
+                const titleElement = document.getElementById(`chapter-${chapterIndex}`);
+                if (titleElement) {
+                    titleElement.classList.add('flash');
+                    setTimeout(() => titleElement.classList.remove('flash'), 500);
+                }
+            }
+        }
+    }
+    
+    // ========== 检查全书里程碑 ==========
+    function checkMilestone() {
+        const percent = Math.round((state.currentChapter + 1) / state.totalChapters * 100);
+        
+        if ([25, 50, 75, 100].includes(percent)) {
+            const milestone = tipMessages.milestone[percent];
+            if (milestone) {
+                showTip(milestone.icon, milestone.text, 4000);
+                
+                if (percent === 100 && elements.progressBar) {
+                    elements.progressBar.style.height = '8px';
+                    setTimeout(() => {
+                        elements.progressBar.style.height = 'var(--progress-height)';
+                    }, 2000);
+                }
+            }
+        }
+    }
+    
+    // ========== 创建移动端元素 ==========
+    function setupMobileElements() {
+        const drawerHTML = `
+            <div class="mobile-drawer-trigger" id="drawerTrigger">
+                <span class="menu-icon">☰</span>
+            </div>
+            <div class="drawer-panel" id="drawerPanel">
+                <div class="drawer-header">
+                    <span class="drawer-title">📖 目录</span>
+                    <button class="drawer-close" id="drawerClose">✕</button>
+                </div>
+                <ul class="drawer-chapters" id="drawerChapters"></ul>
+            </div>
+            <div class="drawer-overlay" id="drawerOverlay"></div>
+            <button class="back-to-top" id="backToTop">↑</button>
+        `;
+        
+        document.body.insertAdjacentHTML('afterbegin', drawerHTML);
+        
+        mobile.drawerTrigger = document.getElementById('drawerTrigger');
+        mobile.drawerPanel = document.getElementById('drawerPanel');
+        mobile.drawerClose = document.getElementById('drawerClose');
+        mobile.drawerOverlay = document.getElementById('drawerOverlay');
+        mobile.drawerChapters = document.getElementById('drawerChapters');
+        mobile.backToTop = document.getElementById('backToTop');
+        
+        mobile.drawerTrigger.classList.add('first-load');
+        setTimeout(() => {
+            mobile.drawerTrigger.classList.remove('first-load');
+        }, 2000);
+        
+        populateDrawer();
+        bindMobileEvents();
+        setupScrollTrigger();
+    }
+    
+    // ========== 填充抽屉目录 ==========
+    function populateDrawer() {
+        if (!mobile.drawerChapters || !elements.sidebarChapters.length) return;
+        
+        elements.sidebarChapters.forEach(item => {
+            const link = item.querySelector('a');
+            if (link) {
+                const newLi = document.createElement('li');
+                newLi.className = item.className;
+                newLi.innerHTML = link.outerHTML;
+                mobile.drawerChapters.appendChild(newLi);
+            }
+        });
+    }
+    
+    // ========== 滚动触发器逻辑 ==========
+    function setupScrollTrigger() {
+        let lastScrollTop = 0;
+        let expandTimer;
+        let idleTimer;
+        
+        window.addEventListener('scroll', () => {
+            if (!mobile.drawerTrigger) return;
+            
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop < lastScrollTop && state.mode === 'mobile') {
+                clearTimeout(expandTimer);
+                mobile.drawerTrigger.classList.add('expand');
+                
+                expandTimer = setTimeout(() => {
+                    mobile.drawerTrigger.classList.remove('expand');
+                }, 1500);
+            }
+            
+            lastScrollTop = scrollTop;
+            
+            clearTimeout(idleTimer);
+            mobile.drawerTrigger.classList.remove('idle');
+            
+            idleTimer = setTimeout(() => {
+                if (state.mode === 'mobile' && !mobile.drawerPanel.classList.contains('open') && state.drawerClickCount < 3) {
+                    mobile.drawerTrigger.classList.add('idle');
+                }
+            }, 3000);
+        });
+    }
+    
+    // ========== 绑定移动端事件 ==========
+    function bindMobileEvents() {
+        if (!mobile.drawerTrigger || !mobile.drawerClose || !mobile.drawerOverlay) return;
+        
+        mobile.drawerTrigger.addEventListener('click', () => {
+            toggleDrawer();
+            
+            state.drawerClickCount++;
+            saveReadingStats();
+            
+            if (!localStorage.getItem('drawerUsed')) {
+                showTip("📖", "目录已打开");
+                localStorage.setItem('drawerUsed', 'true');
+            }
+        });
+        
+        mobile.drawerClose.addEventListener('click', closeDrawer);
+        mobile.drawerOverlay.addEventListener('click', closeDrawer);
+        
+        let touchStartX = 0;
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        });
+        
+        document.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            
+            if (touchStartX < 30 && touchEndX - touchStartX > 50) {
+                if (!mobile.drawerPanel?.classList.contains('open')) {
+                    openDrawer();
+                }
+            }
+            
+            if (mobile.drawerPanel?.classList.contains('open') && touchStartX - touchEndX > 50) {
+                closeDrawer();
+            }
+        });
+        
+        if (mobile.backToTop) {
+            mobile.backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    }
+    
+    // ========== 绑定所有事件 ==========
+    function setupEventListeners() {
+        window.addEventListener('scroll', handleScroll);
+        
+        if (elements.themeToggle) {
+            elements.themeToggle.addEventListener('click', toggleTheme);
+        }
+        
+        document.querySelectorAll('.tool-card').forEach(card => {
+            card.addEventListener('click', toggleToolExample);
+        });
+        
+        if (elements.prevBtn) {
+            elements.prevBtn.addEventListener('click', () => goToChapter(state.currentChapter - 1));
+        }
+        if (elements.nextBtn) {
+            elements.nextBtn.addEventListener('click', () => goToChapter(state.currentChapter + 1));
+        }
+        
+        document.addEventListener('click', (e) => {
+            const link = e.target.closest('.sidebar-chapter a, .drawer-chapter a');
+            if (link) {
+                e.preventDefault();
+                const href = link.getAttribute('href');
+                const chapterId = parseInt(href.replace('#chapter-', ''));
+                goToChapter(chapterId);
+            }
+        });
+    }
+    
+    // ========== 跳转到指定章节 ==========
+    function goToChapter(index) {
+        if (index < 0 || index >= state.totalChapters) return;
+        
+        const wasLastChapter = state.currentChapter === state.totalChapters - 1;
+        const previousChapter = state.currentChapter;
+        state.currentChapter = index;
+        
+        elements.chapters.forEach((chap, i) => {
+            chap.style.display = i === index ? 'block' : 'none';
+        });
+        
+        if (elements.prevBtn) elements.prevBtn.disabled = index === 0;
+        if (elements.nextBtn) elements.nextBtn.disabled = index === state.totalChapters - 1;
+        
+        scrollToChapter(index);
+        updateAllHighlights();
+        
+        if (previousChapter !== index && !wasLastChapter) {
+            state.chaptersCompleted++;
+            saveReadingStats();
+            
+            checkChapterTip(previousChapter, true);
+            checkMilestone();
+            
+            const minutes = Math.floor((Date.now() - state.readingStartTime) / 60000);
+            if (minutes > 0 && minutes % 10 === 0 && minutes <= 60) {
+                const timeTip = tipMessages.timeBased.long;
+                showTip(timeTip.icon, timeTip.text.replace('{minutes}', minutes));
+            }
+        }
+        
+        if (state.mode === 'mobile' && mobile.drawerPanel?.classList.contains('open')) {
+            closeDrawer();
+        }
+    }
+    
+    // ========== 滚动到章节 ==========
+    function scrollToChapter(index) {
+        const chapterElement = document.getElementById(`chapter-${index}`);
+        if (!chapterElement) return;
+        
+        const headerHeight = elements.header ? elements.header.offsetHeight : 80;
+        const rect = chapterElement.getBoundingClientRect();
+        const scrollTo = window.pageYOffset + rect.top - headerHeight - 20;
+        
+        window.scrollTo({
+            top: Math.max(0, scrollTo),
+            behavior: 'smooth'
+        });
+    }
+    
+    // ========== 更新高亮 ==========
+    function updateAllHighlights() {
+        document.querySelectorAll('.sidebar-chapter, .drawer-chapter').forEach(item => {
+            item.classList.remove('active');
+        });
+        
+        const activeSidebarItem = document.querySelectorAll('.sidebar-chapter')[state.currentChapter];
+        if (activeSidebarItem) activeSidebarItem.classList.add('active');
+        
+        if (mobile.drawerChapters) {
+            const activeDrawerItem = mobile.drawerChapters.querySelectorAll('.sidebar-chapter')[state.currentChapter];
+            if (activeDrawerItem) activeDrawerItem.classList.add('active');
+        }
+    }
+    
+    // ========== 滚动处理 ==========
+    function handleScroll() {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        
+        if (elements.progressBar) {
+            elements.progressBar.style.width = scrolled + '%';
+        }
+        
+        if (elements.progressText) {
+            elements.progressText.textContent = `${Math.round(scrolled)}%`;
+        }
+        
+        if (mobile.backToTop) {
+            if (winScroll > window.innerHeight) {
+                mobile.backToTop.classList.add('show');
+            } else {
+                mobile.backToTop.classList.remove('show');
+            }
+        }
+        
+        detectCurrentChapter();
+        
+        const currentChapterData = state.chapterData[state.currentChapter];
+        if (currentChapterData) {
+            const chapterElement = document.getElementById(`chapter-${state.currentChapter}`);
+            if (chapterElement) {
+                const rect = chapterElement.getBoundingClientRect();
+                const totalHeight = rect.height;
+                const scrolledInChapter = Math.abs(rect.top);
+                
+                if (totalHeight > 0) {
+                    const progress = scrolledInChapter / totalHeight;
+                    if (progress > 0.3 && progress < 0.4 && !sessionStorage.getItem('tip-30')) {
+                        checkChapterTip(state.currentChapter, false);
+                        sessionStorage.setItem('tip-30', 'true');
+                    } else if (progress > 0.6 && progress < 0.7 && !sessionStorage.getItem('tip-60')) {
+                        checkChapterTip(state.currentChapter, false);
+                        sessionStorage.setItem('tip-60', 'true');
+                    }
+                }
+            }
+        }
+    }
+    
+    // ========== 检测当前章节 ==========
+    function detectCurrentChapter() {
+        const headerHeight = elements.header ? elements.header.offsetHeight : 80;
+        
+        for (let i = 0; i < elements.chapters.length; i++) {
+            const titleElement = document.getElementById(`chapter-${i}`);
+            if (titleElement) {
+                const rect = titleElement.getBoundingClientRect();
+                if (rect.top <= headerHeight + 50 && rect.bottom > headerHeight) {
+                    if (state.currentChapter !== i) {
+                        state.currentChapter = i;
+                        updateAllHighlights();
+                        sessionStorage.removeItem('tip-30');
+                        sessionStorage.removeItem('tip-60');
+                    }
+                    break;
+                }
+            }
+        }
+    }
+    
+    // ========== 抽屉控制 ==========
+    function toggleDrawer() {
+        if (mobile.drawerPanel?.classList.contains('open')) {
+            closeDrawer();
+        } else {
+            openDrawer();
+        }
+    }
+    
+    function openDrawer() {
+        if (!mobile.drawerPanel || !mobile.drawerOverlay) return;
+        mobile.drawerPanel.classList.add('open');
+        mobile.drawerOverlay.classList.add('active');
+    }
+    
+    function closeDrawer() {
+        if (!mobile.drawerPanel || !mobile.drawerOverlay) return;
+        mobile.drawerPanel.classList.remove('open');
+        mobile.drawerOverlay.classList.remove('active');
+    }
+    
+    // ========== 主题切换 ==========
+    function toggleTheme() {
+        document.body.classList.toggle('dark-mode');
+        const isDark = document.body.classList.contains('dark-mode');
+        if (elements.themeToggle) {
+            elements.themeToggle.textContent = isDark ? '☀️ 日间' : '🌙 夜间';
+        }
+        localStorage.setItem('darkMode', isDark ? '1' : '0');
+    }
+    
+    // ========== 工具卡片 ==========
+    function toggleToolExample(e) {
+        e.stopPropagation();
+        const card = e.currentTarget;
+        const example = card.querySelector('.tool-example');
+        const expandText = card.querySelector('.tool-expand');
+        
+        if (example) {
+            example.classList.toggle('active');
+            if (expandText) {
+                expandText.textContent = example.classList.contains('active') ? '收起示例' : '查看示例';
+            }
+        }
+    }
+    
+    // ========== 加载主题偏好 ==========
+    function loadThemePreference() {
+        if (localStorage.getItem('darkMode') === '1') {
+            document.body.classList.add('dark-mode');
+            if (elements.themeToggle) {
+                elements.themeToggle.textContent = '☀️ 日间';
+            }
+        }
+    }
+    
+    // ========== 启动 ==========
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();
+</script>
+</body>
+</html>
