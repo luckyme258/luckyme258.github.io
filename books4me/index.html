@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📚 半亩书廊 · 书籍列表</title>
+    <title>📚 半亩书廊 · 自用版</title>
     <style>
         * {
             margin: 0;
@@ -324,7 +324,7 @@
         <div class="header">
             <h1>
                 <span>📚</span>
-                半亩书廊
+                半亩书廊 · 自用版
             </h1>
             <div class="subtitle">闲来翻书 · 静中观心</div>
         </div>
@@ -389,6 +389,7 @@
                 this.books = [];
                 this.filteredBooks = [];
                 this.categories = [];
+                this.categoryIcons = {}; // 存储从JSON获取的分类图标
                 this.currentCategory = 'all';
                 this.searchTerm = '';
                 this.sortBy = 'title';
@@ -402,11 +403,17 @@
 
             async loadData() {
                 try {
+                    // ✅ 核心：加载同目录的 books.json（books4me 目录）
                     const response = await fetch('books.json?t=' + Date.now());
                     const data = await response.json();
                     
-                    this.books = data.books;
+                    this.books = data.books || [];
                     this.categories = data.categoryStats || [];
+                    
+                    // 提取分类图标（避免重复定义）
+                    this.categories.forEach(cat => {
+                        this.categoryIcons[cat.name] = cat.icon || '📘';
+                    });
                     
                     this.updateStats(data);
                     this.renderCategories();
@@ -420,19 +427,30 @@
             }
 
             updateStats(data) {
-                document.getElementById('totalBooks').textContent = data.totalBooks;
-                document.getElementById('totalCategories').textContent = data.totalCategories;
-                document.getElementById('allCount').textContent = data.totalBooks;
+                document.getElementById('totalBooks').textContent = data.totalBooks || 0;
+                document.getElementById('totalCategories').textContent = data.totalCategories || 0;
+                document.getElementById('allCount').textContent = data.totalBooks || 0;
                 
-                const date = new Date(data.lastUpdated);
+                // 显示完整时间（日期+时分）
+                const date = new Date(data.lastUpdated || Date.now());
                 const dateStr = `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
-                document.getElementById('lastUpdate').textContent = dateStr;
-                document.getElementById('updateTime').innerHTML = `🕒 最后更新: ${dateStr}`;
+                const timeStr = `${String(date.getHours()).padStart(2,'0')}:${String(date.getMinutes()).padStart(2,'0')}`;
+                document.getElementById('lastUpdate').textContent = `${dateStr} ${timeStr}`;
+                document.getElementById('updateTime').innerHTML = `🕒 最后更新: ${dateStr} ${timeStr}`;
             }
 
             renderCategories() {
                 const bar = document.getElementById('categoriesBar');
                 
+                // 容错：如果没有分类数据，提示空状态
+                if (this.categories.length === 0) {
+                    const emptyTag = document.createElement('div');
+                    emptyTag.className = 'category-tag';
+                    emptyTag.innerHTML = '<span>📘</span> 暂无分类 <span class="category-count">0</span>';
+                    bar.appendChild(emptyTag);
+                    return;
+                }
+
                 this.categories.forEach(cat => {
                     const tag = document.createElement('div');
                     tag.className = 'category-tag';
@@ -440,7 +458,7 @@
                     tag.innerHTML = `
                         <span>${cat.icon || '📘'}</span>
                         ${cat.name}
-                        <span class="category-count">${cat.count}</span>
+                        <span class="category-count">${cat.count || 0}</span>
                     `;
                     bar.appendChild(tag);
                 });
@@ -460,7 +478,7 @@
 
             filterAndSort() {
                 // 过滤
-                let filtered = this.books;
+                let filtered = [...this.books];
 
                 // 按分类过滤
                 if (this.currentCategory !== 'all') {
@@ -473,21 +491,21 @@
                 if (this.searchTerm) {
                     const term = this.searchTerm.toLowerCase();
                     filtered = filtered.filter(book => 
-                        book.title.toLowerCase().includes(term) ||
-                        book.author.toLowerCase().includes(term) ||
-                        book.category.toLowerCase().includes(term)
+                        (book.title || '').toLowerCase().includes(term) ||
+                        (book.author || '').toLowerCase().includes(term) ||
+                        (book.category || '').toLowerCase().includes(term)
                     );
                 }
 
                 // 排序
                 filtered.sort((a, b) => {
                     if (this.sortBy === 'title') {
-                        return a.title.localeCompare(b.title);
+                        return (a.title || '').localeCompare(b.title || '');
                     } else if (this.sortBy === 'category') {
-                        return a.category.localeCompare(b.category) || 
-                               a.title.localeCompare(b.title);
+                        return (a.category || '').localeCompare(b.category || '') || 
+                               (a.title || '').localeCompare(b.title || '');
                     } else if (this.sortBy === 'time') {
-                        return b.lastModified - a.lastModified;
+                        return (b.lastModified || 0) - (a.lastModified || 0);
                     }
                 });
 
@@ -505,34 +523,33 @@
                 }
 
                 grid.innerHTML = this.filteredBooks.map(book => {
-                    const date = new Date(book.lastModified);
+                    const date = new Date(book.lastModified || Date.now());
                     const dateStr = `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
                     
+                    // 优化文件大小显示
+                    let sizeStr = '0 KB';
+                    if (book.size > 0) {
+                        sizeStr = book.size < 1024 
+                            ? `${book.size} B` 
+                            : `${(book.size / 1024).toFixed(1)} KB`;
+                    }
+                    
                     return `
-                        <a href="${book.file}" class="book-card">
+                        <a href="${book.file || '#'}" class="book-card" target="_blank">
                             <div class="book-category">
-                                <span>${this.getCategoryIcon(book.category)}</span>
-                                ${book.category}
+                                <span>${this.categoryIcons[book.category] || '📘'}</span>
+                                ${book.category || '未分类'}
                             </div>
                             <div class="book-emoji">📖</div>
-                            <div class="book-title">${book.title}</div>
+                            <div class="book-title">${book.title || '未知书籍'}</div>
                             <div class="book-author">${book.author || '佚名'}</div>
                             <div class="book-meta">
-                                <span>${(book.size / 1024).toFixed(1)} KB</span>
+                                <span>${sizeStr}</span>
                                 <span>${dateStr}</span>
                             </div>
                         </a>
                     `;
                 }).join('');
-            }
-
-            getCategoryIcon(category) {
-                const icons = {
-                    '童话': '🧚', '科幻': '🚀', '文学': '📚', 
-                    '历史': '🏛️', '哲学': '🤔', '诗歌': '🎭',
-                    '传记': '📜', '技术': '💻', '艺术': '🎨'
-                };
-                return icons[category] || '📘';
             }
 
             updateResultStats() {
@@ -546,7 +563,7 @@
                 document.getElementById('searchInput').addEventListener('input', (e) => {
                     clearTimeout(timer);
                     timer = setTimeout(() => {
-                        this.searchTerm = e.target.value;
+                        this.searchTerm = e.target.value.trim();
                         this.filterAndSort();
                     }, 300);
                 });
