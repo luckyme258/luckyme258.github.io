@@ -1,14 +1,13 @@
 {
-  "lastUpdated": 1771481442464,
-  "totalBooks": 20,
-  "totalCategories": 10,
+  "lastUpdated": 1771481458443,
+  "totalBooks": 19,
+  "totalCategories": 9,
   "categories": [
     "心理",
     "校园",
     "侦探",
     "传记",
     "虚构",
-    "古典",
     "历史",
     "推理",
     "剧情",
@@ -89,17 +88,6 @@
       "category": "虚构",
       "author": "卡尔维诺",
       "size": 202147,
-      "lastModified": 1771446789000,
-      "addedTime": 1771446789000
-    },
-    {
-      "id": "古典_吴氏石头记（癸酉本）108回全本_吴梅村，曹雪芹.html",
-      "file": "古典_吴氏石头记（癸酉本）108回全本_吴梅村，曹雪芹.html",
-      "filename": "古典_吴氏石头记（癸酉本）108回全本_吴梅村，曹雪芹.html",
-      "title": "吴氏石头记（癸酉本）108回全本",
-      "category": "古典",
-      "author": "吴梅村，曹雪芹",
-      "size": 4770747,
       "lastModified": 1771446789000,
       "addedTime": 1771446789000
     },
@@ -260,11 +248,6 @@
     {
       "name": "虚构",
       "count": 5,
-      "icon": "📘"
-    },
-    {
-      "name": "古典",
-      "count": 1,
       "icon": "📘"
     },
     {
