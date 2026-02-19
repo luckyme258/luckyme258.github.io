@@ -1,1 +1,179 @@
+name: 更新书籍列表
 
+on:
+  push:
+    paths:
+      - 'books4me/*.html'              # 只要有新书上传就触发
+      - 'books4me/**/*.html'           # 包括子目录
+  workflow_dispatch:                 # 支持手动触发
+  schedule:
+    - cron: '0 */6 * * *'           # 每6小时自动更新一次（备用）
+
+jobs:
+  update-books-list:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write                # 允许写入仓库
+    
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0              # 获取完整历史，用于获取文件修改时间
+      
+      - name: 设置 Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      
+      - name: 生成书籍列表
+        run: |
+          cat > generate_books4me.py << 'EOF'
+          import os
+          import json
+          import time
+          from datetime import datetime
+          import glob
+          
+          def parse_filename(filename):
+              """解析文件名，提取分类和书名"""
+              name = filename.replace('.html', '')
+              
+              # 默认值
+              category = '未分类'
+              title = name
+              author = ''
+              
+              # 解析格式：分类_书名_作者.html
+              if '_' in name:
+                  parts = name.split('_')
+                  if len(parts) >= 2:
+                      category = parts[0]
+                      title = parts[1]
+                  if len(parts) >= 3:
+                      author = parts[2]
+              
+              return {
+                  'category': category,
+                  'title': title,
+                  'author': author
+              }
+          
+          def get_file_time(filepath):
+              """获取文件的Git提交时间（更准确）"""
+              try:
+                  # 获取最后一次git提交时间
+                  import subprocess
+                  result = subprocess.run(
+                      ['git', 'log', '-1', '--format=%ct', filepath],
+                      capture_output=True, text=True
+                  )
+                  if result.returncode == 0 and result.stdout.strip():
+                      return int(result.stdout.strip()) * 1000
+              except:
+                  pass
+              
+              # 降级使用文件修改时间
+              return int(os.path.getmtime(filepath) * 1000)
+          
+          def main():
+              books_dir = 'books'
+              all_books = []
+              
+              # 扫描所有HTML文件（包括子目录）
+              html_files = glob.glob(f'{books_dir}/**/*.html', recursive=True)
+              
+              for filepath in html_files:
+                  filename = os.path.basename(filepath)
+                  
+                  # 跳过index.html
+                  if filename == 'index.html':
+                      continue
+                  
+                  # 获取相对路径（用于链接）
+                  rel_path = os.path.relpath(filepath, books_dir).replace('\\', '/')
+                  
+                  # 解析文件名
+                  parsed = parse_filename(filename)
+                  
+                  # 获取文件信息
+                  stat = os.stat(filepath)
+                  file_time = get_file_time(filepath)
+                  
+                  book = {
+                      'id': filename,
+                      'file': rel_path,                    # 相对路径
+                      'filename': filename,                 # 原始文件名
+                      'title': parsed['title'],              # 书名
+                      'category': parsed['category'],        # 分类
+                      'author': parsed['author'],            # 作者
+                      'size': stat.st_size,                  # 文件大小
+                      'lastModified': file_time,              # 最后修改时间
+                      'addedTime': file_time                   # 添加时间
+                  }
+                  
+                  all_books.append(book)
+              
+              # 按书名排序
+              all_books.sort(key=lambda x: x['title'])
+              
+              # 按分类统计
+              categories = {}
+              for book in all_books:
+                  cat = book['category']
+                  if cat not in categories:
+                      categories[cat] = []
+                  categories[cat].append(book)
+              
+              # 生成最终数据
+              output_data = {
+                  'lastUpdated': int(time.time() * 1000),
+                  'totalBooks': len(all_books),
+                  'totalCategories': len(categories),
+                  'categories': list(categories.keys()),
+                  'books': all_books,
+                  'categoryStats': [
+                      {
+                          'name': cat,
+                          'count': len(books),
+                          'icon': get_category_icon(cat)
+                      }
+                      for cat, books in categories.items()
+                  ]
+              }
+              
+              # 写入books.json
+              with open(f'{books_dir}/books.json', 'w', encoding='utf-8') as f:
+                  json.dump(output_data, f, ensure_ascii=False, indent=2)
+              
+              print(f'✅ 生成完成：{len(all_books)} 本书，{len(categories)} 个分类')
+          
+          def get_category_icon(category):
+              """为分类分配图标"""
+              icons = {
+                  '童话': '🧚',
+                  '科幻': '🚀',
+                  '文学': '📚',
+                  '历史': '🏛️',
+                  '哲学': '🤔',
+                  '诗歌': '🎭',
+                  '传记': '📜',
+                  '技术': '💻',
+                  '艺术': '🎨',
+                  '教育': '📖'
+              }
+              return icons.get(category, '📘')
+          
+          if __name__ == '__main__':
+              main()
+          EOF
+          
+          python3 generate_books.py
+      
+      - name: 提交更改
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add books/books.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "🤖 自动更新书籍列表 [skip ci]"
+          git push
