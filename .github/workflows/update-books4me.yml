@@ -17,8 +17,7 @@ jobs:
       - name: 检出仓库代码
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-          token: ${{ github.token }}  # 🌟 新增：显式传递Token
+          fetch-depth: 0  # 仅保留，不影响核心逻辑
 
       - name: 设置Python环境
         uses: actions/setup-python@v5
@@ -96,24 +95,21 @@ jobs:
           
           python generate_books4me.py
 
-      - name: 提交并推送更改（修复冲突）
+      - name: 直接提交并推送（无pull，适配单人场景）
         run: |
+          # 配置Git用户信息
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           
-          git add books4me/books.json
-          git stash push -m "暂存books4me/books.json" || true
-          
-          git pull origin ${{ github.ref_name }} --rebase --autostash || true
-          
-          git stash pop || true
-          
+          # 🌟 核心修改：直接添加文件，无pull/merge/stash
           git add books4me/books.json
           
+          # 仅当有修改时提交
           if git diff --cached --quiet; then
-              echo "✅ 没有需要更新的内容，跳过提交"
+              echo "✅ 无更新，跳过提交"
           else
               git commit -m "自动更新books4me/books.json - $(date +'%Y-%m-%d %H:%M:%S')"
+              # 直接推送，无pull步骤
               git push origin ${{ github.ref_name }}
-              echo "✅ books4me/books.json 已成功更新并推送"
+              echo "✅ books.json 推送成功"
           fi
