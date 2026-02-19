@@ -28,7 +28,7 @@ jobs:
       
       - name: 生成书籍列表
         run: |
-          cat > generate_books4me.py << 'EOF'
+          cat > generate_books.py << 'EOF'
           import os
           import json
           import time
