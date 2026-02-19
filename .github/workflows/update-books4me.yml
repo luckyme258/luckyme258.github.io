@@ -1,47 +1,38 @@
-# 工作流名称：更新books4me目录书籍列表
 name: 更新books4me目录书籍列表
 
-# 触发条件：推送HTML文件、手动触发、每6小时自动触发
 on:
   push:
-    branches: [main, master]  # 同时适配main/master分支
+    branches: [main, master]
     paths:
-      - 'books4me/*.html'       # 监控books4me下的HTML文件
-      - 'books4me/**/*.html'    # 监控books4me子文件夹的HTML文件
-  workflow_dispatch:            # 保留手动触发（兜底用）
+      - 'books4me/*.html'
+      - 'books4me/**/*.html'
+  workflow_dispatch:
   schedule:
-    - cron: '0 */6 * * *'       # 每6小时自动更新一次
+    - cron: '0 */6 * * *'
 
-# 执行的任务
 jobs:
   update-books4me-list:
-    runs-on: ubuntu-latest  # 使用Ubuntu最新版运行环境
+    runs-on: ubuntu-latest
     steps:
-      # 步骤1：检出仓库代码（拉取完整历史，避免冲突）
       - name: 检出仓库代码
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # 关键：拉取完整的仓库历史，解决拉取冲突
+          fetch-depth: 0
+          token: ${{ github.token }}  # 🌟 新增：显式传递Token
 
-      # 步骤2：设置Python环境（生成JSON需要Python）
       - name: 设置Python环境
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'  # 稳定的Python版本
+          python-version: '3.10'
 
-      # 步骤3：生成books4me/books.json文件（核心逻辑）
       - name: 生成书籍列表JSON（books4me）
         run: |
-          # 确保books4me目录存在（避免空目录报错）
           mkdir -p books4me
-          
-          # 编写Python脚本（内嵌到工作流，无需单独文件）
           cat > generate_books4me.py << 'EOF'
           import os
           import json
           from datetime import datetime
 
-          # 分类图标映射（可根据你的分类扩展）
           category_icons = {
               '童话': '🧚', '科幻': '🚀', '文学': '📚', 
               '历史': '🏛️', '哲学': '🤔', '诗歌': '🎭',
@@ -51,44 +42,37 @@ jobs:
               '未分类': '📘'
           }
 
-          # 目标目录
           target_dir = 'books4me'
           books = []
           category_stats = {}
 
-          # 遍历所有HTML文件（排除index.html）
           for filename in os.listdir(target_dir):
               if filename.endswith('.html') and filename != 'index.html':
                   file_path = os.path.join(target_dir, filename)
-                  # 获取文件信息（大小、修改时间）
                   try:
                       file_stats = os.stat(file_path)
                   except:
-                      continue  # 跳过无法读取的文件
+                      continue
                   
-                  # 解析文件名：标题_作者_分类.html（容错处理）
-                  name_parts = filename[:-5].split('_')  # 去掉.html后缀
+                  name_parts = filename[:-5].split('_')
                   title = name_parts[0] if len(name_parts) > 0 else '未知书籍'
                   author = name_parts[1] if len(name_parts) > 1 else '佚名'
                   category = name_parts[2] if len(name_parts) > 2 else '未分类'
                   
-                  # 统计分类数量
                   if category not in category_stats:
                       category_stats[category] = 0
                   category_stats[category] += 1
                   
-                  # 构建单本书籍信息
                   book = {
                       'title': title,
                       'author': author,
                       'category': category,
                       'file': filename,
                       'size': file_stats.st_size,
-                      'lastModified': int(file_stats.st_mtime * 1000)  # 转毫秒时间戳
+                      'lastModified': int(file_stats.st_mtime * 1000)
                   }
                   books.append(book)
 
-          # 构建分类统计（带图标）
           category_list = []
           for cat, count in sorted(category_stats.items()):
               category_list.append({
@@ -97,7 +81,6 @@ jobs:
                   'icon': category_icons.get(cat, '📘')
               })
 
-          # 生成最终JSON数据
           result = {
               'totalBooks': len(books),
               'totalCategories': len(category_stats),
@@ -107,41 +90,30 @@ jobs:
               'lastUpdated': int(datetime.now().timestamp() * 1000)
           }
 
-          # 写入JSON文件（确保UTF-8编码）
           with open(os.path.join(target_dir, 'books.json'), 'w', encoding='utf-8') as f:
               json.dump(result, f, ensure_ascii=False, indent=2)
           EOF
           
-          # 执行Python脚本，生成books.json
           python generate_books4me.py
 
-      # 步骤4：提交并推送更改（修复冲突核心步骤）
       - name: 提交并推送更改（修复冲突）
         run: |
-          # 配置Git用户信息（必须，否则无法提交）
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           
-          # 🌟 核心修复：解决「未提交修改导致pull失败」的问题
-          # 1. 暂存生成的books.json（避免拉取时冲突）
           git add books4me/books.json
           git stash push -m "暂存books4me/books.json" || true
           
-          # 2. 拉取远程最新代码（自动合并，失败则忽略）
           git pull origin ${{ github.ref_name }} --rebase --autostash || true
           
-          # 3. 恢复暂存的修改
           git stash pop || true
           
-          # 4. 重新暂存文件
           git add books4me/books.json
           
-          # 5. 仅当有修改时提交（避免空提交报错）
           if git diff --cached --quiet; then
               echo "✅ 没有需要更新的内容，跳过提交"
           else
               git commit -m "自动更新books4me/books.json - $(date +'%Y-%m-%d %H:%M:%S')"
-              # 推送更改到远程仓库
               git push origin ${{ github.ref_name }}
               echo "✅ books4me/books.json 已成功更新并推送"
           fi
