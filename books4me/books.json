@@ -1,6 +1,6 @@
 {
-  "totalBooks": 13,
-  "totalCategories": 10,
+  "totalBooks": 17,
+  "totalCategories": 12,
   "categories": [
     "Dr. Trish Leigh",
     "Gowen, L. Kris",
@@ -8,7 +8,9 @@
     "Nikol Hasler",
     "Planned Parenthood",
     "小仲马",
+    "布·斯里尼瓦桑",
     "未分类",
+    "柯南道尔",
     "简·奥斯汀",
     "艾尔德",
     "辰东"
@@ -45,8 +47,18 @@
       "icon": "📘"
     },
     {
+      "name": "布·斯里尼瓦桑",
+      "count": 1,
+      "icon": "📘"
+    },
+    {
       "name": "未分类",
-      "count": 4,
+      "count": 6,
+      "icon": "📘"
+    },
+    {
+      "name": "柯南道尔",
+      "count": 1,
       "icon": "📘"
     },
     {
@@ -72,7 +84,7 @@
       "category": "Planned Parenthood",
       "file": "两性_In Case Youre Curious  Questions about Sex from Young People with Answers from the Experts_Planned Parenthood.html",
       "size": 111732,
-      "lastModified": 1772125929508
+      "lastModified": 1772127728851
     },
     {
       "title": "两性",
@@ -80,7 +92,23 @@
       "category": "Dr. Trish Leigh",
       "file": "两性_Mind Over Explicit Matter Quit Porn and Improve Intimacy through Neuroscience_Dr. Trish Leigh.html",
       "size": 509077,
-      "lastModified": 1772125929509
+      "lastModified": 1772127728851
+    },
+    {
+      "title": "历史",
+      "author": "美国四百年  冒险、创新与财富塑造的历史",
+      "category": "布·斯里尼瓦桑",
+      "file": "历史_美国四百年  冒险、创新与财富塑造的历史_布·斯里尼瓦桑.html",
+      "size": 1269204,
+      "lastModified": 1772127728876
+    },
+    {
+      "title": "美元真相：跟踪1美元的全球之旅 (达尔辛妮·大卫) (Z-Library)",
+      "author": "佚名",
+      "category": "未分类",
+      "file": "美元真相：跟踪1美元的全球之旅 (达尔辛妮·大卫) (Z-Library).html",
+      "size": 633468,
+      "lastModified": 1772127728898
     },
     {
       "title": "两性",
@@ -88,7 +116,7 @@
       "category": "Gowen, L. Kris",
       "file": "两性_Sexual decisions the ultimate teen guide_Gowen, L. Kris.html",
       "size": 561854,
-      "lastModified": 1772125929513
+      "lastModified": 1772127728856
     },
     {
       "title": "虚构",
@@ -96,7 +124,7 @@
       "category": "小仲马",
       "file": "虚构_茶花女_小仲马.html",
       "size": 533719,
-      "lastModified": 1772125929533
+      "lastModified": 1772127728903
     },
     {
       "title": "心理",
@@ -104,15 +132,23 @@
       "category": "艾尔德",
       "file": "心理_稀缺_艾尔德.html",
       "size": 2905853,
-      "lastModified": 1772125929519
+      "lastModified": 1772127728881
     },
     {
       "title": "虚构",
       "author": "傲慢与偏见",
       "category": "简·奥斯汀",
       "file": "虚构_傲慢与偏见_简·奥斯汀.html",
-      "size": 797139,
-      "lastModified": 1772125929531
+      "size": 840969,
+      "lastModified": 1772127728901
+    },
+    {
+      "title": "湖濱散記【獨家收錄梭羅手繪地圖．無刪節全譯本】 (亨利．梭羅) (z-library.sk, 1lib.sk, z-lib.sk)",
+      "author": "佚名",
+      "category": "未分类",
+      "file": "湖濱散記【獨家收錄梭羅手繪地圖．無刪節全譯本】 (亨利．梭羅) (z-library.sk, 1lib.sk, z-lib.sk).html",
+      "size": 769490,
+      "lastModified": 1772127728885
     },
     {
       "title": "心理",
@@ -120,7 +156,7 @@
       "category": "Johann Hari",
       "file": "心理_Stolen Focus Why You Cant Pay Attention--and How to Think Deeply Again_Johann Hari.html",
       "size": 744006,
-      "lastModified": 1772125929516
+      "lastModified": 1772127728879
     },
     {
       "title": "Hitchhikers Guide to the Galaxy 01",
@@ -128,7 +164,7 @@
       "category": "未分类",
       "file": "Hitchhikers Guide to the Galaxy 01.html",
       "size": 313716,
-      "lastModified": 1772125929489
+      "lastModified": 1772127728832
     },
     {
       "title": "两性",
@@ -136,7 +172,15 @@
       "category": "Nikol Hasler",
       "file": "两性_Sex  an uncensored introduction_Nikol Hasler.html",
       "size": 1069338,
-      "lastModified": 1772125929513
+      "lastModified": 1772127728856
+    },
+    {
+      "title": "侦探",
+      "author": "福尔摩斯探案集",
+      "category": "柯南道尔",
+      "file": "侦探_福尔摩斯探案集_柯南道尔.html",
+      "size": 3718620,
+      "lastModified": 1772127728871
     },
     {
       "title": "漂亮朋友 (莫泊桑) (z-library.sk, 1lib.sk, z-lib.sk)",
@@ -144,7 +188,7 @@
       "category": "未分类",
       "file": "漂亮朋友 (莫泊桑) (z-library.sk, 1lib.sk, z-lib.sk).html",
       "size": 757191,
-      "lastModified": 1772125929521
+      "lastModified": 1772127728887
     },
     {
       "title": "网文",
@@ -152,7 +196,7 @@
       "category": "辰东",
       "file": "网文_神墓_辰东.html",
       "size": 9958658,
-      "lastModified": 1772125929530
+      "lastModified": 1772127728895
     },
     {
       "title": "Kiss Me Now (Melanie Jacobson) (Z-Library)",
@@ -160,7 +204,7 @@
       "category": "未分类",
       "file": "Kiss Me Now (Melanie Jacobson) (Z-Library).html",
       "size": 61290,
-      "lastModified": 1772125929491
+      "lastModified": 1772127728833
     },
     {
       "title": "Quit Porn and Get Rich The Unspoken Rule of Successful People (Prescott, Martin) (Z-Library)",
@@ -168,8 +212,8 @@
       "category": "未分类",
       "file": "Quit Porn and Get Rich The Unspoken Rule of Successful People (Prescott, Martin) (Z-Library).html",
       "size": 4004297,
-      "lastModified": 1772125929506
+      "lastModified": 1772127728849
     }
   ],
-  "lastUpdated": 1772125930433
+  "lastUpdated": 1772127729575
 }
