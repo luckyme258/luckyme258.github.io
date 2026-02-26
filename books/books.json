@@ -1,7 +1,7 @@
 {
-  "lastUpdated": 1772110073988,
-  "totalBooks": 26,
-  "totalCategories": 12,
+  "lastUpdated": 1772124896794,
+  "totalBooks": 29,
+  "totalCategories": 13,
   "categories": [
     "校园",
     "侦探",
@@ -11,6 +11,7 @@
     "奇幻",
     "历史",
     "心理",
+    "未分类",
     "推理",
     "网文",
     "剧情",
@@ -172,6 +173,17 @@
       "addedTime": 1771480874000
     },
     {
+      "id": "心理_欲望分子多巴胺：帶來墮落與貪婪、同時激發創意和衝動的荷尔蒙，如何支配人類的情緒、行為及命運_丹尼尔.html",
+      "file": "心理_欲望分子多巴胺：帶來墮落與貪婪、同時激發創意和衝動的荷尔蒙，如何支配人類的情緒、行為及命運_丹尼尔.html",
+      "filename": "心理_欲望分子多巴胺：帶來墮落與貪婪、同時激發創意和衝動的荷尔蒙，如何支配人類的情緒、行為及命運_丹尼尔.html",
+      "title": "欲望分子多巴胺：帶來墮落與貪婪、同時激發創意和衝動的荷尔蒙，如何支配人類的情緒、行為及命運",
+      "category": "心理",
+      "author": "丹尼尔",
+      "size": 500836,
+      "lastModified": 1772124884000,
+      "addedTime": 1772124884000
+    },
+    {
       "id": "心理_欲罢不能：刷屏时代如何摆脱行为上瘾_亚当 · 奥尔特.html",
       "file": "心理_欲罢不能：刷屏时代如何摆脱行为上瘾_亚当 · 奥尔特.html",
       "filename": "心理_欲罢不能：刷屏时代如何摆脱行为上瘾_亚当 · 奥尔特.html",
@@ -181,6 +193,17 @@
       "size": 648667,
       "lastModified": 1771446789000,
       "addedTime": 1771446789000
+    },
+    {
+      "id": "漂亮朋友 (莫泊桑) (z-library.sk, 1lib.sk, z-lib.sk).html",
+      "file": "漂亮朋友 (莫泊桑) (z-library.sk, 1lib.sk, z-lib.sk).html",
+      "filename": "漂亮朋友 (莫泊桑) (z-library.sk, 1lib.sk, z-lib.sk).html",
+      "title": "漂亮朋友 (莫泊桑) (z-library.sk, 1lib.sk, z-lib.sk)",
+      "category": "未分类",
+      "author": "",
+      "size": 757191,
+      "lastModified": 1772124884000,
+      "addedTime": 1772124884000
     },
     {
       "id": "推理_白夜行_东野圭吾.html",
@@ -282,6 +305,17 @@
       "addedTime": 1771446789000
     },
     {
+      "id": "历史_西方博弈往事_九边.html",
+      "file": "历史_西方博弈往事_九边.html",
+      "filename": "历史_西方博弈往事_九边.html",
+      "title": "西方博弈往事",
+      "category": "历史",
+      "author": "九边",
+      "size": 2152638,
+      "lastModified": 1772124884000,
+      "addedTime": 1772124884000
+    },
+    {
       "id": "历史_财富之城  威尼斯海洋霸权_罗杰 · 克劳利.html",
       "file": "历史_财富之城  威尼斯海洋霸权_罗杰 · 克劳利.html",
       "filename": "历史_财富之城  威尼斯海洋霸权_罗杰 · 克劳利.html",
@@ -337,12 +371,17 @@
     },
     {
       "name": "历史",
-      "count": 5,
+      "count": 6,
       "icon": "🏛️"
     },
     {
       "name": "心理",
-      "count": 2,
+      "count": 3,
+      "icon": "📘"
+    },
+    {
+      "name": "未分类",
+      "count": 1,
       "icon": "📘"
     },
     {
