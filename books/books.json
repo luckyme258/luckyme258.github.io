@@ -1,7 +1,7 @@
 {
-  "lastUpdated": 1772125186432,
-  "totalBooks": 28,
-  "totalCategories": 13,
+  "lastUpdated": 1772125790151,
+  "totalBooks": 27,
+  "totalCategories": 12,
   "categories": [
     "校园",
     "侦探",
@@ -11,7 +11,6 @@
     "奇幻",
     "历史",
     "心理",
-    "未分类",
     "推理",
     "网文",
     "剧情",
@@ -182,17 +181,6 @@
       "size": 648667,
       "lastModified": 1771446789000,
       "addedTime": 1771446789000
-    },
-    {
-      "id": "漂亮朋友 (莫泊桑) (z-library.sk, 1lib.sk, z-lib.sk).html",
-      "file": "漂亮朋友 (莫泊桑) (z-library.sk, 1lib.sk, z-lib.sk).html",
-      "filename": "漂亮朋友 (莫泊桑) (z-library.sk, 1lib.sk, z-lib.sk).html",
-      "title": "漂亮朋友 (莫泊桑) (z-library.sk, 1lib.sk, z-lib.sk)",
-      "category": "未分类",
-      "author": "",
-      "size": 757191,
-      "lastModified": 1772124884000,
-      "addedTime": 1772124884000
     },
     {
       "id": "推理_白夜行_东野圭吾.html",
@@ -366,11 +354,6 @@
     {
       "name": "心理",
       "count": 2,
-      "icon": "📘"
-    },
-    {
-      "name": "未分类",
-      "count": 1,
       "icon": "📘"
     },
     {
