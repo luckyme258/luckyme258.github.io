@@ -1,6 +1,6 @@
 {
-  "lastUpdated": 1772260152148,
-  "totalBooks": 27,
+  "lastUpdated": 1772262267551,
+  "totalBooks": 28,
   "totalCategories": 12,
   "categories": [
     "校园",
@@ -17,6 +17,17 @@
     "社科"
   ],
   "books": [
+    {
+      "id": "校园_Better Than the Movies_Lynn Painter).html",
+      "file": "校园_Better Than the Movies_Lynn Painter).html",
+      "filename": "校园_Better Than the Movies_Lynn Painter).html",
+      "title": "Better Than the Movies",
+      "category": "校园",
+      "author": "Lynn Painter)",
+      "size": 617226,
+      "lastModified": 1772262258000,
+      "addedTime": 1772262258000
+    },
     {
       "id": "校园_Same Time Next Summer_安娜贝尔.html",
       "file": "校园_Same Time Next Summer_安娜贝尔.html",
@@ -318,7 +329,7 @@
   "categoryStats": [
     {
       "name": "校园",
-      "count": 2,
+      "count": 3,
       "icon": "📘"
     },
     {
