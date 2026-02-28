@@ -1,6 +1,6 @@
 {
-  "lastUpdated": 1772265149905,
-  "totalBooks": 28,
+  "lastUpdated": 1772269971866,
+  "totalBooks": 29,
   "totalCategories": 12,
   "categories": [
     "校园",
@@ -27,6 +27,17 @@
       "size": 617226,
       "lastModified": 1772262258000,
       "addedTime": 1772262258000
+    },
+    {
+      "id": "校园_Just for the Summer_Abby Jimenez.html",
+      "file": "校园_Just for the Summer_Abby Jimenez.html",
+      "filename": "校园_Just for the Summer_Abby Jimenez.html",
+      "title": "Just for the Summer",
+      "category": "校园",
+      "author": "Abby Jimenez",
+      "size": 851861,
+      "lastModified": 1772269963000,
+      "addedTime": 1772269963000
     },
     {
       "id": "校园_Same Time Next Summer_安娜贝尔.html",
@@ -329,7 +340,7 @@
   "categoryStats": [
     {
       "name": "校园",
-      "count": 3,
+      "count": 4,
       "icon": "📘"
     },
     {
