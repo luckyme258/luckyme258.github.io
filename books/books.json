@@ -1,10 +1,11 @@
 {
-  "lastUpdated": 1773105644921,
-  "totalBooks": 29,
-  "totalCategories": 12,
+  "lastUpdated": 1773124315631,
+  "totalBooks": 30,
+  "totalCategories": 13,
   "categories": [
     "校园",
     "侦探",
+    "reddit",
     "科幻",
     "虚构",
     "传记",
@@ -71,6 +72,17 @@
       "size": 445384,
       "lastModified": 1771446789000,
       "addedTime": 1771446789000
+    },
+    {
+      "id": "reddit_freebooks_r.html",
+      "file": "reddit_freebooks_r.html",
+      "filename": "reddit_freebooks_r.html",
+      "title": "freebooks",
+      "category": "reddit",
+      "author": "r",
+      "size": 190285,
+      "lastModified": 1773124305000,
+      "addedTime": 1773124305000
     },
     {
       "id": "科幻_亲切的恶魔_星新一.html",
@@ -346,6 +358,11 @@
     {
       "name": "侦探",
       "count": 2,
+      "icon": "📘"
+    },
+    {
+      "name": "reddit",
+      "count": 1,
       "icon": "📘"
     },
     {
