@@ -1,6 +1,6 @@
 {
-  "lastUpdated": 1773256509790,
-  "totalBooks": 42,
+  "lastUpdated": 1773262428264,
+  "totalBooks": 41,
   "totalCategories": 12,
   "categories": [
     "校园",
@@ -467,17 +467,6 @@
       "size": 847956,
       "lastModified": 1771484503000,
       "addedTime": 1771484503000
-    },
-    {
-      "id": "历史_贸易打造的世界 1400至今的社会文化与世界经济_彭慕兰  史蒂文·托皮克.html",
-      "file": "历史_贸易打造的世界 1400至今的社会文化与世界经济_彭慕兰  史蒂文·托皮克.html",
-      "filename": "历史_贸易打造的世界 1400至今的社会文化与世界经济_彭慕兰  史蒂文·托皮克.html",
-      "title": "贸易打造的世界 1400至今的社会文化与世界经济",
-      "category": "历史",
-      "author": "彭慕兰  史蒂文·托皮克",
-      "size": 851014,
-      "lastModified": 1773255163000,
-      "addedTime": 1773255163000
     }
   ],
   "categoryStats": [
@@ -518,7 +507,7 @@
     },
     {
       "name": "历史",
-      "count": 7,
+      "count": 6,
       "icon": "🏛️"
     },
     {
