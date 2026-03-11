@@ -1,6 +1,6 @@
 {
-  "lastUpdated": 1773254697615,
-  "totalBooks": 29,
+  "lastUpdated": 1773255174985,
+  "totalBooks": 36,
   "totalCategories": 12,
   "categories": [
     "校园",
@@ -18,6 +18,17 @@
   ],
   "books": [
     {
+      "id": "校园_A Curse So Dark and Lonely_Brigid Kemmerer.html",
+      "file": "校园_A Curse So Dark and Lonely_Brigid Kemmerer.html",
+      "filename": "校园_A Curse So Dark and Lonely_Brigid Kemmerer.html",
+      "title": "A Curse So Dark and Lonely",
+      "category": "校园",
+      "author": "Brigid Kemmerer",
+      "size": 1026349,
+      "lastModified": 1773255163000,
+      "addedTime": 1773255163000
+    },
+    {
       "id": "校园_Better Than the Movies_Lynn Painter).html",
       "file": "校园_Better Than the Movies_Lynn Painter).html",
       "filename": "校园_Better Than the Movies_Lynn Painter).html",
@@ -27,6 +38,17 @@
       "size": 617226,
       "lastModified": 1772262258000,
       "addedTime": 1772262258000
+    },
+    {
+      "id": "校园_Bridget Joness Diary_Helen Fielding.html",
+      "file": "校园_Bridget Joness Diary_Helen Fielding.html",
+      "filename": "校园_Bridget Joness Diary_Helen Fielding.html",
+      "title": "Bridget Joness Diary",
+      "category": "校园",
+      "author": "Helen Fielding",
+      "size": 57688,
+      "lastModified": 1773255163000,
+      "addedTime": 1773255163000
     },
     {
       "id": "校园_Just for the Summer_Abby Jimenez.html",
@@ -40,6 +62,17 @@
       "addedTime": 1772269963000
     },
     {
+      "id": "校园_Kiss Me Now_Melanie Jacobson.html",
+      "file": "校园_Kiss Me Now_Melanie Jacobson.html",
+      "filename": "校园_Kiss Me Now_Melanie Jacobson.html",
+      "title": "Kiss Me Now",
+      "category": "校园",
+      "author": "Melanie Jacobson",
+      "size": 55351,
+      "lastModified": 1773255163000,
+      "addedTime": 1773255163000
+    },
+    {
       "id": "校园_Same Time Next Summer_安娜贝尔.html",
       "file": "校园_Same Time Next Summer_安娜贝尔.html",
       "filename": "校园_Same Time Next Summer_安娜贝尔.html",
@@ -49,6 +82,39 @@
       "size": 600224,
       "lastModified": 1773253417000,
       "addedTime": 1773253417000
+    },
+    {
+      "id": "校园_Say Youll Remember Me_Abby Jimenez.html",
+      "file": "校园_Say Youll Remember Me_Abby Jimenez.html",
+      "filename": "校园_Say Youll Remember Me_Abby Jimenez.html",
+      "title": "Say Youll Remember Me",
+      "category": "校园",
+      "author": "Abby Jimenez",
+      "size": 737670,
+      "lastModified": 1773255163000,
+      "addedTime": 1773255163000
+    },
+    {
+      "id": "校园_Selection_Kiera Cass.html",
+      "file": "校园_Selection_Kiera Cass.html",
+      "filename": "校园_Selection_Kiera Cass.html",
+      "title": "Selection",
+      "category": "校园",
+      "author": "Kiera Cass",
+      "size": 633956,
+      "lastModified": 1773255163000,
+      "addedTime": 1773255163000
+    },
+    {
+      "id": "校园_The Love Hypothesis_Ali Hazelwood.html",
+      "file": "校园_The Love Hypothesis_Ali Hazelwood.html",
+      "filename": "校园_The Love Hypothesis_Ali Hazelwood.html",
+      "title": "The Love Hypothesis",
+      "category": "校园",
+      "author": "Ali Hazelwood",
+      "size": 796400,
+      "lastModified": 1773255163000,
+      "addedTime": 1773255163000
     },
     {
       "id": "侦探_The Sherlock Holmes福尔摩斯策略_瑞格.html",
@@ -126,6 +192,17 @@
       "size": 202147,
       "lastModified": 1771446789000,
       "addedTime": 1771446789000
+    },
+    {
+      "id": "科幻_基地Foundation  Empire 02_Isaac Asimov.html",
+      "file": "科幻_基地Foundation  Empire 02_Isaac Asimov.html",
+      "filename": "科幻_基地Foundation  Empire 02_Isaac Asimov.html",
+      "title": "基地Foundation  Empire 02",
+      "category": "科幻",
+      "author": "Isaac Asimov",
+      "size": 627543,
+      "lastModified": 1773255163000,
+      "addedTime": 1773255163000
     },
     {
       "id": "虚构_基督山伯爵_大仲马.html",
@@ -255,9 +332,9 @@
       "title": "福尔摩斯探案集",
       "category": "侦探",
       "author": "柯南道尔",
-      "size": 3718620,
-      "lastModified": 1772127769000,
-      "addedTime": 1772127769000
+      "size": 3713549,
+      "lastModified": 1773255163000,
+      "addedTime": 1773255163000
     },
     {
       "id": "心理_稀缺_艾尔德.html",
@@ -310,9 +387,9 @@
       "title": "西方博弈往事",
       "category": "历史",
       "author": "九边",
-      "size": 2152638,
-      "lastModified": 1772124884000,
-      "addedTime": 1772124884000
+      "size": 2148093,
+      "lastModified": 1773255163000,
+      "addedTime": 1773255163000
     },
     {
       "id": "历史_财富之城  威尼斯海洋霸权_罗杰 · 克劳利.html",
@@ -332,15 +409,15 @@
       "title": "贸易打造的世界 1400至今的社会文化与世界经济",
       "category": "历史",
       "author": "彭慕兰  史蒂文·托皮克",
-      "size": 827709,
-      "lastModified": 1771484503000,
-      "addedTime": 1771484503000
+      "size": 851014,
+      "lastModified": 1773255163000,
+      "addedTime": 1773255163000
     }
   ],
   "categoryStats": [
     {
       "name": "校园",
-      "count": 4,
+      "count": 10,
       "icon": "📘"
     },
     {
@@ -350,7 +427,7 @@
     },
     {
       "name": "科幻",
-      "count": 2,
+      "count": 3,
       "icon": "🚀"
     },
     {
