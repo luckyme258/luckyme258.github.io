@@ -1,18 +1,18 @@
 {
-  "lastUpdated": 1773853114168,
-  "totalBooks": 41,
+  "lastUpdated": 1773854872760,
+  "totalBooks": 42,
   "totalCategories": 12,
   "categories": [
     "校园",
     "心理",
     "侦探",
+    "网文",
     "科幻",
     "虚构",
     "传记",
     "奇幻",
     "历史",
     "推理",
-    "网文",
     "剧情",
     "社科"
   ],
@@ -137,6 +137,17 @@
       "size": 470512,
       "lastModified": 1773253417000,
       "addedTime": 1773253417000
+    },
+    {
+      "id": "网文_中国龙组_风华爵士.html",
+      "file": "网文_中国龙组_风华爵士.html",
+      "filename": "网文_中国龙组_风华爵士.html",
+      "title": "中国龙组",
+      "category": "网文",
+      "author": "风华爵士",
+      "size": 6076423,
+      "lastModified": 1773854859000,
+      "addedTime": 1773854859000
     },
     {
       "id": "科幻_亲切的恶魔_星新一.html",
@@ -486,6 +497,11 @@
       "icon": "📘"
     },
     {
+      "name": "网文",
+      "count": 2,
+      "icon": "📘"
+    },
+    {
       "name": "科幻",
       "count": 3,
       "icon": "🚀"
@@ -512,11 +528,6 @@
     },
     {
       "name": "推理",
-      "count": 1,
-      "icon": "📘"
-    },
-    {
-      "name": "网文",
       "count": 1,
       "icon": "📘"
     },
