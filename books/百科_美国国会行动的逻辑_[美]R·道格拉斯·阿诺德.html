@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
+    <title>百科_美国国会行动的逻辑_[美]R·道格拉斯·阿诺德 - 未知作者</title>
+    <style>
+:root {
+    --bg: #ffffff;
+    --bg-rgb: 255, 255, 255;
+    --text: #2d3748;
+    --accent: #4299e1;
+    --light-accent: #e8f4f8;
+    --card-bg: #f5fafe;
+    --card-shadow: 0 2px 8px rgba(66, 153, 225, 0.15);
+    --border-radius: 12px;
+    --line-height: 1.8;
+    --container-width: 800px;
+    --spacing: 32px;
+    --progress-height: 4px;
+    --header-height: 80px;
+    --nav-height: 70px;
+}
+
+.d0 {
+    --bg: #0a0c10;
+    --bg-rgb: 26, 32, 44;
+    --text: #ffffff;
+    --accent: #7472FE;
+    --light-accent: #2d3748;
+    --card-bg: #2d3748;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "思源黑体", "Source Han Sans CN", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: var(--line-height);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.p0 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: var(--progress-height);
+    background: linear-gradient(90deg, var(--accent), #7472FE);
+    z-index: 101;
+    transition: width 0.1s ease;
+    pointer-events: none;
+}
+
+.h0 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(var(--bg-rgb), 0.4);
+    backdrop-filter: blur(11px);
+    border-bottom: 1px solid var(--light-accent);
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    min-height: var(--header-height);
+}
+
+.h1 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+}
+
+.s0 {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    color: var(--accent);
+    padding: 8px 4px;
+    margin-left: -4px;
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+@keyframes shelfBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+.s0.f0 {
+    animation: shelfBounce 0.5s ease 2;
+}
+
+.s0:active {
+    transform: scale(0.95);
+}
+
+.s1 {
+    font-size: 24px;
+    line-height: 1;
+}
+
+.s2 {
+    font-size: 12px;
+    color: var(--accent);
+    opacity: 0.8;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+@media (max-width: 280px) {
+    .s2 {
+        display: none;
+    }
+}
+
+.h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 1;
+    min-width: 30px;
+}
+
+.h2 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.p1 {
+    font-size: 18px;
+    color: var(--text);
+    opacity: 0.9;
+    white-space: nowrap;
+    font-weight: 550;
+    flex-shrink: 0;
+}
+
+.p1::before {
+    content: "阅读进度 ";
+    font-size: inherit;
+    color: inherit;
+    opacity: 0.8;
+}
+
+.t0 {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    color: var(--text);
+    font-size: 14px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    flex-shrink: 0;
+}
+
+.t0:hover {
+    background: var(--accent);
+    color: white;
+}
+
+@media (max-width: 428px) {
+    .p1::before {
+        content: "";
+    }
+}
+
+@media (max-width: 375px) {
+    .h3 {
+        font-size: 16px;
+        max-width: 150px;
+    }
+    .p1 {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 320px) {
+    .h3 {
+        max-width: 120px;
+        font-size: 15px;
+    }
+    .p1 {
+        font-size: 15px;
+        min-width: 45px;
+    }
+    .t0 {
+        padding: 6px 8px;
+        font-size: 13px;
+    }
+}
+
+.c0 {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: calc(var(--header-height) + 20px) 16px 120px;
+    background-color: #F8F5F0;
+    filter: contrast(1.02);
+}
+
+.s3 {
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--light-accent);
+}
+
+.s4 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--text);
+    border-left: 6px solid var(--accent);
+    padding-left: 20px;
+    line-height: 1.3;
+    transition: border-left-color 0.3s ease;
+}
+
+.s4.x0 {
+    animation: titleFlash 0.5s ease;
+}
+
+@keyframes titleFlash {
+    0% { border-left-color: var(--accent); }
+    50% { border-left-color: #ffaa00; }
+    100% { border-left-color: var(--accent); }
+}
+
+.s5 {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 40px 0 20px;
+    color: var(--text);
+}
+
+.c1 p {
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+/* ===== 数字编码段落样式 ===== */
+.c1 p[class*="1"] { color: #2D2D2D; font-weight: 550; text-indent: 2em; }
+
+.c1 p[class^="1"] { margin-bottom: 24px; }
+.c1 p[class^="2"] { margin-bottom: 16px; }
+.c1 p[class^="3"] { margin-bottom: 32px; }
+
+.c1 p[class$="1"] { letter-spacing: 0.02em; line-height: 1.8; }
+.c1 p[class$="2"] {
+    letter-spacing: 0.01em;
+    line-height: 1.6;
+    text-indent: 0;
+    margin-bottom: 1.2em;
+}
+.c1 p[class$="3"] {
+    letter-spacing: 0.015em;
+    line-height: 1.7;
+    text-indent: 1em;
+}
+
+.d0 .c1 p[class*="1"] { color: var(--text); }
+.d0 .c1 p[class$="1"] { letter-spacing: normal; line-height: var(--line-height); text-indent: 2em; }
+.d0 .c1 p[class$="2"] { text-indent: 0; }
+.d0 .c1 p[class$="3"] { text-indent: 1em; }
+
+.r4 {
+    height: 8px;
+    margin: 16px 0;
+    opacity: 0.3;
+    border-bottom: 1px dashed var(--light-accent);
+}
+
+.h4 {
+    color: #2D2D2D;
+    font-weight: inherit;
+    text-indent: 0;
+}
+
+.g0 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin: 32px 0;
+}
+
+.g1 {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 24px;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    border: 1px solid rgba(66, 153, 225, 0.1);
+}
+
+.g1:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(66, 153, 225, 0.2);
+}
+
+.g2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.g3 {
+    background-color: var(--accent);
+    color: white;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.g4 {
+    color: var(--accent);
+    font-size: 14px;
+}
+
+.g5 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text);
+}
+
+.g6 {
+    font-size: 15px;
+    margin-bottom: 12px;
+    line-height: 1.7;
+}
+
+.g7 {
+    display: none;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--light-accent);
+    font-size: 14px;
+    color: var(--text);
+    opacity: 0.9;
+}
+
+.g7.a0 {
+    display: block;
+}
+
+.s6 {
+    background-color: var(--light-accent);
+    border-radius: var(--border-radius);
+    padding: 28px;
+    margin: 40px 0;
+    border-left: 6px solid var(--accent);
+}
+
+.s7 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--accent);
+}
+
+.b0 {
+    position: fixed;
+    left: 30px;
+    top: 100px;
+    width: 220px;
+    z-index: 85;
+    display: none;
+    overflow-y: auto;
+    max-height: calc(100vh - 150px);
+}
+
+.b0::-webkit-scrollbar { width: 6px; }
+.b0::-webkit-scrollbar-track { background: transparent; }
+.b0::-webkit-scrollbar-thumb {
+    background: rgba(66, 153, 225, 0.2);
+    border-radius: 4px;
+}
+
+@media (min-width: 1200px) {
+    .b0 { display: block; }
+    .c0 { margin-left: 260px; }
+}
+
+.b1 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--light-accent);
+    position: sticky;
+    top: 0;
+    background-color: var(--bg);
+    z-index: 86;
+    padding-top: 4px;
+}
+
+.b2 { list-style: none; margin: 0; padding: 0; }
+
+.b3 { margin-bottom: 4px; }
+
+.b3 a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 15px;
+    padding: 8px 12px;
+    display: block;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+    line-height: 1.4;
+}
+
+.b3.a0 a {
+    background-color: var(--light-accent);
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.b3.v1 a { font-weight: 600; }
+.b3.v2 a { padding-left: 24px; font-size: 14px; }
+.b3.v3 a { padding-left: 36px; font-size: 14px; }
+.b3.v4 a { padding-left: 48px; font-size: 13px; }
+
+@media (max-width: 1199px) {
+    .b0 { display: none !important; }
+    .c0 {
+        max-width: 100%;
+        padding: calc(var(--header-height) + 20px) 16px 100px;
+        margin-left: 0;
+    }
+    .c1 { margin-left: 48px; padding-left: 0; }
+    .s4 { margin-left: 48px; padding-left: 0; font-size: 26px; }
+    .s5 { margin-left: 48px; padding-left: 0; font-size: 20px; }
+    .g0 { margin-left: 48px; grid-template-columns: 1fr; }
+    .s6 { margin-left: 48px; }
+    .c1 p { font-size: 18px; line-height: 1.6; }
+}
+
+.m0 {
+    position: fixed;
+    left: 0;
+    bottom: calc(70px + 16px + env(safe-area-inset-bottom, 0));
+    width: 32px;
+    height: 50px;
+    background: rgba(var(--bg-rgb), 0.4);
+    backdrop-filter: blur(11px);
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    border-right: 1px solid rgba(66, 153, 225, 0.2);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 95;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (max-width: 1199px) {
+    .m0 { display: flex; }
+}
+
+.m0 .m1 {
+    color: var(--accent);
+    font-size: 20px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.m2 {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 80%;
+    max-width: 320px;
+    background: rgba(var(--bg-rgb), 0.95);
+    backdrop-filter: blur(10px);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 100;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+    border-right: 1px solid rgba(66, 153, 225, 0.2);
+    overflow-y: auto;
+    padding: 20px 0;
+}
+
+.m2.o0 { transform: translateX(0); }
+
+.m3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--light-accent);
+    margin-bottom: 10px;
+}
+
+.m4 { font-size: 18px; font-weight: 600; color: var(--accent); }
+
+.m5 {
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: var(--text);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+}
+
+.m5:hover { background: var(--accent); color: white; }
+
+.m6 { list-style: none; padding: 0; margin: 0; }
+
+.m7 { margin: 2px 0; }
+
+.m7 a {
+    text-decoration: none;
+    color: var(--text);
+    display: block;
+    padding: 10px 20px;
+    font-size: 15px;
+    line-height: 1.4;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+}
+
+.m7 a:active {
+    background: var(--light-accent);
+    border-left-color: var(--accent);
+}
+
+.m7.a0 a {
+    background: var(--light-accent);
+    border-left-color: var(--accent);
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.m8 {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.m8.a0 { opacity: 1; visibility: visible; }
+
+.n0 {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 70px;
+    background: rgba(var(--bg-rgb), 0.4);
+    backdrop-filter: blur(11px);
+    border-top: 1px solid rgba(66, 153, 225, 0.2);
+    padding: 0 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 90;
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+    height: calc(70px + env(safe-area-inset-bottom, 0));
+}
+
+.n1 {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(66, 153, 225, 0.3);
+    padding: 0 20px;
+    height: 52px;
+    border-radius: 26px;
+    cursor: pointer;
+    color: #4299e1;
+    font-size: 15px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    min-width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 1 auto;
+}
+
+.n1:hover:not(:disabled) {
+    background: #4299e1;
+    color: white;
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3);
+    border-color: transparent;
+}
+
+.n1:disabled {
+    background: rgba(200, 200, 200, 0.3);
+    color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(200, 200, 200, 0.2);
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+@media (max-width: 375px) {
+    .n1 { padding: 0 12px; min-width: 80px; font-size: 14px; }
+}
+
+.u0 {
+    position: fixed;
+    bottom: calc(70px + 16px + env(safe-area-inset-bottom, 0));
+    right: 16px;
+    width: 44px;
+    height: 44px;
+    border-radius: 22px;
+    background: rgba(var(--bg-rgb), 0.4);
+    backdrop-filter: blur(11px);
+    border: 1px solid rgba(66, 153, 225, 0.2);
+    color: var(--accent);
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 91;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.u0.w0 { display: flex; }
+.u0:hover { background: var(--accent); color: white; }
+
+.i0 {
+    position: fixed;
+    bottom: calc(70px + 16px + env(safe-area-inset-bottom, 0));
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(var(--bg-rgb), 0.2);
+    backdrop-filter: blur(8px);
+    border-radius: 16px;
+    padding: 8px 12px;
+    color: var(--text);
+    font-size: 14px;
+    z-index: 96;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    animation: tipFadeIn 0.3s ease;
+    pointer-events: none;
+    white-space: nowrap;
+    max-width: 80%;
+    border: 1px solid rgba(66, 153, 225, 0.2);
+}
+
+.i0 .i1 { font-size: 14px; }
+
+.i0.i3 { animation: tipFadeOut 0.2s ease forwards; }
+
+@keyframes tipFadeIn {
+    from { opacity: 0; transform: translate(-50%, 10px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes tipFadeOut {
+    from { opacity: 1; transform: translate(-50%, 0); }
+    to { opacity: 0; transform: translate(-50%, 10px); }
+}
+
+@keyframes progressFlash {
+    0% { height: var(--progress-height); }
+    50% { height: 6px; }
+    100% { height: var(--progress-height); }
+}
+
+.p0.x0 { animation: progressFlash 0.3s ease; }
+
+.d0 .m0 {
+    background: rgba(26, 32, 44, 0.6);
+    border-color: rgba(116, 114, 254, 0.3);
+}
+
+.d0 .m2 {
+    background: rgba(10, 12, 16, 0.98);
+    border-right-color: rgba(116, 114, 254, 0.2);
+}
+
+.d0 .n0 {
+    background: rgba(26, 32, 44, 0.4);
+    border-color: rgba(116, 114, 254, 0.2);
+}
+
+.d0 .n1 {
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid rgba(116, 114, 254, 0.4);
+    color: #7472FE;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.d0 .n1:hover:not(:disabled) {
+    background: #7472FE;
+    color: white;
+    box-shadow: 0 4px 12px rgba(116, 114, 254, 0.3);
+}
+
+.d0 .n1:disabled {
+    background: rgba(50, 50, 50, 0.5);
+    color: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(100, 100, 100, 0.2);
+}
+
+.d0 .u0 {
+    background: rgba(26, 32, 44, 0.6);
+    border-color: rgba(116, 114, 254, 0.3);
+}
+
+.d0 .i0 {
+    background: rgba(26, 32, 44, 0.8);
+    border-color: rgba(116, 114, 254, 0.3);
+}
+
+.d0 .s0,
+.d0 .s2 { color: #7472FE; }
+
+.d0 .c0 { background-color: var(--bg); filter: none; }
+
+.g0, .g1, .g1 *,
+.s6, .s6 * {
+    filter: none !important;
+    background-color: var(--card-bg) !important;
+    color: var(--text) !important;
+    font-weight: inherit !important;
+    text-indent: 0 !important;
+    letter-spacing: normal !important;
+    line-height: var(--line-height) !important;
+    margin-bottom: inherit !important;
+}
+</style>
+    <script>
+        window.__CHAPTER_DATA__ = [{"total_units": 3008, "language_type": "chinese"}, {"total_units": 2069, "language_type": "chinese"}, {"total_units": 3803, "language_type": "chinese"}, {"total_units": 987, "language_type": "chinese"}, {"total_units": 1241, "language_type": "chinese"}, {"total_units": 757, "language_type": "chinese"}, {"total_units": 2433, "language_type": "chinese"}, {"total_units": 3667, "language_type": "chinese"}, {"total_units": 3124, "language_type": "chinese"}, {"total_units": 2693, "language_type": "chinese"}, {"total_units": 2213, "language_type": "chinese"}, {"total_units": 2440, "language_type": "chinese"}, {"total_units": 1912, "language_type": "chinese"}, {"total_units": 2677, "language_type": "chinese"}, {"total_units": 2550, "language_type": "chinese"}, {"total_units": 2593, "language_type": "chinese"}, {"total_units": 2098, "language_type": "chinese"}, {"total_units": 2294, "language_type": "chinese"}, {"total_units": 1735, "language_type": "chinese"}, {"total_units": 3048, "language_type": "chinese"}, {"total_units": 1966, "language_type": "chinese"}];
+    </script>
+</head>
+<body>
+    <div class="p0" id="progressBar"></div>
+    
+    <header class="h0">
+        <div class="h1">
+            <a href="https://luckyme258.github.io/books/index.html" class="s0">
+                <span class="s1">📚</span>
+                <span class="s2">书架</span>
+            </a>
+            <span class="h3" title="百科_美国国会行动的逻辑_[美]R·道格拉斯·阿诺德">百科_美国国会行动的逻辑_[美]R·道格拉斯·阿诺德</span>
+        </div>
+        <div class="h2">
+            <span class="p1" id="progressText">0%</span>
+            <button class="t0" id="themeToggle">🌙 夜间</button>
+        </div>
+    </header>
+    
+    <div class="b0"><div class="b1">📖 目录</div><ul class="b2">
+<li class="b3 v1">
+    <a href="#chapter-0" title="解释国会行为">解释国会行为</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-1" title="议员和联盟领袖">议员和联盟领袖</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-2" title="国民和政策判断">国民和政策判断</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-3" title="政策特征和政策偏好">政策特征和政策偏好</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-4" title="国会行动的逻辑">国会行动的逻辑</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-5" title="政策特征和政策偏好">政策特征和政策偏好</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-6" title="因果观念（1）">因果观念（1）</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-7" title="因果观念（2）">因果观念（2）</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-8" title="成本和收益的归向">成本和收益的归向</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-9" title="政策偏好（1）">政策偏好（1）</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-10" title="政策偏好（2）">政策偏好（2）</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-11" title="政策偏好（3）">政策偏好（3）</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-12" title="政策偏好之动态变化">政策偏好之动态变化</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-13" title="政策偏好与国会选举（1）">政策偏好与国会选举（1）</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-14" title="政策偏好与国会选举（2）">政策偏好与国会选举（2）</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-15" title="在位者表现路线（1）">在位者表现路线（1）</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-16" title="在位者表现路线（2）">在位者表现路线（2）</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-17" title="在位者表现路线（3）">在位者表现路线（3）</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-18" title="政党立场路线">政党立场路线</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-19" title="候选人立场路线">候选人立场路线</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-20" title="做出选择">做出选择</a>
+</li></ul></div>
+    
+    <div class="c0">
+        <section class="s3">
+<h1 class="s4" id="chapter-0">
+    解释国会行为
+</h1>
+<div class="c1"><p class="31">国会为什么会制定其制定的政策？国会为什么经常批准那些为有组织的利益（organizedinterests）效劳或者仅仅给特定地区奉送利益的议案？为什么国会有时候会摆脱地方性利益而为更广泛的、普遍的或者非组织的利益（unorganizedinterests）服务？本书试图用单项理论来解释两组结果。该理论阐释了那些鼓励议员制定具有党派倾向性的政策（particularisticpolicies）并为有组织的利益服务的条件和那些促使议员为更普遍的利益服务的条件。</p><p class="31">政治学者们会轻易地解释为什么集中的利益（concentratedinterests）会如此经常地取得胜利。这些利益经常被组织成集团，并且很容易为采取行动而被动员起来。说客和政治行动委员会会将精确的政策信息传达给议员，他们会对相关委员会及小组委员会的委员们给予过分的特别关注。即使当这些集中的利益未被很好地组织起来，议员知道，与那些利害关系更小且对国会发生之事更少关注的国民相比，受到影响的公众对华盛顿的举动更为关注，更可能在大选中显现出他们的评价。这些简单的论证有助于解释为什么国会建立贸易壁垒以保护特定产业、创立一连串无止境的特别税收规定、维持对很多农产品的价格补贴以及拒绝制定限制枪支持有的法律。</p><p class="31">解释为什么国会批准如此之多的载满地区利益的议案也是相对容易的。议员选自各地方行政区，从而他们天然地关注特定计划会如何影响他们的选民。议员已经发现为他们的选区获取利益会为免费宣传和索取声望创造机会，并且二者对寻求连任均很管用。立法者们因此乐于创立和扩大公共工程项目和政府间调拨款计划（intergovernmentalgrantprogram），并且每一位都坚持要求获得一份利益。他们也强烈反对将特定代价强加给他们的选民的议案，因为他们认为投票者们可能会将该等代价归咎于他们。这一事实有助于解释为什么国会在关闭已废弃的军事基地或者选择放射性废料的处理地点时如此艰难。</p><p class="31">政治学者们在解释为什么国会会通过为更为广泛的或者普遍的利益服务的议案时，成功甚少。事实上，对那些为大众带来实质性利益而又不会给某个集团或者地区造成代价的计划，国会予以通过，这一点都不令人困惑。例如，议员乐于批准那些支持医学研究的计划，因为这些计划非常受欢迎，而且它们不会强加直接代价给任何人。当国会批准那些保证会向大众奉送实质性利益却给某个集团或者地区造成巨大代价的计划时，困惑就出现了。根据前两段的论证，议员应对保护那些将承担巨大且集中代价的人的利益甚感兴趣，从而将投票反对此类议案。绝大多数情况下，他们确实否决这些动议，但是同样有很多时候，议员投票支持大众利益胜过各种集团或者地区利益。实例包括大多数环境和安全立法、减少联邦赤字的努力以及航空、汽车运输以及通讯产业的管制解除。</p><p class="31">最大的困惑在于解释为什么国会有时会推翻自己。为什么国会刚开始仅仅向社会中的某个集团奉送集中的利益，接着突然转向，强加代价给之前的受惠集团并且给那些长期被其忽视的人们送去利益？这种逆转实际上非常平常。国会在20世纪40年代和50年代支持天然气生产商，在20世纪60年代和70年代初期支持消费者，接着在1978年早期在天然气方面追寻中间道路。在1972年国会创立岁入分配制度，将地区利益分配给全国的每个州和地区，接着在1986年终止了整个计划。解释这些逆转需要一个简单的、统一的国会决策理论，一个允许三种竞争性利益中的任何一种获得胜利的理论－－普遍的、集团的、或者地区的。</p><p class="31">在随后的几章中，我提出了一个简单的国会决策理论。为了解释为什么国会采纳其采纳的政策，我首先要对（选举）估算（calculations）、行动以及国民、联盟领袖和议员之间的互动进行分析。虽然普通议员（ordinarylegislators）是在国会做出全部最后决定的，但是他们的抉择巨大地受限于联盟领袖和国民的行动。联盟领袖设计政策议案和选择通过它们的策略。国民有能力将那些有不良记录的议员（legislatorswithdispleasingrecords）赶下台。我认为，议员在一定程度上受联盟领袖的摆布，他们在一定程度上受限于其对国民在未来选举中的行为的预测，同时他们在一定程度上是自由人（freeagents）。因此，了解国民、联盟领袖和议员之间的互动成为了解国会为何如此行动的关键。</p><p class="21">该理论假定国会议员非常在意连任。虽然他们并非连任的一心一意地追求者，但是连任是他们的主要目标。这只意味着，如果行动将威胁到他们的主要目标，议员将不会为了促进他们的其他目标而采取该等行动。如果连任没有危险，他们能够自由追求其他目标，包括制定他们自己认为是好的公共政策或者在国会获取影响力。</p><p class="31">该理论并非总是预测出一个惟一的结果。我的目标是证明选举估算（electoralcalculations）是如何型塑一切的，从议员的唱名表决（roll-calldecisions）到联盟领袖的策略和战术。然而，当选举估算未产生任何特定的建议时，议员可以自由追求其他目标。即使当选举估算并非产生一个简单的结果，它们常常将一长串政策方案减为极少数政治上可行的方案。最后，解释国会如何从这些极少数的方案中挑选出某一个议案就将变得容易起来。现在，我打算证明选举估算是如何将很多方案减为少数几个方案的。</p><p class="31">我的基本论点是选举追求（electoralquest）能够驱使议员要么支持那些为某个党派利益服务要么支持那些为大众利益服务的政策。走向党派倾向主义（particularism）的推动力也许比较容易得到承认，因为其经常将议员置于与总统或者政策专家直接冲突的境地。为更为广泛的、普遍的或者非组织的利益服务的推动力则没那么显著，部分因为其仅仅鼓励议员如其他决策者般行动。大卫·梅修（DavidMayhew）已经证实，追求连任是如何鼓励党派倾向主义的。在此我详述前述情形的发生条件以及鼓励议员支持更为广泛利益的条件。</p></div></section><section class="s3">
+<h1 class="s4" id="chapter-1">
+    议员和联盟领袖
+</h1>
+<div class="c1"><p class="31">本书解释了国会作为一个整体是如何决策的。为什么国会选择通过政策A而不是B？为什么国会选择保持现状而不是通过某个其他相匹敌的方案（competingalternative）？为什么国会在20世纪50年代支持石油生产商而在20世纪78年代支持石油消费者？为什么国会创立税收漏洞（taxloopholes）[2]并持续几十年，然而在1986年决定消除其中的很多漏洞？政策是因变量，而困惑在于去解释国会为什么通过或者不通过摆在其面前的议案。</p><p class="31">解释国会行为要求我阐释普通议员和联盟领袖的行为。在任何特定事项上，普通议员要么面临单个要么面临一系列二元选择（dichotomouschoices）。他们被要求通过或者废除某个法案，接受或者否决某个修正案，重呈某个法案以进一步审议或者让其走向下一步，用一个新法案替代一个审议中的法案，接受或者否决某个程序性动议，要求或者免予进行记录性投票（arecordedvote），排除阻挠议事的情形或者让其继续存在。一系列二元选择能够产生很大一批可能的结果。然而，随着时间一分一秒地过去，议员只是在一对二选一方案组（pairedalternatives）中进行选择。</p><p class="31">我假定当议员不得不做出决定时，他们首先问的是哪个方案将对他们连任的机率更为有益。如果他们发现存在重大差别，他们会选择更加有益于其连任的方案。如果他们发现没有什么差别，他们将以他们认为相关的其他任何标准为根据进行选择－－也许他们认为一个政策比另一个更有效或者更可欲，或者他们希望拍总统或者某个政党领袖的马屁，或者他们希望对过去的恩惠予以报答。我的理论被设计为仅仅处理那些议员期望不同的方案会产生不同的选举后果的情形。首要问题在于发现议员是如何评估他们的决策的选举后果的，从而他们能够对一系列无穷无尽的对立方案进行比较。</p><p class="31">联盟领袖并非生活在一个二元的世界中。他们并非在一对二选一方案组中进行选择；他们勾画那些方案。他们从社会中存在的全部大大小小的病症中挑选出要处理（attack）的问题。他们通过修改过去的补救措施、发明新的补救方案以及到处七拼八凑来形成政策议案。他们塑造策略以从有关如何建立联盟的政治智慧库中制定他们的议案。联盟领袖选自国会内或者国会外。他们包括普通议员、委员会或者小组委员会领袖、党的领袖、国会的工作人员、总统、总统的工作人员、行政部门的官员、官僚以及利益集团领袖。</p><p class="21">联盟领袖可以自由提出他们选择的任何政策方案。然而，成功的领袖知道他们的选择受限于其必需争取大多数议员的支持。他们必需学会预测议员的决定，从而他们能够构建他们的议案和策略，并且以能够获取支持的方式设计策略。对于复杂的事情而言，议员的决定本身就有赖于他们认为他们的选民将会对他们的唱名投票（roll-callvote）做出何种反应，因此，成功的领袖必须预测国民的反应以预测议员的决定。</p><p class="31">在本书中，我试图仅仅解释联盟领袖工作的一个方面：当提炼政策议案并设计能够争取到议员的支持的策略时，他们是如何预测和回应议员的选举需求的？我绕开了几个有趣而棘手的问题。我并不审查为什么某个人选择成为联盟领袖、将他们宝贵的时间和珍贵的资源花费在动员对政策的支持上，或者选择对付特定的问题或者提出特定的补救方案。该理论假定个人是自愿，即出于他们自己的原因，支持或者反对特定事由的。一旦他们自愿，问题就在于解释他们为什么采取特定的策略以推进或者妨碍那些事由以及为什么一方赢而另一方输。</p><p class="21">在某种程度上，议员通过评估其做出每一选择而可能产生的选举后果，来对摆在他们面前的一组对立方案进行选择。在某种程度上，联盟领袖通过预测议员的选举估算来制定政策议案以及政治策略。因此，议员和联盟领袖均需要对特定政策决策的选举后果进行评估。实际上，二者均需要一个模型，一个关于在国会选举中选举候选人时，政策立场和政策结果是如何影响国民们的选择的模型。</p></div></section><section class="s3">
+<h1 class="s4" id="chapter-2">
+    国民和政策判断
+</h1>
+<div class="c1"><p class="21">学界主流观点认为政策问题在国会选举中的作用甚小。大多数选民看上去对候选人的政策立场知之甚少，并且选举很少以它们为转移。考虑到这些发现，有人下结论认为议员无需为采取某个政策立场而忧心。然而，学者们在访问过议员后，发现议员常常担心他们的决策所可能带来的选举后果。事实上，对为什么政策问题在国会选举中并不具有更大的作用的最具说服力的解释是，议员在华盛顿经常调整他们的决策，以让后方家乡的选民满意。</p><p class="31">那些对选民观点（constituencyopinion）与立法决策（legislativedecision）之间的关系已有研究的人们，几乎没有发现证据支持如此强烈的观点，即议员会对他们后方家乡选区的观点做出响应。在他们对代表权的经典研究中，沃伦·米勒（WarrenMiller）和唐纳德·斯托克斯（DonaldStokes）曾经设问：议员的态度、立场以及唱名投票是否与他们的选民们的政策立场紧密相关。他们的答案－－至今未遭到反驳－－是该种关联是微弱的。然而，正如约翰·金顿（JohnKingdon）已经非常有力地论证的那样，该问题其实需要重设。金顿，曾经访问过刚刚做出特定唱名表决决定（roll-calldecisions）的议员，指出议员常常试图预测特定唱名投票是如何可能被用来反对他们的，并且常常以专门用于预先防止选举问题的方式调整他们的投票。而且，他们在处理当时的重大事项与普通事项时均是如此。金顿详述了一位议员是如何因一项反对大学分立（collegedisruptions）的修正案（发生在1969年）而焦虑不安，从而，当他（指该议员－－译者注）被问及在该地区是否有任何人将实际性地注意他的投票时，他回答到：不。我知道没有人将会马上注意它（指该议员的投票－－译者注）。人们从来不会如此。但是在下一次竞选运动中，它可能被用来反对你。我从我的第一次为了连任的竞选运动中得到了该教训。大约在选举日之前五天，他们指控我支持同性恋，原因是我投票反对（哥伦比亚）地区的某个荒诞的议案。你明白了吧，很多人并未注意它。但是你的反对者将彻底搜查你的记录的每个方面、你曾经投下的每一票，发现污点并利用它。</p><p class="21">议员对未来观点的预测成为对他们的投票决定的一项有力限制。令人遗憾的是，这些选举估算的效果将不会显现于一项对代表权的研究中，该研究寻找衡量选民观点的标准与衡量议员的实际决定的标准之间的相关性。</p><p class="31">在本书中，我对国民的政策偏好与议员的行动之间的关系进行了重新诠释。与其假定政策偏好是不变的，从而设问确定的偏好对议员的决定将产生何种影响，我不如引入“潜在偏好（potentialpreferences）”的概念，并且设问议员是如何根据对它们（指潜在偏好－－译者注）的预测来调整他们的决定的。如果人们将潜在偏好定义为包括所有可想象得到的偏好，那么潜在偏好的概念将不具有解释优势。它的价值有赖于将其限定为这样一些偏好，即议员认为可能很容易被不满于议员的决定的有关当事人或者寻求好的竞选议题的未来挑战者所引发的那些偏好。理论的任务在于向人们展示议员是如何预估这些潜在偏好的形态（shape）的。</p><p class="31">本书重新诠释国民的政策偏好与议员的行动之间的关系的目的在于，在理论上捕捉金顿在现实中所观察到的（现象）。它（指本书的重新诠释－－译者注）的目的也在于使人们能够回答如下问题：为什么国会有时制定为广泛的或者大众的利益服务的议案，而不是通常地选择那些有利于集中的利益的议案？根据有关代表权的传统观点，那些在某个政策正在被审议时对该政策没有看法的国民，不可能对议员的决定产生任何影响。影响，几乎被定义为，是留给那些有确定看法的国民，他们，对于大多数政策问题而言，只是社会的一小部分。根据我对代表权的观点，那些在某个政策正在被审议时对该政策没有看法的国民，仍然会对议员的决定产生巨大的影响，只要议员预测并回应这些国民的潜在偏好，就好比它们已经存在一样。</p><p class="31">在议员的决定以某种方式反映了国民对政策问题的偏好或者潜在偏好的意义上，国民影响了议员的行动。杰克·纳吉尔（JackNagel）曾经将影响定义为“偏好导致结果的因果关系”。我只是将他的定义延伸为包含潜在偏好的概念。该延伸并没有带来任何概念上的困难。在对国民的当前偏好的确切轮廓进行估计与对这些偏好在未来数月可能如何发展进行估计之间并不存在根本性差别。在议员根据他们自己对当前偏好的估计作出回应与根据他们自己对未来偏好的估计作出回应之间，也不存在根本性差别。</p><p class="31">对当前和潜在的政策偏好进行估计比科学还艺术（moreartthanscience）。尽管民意（publicopinion）方面的专家能够展示如何利用科学方法来衡量当前偏好，但是在竞选运动之外，议员很少利用这些方法。这些方法不但昂贵和棘手，而且他们不能让人们对潜在偏好进行估计。相反，议员利用的是一种得自经验的政治习惯方式。他们与他们的选民进行交谈，听取他们的意见，阅读他们的来信，观察过去事项是如何随着时间的推移而发展的，寻找有关显著性或者程度强烈的线索，审议谁可能有动力去唤起民意，相互学习，并从他人的错误中吸取教训。</p><p class="31">起初看似一个令人畏缩的任务，或多或少因如下事实得到缓解，即议员自己是从一对二选一方案组中进行选择。议员无需完整掌握国民对摆在他们面前的每一方案的潜在偏好。通过集中关注一对二选一方案组中不同方案之间的差别，他们做得非常棒。他们会拷问二选一的两个方案在带来负面民意的倾向性上是否差别重大，并且考虑这一个或者另一个是否更有可能给某个挑战者提供容易引发选民反冲（voterbacklash）的议题。他们询问国民是否更有可能注意到与这个或者那个方案有关的成本。分析任务也因如下事实而变得轻松，即作为个体的议员无需完全由自己来估计潜在偏好。国会是一个制造、分析以及分享政治相关信息的非凡的公共机构；议员只需综合来源不同的各种估测以对他们自己的选民的潜在偏好进行估计。</p><p class="31">估测国民的偏好为议员提供了他们谨慎行动所需信息的一半。估测在多大可能性上国民可能将这些政策偏好纳入他们对国会候选人的评价中去，则是另一半。议员担心的不仅仅是国民可能与他们的立场和行动相左，而且是他们的“相左”可能影响到国会选举中选民的选择。最近的“特氟隆总统（Teflonpresident）”的概念提醒我们，即使最引人注目的当选政治家也可能免遭对与国民偏好相左的行动的选举惩罚（electoralretribution）。对议员来说，逃脱的可能性甚至更大，部分地因为他们的行动更不显著，而且部分地因为每位议员只是一台大机器上的一个小齿轮。</p><p class="31">有许多途径，通过这些途径对政策的判断会影响国民在国会选举中的选择。选民可以将他们的判断要么建立在政策立场上，要么建立在政策结果上，并且他们可以将他们的政策评价要么直接与候选人相联系，要么首先与政党相联系，进而，间接地，与候选人相联系。对国民是如何将政策判断纳入他们对候选人的选择中去的，每一途径提供了一种似有道理的诠释。每一种诠释都得到了某些经验证据的支持。每一种诠释也提供了一种可察觉的机制，经由该机制，国民能够让他们的议员负起责任。令人遗憾的是，每一种诠释为议员提供了或多或少不相同的建议，有关他们应如何调整他们的投票决定以最大化他们连任几率的建议。</p></div></section><section class="s3">
+<h1 class="s4" id="chapter-3">
+    政策特征和政策偏好
+</h1>
+<div class="c1"><p class="31">人们怎么能够预估国民的潜在政策偏好呢？该等偏好取决于什么呢？这里我将论证这些偏好与政策的两个特征直接相关：成本和收益的归向（incidenceofcostsandbenefits）以及将政策工具（policyinstruments）与政策结果相联系的因果链（causalchain）的性质。这两个特征确定了在社会中的利益分配，并且这种利益分配为国民的当前偏好提供了建立的基础，并且他们的未来偏好产自该基础。</p><p class="21">成本和收益的归向决定了，根据所提议的政策，谁将获利而谁将付出。获利者是潜在的支持者，付出代价者是潜在的反对者。为了简化分析，我将集中关注三种成本和收益类型－－普遍的、集团的和地区的－－并且探讨在何种程度上他们要么是有限集中的，要么是广为分散的。</p><p class="31">将政策工具与政策结果相联接的因果链是将国会决定与成本和收益的归向的实际变化相联系的机制。对该因果链的争论存在两种形式，一种是向前看的（prospective）而另一种是向后看的（retrospective）。人们可以争论某个提议的政策将伴随什么结果。人们也可以关注社会中各种各样的有利的或者不利的条件并进而寻找可能导致这些条件的政府决定。正如我即将证实的那样，政策偏好和它们的政治后果的形态都可能不相同，而这取决于人们是否对提议的政策的结果或者导致已知结果的原因进行推理。</p><p class="31">虽然这些政策特征并非真实世界中影响国民偏好的仅有事物，但是它们是我已经引入我的理论世界的仅有因素。惟一的原因在于这些政策特征影响了政策制定过程的所有参与者的评价－－国民、议员以及联盟领袖－－并有助于将这些独立的评价联系起来。而且，它们正是联盟领袖为了寻求更大的联盟而修改他们的议案时需要调整的条款。我们越是了解该等政策特征对国民偏好会产生什么样的影响，我们越是能知晓联盟领袖是如何设计他们的策略的以及国会为什么通过它通过的议案的。</p></div></section><section class="s3">
+<h1 class="s4" id="chapter-4">
+    国会行动的逻辑
+</h1>
+<div class="c1"><p class="21">到目前为止我已经通过假定去除了很多真实世界的复杂之处，从而揭示影响国会决策的主要因素。所保留的是三组行为者－－国民、议员和联盟领袖－－他们会做出四个独立的决定：</p><p class="11">1.国民通过评价政策议案和政策结果来确立政策偏好。</p><p class="11">2.国民通过评价候选人的政策立场和它们与政策结果之间的关系来在国会候选人之间做出选择。</p><p class="21">3.议员通过评估国民的潜在政策偏好和在多大可能性上国民可能将这些政策偏好纳入他们在随后的国会选举中对候选人的选择中去来在政策议案中做出选择。</p><p class="21">4.联盟领袖通过预测议员的选举估算来采取制定他们的政策议案的策略，这反过来要求他们既预估国民的潜在政策偏好，也预估在多大可能性上国民可能将这些政策偏好纳入他们对国会候选人的选择中去。</p><p class="21">这四个决定是接下来四章的主题。在分析这些决定之后，我重新回到中心问题：为什么国会要制定它制定的政策？我探讨了鼓励国会制定党派倾向性政策并为有组织的利益服务的那些条件。我也设定了促使国会为更为广泛、普遍或者非组织的利益服务的那些条件。</p><p class="31">在本书的下半部分，我将分析在经济、税务以及能源政策领域的国会决策。该部分的每章都将研究几十年来的政策演化。我的目标是证明，理论是解释政策决策动态的有效工具，而且理论能够解释国会决策中的转捩点（shiftpoints）。不仅对为什么国会要追求某个行动过程，而且对为什么国会有时候会突然转向并制定为之前的弱势利益服务的项目进行解释，是理论的一种重要检验标准。例如，在本书有关能源政策的那一章中，我试图证明为什么起初国会要管制石油和天然气的价格、允许前述管制在数十年内保持有效、近十年中不顾总统的反复要求而拒绝解除管制，而正当大家认为解除管制不可能的时候却最终解除了对石油和天然气的价格管制。</p><p class="21">在下结论的那一章中，我探讨了国民控制他们的政府的能力。在首先证明了政党不再为国民的控制提供一个合适的机制之后，我审查了当国民根据候选人而非政党进行投票选择时控制的潜在可能。我证明了，在适当条件下，国民是有可能让议员对他们引起的结果而不仅仅对他们所采取的立场负责的。我也解释了，改革者是如何能够造就这些条件的以及过去的改革努力是如何被误导的。</p></div></section><section class="s3">
+<h1 class="s4" id="chapter-5">
+    政策特征和政策偏好
+</h1>
+<div class="c1"><p class="31">议员和联盟领袖必须评估国民对在国会提出的不同政策议案的偏好和潜在偏好。议员需要知道通过一个新的议案是否可能导致一场抗议风暴从而可能威胁到他们的政治职业生涯、预测某个复杂的议案的某些很小的部分是否可能最终触犯他们的某些选民从而导致他们减少政治支持度，以及认识到哪个议案可能广受他们的选民欢迎从而他们能够适当的摆正立场。对于每个国会议题，议员需要估计他们的选民中哪些可能有一天获得政策偏好、这些选民是如何可能因该议题而分化，以及他们可能对之感知有多深。</p><p class="31">议员和联盟领袖需要一个简单、可靠的模型，以评估国民的潜在政策偏好。因为他们必须在相互匹敌的政策方案中进行选择，他们需要一个模型，该模型应集中关注政策方案之间的相关差异且应该显示这些差异是如何可能导致截然不同的政策偏好范式。本章中，我将证明国民的潜在偏好是如何与成本和收益的归向以及将政策工具与政策结果相联接的因果链的性质相关的。在首先探讨了政策的这两个特点之后，我利用它们来解释国民偏好和潜在偏好的存在、方向以及强度。贯穿本书的是，我假定国民拥有结果偏好（对清新的空气、安全的街道，以及健全的经济），即使他们可能并不拥有明确的政策偏好。他们仅仅因为不了解政策和结果之间的确切关系而常常没有政策偏好。</p></div></section><section class="s3">
+<h1 class="s4" id="chapter-6">
+    因果观念（1）
+</h1>
+<div class="c1"><p class="31">国民的政策偏好在一定意义上取决于他们认为世界是如何运转的。那些认为社会救济支出会鼓励贫穷母亲生更多孩子的国民，对增加这些支出持怀疑态度。那些认为自由贸易政策加剧失业的国民，与那些认为自由贸易会带来就业净增长的国民相比，更少可能支持自由贸易立法。那些认为薪水过低不能吸引有才华的教师导致美国的中等教育质量正在下降的国民，与那些认为问题出自拙劣的管理、课程的变化无常、或者过多的联邦控制的国民相比，更有可能支持增加对教育的投入。</p><p class="21">政策讨论的大部分是关于因果的争论，而且无论争论是出现在晚间新闻上、全美国的客厅内、学院大厅内、或者国会大厅内，情况均是如此。人们不会在完全不知是什么导致某个问题的情况下处理该问题，或者人们不会在未考虑每个可选解决方案将设法带来的预期结果的情况下从可选解决方案中做出选择。人们不会忽视这样一种可能性，即某个问题的最佳解决方案可能使其他几个问题恶化。</p><p class="31">有关因果的争论有两种类型。向前看评价（Prospectiveevaluation）涉及到预估如果政府采纳和实施某个特定计划，什么结果将会相伴而生。个人、公司以及待处理的行为将会如何变化？某个政策达到其预期目的的可能性有多大？可能会出现什么样的意外结果？充分实施该计划的成本有多大？向后看评价（Retrospectiveevaluation）的分析方向正好相反；这里目标是发现已知问题的原因、条件或者事件。政府政策如何导致了近期通货膨胀的加剧？政府本可以做什么来预先防止这些加剧？在何种程度上这些加剧超出了政府的控制能力？</p><p class="31">每当国会审议某个新计划时，向前看评价被当做一个过程来完成。支持者被期望去证明选定的政策工具（手段）将如何产生预期结果（目的），以及它们如何能够以合理的成本和几乎不具有不良（undesirable）副作用而得到实现。至少，支持者需要一个有关某个计划如何将特定投入转变成更多优良产出的有力解说（goodstory）。反对者可能从几个方面进行抨击。他们可能试图通过证明政策工具不可能产生预期结果、论证成功的概率很低、或者提出一个同类的、承诺通过某个其他路径将取得同样结果的计划来使得提议的因果链变得不可置信。或者，他们可能承认提议的计划将带来预期结果，但是提出它也可能带来一系列不良副作用或者它可能带来的成本将大于它可能产生的收益作为反对的理由。</p><p class="31">一项政策工具要带来预期结果必须有中间步骤，不同政策议案在中间步骤的数量上互不相同。一些政策在政策采纳和结果的实现之间并没有任何的中间步骤。这些我称之为单过程政策（Single-stagepolicies）。给予总统遗孀养老金的议案就是一个例子。一旦国会通过一项法律给予该养老金，穷困潦倒的总统遗孀问题则消失殆尽。同样，如果人们认为已婚夫妇的税负过重，人们仅仅需要说服国会修订税法。在采取工具和达到目的之间没有任何的中间阶段。</p><p class="31">大多数政策包含一系列中间步骤，这些步骤一定发生在预期结果实现之前。这些政策我称之为多过程政策（Multi-stagepolicies）。例如，一些人认为缓慢的经济增长和低生产率可以追根溯源到美国的教育状况并从而认为增加联邦资助是解决之道。该论证预想了一系列阶段：联邦对地方行政区的资助将增加教育的总支出、这些增加将有助于提升教师的薪水、更好的待遇将吸引更好的教师、更好的教师将培养更好的学生、这些学生将长大成人并且成为更富创造力和生产力的工作者，以及提高的生产率将带来更快的经济发展。</p><p class="31">我也应该谈一下多过程政策的结果序列（order），即指应该发生某个结果的那个阶段。如刚才举的那个例子，教育预算的增加是第一序列（first-order）的结果，更高的教师薪水是第二序列的结果，而更大的经济发展则是第六序列的结果。更通常地说，我应该谈一下前序列结果（early-ordereffects）和后序列结果（later-ordereffects），意思分别是指靠近某个提议的因果链的开始阶段的那些结果和靠近末尾阶段的那些结果。大多数计划带来前序列结果要远比带来后序列结果来得更为确定。前序列结果也是在距现在更近得多的时候出现，而很多后序列结果可能被推迟到很远的未来。将更多的钱注入到地方学校的预算在短期内肯定会带来较高的教师薪水，而无论与更好的教育、提高的生产率、或者长期的经济发展的最终联系是多么成问题。越远期的结果，其可能性越低，因为在一个很长的因果链上有太多的地方会出错。想象一下，例如，对一个六阶段政策（six-stagepolicy）的所有相邻的阶段来说，一个阶段带来下一个阶段的概率是稳固的0.80。那么，该政策工具实现预期的第六序列的结果的概率只有0.26。</p></div></section><section class="s3">
+<h1 class="s4" id="chapter-7">
+    因果观念（2）
+</h1>
+<div class="c1"><p class="31">对于较短的因果链来说，向后看评价不会根本不同于向前看评价。人们很容易预计10%的附加税将会如何影响人们的税后工资，人们也同样容易注意到一个人的工资下降了，并从而断定原因在于国会批准了10%的附加税。但是，当因果链很长时，向后看评价就确实变得不可能了。暂时想象一下，挑战者号（Challenger）航天飞机发生爆炸的最终诱因是国会对NASA预算的吝啬，这迫使该机构逐渐减少了对质量控制的资金投入。除了能够全面接触内部程序的专家行手（dedicatedexpert）外，很难想象其他任何人会将该单项因素确定为原因，因为存在太多的中间步骤和太多的其他诱因。</p><p class="31">在对世界是如何运作的认识上以及在预测特定政策干预会带来的后果的能力上，人们千差万别。这里我对政策过程中的三类参加者做了区分：专家、通家（generalists），以及普通国民。专家是指那些将调查研究因果链当作他们工作的一部分的专业人士（例如，自然科学家和社会科学家）。大多数专家精于政策世界的一些小片领域：调查研究通货膨胀的原因、探究氮氟化合物与臭氧消耗之间的关系、分析种族隔离的学校与教育程度之间的联系、调查研究航空管制对旅行成本的影响、或者探究吸烟与健康之间的关系。结果，大多数专家开始认为（政策领域）这个世界（或者至少他们的那片领域）是一个复杂的系统，并且只有最精心设计的（政策）干预方能将之转到预期方向上来。他们往往主张设计很差的政策既可能改进某个问题，也同样可能使得它进一步恶化。</p><p class="31">普通国民对因果的观点的获得更具偶然性，并且几乎不会向专业化努力。有时候他们的观点反映了专家的研究结果－－例如，国民当前对吸烟和健康之间的关系的观点似乎得自专家的权威性意见的启示。更经常的是国民的观点反映了他们自己的生活经验、他们自己的直觉知识、或者他们从朋友或者大众传媒处获取的论点。我们无法确切知道为什么大多说国民认为死刑是对犯罪的强有力的威慑或者认为平衡预算会成为好的经济政策，我们只是知道他们就是这么认为的，并且他们对这些事项的观念是相对稳定的，而且不受专家有关刑事正义或者宏观经济多变的流行观点的影响。</p><p class="31">通家是指议员、总统、官僚、职员、社论作家、专栏作家、以及专于政策制定和政策评估但在分解因果方面又非训练有素且专业的其他人员。通家通常在专家与普通国民之间取一个中间立场。他们常常向专家咨询，邀请他们参加正式的意见听证会（hearings），以及仔细研究他们的著作。偶尔他们也会设立一些调查委员会并由专家组成以对特别疑难的问题进行调查研究。然而，通家自己对因果的观点往往既反映专家的研究结果，也反映他们自己的直觉知识和对（政策领域）这个世界是如何运转的观察。</p><p class="31">区别国民、专家以及通家的差异在宏观经济政策领域最容易显现。在20世纪30年代以前，经济学者、议员、以及国民一致认为平衡预算是经济繁荣的本质所在－－至少没有人争论支持蓄意赤字（intentionaldeficits）。自20世纪30年初起，一些经济学者开始提倡凯恩斯主义赤字刺激经济增长的优点，并且到20世纪60年代，经济学者达成了相对统一的认识，即每年平衡预算实际上可能对经济繁荣有害。他们的观点反映了有关因果的新理论。国民显然未被专家的论证所动摇，并且继续认为家庭财政的节俭规则对于国家财政来说具有同样的意义。长期以来的民意调查表明大多数国民强烈信任平衡预算，并且将赤字看作是无数经济问题的根本原因所在。大多数议员明显地赞同国民，而不赞同经济学者。几乎没有证据表明支持1964年凯恩斯主义减税（或者1981年供应经济学[supply-side]减税政策）的议员真的相信这样一种论证，该论证承诺减税的结果就是经济的翻天覆地的发展。</p><p class="31">我们知道大量的有关经济学者是如何看待因果的知识，因为他们以写作为生。关于国民的观点，我们知道的要少得多，既因为国民更少愿意付诸笔头进行写作，也因为民意专家在很大程度上忽视了这类问题。从唐纳德·基德（DonaldKinder）和沃尔特·米培恩（WalterMebane）的著作，我们确实得知大多数国民能够就通货膨胀问题建构似有道理的解释，并且很多人能够针对该问题提出补救之道。然而，他们的解决方法往往与经济学者的解决方法相背离。大多数国民认为工资和物价控制是解决高通货膨胀的最佳良方，然而大多数经济学者则认为该种控制是最差劲的解决方法。总而言之，国民眼中的经济世界比经济学者眼中的经济世界要更少复杂，并且他们对能够直接处理问题的单过程政策要感到安逸得多。经济学者看到的是一个更为复杂的世界，它充满了相互联系和反馈回路（feedbackloops）。他们远更为可能推荐多过程政策，例如凯恩斯主义过?论（KeynesianSurpluses）、货币主义预期目标论（monetaristtargets），或者供应经济学减税论（supply-sidesolutions），它们经由更多的间接方式来处理问题。</p><p class="31">也许经济学者有关一个好的解决方法的观念与议员和国民有关什么将最奏效的感知之间的鸿沟，没有什么领域比在环境、健康、以及安全政策领域中更大。大多数人，他们不是经济学者，更推崇管制计划：禁止公司排放特定污染物、检查危险的工业设施、制定标准以去除石棉、以及对杀虫剂的使用进行管制。这些（政策）干预直接处理问题，包含要么一个单一阶段要么非常少的几个阶段，并且相对容易理解。根据民意测验以及它们在国会争得的压倒性多数判断，此类计划也非常受欢迎。大多数经济学者对管制计划痛心疾首，并且从他们的立场出发提出非常复杂的激励计划：收取排污费以控制空气或水污染、征缴工伤税（injurytaxes）以迫使雇主更具有安全意识、或者收取交通堵塞附加费以减少高峰时期的流动车辆或者行人。经济学者在政策领域几乎没有造就皈依者。很少有人会理解激励计划具有的复杂且往往反直觉的因果逻辑，并且很少有人能够想起为什么间接方法被认定为优于对邪恶的直接禁止。</p><p class="31">如果国民和议员集中于选择欲追寻什么目的进而将设计和实施最适宜方案的任务委托给政策专家，那么国民、议员、以及专家在如何进行因果推理方面存在的差异将变得毫无意义。这不是美国人的行为方式。当议员在同类计划中进行选择时，他们是在供选择的既包含目的也包含手段的建议包之间进行选择。当国民评价议员的选择时，他们可能将他们的评价建基于要么目的之上，要么手段之上，要么二者兼而有之。即使议员突然变得相信这样的观念，即征缴排污费优于环境管制，但是如果他们认为未来的挑战者可能说服他们的选民他们有意出售“排污许可”，那么他们将依然不愿意支持收取该等费用。纵使议员相信这样的论证，即提高最低工资的法律实际上有损穷人的利益，但是如果他们的选民认为这将对穷人有所助益，则他们可能依然不愿意反对该种最低工资提高。国民可能不能完全理解政策领域的因果关系。然而，他们的因果观念很重要，因为观念既可能影响他们有关政策议题的偏好，也可能影响他们对国会候选人的选择。</p></div></section><section class="s3">
+<h1 class="s4" id="chapter-8">
+    成本和收益的归向
+</h1>
+<div class="c1"><p class="21">国民的政策偏好取决于成本和收益的归向以及他们的因果观念。成本和收益的归向是指（1）根据所提议的政策，谁将得利而谁将付出，（2）受益人将会得益多少而牺牲者将会牺牲多少，以及（3）什么时候各受益人将获取益处而牺牲者将遭受损失。成本和收益的归向会影响国民是否可能有一天获取有关某一政策的偏好、他们可能如何因该议题而分化，以及他们可能对之感知有多深。</p><p class="21">特定的成本和收益即可能是有限集中的也可能是广为分散的。集中的最极端化就是收益（或者成本）集中在某个单个个人身上。这类情况并不常见；例如一些特殊的税收规定往往被起草，就好比它们适用于由个体组成的某类人，而实际上，它们中的每一个规定都会影响某一类人。分散的最极端化就是收益（或者成本）均匀地分配给社会全体成员。国家安全就是例子：我们都平等地受到核保护伞的保护（以及威胁）。</p><p class="31">当政策结果均匀地降临到社会成员身上时，我称这类结果为普遍收益（generalbenefits）或者普遍成本（generalcosts）。普遍收益包括经济的增长、稳定的物价、改善的公共卫生、以及其他集体性益处，因为人们认为每个人都将从中获益，包括他们自己，从而认为它们具有价值。普遍成本包括全面的税负增长、经济衰退、通货膨胀、流行性传染病、以及那些伴随官僚政治国家和管制经济而来的自由的丧失。当政策结果并非均匀地降临到社会成员身上时，我称这类结果为集团性成本和收益（groupcostsandbenefits）或者地区性成本和收益（geographiccostsandbenefits）。</p><p class="31">集团性成本和收益包括加给社会的特定部门的政策结果。这些社会的特定部门往往是经济集团，诸如特定职业、行业、专业、或者收入阶层。他们也可能包括社会的非经济部门，无论是根据人口统计线路予以定义，诸如民族、性别、年龄、或者种族；根据共同利益角度予以定义，诸如狩猎、鸟类观察、歌剧、或者跳伞运动；还是根据共同的条件，诸如患有失明、酒精中毒、或者癌症。这些部门可能或者可能不会组织成正式的利益集团。该定义所要求的是某些非随机的个体集合获得了不相称的收益或者承受了不相称的成本。</p><p class="31">地区性成本和收益指的是不成比例地加给特定地区性区域的政策结果，无论是地区、州、或者是地方。地区性结果（geographiceffects）实际上是集团结果的一种特殊类型，地方性是其共通因素。然而进行区分是有益的，既因为地区性区域在国会有直接代表而其他集团没有，也因为地区性利益的获得者（以及地区性成本的买单者）必然相互接近而与他们相对应的获得集团性收益（或者承担集团性成本）的人则可能相互根本没有任何联系。</p><p class="31">集团和地区性结果并非必然相互排除。虽然一些政策结果具有集团性效应而没有任何不同的地区性效应（癌症患者救济金或者对二手车经营者的管制），以及其他一些政策结果具有地区性效应而没有不同的集团性效应（提供给纽约市的联邦贷款担保），但是很多政策结果对集团和地区性区域同时存在效应。对牛奶的价格补贴向牛奶场主提供了集团性利益也给农业地区带来了地区性收益。汽车的进口配额向汽车制造商提供了集团性收益也向底特律大都市地区提供了地区性收益。天然气价格的最高限额将集团性成本强加给了天然气生产商而且将地区性成本强加给了得克萨斯州、路易斯安那州，以及俄克拉荷马州。即使人们通常认为建立并非相互排除的范畴是不好的方式，但在本种情况下，其优点超过了缺点。</p><p class="31">大多数政策含有成本和收益的归向的全部六种形态。例如，隐形轰炸机许诺了增强国家安全这一普遍收益，带来了更重的税负这一普遍成本，向那些该类型轰炸机的制造商提供了丰厚的集团性收益，给同类武器的制造商造成了未知但却实实在在的集团性成本，给该类轰炸机的制造地所在地区带来了可观的地区性收益，以及给该类轰炸机的部属地所在地区带来了可能的地区性成本。同样，一个要求中西部地区的公用事业公司减少火力发电厂的污染物排放以减少东北部地区和加拿大的酸雨的议案，许诺带来改善与加关系这一普遍受益，或多或少会造成经济增长减缓这一普遍成本，给那些开采清洁煤的燃煤生产商带来了集团性收益，给那些开采污染性煤的燃煤生产商造成了集团性成本，给整个中西部地区带来了更高额的水电费帐单（utilitybills），以及给东北部地区带来更少酸雨下降这一地区性收益。虽然大多数政策包含了成本和收益的归向的全部六种形态，但是它们的相对比例则广为不同。对国会的一个普遍性不满就是国会常常支持会带来丰厚的集团性和地区性收益而许诺相对要少的普遍收益的那些计划。</p><p class="31">在一定程度上，可察觉到的（perceived）成本和收益的归向是联接政策工具和政策结果的因果链之长度的一项函数（function）。当因果链很短时－－也许只是少数几个简单的阶段－－成本和收益的归向通常很容易预测。如果国会制定一项以每农户10万美金为限的牛奶价格补贴法案，那么谁将受损则是个几乎无疑问的问题。当因果链很长时，后序列结果（later-ordereffects）的归向可能完全是个未知数（尽管前序列结果（early-ordereffects）归向依然非常具有可预测性）。这不仅仅因为后序列结果的出现与前序列结果的出现相比具有更低的确定性。即使人们假设一个长因果链将完美地运作，并且后序列结果也将必然出现，那些后序列结果的确切归向可能并不可知，原因仅仅在于其最终归向取决于个人、公司或者代理机构所做出的一系列不可预知的决定。例如，试想一下一项减少公司税率以激励投资和刺激经济发展的议案。在第一个阶段，公司税率下降了，并且这里归向是确定的。这些（税率）下降被指望激励投资，它们可能如此，但是所有的公司或者它们的股东选择在哪里投资呢？投资被指望增加就业，但是谁将被雇佣？最终国家可能经历了经济发展，但是哪个地区、州或者地方将分享该等发展？因果链越长，对最后阶段的成本和收益归向的任何预测就越困难。</p></div></section><section class="s3">
+<h1 class="s4" id="chapter-9">
+    政策偏好（1）
+</h1>
+<div class="c1"><p class="31">国民的政策偏好是如何决定于成本和收益的归向的？让我们从一个有关国民是如何获得他们的偏好的公认的幼稚模型（naivemodel）开始。让我们假定每位国民对每项政策议案都进行小规模的成本收益分析，包括可能影响他或者她自己的个人福利的所有成本和收益。任务是要求国民去衡量和计算所有成本，衡量和计算所有收益，根据时间对每项成本或者收益进行折算，并进而支持折算后收益超过折算后成本的议案。该模型之所以幼稚，是仅仅因为大多数国民并不关注大多数成本和收益、甚至是我们这些空想分析家都知道将会对他们造成影响的那些成本和收益。然后问题就演变成：是什么决定了某人是否会觉察到某项特定的成本或者收益？在此，我认为，国民会关注某项特定后果的概率，取决于它的大小、发生时间、其与受到同样影响的其他人之间的亲近性、以及是否有煽动者帮助揭示国民在该事项中的利害关系。</p><p class="31">某项特定成本或者收益的大小（magnitude）直接影响着国民将会感知到它的概率。如果每加仑牛奶的价格只是上涨了一分钱，很少有国民会注意到，并且即使他们确实碰巧注意到了，也不可能留下持久的印象。相反，大多数国民将会注意到在他们的所得税基础上收取的10%的附加税，并且他们中的很多人将获得对此事项的坚定且强烈的偏好。某项特定成本或者收益的相对大小比它的绝对大小要重要得多。众议员拒绝与对每月6美元的市话帐单收取附加费的议案发生关联，因为他们害怕国民将注意到并且他们将会在意该等加价－－特别是来自低成本（low-cost）区域的那些人，那里的月帐单将会翻番。然而，议员常常要求装备安全设备或者尾气排放控制设备，尽管这样会使得汽车价格上涨几百美元，但是他们知道这点费用对于大多数汽车买主来说仍然是觉察不到的，反正他们已经正视五位数的标价。</p><p class="31">特定成本和收益的发生时间（timing）也会影响国民将注意到它的概率。与后序列结果相比，国民远更有可能察觉到前序列结果，部分原因在于，与全面了解整个因果链相比，他们更有可能了解一个多过程政策的起初几个阶段，并且部分原因在于前序列后果的归向更为确定。基于这两个原因，我们料想，与患者预测某项控制医疗费用的方案的后序列收益（later-orderbenefits）相比，医生和医院管理人员更有可能预测前述方案的前序列成本（early-ordercosts）（而且即使对于那些经常支付高额医疗帐单的人来说，该结论仍然适用）。同样，与出口行业工人预测限制贸易立法的后序列成本相比，因进口竞争而处于不利地位的行业工人往往更可能预测前述贸易立法的前序列收益（即使集团性成本的大小可能超过集团性收益的大小）。</p><p class="31">某位国民与因某项特定成本或者收益而遭受同样影响的其他人之间的亲近性（Proximity）也可能影响到他或者她注意到它的概率。生活在一起、工作在一起、或者玩耍在一起的人们，比那些具有相似利益但相互之间从无来往的其他人，更容易发现他们的共同利益。黑肺病和艾滋病的受害者或者潜在受害者，比大多数其他疾病的受害者，更快地获知有关他们的疾病的政策议案，原因仅仅在于这两种疾病首先冲击相对较小的、联系紧密的群体。</p><p class="21">亲近性本身是集团或者地区性结果被有限集中的程度的一项函数。地区性集中具有更为明显的影响。非常严格地说，那些共享地区性集中的收益（或者成本）的人，如果不是朋友的话，则差不多都是邻居。重要信息会在大多数地方性群体内部迅速传递，无论是通过邻居到邻居的传递或者借助地方媒体。当他们的县正在被考虑作为一座新监狱、核废料垃圾场、军事基地、或者粒子加速器的坐落地时，注意一下大家是多么迅速地得知这一消息的。</p><p class="31">但是，只有当集中的线路与现存的交流网络相互重叠，集中的集团性结果（groupeffects）的影响则是相似的。信息很容易在全国性的医生、市长、环境工程师、鸟类观察家、以及集邮者群体中交换，因为这些群体的成员以不同方式联系在一起：他们阅读相同的专业出版物、他们常常通过集会集结在一起、他们相互寻求成为朋友或者伙伴、以及通过电话保持联系。想象一下，大多数认真的集邮者会多么迅速地得知这样一项议案，即以固定的图案设计（就像硬币一样）而非随季节变化的图案设计发行所有邮票。当集中的线路与现存的交流网络并非相互重叠时，具有共同利益的个体则处于一种对于发现他们的共同利益来说很不利的处境。汽车事故的受害者、问题汽车（defectiveautomobiles）的购买者、以及因空气污染而严重受害的哮喘病患者，都承担着巨大且集中的成本，但是他们都是独自承担。</p><p class="21">很多将有共同利益的国民联系在一起的专业化交流网络由有组织的利益集团维护。很多其他网络则独立于有组织的集团而存在。例如，数以千计的小型杂志、期刊、以及时事通讯迎合个体的非常特殊的口味。作为副业，他们帮助散布有关联邦政策对他们的读者的特殊口味的影响方面的消息。集邮者无需成为某个利益集团的成员以获取即将出现的联邦决定。他们只需订阅一本集邮杂志或者阅读地方报纸上的每周邮票专栏。</p></div></section><section class="s3">
+<h1 class="s4" id="chapter-10">
+    政策偏好（2）
+</h1>
+<div class="c1"><p class="31">是否有煽动者帮助揭示国民在某一结果上的利害关系也影响着一个个体将注意到某项特定成本或者收益的概率。拉尔夫·纳德（RalphNader）帮助认定提议的议案和法规对消费者利益的影响。康曼·考斯（CommonCause）为那些关心廉洁和透明政府的人从事同样的工作。他们俩都依靠大众传媒免费散布他们的讯息。在拉尔夫·纳德和康曼·考斯在华盛顿开业之前，个人要想获得有关特定政策是如何影响他们作为消费者或者作为相关国民的利益方面的信息则困难得多。商业组织也充当煽动者的角色，试图发动它们的消费者或者股东去帮助达到它们自己的目的。银行通过宣告国会是如何刚刚通过一项针对银行存款的税收代扣（tax-withholding）制度来“炮轰”它们的客户，进而观望它们的客户用抗议信“炮轰”国会。TIAA-CREF，即大学教师退休金基金会，在1986年给他的一百一十万会员发信，告知提议的税收改革法案中的某条模糊的规定将如何终结该基金会的税负豁免，并且因此将减少教师的退休金。很多煽动者也就是利益集团的领袖，但是他们并非必然是（煽动者）。拉尔夫·纳德先成为一位强有力的煽动者，之后决定建立数个组织。大多数总统也试图成为民意领导者并且在国会面前开导国民认识到其在特定事项中的利害关系。</p><p class="31">综合这四个因素－－大小、发生时间、亲近性、以及是否有鼓动者－－影响国民将觉察到某个特定成本或者收益的可能性。因集团或者地区性区域而集中的巨大的、前序列的结果在实践上确保了留心观众的出现。大多数牛奶场主将迅速获悉一项终止牛奶价格补贴的议案，并且大多数牛奶场主将毫不费力地确立对此事项的偏好。广为分散的小的、后序列的结果不可能跨越觉知这一门槛（thresholdofperception）。奶制品的大多数消费者对于他们每年向牛奶场主支付了10到14亿美元的价格补贴之事连最模糊的认识都没有，因为他们以每次支付几分钱的方式来支付该等成本。偶或有某个煽动者能提醒国民意识到诸如此类的事项，但是这很不容易做到。在20世纪70年代初期，鼓动者们利用数个有关制奶行业给竞选捐款的丑闻来开导某些国民认识到他们作为奶制品消费者的利益所在，但是随着这些丑闻的逐步淡去，国民的注意力也逐步淡去。</p><p class="31">一旦我们将注意力限制在可觉察到的（perceived）成本和收益，国民对每项政策议案进行微型成本收益分析的概念变得更有意义。对于很多议案来说，国民既不会注意到成本也不会注意到收益，并且因此他根本就不会有政策偏好。对于其他一些议案来说，他可能仅仅觉察到单个结果。如果他注意到某个计划的收益，他将支持它；如果他注意到它的成本，他将反对它。只有当他既注意到成本也注意到收益时，他才会对之进行衡量以决定哪方面更大。</p><p class="31">观察国民真实地衡量复杂的成本和收益流的最佳地方之一是其选民必然支持学校预算的那些小社区。在某些社区中，其选民非常经常地拒绝学校董事会提出的最初几个预算方案，直到董事会将学校开支和税负削减到某个点，在这个点上大多数选民认为收益与成本持平或者超过成本。校园公投（schoolreferenda）并不仅仅因为同类国民中的某一些觉察到了巨大的、直接的、并且前序列的成本（他们自己的财产税）和巨大的、直接的、并且前序列的收益（他们孩子的教育机会）而变得经常。虽然在联邦计划中我们少有指望到如此明确的例子（因为少有联邦计划会给同类个体既带来巨大的前序列成本也带来巨大的前序列收益），但是这个例子使我们确信国民非常有能力衡量复杂的成本和收益流，并且无论是成本或者收益的大小的任何微妙的调整都会改变他们的偏好。</p><p class="31">通过认定和比较某个计划的可觉察到的成本和收益，我们能够确定国民潜在政策偏好的存在和方向。通过从前述两个因素出发进行推理，我们也能够估计出他们的偏好的强度。强度是某个计划的可觉察到的成本与它的可觉察到的收益之间的差的大小的一项函数。差越大，国民的偏好越强烈。然而，强度并非一项对称函数（symmetricalfunction）。成本量给定情况下的强度，比同样量的收益情况下的强度要大。从某人身上夺去一千美元所产生的反应要比当初给予一千美元要强烈得多（且在政治上是危险的）。</p></div></section><section class="s3">
+<h1 class="s4" id="chapter-11">
+    政策偏好（3）
+</h1>
+<div class="c1"><p class="31">确切地说，国民为什么对给定量的成本比对同样量的收益的感觉更为强烈并不清楚。这可能仅仅因为国民渐渐变得习惯于特定的收益流量，假定这将继续，并且相应地构建他们的生活方式和消费量。减少该流量会给国民带来非常重大的成本，因为他们必须改变他们的预期、习惯、以及生活方式。他们肯定会失去他们已经开始认作为生活必需品的东西。结果，他们对任何将减少他们的收益的议案会产生非常强烈的偏好。然而，当收益量碰巧增加时，国民将这些新收益认作奢侈品。至少在短期内，它们不会改变他们对未来的预期或者他们的消费结构。虽然国民认为奢侈品是可欲的，但是“额外物（extras）”不会引出与生活必需品相关（associatedwith）的、强度相同的感应。当然，当国民已经接受奢侈品一段时间之后，他们开始将它们认作必需品。在这点上，他们开始对那些收益的持续发生感应强烈了。</p><p class="31">有关国民如何获取他们的偏好的简单模型，我们需要进行的惟一的他项调整就是要注意到人们珍视很多并不直接有助于他们自己的物质福利的事物。任何人如果通过假定国民所关心的是某项议案是使他们变得更富有还是更穷酸，从而试图预测国民的偏好，那么他将谬以千里。每年自愿向慈善机构捐款700亿美元的同类国民中的某些人同样支持服务慈善目的的联邦计划。帮助盲人、身体残疾的人、以及有精神疾病的人的计划，事实上，大受视力良好的人、身体健壮的人、以及精神健全的人欢迎。许多国民也支持那些专门用来挽救他们将从不谋面的鲸、保护他们将从不拜访的北极荒野（wilderness）、以及保护他们从不知晓存在的濒危物种的那些政府计划。</p><p class="31">这些复杂性出现了，因为很多人认为政府有职责去帮助和保护社会中运气较差的群体以及为当代和后代提供普遍收益。虽然很多国民在这些基本目标上是一致的，但是他们在哪个集团应受到关注以及哪些普遍收益是最可欲的方面存在分歧。这一简单的事实使得政治比经济更为复杂得厉害。通过假定消费者总是寻求增进他们的物质福利，经济学者对市场行为已经知晓甚多。如果政治学者假定国民将只支持那些看上去会增进他们的物质福利的议案，他们对选举和立法行为的知晓要少得多。政治同时是试图增进他们的个人利益的个体之间的一场斗争以及对公共利益抱有不同观念的国民之间的一场竞争。</p><p class="31">这种复杂性并非特别棘手，只要国民对前述两个方面中只有一个方面不同的备选方案进行比较。如果备选方案仅仅在它们对国民个人利益的影响方面有所不同，她将明确地倾向于会使她的状况变好的那个方案。如果它们仅仅在对公共利益的影响方面有所不同，她将明确地倾向于会更佳地增进她所认为的公共利益的那个方案。只有当两个备选方案在两个方面均不相同时，她才必须在根本不相同的目的之间“算出（calculate）”平衡。在此我省略了公众目的与个人目的之间的平衡，因为该问题并未严重影响我对立法行动的分析。大多数时候，国会审议的是在细微方面相互不同并且，对于任何特定个体来说，只在前述两个方面中的一个方面差别重大的二选一方案。</p><p class="31">自远处（fromafar）[1]分析特定计划如何影响国民的个体利益是相对容易的。对于预估某个个体对将可能使牛奶价格翻两番的某项议案的潜在偏好来说，知晓某个人是一位牛奶场主还是一位奶制品消费者通常就足够了。要预测国民可能如何评估涉及普遍性收益的一揽子方案（alternativepackages）则相当困难。任何单一数据都无法让人预测，国民是否可能支持为了开采石油而更多地开发阿拉斯加荒野（Alaskanwilderness）－－一项为了石油供应量的可能增加而冒某种环境恶化之险的议案。像往常一样，议员战胜了冷漠的分析家。对他们的选民的根本观念和价值观知晓得越多，他们越能预测他们的选民可能如何评估涉及普遍收益的一揽子方案。</p><p class="31">国民容易误解某项特定计划将如何影响他们。因为与后序列结果相比，国民更有可能注意到前序列结果，自然国民的偏好受到了这些前序列结果的强有力的影响。为不断加剧的通货膨胀感到忧心的人们，可能会最终支持实施工资和物价控制（wageandpricecontrols），因为它们许诺会迅速抑制物价，而他们却从未觉察到其后序列结果对经济的灵活性和效率的影响。因拥挤的高速公路而耽搁时间的人们，可能会支持道路建设计划，而从不考虑更好的高速公路可能刺激新的发展并且因此引起更为严重的交通堵塞。很多国民反对外援计划，因为其后序列收益很难被察觉，而其前序列成本却很容易被发觉－－对国内计划征收更高的税负或者发生更高的预计支出（foregoneexpenditures）。</p></div></section><section class="s3">
+<h1 class="s4" id="chapter-12">
+    政策偏好之动态变化
+</h1>
+<div class="c1"><p class="31">国民的政策偏好不是固定不变的。它们在国会正在审议某个议案时、在国会已经批准或者否决该议案之后，或者在某个随后的竞选活动中都可能发生变化。在某项议案开始提出之时，一些人对之完全没有偏好，但是他们随后获得了该等偏好。其他人可能从一开始就有偏好，但是他们会随着时间的推移而修改它们。他们的偏好可能在强度上、方向上发生改变，或者它们可能会逐渐地完全消退。尽管其他一些人开始时没有偏好并且乐于保持该种状态，但是，如果议员没有预见到他们的需要，并且没有扫除本可能导致他们获取偏好的那些诱因，他们也将可能获取偏好。</p><p class="31">本章论证国民会以可预见和可理解的方式改变他们的偏好。促使改变的诱因可能仅仅是国民注意到某项政策的新颖之处或者他们开始发现某项新成本或者新收益。变化的可预测性来自这样一个事实，即国民注意到特定结果的发生概率与该结果的大小、发生时间、与受到同样影响的其他人之间的亲近性、以及是否有鼓动者相关。当某项政策被采纳之初时，所有四个因素已被人知或者可知（至少在概率论意义上）。偏好的获取也受到一系列外在事件的影响，而这类事件在诸如本书探讨的模式中基本上是不可预见的。</p><p class="31">有时候某项单一事件能够提供促使改变的诱因。当1973年濒危物种法（EndangeredSpeciesAct）通过之初时，田纳西州的很多居民是支持它的，但当1978年最高院因为将会威胁到蜗牛鱼（snaildarter）[1]的生存环境而禁止在小田纳西河上开建耗资1.31亿美元的水坝时，他们改变了观点。突然间，集团性和地区性成本变得巨大起来，而普遍性收益似乎无关紧要了。可以肯定的是，在1973年没有人会预见田纳西人将在五年后反对濒危物种法。在那个时候，一丁点大的蜗牛鱼尚是不为人知的物种。然而完全可预见的是，反对该法案的人将包括那些发现自己承担着相当大的集团性或者地区性成本的人，而不包括那些关心该法案的普遍性成本的人。巨大的、集中的前序列结果为人们改变观念提供了一些最佳诱因。1969年对反弹道导弹系统的最初反对与核战略事项并无关系。反对者首先出现在伊利诺斯州的利柏蒂维尔村，在那儿部署导弹已提上日程。十年后，出于相同的原因，犹他州成为反对MX洲际导弹系统（MXMissileSystem）的中心。</p><p class="31">鼓动者的可获得性并不保证国民的偏好将发生改变。一位鼓动者需要机会也需要动力。很多年来，大多数国民对美国的食糖政策（sugarpolicy）根本就没有任何意见（该政策对国外的低成本食糖强加了配额限制），并且很难想象任何鼓动者如何可能使得普通国民对该议题感兴趣。食糖很便宜，并且食糖政策是主要的无争议问题（nonissue）之一。当食糖的零售价格在1974年突然翻两番并且配额的存在成为头版新闻时，很多人的确获得了对配额的偏好。对于配额的反对者来说，利用这些事件来激起反对配额的政策偏好是相对容易的，因为结果是相对巨大的：美国物价高于世界物价（worldprices）并且配额是可能的罪魁祸首。当物价重新下跌时，人们的偏好慢慢消退；今天很少有国民对美国食糖政策有所了解。</p><p class="21">这些有关政策特征是如何影响政策偏好的简单的感性认识可能会也可能不会对解释美国的民意动态有所助益。我的判断是它们是有所助益的，但是我将之留给民意专家来确定我的判断是否与现实相符。我的观点是议员（至少是本能地）利用这些感性认识来估计国民对一系列新的且正在出现的政策议题的偏好和潜在偏好。关于我是否捕捉到了议员预测民意动态的方式，适当的检验标准就是，在多大程度上这些简单规则有助于解释议员在华盛顿的行动。</p></div></section><section class="s3">
+<h1 class="s4" id="chapter-13">
+    政策偏好与国会选举（1）
+</h1>
+<div class="c1"><p class="21">议员需要的不仅仅是一张载有国民对国会上提出的不同政策议案的偏好和潜在偏好之图。他们需要知晓国民在随后的国会选举中可能将政策偏好纳入到他们的决定中去的条件。议员所担心的不仅仅是国民可能不同意他们的立场和行动，而且是前述不同意可能影响选民的选择。为了精确评估发生选举惩罚的可能性，议员需要了解政策偏好影响国民选举决定的方式。</p><p class="31">如果议员查阅有关国会选举的学术文献，他们可能得出结论认为，他们无需过于担心他们采取的立场或者他们导致的结果，因为这些不是选举结果的主要决定性因素。这将是一个危险的结论。这等于是得出如下结论：人们无需填报纳税申报单，因为美国国内税务局每年只控告几千人逃税。问题是，作为一个整体，议员没有向国会学者提供太多的差异以供分析。没有议员曾经愿意采取与他们的选举利益直接相对立的立场，以便于我们可以衡量该等立场对选举胜差（electoralmargins）[1]的详尽影响。没有人承认是通过掷硬币的方式来决定他们的立场的。我们需要一定的证据材料以用来评估争议议题（issues）在国会选举中的潜在重要性，但是作为一个整体，议员在给学者提供此类证据材料时非常地不合作。</p><p class="21">然而认为争议议题具有潜在重要性的证据是强有力的。最强有力的证据就是，议员认为争议议题很重要，并且他们也依照这种认识行事。他们投入两种至为宝贵的资源－－他们自己的时间和他们的工作人员的时间－－来收集和分析信息以帮助他们避免采取具有政治风险的立场和行动。既然议员并非喜欢浪费宝贵资源的轻举妄动者，如下观点似乎是合乎情理的，即当议员勤勉地工作以甄选安全的立场时，他们清楚他们正在做什么。</p><p class="31">争议议题在总统选举中公认的重要性，为支持它们在国会选举中具有潜在重要性的观点，提供了进一步证据。毕竟，总统和国会选举中的大多数选民正是同一批国民。总统竞选（presidentialcontests）所要求的分析争议议题的技巧和认识能力，与竞争程度较轻的竞选所要求的那些能力，在本质上是一样的。人们发现越多的证据支持总统选举中争议议题很重要这一观点，人们越必须接受这样一种可能性，即在适当条件下，争议议题在国会选举中会变得同样重要。</p><p class="31">如果国会选举中的选民对候选人知之甚少，并且只是以政党为基础盲目地投票，这一结论可能缺乏保障。虽然这曾经是对国会选举中的合理认识，但是这不再符合实际了。最近一些年，与某个主要政党相认同的所有选民中，几乎有四分之一在众议院选举中投了对方政党候选人的票。此外，国会选举中的叛党行为（defections）不只是总统选举中叛党行为的后果。总统与国会选举越来越相互独立。例如在1972年和1984年，44%的众议院选区得出了分裂性结果（splitverdicts）－－支持一个政党的总统候选人和另一政党的众议院候选人。国会选举要么被政党要么被总统的政治声望所主导的观念不再站得住脚。</p><p class="31">如下观点是同样不正确的，即国会选举是低信息（low-information）事件，国会选举中的选民与候选人几乎没有联系从而几乎没有做出独立判断的基础。例如，试想一下对在1984年众议院选举中参与投票的选民的调查结果。91%的选民知道他们的在任议员的名字，74%记得收到过他的来信，55%记得在电视上见过他，18%声称曾在某个会议上见过他，以及20%声称他们遇见过他们的议员。这是一个惊人的联络量（amountofcontact）。的确，从这些联络中获得的大量信息，并没有有关争议议题方面的内容。然而，人们很容易想见，争议议题内容会如何急剧地增长。如果议员毫不在意他们如何投票，他们可能发现新闻记者将比以前更为广泛地报导他们的行为，并且增加的报导将集中于争议议题之上。他们也可能发现他们的选民比以前更大规模地出现在选区会议上，并且他们也想讨论争议议题。</p><p class="31">认识到争议议题在国会选举中是潜在重要的，并不会指示议员如何调整他们在华盛顿的行为，以最小化后方家乡的选举风险。如果他们想望实现这一诀窍（feat），他们必须了解争议议题影响国会选举的方式。国民是更关注议员采取的立场还是国会带来的结果？议员是应该对一小部分人（smallminority）的已知偏好做出回应还是应该对大多数人（largemajority）的潜在偏好做出回应呢？在什么条件下国民将注意到某个议员的立场及其行动呢？在什么条件下国民将改变他们对某位在任议员的看法呢？</p><p class="31">至少有四条不同的路子，经由它们对政策做出的判断会影响国民在国会选举中的选择。选民会要么根据政策立场要么根据政策结果决定如何投票，并且他们会将他们的政策评价要么直接与候选人相联系，要么首先与政党相联系并仅仅间接地与候选人相联系。政策立场（Policypositions）是指对特定政策工具可欲性的观点，而不管该政策工具是已被提出、正在审议中、或者已经通过且被实施。它们是对政策将引起的后果的可欲性进行向前看评价的结果。政策结果（Policyeffects）是指在一定程度上可归咎于政府作为或者不作为的社会条件。这里人们会以实际的政策结果、效果、或者条件开始，并且向后看地（retrospectively）寻找某人来领受奖励或者惩罚。</p></div></section><section class="s3">
+<h1 class="s4" id="chapter-14">
+    政策偏好与国会选举（2）
+</h1>
+<div class="c1"><p class="31">表3.1概括出可供国民应用的四种基本的决策路线（decisionrules）。前两个是向前看的路线；其他两个是向后看的。政党立场路线（partypositionrule）指的是，国民首先根据政党的立场来选择一个他偏爱的政党，进而选择贴着该被偏爱政党标签的候选人。候选人立场路线（candidatepositionrule）指的是，国民通过比较不同候选人对各争议议题的立场来对候选人作出选择。政党表现路线（partyperformancerule）指的是，国民首先决定执政党因其带来的结果是应该得到嘉赏还是应该得到惩罚，进而选择得到肯定的政党的议员候选人（legislativecandidate）。最后，在位者表现路线（incumbentperformancerule）指的是，国民通过决定在位的议员因其与各种各样的令人愉悦或者不愉悦的后果之间的关系是应该得到嘉赏还是应该得到惩罚来对候选人作出选择。</p><p class="11">表3.1可供国民在国会选举中应用的决策路线</p><p class="11">选择对象选择根据</p><p class="11">政策立场政策结果</p><div class="r4"></div><p class="11">政党政党立场路线政党表现路线</p><p class="11">候选人候选人立场路线在位者表现路线</p><p class="11">政党表现路线</p><p class="21">两种向后看投票路线－－政党表现路线和在位者表现路线－－让国民可以去监督政府的表现并且嘉赏或者惩罚对它的表现负责的人。这两种路线中最简单的是政党表现路线。该路线要求国民首先评价社会现状，决定这些现状是何等地可接受，进而通过支持或者反对执政党的议员候选人来嘉赏或者惩罚该党。</p><div class="r4"></div><p class="31">要运用政党表现路线，国民仅需要知晓两条信息：（1）社会条件是正在改进还是恶化，以及（2）哪个政党控制着政府。第一条信息很容易获取，特别是考虑到国民可以随心所欲地监督他们所选择的任何条件。那些关心经济、外事、或者政府道德规范的总体发展方向的人认为，电视、新闻报纸、以及杂志充斥着有关其现状的线索。那些关心更细微事项的人，比如说烟草的价格或者汽车行业的总体繁荣，如果他们正好是烟草农夫或者汽车工人，获取适当信息毫不费力。</p><p class="31">知晓某个政党控制着政府更成问题，特别是当并非单一政党控制着众议院、参议院、以及白宫时。几十年来，分割控制（splitcontrol）实际上比统一控制要更为常见，因此，该问题是反复出现的。在1953年至1989年这36年中，这三个机构被同一政党控制的时间只有14年。这些年中有六年（1981年-1987年）国会本身就是分裂的：由民主党组织众议院，而由共和党组织参议院。因此，国民应该嘉赏或者惩罚哪个政党呢？如果该问题以规范化术语表述，则没有清楚的答案。如果该问题以经验化术语表述－－国民的确会嘉赏或者惩罚哪个政党？－－则答案很清楚。当国民应用政党表现路线时，无论是在总统选举中还是在国会选举中，他们会嘉赏和惩罚控制总统之职的政党。也许该决定反映了对分割控制的存在的忽略。也许它反映了对总统引起变化的能力的更高评价。这样的区别对于总旨（generalpoint）来说并不关键：大多数认为嘉赏和惩罚执政党会奏效的国民，在嘉赏和惩罚执政党时，就好像执政党就是总统所在的政党一样。</p><p class="31">V.O.凯（V.O.Key）第一个证明了国民会运用诸如政党表现路线之类的东西。他也从规范化角度为该路线进行论辩，认为它是一个卓越的机制，通过它，国民能够让政府对它的行为负起责任。在所有的将争议议题纳入国会选举的四种决策路线中，就国民而言，政党表现路线要求最少的信息和分析，而就议员而言，则要求最多的议员表现方面的信息和分析。国民从来无需评价政策工具以决定哪个政策最有可能带来令人愉悦的结果。他们可以一概不知执政党（in-party）当权时都做了什么、它提议未来要做什么、或者它是否无论如何对当前状况负责。他们从不需要对议员候选人做任何的了解。国民会在选举间隔期间放松自己，照看好他们自己的事务，并且将有关政府的细节留给当选官员。然后在选举那天，他们只需决定他们对社会现状是否满意以及他们是否认为执政党应该留任。另一方面，当选官员有种种动力去预测国民的需求，设计和制定高效且可行的计划以实现这些需求以及在选举日之前带来令人愉悦的结果。正是他们的工作要依赖它。</p><p class="31">相当强有力的证据表明，至少某些国民会在国会选举中应用诸如政党表现路线之类的东西。首先，学者认为他们已经发现了非常有说服力的证据支持这一路线。最早的有关经济状况对国会选举的影响的研究表明，总统所在政党的国会候选人在通货膨胀时期、停滞时期、或者衰退时期处于不利地位，而在经济繁荣时期则受益匪浅。如今人们知晓这些总体性结果在某种程度上是政治家的战略行为的后果。受到经济现状青睐的政党更容易吸收有经验且有天赋的候选人以及获得充足的竞选经费，而敌对政党发现?天才候选人以及财政赞助者更愿意等待一个更有利的季节。即使如此，来自调查研究的证据依然表明，在国会选举中某些国民会将他们自己对经济表现的评价纳入到他们的决定中去。他们是否也纳入其他种类的状况，目前还是个未知数。</p><div class="r4"></div></div></section><section class="s3">
+<h1 class="s4" id="chapter-15">
+    在位者表现路线（1）
+</h1>
+<div class="c1"><p class="21">在位者表现路线为国民提供了另一条可供选择的路径，用来监督政府的行为以及嘉赏或者惩罚那些对它的行为负责的人。在位者表现路线要求选民首先评价社会现状，决定这些现状是何等地可接受，进而因为他们认为对事务的现状具有促成作用的行为而嘉赏或者惩罚议员。在结构上，该路线非常接近政党表现模型。惟一的差别在于，国民让议员对他们自己的个人行为负责，而不是对他们所从属的执政党负责。</p><p class="31">然而，这种关注点的转移带来了何等巨大的差异！对于国民来说，在并不确切知晓执政党是如何促成现状的情况下，让执政党对这些现状负责是非常合乎情理的。政党应当作为一个团队行动，因此，如果结果令人不悦，派出一个新团队则是有道理的。然而，如果没有政党，这种形式的责任几乎无意义。在毫不知晓他或者她是如何促成事务的现状的情况下，少有国民可能去惩罚他们自己的议员。毕竟，在位者可能是一位聪明且杰出的骑士，他正在与一群不称职且不负责任的议员战斗。纵使这不是事实，每位议员只是535位当选议员中的一员，他们一起共担对政策结果的责任。</p><p class="31">然而，当目标是个体议员时，国民必须对决策过程有所知晓。每一位选民的疑虑是，打算再次参选的议员是否在某种程度上对事务的现状负有责任。某项与这个有几分像的评价可能会出现。国民会注意到，某些对他来说很重要的条件，要么正在恶化，要么正在改进。他会搜寻政府责任，拷问联邦政府对现状的改变起到了何等的作用。然后，他会搜寻他自己的议员对政府行为所起的作用。最后嘉赏或者惩罚他的议员。此处的责任是针对某个人的议员（one’srepresentative）的特定作为或者不作为的，而不是仅仅针对与掌权政党的关联性。</p><p class="31">虽然在位者表现路线情况下的信息需求要远远大于政党表现路线下的信息需求，但是它们依然在很多国民的能力范围内。在适当的条件下，很容易想见，几乎任何国民都获得了必要的信息并且作出了适当的回应。例如，试想一下，当一位挣扎的单身母亲发现他的三个孩子不再有资格获得学校午餐补助时，她可能会做出何种反应，在知晓自己的财政状况并没有发生重大变化的情况下，她将可能因为置于她身上的更多的负担而准备责备他人。学校官员将通过告知是国会投票同意提高资格标准而迅速转移批评。有人－－也许是有进取心的新闻记者、PTA（家长教师联谊会）领导，或者是一位潜在的挑战者－－将详查来自地方的议员的投票记录以发现她是否支持变革（change）。如果他确实支持变革，其他人将帮助散播该信息，直到我们那正在挣扎的单身母亲和其他像她那样的人知道应该责备谁。从短期看来，她对在位者更不友好（lesskindly），并且也许非常敌对。随着时间的推移，她可能忘记她得出负面看法的原因，但是看法可能独立于原因而继续存在。作为替代的是，该议题可能在竞选运动本身中被提出来，并且因此更直接地进入她的投票算计（votingcalculus）。</p><p class="31">国民是如何频繁地应用诸如在位者表现路线之类的东西,则不得而知.据我所知,并没有研究成果对政策结果与议员选举胜差之间的关系进行系统研究.然而存在旁证(circumstantialevidence)证明,少数国会领袖已经因为那些可追溯至他们自己的行为的后果而受到惩罚.参议员沃伦·马格纽森(WarrenMagnuson,D.,Wash.)在1980年棋逢对手,当年他的反对者,斯莱德·戈顿(SladeGorton),指控他对通货膨胀负有个人责任,因为他在担任参议院拨款委员会(SenateAppropriationsCommittee)主席时支持了过于膨胀的消费法案(bloatedspendingbills).戈顿以54%对46%击败了马格纽森.在众议员阿尔·乌尔姆(AlUllman,D.,Ore.)支持了将增值税作为解决联邦赤字的方案后,他遭遇了相似的晦运.或许假如乌尔姆只是一位普通的国会议员,他的选民将原谅他的过失;但是,作为众议院筹款委员会(HouseWaysAndMeansCommittee)的主席,他被认为处于一个特别有利的位置去开征这样一个税种.在1980年主要基于这个因素,一位同一选区的民主党人几乎击败了他;后来,一位共和党人在大选中给予了致命一击.在他的挑战者利用了消费者拆分美国电话电报公司(AT&T)受挫之后,众议员蒂莫西·沃斯(TimothyWirth,D.,Colo.)看着他的得票胜差(winningmargin)从1982年的62%滑到了1984年的53%.作为能源和商务委员会通讯小组委员会(theTelecommunicationsSubcommitteeoftheEnergyandCommerceCommittee)主席,沃斯是在电话行业开展竞争的最主要的支持者之一.很明显,很多他的选民对解除管制的后果并不满意.</p><p class="31">纵使很容易找到这样的例子，即国民看上去利用了诸如在位者表现路线之类的东西，其被利用的确切频率?不重要。我的目的在于向人们展示，议员对这种形式的向后看投票（retrospectivevoting）的惧怕是如何影响到他们在华盛顿的行为的，而不是去确证他们如何频繁地误算国民的偏好或者潜在偏好，也不是去确证他们的误算是如何频繁地导致选举胜差的减少。有意义的是，议员是如何频繁地停下来算计他们在国会的行为是否可能刺激国民在选举投票时去嘉赏或者惩罚他们。为完成该任务，我们首先需要对在位者表现路线的运作条件有一个更为充分的了解。</p></div></section><section class="s3">
+<h1 class="s4" id="chapter-16">
+    在位者表现路线（2）
+</h1>
+<div class="c1"><p class="21">在位者表现路线要求国民对联接政策工具和政策结果的因果链有一定的了解，并且对决策过程本身有一定的了解。国民往往首先会注意到某个条件要么会使事情变得更糟，要么会使事情变得更好。对联接政策工具与政策结果的因果链的了解，使她能够去搜寻可能导致或者影响该条件的某个政府行为。在确认了涉嫌的政府原因之后，她会仔细搜寻一遍决策记录，以决定它自己的议员对该政府行为是否起过作用。</p><p class="31">如果国民能够似有道理地将观察到的结果首先追溯到某个政府行为，并且进而追溯到某位议员的个人作用（individualcontribution），我称该结果为可追溯的（traceable）（见图3.1）。我认为可追溯性要求存在三个条件：可感知的结果，可识别的政府行为，以及某位议员的显著作用。如果所有三个条件都具备，国民利用在位者表现路线的前景就好。哪怕是缺少可追溯性条件中的一个，这种形式的向后看投票会变得实际不可能。</p><p class="31">可感知的结果（perceptibleeffects）是指国民独自注意到的状况，这些状况要么激发人们去寻求解释，要么引起人们注意他人提出的解释。可感知的结果包括10%的通货膨胀、失去工作、缴纳新税、或者学生贷款被终止。不可感知的结果（imperceptibleeffects）包括多花一分钱购买牛奶、空气质量的微小变化、或者某个新的安全性能而导致的汽车价格的小幅上扬。很多不可感知的结果可以累加从而相当于一个非常大的结果，但是只要这些结果是以小件（smallpackages）出现，他们就往往依然不可感知。例如，政府对农业的管制据说轻微地抬高了我们每天食用的所有东西的价格；然而我们是以一次只多花几分钱的方式偿付了这些成本，并且因此从来不会注意到它们。可感知的结果成为向后看投票这种形式的诱因，因为它们激活了整个搜寻过程（searchprocess）。</p><p class="31">可识别的政府行为（identifiablegovernmentalactions）是指国民认为导致了可感知结果的那些特定的行为。这些行为既包括国会制定的法律，也包括总统、官僚或者司法决定。政府行为与政策结果之间的因果关系必须是似有道理的，而不必如事实般确凿。可追溯性取决于人们认为是什么导致了那些结果，而不取决于实际上是什么力量导致了它们。可识别的政府行为必须是特定的决定－－通过或者否决某项法案、增加或者取消某项修正案、资助或者终止某项计划。那些从来没有进入国会议程的事项以及那些从来没有明确地被否决（非决定（nondecisions））的事项经不起这个标准的检验。那些由多个政府决定引起的结果也经不起这个标准的检验。例如，总体经济状况，通常不可能被追溯到任何单一的政府行为，因为诸如通货膨胀以及失业是很多不同行为的产物。</p><p class="31">显著的个人作用（visibleindividualcontributions）是指某位议员所做的用以促进或者阻止某个可识别的政府行为的那些特定的行为。唱名投票是最常见的、显著、并且不含糊的作用类型（typeofcontribution）。政策能动主义的所有形式也属于这个类别，尽管能动主义并不像唱名投票那样存在简单易懂的指针（indicator）。调查的是单个议员已经做了什么，而不仅仅是国会已经完成了什么。如果国会以口头表决的方式通过了某项修正案，那么个人的作用就是看不见的。如果国会将广泛的权力授予行政机构、总统、或者法院，决定可能还可识别，但是议员的个人作用仍然是看不见的。</p><p class="21">在位者表现路线取决于所有三个条件的具备。没有可感知的结果，就没有什么东西能够激活搜寻过程。缺乏可识别的政府行为，就没有什么东西可以提示政府是否有过错，并且这样的话，也没有什么东西可以提示国会是促成了这些结果还是曾努力阻止它们。没有可识别的个人作用，人们不可能知晓某个特定议员是应该被褒扬还是应该受到责备。</p><p class="21">我们不必想象每位国民在当地图书馆呆上数小时以试图为各种各样的政策结果建构可追溯性链条（traceabilitychains）。显然，这种观点与我们对激励国民去获取有关公众事务的信息的动机所了解的一切是完全矛盾的。幸运的是，并不需要详尽的搜寻程序，因为其他很多人会热衷于做研究并且与国民分享他们的研究结果。</p></div></section><section class="s3">
+<h1 class="s4" id="chapter-17">
+    在位者表现路线（3）
+</h1>
+<div class="c1"><p class="31">或许挑战者是这个游戏中最为勤勉的玩家。很少挑战者不去详审在位者的记录以寻找确凿证据（smokinggun）。然后，他们利用他们新发现的证据去说服国民，他们的现任议员是如何差劲地为他们的利益服务。那些对当地钢铁厂的倒闭感到忐忑不安的国民知道，他们的议员反对规定国产汽车比例的立法，而这一立法本可以挽救它（指前述钢铁厂－－译者注）。那些必须为社会保险（SocialSecurity）收入纳税的退休者发现，他们的国会议员是该议案的最主要的支持者。看着谷物价格暴跌的农民被人们提醒，在苏联入侵阿富汗之后，他们的议员是第一个迫使卡特总统对谷物出口施加禁运的人。</p><p class="31">其他人也玩这个游戏。因某个特定政府政策而遭受不利的那些集团，有助于散播关于在位者是如何造成他们的困境的流言。同样，那些收获了颇丰厚的集团性或者地区性收益的人们，可能会努力确保所有的收益者都知道谁该得到嘉赏。更客观的当事者，比如媒体，常常帮助国民发现议员行为、政府行为和政策结果之间的关系。它们要么在政策通过之时，要么在竞选过程中这么做。例如，很多报纸喜欢解释它们的政治倾向（politicalendorsements），因此它们会罗列在位者应负责任的所有极好的或者可怖的状况。</p><p class="21">在位者不会懒散地袖手旁观，等待斧头落地。他们努力从正面的结果中获取声誉，并且将他们在华盛顿的行为与后方家乡不利状况之间的可疑关系解释过去（explainaway）。</p><p class="31">可追溯性并非对于所有类型的政策结果都同样可能。总的来说，与追溯后序列结果相比，国民能够更容易地追溯前序列结果至起初的政府原因。试想一下美国农民是多么容易将他们自己的财政状况与有关价格补贴、谷物禁运、以及灾难救助的政府行为相联系。这种联系是清晰的、直接的、并且是简单的。政府采取了行动，同时农民完全可预测地要么发达起来要么遭受不利。将这种情况与住宅建筑工人进行比较。他们的命运同样受到政府政策的影响，但是以一种更长的且更简洁的因果链方式发生。该因果链从各种各样构成货币和财政政策的政府行为开始，到总的通货膨胀率、到利息率、到家庭购买住宅的能力、到遍布的住宅建筑工人的命运。住宅建筑工人知道政府行为影响他们的福祉，但是他们中很少能够将他们的命运追溯至任何可识别的政府行为。</p><p class="31">问题并不仅仅在于一个后序列结果。对于由众多复杂的政府行为导致的任何结果来说，可追溯性几乎不可能。总的通货膨胀率、失业率、犯罪率、以及诸如此类，都是成千上万的政府（和非政府）行为的结果。无论国民因这些状况的恶化而希望多么严厉地惩罚他们的议员，缺乏单一的、可识别的原因是如此做的一大障碍。有人可能试图通过集中关注对有关行为的一连串的投票（stringofvotes）来克服这个障碍。例如，那些认为过多的政府开支是经济停滞的根源所在的人，会简单地计算出某位议员投票要求增加开支的频率是多少。否则他们可能集中关注某个可能会带来较大的结果的单个行为－－例如，总统的经济复苏计划。</p><p class="21">国民在遭受了可感知的成本时，与收获同等量的收益相比，远为更有可能寻求可追溯性之链条（traceabilitychains）。部分原因在于成本比收益带来更强烈的偏好（见本书第二章）。此外，成本会鼓动人们搜出某个人以责备之，而收益通常在人们并不同等努力地去发现谁应受嘉赏的情况下被人们享用。然而，巨大且可感知的成本是刺激选民以在位者表现路线进行投票的主要诱因。</p><p class="31">最后，向后看投票对于可追溯至政府行为的那些结果来说作用甚佳，但对于那些由不作为（inaction）造成的结果来说则很少起作用。分解出个体对国会行为的促成作用是相对简单的，尤其是因为投票记录是贯穿国会行为过程的准则。另一方面，不作为留下了寥寥无几的痕迹。例如，人们可以因缺乏全国性健康保险而责备谁呢？小组委员会从来没有提出议案，因此，没有议员曾经投票支持或者反对过它。不作为只有在国会明确决定什么也不作时，比如说否决某个法案、计划或者修正案时，才是可追溯的。惟一的例外牵涉到国会领袖，他们，非常像总统一样，处在一个比普通议员更好的地位去采取行动。如果国会从来没有就税制改革、全国性健康保险、或者进口配额采取行动，筹款委员会（WaysandMeansCommittee）主席不能自称不可责备，除非记录清楚地表明他在明显寡不敌众的情况下进行过激烈的争斗。</p></div></section><section class="s3">
+<h1 class="s4" id="chapter-18">
+    政党立场路线
+</h1>
+<div class="c1"><p class="21">两条向前看投票路线－－政党立场路线和候选人立场路线－－要求国民获取和处理比政党表现路线所要求的多得多的信息。国民需要知道，对于那些争议议题，所有政党立于何处，以及如果特定政策被制定，结果将是什么。这两条向前看投票路线与在位者表现路线近似，因为他们都要求国民对导致政策结果的原因有所了解。它们也有所差别，因为国民无需知道有关决策过程的任何事情，而在位者表现路线情况下，他们必须知道。</p><p class="31">政党立场路线要求国民首先识别出提出最令人愉悦的政策立场方案的那个政党，进而支持贴着该政党标签的候选人。政党以不同的方式确立和展现它们的立场。每隔四年，那些全国性政党就要起草详尽的政党政纲，确定它们对显著的全国性议题和受到社会中不同集团关注的议题的立场。当它们的党员在任时，政党也通过它们的党员的集体行为，来展示它们针对未来的可供选择的计划。在20世纪60年代，人们几乎不必查阅政党政纲就可断定民主党更有可能推动民权法案，在20世纪80年代断定共和党更有可能减免税负。人们可能仅仅注意到已经在任的民主党人和共和党人的辞令和行为。</p><p class="31">大多数国民不知道政党政纲的细节，因此，认为国民是在面向未来的详细蓝图之间做出选择的观念是显然错误的。然而，很多国民的确发现了政党之间的明显且稳固的、与政策相关的差异。观察这些差异是相对容易的，因为政党不会在一夜之间改变它们的本性。半个多世纪以来，很多人将民主党人看作是劳工、农民、少数民族、城市居民、以及穷人的支持者，而将共和党人看作是大企业和富人的傀儡。虽然这些人可能并不确切知道每个政党年复一年都提议做什么，但他们能够合情理地确信民主党人比共和党人更愿意向这五类群体提供直接帮助。政党会（并且的确会）随着时间的推移而改变它们的立场，并且国民的观念也会发生变化。共和党，从南部重建时期到20世纪30年代，其因为支持民权而拥有更为稳固的声誉，而当民主党开始在对待黑人国民上做一些事情时，共和党则失去了该等声誉。黑人注意到这个差别，并且逐步地转换了他们的政党忠诚。</p><p class="31">国民在国会选举中应用诸如政党立场路线之类的东西吗？至少表面看来他们是用的。大多数选民（超过90%）要么认同要么倾向于某个政党，而且这些选民中的大多数（超过75%）支持他们偏爱的政党的国会候选人。这是否为政党立场路线提供了支持，取决于人们如何诠释政党认同这一观念。如果某个人将政党认同诠释为某种根本性信念（fundamentalbelief），该信念承袭自其父母并且与当时的争议议题毫不相关，那么很显然这并没有为政党立场路线提供支持。根据这种诠释，政党偏好不是一项深思熟虑的选择，倒不如说更是一项遗传特性（inheritedtrait）。如果政党认同是一项深思熟虑的选择，该选择随着新的争议议题的出现而发生变化或者当政党突然改变立场时发生变化，那么政党偏好与国会选举中的投票之间的相关性则为政党立场路线提供了强有力的支持。事实真相就在其间的某个地方。对于某些国民来说，政党认同可能近似于是一种遗传特性。对于其他很多国民来说，政党从属（partyaffiliation）更近似于某种对政党的当前评判，该评判不但会发生变化，而且肯定会发生变化。</p></div></section><section class="s3">
+<h1 class="s4" id="chapter-19">
+    候选人立场路线
+</h1>
+<div class="c1"><p class="21">候选人立场路线要求国民通过比较候选人对争议议题所持的立场来决定支持哪位候选人，并进而选择站在最令人愉悦的一组立场之上的候选人。或许在理想的世界，国民将知晓并且比较候选人对国家面临的一长串争议议题所持的立场。该路线本身并不要求该等知识。国民实际上只要最少量的知识就可以做出知情的选择（informedchoices）。</p><p class="31">大多数学者似乎假定，无论是含蓄地还是明显地，国民必须知晓两位或者所有候选人的立场，以从中选择一位持有一组最志趣相投立场的候选人。事实上，即使国民仅仅知道候选人所持立场中的某一个立场，他们也会基于争议议题而做出令人满意的选择。在发现某位候选人的立场基本上与其自己的立场相一致时，国民会通过支持该候选人而“获得满足（satisfice）”。进一步搜寻以希望另一候选人更接近其自己最偏爱的立场，可能是一种对努力的浪费，尤其是考虑到利害关系很小。同样，在不赞同某位候选人的大多数政策立场时，国民可能在不做任何额外搜寻的情况下，选择支持另一位候选人－－假定第二位候选人的立场不可能远为更差而可能远为更合己意。人们不能仅仅因为一位来自北卡罗来纳州的自由党人在没有仔细调查参议员杰西·赫尔姆斯（JesseHelms，R.，N.C.）的对手的立场的情况下，就反对该参议员而挑该自由党人的毛病，该参议员保守的名声是众所周知的。国民会最小化信息成本并且依然能够做出令人满意（虽然或许并非最佳）的投票决定。</p><p class="31">很少国民知晓即使是一位候选人的全部立场。但是他们为什么要知晓呢？取样（sampling）是一种在任何控制关系下都高度有效的监管机制，并且这种机制对选民特别有说服力，因为选民个人对结果拥有如此少的影响力。某位国民，其碰巧知晓某位候选人对四个或者五个争议议题所持的立场，且其认为它们不合己意，完全可以断定候选人也是如此（不合己意－－译者注）。某位国民，其知晓两位候选人对两个重要争议议题所持的立场，并且认为第一个候选人对两个争议议题所持的立场都更合己意，其几乎没有理由去搜寻有关甚至更多争议议题的信息。国民并非从任何科学的角度对候选人的立场进行取样，但是他们可能的确将他们看见的片段视作对整体的代表。</p><p class="31">候选人以两种方式向国民展示他们的政策立场：通过他们的在职记录以及他们在竞选运动中选择做出的声明。在位者除了对要求进行唱名投票的争议议题确立坚定的立场外，毫无他择。众议员每年面临400到600次唱名投票，并且即使在因为程序以及其他较小的动议而进行扣减之后，他们迅速确立了一长串有稽可查的立场。挑战者可以利用也可以不利用以前的记录进行辩护，这取决于他们可能拥有什么样的前职（previousoffices）。在位者和挑战者都会在竞选过程中采取额外立场。能够这样做对于挑战者来说尤其有用，他们试图证明他们是如何不同于他们正在努力使之退职的在位者。</p><p class="31">有关候选人立场的信息很容易获取。某些在位者努力工作，以广为宣传他们自己的政策立场，或者至少是那些他们认为有助于获取支持的立场。挑战者甚至更为努力地工作，以识别和揭露在位者过去政策立场中任何一个可能被证实存有争议的立场。在实际的竞选运动过程中，在位者和挑战者都可能突出他们的立场之间的差别，如果他们认为，这样做有助于他们去说服选民相信他们的品德，或者发动那些已经忠诚于他们的选民。有关当事人和媒体也揭露和宣扬某些候选人立场。</p><p class="31">在他们决定在国会选举中如何投票时，国民利用诸如候选人立场之类的东西吗？再一次，这种证明很难进行解释，尽管其总体上是支持性的。首先要考虑国民是否拥有应用候选人立场路线所要求的最低限度的信息量－－多少知晓一点候选人的政策立场中的至少某一个立场。根据对1982年众议院选举的全国性选举研究调查（NationalElectionStudiessurvey），所有选民中的57%能够表示是总体赞同还是总体反对他们的议员在国会中的投票，并且15%能够表示是赞同还是反对他或者她对特定法案的投票。当选民被要求提出他们喜欢或者不喜欢的、有关他们选区的在位者或者挑战者的事项时，大约在18%的时间中他们提及意识形态或者政策立场。对意识形态和政策的提及中，14%是正面评价，31%是负面评价。确实，选民对在位者的了解要远比对挑战者的了解多得多，但是这种差异对于提及意识形态和政策来说远远不够。对在位者的意识形态或者政策的提及，仅以1.6比1的比例超出对挑战者的意识形态或者政策的提及，而对所有其他有利于在位者的事项的提及，则以3.2比1的比例超出后者。整个证据表明，某些选民的确拥有应用候选人立场路线所需的最低限度的信息量。</p><p class="31">国民的政策偏好实际上何等程度的影响到?们在国会选举中的选择，是更难于评估的，部分因为大多数选民对他们的议员感到相对满意。更多的差异将会有所助益。有人通过审查表示不满的规模小的少数党的行为获得了某种启发。在1982年被访问的所有选民中，只有5%对他们的议员的投票记录表示总体性不满，但是这些人中，96%投票反对在位者。所有选民中只有7%不赞同在位者对特定法案所持的立场，但是这些人中，61%投票反对他或者她。这些数字可能不够令人印象深刻，但是政策立场与选举支持之间的关系是清楚的。观察这一关系的第二个优点在于，要看看那些挑战者击败在位者的选举（公认很少）有什么与众不同之处。盖瑞·雅克布森（GaryJacobson）证明，这些选区中的选民远为更可能认为，挑战者将比在位者更善于处理他们认为的社会中最重要的问题，并且选民也更有可能在意识形态方面更亲近于挑战者（该两种比较通常有利于在位者）。很清楚，在位者有时失利的原因之一在于，某些挑战者能够从在位者的政策记录中制造出竞选议题。</p></div></section><section class="s3">
+<h1 class="s4" id="chapter-20">
+    做出选择
+</h1>
+<div class="c1"><p class="31">这四种决策路线表明，对政策的判断以不同的方式影响着国民在国会选举中的选择。除了这些政策相关事项（policy-relatedmatters）外，一系列其他因素影响着国民的选择，包括他们对候选人的了解有多深、他们对他们（指候选人－－译者注）有多信任、当他们见到某个候选人或者与其通信时有多满足、他们的议员看上去是何等地易接近、以及他们的议员在为选区提供服务方面看上去是如何地成功。事实上，对于大多数国民来说，后面这些因素比政策相关因素（policy-relatedfactors）可能远为更重要。</p><p class="31">国民是如何综合来自这些不同渠道的信息从而做出决定的呢？我们知道大多数国民并非非常紧密地跟进国会选举，并且他们并不花费太多时间用于做出他们的选举决定。因此不关心的国民是如何处理看起来像一项浩大的分析任务的呢？一种处理信息的简单模型表明，国民是如何毫不费事地应对该任务的。关键在于要认识到国民经常接收和处理政治信息，而不仅仅在竞选时期。一旦经过处理，国民会忘记信息中的大多数。而留下来的，则是某种已经发生变化了的、对政党或者候选人的看法。临近选举日，他们只需综合他们对每个政党和每个候选人的单独的看法，以做出他们的选择。</p><p class="31">想象一下，某位国民在其大脑的某块可用部分有四个账户（accounts），其中他在每个账户中储存着一个整数，该整数代表着他对两个政党、在位者、以及挑战者（如果有）的当前看法。针对两个政党的那两个账户，接收他们在儿时的某个时候获得的原始价值（initialvalues），那时我们的未来选民首先学会了区别对待每个政党。在整个一生中，他不断地被有关政党的立场以及它们的执政成绩的信息“炮轰（bombarded）”。这些信息中的某些部分可说服他以一种由政党立场和政党表现路线描述的方式，去改变他赋给每个政党的价值。无论何时他第一次知晓他的现任议员，他就开设第三个账户，该账户存有一项原始价值，并用来捕捉他对她的评价。有关争议议题的新信息可使他以候选人立场和在位者表现路线所描述的方式改变该价值。非政策相关因素（non-policy-relatedfactors）也可以这样或者那样方式使该价值受到关注。最终，如果他偶然了解到有关挑战者的任何事情，他终必开设第四个账户。该价值随着候选人立场路线以及其他各种各样的、描述非政策相关因素的作用的路线而变化。无论何时某项选举发生，国民只需检索这四个价值，将它们合并为一个单一的现净价值（netpresentvalue），并且根据其标志进行投票。</p><p class="31">考虑到忘记原因是该简单模型的构成部分，它是如何巧妙地捕捉国民处理信息的方式并不为人所知，或许并不可知。然而这与人们日常生活中所做的许许多多的评价是一致的。问一问任何一位常去看电影的人，是巴蒂·戴维斯（BetteDavis）还是凯瑟琳·赫本（KatharineHepburn）是更佳的女演员，你完全可能听到一些很有说服力的观点。然后我们期望我们的常去看电影的人能够详细叙述所有的促成这一结论的原因吗？当然不。这种评价来自对许多电影、成千上万的镜头、以及成百万上千万的画面的欣赏。如果我们的常去看电影的人能够说出她所看过的、由这些女演员主演的电影中的哪怕一半的名字，我们就应该感到幸运。</p><p class="31">该信息处理模型也与有关政党和选举的最新研究成果相一致。莫里斯·费厄瑞娜（MorrisFiorina）将政党认同构想为国民对争议议题、事件、以及条件的评价流水账（runningtally），并且他展示了国民是如何通过调整该流水账而纳入新的信息的。斯坦利·凯利（StanleyKelley）针对总统选举提出了一种决策路线，根据该路线，选民首先细查其对候选人和政党的好恶（likesanddislikes），并进而通过简单相加对这些看法进行综合以达成一项决定。他的证据得自最近的八次总统选举，并与这样一种见解完全一致，即事实上选民就是按照这种方式行事的。</p></div></section>
+    </div>
+    
+    <div class="n0">
+        <button class="n1" id="prevChapter" disabled>← 上一章</button>
+        <button class="n1" id="nextChapter">下一章 →</button>
+    </div>
+    
+    <script>
+(function() {
+    'use strict';
+    
+    const state = {
+        currentChapter: 0,
+        totalChapters: 0,
+        mode: 'desktop',
+        chapters: [],
+        chapterData: [],
+        readingStartTime: Date.now(),
+        chaptersCompleted: 0,
+        lastTipTime: 0,
+        fatigueLevel: 1.0,
+        lastLanguageSwitch: 0,
+        technicalTermCount: 0,
+        tipCount: 0,
+        drawerClickCount: 0,
+        shelfClickCount: 0
+    };
+    
+    const elements = {
+        header: null,
+        chapters: [],
+        sidebarChapters: [],
+        progressBar: null,
+        progressText: null,
+        prevBtn: null,
+        nextBtn: null,
+        themeToggle: null,
+        shelfLink: null
+    };
+    
+    const mobile = {
+        drawerTrigger: null,
+        drawerPanel: null,
+        drawerClose: null,
+        drawerOverlay: null,
+        drawerChapters: null,
+        backToTop: null
+    };
+    
+    window.__CHAPTER_DATA__ = window.__CHAPTER_DATA__ || [];
+    
+    const tipMessages = {
+        chinese: {
+            short: [
+                { icon: "✌️", text: "这一节get到了" },
+                { icon: "📖", text: "又读完一小节" },
+                { icon: "✨", text: "知识点+1" }
+            ],
+            medium: [
+                { icon: "🌱", text: "理解加深中" },
+                { icon: "💪", text: "状态不错，继续" },
+                { icon: "🔍", text: "这个观点有意思" }
+            ],
+            long: [
+                { icon: "🏃", text: "已经读完1/3了" },
+                { icon: "⛰️", text: "半山腰了，加油" },
+                { icon: "🎪", text: "快到章节结尾了" }
+            ]
+        },
+        mixed: {
+            short: [
+                { icon: "🌐", text: "中英切换自如" },
+                { icon: "🎯", text: "Technical terms get!" },
+                { icon: "📚", text: "Bilingual reading" }
+            ],
+            medium: [
+                { icon: "🌍", text: "Great progress!" },
+                { icon: "⚡", text: "You're on fire!" },
+                { icon: "💡", text: "理解无国界" }
+            ],
+            long: [
+                { icon: "📊", text: "Halfway through" },
+                { icon: "🚀", text: "保持这个节奏" },
+                { icon: "🎯", text: "目标越来越近" }
+            ]
+        },
+        english: {
+            short: [
+                { icon: "🌍", text: "Great progress!" },
+                { icon: "⚡", text: "You're on fire!" },
+                { icon: "🎯", text: "Nailing it!" }
+            ],
+            medium: [
+                { icon: "💪", text: "Keep going!" },
+                { icon: "🌟", text: "You're doing great" },
+                { icon: "📈", text: "Making progress" }
+            ],
+            long: [
+                { icon: "🏃", text: "1/3 done, keep it up" },
+                { icon: "⛰️", text: "Halfway there" },
+                { icon: "🎪", text: "Almost there" }
+            ]
+        },
+        milestone: {
+            25: { icon: "🏁", text: "征程开始，已完成1/4" },
+            50: { icon: "🎪", text: "半程回顾，收获满满" },
+            75: { icon: "🚀", text: "冲刺阶段，即将完成" },
+            100: { icon: "🏆", text: "恭喜！你读完了整本书" }
+        },
+        rest: [
+            { icon: "☕", text: "累了？休息一下" },
+            { icon: "🧘", text: "眼睛需要放松" },
+            { icon: "🌙", text: "读完这章就休息" }
+        ],
+        timeBased: {
+            morning: { icon: "🌅", text: "早安，用阅读开启新的一天" },
+            night: { icon: "🌙", text: "夜深了，读完这章就休息吧" },
+            long: { icon: "⏰", text: "已专注阅读 {minutes} 分钟" }
+        }
+    };
+    
+    function init() {
+        cacheElements();
+        loadChapterData();
+        detectMode();
+        setupMobileElements();
+        setupEventListeners();
+        setupResizeListener();
+        loadThemePreference();
+        initReadingTracker();
+        initShelfAnimation();
+        
+        if (elements.chapters.length > 0) {
+            state.totalChapters = elements.chapters.length;
+            state.chapterData = window.__CHAPTER_DATA__;
+            goToChapter(0);
+            
+            setTimeout(() => {
+                const hour = new Date().getHours();
+                if (hour >= 5 && hour <= 8) {
+                    showTip(tipMessages.timeBased.morning.icon, tipMessages.timeBased.morning.text, 2000);
+                } else if (hour >= 22 || hour <= 4) {
+                    showTip(tipMessages.timeBased.night.icon, tipMessages.timeBased.night.text, 2000);
+                }
+            }, 1000);
+        }
+    }
+    
+    function initShelfAnimation() {
+        if (!elements.shelfLink) return;
+        
+        const saved = localStorage.getItem('shelfClickCount');
+        state.shelfClickCount = saved ? parseInt(saved) : 0;
+        
+        if (state.shelfClickCount < 3) {
+            elements.shelfLink.classList.add('f0');
+            setTimeout(() => {
+                elements.shelfLink.classList.remove('f0');
+            }, 3000);
+        }
+        
+        elements.shelfLink.addEventListener('click', (e) => {
+            state.shelfClickCount++;
+            localStorage.setItem('shelfClickCount', state.shelfClickCount);
+            elements.shelfLink.classList.remove('f0');
+        });
+    }
+    
+    function loadChapterData() {
+        console.log('📚 加载章节数据:', window.__CHAPTER_DATA__.length, '章');
+    }
+    
+    function cacheElements() {
+        elements.header = document.querySelector('.h0');
+        elements.chapters = document.querySelectorAll('.s3');
+        elements.sidebarChapters = document.querySelectorAll('.b3');
+        elements.progressBar = document.getElementById('progressBar');
+        elements.progressText = document.getElementById('progressText');
+        elements.prevBtn = document.getElementById('prevChapter');
+        elements.nextBtn = document.getElementById('nextChapter');
+        elements.themeToggle = document.getElementById('themeToggle');
+        elements.shelfLink = document.querySelector('.s0');
+    }
+    
+    function detectMode() {
+        state.mode = window.innerWidth > 1200 ? 'desktop' : 'mobile';
+        document.body.setAttribute('data-mode', state.mode);
+    }
+    
+    function setupResizeListener() {
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                const newMode = window.innerWidth > 1200 ? 'desktop' : 'mobile';
+                if (newMode !== state.mode) {
+                    state.mode = newMode;
+                    document.body.setAttribute('data-mode', state.mode);
+                }
+            }, 250);
+        });
+    }
+    
+    function initReadingTracker() {
+        state.readingStartTime = Date.now();
+        
+        const saved = localStorage.getItem('readingStats');
+        if (saved) {
+            try {
+                const stats = JSON.parse(saved);
+                state.chaptersCompleted = stats.chaptersCompleted || 0;
+                state.tipCount = stats.tipCount || 0;
+                state.drawerClickCount = stats.drawerClickCount || 0;
+            } catch (e) {}
+        }
+        
+        setInterval(updateFatigueLevel, 60000);
+    }
+    
+    function updateFatigueLevel() {
+        const minutes = Math.floor((Date.now() - state.readingStartTime) / 60000);
+        state.fatigueLevel = 1.0 + (minutes * 0.1);
+        
+        const lastSwitch = (Date.now() - state.lastLanguageSwitch) / 60000;
+        if (lastSwitch < 5) state.fatigueLevel += 0.2;
+        
+        state.fatigueLevel += state.technicalTermCount * 0.01;
+        state.fatigueLevel = Math.min(state.fatigueLevel, 3.0);
+        
+        if (state.fatigueLevel > 2.0) showRestTip();
+    }
+    
+    function saveReadingStats() {
+        const stats = {
+            chaptersCompleted: state.chaptersCompleted,
+            tipCount: state.tipCount,
+            drawerClickCount: state.drawerClickCount,
+            lastRead: new Date().toISOString()
+        };
+        localStorage.setItem('readingStats', JSON.stringify(stats));
+    }
+    
+    function showTip(icon, text, duration = 3000) {
+        const now = Date.now();
+        const hourAgo = now - 3600000;
+        if (state.lastTipTime > hourAgo && state.tipCount >= 3) return;
+        if (state.fatigueLevel > 2.5 && Math.random() > 0.3) return;
+        
+        state.lastTipTime = now;
+        state.tipCount++;
+        saveReadingStats();
+        
+        const oldTip = document.querySelector('.i0');
+        if (oldTip) oldTip.remove();
+        
+        const tip = document.createElement('div');
+        tip.className = 'i0';
+        tip.innerHTML = `<span class="i1">${icon}</span><span class="i2">${text}</span>`;
+        document.body.appendChild(tip);
+        
+        setTimeout(() => {
+            tip.classList.add('i3');
+            setTimeout(() => tip.remove(), 200);
+        }, duration);
+    }
+    
+    function showRestTip() {
+        const rest = tipMessages.rest[Math.floor(Math.random() * tipMessages.rest.length)];
+        showTip(rest.icon, rest.text, 2000);
+    }
+    
+    function getChapterTip(chapterIndex, progress) {
+        const chapter = state.chapterData[chapterIndex];
+        if (!chapter) return null;
+        
+        const languageType = chapter.language_type || 'chinese';
+        const totalUnits = chapter.total_units || 500;
+        
+        let lengthType = 'medium';
+        if (totalUnits < 500) lengthType = 'short';
+        else if (totalUnits > 1500) lengthType = 'long';
+        
+        let tipPool;
+        if (progress === 'complete') {
+            if (languageType === 'chinese') tipPool = tipMessages.chinese[lengthType];
+            else if (languageType === 'english') tipPool = tipMessages.english[lengthType];
+            else tipPool = tipMessages.mixed[lengthType];
+        } else {
+            if (languageType === 'chinese') tipPool = tipMessages.chinese.medium;
+            else if (languageType === 'english') tipPool = tipMessages.english.medium;
+            else tipPool = tipMessages.mixed.medium;
+        }
+        
+        if (!tipPool || tipPool.length === 0) return null;
+        return tipPool[Math.floor(Math.random() * tipPool.length)];
+    }
+    
+    function checkChapterTip(chapterIndex, isComplete = false) {
+        const chapter = state.chapterData[chapterIndex];
+        if (!chapter) return;
+        
+        const totalUnits = chapter.total_units || 500;
+        const languageType = chapter.language_type || 'chinese';
+        
+        let baseProbability = 0.3;
+        
+        if (isComplete) {
+            if (totalUnits < 500) baseProbability = 0.2;
+            else baseProbability = 1.0;
+        } else {
+            if (languageType === 'chinese') baseProbability = 0.4;
+            else if (languageType === 'english') baseProbability = 0.8;
+            else baseProbability = 0.6;
+        }
+        
+        baseProbability *= (1 + (state.fatigueLevel - 1.0) * 0.5);
+        if (Math.random() > baseProbability) return;
+        
+        const tip = getChapterTip(chapterIndex, isComplete ? 'complete' : 'midway');
+        if (tip) {
+            showTip(tip.icon, tip.text);
+            
+            if (isComplete) {
+                if (elements.progressBar) {
+                    elements.progressBar.classList.add('x0');
+                    setTimeout(() => elements.progressBar.classList.remove('x0'), 300);
+                }
+                const titleElement = document.getElementById(`chapter-${chapterIndex}`);
+                if (titleElement) {
+                    titleElement.classList.add('x0');
+                    setTimeout(() => titleElement.classList.remove('x0'), 500);
+                }
+            }
+        }
+    }
+    
+    function checkMilestone() {
+        const percent = Math.round((state.currentChapter + 1) / state.totalChapters * 100);
+        
+        if ([25, 50, 75, 100].includes(percent)) {
+            const milestone = tipMessages.milestone[percent];
+            if (milestone) {
+                showTip(milestone.icon, milestone.text, 4000);
+                if (percent === 100 && elements.progressBar) {
+                    elements.progressBar.style.height = '8px';
+                    setTimeout(() => {
+                        elements.progressBar.style.height = 'var(--progress-height)';
+                    }, 2000);
+                }
+            }
+        }
+    }
+    
+    function setupMobileElements() {
+        const drawerHTML = `
+            <div class="m0" id="drawerTrigger">
+                <span class="m1">☰</span>
+            </div>
+            <div class="m2" id="drawerPanel">
+                <div class="m3">
+                    <span class="m4">📖 目录</span>
+                    <button class="m5" id="drawerClose">✕</button>
+                </div>
+                <ul class="m6" id="drawerChapters"></ul>
+            </div>
+            <div class="m8" id="drawerOverlay"></div>
+            <button class="u0" id="backToTop">↑</button>
+        `;
+        
+        document.body.insertAdjacentHTML('afterbegin', drawerHTML);
+        
+        mobile.drawerTrigger = document.getElementById('drawerTrigger');
+        mobile.drawerPanel = document.getElementById('drawerPanel');
+        mobile.drawerClose = document.getElementById('drawerClose');
+        mobile.drawerOverlay = document.getElementById('drawerOverlay');
+        mobile.drawerChapters = document.getElementById('drawerChapters');
+        mobile.backToTop = document.getElementById('backToTop');
+        
+        populateDrawer();
+        bindMobileEvents();
+    }
+    
+    function populateDrawer() {
+        if (!mobile.drawerChapters || !elements.sidebarChapters.length) return;
+        
+        elements.sidebarChapters.forEach(item => {
+            const link = item.querySelector('a');
+            if (link) {
+                const newLi = document.createElement('li');
+                newLi.className = item.className;
+                newLi.innerHTML = link.outerHTML;
+                mobile.drawerChapters.appendChild(newLi);
+            }
+        });
+    }
+    
+    function bindMobileEvents() {
+        if (!mobile.drawerTrigger || !mobile.drawerClose || !mobile.drawerOverlay) return;
+        
+        mobile.drawerTrigger.addEventListener('click', () => {
+            toggleDrawer();
+            state.drawerClickCount++;
+            saveReadingStats();
+            if (!localStorage.getItem('drawerUsed')) {
+                showTip("📖", "目录已打开");
+                localStorage.setItem('drawerUsed', 'true');
+            }
+        });
+        
+        mobile.drawerClose.addEventListener('click', closeDrawer);
+        mobile.drawerOverlay.addEventListener('click', closeDrawer);
+        
+        let touchStartX = 0;
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        });
+        
+        document.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            if (touchStartX < 30 && touchEndX - touchStartX > 50) {
+                if (!mobile.drawerPanel?.classList.contains('o0')) openDrawer();
+            }
+            if (mobile.drawerPanel?.classList.contains('o0') && touchStartX - touchEndX > 50) {
+                closeDrawer();
+            }
+        });
+        
+        if (mobile.backToTop) {
+            mobile.backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    }
+    
+    function setupEventListeners() {
+        window.addEventListener('scroll', handleScroll);
+        
+        if (elements.themeToggle) {
+            elements.themeToggle.addEventListener('click', toggleTheme);
+        }
+        
+        document.querySelectorAll('.g1').forEach(card => {
+            card.addEventListener('click', toggleToolExample);
+        });
+        
+        if (elements.prevBtn) {
+            elements.prevBtn.addEventListener('click', () => goToChapter(state.currentChapter - 1));
+        }
+        if (elements.nextBtn) {
+            elements.nextBtn.addEventListener('click', () => goToChapter(state.currentChapter + 1));
+        }
+        
+        document.addEventListener('click', (e) => {
+        // ===== 处理 Page Up/Down 翻页，考虑上下玻璃框 =====
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'PageDown' || e.key === 'PageUp') {
+                e.preventDefault();
+               
+                const headerHeight = 85;  // 固定头部高度  顶部留白太多：减小 headerHeight（比如75px，顶部被遮挡：增大 headerHeight（比如85px）
+                const footerHeight = 75;  // 固定底部高度  底部留白太多：减小 footerHeight（比如65px）底部被遮挡：增大 footerHeight（比如75px）
+                const viewportHeight = window.innerHeight;
+                const currentScroll = window.pageYOffset;
+               
+                // 计算安全滚动区域（考虑玻璃框）
+                const safeHeight = viewportHeight - headerHeight - footerHeight;
+               
+                if (e.key === 'PageDown') {
+                    // 向下翻页：滚动一个安全高度
+                    const nextScroll = Math.min(
+                        currentScroll + safeHeight,
+                        document.documentElement.scrollHeight - viewportHeight
+                    );
+                    window.scrollTo({ top: nextScroll, behavior: 'smooth' });
+                } else if (e.key === 'PageUp') {
+                    // 向上翻页
+                    const prevScroll = Math.max(0, currentScroll - safeHeight);
+                    window.scrollTo({ top: prevScroll, behavior: 'smooth' });
+                }
+            }
+        });
+
+            const link = e.target.closest('.b3 a, .m7 a');
+            if (link) {
+                e.preventDefault();
+                const href = link.getAttribute('href');
+                const chapterId = parseInt(href.replace('#chapter-', ''));
+                goToChapter(chapterId);
+            }
+        });
+    }
+    
+    function goToChapter(index) {
+        if (index < 0 || index >= state.totalChapters) return;
+        
+        const wasLastChapter = state.currentChapter === state.totalChapters - 1;
+        const previousChapter = state.currentChapter;
+        state.currentChapter = index;
+        
+        elements.chapters.forEach((chap, i) => {
+            chap.style.display = i === index ? 'block' : 'none';
+        });
+        
+        if (elements.prevBtn) elements.prevBtn.disabled = index === 0;
+        if (elements.nextBtn) elements.nextBtn.disabled = index === state.totalChapters - 1;
+        
+        scrollToChapter(index);
+        updateAllHighlights();
+        
+        if (previousChapter !== index && !wasLastChapter) {
+            state.chaptersCompleted++;
+            saveReadingStats();
+            checkChapterTip(previousChapter, true);
+            checkMilestone();
+            
+            const minutes = Math.floor((Date.now() - state.readingStartTime) / 60000);
+            if (minutes > 0 && minutes % 10 === 0 && minutes <= 60) {
+                const timeTip = tipMessages.timeBased.long;
+                showTip(timeTip.icon, timeTip.text.replace('{minutes}', minutes));
+            }
+        }
+        
+        if (state.mode === 'mobile' && mobile.drawerPanel?.classList.contains('o0')) {
+            closeDrawer();
+        }
+    }
+    
+    function scrollToChapter(index) {
+        const chapterElement = document.getElementById(`chapter-${index}`);
+        if (!chapterElement) return;
+        
+        const headerHeight = elements.header ? elements.header.offsetHeight : 80;
+        const rect = chapterElement.getBoundingClientRect();
+        const scrollTo = window.pageYOffset + rect.top - headerHeight - 20;
+        
+        window.scrollTo({ top: Math.max(0, scrollTo), behavior: 'smooth' });
+    }
+    
+    function updateAllHighlights() {
+        document.querySelectorAll('.b3, .m7').forEach(item => {
+            item.classList.remove('a0');
+        });
+        
+        const activeSidebarItem = document.querySelectorAll('.b3')[state.currentChapter];
+        if (activeSidebarItem) activeSidebarItem.classList.add('a0');
+        
+        if (mobile.drawerChapters) {
+            const activeDrawerItem = mobile.drawerChapters.querySelectorAll('.b3')[state.currentChapter];
+            if (activeDrawerItem) activeDrawerItem.classList.add('a0');
+        }
+    }
+    
+    function handleScroll() {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        
+        if (elements.progressBar) elements.progressBar.style.width = scrolled + '%';
+        if (elements.progressText) elements.progressText.textContent = `${Math.round(scrolled)}%`;
+        
+        if (mobile.backToTop) {
+            if (winScroll > window.innerHeight) {
+                mobile.backToTop.classList.add('w0');
+            } else {
+                mobile.backToTop.classList.remove('w0');
+            }
+        }
+        
+        detectCurrentChapter();
+        
+        const currentChapterData = state.chapterData[state.currentChapter];
+        if (currentChapterData) {
+            const chapterElement = document.getElementById(`chapter-${state.currentChapter}`);
+            if (chapterElement) {
+                const rect = chapterElement.getBoundingClientRect();
+                const totalHeight = rect.height;
+                const scrolledInChapter = Math.abs(rect.top);
+                
+                if (totalHeight > 0) {
+                    const progress = scrolledInChapter / totalHeight;
+                    if (progress > 0.3 && progress < 0.4 && !sessionStorage.getItem('tip-30')) {
+                        checkChapterTip(state.currentChapter, false);
+                        sessionStorage.setItem('tip-30', 'true');
+                    } else if (progress > 0.6 && progress < 0.7 && !sessionStorage.getItem('tip-60')) {
+                        checkChapterTip(state.currentChapter, false);
+                        sessionStorage.setItem('tip-60', 'true');
+                    }
+                }
+            }
+        }
+    }
+    
+    function detectCurrentChapter() {
+        const headerHeight = elements.header ? elements.header.offsetHeight : 80;
+        
+        for (let i = 0; i < elements.chapters.length; i++) {
+            const titleElement = document.getElementById(`chapter-${i}`);
+            if (titleElement) {
+                const rect = titleElement.getBoundingClientRect();
+                if (rect.top <= headerHeight + 50 && rect.bottom > headerHeight) {
+                    if (state.currentChapter !== i) {
+                        state.currentChapter = i;
+                        updateAllHighlights();
+                        sessionStorage.removeItem('tip-30');
+                        sessionStorage.removeItem('tip-60');
+                    }
+                    break;
+                }
+            }
+        }
+    }
+    
+    function toggleDrawer() {
+        if (mobile.drawerPanel?.classList.contains('o0')) {
+            closeDrawer();
+        } else {
+            openDrawer();
+        }
+    }
+    
+    function openDrawer() {
+        if (!mobile.drawerPanel || !mobile.drawerOverlay) return;
+        mobile.drawerPanel.classList.add('o0');
+        mobile.drawerOverlay.classList.add('a0');
+    }
+    
+    function closeDrawer() {
+        if (!mobile.drawerPanel || !mobile.drawerOverlay) return;
+        mobile.drawerPanel.classList.remove('o0');
+        mobile.drawerOverlay.classList.remove('a0');
+    }
+    
+    function toggleTheme() {
+        document.body.classList.toggle('d0');
+        const isDark = document.body.classList.contains('d0');
+        if (elements.themeToggle) {
+            elements.themeToggle.textContent = isDark ? '☀️ 日间' : '🌙 夜间';
+        }
+        localStorage.setItem('darkMode', isDark ? '1' : '0');
+    }
+    
+    function toggleToolExample(e) {
+        e.stopPropagation();
+        const card = e.currentTarget;
+        const example = card.querySelector('.g7');
+        const expandText = card.querySelector('.g4');
+        
+        if (example) {
+            example.classList.toggle('a0');
+            if (expandText) {
+                expandText.textContent = example.classList.contains('a0') ? '收起示例' : '查看示例';
+            }
+        }
+    }
+    
+    function loadThemePreference() {
+        if (localStorage.getItem('darkMode') === '1') {
+            document.body.classList.add('d0');
+            if (elements.themeToggle) {
+                elements.themeToggle.textContent = '☀️ 日间';
+            }
+        }
+    }
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();
+</script>
+</body>
+</html>
