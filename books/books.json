@@ -1,8 +1,9 @@
 {
-  "lastUpdated": 1773857396692,
-  "totalBooks": 47,
-  "totalCategories": 13,
+  "lastUpdated": 1773859599896,
+  "totalBooks": 54,
+  "totalCategories": 14,
   "categories": [
+    "百科",
     "校园",
     "心理",
     "侦探",
@@ -18,6 +19,39 @@
     "社科"
   ],
   "books": [
+    {
+      "id": "百科_30-Second Great Inventions_David Boyle.html",
+      "file": "百科_30-Second Great Inventions_David Boyle.html",
+      "filename": "百科_30-Second Great Inventions_David Boyle.html",
+      "title": "30-Second Great Inventions",
+      "category": "百科",
+      "author": "David Boyle",
+      "size": 2123468,
+      "lastModified": 1773859583000,
+      "addedTime": 1773859583000
+    },
+    {
+      "id": "百科_30-Second New York_Sarah Fenton.html",
+      "file": "百科_30-Second New York_Sarah Fenton.html",
+      "filename": "百科_30-Second New York_Sarah Fenton.html",
+      "title": "30-Second New York",
+      "category": "百科",
+      "author": "Sarah Fenton",
+      "size": 2134995,
+      "lastModified": 1773859583000,
+      "addedTime": 1773859583000
+    },
+    {
+      "id": "百科_30-second AI and Robotics_Luis de Miranda.html",
+      "file": "百科_30-second AI and Robotics_Luis de Miranda.html",
+      "filename": "百科_30-second AI and Robotics_Luis de Miranda.html",
+      "title": "30-second AI and Robotics",
+      "category": "百科",
+      "author": "Luis de Miranda",
+      "size": 2210744,
+      "lastModified": 1773859583000,
+      "addedTime": 1773859583000
+    },
     {
       "id": "校园_A Curse So Dark and Lonely_Brigid Kemmerer.html",
       "file": "校园_A Curse So Dark and Lonely_Brigid Kemmerer.html",
@@ -127,6 +161,17 @@
       "size": 147619,
       "lastModified": 1773857305000,
       "addedTime": 1773857305000
+    },
+    {
+      "id": "校园_So That Happened_Katie Bailey.html",
+      "file": "校园_So That Happened_Katie Bailey.html",
+      "filename": "校园_So That Happened_Katie Bailey.html",
+      "title": "So That Happened",
+      "category": "校园",
+      "author": "Katie Bailey",
+      "size": 219246,
+      "lastModified": 1773859583000,
+      "addedTime": 1773859583000
     },
     {
       "id": "校园_The Love Hypothesis_Ali Hazelwood.html",
@@ -305,6 +350,17 @@
       "addedTime": 1773857305000
     },
     {
+      "id": "心理_当下的力量_[德] 埃克哈特 · 托利.html",
+      "file": "心理_当下的力量_[德] 埃克哈特 · 托利.html",
+      "filename": "心理_当下的力量_[德] 埃克哈特 · 托利.html",
+      "title": "当下的力量",
+      "category": "心理",
+      "author": "[德] 埃克哈特 · 托利",
+      "size": 403271,
+      "lastModified": 1773859583000,
+      "addedTime": 1773859583000
+    },
+    {
       "id": "生活_收纳的基本：整理家之前，你需要知道的事_[美] 克莉·希勒,[美] 乔安娜·特普林.html",
       "file": "生活_收纳的基本：整理家之前，你需要知道的事_[美] 克莉·希勒,[美] 乔安娜·特普林.html",
       "filename": "生活_收纳的基本：整理家之前，你需要知道的事_[美] 克莉·希勒,[美] 乔安娜·特普林.html",
@@ -380,6 +436,17 @@
       "size": 765701,
       "lastModified": 1773256184000,
       "addedTime": 1773256184000
+    },
+    {
+      "id": "虚构_漂亮朋友_莫泊桑.html",
+      "file": "虚构_漂亮朋友_莫泊桑.html",
+      "filename": "虚构_漂亮朋友_莫泊桑.html",
+      "title": "漂亮朋友",
+      "category": "虚构",
+      "author": "莫泊桑",
+      "size": 605758,
+      "lastModified": 1773859583000,
+      "addedTime": 1773859583000
     },
     {
       "id": "虚构_理智与情感_简·奥斯汀.html",
@@ -503,6 +570,17 @@
       "addedTime": 1773857305000
     },
     {
+      "id": "百科_美国国会行动的逻辑_[美]R·道格拉斯·阿诺德.html",
+      "file": "百科_美国国会行动的逻辑_[美]R·道格拉斯·阿诺德.html",
+      "filename": "百科_美国国会行动的逻辑_[美]R·道格拉斯·阿诺德.html",
+      "title": "美国国会行动的逻辑",
+      "category": "百科",
+      "author": "[美]R·道格拉斯·阿诺德",
+      "size": 159635,
+      "lastModified": 1773859583000,
+      "addedTime": 1773859583000
+    },
+    {
       "id": "历史_西方博弈往事_九边.html",
       "file": "历史_西方博弈往事_九边.html",
       "filename": "历史_西方博弈往事_九边.html",
@@ -538,13 +616,18 @@
   ],
   "categoryStats": [
     {
+      "name": "百科",
+      "count": 4,
+      "icon": "📘"
+    },
+    {
       "name": "校园",
-      "count": 11,
+      "count": 12,
       "icon": "📘"
     },
     {
       "name": "心理",
-      "count": 3,
+      "count": 4,
       "icon": "📘"
     },
     {
@@ -564,7 +647,7 @@
     },
     {
       "name": "虚构",
-      "count": 7,
+      "count": 8,
       "icon": "📘"
     },
     {
