@@ -14,61 +14,27 @@ jobs:
   update-books-index:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-
-      - name: Generate books index.json
+      - name: Generate index
         run: |
           cd mdRead
-          python3 -c '
+          python3 -c "
 import json
 from pathlib import Path
-
-books_dir = Path("books")
-if not books_dir.exists():
-    print("书籍目录不存在")
-    exit(0)
-
-books_list = []
-for book_dir in sorted(books_dir.iterdir()):
-    if not book_dir.is_dir():
-        continue
-    
-    meta = {}
-    meta_file = book_dir / "meta.json"
-    if meta_file.exists():
-        with open(meta_file, "r", encoding="utf-8") as f:
-            meta = json.load(f)
-    
-    books_list.append({
-        "id": book_dir.name,
-        "title": meta.get("title", book_dir.name),
-        "author": meta.get("author", "未知")
-    })
-
-with open("books/index.json", "w", encoding="utf-8") as f:
-    json.dump(books_list, f, ensure_ascii=False, indent=2)
-
-print(f"已生成 {len(books_list)} 本书的索引")
-'
-
-      - name: Commit and push if changed
+books = []
+for d in Path('books').iterdir():
+    if d.is_dir():
+        m = d/'meta.json'
+        meta = json.load(open(m)) if m.exists() else {}
+        books.append({'id': d.name, 'title': meta.get('title', d.name)})
+json.dump(books, open('books/index.json','w'), ensure_ascii=False, indent=2)
+"
+      - name: Commit
         run: |
-          cd mdRead
-          git config --local user.name "github-actions[bot]"
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add books/index.json
-          cd ..
-          if git diff --staged --quiet; then
-            echo "没有变化"
-          else
-            git commit -m "📚 自动更新 mdRead 书籍索引 [skip ci]"
-            git push
-          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add mdRead/books/index.json
+          git diff --staged --quiet || git commit -m "update index" && git push
