@@ -27,13 +27,13 @@ jobs:
       - name: Generate books index.json
         run: |
           cd mdRead
-          python3 -c "
+          python3 -c '
 import json
 from pathlib import Path
 
-books_dir = Path('books')
+books_dir = Path("books")
 if not books_dir.exists():
-    print('书籍目录不存在')
+    print("书籍目录不存在")
     exit(0)
 
 books_list = []
@@ -42,20 +42,22 @@ for book_dir in sorted(books_dir.iterdir()):
         continue
     
     meta = {}
-    meta_file = book_dir / 'meta.json'
+    meta_file = book_dir / "meta.json"
     if meta_file.exists():
-        with open(meta_file, 'r', encoding='utf-8') as f:
+        with open(meta_file, "r", encoding="utf-8") as f:
             meta = json.load(f)
     
     books_list.append({
-        'id': book_dir.name,
-        'title': meta.get('title', book_dir.name),
-        'author': meta.get('author', '未知')
+        "id": book_dir.name,
+        "title": meta.get("title", book_dir.name),
+        "author": meta.get("author", "未知")
     })
 
-with open('books/index.json', 'w', encoding='utf-8') as f:
+with open("books/index.json", "w", encoding="utf-8") as f:
     json.dump(books_list, f, ensure_ascii=False, indent=2)
-"
+
+print(f"已生成 {len(books_list)} 本书的索引")
+'
 
       - name: Commit and push if changed
         run: |
