@@ -1,0 +1,1762 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
+    <title>奇幻_明智的孩子_安吉 - 未知作者</title>
+    <style>
+:root {
+    --bg: #ffffff;
+    --bg-rgb: 255, 255, 255;
+    --text: #2d3748;
+    --accent: #4299e1;
+    --light-accent: #e8f4f8;
+    --card-bg: #f5fafe;
+    --card-shadow: 0 2px 8px rgba(66, 153, 225, 0.15);
+    --border-radius: 12px;
+    --line-height: 1.8;
+    --container-width: 800px;
+    --spacing: 32px;
+    --progress-height: 4px;
+    --header-height: 80px;
+    --nav-height: 70px;
+}
+
+.dark-mode {
+    --bg: #0a0c10;
+    --bg-rgb: 26, 32, 44;
+    --text: #ffffff;
+    --accent: #7472FE;
+    --light-accent: #2d3748;
+    --card-bg: #2d3748;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "思源黑体", "Source Han Sans CN", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: var(--line-height);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ===== 进度条（独立fixed） ===== */
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: var(--progress-height);
+    background: linear-gradient(90deg, var(--accent), #7472FE);
+    z-index: 101;
+    transition: width 0.1s ease;
+    pointer-events: none;
+}
+
+/* ===== 头部玻璃区域（优化版） ===== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(var(--bg-rgb), 0.4);
+    backdrop-filter: blur(11px);
+    border-bottom: 1px solid var(--light-accent);
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    min-height: var(--header-height);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+}
+
+/* 书架链接 - 始终显示文字 */
+.shelf-link {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    color: var(--accent);
+    padding: 8px 4px;
+    margin-left: -4px;
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+/* 微动效：首次加载跳动 */
+@keyframes shelfBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+.shelf-link.first-load {
+    animation: shelfBounce 0.5s ease 2;
+}
+
+/* 点击反馈 */
+.shelf-link:active {
+    transform: scale(0.95);
+}
+
+.shelf-icon {
+    font-size: 24px;
+    line-height: 1;
+}
+
+.shelf-text {
+    font-size: 12px;
+    color: var(--accent);
+    opacity: 0.8;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+/* 极端小屏才隐藏文字（几乎不会触发） */
+@media (max-width: 280px) {
+    .shelf-text {
+        display: none;
+    }
+}
+
+.header-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 1;
+    min-width: 30px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.progress-text {
+    font-size: 18px;
+    color: var(--text);
+    opacity: 0.9;
+    white-space: nowrap;
+    font-weight: 500;
+    flex-shrink: 0;
+}
+
+/* 移动端进度文字前缀控制 */
+.progress-text::before {
+    content: "阅读进度 ";
+    font-size: inherit;
+    color: inherit;
+    opacity: 0.8;
+}
+
+.theme-toggle {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    color: var(--text);
+    font-size: 14px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+    background: var(--accent);
+    color: white;
+}
+
+/* 移动端头部响应式 */
+@media (max-width: 428px) {
+    .progress-text::before {
+        content: "";
+    }
+}
+
+@media (max-width: 375px) {
+    .header-title {
+        font-size: 16px;
+        max-width: 150px;
+    }
+    .progress-text {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 320px) {
+    .header-title {
+        max-width: 120px;
+        font-size: 15px;
+    }
+    .progress-text {
+        font-size: 15px;
+        min-width: 45px;
+    }
+    .theme-toggle {
+        padding: 6px 8px;
+        font-size: 13px;
+    }
+}
+
+/* ===== 正文容器 ===== */
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: calc(var(--header-height) + 20px) 16px 120px;
+}
+
+/* ===== 章节样式 ===== */
+.chapter-section {
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--light-accent);
+}
+
+.chapter-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--text);
+    border-left: 6px solid var(--accent);
+    padding-left: 20px;
+    line-height: 1.3;
+    transition: border-left-color 0.3s ease;
+}
+
+.chapter-title.flash {
+    animation: titleFlash 0.5s ease;
+}
+
+@keyframes titleFlash {
+    0% { border-left-color: var(--accent); }
+    50% { border-left-color: #ffaa00; }
+    100% { border-left-color: var(--accent); }
+}
+
+.chapter-subtitle {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 40px 0 20px;
+    color: var(--text);
+}
+
+.content p {
+    margin-bottom: 20px;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+/* 段落节奏控制 */
+.content p.short-para {
+    margin-bottom: 24px;
+}
+
+.content p.medium-para {
+    margin-bottom: 16px;
+}
+
+.content p.long-para {
+    margin-bottom: 32px;
+}
+
+/* 视觉分隔 */
+.para-break {
+    height: 8px;
+    margin: 16px 0;
+    opacity: 0.3;
+    border-bottom: 1px dashed var(--light-accent);
+}
+
+/* ===== 工具卡片 ===== */
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin: 32px 0;
+}
+
+.tool-card {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 24px;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    border: 1px solid rgba(66, 153, 225, 0.1);
+}
+
+.tool-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(66, 153, 225, 0.2);
+}
+
+.tool-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.tool-tag {
+    background-color: var(--accent);
+    color: white;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.tool-expand {
+    color: var(--accent);
+    font-size: 14px;
+}
+
+.tool-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text);
+}
+
+.tool-content {
+    font-size: 15px;
+    margin-bottom: 12px;
+    line-height: 1.7;
+}
+
+.tool-example {
+    display: none;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--light-accent);
+    font-size: 14px;
+    color: var(--text);
+    opacity: 0.9;
+}
+
+.tool-example.active {
+    display: block;
+}
+
+/* ===== 章节小结 ===== */
+.chapter-summary {
+    background-color: var(--light-accent);
+    border-radius: var(--border-radius);
+    padding: 28px;
+    margin: 40px 0;
+    border-left: 6px solid var(--accent);
+}
+
+.summary-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--accent);
+}
+
+/* ===== PC端侧边栏 ===== */
+.chapter-sidebar {
+    position: fixed;
+    left: 30px;
+    top: 100px;
+    width: 220px;
+    z-index: 85;
+    display: none;
+    overflow-y: auto;
+    max-height: calc(100vh - 150px);
+}
+
+.chapter-sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chapter-sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chapter-sidebar::-webkit-scrollbar-thumb {
+    background: rgba(66, 153, 225, 0.2);
+    border-radius: 4px;
+}
+
+@media (min-width: 1200px) {
+    .chapter-sidebar {
+        display: block;
+    }
+    .container {
+        margin-left: 260px;
+    }
+}
+
+.sidebar-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--light-accent);
+    position: sticky;
+    top: 0;
+    background-color: var(--bg);
+    z-index: 86;
+    padding-top: 4px;
+}
+
+.sidebar-chapters {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar-chapter {
+    margin-bottom: 4px;
+}
+
+.sidebar-chapter a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 15px;
+    padding: 8px 12px;
+    display: block;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+    word-break: break-word;
+    line-height: 1.4;
+}
+
+.sidebar-chapter.active a {
+    background-color: var(--light-accent);
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.sidebar-chapter.level-1 a {
+    font-weight: 600;
+}
+
+.sidebar-chapter.level-2 a {
+    padding-left: 24px;
+    font-size: 14px;
+}
+
+.sidebar-chapter.level-3 a {
+    padding-left: 36px;
+    font-size: 14px;
+}
+
+.sidebar-chapter.level-4 a {
+    padding-left: 48px;
+    font-size: 13px;
+}
+
+/* ===== 移动端专属样式 ===== */
+@media (max-width: 1199px) {
+    .chapter-sidebar {
+        display: none !important;
+    }
+    
+    .container {
+        max-width: 100%;
+        padding: calc(var(--header-height) + 20px) 16px 100px;
+        margin-left: 0;
+    }
+    
+    /* 正文左边距为触发器留出空间 */
+    .content {
+        margin-left: 48px;
+        padding-left: 0;
+    }
+    
+    /* 章节标题也留出空间 */
+    .chapter-title {
+        margin-left: 48px;
+        padding-left: 0;
+    }
+    
+    .chapter-subtitle {
+        margin-left: 48px;
+        padding-left: 0;
+    }
+    
+    /* 工具卡片和摘要左对齐 */
+    .tools-grid {
+        margin-left: 48px;
+    }
+    
+    .chapter-summary {
+        margin-left: 48px;
+    }
+    
+    /* 移动端字体优化 */
+    .chapter-title {
+        font-size: 26px;
+    }
+    
+    .chapter-subtitle {
+        font-size: 20px;
+    }
+    
+    .content p {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+    
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===== 左侧目录触发器（底部导航条上方） ===== */
+.mobile-drawer-trigger {
+    position: fixed;
+    left: 0;
+    bottom: calc(70px + 16px + env(safe-area-inset-bottom, 0));
+    width: 32px;
+    height: 50px;
+    background: rgba(var(--bg-rgb), 0.4);
+    backdrop-filter: blur(11px);
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    border-right: 1px solid rgba(66, 153, 225, 0.2);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 95;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-drawer-trigger .menu-icon {
+    color: var(--accent);
+    font-size: 20px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+/* 微动效：首次加载呼吸效果 */
+@keyframes breathe {
+    0% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0.4; }
+}
+
+.mobile-drawer-trigger.first-load {
+    animation: breathe 1s ease 2;
+}
+
+/* 向上滚动展开效果 */
+.mobile-drawer-trigger.expand {
+    width: 80px;
+}
+
+.mobile-drawer-trigger.expand .menu-icon {
+    margin-right: 4px;
+}
+
+.mobile-drawer-trigger.expand::after {
+    content: "📖 目录";
+    color: var(--text);
+    font-size: 13px;
+    white-space: nowrap;
+    opacity: 0.9;
+}
+
+/* 闲置脉搏效果（仅前3次） */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.mobile-drawer-trigger.idle {
+    animation: pulse 2s ease infinite;
+}
+
+/* 抽屉面板 */
+.drawer-panel {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 80%;
+    max-width: 320px;
+    background: rgba(var(--bg-rgb), 0.95);
+    backdrop-filter: blur(10px);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 100;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+    border-right: 1px solid rgba(66, 153, 225, 0.2);
+    overflow-y: auto;
+    padding: 20px 0;
+}
+
+.drawer-panel.open {
+    transform: translateX(0);
+}
+
+.drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--light-accent);
+    margin-bottom: 10px;
+}
+
+.drawer-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.drawer-close {
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: var(--text);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+}
+
+.drawer-close:hover {
+    background: var(--accent);
+    color: white;
+}
+
+.drawer-chapters {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.drawer-chapter {
+    margin: 2px 0;
+}
+
+.drawer-chapter a {
+    text-decoration: none;
+    color: var(--text);
+    display: block;
+    padding: 10px 20px;
+    font-size: 15px;
+    line-height: 1.4;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+}
+
+.drawer-chapter a:active {
+    background: var(--light-accent);
+    border-left-color: var(--accent);
+}
+
+.drawer-chapter.active a {
+    background: var(--light-accent);
+    border-left-color: var(--accent);
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.drawer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.drawer-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ===== 底部导航条（全宽覆盖，透明度优化） ===== */
+.chapter-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background: rgba(var(--bg-rgb), 0.4);
+    backdrop-filter: blur(11px);
+    border-top: 1px solid rgba(66, 153, 225, 0.2);
+    padding: 0 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 90;
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
+    /* 安全区适配 */
+    padding-bottom: env(safe-area-inset-bottom, 0);
+    height: calc(70px + env(safe-area-inset-bottom, 0));
+}
+
+.nav-btn {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(66, 153, 225, 0.3);
+    padding: 0 20px;
+    height: 52px;
+    border-radius: 26px;
+    cursor: pointer;
+    color: #4299e1;
+    font-size: 15px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    min-width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 1 auto;
+}
+
+.nav-btn:hover:not(:disabled) {
+    background: #4299e1;
+    color: white;
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3);
+    border-color: transparent;
+}
+
+.nav-btn:disabled {
+    background: rgba(200, 200, 200, 0.3);
+    color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(200, 200, 200, 0.2);
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+/* 超小屏按钮文字调整 */
+@media (max-width: 375px) {
+    .nav-btn {
+        padding: 0 12px;
+        min-width: 80px;
+        font-size: 14px;
+    }
+}
+
+/* ===== 一键顶部按钮 ===== */
+.back-to-top {
+    position: fixed;
+    bottom: calc(70px + 16px + env(safe-area-inset-bottom, 0));
+    right: 16px;
+    width: 44px;
+    height: 44px;
+    border-radius: 22px;
+    background: rgba(var(--bg-rgb), 0.4);
+    backdrop-filter: blur(11px);
+    border: 1px solid rgba(66, 153, 225, 0.2);
+    color: var(--accent);
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 91;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.back-to-top.show {
+    display: flex;
+}
+
+.back-to-top:hover {
+    background: var(--accent);
+    color: white;
+}
+
+/* ===== 智能提示卡片（底部位置） ===== */
+.reading-tip {
+    position: fixed;
+    bottom: calc(70px + 16px + env(safe-area-inset-bottom, 0));
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(var(--bg-rgb), 0.2);
+    backdrop-filter: blur(8px);
+    border-radius: 16px;
+    padding: 8px 12px;
+    color: var(--text);
+    font-size: 14px;
+    z-index: 96;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    animation: tipFadeIn 0.3s ease;
+    pointer-events: none;
+    white-space: nowrap;
+    max-width: 80%;
+    border: 1px solid rgba(66, 153, 225, 0.2);
+}
+
+.reading-tip .tip-icon {
+    font-size: 14px;
+}
+
+.reading-tip.fade-out {
+    animation: tipFadeOut 0.2s ease forwards;
+}
+
+@keyframes tipFadeIn {
+    from { opacity: 0; transform: translate(-50%, 10px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes tipFadeOut {
+    from { opacity: 1; transform: translate(-50%, 0); }
+    to { opacity: 0; transform: translate(-50%, 10px); }
+}
+
+/* 进度条闪烁效果 */
+@keyframes progressFlash {
+    0% { height: var(--progress-height); }
+    50% { height: 6px; }
+    100% { height: var(--progress-height); }
+}
+
+.progress-bar.flash {
+    animation: progressFlash 0.3s ease;
+}
+
+/* 移动端显示触发器 */
+@media (max-width: 1199px) {
+    .mobile-drawer-trigger {
+        display: flex;
+    }
+}
+
+/* ===== 深色模式适配 ===== */
+.dark-mode .mobile-drawer-trigger {
+    background: rgba(26, 32, 44, 0.6);
+    border-color: rgba(116, 114, 254, 0.3);
+}
+
+.dark-mode .drawer-panel {
+    background: rgba(10, 12, 16, 0.98);
+    border-right-color: rgba(116, 114, 254, 0.2);
+}
+
+.dark-mode .chapter-nav {
+    background: rgba(26, 32, 44, 0.4);
+    border-color: rgba(116, 114, 254, 0.2);
+}
+
+.dark-mode .nav-btn {
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid rgba(116, 114, 254, 0.4);
+    color: #7472FE;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.dark-mode .nav-btn:hover:not(:disabled) {
+    background: #7472FE;
+    color: white;
+    box-shadow: 0 4px 12px rgba(116, 114, 254, 0.3);
+}
+
+.dark-mode .nav-btn:disabled {
+    background: rgba(50, 50, 50, 0.5);
+    color: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(100, 100, 100, 0.2);
+}
+
+.dark-mode .back-to-top {
+    background: rgba(26, 32, 44, 0.6);
+    border-color: rgba(116, 114, 254, 0.3);
+}
+
+.dark-mode .reading-tip {
+    background: rgba(26, 32, 44, 0.8);
+    border-color: rgba(116, 114, 254, 0.3);
+}
+
+.dark-mode .shelf-link,
+.dark-mode .shelf-text {
+    color: #7472FE;
+}
+</style>
+    <script>
+        window.__CHAPTER_DATA__ = [{"total_units": 0, "language_type": "chinese"}, {"total_units": 398, "language_type": "mixed"}, {"total_units": 47553, "language_type": "chinese"}, {"total_units": 3, "language_type": "mixed"}, {"total_units": 51060, "language_type": "chinese"}, {"total_units": 9829, "language_type": "chinese"}, {"total_units": 47086, "language_type": "chinese"}, {"total_units": 28162, "language_type": "chinese"}, {"total_units": 33420, "language_type": "chinese"}, {"total_units": 1076, "language_type": "chinese"}];
+    </script>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <header class="header">
+        <div class="header-left">
+            <a href="https://luckyme258.github.io/books/index.html" class="shelf-link">
+                <span class="shelf-icon">📚</span>
+                <span class="shelf-text">书架</span>
+            </a>
+            <span class="header-title" title="奇幻_明智的孩子_安吉">奇幻_明智的孩子_安吉</span>
+        </div>
+        <div class="header-right">
+            <span class="progress-text" id="progressText">0%</span>
+            <button class="theme-toggle" id="themeToggle">🌙 夜间</button>
+        </div>
+    </header>
+    
+    <div class="chapter-sidebar"><div class="sidebar-title">📖 目录</div><ul class="sidebar-chapters">
+<li class="sidebar-chapter level-1">
+    <a href="#chapter-0" title="书名页">书名页</a>
+</li>
+<li class="sidebar-chapter level-1">
+    <a href="#chapter-1" title="版权页">版权页</a>
+</li>
+<li class="sidebar-chapter level-1">
+    <a href="#chapter-2" title="1">1</a>
+</li>
+<li class="sidebar-chapter level-1">
+    <a href="#chapter-3" title="目录">目录</a>
+</li>
+<li class="sidebar-chapter level-1">
+    <a href="#chapter-4" title="2">2</a>
+</li>
+<li class="sidebar-chapter level-1">
+    <a href="#chapter-5" title="序">序</a>
+</li>
+<li class="sidebar-chapter level-1">
+    <a href="#chapter-6" title="3">3</a>
+</li>
+<li class="sidebar-chapter level-1">
+    <a href="#chapter-7" title="4">4</a>
+</li>
+<li class="sidebar-chapter level-1">
+    <a href="#chapter-8" title="5">5</a>
+</li>
+<li class="sidebar-chapter level-1">
+    <a href="#chapter-9" title="人物表（依出场次序排列）">人物表（依出场次序排列）</a>
+</li></ul></div>
+    
+    <div class="container">
+        <section class="chapter-section">
+<h1 class="chapter-title" id="chapter-0">
+    书名页
+</h1>
+<div class="content"><p class="short-para">[内容提取可能不完整]</p></div></section><section class="chapter-section">
+<h1 class="chapter-title" id="chapter-1">
+    版权页
+</h1>
+<div class="content"><p class="short-para">图书在版编目（CIP）数据</p><p class="short-para">明智的孩子 /（英）安吉拉·卡特著；严韵译. —南京： 南京大学出版社, 2021.1</p><p class="short-para">书名原文： Wise Children</p><p class="short-para">ISBN 978-7-305-23652-5</p><div class="para-break"></div><p class="short-para">Ⅰ. ①明… Ⅱ. ①安… ②严… Ⅲ. ①长篇小说－英国－现代 Ⅳ. ①I561.45</p><p class="short-para">中国版本图书馆CIP数据核字（2020）第143317号</p><p class="short-para">WISE CHILDREN</p><p class="medium-para">by ANGELA CARTER, WITH AN INTRODUCTION BY ALI SMITH</p><div class="para-break"></div><p class="short-para">Copyright © The Estate of Angela Carter 1991</p><p class="medium-para">This edition arranged with  ROGERS, COLERIDGE & WHITE LTD（RCW）</p><p class="short-para">through Big Apple Agency, Inc., Labuan, Malaysia.</p><p class="medium-para">Simplified Chinese translation copyright © 2020 by NJUP</p><div class="para-break"></div><p class="short-para">All rights reserved.</p><p class="short-para">江苏省版权局著作权合同登记　图字：10-2009-169号</p><p class="short-para">出版发行　南京大学出版社</p><p class="short-para">社　　址　南京市汉口路22号　邮编　210093</p><div class="para-break"></div><p class="short-para">出 版 人　金鑫荣</p><p class="short-para">书　　名　明智的孩子</p><p class="short-para">著　　者　[英] 安吉拉·卡特</p><p class="short-para">译　　者　严韵</p><div class="para-break"></div><p class="short-para">责任编辑　章昕颖</p><p class="short-para">照　　排　南京开卷文化传媒有限公司</p><p class="short-para">印　　刷　江苏凤凰通达印刷有限公司</p><p class="short-para">开　　本　880×1230　1/32　印张 12.125　字数 230千</p><div class="para-break"></div><p class="short-para">版　　次　2021年1月第1版　2021年1月第1次印刷</p><p class="short-para">ISBN 978-7-305-23652-5</p><p class="short-para">网　　址　http://www.njupco.com</p><p class="short-para">官方微博　http://weibo.com/njupco</p><div class="para-break"></div><p class="short-para">官方微信　njupress</p><p class="short-para">销售咨询　（025）83594756</p><p class="short-para">版权所有，侵权必究</p><p class="short-para">凡购买南大版图书，如有印装质量问题，请与所购</p><div class="para-break"></div><p class="short-para">图书销售部门联系调换</p></div></section><section class="chapter-section">
+<h1 class="chapter-title" id="chapter-2">
+    1
+</h1>
+<div class="content"><p class="short-para">问：为什么伦敦像布达佩斯?</p><p class="short-para">答：因为它也是一水之隔的两个城市。</p><p class="short-para">大家早!我自我介绍一下。我叫朵拉·欠思。欢迎来到错误的这一边。</p><p class="medium-para">换个方式说。如果你是美国人，先想想曼哈顿，再想想布鲁克林。懂我意思了吧?或者换成巴黎人，差不多就是河左岸、河右岸[1]的问题。伦敦呢，则有南北之分。我和我妹诺拉向来住在左手边，观光客鲜少看见的这一边，泰晤士河老爹的私生子这一边。</p><div class="para-break"></div><p class="long-para">很久很久以前，大致可以这样区分：有钱人住在绿意宜人的城北，搭乘四通八达的大众运输系统购物血拼，来去如风；穷人在要啥缺啥的城南破落市区艰苦度日，得在四面透风的公车站枯等好几个小时，听着处处打老婆、砸玻璃、醉鬼唱歌的声音，周遭又冷又暗又满是炸鱼加薯条的味道。但你不能指望事情永远保持原状。这阵子有钱人四处流窜，跳上柴油萨博车分散到全市各处。如今这一带的房价高得离谱，简直让人没法儿相信。这下子可怜的知更鸟该怎么办呢?</p><p class="long-para">去他的知更鸟!要不是阿嬷留下这栋屋子，连我们恐怕都没地方容身。莎翁路四十九号，布里克斯顿区，伦敦，邮递区号SW2。天佑此屋。要是没这屋，诺拉和我就得流落街头，拖着几个塑胶袋的家当走来走去，抱着酒瓶像没断奶的宝宝寻求安慰，好不容易可以进收容所过夜就兴奋高歌，结果因为妨碍安宁又立刻被赶出来，在街头苟延残喘,挨饿受冻，最后孤零零地挂掉，像破布一样被风吹走。七十五岁的老姑娘生日当天想这个，可真够呛的是吧?</p><p class="medium-para">没错!七十五了。祝我生日快乐。整整七十五年前的今天，我就是在这屋的阁楼出生。比我晚五分钟上台一鞠躬的诺拉此刻正在楼下做早餐，我最亲爱的妹妹。祝我们生日快乐。</p><p class="long-para">这间是我的房间。我们向来尊重彼此的隐私，不共用东西。不折不扣的同卵双胞胎没错，但可不是连体婴。不好意思，房里不怎么干净，到这把年纪时间太宝贵，不能再整天洗洗刷刷擦擦抹抹，不过你仔细看看梳妆台镜子上那些签名照片——艾弗、诺埃尔、弗雷德与阿黛拉、杰克、琴吉、弗雷德与琴吉[2]、安娜、洁西、宋妮、比妮，全是多年前共事过的朋友。你看最新的那张：高个儿苗条女孩，黑卷发，大眼睛，没穿内裤，写着“你们最亲爱的蒂芬妮”，还画了一大堆×××××[3]。漂亮吧?她是我们心爱的干女儿。我们试过劝她别进演艺圈，但她不肯听。“你们做得了的事我也做得了。”是哦，“演艺圈”；没有比咱们小蒂蒂更俏的女孩了，但她能露的全都已经露光。</p><div class="para-break"></div><p class="short-para">我们做过什么?一言以蔽之，我们以前是歌舞女郎。现在腿还是能抬得比一般的狗高，如果有需要的话。</p><p class="medium-para">来呀，来呀……一只猫咪走过来了，它刚出衣柜，正伸着懒腰打呵欠。它闻到培根香味啦。我枕头上还睡了一只，白底橘纹。另外几十只自由来去。这屋子有点猫味，但更多的是老迈歌舞女郎的味道——冷霜、蜜粉、防汗腋垫、陈年烟味、凉掉的茶。</p><p class="short-para">“过来给我抱抱，猫咪。”</p><p class="short-para">人总得有个东西抱。猫咪要吃早餐了吗?等会儿，猫咪，咱们先朝窗外看看。</p><div class="para-break"></div><p class="medium-para">冷冽、明亮、刮着风的初春天气，就像我们出生那天，齐柏林飞艇掉下来的那天。美丽的蓝天，本身就是份生日礼物。好多年前，我认识过一个男孩，眼睛就是这颜色。他身上没半根毛，光裸得像朵玫瑰，因为还太年轻。一双天蓝的眼。</p><p class="long-para">这窗子视野很好，可以看出好几里，一眼瞧见河对岸。那是西敏寺，看到没?今天飘扬着圣乔治十字旗。单只乳房似的圣保罗教堂。眨着金色独眼的大笨钟。除了它们，这年头没剩下什么熟悉景象。每个世纪都有这么一段时间，众人伸出手一把抓住亲爱的老伦敦，将它拆毁拉倒，然后又重新建起，就像童谣里的伦敦大桥，再见，哈啰，但新建的就是新的，跟以前再也不一样，连那些火车站都变成阿拉伯露天市集，让人认不出来了。滑铁卢。维多利亚。再也喝不到一杯像样的茶，他们只给你鸡尾酒，脏兮兮的卡布奇诺。到处都是卖丝袜、卖内裤的店。我跟诺拉说过：“你记不记得《相见恨短》[4]害我哭得稀里哗啦?要是换到现在，男女主角在车站里根本没地方相遇，只有天杀的内裤店。他们的手得在英国国旗图案的四角裤底下害羞地相碰。”</p><p class="medium-para">“算了吧，你这多愁善感的老太婆。”诺拉说。“大战期间你唯一有过的‘相见恨短’，就是跟个美国佬在利物浦街车站的公厕后面来了一下。”</p><p class="short-para">“我只是为大战尽一己之力嘛。”我镇静回答，但她没听我说，自顾自咯咯笑起来。</p><div class="para-break"></div><p class="short-para">“唉，阿朵，内衣用品店叫这名字还真配——相见恨短哪。”她笑弯了腰。</p><p class="medium-para">有时候我想，只要够努力张望，就能看见过去。风又刮起来了。哗啦。字纸篓翻倒，垃圾散了一地……猫食空罐、早餐玉米片包装袋、绽线的紧身裤袜、茶叶……目前我正在撰写回忆录，研究家族历史——你看这儿有文字处理机、档案柜、索引卡片，右手的、左手的，右边的、左边的，每个人的丑事。好一阵大风!咻咻咻猛吹过整条街，这里风吹得一切七颠八倒。</p><p class="short-para">七十五岁了，今天，一个有风有阳光的七颠八倒日子。这种风会吹进你血管，让你野性大发。野性大发!</p><p class="medium-para">我突然打了个小小寒噤，因为我知道，打从老骨头里知道，今天会有事发生。某件刺激的事。管它是好是坏，只要有事发生，提醒我们还活在人世就行了。</p><div class="para-break"></div><p class="short-para">我们拥有全伦敦唯一一座阉伶[5]老爷钟。</p><p class="long-para">老爷钟放在前门厅，钟面上嵌块小牌注明它1864年制造于因弗内斯；但据我所知，这是座独一无二、货真价实的苏格兰高地式老爷钟，还曾在1851年的博览会展出。它的高地风格，在于钟顶上有一对完整的大鹿角。有时候如果戴帽子出门，我们会把它当帽架，现在我们很少戴帽，但偶尔碰上下雨天还是会戴。这座钟对我和诺拉很有纪念价值——来自我们父亲，是他唯一送过我们的东西，而且还是出于意外。高大、粗勇又生角的桃花心木，报时声却是滑稽的假音叮咚，而且永远不准，永远少敲一下。我们一直没空找人来修。老实说，这钟让我们发笑，一直都是。阿嬷没修它之前这钟倒还好，她只不过敲它一下，里面的重锤就掉了。她对勇士向来都有这效果。</p><p class="medium-para">但是，在这刮风的生日早晨，我经过老爷钟，闻到培根香馋疯了的众猫在前面上蹿下跳，这时钟敲响了。敲呀敲，响呀响，这次竟然敲对了，一声不多一声不少——八点整!</p><p class="short-para">“阿诺!阿诺!有事要发生了!门厅的老爷居然破天荒报对了时间!”</p><div class="para-break"></div><p class="short-para">“不只如此哦。”诺拉以满意的语调说，递来一个背面印有家徽的厚厚白信封。“我们的请帖终于来了。”</p><p class="short-para">她动手倒茶，“轮椅”又是嘶嘶喘气又是结结巴巴，我抽出那张我们原先以为永远不会寄来的硬邦邦白卡片。</p><p class="short-para">敬邀</p><p class="short-para">朵拉·欠思小姐暨莉欧诺拉·欠思小姐</p><div class="para-break"></div><p class="short-para">莅临</p><p class="short-para">素有“千面演员”美誉之</p><p class="short-para">梅齐尔·罕择爵士</p><p class="short-para">百岁寿诞宴会</p><div class="para-break"></div><p class="short-para">轮椅嘶嘶喘气、结结巴巴，终于气翻了，尖声叽呱得快要爆炸，但诺拉安慰她：</p><p class="medium-para">“别紧张，宝贝儿，我们不会丢下你!没错，灰姑娘，你也该去参加舞会，尽管帖子上没你的名字。就挑今天把所有见不得人的秘密全抖出来吧!天知道，过了这么多年，我们也该喝点泡泡香槟了!”</p><p class="long-para">我眯眼看着“敬请回复”的字样，遥望摄政公园区那栋豪宅以及罕择夫人，也就是他第三任亦即现任配偶。咱们这儿的可怜老“轮椅”是第一任，请柬上却没提身为前妻的她，所以她气成这样。至于朵拉·欠思小姐暨莉欧诺拉·欠思小姐，亦即区区在下咱们姊妹俩，当然就是梅齐尔·罕择爵士的女儿，只不过，咳咳，不是他任何一任妻子所生。我们是他的所谓自然女儿[6]，好像只有没结婚的男女做那档事才自然似的。我们是他从未正式承认的女儿，出于怪异的巧合与他同一天生日。</p><p class="short-para">“他们没给我们多少时间回复。”我抱怨。“宴会不就是今晚了吗?”</p><div class="para-break"></div><p class="medium-para">“怎么啦，你认为他们不希望我们去?”诺拉后面的臼齿掉了两颗，她一大笑你想不看见都很难。我的牙都还在，除此之外，我俩依旧长得一模一样。多年前，要分辨我们只能靠香水，她擦“一千零一夜”，我擦“蝴蝶夫人”。[7]</p><p class="long-para">不过呢，我们虽是一模一样的同卵双胞胎，但并不两相对称——人体本来就不对称，两脚一定大小不一，两只耳朵的耳屎量也不同。诺拉容易拉肚子，我则常便秘；她总是花钱如流水，浪费在男人身上，小可怜，我则试着存点积蓄；她的经血量多得过头，我则少得可怜；她对人生说：“好啊!”我则说：“也许……”但我们现在可是同舟共济，只能守着对方，两个疯癫老太婆。买杯酒请我们，我们就唱支歌儿给你听，如果场合特殊，比方除夕或者酒馆老板添了孙子，甚至还可能抬腿跳个舞。</p><p class="short-para">唱歌跳舞是多开心的事!</p><p class="long-para">我们当然滞留在自己的巅峰时期。所有女人都是这样。如果你叫我们抹去琼·克劳馥式的唇膏嘴形，我们会觉得惨遭摧残；出门时，我们永远把头发梳成胜利大卷[8]。尽管已经变成铁灰色，我们的头发还很多，谢天谢地!此时此刻上了发卷，藏在缠头布似的头巾下。我们总是努力打扮。粉涂得一寸厚，下楼吃早餐前先戴上脸，蜜丝佛陀粉条，假睫毛刷上三层睫毛膏，一应俱全。年轻时我们用凡士林抹亮眼皮，但大战期间放弃了这习惯，现在我们白天只用简单的蘑菇眼影，混合一点烟草棕加深色调，涂灰黑色眼线。我们指甲油的颜色搭配脚指甲，搭配唇膏，搭配胭脂。露华浓的“火与冰”。尽管战役结束，涂抹迷彩的习惯依旧，我们不知多久没男人了，但妆照化不误。没人能说欠思姊妹乖乖服老。</p><div class="para-break"></div><p class="medium-para">我们穿上最体面的真丝和服，因为今天是我们生日。我的是淡紫色，背后有樱花图案，诺拉是猩红底菊花图案。和服是我们亲爱的佩瑞叔叔——也就是已故的，且深受侄女哀悼怀念的，佩瑞格林·罕择——去长崎旅行时寄回来的，那是珍珠港事件之前的事。和服下穿着法国蕾丝绲边的无袖连身内衣，我是紫罗兰色丝绸，她是鲜玫瑰色绉纱。秀色可餐吧?当然，我们早在无袖连身内衣重新开始流行之前就这么穿了。</p><p class="long-para">如今我们的骨盆比以前凸出，若只穿内衣看起来挺惨瘦，但会看见我光屁股的只有她，会看见她光屁股的也只有我，而穿起衣服我们的样子还是很过得去。我们的颧骨也比以前凸出，但我告诉你，这可是了不得的颧骨——这副颧骨得自世上数一数二会赚钱的钙质沉积物的真传。一如所有万众瞩目的名人，我们父亲一直很仰赖他的骨架。天佑罕择家族的钙质，骨质疏松症一直找不上我们。我们向来颀长苗条，现在也依然颀长苗条，谢天谢地!有些跳舞的老来发起福简直旁若无人。</p><p class="short-para">“我们今晚该穿什么?”诺拉问，把烟摁熄在小盘里，给自己又倒了杯茶。她简直是个茶壶。轮椅呻吟一声。</p><p class="medium-para">“别担心，亲爱的。”诺拉安抚她。“你可以穿你的诺曼·哈内尔[9]配珍珠项链，好吗?我们会把你打扮得漂漂亮亮。”</p><div class="para-break"></div><p class="medium-para">这下她安心了，可怜的老东西。我们叫她轮椅，世人——很久以前——则称她艾塔兰妲·罕择夫人。她会告诉你，就算不嫁那丈夫，她本来也是完美的上流仕女，不像我们父亲的后两任妻子。她嫁给梅齐尔·罕择时，他只是午场偶像；跟他离婚之后很久，他才因“对戏剧贡献良多”封爵。她本名艾塔兰妲·琳德女爵、“当代第一美女”、衔着银汤匙出生等等，但现在只是个离婚老妇，境况今非昔比，亦即，住在莎翁街四十九号的地下室前半部分。</p><p class="medium-para">我会慢慢告诉你，我们怎么会在她老年——说起来也是在我们老年——继承了我们“私生父”的第一任妻子。这么说吧，其他人都不要她，尤其是她的两个亲生女儿。那两个臭婆娘。以前人家叫她们“罕择姊妹花”，跟真的一样。美不美得看品行，如果人的长相跟行为一致，那她们足以吓坏小朋友。</p><p class="medium-para">我们把轮椅收留在地下室已经整整三十年，对她挺有感情。以前诺拉还会带她出门逛街，让她透透气什么的，直到有一天她差点造成暴动，对蔬果摊老板说：“这位先生，你有没有什么黄瓜形状的东西?”之后，为了她自己好，我们就得把她留在家里。</p><p class="medium-para">有时她有点碎嘴，事实上是讲呀讲呀讲呀讲呀啰唆个没完，念叨着梅齐尔耽误她的黄金岁月，然后抛下她另娶好莱坞骚货，也就是他的二号新娘，说“罕择姊妹花”骗光她的钱，她又跌下楼梯再也没法走路，讲呀讲呀讲呀讲个没完没了，让人简直想拿床毛毯盖住她，就像拿布遮住鸟笼让鹦鹉闭嘴。但她是个大好人，而且我们古早以前欠她一份情。</p><div class="para-break"></div><p class="medium-para">我也想再倒点茶，但来不及了，只剩半杯湿答答的茶叶，于是我走向餐具洗涤间再烧一壶水。我们就这么身穿晨袍，坐在早餐室电暖炉旁的皮沙发上。有时我们整天坐在这儿喝茶闲嗑牙，轮椅玩单人牌戏或做点刺绣，猫们来来去去。</p><p class="short-para">一到六点，我们便改喝琴酒。</p><p class="medium-para">晚饭后，有时我们会把轮椅种在电视前——她最爱看广告，等着梅齐尔拍的那些广告出现，然后对荧幕破口大骂，我们自己则打扮穿戴起昔日华服（比方霍华德·休斯送我们的那两件成套银狐系带大衣），精神抖擞走到附近的酒馆，有时人家会请我们表演一段很久很久以前曾让我们成名的歌舞。有时没人请我们也会表演。</p><p class="short-para">“其他还有什么信吗?”</p><div class="para-break"></div><p class="medium-para">诺拉翻挖着那堆邮件。电费账单，又来了；《守望相助》月刊，又来了；隔壁邻居抱怨猫的事，又来了；某个正在写电影研究博士论文的新泽西小鬼想访问我们关于天杀的《仲夏夜之梦》，又来了。到我们这把年纪，你会觉得天底下已经没什么新鲜事。我注意到小蒂蒂，我们的心肝宝贝，我们的小妞妞，我们的小亲亲，我们的干女儿，正为她的“大事”忙得没时间对我们的生日表示心意。唉，年轻就是这样。</p><p class="medium-para">这时门铃响起，吓我一大跳。瓦斯公司抄表员?不可能，他从不这样死命按门铃——自从他见过全身上下只着指甲油的光屁股诺拉之后，就只会轻手轻脚小按一下，因为那次她从浴室直冲出来，以为有什么紧急电报。不对。这次来人按得又狠又长，然后又按，然后再按。我们吃了一惊，我们僵住了。然后门口那人双拳擂起门来，大喊：</p><p class="short-para">“姑姑!”</p><p class="medium-para">我们父亲的幺儿，小崔斯专·罕择。我们其实是他同父异母的姐姐（尽管生在家族床外），他为什么叫我们“姑姑”?你慢慢就会知道。他是不是来祝我们“生日快乐”呢?如果是，为什么慌成这样?他连声直喊，吓得我六神无主，手忙脚乱摸索着门锁、门闩、门链——咱们这儿可是固若金汤。这年头还是小心为上，去年布里克斯顿有犯人大批越狱，翻过花园围墙活像成群结队跳排舞。</p><div class="para-break"></div><p class="medium-para">我好不容易打开门，小崔斯专像没腿一样跌进我怀里。他满脸胡楂，眼神狂乱，绑成滑稽小马尾的红发东翘西散，飘扬在吹动前门那堆垃圾的风中。他看来神志不清，也比我上次见到他时胖了不少。他紧抓着我，拼命喘气。</p><p class="short-para">“蒂芬妮……”（喘，呼，喘）“……蒂芬妮在不在这里?”</p><p class="short-para">“你振作一点好不好，崔斯专，你把我的真丝和服弄湿了一大块。”我很不客气地说。</p><p class="short-para">“你没看昨晚的节目?”</p><div class="para-break"></div><p class="short-para">“我死也不会看你那狗屁不通的节目。”</p><p class="medium-para">但轮椅有时会看，以她那上流社会腔调咯咯窃笑，连逐渐有点老年痴呆的她都乐于看见罕择家族这最后一代水准低到什么程度——有时她还能口出妙语，笑得更厉害，说这是“罕择家族的最后一呆”。我们也确实看过某一集的前五分钟，因为觉得不该错过咱们小蒂蒂初次上电视亮相的镜头。</p><p class="medium-para">蒂芬妮是那节目的“女助理”，鬼知道是啥意思。她不停微笑，她露奶子。真是暴殄天物，要不是半途而废，她可以成为很棒的舞者。我们看了有她的前五分钟。我可以告诉你，五分钟就够了，然后我们退下喝酒，嘀嘀咕咕。他的节目是现场直播，这就是它的特点。</p><p class="short-para">“要是他死了，他们的收视率会更好。”诺拉说过。“唯一不在世的电视节目主持人。多精彩啊。”</p><div class="para-break"></div><p class="short-para">崔斯专用手背抹眼睛，我才发现他一直在哭。</p><p class="short-para">“蒂芬妮不见了。”他说。</p><p class="medium-para">告诉你，这下我可笑不出来了。诺拉在厨房里嚷：“年轻的罗钦伐[10]怎么啦？”他确实狼狈得很，口齿不清语无伦次，呼出的苏格兰威士忌味足以把人熏昏。我们让他坐在一把扶手椅里，他塞给我一卷录影带。</p><p class="short-para">“看一下。”他说。“我没法解释。你们看看发生了什么事。”</p><div class="para-break"></div><p class="medium-para">然后他瞄见我们放在早餐室壁炉架上镶银框的小蒂蒂照片，眼泪又开始流啦。我挺同情这可怜的小孩。我还管他叫“小孩”，但他已经三十五了，不久就要突破四十大关。总之，他的独家招牌就是孩子气的魅力，天知道要是没了这招牌他该怎么办。但此时我们都打着哆嗦紧张兮兮：他妈的到底出了什么事?于是诺拉马上把带子塞进录影机。</p><p class="medium-para">我们买录影机，是为了看星期六下午播的巴斯比·伯克利[11]歌舞片。我们把这节目录下来一看再看，看到喜欢的段落还暂停，搞得轮椅简直要发疯。当然还有弗雷德与琴姐，亲爱的老弗雷德。怀旧是老人的恶习。我们看了太多老电影，连记忆都变成黑白的啦。</p><p class="long-para">经过早餐的培根肥油滋润，轮椅本已陷入愉快的恍惚状态，但录影带一阵空白嘈响将她惊醒。“怎么了?他来这儿干吗?”她怀疑地瞪了崔斯专一眼，因为他不是她的亲人。此时画面出现一道霓虹灯台阶，一阵罐头掌声中他蹦蹦跳跳走下来，红发油油亮亮往后梳齐，牛奶色亚曼尼绉麻西装，崔斯专·罕择，软弱但迷人，游戏节目主持人、电视名人，堂堂纵横英国戏剧界一个半世纪的罕择王朝的最后一口气。崔斯专，伟大“剧场王子”梅齐尔·罕择的幺儿，维多利亚时代悲剧舞台双璧——兰纳夫·罕择与“星舞”艾丝黛拉·罕择——之孙。嗟乎，伟人堕落至何等境地。</p><p class="short-para">“嗨!我是崔斯专!”</p><div class="para-break"></div><p class="medium-para">镜头拉近，他正唱歌似的说着：“嗨，各位财迷!我是崔斯专·罕择，欢迎收看……”此时他头一扬，秀出他的喉咙，他有着真正的、老派的、圆润的、艾弗·诺维洛[12]式的喉咙，于是他头一扬，以狂喜的声调叫出：“‘有钱能使鬼挨鞭’!‘有钱能使鬼挨鞭’!”</p><p class="short-para">节目开始。</p><p class="short-para">定格。</p><p class="long-para">咱们先暂停一下崔斯专和蒂芬妮正要展开的故事，我好跟你补充点背景资料。早该如此了!你一定正在说。这个梅齐尔·罕择和他的家族、他的妻子、他的小孩、他的喽啰一干人等到底是谁啊?正是为了回答这些问题，我，朵拉·欠思，在收集本人自传资料的过程中，无意间变成罕择家族历史的记录者，不过我想这个身份就跟我的血缘身世一样不会受到罕择王朝其他成员的公开承认，不只因为诺拉和我——我已经告诉过你——是外面生的小孩，更因为我们父亲是剧场正典的栋梁台柱，而我们姊妹完全来路不明邪门歪道——不仅是私生女，还跑去歌舞秀场表演，可不是吗!</p><div class="para-break"></div><p class="medium-para">私生子总是很有浪漫卖点，应该能确保我的回忆录稳赚不赔。但是老实说，我们的私生女身份没什么狗屁浪漫可言，最好也只是个闹剧，最糟是个悲剧，其他时间则是长期的不便与困扰。但我动了念头，要在嗝屁之前回答那个问题，那问题始终逗引着我，仿佛答案就藏在布幕后某处：吾等从何而来?又将去向何处?</p><p class="medium-para">我当然知道第二个问题的答案：注定遭到遗忘，不留半点痕迹。我们两个都没生过小孩，尽管诺拉一直很想，接近更年期时每次月经来潮她都哭。我可不。每个月见到它我都高兴得很，更高兴见到它突然停止再也不来，就像那首老歌里的老爷钟，不过一点也不像我们的老爷钟，它虽然音调偏高仍老当益壮，多谢关心。</p><p class="medium-para">至于来源和过往历史等问题，且让我深深挖进书桌上的考古资料，丢开鲁比·基勒[13]的照片（“送给两双玉足舞步美妙的诺拉与朵拉，鲁比敬上”）。</p><p class="long-para">找到了。一个磨损的信封，装满古老的照片、明信片。多年来我们又是买，又是求，又是借的收集了不少，有些呈深褐色调，有些上了色突显她红又红的秀发。这是我们的祖母，父亲家谱里唯一固定已知的一点。事实上，也是我们整个家谱里唯一固定已知的一点：母亲这边的家族完全是一片未知荒野，而我们的另一个祖母，我们的阿嬷，欠思阿嬷，也就是修理老爷钟的阿嬷，我们继承了她姓氏的阿嬷，她跟我们根本没有血缘关系，这就更让人糊涂了。阿嬷抚养我们长大，不是职责或历史缘故，纯粹出于爱心，这是真正的家族罗曼史，她对我们一见钟情。</p><div class="para-break"></div><p class="medium-para">但我们从没真正见过祖母，只认识你现在看见的这个她，宣传照里永远年轻的她。“她出生之际星星舞动。”人家说。她名叫艾丝黛拉[14]。这是她扮朱丽叶、扮鲍西娅、扮碧翠丝的造型。你看她那“来这儿!”的微笑。扮麦克白夫人的她一副坚毅蹙眉模样，好个心狠手辣的女人，但仔细看，你会看见她眼里闪动着淘气的亮光。</p><p class="medium-para">她不是爱德华时代那种典型的大块头女人，她又瘦又小，一双好大的眼睛。她是鬼火，轻盈又难以捉摸，一声啜泣就能让你心碎，但她儿子，也就是我们的佩瑞叔叔，说她常会在一场重要的戏演到一半时忍不住笑场，比方抬棺那一幕，梦游那一幕，她会笑得直不起腰，其他人都得帮她掩饰。她的头发也老是不听话，披落散开，发夹甩得到处都是，她的长袜会掉到脚踝，走在街上衬裙会露出来，衬裤往下滑。她才华横溢，也一团混乱。</p><p class="medium-para">这一张是她有名的扮相，反串哈姆雷特。黑色紧身裤袜。那双腿美呆了，长在古典戏剧演员身上真是浪费。我们遗传了她的腿。她手持匕首作态：“一息尚存好，[15]《纽约时报》的讣闻——小心点，这纸已经脆了，很容易碎——说她非常“倚重在纽约与她演对手戏的霍雷肖，后者是矫健英挺的年轻美国演员，极具尊严质感”。</p><p class="medium-para">记住这人，他还会再出现。卡西乌斯·布司。没错，就是那个布司家族。他父母还真厚脸皮，给他取名卡西乌斯[16]。</p><div class="para-break"></div><p class="medium-para">这份讣闻非常婉转地暗示我们的祖母对，咳咳，室内运动很有兴趣。“慷慨、热情、奔放：全心全意投入生活……”但与其说她投入人生，不如说她浪掷人生，可怜的女孩。她最后的下场挺惨。这张是她扮苔丝狄蒙娜，身穿白睡衣，手拿柳枝，正要开始唱：“可怜她坐在枫树下，轻轻叹息……”[17]，这张真的很有收藏价值，因为——</p><p class="short-para">不，等一等。我慢慢再告诉你。</p><p class="long-para">差不多1870年左右（一如许多女演员，她的出生日期就像可移动的流水席），我们的祖母出生在戏服箱里[18]，会走路就开始粉墨登场，扮小仙子、鬼魂、妖精，八岁（误差约为一两岁）时已是舞台老手，以《冬天的故事》的马米流斯一角初次在伦敦亮相，地点是稻草市场区皇家戏院，由基恩（是儿子，查尔斯）[19]执导（这上面说那出戏“有些学究气”），戏服模仿某个希腊花瓶上的样式，手底下滚着铁圈玩，这也是模仿另一个希腊花瓶上的动作。路易斯·卡罗尔看到她的表演，送她一本亲笔签名的《爱丽丝梦游奇境》，邀她去喝茶，吃过松脆热煎饼之后要她脱掉连身裙，拍下她的光屁股照片，但她坚守立场，没让他仿效另外某些希腊花瓶上描绘的场面，至少她向来如此宣称。这就是他们那次会面的证据。看到没?他叫它“小精灵”。我在佳士得拍卖会买到的，贵得要死，但我实在忍不住。可没多少人秀得出自己祖母当主角的儿童色情照片哟。我卖了可怜的老“爱尔兰”的其中一封信，才有钱买下。</p><p class="short-para">爱尔兰?他是谁?</p><div class="para-break"></div><p class="medium-para">你会知道的，要不了多久。这么说吧，要不是可怜的老爱尔兰慈悲为怀，热心教育歌舞女郎，现在我就不会坐在这儿写这个了。是他教我拿笔写字，是他给了我敢用“慈悲为怀”这种成语的信心。我的回报是，让他心碎。公平交换，可不是巧取豪夺。</p><p class="medium-para">她一边扮马米流斯，一边在哈乐津剧里扮可伦萍[20]。这是节目单。“小艾丝黛拉”。她什么都能演——让你笑，让你哭，跳支舞，唱首歌。但一谈起恋爱，她就成了傻子。</p><p class="medium-para">她的生活很辛苦。我告诉你那生活是什么样子：油彩、煤气灯、马粪、煤烟、铁路——星期天在克鲁换车。她是童星，但她长大了。她在乡间巡演，朱丽叶、罗莎琳德、薇奥拉、鲍西娅，曼彻斯特、伯明翰、利物浦、诺丁汉，小池塘里的大鱼；赫米娅、碧安卡、伊拉丝在伦敦，大池塘里的小鱼，直到1888年她重回稻草市场，大好机会来了，她饰考狄利娅，与兰纳夫·罕择的李尔王演对手戏。</p><p class="long-para">兰纳夫是那种声如洪钟的伟大演员兼剧团经理，现在这类型已经绝迹。我在书上读过，他演麦克白时，维多利亚女王在皇家包厢看得紧抓帷帘，抓得指节都发白了——弑君的场面在君王看来可不好玩。表现精彩的时候，他那场宴会戏可以吓得你一愣一愣的，尽管他太太在一旁偷笑不止，背对观众，肩膀抖动。（佩瑞格林说曾听她讲过，她认为麦克白夫妇应该开除厨师。）[21]兰纳夫·罕择的理查三世俨然“邪恶人性的化身”，这是GBS[22]写的，他可不会随便称赞蹩脚演员。</p><div class="para-break"></div><p class="medium-para">讲句公道话，兰纳夫·罕择表现精彩时确实非常棒，问题是看戏的人永远搞不清楚他什么时候会表现精彩。因为这老家伙可能会晕头转向走上台，含含糊糊讲出另一出毫不相干的戏的台词；或者他也可能精神不济，宿醉未醒，只有前几排观众听得见他说啥——不管他到底在说啥；再不然他就是清醒过头，深陷在消沉抑郁的幽谷。兰纳夫身上总有点欠思虑、碰运气的成分，极端善变，反复无常，这年头的医生准会诊断出躁郁症，开一堆锂盐给他。</p><p class="short-para">但，表现精彩时，他真的是才华横溢。</p><p class="short-para">而且他把莎士比亚当神，简直到偶像崇拜的地步，认为人生所有的一切尽在莎剧中。</p><p class="long-para">就这样，在才华横溢的一场演出里，他遇上一颗流星。两人迸出的火花令人如痴如醉!观众泪水成河，掌声如雷。如今所有戏剧书籍都记载了一个有名段落——演到可怜的老李尔终于跟女儿言归于好时，兰纳夫伸手摸摸自己的脸，惊异地看着指尖，再摸摸自己的嘴，以颤巍巍、没把握的老迈口吻说：“你的泪珠儿是湿的吗?”[23]观众不掏手帕才怪。书上说，她报以“颤抖、含泪、四月阳光般的”微笑，几乎——但没有完全——抢去他的风采。于是他与艾丝黛拉坠入爱河。他们怎能抗拒?老人与浪子回头的女儿，这是梦幻组合啊!</p><div class="para-break"></div><p class="medium-para">有件事说来挺妙。崔斯专的母亲，第三任罕择夫人，也是这样逮住梅齐尔——在他担纲的《李尔王》中饰演考狄利娅。</p><p class="long-para">老兰纳夫足足比艾丝黛拉大三十岁，或者三十多，或者三十多更多——他的生日也跟她的一样多变。总之，他们粉快[24]（这是欠思阿嬷常说的）就在柯芬园的圣保罗结了婚，那是演员的教室，圈内人一半为这对不被看好的新人祝福，另一半则没来参加，主要因为兰纳夫欠他们钱或让他们戴过绿帽。她一头红发披背，头戴铃兰花冠，年约十九。羊入虎口啊，旁观者可能会说，看见新郎灰白的头发、颤抖的手、不稳的财务状况——他是破产的醉鬼兼赌徒，已有三任妻子遭他玩弄、背叛、殴打，为他操劳地早死。但新娘可不是献祭羔羊或渐萎的紫罗兰，她是个狂野女孩，尽管始终以自己的方式忠于他。我完全没遗传到她的个性，半点也没。我总是多愁善感，但诺拉有时有点像她。</p><p class="long-para">兰纳夫有留下蜡筒录音，我去过肯辛顿中央街旁边，他们放给我听。嘎啦，嘶嘶，然后是他的声音：“明天——又明天——又是一个明天……”[25]我一阵哆嗦，不是因为伤感，而是因为那声音跟我预期的不同，很难听，几乎——粗粝，刺耳，一字一字好像硬从他口中夺出。于是我也眼泪汪汪，就像多年前稻草市场的那些唏嘘观众，但不只是因为他的台词和身份，更因为他说话的方式，在我耳中听来如此奇异、如此陌生，他发元音“a”时是扁的，发辅音时就像被切断，如碎片玻璃。只不过一百年前……我的亲祖父。然而那声音来自大洪水之前，来自另一种完全不同的人生，听来如此古老，他的孙女似乎不可能此刻穿着丝质连身内衣，坐在布里克斯顿一栋屋子的地下室，边喝茶边看他曾孙[26]在一个塑胶盒里对看不见的观众讲话，以介于两个世界之间，既不英国也不美国的节目主持人鼻音腔调说：</p><p class="short-para">“再说一遍给我听!‘有钱能使鬼挨鞭’!”</p><div class="para-break"></div><p class="short-para">嗟乎，伟人堕落至何等境地。SM游戏节目?还能堕落到什么地步?</p><p class="medium-para">于是，兰纳夫和艾丝黛拉结婚了。起初他疯狂爱着她，反之亦然，后来巴南，P. T. 巴纳姆[27]，“巴纳姆与贝里”的巴纳姆，就是那个巴纳姆，看上她在《皆大欢喜》中的美腿，对她提了个建议：在中央公园搭帐篷演出《哈姆雷特》。搭帐篷是因为，他预言，观众会多到没有任何一家百老汇剧院容纳得下。</p><p class="medium-para">她一定斜眼瞄了瞄老公，不知他会做何反应；毕竟他是当年最忧郁的丹麦王子，但他的当年已经是一两代以前，而哈姆雷特是不折不扣的小生角色。不过兰纳夫倒很兴奋，一心要把莎士比亚的语言带到美国。于是两人渡越大西洋，兰纳夫称职扮演哈姆雷特之父，而年轻潇洒的卡西乌斯·布司则与她同挑大梁，饰演哈姆雷特的挚友。</p><p class="long-para">帆布帐篷下的《哈姆雷特》大受欢迎，一演再演，本来大可演个没完没了，但她肚子里的双胞胎即将到来——女性反串哈姆雷特是一回事，怀孕的王子可就是另一回事了。于是一对双胞胎男婴，我们的父亲们，出生在美国：梅齐尔和佩瑞格林。了不得的名字吧?取这种名字，背后有何等堂皇幻觉?若缩短简称“梅尔”和“佩瑞”，这两个名字就有种20世纪的、民主的、跨大西洋的味道，但老兰纳夫完全是老派的19世纪浪漫主义者，从不这么称呼儿子；艾丝黛拉倒常这么叫，淘气地眨着眼睛。</p><div class="para-break"></div><p class="long-para">注意我称两人为“我们的父亲们”，仿佛我们有两个父亲，就某种意义上来说确实如此。当然，做出必要生物举动的是梅齐尔，但充当我们父亲的是佩瑞格林——也就是说，是他公开把我们认作女儿，因为梅齐尔不肯。顺便告诉你，除了轮椅之外，梅齐尔的整个家族，也都坚持这个虚构概念，所以萨丝琦亚告诉崔斯专我们是他的姑姑[28]而非姐姐。但我们深爱佩瑞格林，他对我们表现得更像父亲，更别提还负担我们大部分的账单——我知道我不能只称他为叔叔。</p><p class="medium-para">说到私生子，早在诺拉和我上台一鞠躬之前，罕择家族就有不少浪漫的，不，该说是夸张通俗剧式的私生历史。因为兰纳夫·罕择在那些漫长的婚内及婚外关系中，始终没生下一儿半女，直到他妻子，反串的哈姆雷特碰上极具尊严质感——更不用说矫健英挺的——霍雷肖。闲言闲语不少，兰纳夫[29]有没有听到?谁知道，已经过了这么久。但他很爱这两个儿子，他们一会走路，兰纳夫就安排他们演囚禁在塔中的小王子[30]。</p><p class="medium-para">关于兰纳夫，有一点你必须知道：他一半是疯子，认为自己有“使命”。这下子，他将全世界都视为传教地点（在我们这些后代中，最忠于狂热传道的家族传统的是耶稣会会士葛瑞司·罕择），老头满心狂热，要前往海外四处宣“道”，太太儿子不管愿不愿意也得跟着跑，把莎士比亚带到从不曾有过莎士比亚的地方。</p><p class="medium-para">那年头，地图上处处都是纷红[31]，处处都讲英文，没有语言问题。他们就这么前往帝国边境，一而再，再而三渡越大洋，随着海浪节奏起伏。像看电影一样，我在脑海中看见这景象——远洋客轮松开缆绳，滑离码头，汽笛大作，群众抛掷花朵，红发女人站在甲板上，微笑，挥手，微笑。</p><div class="para-break"></div><p class="medium-para">佩瑞格林叔叔遗传了她的红发，我们同父异母的妹妹萨丝琦亚和伊莫珍亦然，崔斯专也是。我们比较倒霉，只有婚生子遗传到。至于我和诺拉，起初是鼠棕色，后来开始染发（黑色）；等到停止染发，才发现头发不知不觉中已经灰白了。</p><p class="short-para">佩瑞格林叔叔最得母亲疼爱。</p><p class="long-para">有一次，在澳洲巡演时——他告诉我——我们匆匆走在悉尼街上，圆形码头旁，正要去某个女士午餐俱乐部：她常客串演出，这对收入有帮助，兰纳夫永远缺钱。我们当然迟了，因为她找不到一件干净洋装，翻来翻去挖出一件只有两小块酒渍和一抹橘子果酱的，于是她别了一束红花缅栀遮住污渍最严重的部分，设法梳起那头不听话的头发。梅齐尔留下来陪父亲排练他的恺撒。走着走着看到一个摇手风琴的卖艺人，于是我们停下脚步欣赏那只猴子。她给了卖艺人六便士，那人弹起《雏菊，雏菊》。她拉着我的手，我们就这么在人行道上跳起舞，她的发夹散落满地，我的赛璐珞领圈也断成两半。猴子拍手，路过的人都盯着我们看。“来呀!”她对全世界说。“一起来跳!”然后每个人都开始跳舞，牵起自己身旁陌生人的手。“我太爱你了，爱得半疯啦。”她看着自己的成就，觉得很开心。我们错过了汤，错过了鱼，抵达时鸡肉正上桌。她披头散发，花束也没了，一只鞋跟断掉，她的小儿子没领圈也没领带，肩上还坐着那只猴子——她拿自己的金表换的。她为她们表演了鲍西娅那段演讲：“慈悲，并不是来自……”[32]让她们听得很高兴。甜点是杧果冰激凌，我们最爱了，各吃了三碗。墨尔本有一种圣代以她为名——“艾丝黛拉冰激凌”，杧果冰激凌浇上百香果泥。小花朵拉，如果哪天我们一起去墨尔本，我就请你吃“艾丝黛拉冰激凌”。</p><p class="short-para">我们的佩瑞格林总是这么幸运，连记忆也不例外，充满笑声和舞蹈。他总是记得快乐时光。</p><div class="para-break"></div><p class="long-para">佩瑞格林·罕择，冒险家、魔术师、猎艳高手、探险家、电影编剧，有钱人、穷人——但永远不做乞丐或小偷。诺拉和我到了这把年纪，朋友死的比活的多。我们常去墓园，为年轻时的朋友除除草，但是我们连你埋在哪儿都不知道，亲爱的佩瑞，我们不知该去哪儿给你上坟送花。你在旅途中度过童年：今天在这儿，明天到那儿，长大成人后依旧定不下来。你喜爱改变，喜爱性交，喜爱惹麻烦。说来好笑，到最后你还喜爱蝴蝶。佩瑞格林·罕择，迷失在蝴蝶间，迷失在丛林里，消失得如此利落彻底，仿佛你用向来爱玩的魔术把戏把自己变不见。</p><p class="long-para">墨尔本有种冰激凌圣代以艾丝黛拉为名，新南威尔士则有一整个干巴巴小镇改名为罕择——在她和兰纳夫露天演出《科利奥兰纳斯》之后。塔斯马尼亚的贺巴镇有条街也叫罕择。他们还去印度巡回演出，不止一次，来来回回穿越印度次大陆好几次。闪亮铁轨在滚动车轮下后退，烟囱阵阵冒烟，日历一页页落下被风吹走……一位印度大君送一只象宝宝给两个男孩，但他们没法带它上火车。大君爱上艾丝黛拉，答应送她与她等重的红宝石，只要她留下，天天为他朗诵薇奥拉“柳条小屋”那段台词[33]。那她怎么做?我们问。她让他快乐，佩瑞格林说，并因此得到一份礼物。她让他快乐，然后离开。离开时也得到一份礼物。</p><p class="medium-para">红发女人，微笑，向逐渐消失的海岸挥手。她离开印度大君，离开一路上世界各地大城小镇剧院火车站里的短暂激情，但没有离开兰纳夫[34]。</p><p class="long-para">上海，一间早已拆除的剧院，以罕择为名；然后香港；然后新加坡。这时一切都已有点磨损，有点破旧。再度漂洋过海，重回美洲——蒙特利尔、多伦多，来来回回穿越美洲大草原。亚伯塔省的罕择，平坦得像一盘雪；北达科他州的罕择——再小的城镇也能迎接他们，也能以改名来回馈他们的大驾光临。巡回演出逐渐变成了一种疯狂。在阿肯色州，巡回传教牧师离开后留下的空地，搭起罕择夫妇补了又补的破烂帐篷：兰纳夫瘦削、憔悴、留着胡子，愈来愈像施洗者约翰——如果施洗者约翰活到老年的话。</p><div class="para-break"></div><p class="medium-para">他们终于抵达西南部，来到得州一个原叫枪管后来改名罕择的小镇，在干枯灌木丛间搭起帐篷演出《麦克白》，雇一批墨西哥农夫扮苏格兰士兵，把多刺的扇状仙人掌举在头上充当勃南森林。在那么多各式各样的狂野陌生地方，佩瑞记得最清楚的是得州的罕择；后来他旧地重游，一两个满脸皱纹的老头想起她曾如何让自己快乐，还朝着啤酒掉眼泪，于是让她儿子当上名誉警长。</p><p class="medium-para">道具和戏服掉的掉、破的破、被偷的被偷，之后或靠求讨，或临时应变，或缝缝补补。兰纳夫喝酒赌钱，大声讲台词。他也逐渐不行了。他对美国大喊，但美国不再听他说什么。一晚，在亚利桑纳州的土桑，他赌输了《李尔王》的王冠，艾丝黛拉用硬纸板帮他另做一顶，涂上金漆。“这就成啦。”</p><p class="medium-para">她为什么留在他身边?见鬼了，也许她真的爱他；也许那么多她曾使之快乐的人都只是余兴节目。但她已经失去让兰纳夫[35]快乐的能力。</p><p class="long-para">然后，有一天，他们正在中西部乡下一处迷你小镇搭舞台，预期会有不少观众，因为那里晚上无事可做，只能呆看玉米成长。这时，兰纳夫接到纽约来的电报。罕择夫妇为散播莎士比亚的荣光而四处漫游乃至衣衫褴褛的同时，卡西乌斯·布司——也就是艾丝黛拉当年的霍雷肖——则留在一个地方功成名就，现在他自己也成了演员兼剧团经理，在不夜大街[36]有自己的剧院。难道他会忘记老朋友?才不!佩瑞说，当时艾丝黛拉表情如谜，露出微笑。别忘了她还年轻，不到三十岁，或最多不超过三十五，而兰纳夫已近七十，孤注一掷赌这一把，赌最后一场胜利的祈祷聚会。他要让他们通通好看!他将最后一次在百老汇发出白炽火光，犹如莎剧的火葬柴堆。但他选择的戏码却是，唉，《奥瑟罗》。</p><div class="para-break"></div><p class="long-para">不管三十还是三十五，她看来仍是明信片宣传照上那个少女，身穿睡衣，头发披在书上。“唱杨柳青，杨柳青，杨柳青。”[37]卡西乌斯·布司饰演伊阿古；这故事不需要手帕，但她丈夫还是杀了他们俩，先杀她，再杀他。他们一起溜出首演夜的宴会，毕竟两人已是旧识。也许这时，老兰纳夫已分不清莎剧和现实生活。第二天，剧评大加赞誉，谋杀案的新闻则等到中午才见报，因为艾丝黛拉饭店房间的女仆送上迟来的早餐时才发现他们的尸体。一共三具。他开枪射杀他们两人，然后自杀。</p><p class="short-para">众人下[38]。她总是很懂何时该退场。</p><p class="short-para">但日子还是得过下去。</p><p class="medium-para">两个小男孩困在纽约，可怜的悲剧流浪儿，几乎死在那里，至少佩瑞是这么说——因为他们吃得太撑，肚里塞满糖果、热狗、冰激凌派，都是那些在饭店大厅做生意的、胸部下垂、头戴羽毛帽的可爱女士好心买给他们的。演员父母没留下半毛钱，只留下未付的账单、假珠宝和夸张招摇的态度，但广场饭店宽限他们赊账，于是他们学会过入不敷出的生活。</p><div class="para-break"></div><p class="long-para">他们虽然是双胞胎，但长得并非一模一样。十岁的梅齐尔深色头发，心事重重，未来将雄霸夏斯伯利大道的侧面轮廓已见雏形。这侧面轮廓对梅齐尔的重要性，一如双耳之于克拉克·盖博。深色眼睛、卷翘长睫毛是人们总说“长在男孩身上太可惜”的那种，体格正适合跳跃、斗剑、爬上阳台等等莎剧演员所需要做的事。我知道这一切，当然还有他“极具尊严质感”这一点，全都显示卡西乌斯·布司是他父亲，但别忘了可怜的老兰纳夫当年也曾是午场偶像，尽管在那当年，女人还穿有撑架的大蓬裙。这对兄弟的生父问题仍挂着大大的问号，不过不管实际贡献洨[39]的是谁，那两名可能人选都绝不会让小孩觉得丢脸，而对我这个孙女而言，我喜欢认为他们两人都有份，你懂我意思吧。</p><p class="medium-para">但佩瑞格林爱笑爱闹得要命，没法板起脸装正经，就像他母亲。有一次，演小麦克德夫[40]时，他头戴尿桶上场，对伯斯郊外当晚来看戏的剪羊毛工而言，那是全剧最精彩的一刻。之后，梅齐尔再也不让他上台了。即使当时才小小年纪，两人性格就已截然不同，梅齐尔一心为了艺术，佩瑞格林则为了好玩。别以为兄弟就一定喜欢彼此，差得远了，他们道不同不相为谋。</p><p class="long-para">他们靠客房服务和陌生人的善意[41]过活，直到船从利斯港[42]起航，他们的报应来了——尤非美雅·罕择小姐，阴郁有如地狱，彻头彻尾的长老会教徒，他们的姑姑。她是皮洛克瑞附近一家救济院的院长，视舞台及演员为不共戴天之仇敌，一滴眼泪也没为哥哥嫂嫂掉，因为她认为他们的凶死正是上帝的报复，是一种凶野的正义。她一把揪住梅齐尔衣领，把尖叫着的他塞进标示“非随身行李”的皮箱，接着伸手要抓佩瑞格林，但他一耸肩、一扭身，姑姑手中只剩下他的旧粗呢外套，他则咻一声跑不见。佩瑞格林跳出窗台，爬下防火梯，这个身穿衬衫、一头胡萝卜色头发的十岁男孩沿着人行道慌忙狂奔，撞翻一个热狗摊，撞趴一个擦鞋人，然后……消失无踪。</p><p class="medium-para">就这么在美国消失得无影无踪。尽管他后来讲过少年时期种种奇遇的精彩故事，但他真正的遭遇我一无所知，只知道那不可能轻松愉快，只知道他刚发现我们时已经富可敌国。</p><div class="para-break"></div><p class="short-para">于是佩瑞格林一溜烟逃走，舍命狂奔，但梅齐尔困住了。</p><p class="medium-para">梅齐尔一直很敬爱父亲，甚至崇拜父亲，他从父母人生那场大灾难中只保留了一样小小纪念品——兰纳夫扮李尔王时戴的硬纸板王冠，就是艾丝黛拉做的那一顶。天知道梅齐尔是怎么瞒过姑姑，留下这破烂遗迹。</p><p class="long-para">他身上流着演员的血，不是吗?在那些充满雨水和麦片粥的阴郁年月，当他躺在冰冷的床上，盖着姑姑给他仅此一条的针织毯时，他会把父亲演过的伟大角色的台词一字一句背给自己听。麦克白。哈姆雷特。（但奥瑟罗当然排除在外。）阿非姑姑的苏格兰高地钟——你已经见过了，就是现居莎翁路四十九号的这座鹿角老爷钟——敲响十二点，然后一点，然后两点，他被自己的独角戏感动得哭着入睡。姑姑完全禁止他接触舞台，连想都不准想，但她看得出他有这方面天分——修辞等等——便力劝他当牧师，后来她愈来愈坚持，他终于决定不再受她摆布。</p><p class="long-para">他用一件换洗衬衫和内衣裤包起硬纸板王冠，拿一条手帕绑捆，永远告别了皮洛克瑞。此刻我可以看见他出发闯荡人生的模样，就像杂剧[43]里的狄克·威丁顿，他走出救济院关上门，阿非小姐的钟敲响五点。当时一定寒冷刺骨，没有星星，四周仍一片漆黑。一辆满载包心菜的马车驶过，他搭便车前进了一两英里。然后，天逐渐亮起。他没有朋友，没有亲人，只有远在大半个世界以外的、感情从来就不好的、失踪的弟弟。在这世上他一无所有，只有熊熊燃烧的自尊与野心，一双深色眼睛，尊严质感的天分，以及一顶金漆剥落的玩具王冠。</p><div class="para-break"></div><p class="medium-para">他终于抵达伦敦，没多久便一穷二白，不，该说是穷得一塌糊涂，然后来到此屋，当时这里是出租给演员的供膳宿舍，不过我得说，都是些不得志的演员。</p><p class="medium-para">在整个欧洲都熄灯[44]之前，布里克斯顿满是剧院、歌舞厅、各式各样的“帝国”或“皇家”[45]，应有尽有。从布里克斯顿搭电车，四通八达。街上高高窄窄的建筑里塞满脱口秀艺人；慢板舞者；喜剧抒情女高音；变戏法的；拉小提琴的；狗、鸽子、山羊等各种表演动物；跳舞的侏儒；男高音、女高音、男中音、男低音，有独唱，也有以上四者任选排列组合的二重唱、三重唱等等。还有一些人以倾泻满腔热情为生，因此自认高人一等。</p><p class="medium-para">那年头，我们的母亲负责倒尿桶，装满洗手用的水罐，耙干净炉栅里的炭灰，生火，提热水上楼，偶尔帮绅士擦擦背，偶尔提供她自己作为服务——</p><p class="short-para">或者只有那么一次。</p><div class="para-break"></div><p class="short-para">欠思是我们的姓氏，也是我们的本质。我们的出生不在计划中。</p><p class="long-para">梅齐尔睡在这里。这间阁楼，全屋最便宜的房间，比最便宜的还便宜，因为他从没付过房租。我仿佛看见他在一方镜子前，戴上破旧王冠，摆出姿态，听花园那头的槭树在风中摇曳窸窣，假装那是观众的鼓掌喝彩声。走投无路，饥渴万分，汲汲名利，在各个经纪人之间来来去去一天一天又一天，回莎翁路吃水煮包心菜、睡又窄又硬的床。不知道他在这里是否曾用嘴巴和屁眼讨好别人，借此获得提拔?我想母亲一定觉得他很可怜。我可以想象，她在这寒冷房间脱光衣服，转身面对那挨饿的男孩。她当时是什么神态?害羞?紧张?好色?</p><p class="long-para">然后画面整个转黑。我不忍继续想象下去，那太让人心痛。人总是喜欢认为在自己的制造过程中有些爱，或至少有点乐趣，但我不知道，我无从猜测，那深色眼睛的陌生人将手伸进那一文不名孤女的裙子时是愤世嫉俗?是温柔?是绝望?还是一时冲昏了头?她以前有没有做过这事，知不知道自己在做什么?她是否害怕?还是充满欲望?还是半推半就?天知道，他当时确实够英俊，女人都为他疯狂。也许她就是第一个为他疯狂的女人。每天早上帮他铺床时，她是否想着他?她是否把自己的脸贴在枕头上，希望枕头是他的脸颊?</p><p class="short-para">“她只是个小东西，但胆子大得很。”阿嬷以前常说。</p><div class="para-break"></div><p class="medium-para">我想把事情想象成这样：她进房，关门上锁。他正躺在床上复习莎士比亚。他抬头一看，连忙放下那本快翻烂的《莎翁作品全集》。她动手脱衣。“这下我可逮到你了!”她说。绅士除了乖乖照做还能怎么办?</p><p class="medium-para">九个月后，我们出生，她的心脏停摆。此外我对她一无所知。没有照片可看，我们连她长什么样都不知道。她叫小咪，像只小流浪猫，没爹没娘。也许欠思太太这屋对她来说甚至算是避风港，尽管得爬楼梯——她每天楼上楼下一定得来回跑个二三十次。还有炉栅得清理，门前台阶得刷洗。</p><p class="medium-para">倒不是说欠思太太是法国人所谓的吹毛求疵。她经营的这家供膳宿舍并不豪华，勉勉强强维持住正派格调，而同样的形容也适用于她。脚架支撑的绿釉盆种着波士顿蕨，地上铺着土耳其地毡，但整个地方看来始终不像真的，像舞台上的演员宿舍布景，仿佛阿嬷把此处布置成这样是为了配合她刻意选择的一个角色。欠思太太是个谜般人物。</p><p class="medium-para">梅齐尔·罕择睡在这里，但为时不久。他辛苦守在剧院门口，拼命参加试演的努力有了成果，我们的母亲发现月经迟到时，他和他的纸板王冠已经离开了。她每天早上悄声呕吐，不让欠思太太听见。那年八月大战开打，但我想母亲根本不在意。欠思太太没听见呕吐，但听见了哭泣。</p><div class="para-break"></div><p class="medium-para">一个星期一早晨，我们呱呱坠地，那天晴朗风大，齐柏林飞艇掉下来。先冒出一个号啕大哭的小女娃，然后另一个，全程都由欠思太太处理。她打过电话请医生，但医生始终没来。母亲看了我们一眼，虚弱得没力气抱我们，因为她从星期六就开始分娩，但欠思太太总是说她好好地看了我们一眼，还勉力露出微笑。</p><p class="medium-para">她有什么好微笑的?当时她才十七岁，没有男人，没有家，又身处战时。不过欠思太太总是告诉我们她露出微笑，而欠思太太尽管有时吝于吐实，却从不说谎。“她有什么原因不笑?她没妈没爹，小宝宝也是亲人哪。”</p><p class="medium-para">欠思太太说，那个早晨天很蓝，晾衣绳上的衣物都随风跳起舞来。星期一，家家皆洗衣。多么壮观!整个布里克斯顿只见黑长袜与男士的保暖卫生裤并行，条纹衬衫与法兰绒睡衣共舞兰贝司走步舞，法式内裤与花边衬裙大跳康康舞，枕头套、床单、毛巾、手帕像旗帜迎风招展，一切都在动。轰炸停止了，小孩出来玩游戏，在阳光下唱歌。我们出生时那些小孩唱的歌，也是以前欠思阿嬷有时会对这两个小孩唱的歌：</p><p class="short-para">月光光，照在查理·卓别林身上，</p><div class="para-break"></div><p class="short-para">他的鞋子裂痕一行行，</p><p class="short-para">因为没有上油擦亮，</p><p class="short-para">他的松垮裤子也欠缝补</p><p class="short-para">才能前往</p><div class="para-break"></div><p class="short-para">达达尼尔海峡。</p><p class="short-para">可怜的老查理，现在已成了雏菊的肥料。老查理，死得透透的啰。</p><p class="medium-para">莎翁路处处歌舞，欠思太太一手抱着我们一个，走到窗前，于是我们湿漉漉的婴儿眼睛看见的第一样东西就是阳光和舞蹈，然后一只海鸥振翅而起，掠过窗前，飞得又高又远。她跟我们讲那只海鸥讲过太多次，使我相信自己看见了那只海鸥高高飞上天，尽管当时刚孵出来的我对此毫无记忆。</p><p class="short-para">身后一声轻叹，她走了。</p><div class="para-break"></div><p class="medium-para">十分钟后，医生才到，写下死亡证明。就这样。欠思太太收养我们，但从不让我们叫她“母亲”，以示尊重亡者。我们都叫她“阿嬷”，“欠思”便成了咱们的姓。</p><p class="medium-para">但我也从来不认为“欠思”是她的本名。关于她，我只知道：她1900年元旦来到莎翁路四十九号，拿一张银行汇票付第一年房租，看起来就像是个在新世纪来到新地方，用新姓名（至少证据如此显示）开始新生活的女人。她自称“太太”，也跟我先前提到那种勉强保持正派格调的努力有关，因为我从没见过任何丈夫的痕迹，而且，老实说，她始终有种浪荡不羁的味道。</p><p class="medium-para">她个子不高，约五尺二寸或二寸半，但体形扎实活像装甲车。她总是扑上好厚一层蕾秋蜜粉，你若拍拍她，会冒起一阵细细粉雾。她脸颊正中央涂着又大又圆的胭脂，黑色眼影之浓，每次经过电力大道，那里的小孩都对她唱上一段《一双美丽的黑眼睛》。我们认识她的三十年间，借染发剂之助，她的头发是金丝雀那种金。她总是在左嘴角下画一个大大黑黑的美人痣。</p><p class="medium-para">出门时，她穿黑，永远提着四方形油布提袋，袋内有肥厚的皮包、一条装在信封里的干净手帕（信封上她用铅笔写着“干净手帕”）、两枚安全别针（她说以防万一衬裤掉下来）；通常还有一两个要拿到酒铺回收的空瓶。她头上会戴无边黑色小帽，垂下斑点面纱。我一直记得她的灰色及膝棉线袜，用两条松紧带打结固定。</p><div class="para-break"></div><p class="medium-para">在家里，只要没有房客在，她通常一丝不挂。她奉行天体主义，认为让皮肤晒晒太阳吹吹风对我们小娃儿也好，因此我们很少磨损或穿坏衣物。我们常光着身子在后院嬉戏，让循规蹈矩的邻居大吃一惊。布里克斯顿已经变了很多，如今就算你在花园大玩3P也没人会眨一下眼皮，只有隔壁戴耳环的男人可能会插口问一句：“保险套够吗?”</p><p class="medium-para">她开口与其说是讲话，不如说是演说，而且发音奇特。不过她有时会忘我到连空气都为之一变。有一次，我们刚从市场回来，买了一大堆活像兔子饲料的食物——她热爱生菜沙拉，这是天体派作风的一部分。她最严格的时候，会拿菜给我们当饭，夏天生吃，冬天水煮。我们正挑拣菜叶，身后传来一个故作庄重的声音，无礼地议论阿嬷：“……她以为她是谁……”</p><p class="short-para">阿嬷陡然转身，举起拳头：“你他妈的是啥意思?”</p><p class="medium-para">我们始终不知道是谁给她钱在莎翁路安顿下来，她也从没主动提。她发明了自己，演出仅此一次，自始至终成谜，尽管她把一切都留给我们，我们一切都是欠她的，而且愈老愈像她。后天战胜先天的明证啦，宝贝儿，再清楚不过了。</p><div class="para-break"></div><p class="long-para">我发誓，直到现在，有时深夜我还会听见轻声啪啪，是她的光脚踩在台阶上，下楼确认厨房瓦斯关好了，前门锁好了，我们都已安全在家。有时，早餐室仍有一股徘徊不去的新鲜薄荷味，因为她最喜欢的饮料是薄荷酒冰沙加一枝当令的薄荷，不过其他时间她都是有什么就喝什么。还有她的水煮包心菜——起初，我们还以为是排水管道的味道，不管怎么努力，那味道就是驱之不散。长大后，我们再也不碰包心菜了，见过阿嬷把包心菜煮得死去活来的毒手，我再也不忍看到它——连屠宰场杀牛都没那么狠。</p><p class="medium-para">她跟小孩相处就像鸭子游水一样自然，让你纳闷她自己怎么没生。多年后我问过她一次，她说，直到那一个早晨她抱起我们拥在怀里，这才知道男人是干吗用的。“以前我常纳闷要男人干吗，”她说，“看到你们两个才恍然大悟。”</p><p class="long-para">别忘了，我们出生在大战期间。虽然我们带给她快乐，但伦敦南区整体而言可不怎么快乐。一开始，邻居的儿子都出征去了，死在战场，上帝保佑他们!然后轮到丈夫、兄弟、亲戚，最后所有的男人都走了，只剩下快进棺材和仍在摇篮里的，于是这里成了女人城，黑衣红眼倚门而望，当时阿嬷就说，后来1939年又说了一次：“每二十年，这种事总要发生一次。这是代与代之间的问题。老男人受不了竞争，就把找得到的年轻男人全杀掉。他们不敢自己动手，这样会泄露居心，家家户户的母亲不可能会支持，于是全世界男人就聚在一起谈交换条件：你们杀死我们的男孩，我们杀死你们的男孩。就这样，没两下就完成了。然后老男人又可以高枕无忧。”</p><p class="medium-para">空袭轰炸一开始，阿嬷就会跑到屋外，朝天上的老男人挥动拳头。她知道他们最恨女人和小孩。然后她回屋抱着我们，唱摇篮曲给我们听，喂我们吃东西。她是我们的防空洞，我们的余兴节目，我们吸奶的乳房。</p><div class="para-break"></div><p class="medium-para">房客日渐减少。浴室里太多婴儿大便，小宝宝光着身子满地爬，没人铺床，没人煮麦片粥——原先的帮手全在军火工厂找到肥缺，可不是吗，这令阿嬷十分厌恶。她正长篇大论教训他们，他们就拍屁股走人了。阿嬷要怎么赚钱呢?也许偶尔——我说的真的是“偶尔”——会有女歌手租房一个小时，练习音阶，或者不太挑剔的慢板舞者想歇脚二十分钟，嗯哼，咳咳。房客走前门，上前厅楼梯；我们走屋外直通地下室的台阶，从那个门出入。</p><p class="medium-para">我们才刚牙牙学语叫“阿嬷”，那座钟就来了——那座雄鹿头的老爷钟。由已故尤非美雅·罕择小姐的遗产管理人直接寄自皮洛克瑞，附一张纸条说莎翁路四十九号是她侄子梅齐尔已知的最近期地址，于是钟便送来这里。她把这座钟遗赠给他，其他一切全捐给穷人。</p><p class="long-para">读到这纸条，阿嬷又咒又骂，无法接受我们只得到这么一座钟。她费尽九牛二虎之力到处找我们父亲，连一块石头都不放过，以防——后来她告诉我们——他躲在石头底下。接着，突然就休战了，他出现在伦敦西区，演的还是罗密欧!于是阿嬷戴上无边小黑圆帽，去看一场午场演出。一个在二楼租房休息的特技舞者暂时代为照顾我们，教我们后空翻，我们玩得可开心了，直到阿嬷一脸盛怒回来。“你看来需要喝一杯。”特技舞者说，于是她们退下，我们继续翻跟斗，后来我们想吃面包喝饮料，跑跑跳跳来到早餐室，才无意间听到阿嬷的话：“他矢口否认，我屁也不能做。”诺拉和我都听不出所以然，但她们俩抱起我们。“可怜的小东西!”然后我们吃到双份点心：一人两片面包，还抹了点覆盆子果酱。</p><p class="short-para">后来那特技舞者嫁了个贵族。这世界真够妙的。</p><div class="para-break"></div><p class="short-para">于是日子照常继续，直到同一年几星期后的某个黄道吉日，有人来敲门。</p><p class="short-para">叩叩叩，谁呀?我蹦蹦跳跳去开门。</p><p class="short-para">叩叩叩。</p><p class="short-para">敲门的人吓了一大跳。</p><div class="para-break"></div><p class="medium-para">陌生人面前出现一个赤身裸体的小孩，一丝不挂，只有棕发上绑着蓝色大蝴蝶结，脸上戴一个黑色眼罩。我手拿银纸剪成的大弯刀，另一个一模一样的小孩蹲在楼梯上，与其说是双胞胎，不如说更像眼花造成的幻觉，两人好似一个模子印出来，只不过她的蝴蝶结是绿色的，肩头绑着一面骷髅头加交叉骨头的红旗当披风。两个小女孩都以冷冷的圆眼看着来人：这是啥呀?</p><p class="short-para">真是拒人千里!拒人千里得太厉害了。他忍不住大笑起来。</p><p class="medium-para">哦，那时候他真是个英俊小伙子。如果我用廉价罗曼史的语言形容他，你必须原谅我——佩瑞总带有那种味道，尤其在他风华正茂的二十来岁，宽肩，结实大腿，一头黄铜亮泽的乱发，鼻梁上散布着星星点点的雀斑，爱笑的绿眼闪着金光。他身穿一件磨损的陈旧夹克，缀着美国空军飞行部队肩章，左臂吊着绷带。这是我们来自美国的佩瑞格林叔叔，但我们一点也不认识他。</p><p class="medium-para">他发现他的笑伤了我们的感情，于是打住，唇边仍有一抹笑意颤动。他跪下来，好让我们三个一般高，仔细打量新发现的这对侄女。他在口袋里翻找，掏出的不是糖果，不是零钱，而是一条洁白无瑕的手帕，抖开给两个小女孩看：里面没有藏东西吧?</p><div class="para-break"></div><p class="short-para">我们摇头。没有。我们看得出来，他跟我们一样，都没有藏什么东西。</p><p class="short-para">他把手帕打个结，又给我们看。一个简单的结，除了结什么也没有。</p><p class="short-para">我们看得入迷，逐渐靠近他。</p><p class="long-para">他煞有介事地解开手帕，看哪!一只白鸽飞出来，在门厅里绕了两圈，接着蹲在老爷钟的鹿角上，叫：“咕噜噜噜!”然后在地毯上拉了一泡屎，让从地下室走上来察看的阿嬷很不高兴。谢天谢地，阿嬷有穿衬裤。然后我们全移师到厨房喝彩，两个小小女海盗坐在佩瑞格林·罕择膝上，乱翻他口袋想找到更多鸽子，没找到，只找到一个富乐氏核桃蛋糕，阿嬷戒慎礼貌地接受了。如今富乐氏核桃蛋糕也已呜呼哀哉，太不幸了，此刻我多想来块富乐氏核桃蛋糕啊!因为我们都很爱吃富乐氏核桃蛋糕，大家吃掉好几块，气氛稍微轻松了点，不过佩瑞格林出于责任感前来代刚重逢不久的哥哥进行的任务，仍令他极度气愤又尴尬。</p><div class="para-break"></div><p class="short-para">何况他并非感觉该替梅齐尔尽责，而是感觉该替亡者——我们的祖父母——尽责。</p><p class="medium-para">哪，口袋里装着鸽子的佩瑞格林·罕择，怎会在那个风和日丽的下午出现在布里克斯顿，逗得我们好开心?别忘了，你上一次看到他时，他刚躲过阿非姑姑的魔掌，沿着不夜大街窜逃，逃往——逃往哪里?这可是个难题。</p><p class="long-para">关于他接下来发生了什么事，佩瑞格林多年来提供的答案犹如满汉全席。他把他的种种历史全告诉我们，我们可以从中自行挑选——但那些历史老是变来变去。嘿，这就是麻烦所在。他是否真的在埃尔帕索某家廉价旅社遇到安布罗斯·比尔斯[46]，随他同去墨西哥打仗?（关于这点的证据——我得说，唯一的证据——是一本题赠给他的《魔鬼辞典》。）他是否曾冒充班·特拉文[47]?我确知他在马戏团工作过，或者歌舞厅，再不然，就是他为了在阿拉斯加的漫漫冬夜娱乐其他探矿者，才把舞台魔术、杂耍把戏练得那么纯熟。最重要的是，他怎么会变得这么有钱?</p><p class="short-para">“这简单。”他说着咧嘴大大一笑。“我在阿拉斯加挖到了金矿。”</p><div class="para-break"></div><p class="medium-para">但他的杂耍技巧真的非常好，这点不容否认。他曾告诉我他的杂耍是W. C. 费尔兹[48]教的，但我不确定我相信这些话。</p><p class="medium-para">阿嬷很高兴看到这么一个英俊小伙子逃出老男人的魔掌，只留下一处皮肉伤，也就是卡在他左上臂的破弹片。她说这让她对人类的存续有了希望。他跟阿嬷愈聊愈投机，直到最后，他万分尴尬地说出来访原因……原来他自告奋勇来向阿嬷传达梅齐尔即将成婚的大好消息。</p><p class="short-para">是的!梅齐尔订婚了，想付钱把我们打发干净，免得将来给他找麻烦。</p><p class="medium-para">“他的口气变了嘛。”阿嬷说。“那天《罗密欧与朱丽叶》的午场结束后，我直接杀进后台找那王八蛋，当时他身上只有紧身裤和睫毛膏，居于劣势，但还是否认父女关系。”</p><div class="para-break"></div><p class="short-para">“私下跟你说，”佩瑞格林透露，“我相信他真的很怕你会带着俩女娃在婚礼上冒出来。”</p><p class="medium-para">两人哈哈大笑。我们小孩子当然一个字也听不懂，但我们看看这个又看看那个，也跟着笑起来。“无辜的小可怜。”阿嬷说。小海盗的父亲要跻身上流社会了——史密斯广场圣约翰教堂的盛大婚礼，十二名伴娘，宾客包括诸位公爵，新娘身穿渥斯[49]设计的白纱，这是我们第一次听到她的名字：艾塔兰妲·琳德女爵。</p><p class="short-para">“小姐们，新娘有钱得很。”佩瑞告诉我们。</p><p class="medium-para">“嗯，”欠思太太说，“就让他分一点不义之财给我们吧。”看见佩瑞狐疑的表情，她接着说：“没买彩票就不可能赢钱，我的宝贝儿。俄国俗话说得好：‘抱最好的希望，做最坏的打算。’”</p><div class="para-break"></div><p class="short-para">这是她的座右铭，也是我们的。</p><p class="long-para">但是，后来绅士地负起责任的是佩瑞格林自己。也就是说，每个月初寄来莎翁路的支票上签的是他的名字。阿嬷问起这事，他的雀斑脸红了，说，梅齐尔和他决定对外表示——如果任何人问起的话——做出这档肮脏事的是佩瑞格林，还有，真的很对不起，她可不可以原谅他?因为他擅自用了她的名字。也就是说，为了让会计满意，身为领养我们的阿嬷兼监护人的欠思太太，在账面上成了我们的母亲。“这不等于让我们结婚了吗!”她说，笑得跌下椅子。</p><p class="medium-para">但我们小女孩没去注意这些，只趴在佩瑞新送的留声机旁，诺拉小心翼翼把唱针放在那张奇妙的黑色电木[50]圆饼上，佩瑞叔叔说只要转动把手，圆饼就会唱歌给我们听。嘶嘶，呼呼，然后，大喇叭传出轻声微弱音乐，仿佛这是他又一个惊人的把戏——小喇叭、伸缩喇叭、班卓琴、鼓。一首歌，我们的歌，对我们做出了我们父亲永远没遵守而由其他人履行的承诺：我能给你的只有爱，宝贝。</p></div></section><section class="chapter-section">
+<h1 class="chapter-title" id="chapter-3">
+    目录
+</h1>
+<div class="content"><p class="short-para">[内容提取可能不完整]</p></div></section><section class="chapter-section">
+<h1 class="chapter-title" id="chapter-4">
+    2
+</h1>
+<div class="content"><p class="short-para">一、二、三，跳！看我跳波卡舞。</p><p class="medium-para">很久很久以前，在克拉彭广场中央街一家缝纫用品店楼上，有个老妇身穿快绷开的黑绸裳，猛弹着一台直立式钢琴，她女儿则穿粉红蓬蓬纱裙和皱兮兮的紧身裤袜，你若脚抬得不够高就会被她拿藤条打脚踝。每周一次，每个星期六早上，欠思阿嬷会把我们梳洗干净，头发绑成腊肠卷。我们穿紧身背心，棕色长袜用吊袜带系紧。欠思阿嬷一手一个紧紧牵住我们，然后——走啰！上舞蹈课去，我们小跑着赶电车。</p><p class="medium-para">我们总是搭电车从布里克斯顿到克拉彭广场中央街。电车行进姿态庄严，庞大堂皇地占据道路中央，一路上不会左倾右斜，但不时一阵反胃摇晃，就像阿嬷从酒馆回家。</p><p class="short-para">一、二、三，跳。</p><div class="para-break"></div><p class="medium-para">一面面积尘的大镜子，满墙开放。此刻，我仿佛看见我们穿着背心、内裤和小小粉红舞鞋，朝自己的镜中倒影屈膝行礼。阿嬷坐在门口，提袋放在膝上，眯眼透过斑点面纱看我们。她看似忧虑，仿佛生怕我们扭伤，但这只是因为她正含着一颗狐狸牌超凉薄荷糖。房间里充满汗水和瓦斯暖炉的味道。老妇猛敲钢琴，穿着下垂的蓬蓬纱裙的沃辛顿老师教我们单足趾尖旋转，可怜人，她足有六十岁了。</p><p class="short-para">一、二、三，跳！看我们满场飞。</p><p class="medium-para">我们手扶横杆练习。诺拉穿着海军蓝灯笼裤的屁股在我前方扭动前进，像两颗水煮蛋包在手帕里；然后我们转身，轮到她看我的屁股。屋外，一辆电车呼噜噜经过，上方电缆闪出火花，发出一声咔嗒。</p><p class="short-para">老实说，我们简直是为了舞蹈课而活，认为整个星期存在的目的就是星期六早晨。</p><div class="para-break"></div><p class="short-para">那时，我们七岁。</p><p class="medium-para">食品储藏室里有个蛋糕，插着七根蜡烛，糖霜高高堆到你眉际，粉红洁白的惊人美丽只被一个小指印破坏——是诺拉忍不住偷尝。它端坐在食品储藏室，等着我们看完这辈子的第一次午场回来，那是我们的生日礼物。咱家阿欣挥手送走我们，我们穿着最体面的外套，毛茸茸绿粗呢，领子是天鹅绒，不让粗呢磨伤我们的脖子，还有搭配的小帽。阿嬷把我们打扮得公主一般。我们的手套总是上好的光滑小羊皮。</p><p class="medium-para">阿嬷大手笔买了正厅前排的座位，我和诺拉兴奋得几乎承受不了，狂喜得哑然无语。墙上高举镀金饰带和水晶吊灯的小天使石膏像；红色丝绒；正厅前排座位上穿花朵淡彩丝洋装的女士，以及她们身上传来的爽身粉、香水、香皂的混合气味；还有那垂挂在我们与乐趣之间的神奇布幕，我们期待难耐地知道它不久就会拉起，然后，然后……然后会有什么神奇秘密显现在我们眼前？</p><p class="short-para">“等着看就知道啰。”阿嬷说。</p><div class="para-break"></div><p class="medium-para">灯光暗，布幕下方亮起。我爱死这一刻，向来最爱这一刻，当灯光暗下，布幕亮起，你知道有件神奇的事即将发生。就算接下来发生的事扫兴之至也无所谓，那份期待之情永远纯净无比。</p><p class="short-para">怀抱希望的旅程胜过抵达，佩瑞叔叔常说。我也总是比较喜欢前戏。</p><p class="short-para">唔。倒也不是总是啦。</p><p class="short-para">当那第一次灯光暗下、布幕亮起，诺拉和我互看一眼。我们的小小心脏怦怦乱跳。</p><div class="para-break"></div><p class="long-para">布幕升起，我们看到弗雷德与阿黛拉被赶出住处，流落街头，身旁满是家具杂物。她摆好椅子，调正沙发，在立灯上挂了个牌子：“天佑吾家。”我们简直要快乐而死，紧抓彼此的手活像阴森死神，怕自己一觉醒来发现原来只是做梦。诺拉最喜欢阿黛拉，喜欢她做墨西哥寡妇打扮跳西班牙舞那段，但我喜欢的是老弗雷德，从那时起直到永远，他那张胡桃钳似的滑稽脸孔，亮得简直像画上去的、半根不动的头发。谁想得到，长大后我们竟能跟他熟到“嗨，弗雷德”“嗨，女孩们”的程度？</p><p class="medium-para">天知道是什么第六感让阿嬷选了《女士珍重》作为我们七岁的生日礼物。“我只是想找部好看的歌舞喜剧，”她说，“但是不要有洁西·马修斯[1]。”她认为洁西·马修斯太普通，不过我倒一直觉得她好得很。但《女士珍重》为我们照亮了路，我们的大马士革之路。之后，我们在家里二楼前半部分花了好多时间，卷起地毯，放起音乐。最后那段，她穿着提罗尔[2]式服装，他打扮得像个水手娃娃。我们轮流当女主角。</p><p class="short-para">“你们两个满眼星星啊，女娃。”中场休息时，阿嬷说。</p><p class="medium-para">茶放在托盘上送来，该花的都没省下。饭店似的银茶具服务，小黄瓜三明治。阿嬷将面纱翻到鼻子上，把一块糖霜小蛋糕送进紫红双唇。就连那时候，我们也知道阿嬷看来有点古里古怪，跟她出门时总抱着一种叛逆全世界的感觉。我们掸去身上碎屑时，二楼正面前排特别座传来一阵骚动。阿嬷正要把托盘递回给女侍，动作突然僵住，就像狗看见兔子。女侍及时接过茶具，阿嬷陡地站起身举起手，往那儿一指。</p><div class="para-break"></div><p class="long-para">若从她指尖画一条线通往特别座，线那头会连着一个男人的鼻子，一个非常英俊的年轻男人，高个子，深色发肤，深色大眼，仪表堂堂，纽扣孔插朵红玫瑰，有一点点略长的黑发显示他是艺术圈内人，身旁一位侧面看来像绵羊的浅金发女士，身穿时髦的薰衣草色羊毛洋装。两人显然刚到，无疑是来打发时间，待会儿就要去参加城里最拉风的演出的鸡尾酒会。他们沿着那排座位走，说着抱歉借过，所到之处备受注目，有人侧头瞥视，有人瞪眼直看，甚至偶有一两声“哦！”和“啊！”。他们年轻又风光，除了我们之外，每个人都知道他们是谁。灯光渐暗，乐队开始调音，阿嬷仍站在那里，气得发抖。</p><p class="short-para">“那男人是……你们的父亲！”</p><p class="medium-para">这番揭露对我们并没造成太大震撼，因为那个年纪的我们还不太清楚父亲是干吗的。既然我们不知其一，也就不知有其二，不知道自己跟人家不一样。是啊，你也想得到，邻居一定会推搡示意、互眨眼睛之类的，但阿嬷紧闭嘴巴什么也不说，保持一副正派表象，至少在酒馆开门之前如此，不过要是送牛奶的人或邮差哪天上午透过纱帘往屋里瞧，可能会发现她正光着屁股打扫掸灰，那才会让邻居闲话讲不完呢。</p><p class="medium-para">因此，当阿嬷如此戏剧化地宣布，那是你们的父亲！我们乖乖听话往那儿看了一眼，但接着布幕发亮，乐队奏起序曲了。</p><div class="para-break"></div><p class="medium-para">“哎，劳驾坐下吧，太太。”后排一个男人说，于是她强忍怒火坐下，但后半场她已经看不下去，老是扭头往回瞧，低声嘀咕各种难听话，而我们已经飘到另一个世界，对周遭一切浑然不觉，眼里只有弗雷德和阿黛拉。</p><p class="medium-para">散场时人好挤，等了好久才领回外套，我们又仍做梦般回味着电影中的歌舞，因此错过了他们。我们走到戏院外人行道时，我们的父亲和他太太已经搭上计程车扬长而去，留下阿嬷徒然朝他们挥伞咒骂。</p><p class="short-para">“该死。”阿嬷说。“该死，该死，该死。”</p><p class="short-para">她脸上的表情告诉你她是说真的。</p><div class="para-break"></div><p class="short-para">电影的魔咒已解除，这下我们有时间思考她的话了。</p><p class="short-para">“阿嬷。”诺拉说。“再跟我们多说一点，父亲是什么？”</p><p class="long-para">回家路上，坐在电车上层，她全跟我们说了。她是天体派，吃素，和平主义者，所以你想她讲起性教育还会是哪样？但我们听了很难相信，不只无法相信她说的那根棒槌会变粗变长等等，也无法相信她说的那根棒槌的用途。我们以为这是她编出来逗我们的。想想看，我们存在这个世界上，只因为一个我们从没见过的男人很久以前对一个我们不记得的女孩做了那件事！我们确知的是，阿嬷爱我们，而且我们有全世界最棒的叔叔。不过咱家见多识广的阿欣以为佩瑞是我们的父亲。</p><p class="long-para">但那天下午，有某种东西，某种好奇，在我们心里生了根。起初只是细微小事。在报上看到他的照片，我们会叫起来；到西区佛立德[3]买新舞鞋时，我们会绕路到夏斯伯利大道，去看他主演的随便哪出戏的照片。年复一年，这份好奇变成一种渴望，一种期盼。我在内衣抽屉的秘密角落偷藏了一张他的照片，是身披白鼬毛皮的理查二世扮相，结果，诺拉今天下午才告诉我，她这辈子就瞒过我这么一件事，原来她也偷藏了一张他扮年轻的哈尔王子[4]的照片。我想你可以说我们迷上了梅齐尔·罕择，一如其他许多女孩。你可以说他是我们的初恋，最后结果又苦又甜。</p><div class="para-break"></div><p class="long-para">总之，那是我们这辈子第一次看见父亲；也是第一次看见弗雷德·阿斯泰尔；也是第一次自己花一分钱——去上公厕。皮卡迪利广场那间，里面铺着白瓷砖，穿白围裙的小老太太接过你的一分钱投进门锁，让你不必弄脏手。这些都是小孩会记得的事。那天彻彻底底是个值得纪念的快乐日子，而且惊奇还没结束。我们回到家，蛋糕已从食品储藏室移到厨房饭桌上，蜡烛烧得灿亮，我们不在时还送来了一箱包裹，足足占去半个厨房。咱家阿欣指指包裹上的标签：“送给我两个可爱的女孩”。</p><p class="medium-para">“他没有忘记。”她说，为我们高兴，也为父职之道高兴——佩瑞虽然行事不循常道，毕竟还是个尽责的父亲。她完全不知道实情。</p><p class="medium-para">箱里是一个玩具剧院，可爱又精致，他在威尼斯买到的古董。前台镀金拱架中央，喜剧面具与悲剧面具并挂，一个嘴角往上，一个嘴角往下，它们是守护神——在人生中亦然。戏如人生，不是吗？</p><p class="medium-para">布景画有花草树木加喷泉，有月夜，有蓝天白云，有嘉年华会，有卧室，有盛宴，人物是金属棍架起的小小男女，哈乐津、可伦萍、胖大鲁等老式角色[5]一应俱全。这简直是公主的玩具，我们以庄严喜悦的态度将它从垫于箱内的木屑中取出。这一刻，我们终于清楚知道自己要的是什么。</p><div class="para-break"></div><p class="medium-para">我们万分珍惜那座玩具剧院，简直把它当成教堂，永远只在星期天下午玩：洗净双手，午饭后换上最体面的洋装。我们不得不跟它道别时，我哭得一塌糊涂。后来，布兰达有了麻烦，我们把它送去苏富比拍卖。你绝对想不到它为我们换来多少钱，让小蒂芬妮一直有免洗尿布可包，直到她学会坐在尿桶上嘘嘘。</p><p class="short-para">阿嬷点燃我们蛋糕上的蜡烛。</p><p class="short-para">“许个愿，吹蜡烛。”她说。你也猜得到这两个迷上舞台的小孩许了什么愿。</p><p class="medium-para">我们闭上眼，立刻恍如置身布幕那一侧的月亮画下，绘制的云永远不会飘，一切都是平面。诺拉看看我，我看看诺拉：亮片，紧身网袜，高跟鞋，头上插羽毛。我们微笑，抬起右腿，就这样……准备好了，等乐队开始奏乐。</p><div class="para-break"></div><p class="short-para">让我们面对音乐[6]，然后——</p><p class="long-para">当然，那时我们不知道，罕择家人永远会抢尽我们的风头。悲剧永远比喜剧有格调。区区歌舞女郎怎能痴心妄想？打从出生开始，我们便注定是剧场中俏丽的昙花一现，像生日蜡烛辉亮一时，然后熄灭。但是，六十八年前那个生日的午茶时间，我们一口气吹熄所有蜡烛，结果，没错！后来人生确实让我们如愿以偿，因为“幸运欠思姊妹”面对音乐，跳了足有半世纪的舞，尽管我们永远都在左手边，只能跳跳舞、唱唱歌，提供轻松余兴；把重量级的带上来吧！</p><p class="long-para">或者该说“重色级”。这一行变得不堪，我们的职业生涯也跟着走下坡，最后沦落到杂耍秀场一角露大腿，跟着那些巡回演出的节目——都叫什么“清凉快报！”“九点清凉！”“世界清凉！”[7]之类——陪衬阿奇·莱斯那一类的喜剧演员。秀场女郎就这么空站着当活雕像，我们的歌舞表演在流苏胸罩忽露忽掩的乳头之间进行。二次大战之后那最后五年的巡回演出中，我看到的乳头比前半辈子加起来的都多，而我可是被天体派的阿嬷带大的，别忘了。</p><p class="long-para">好吧，我们的中年不怎么像样，但我发誓，我们年轻时可很正派。那年头，没有什么比小演员的生活更守旧了，伦敦南区到处是合音伴舞的男男女女各色人等。不表演时，他们在积尘的水蜡树篱后的双拼式房屋里休息，坐在起居室的人造皮沙发上，烟熏色橡木餐具橱里放着一瓶甜雪利酒，半打灰扑扑玻璃杯底下是发黑的银托盘，刻着“送给一位一流的团员，快活马丁敬赠，海畔傅林顿[8]，1919”之类字样，上方挂着镶框照片，照片中的人有大腿粗粗穿着紧身裤袜的女孩和头戴绉绸帽的男子，大家都签名画上一大堆叉，墙上则是装框的彩色复制画，描绘一群红鼻子修士大啖鹿肉、野猪肉。</p><div class="para-break"></div><p class="medium-para">我们求了又求，阿嬷终于答应让我们额外多上几堂舞蹈课，之后我们就成了老师的宠儿。阿嬷常和沃辛顿老师及她那弹钢琴的老母在舞蹈工作室（这是沃辛顿老师的用词）后面、挂着“地窖管理员赛门”图片的小厅，共进一两杯波特酒加柠檬。阿嬷翘着兰花指，举止端庄，满脸微笑，发出她那别具特色的母音就像吃樱桃吐核；之后走上街，她会打个大嗝，怒目环视四周，说：“是谁打的嗝？”</p><p class="medium-para">就这样，一年又一年，沃辛顿老师教室里的镜子照出二乘二个欠思姊妹，是我们和我们的倒影，高高踢腿仿佛活生生的特效摄影。咚，当，沃老师的老妈弹钢琴；啪！啪！啪！沃老师的藤条打在我们腿上，但我得承认她的确有真才实学。家里，阿嬷拿铅笔在早餐室门上为我们身高做记号。三尺，三尺半，四尺，四尺六，五尺，五尺二。沃辛顿老师说：</p><p class="short-para">“他们在选角。”</p><p class="short-para">“什么？”</p><div class="para-break"></div><p class="medium-para">“这两个女娃可以帮你赚点钱，欠思太太。”穿着早该退休的粉红蓬蓬纱裙的沃辛顿老师说，手撑着藤条站在那儿，看着身穿背心、内裤的我们，五尺二，亮泽棕发满是阿嬷每晚用破布缠出的小卷卷，两人一模一样。沃辛顿老师以前也是职业舞者，直到腿举不高。</p><p class="short-para">“不过，”她又说，因为她有在注意时尚流行，“那些腊肠卷得去掉。”</p><p class="medium-para">于是，我们剪了短发。坐在理发店，热毛巾围着脖子，忍受剪刀可怕刺耳的咔嚓声，看着鼠棕色卷发落在四周地面。我们得意非凡，知道随着这些卷发落地，自己也不再是小女孩了。阿嬷挂掉之后，我们清理她东西时，在柜子最下层抽屉发现一个信封，信封里两卷头发：“朵拉”，系着蓝丝带；“诺拉”，系着绿丝带。</p><p class="medium-para">那是一场杂剧表演，不是吗？长话短说，我们首度以职业身份登台，演的是鸟——棕色小鸟，八成是麻雀，一、二、三，跳。剧目是《林中孩童》[9]，在牧人灌木区的帝国剧院，阿嬷一路护送我们来回，提袋装着半瓶琴酒，以防万一。</p><div class="para-break"></div><p class="short-para">以防什么万一？以防万一酒馆没酒了啊，宝贝儿。她说。</p><p class="medium-para">一模一样的鸟。他们为我们安排这段特殊表演，因为我们长得一模一样，而且，我们就是用树叶盖住那些“孩童”的鸟哦。分开来看，我们两个都不显眼，但加在一起，我们就让人们直眨眼。哪个是朵拉？哪个是诺拉？那年头，我们连身上的味道都一样：“印度之花”[10]。其他的我们不懂。以前，我们都从“好利市”[11]偷来用。</p><p class="medium-para">那第一个晚上，我们多年演艺生涯中无数首演夜的第一个晚上，更衣室里挤满合音小鬼，我们紧张得五脏六腑都化成水，妆又一直掉，没有一件事对劲。我的长袜抽丝，她的鸟喙固定不住。然而，我们仍跳了我们的舞，洒了树叶，拍拍翅膀飞走；他们爱死我们，又是喝彩，又是鼓掌。最后一幕，我们朝前排撒彩纸拉炮，观众为之疯狂。我们做了我们生来就要做的事，而且更棒的是，明天还要继续做。</p><p class="medium-para">阿嬷当然把咱家阿欣一起带来，但另外还有个人一同分享我们的小小胜利，带着满满一帽盒佛南牌巧克力，雀斑皮肤被异国炎热太阳晒成古铜色……我们的浪子叔叔穿过歌舞群的荷叶边走来，大敞双臂：“我的好女孩！”</p><div class="para-break"></div><p class="short-para">我们的幸福之杯满得溢出[12]：他及时回来，赶上了我们的首度登台。</p><p class="medium-para">我们爱死了那一切，登台亮相，花俏服装，莱其纳七号[13]。一走进剧院，我们就会大口呼吸那窒闷空气，提振今晚的表演情绪。给我那无可比拟的熟悉浑浊气息：柳橙汁、杰耶牌消毒水、人的体味、瓦斯……我甚至愿意用它代替“蝴蝶夫人”涂在耳后。当音乐自乐队席响起……我跟你说，那一刻我们简直湿了！跳舞之际，我们的私处多么血脉偾张！</p><p class="medium-para">我们爱死了表演，更不敢相信还有工资可领，但阿嬷把钱存进银行，说我们愈快开始赚钱愈好。尽管佩瑞的支票都准时寄到，而且现在他又回家了，礼物如雨点般落下，但阿嬷说，天有不测风云。抱最好的希望，做最坏的打算，她说。</p><p class="medium-para">尽管当时我们这两个迷得晕头转向的侄女不可能理解，但佩瑞叔叔确实有个缺点。单单一个缺点。那就是他太容易觉得无聊。小蒂蒂三岁时都比佩瑞有耐心持续做一件事。对他而言，人生必须接二连三充满小小乐趣惊喜，否则他就觉得毫无意义。</p><div class="para-break"></div><p class="medium-para">八月一个假日，我们刚满十三岁不久，他搭着计程车呼啸而来。大大抱我们一把，捏捏我们脸颊。“你们看来有点憔悴哟，女孩儿！这可不成。”他把我们全赶上车，诺拉、我、阿嬷，也没忘记咱家阿欣（“哎呀，罕择先生！”），外加皮卡迪利广场杰克森茶店的好大一只提篮。“咱们需要布莱顿[14]医生，司机老兄！”运将先是目瞪口呆，而后粲然一笑。“没问题，大人。”我们就这么出发了。</p><p class="long-para">小石子海滩上铺起亚麻桌布，佩瑞和运将现在已成了拜把兄弟，手挽着手漫步去买泡泡香槟，我们则摆出火腿和鸡肉，将面包切片，打开鹅肝酱罐，佩瑞叔叔请客时一切都是上好货色。我跟你说，四周的人全瞪着眼看——三个瘦巴巴女孩和一位戴斑点面纱的胖女士，佩瑞鲜红头发、码头工人似的壮硕宽肩、饱满的大大微笑，再加上穿皮衣的运将。阿嬷一一斟满玻璃杯，带头敬酒：“香槟敬这里诸位，另外那些王八蛋愈倒霉愈好。”佩瑞从我们鼻子里变出水煮蛋，从运将的帽尖为我们倒出热腾腾的咖啡。</p><p class="long-para">大家吃饱后，佩瑞握住桌布一侧的两角——咻！一抽，那些精致瓷器、刀叉（沉甸甸的高级银器，可不是便宜货）、鸡骨头、面包屑、空酒瓶，全当场消失不见。他说他把那些东西送回店里了。他怎么变的？我不知道。我们的佩瑞叔叔可有一两下子，棒呆的一流魔术师。他应该以此为业才对。海滩上一半的人都自动自发鼓起掌，佩瑞更来劲了，说：哪位有锯？有的话，他可以把阿嬷锯成两半。门儿都没有，阿嬷说，天知道我肚子里会跑出什么东西。她挽起裙子，露出宽大的红色灯笼裤，踩水玩了一会儿，然后喝杯薄荷酒冰沙帮助消化，打个嗝，眯盹儿了。咱家阿欣跟运将正谈得投机，剩下我们三个沿着码头散步去也。</p><p class="medium-para">佩瑞魁梧得活像北极熊，上帝保佑他，身穿香草色柞蚕丝西装和硬领红条纹白衬衫，打红领带，头戴系着红黑相间缎带的草帽。他个头虽大，但帅气又敏捷。古龙水是爽利的柠檬柑橘类气息。后来，大战期间，灯火管制中我昏沉沉醒来，突然闻到这味道：川普牌莱姆精华。我心想：我一定是跟佩瑞格林做了！我浑身血管充斥恐惧和喜悦，心想，我做了什么呀……但当我打开灯，对方根本不是佩瑞，而是个“自由波兰人”。</p><div class="para-break"></div><p class="long-para">穿冰激凌色西装的佩瑞一手抱一个女孩，我们两个本身都没什么特别——瘦瘦小小，鼠棕色短发——但加在一起，人们便为之注目。走过供人骑乘的驴子，走过卖冰激凌的，走过布莱顿行宫的宣礼塔[15]、塔楼和细格棚，那建筑不知怎么总让我想起阿嬷，尽管她的色调偏于暗沉，就说像灯火管制期的布莱顿行宫吧。那天下午，行宫看来也仿佛幻象。那真是美丽的一天。荷叶边似的海浪波光粼粼，海鸥呱叫，小孩欢笑，水声泼洒。而且午餐时，他还让我们一人喝了一杯泡泡香槟。一切都合谋让我们快乐。</p><p class="medium-para">之前我快乐过，之后我也快乐过，但是，跟诺拉和佩瑞叔叔无忧无虑逛在布莱顿码头时，是我第一次年纪够大、够懂事、够了解自己的感觉，足以用言语说出：“天呀！我真快乐！”如今，只要想到快乐，我总会想到布莱顿，想到十三岁那年八月那个假日，因为同一天内我们飞上云霄，又跌入谷底。快乐是多么脆弱的东西！我们从滑稽可笑变得至高无上，然后心碎。</p><p class="short-para">“他们为什么叫皮耶霍？”诺拉在码头演艺厅外问。</p><p class="short-para">“因为他们在码头上表演啊。”[16]</p><div class="para-break"></div><p class="medium-para">我最爱午场表演那种人工黑暗，那种刺激的黑暗一如午餐后拉起窗帘上床睡觉。码头演艺厅底下海水来回冲刷，厅里潮湿温暖，充满“夜色黎”“紫罗兰灰烬”等假日香水味，混合了干鱼（也就是外面卖的烤鱼）和湿鱼（也就是下方的死鱼）味，还有屋顶锡皮被晒热和人群胳肢窝的气味。因为表演前半场快结束了，门口没人收票，我们悄悄溜进去。</p><p class="medium-para">白色荷叶边的皮耶霍们闲站一旁，看来只是陪衬，舞台上一个喜剧演员正表演到一半。他穿着一条好大的老式高尔夫球裤[17]，裤管蓬得活像两个热气球，颜色是阿嬷称为“疯癫莓”的粉红（翻译起来是鲜草莓，你自己想象吧）——亮粉红绸裤，裤管塞进浅紫色高尔夫球袜（袜踝处绣有粉红图案），穿一双粉红麂皮高尔夫球鞋，好大的浅紫色鞋舌翻垂在外。他手里拿着与服装搭配的高尔夫球杆，用来做淫秽动作，做母亲的纷纷捂住小孩的眼睛。</p><p class="medium-para">那年头我从没听过他，后来他可有名了，但他刚入行时，你会以为他再有名也不适合出现在阖家阅读的报纸上。他管自己叫……叫什么来着……一会儿我就会想起来。他有句招牌用语，“咱们的乔治一点也不古怪[18]”。后来他在好莱坞冒出来，跟我们合演《仲夏夜之梦》，真是意外啊；他演的是“线团儿”[19]，当然是线团儿，不然还会是什么。</p><p class="short-para">“炫彩乔治”。他管自己叫炫彩乔治。</p><div class="para-break"></div><p class="medium-para">“……这男孩的念头慢慢转向”——高尔夫球杆往半空中大力一捅——“所以他对他爸说：‘爸，我想娶隔壁的女生。’”</p><p class="short-para">“‘呵，呼。’他爸说。‘我有消息要告诉你，儿子。我在你这年纪时，常有一腿——’”</p><p class="medium-para">喝彩、尖笑、口哨。但观众这么激动全是捕风捉影，我告诉你，因为他露出震惊的表情，撮起嘴唇，摇着球杆表示责备。</p><p class="short-para">“有些人脑袋里净是肮脏念头哪。”他旁白哀叹一句。又一阵口哨和尖笑。</p><div class="para-break"></div><p class="short-para">“被各位无礼打断之前，我本来要说的是……”</p><p class="short-para">这是他的另一个招牌句子。</p><p class="short-para">“‘……是，我常有一腿——’”</p><p class="short-para">做母亲的纷纷捂住小孩的耳朵。</p><div class="para-break"></div><p class="short-para">“‘——我常有一腿跨过花园围墙——’”</p><p class="short-para">他用球杆往空中狠狠一戳，眉毛直抬，好像要阻止别人想歪。</p><p class="short-para">“‘……总之，长话短说，你不能娶隔壁的女生，儿子，因为她是你妹妹。’”</p><p class="short-para">空气为之一变。母亲逼着不情愿的小孩离开，用冰激凌当贿赂。</p><div class="para-break"></div><p class="medium-para">“于是，这男孩买了辆脚踏车”——他跨上球杆，做出踩踏的动作，观众又一阵哄笑——“踩着踏板出门了。我说的是踩，太太，你以为我说什么啦？他踩呀踩呀来到飘飘镇。”</p><p class="short-para">他的口白好极了。连阿嬷本人都不能把那个长长的“幺”音说得更有声有色。</p><p class="medium-para">“他回来之后，跟他爸说：‘爸，我在飘飘镇遇到个好女孩。’‘飘飘镇？’老爸说。‘抱歉啦，儿子，我在你这年纪也常飘到飘飘镇去，然后——’”</p><p class="short-para">他停口，动动眉毛，拿球杆比画比画。其他不用多说，观众笑得眼泪都出来了。</p><div class="para-break"></div><p class="medium-para">“这可怜的男孩买了张当日来回票，坐到维多利亚车站，在时钟底下遇到个女孩。我说时钟，太太。但他父亲说：‘我们那年头也有火车啊，儿子……’”</p><p class="short-para">会意的笑声。</p><p class="short-para">“男孩到厨房喝茶，长吁短叹。老妈说了：‘你的脸怎么拉得这么长，长得像——’”</p><p class="short-para">眉毛。球杆。哄笑。</p><div class="para-break"></div><p class="short-para">“被各位无礼打断之前，我本来要说的是，是……小提琴！”</p><p class="short-para">观众笑得直跺脚。</p><p class="medium-para">“‘我看我永远结不成婚了，妈。’‘怎么啦，儿子？’他把事情一五一十讲给老妈听，然后老妈说：‘别担心，想娶谁就娶谁去，儿子——’”</p><p class="short-para">电光石火，短短一下暂停恰到好处。</p><div class="para-break"></div><p class="short-para">“‘他不是你父亲！’”</p><p class="medium-para">众人又跺又踏，地板简直要垮了。佩瑞看得好生讶异。“唔，老天保佑天杀的英国人。”他说。“我从没想过他们还有这一面。”</p><p class="medium-para">观众静下来之后，舞台大灯加上一层粉红滤镜，照得炫彩乔治满身发红。他露出一副伤感表情，猛吸一口气，男高音表演时间到了。伴奏女士跟沃辛顿太太同一路数，把钢琴一阵猛敲。乔治双手交握球杆，摆出庄重姿态，然后，你能相信吗，就在那里，他穿着粉红服装在粉红灯光下，在布莱顿码头的尽头，在那个天杀的八月假日，他唱起了《英格兰玫瑰》。</p><p class="short-para">英格兰玫瑰，呼吸英格兰的空气，</p><div class="para-break"></div><p class="short-para">如此高尚的花儿，无与伦比……</p><p class="medium-para">皮耶霍也全变成粉红，一群群聚成花束一般，跪下来迎接歌曲激昂的最后一段。这种表演换到这年头根本没人要看，除非是那种所谓的“敢曝[20]”。然后乔治举起一只手止住观众的掌声，走上前来，以充满感情的声调说：</p><p class="short-para">“各位女士先生，各位大朋友小朋友……吾王万岁！”</p><p class="medium-para">伴奏女士弹起《希望与荣耀之地》（尽管低音部有几个音弹错），乔治把高尔夫球杆当成来复枪架在肩上，开始绕着舞台踏步行军，麂皮鞋的浅紫鞋舌淫逸晃荡着，慢了半拍。</p><div class="para-break"></div><p class="short-para">左，右，停。</p><p class="medium-para">舞台大灯又恢复白亮，他站在正中央向观众敬礼，光线像头皮层落在他肩上。伴奏女士用钢琴尽可能模仿一通擂鼓，他的绸帽随之脱下。</p><p class="short-para">诺拉和我不解地互看一眼。这葫芦里卖的到底是什么药？</p><p class="short-para">又一通擂鼓。</p><div class="para-break"></div><p class="short-para">他的玫瑰粉红外套脱下。</p><p class="short-para">愈来愈古怪了。</p><p class="short-para">原来，今天下午这场节目的重头戏就是乔治，乔治本人，乔治的赤裸本色。</p><p class="short-para">因为乔治根本不是喜剧演员，而是一份庞大的宣言。</p><div class="para-break"></div><p class="short-para">要不是亲眼看见，我绝对不会相信。他全身是一幅完整的世界地图，头为北极，脚为南极。</p><p class="medium-para">他鼓起右臂的二头肌，那座近似三角形的滑稽小岛跳了起来，“爱尔兰自由省”微微颤抖。伴奏女士一弹起《天佑吾王》，一半观众就出于习惯忙不迭起立，散落手套和巧克力包装纸，但他们随即坐下让他继续表演，因为他接下来的动作是，脱裤子。</p><p class="long-para">诺拉和我只是小女孩，从没看过没穿裤子的男人（尽管阿嬷给我们画图讲解过），所以——我得说——我们都非常好奇，急切伸长脖子猛看，但原来他长裤里还有一条非常宽裕的丁字裤，事实上更接近三角裤，就算给马穿也不嫌暴露，图案是英国国旗。虽然内裤把他的私处妥善遮住，但现在你可以看见他肚脐上的好望角，在他堂皇爱国地九十度转向时也能看见一路往他股沟延伸的马尔维纳斯群岛，这时掌声再度变得热烈，其实这整段表演中掌声始终未歇，只是时起时落。</p><p class="medium-para">我们着迷地盯着那鼓动的胸肌。《大不列颠，君临天下》声伴随他最后一次转身，我们看见他的地图文身大多涂以鲜粉红，不过被舞台大灯照成灰败的覆盆子色，看来有害健康。</p><div class="para-break"></div><p class="medium-para">然后，穿着爱国内裤的乔治用高尔夫球杆做了几个动作，模仿刺刀练习，伴随更多的假鼓声和群众的叫好声。我发誓，有些人眼里还含着泪，喊道：“好样儿的乔治！有你的，乔治！”但我们姊妹俩觉得挺逗：这是哪门子表演？阿嬷不是跟我们说过吗，战争是为了除掉年轻男人，把女人全留给丑怪老头，否则那些老头根本找不到女人？因此我们知道战争是干吗的，而且，老实说，从乔治讲的笑话听来，他似乎认为做父亲的也向来希望如此。</p><p class="medium-para">至于他屁股和肚子上那些粉红色块，我们心底深处已经知道，我们这些生在左手边的人并不包括在内；可以说，我们是英格兰私生国王的后代，什么也继承不到，所以管它去死呢。</p><p class="long-para">刺刀练习结束后，炫彩乔治穿上高尔夫外套，用球杆做了个令人安心的猥亵动作，一边退场，一边向喝彩的群众飞吻，喃喃说道：“天佑各位！”我们三个像猪一样猛出汗，因此也赶快闪人，免得被发现我们没买票。码头上满是钓客——有人吊起一条鲭鱼，亮得像新锡罐。或者那就是一个锡罐。我记不清了，那可是六十几年前的事。那年头，人们爱看那些爱国的活人静物[21]。我们实在不知该作何感想，我们还只是小女孩，从没见过男人露屁股，倒常看见彼此的屁股。</p><p class="short-para">佩瑞一根手指顺着衣领内侧抹去汗水，神情有点愣。</p><div class="para-break"></div><p class="short-para">“我永远搞不懂英国人。”他表示。我们也都这么想哪，宝贝儿。</p><p class="short-para">“好，”他深呼吸好几口新鲜空气之后，对我们姊妹俩说：“现在轮到你们露一手啦，我的小歌舞女郎。”</p><p class="long-para">阳光，海面粼粼闪烁，微风，四周满是笑声，满是快乐的人。现在回想，我记得有个不知哪来的乐队奏起音乐，可爱的小乐队，没什么繁复编制，只有三四样乐器，加上鼓手。天知道他们打哪冒出来的，也许他们参加便宜的一日游从伦敦来这儿沿街卖艺，或者大饭店之类的找他们来为夜总会伴奏。总之我真的好像记得有四个穿西装戴草帽的黑人绅士，小喇叭、单簧管、伸缩喇叭、打击乐器。或者其实是佩瑞一直吹着他的口琴伴奏，让我们跳舞给他看。我们跳“黑屁股”给他看，我们好喜欢“黑屁股”，那是他送我们的一张唱片，唱着《雷妮老妈的大黑屁股》。我们跳那支舞但没唱那首歌，否则就太自以为是了。</p><p class="medium-para">反之，我们想了一会儿，商讨一番，选了一首歌纪念炫彩乔治的笑话，唱起《你呀你究竟是不是我的宝贝》，佩瑞的脸当场涨成紫色，因为他又想笑又要吹口琴。然后他收起口琴，脱下帽子，朝围观人群讨赏。我不记得那乐队怎么了，他们就这么消失。一镑耶，你能相信吗？那年头，一镑可是很值钱的。差六便士就一镑，全是零钱。他数算清楚，把钱递给我们。</p><div class="para-break"></div><p class="medium-para">“请我喝杯茶吧，你们付得起。”他说。我们走进镇上，想找一间富乐氏茶室，因为他想来点核桃蛋糕配茶，就这样我们来到皇家剧院门外。</p><p class="short-para">“要命。”佩瑞说，但口音是美国腔，像这样：“要——命。”</p><p class="short-para">梅齐尔·罕择领衔主演</p><p class="short-para">《麦克白》</p><div class="para-break"></div><p class="short-para">佳评如潮。</p><p class="short-para">“天才横溢。”《泰晤士报》如是说。</p><p class="medium-para">我们挤在一起，我们瞪着眼看，我们不知所措，我们紧偎着他的壮硕身躯寻求保护，我们藏起脸来，仿佛怕看那些照片。</p><p class="medium-para">“你们确实知道，”佩瑞对我们说，“你们不是我的孩子吧。不幸，我现在不是，也从来不是你们的父亲。你们也确实知道，对不对，你们的父亲是——”</p><div class="para-break"></div><p class="short-para">——朝照片一比——</p><p class="short-para">“他。”</p><p class="medium-para">我们点头。我们知道梅齐尔·罕择是我们的父亲，现在我们也已经清楚知道父亲是何时、在哪里、对谁做过什么好事，之后又发生了什么。这些我们都知道了。而他就在这里，神气活现登台演出莎士比亚的剧目，我们却刚刚在街头唱歌。十三岁的那一天，看着“父亲”腰系苏格兰裙的光面照片，是我们这辈子感觉最见不得人的一刻。</p><p class="short-para">这时我的吊袜带松脱，左脚的袜子降了半旗。</p><div class="para-break"></div><p class="short-para">佩瑞掏出怀表，估算时间。</p><p class="short-para">“勃南森林，”他说：“现在正悄悄接近邓西嫩。”[22]</p><p class="short-para">我有点猜着他心里可能转什么念头，吓到了。</p><p class="short-para">“我们回去找欠思阿嬷吧。”我用好似脖子被掐住的声音说。</p><div class="para-break"></div><p class="long-para">但，我是多么、多么渴望，渴望推开那玻璃门，渴望得超过世上其他一切，渴望好好看看我的父亲，我那风华正茂的英俊父亲；并且，不用开口，不用转头，我知道诺拉也是这么想。我伸手拉诺拉，她的手热热黏黏，还是小孩的手，尽管——现在我想——当时我们看来已很有年轻小姐模样，身高超过一般同龄孩子，身穿佩瑞在巴黎为我们买的黄色香奈儿洋装，头系蝴蝶结，老实说，看来不像出身新娘学校，倒像卖弄风情。换到现在，我想人家会叫我们“性感少女”[23]吧。未成年的狐狸精。</p><p class="short-para">诺拉和我紧攥彼此的手。</p><p class="short-para">“阿嬷一定奇怪我们跑哪去了。”诺拉说。“她会担心的。”</p><p class="medium-para">但她动也没动，说到“担心”时声音都哑了，简直是在哀鸣。佩瑞看看她又看看我，两个可怜兮兮的小东西眼里噙着泪，满腔的爱被拒于门外。</p><div class="para-break"></div><p class="short-para">“该死的。”他说。“跟我来。”</p><p class="medium-para">他一把抓住我们手臂，拉着我们往舞台后门跑，塞了一张钞票给看门人，接着爬上有过堂风的后台楼梯，又一张钞票塞给管服装的人，那人带我们进入父亲空无一人的更衣室，手指按在唇上要我们保持安静，就走了。佩瑞让我们坐在沙发上，我们惊讶崇拜地看着父亲用来擦手的毛巾，用来刮胡子的剃刀，用来画在那张我们所爱的脸上的油彩——这些东西都比我们更亲近他，在我们眼中近乎神圣。他的镜子多么快乐又荣幸，竟能负责映照他。</p><p class="short-para">我好想伸手揪一截他的莱其纳七号做纪念，但我不敢。</p><p class="medium-para">房里有张半身照，是个头戴珠宝冠的绵羊女，我们斜眼看。她是谁我们清楚得很，当年第一次看午场，我们爱上他时，不就见到他挽着她？（想不到我们晚年竟会与她共度，老可怜。）</p><div class="para-break"></div><p class="medium-para">但别以为我们把房里乱翻了遍。光是坐在那里，呼吸他呼出的空气，就已远远超过我们的期望。这下我们确定佩瑞不只会变戏法，他根本是真正的魔法师，能猜出我们最最秘密的欲望，那欲望我们甚至不曾向彼此透露，因为我们不需要告诉对方，因为我知道她知道，她也知道我知道。</p><p class="long-para">天啊，我们多么谦卑。懂事以来，我们常悄悄溜去看戏，付点小钱买票，坐在高上云端的偏远位置，观赏他在舞台上的一举一动，只要能看到他就心满意足。但一进入他的私人更衣室，这个我们做梦也不敢想有朝一日能来的地方，我们的野心就变大了。也许，出其不意在这儿见到我们，他的可爱女儿，出生前就已失去，如今在初春即将绽放花朵之际（这是“爱尔兰”会用的措辞）重新相见，也许他会让我们摸摸他的手，甚至允许我们亲吻他的脸颊……也许，就这么一次，我们可以获准说出那个这辈子不曾用过的词：“父亲。”</p><p class="short-para">父亲！</p><p class="short-para">光是想到这，我们皮肤就一阵刺麻。</p><div class="para-break"></div><p class="medium-para">佩瑞心不在焉，望向开着的窗户外的屋顶、烟囱、砖墙。一只海鸥停在烟囱上，啼叫一声。风吹来一阵铜管军乐，是海边的乐队在演奏《不羁上校》。他手指敲打着窗台。要不是当时太惊呆、太荣耀于终于要见到他，我或许会注意到我们的佩瑞难得竟有些后悔，而如果我注意到了，或许就会对我们即将面临的“欢迎”更担心一点。但当时我激动得无法招架，没有多想。更衣室封闭温热，我们腋下汗湿。我突然很想尿尿。</p><p class="medium-para">掌声响彻这栋古老建筑，掌声退去后他随即出现，快得超乎想象，快得让我们没时间做心理准备，快得仿佛直接从舞台飞进更衣室。</p><p class="medium-para">他深色发肤，高大英俊。天啊，那时候他真是英俊。还有双棒极了的腿，这是莎剧男演员必备条件，尤其是演关于苏格兰的戏，非得有双好看小腿穿起苏格兰裙才像样。我确实相信，除了颧骨之外，我们的腿也遗传自他。</p><p class="short-para">事实上，见到他时，我真的尿了出来，不过只有一点点，沾不湿沙发。</p><div class="para-break"></div><p class="short-para">那双眼睛！梅齐尔的眼睛温暖黑暗又性感，就像大战期间伦敦计程车的后座。他的眼。</p><p class="medium-para">但那双眼，那双脱下你的内裤、从座位后方解开你胸罩的眼，却是当时我遇过最苦涩的失望。不。不只当时，而是我这一辈子最苦涩的失望。之后的任何失望都无法相比。因为他那双眼看着我们却没看见我们，尽管我们坐在那里，忍不住浑身发光，嘴角忍不住微笑。</p><p class="medium-para">我可以告诉你，看到他对我视而不见，我脸上立刻没了笑容，诺拉也是。父亲的眼神直接滑过我们，完全不碰、不接触我们，只看向佩瑞。</p><p class="medium-para">“佩瑞格林！”他叫道。直到今日，他的声音仍让我背上一阵酥麻。电视上冒出他，敲着烟斗。“浓郁，深沉，香醇……”可不是吗。</p><div class="para-break"></div><p class="short-para">他伸出双手迎向佩瑞，只有佩瑞。</p><p class="medium-para">“佩瑞格林……真高兴你来看我。”然后，直到这时，我们才获得一丁点面包碎屑般的注意，但那碎屑像一颗子弹同时射穿我们两颗心。</p><p class="short-para">“还把你的可爱女儿也带来了！”</p><p class="medium-para">我记得——尽管我知道这段记忆不可能是真的——佩瑞一把将我们拥入怀里。我记得，当父亲不认我们，是佩瑞张开宽如翅膀的双臂紧紧抱住两个孤女，我们的脸压在他的外套上，吊裤带的纽扣顶痛了脸颊。或者他把我们一人一边放进外套口袋。或者他把我们塞进衬衫，靠着他柔软温暖的肚子，用他怦然作响的心跳抚慰支持我们。然后，嘿！他就一个后空翻跳出窗外，救走我们。但我知道后空翻离开这段是我想象出来的。</p><div class="para-break"></div><p class="short-para">真实情况是，他向我们伸出双臂，我们哀鸣着奔入港湾。</p><p class="short-para">“明智的孩子认得爹。”佩瑞格林咬着牙说，仿佛吉卜赛人的警告。“但认得自己孩子的爹才更明智。”</p><p class="long-para">他带我们走出房间，砰一声摔上门。没有亲吻，没有欢迎，我们得到的待遇比不受承认更糟糕。我可以告诉你，我们眼泪哗啦啦流个不停，哭哭啼啼，哭得连路都看不见，但一转眼我们就回到海滩，从佩瑞身旁投入欠思阿嬷的丰厚怀抱，她擦干我们的眼泪，叫咱家阿欣去咖啡馆买壶热茶，于是我们喝点茶提振精神，还吃了一两个奶油面包。面包是佩瑞从阿嬷乳沟间随着一大阵爽身粉雾变出来的，他想逗我们笑，我们也努力露出苍白微笑以免让他失望，而且有东西啃确实能让我们分心，但我可以告诉你我们食不知味。</p><p class="medium-para">结果，咱家阿欣和运将，这一天郊游下来处得融洽之至，决定在一起了，于是大家又是亲吻又是握手，回伦敦的路上阿欣就坐在前座司机旁，诺拉和我则靠着佩瑞肩膀，穿过萨塞克斯郡傍晚微黄微绿的天光，夏日甜美气息从车窗流入，佩瑞和阿嬷低声交谈，免得吵到颤抖在睡眠边缘的我们。这一天实在让人累坏了，但我们直到诺伯利才真的睡着，于是到家时他们得把我们抱上小床，当年在我们的白色少女时光，我们共住一间阁楼。</p><div class="para-break"></div><p class="medium-para">阿欣跟运将要去西区庆祝，于是在伊顿广场放佩瑞下车。伊顿广场？阿欣是这么告诉我们的。那个淘气男孩，一时冲动到伊顿广场做什么？他们放他下车的地方是一栋非常优雅的住家门口，他走上门阶，同时拉拉领带、掸掸外套。车开走时，只见他手触帽檐为礼，咧嘴露出那大胆鲁莽的大大微笑。</p><p class="short-para">我虽然非常爱他，但还是得承认他确实有坏心眼之处。</p><p class="long-para">尽管我们的同父异母妹妹，也就是老轮椅的女儿，长大后像毛色鲜红的绵羊，但出生时，她们跟其他婴儿一样都是秃头，两人像得要命。她们那儿以乌鸦飞行的标准而言离沙翁路不远，但乌鸦算是鸟类世界的无产阶级，而其他大多数鸟类都会认为那两个女孩出生在另一个国家，有谢拉顿[24]家具、波斯地毯、用之不竭的热水、仆人。包着长长蕾丝布的萨丝琦亚和伊莫珍在圣约翰教堂的史密斯广场受洗，随即由塞西尔·比顿[25]为她们拍摄与妈妈——“全伦敦最可爱的女士”——的合照，刊登在《速写》上，写着：“五月的亲亲小花蕾。”因为她们生在五月，跟咱家阿欣五个孩子中的老大同一天。</p><p class="medium-para">那两个女娃出生当天，我们来潮了。真滑稽的巧合。我上厕所时发现内裤上满是证据，忙不迭跑去找诺拉，她看一下自己的内裤，也是一样。阿嬷给我们一些棉花。尽管我们在许多方面都不对称，但说来好笑，打从那第一次开始我们每回都同时来，除了出“意外”的时候；每回都同时来，直到二十五年前水龙头关上，停止，再也不来。</p><div class="para-break"></div><p class="medium-para">我总是认为她们出生和我们进入青春期这两者间有种坏心的关联。萨丝琦亚最会对我们耍这种低劣把戏，让我们在她们变成婴儿的同时变成女人，永远差了一代，这点最讨厌。我们跟她们永远不平等。她们跟我们相比总是有这优势，那么有钱，那么有势，那么合法。</p><p class="short-para">那些全是个屁。</p><p class="short-para">那么年轻。</p><p class="long-para">“五月的小花蕾”。欠思阿嬷扳着手指算了算，脸上露出莫测高深的表情，但这对新生儿的父母乐得很，佩瑞这段日子看来却忧伤出奇。高轮婴儿车里的萨丝琦亚和伊莫珍被系缎带的保姆推出来散步透气，而朵拉和诺拉在磨损起毛的木板地上前后左右跳个不停。格拉斯哥帝国剧院，爱丁堡的王子剧院，伯斯的皇家剧院。那儿的冬天能把你屁股冻掉。曾有观众扔只松鸡上台表示欣赏，就一只，连一对都不肯给。那是在阿伯丁，阿伯丁人把钱攥得死紧，紧得跟屁眼似的。</p><div class="para-break"></div><p class="medium-para">我们踩着舞台木板猛蹦猛跳，因为那时华尔街股市崩盘已葬送了佩瑞所有的钱，每一分每一毛，他无法再按月提供我们生活费，还好我们姊妹俩如今可以自己赚钱，因为以后我们得自食其力了。</p><p class="medium-para">他来向我们道别时，搭的是电车。嗟乎，伟人堕落至何等境地。这次可没有跳表的计程车等在人行道旁，没有夏伯内&沃克牌巧克力。是他让我们品位超过“印度之花”（“啧！”）的层次，现在却已没能力送我们高级法国货。但我们并不在乎这些，一心只念着他不在我们会多想他。我们一人坐在他椅子的一边扶手，看他吃松脆热煎饼涂奶油，自己难过得什么也吃不下。</p><p class="medium-para">他说，他会一路打工回家。家，他的家在炫彩乔治身上没涂成粉红色的部分。他会打工抵船票，在横越大西洋的轮船上的宴会厅表演餐后余兴节目。</p><p class="medium-para">“到家之后呢，你打算怎么办？”欠思阿嬷边问边把又一盘煎饼放上烤架，因为他吃得狼吞虎咽，好像直到抵达洛杉矶之前都可能没东西吃。</p><div class="para-break"></div><p class="short-para">“搞电影。”佩瑞格林说。</p><p class="long-para">朵拉和诺拉，两个踩着舞台木板蹦跳的女孩。圣诞节，我们演杂剧。有一年我们在肯宁顿演《杰克与魔豆》。你能相信吗，很久很久以前肯宁顿还有现场演出的剧院？生意可旺着。豆子穿绿色紧身裤袜；专属我们的特别演出是墨西哥跳豆，穿红色紧身裤袜。一人一星期两镑。那年头两镑可是很耐用的。那时候还用镑、先令和便士，两镑等于四十个银先令，四十先令等于四百八十个那种大得车轮似的、让你满手金属臭味的棕色便士，而每一便士都有个洞等着，等着它补缀莎翁路四十九号捉襟见肘的经济。演出地点在肯宁顿就能省下住宿费，我们住家里，夜里搭电车回家，全身每根骨头一致酸痛，双脚像火烧，姊妹俩半睡半醒相互偎靠，雨水打着车窗，在我们从车站跑回家时把我们外套淋得湿透。要是我们感冒，那可是大灾难！就连一模一样的墨西哥跳豆也是可以取代的，所以我们带着低烧、喉咙痛、流感和咒骂继续跳不停，跳呀跳呀跳，保持微笑，永远微笑，露牙，踢腿，扛起重担，挑起包袱。</p><p class="medium-para">周三和周六，我们甚至可以在午场表演后回家喝茶，这样就能省下在里昂斯茶馆买水煮蛋的钱，把那四便士存下来买丝袜。丝袜永远是个问题，我们不知花了多少时间补那些天杀的玩意儿。</p><p class="medium-para">然后，一天下午，后台好一阵忙乱骚动。怎么回事？我们大吃一惊。一个身穿高级洋装的绵羊女坐在包厢，带着一名系缎带的保姆和两只发色锈红的小绵羊。戏剧界的王室成员莅临了我们卑微的小小剧团。</p><div class="para-break"></div><p class="short-para">“我才不上台。”向来性子烈的诺拉说，把墨西哥帽丢在地上乱踩一通。“太羞辱人了！”</p><p class="long-para">但第一任罕择夫人是位真正的高尚仕女，不像现任这位，而且，就算在当时，我也不认为她来肯宁顿是存着可恶的心眼，打算让小女儿欣赏她丈夫的私生女高高踢腿跳舞的好戏。后来我当然问过她，她说当时他又巡回演出去了，她一个人在那广大豪宅里晃来晃去闲得发慌，不知怎么打发湿雨的周六下午，而她的老保姆，也就是当年照顾过还是小宝宝的她、现在又在照顾她的小宝宝的同一个老保姆，这老保姆想带两个小女孩去肯宁顿看杂剧，因为她的——也就是说老保姆的——妹妹就住在剧院过去一点的转角。（后来我们发现，那个妹妹是咱家阿欣新婚丈夫的婶婶或舅妈之类，因此大家建立起深厚情谊，老保姆的妹妹搬到渥辛之后，老保姆还是常来看阿嬷。）老保姆想看完杂剧可以顺便去看妹妹，而艾塔兰妲夫人临时起意说道：“等一下，我去戴个帽子，我也一起去吧。”</p><p class="medium-para">当然，戏还是照演，我们也照上台不误。不然呢？难道要平白丢掉一天的收入？搞不好连工作都会丢掉，然后又得回头去一家家找经纪人，天天苦等，绝对不要。</p><p class="medium-para">她说，她一看到我们就知道了，对照过节目单之后更加确定，因为佩瑞跟她在一起后把我们的事都告诉了她。后来她送过我们花，匿名，但是很容易猜到来源——勿忘我。当时我觉得挺感人的，但诺拉觉得，真恶心。有一次她还邀我们喝茶，但诺拉说：“门儿都没有。”</p><div class="para-break"></div><p class="long-para">我们的同父异母的妹妹当时对那场表演的反应，已经显示出未来的人格特质。萨丝琦亚一看到豆子上台便发出厉鬼般的哭嚎声，仿佛第一眼就认出我们，铆足劲儿要抢我们的风头；伊莫珍睡着了，从头到尾张着嘴，为她将来扮鱼的事业预做准备。但艾夫人——至少她多年后是这么告诉我的——满眼珠泪、满心内疚地看着我们。她也许不小心出轨了那么一次，但无论如何，她是真心爱我们的父亲。她一定真的很爱他，否则她既有贵族头衔又有钱，父亲还是上院议员，何必嫁给一个除了英伦三岛最棒的腿之外一无所有的男人。</p><p class="short-para">当时，她也没有佩瑞的音讯。</p><p class="medium-para">然后杂剧季节结束，我们再度上路。这时我们十五岁，五尺六寸，棕色妹妹头，不过诺拉常向往地说要染成金发。她觉得未来会是金发吃香。染呢？还是不染？有一点很确定的是——她不能自己一个人染。分开来看，我们两个毫无特殊之处，但加在一起……</p><p class="long-para">这时我们已经是经验老到的巡回戏剧团成员了。我们印了名片：“朵拉与莉欧诺拉，伦敦莎翁路49号，邮递区号SW2。”总是得在星期天上路，星期天火车为了尊重安息日开得特别慢，有时还会半途停在郊野，好像被吓到。我们不怕虱子，不怕蟑螂，跳蚤也打击不了我们的士气。我们学会看不起“木头家族”，也就是空座位。表演结束后，房东太太为我们准备的迟来晚餐是“苏格兰蛋”。听到苏格兰蛋，阿嬷气坏了。“只是腊肠肉啦。”我说。“腊肠肉包水煮蛋。你也知道腊肠肉是什么做的，就木屑和旧橡皮筋而已嘛。”阿嬷才不肯听。“你们这些食人族！”她说。</p><div class="para-break"></div><p class="medium-para">但现在我们知道，阿嬷不赞许并不代表世界末日。明知她会说什么，但在其他女生怂恿之下，我们大着胆子终于买了几小块兔子毛皮来御寒保暖。“死掉的兔子。”阿嬷见到时说。我们愈长愈大，和她之间出现裂痕；她爱我们，但常不赞许我们做的事。</p><p class="medium-para">我们只是小女孩，但很快就有模有样。我们有自己的小小手提包，装着小小的镀金粉盒和粉扑；每有疑虑，我们就拿起粉扑给鼻子补粉，趁这时间想想该如何机巧应对。有一次，在诺丁翰皇家剧院，我的粉扑给老鼠啃了。我们用标准双层锡盒装化妆品——胭脂，莱其纳，还有那种固体眼线：削下一小片，用迷你锡盘盛在烛火上烤融，然后拿火柴棒沾着画，快，快，快，不然它又要变硬了。</p><p class="medium-para">阿嬷保存了我们所有演出的节目单，从最初那出《林中孩童》直到ENSA[26]那些，累积了大本大本的剪贴簿。她走后，剪贴簿全堆在阁楼一口箱子里——我们的整个人生。看到那些剪贴簿，我们很难过，想起以前常取笑她，还买腊肠卷和鳄鱼皮手提包回家，但她依然继续剪剪贴贴。一叠又一叠的剪贴簿，剪报被时间变成老太太手背上老人斑的颜色。那是她的手。也是我现在的手。那些旧报纸一碰就化为棕色尘埃，宛如骨灰。</p><p class="medium-para">最后一本剪贴簿在1944年戛然而止，让我们永远停留在将满三十，固定在最后一个姿势，你能相信吗，居然是扮成牛头犬：《牛头犬一族》。那是场蠢透的慈善募款午场表演，想用现金取代失去的情人，失去的儿子，死在滇缅公路的男孩，那些不可取代的人。我们干吗要参加啊，诺拉？“我们总得尽点力。”她说。“总之，我们娱乐了官兵。”</p><div class="para-break"></div><p class="short-para">确实没错。</p><p class="medium-para">我现在仿佛还能看见阿嬷，坐在厨房餐桌边，把这张照片加进剪贴簿，上下排门牙轻咬舌尖，喘着粗气，专心一意。她拿起钢笔，吸饱墨水，在底下用她那圆圆的字体仔细写上：“约克公爵剧院，1944年5月20日。”</p><p class="long-para">然后她伸手拿黑啤酒，却发现酒瓶空了。哦，阿嬷！那真是名副其实“要命的一杯啤酒”！要是那天晚上你忍住渴，就能活着看见盟军胜利日了。她手扶另一把椅背站起来，嘴里哼着歌，也许是：“会有青岛飞在/多佛的白色悬崖……”；或者：“当伦敦灯光亮起，我也将随之发亮。”她对着水槽上那方旧镜子，把那顶斑点黑面纱的小帽在头上戴好，用黑色眼影画好美人痣，空酒瓶一个个放进那永远的油布提袋。空袭警报响了，但她才不会让希特勒妨碍她喝酒，是吧？</p></div></section><section class="chapter-section">
+<h1 class="chapter-title" id="chapter-5">
+    序
+</h1>
+<div class="content"><p class="short-para">阿莉·史密斯　撰</p><p class="short-para">邵逸　译</p><p class="long-para">安吉拉·卡特的最后一部小说《明智的孩子》所倡导的智慧究竟是什么？首先，它张扬地要我们开心起来。“唱歌跳舞是多开心的事！”此外，还有一种相对内敛的智慧。比如“孩子”（child）这个词。卡特，一位喜欢字词释义的作家，一定知道这个词在历史上的大部分时间在方言中都表示“女孩”。在莎士比亚晚期关于出生、死亡和重生的浪漫主义作品《冬天的故事》（The Winter’s Tale）中，老牧羊人在波西米亚的海滩上偶然发现被抛弃的珀迪塔时就曾说过：“天啊！是个孩子！很漂亮的孩子！不知是男是女（a boy or a child）？”[1]</p><p class="medium-para">智慧与纯真。天真与博学。《明智的孩子》是一部博学的作品，满是层叠的暗示和文学嵌入——深谙种种形式的“嵌入”所涵盖的丰富可能性。这部作品欢快而放纵，是卡特最华丽、最滑稽、最具满足感的虚构作品，放荡得无拘无束又兴高采烈。这恰巧也是她的最后一部小说。《明智的孩子》出版一年后，当时年仅51岁的卡特就去世了，因此，这部作品在她如今公认极具革命性的文学生涯中具有极高的地位。</p><div class="para-break"></div><p class="long-para">“多数思想进步依赖于对旧文本进行新解读，”她1983年写道，“我完全支持旧瓶装新酒，如果新酒能让旧瓶爆炸，那就更好了。”[2]她是一位坚定的女性主义者和社会主义者，“一个先进的、工业化的、衰落的后帝国主义国家的纯粹产物”[3]，在她看来一切艺术作品都无可避免地具备政治属性，因为它们是历史造就的，属于所在的时代。她对女性主义和社会主义的信仰构成了她创作的双重动力。“肉体走出历史来到我们身边”,她在女性和性别结构的开创性研究著作《萨德式女人》（The Sadeian Woman, 1979）中这样写道，这本书出版后引发了评论界的恐慌和针对其作者的愤怒。20世纪60年代，卡特发表了一系列饱受赞誉、屡获殊荣的小说，此后，她又推出了一部又一部无所畏惧的作品并在其中以艳丽而暴力的巴洛克式风格表达对英国现实主义的抗拒，她的作品中充斥着可恶暴虐的傀儡师、日落西山的衰弱文明，以及游离在暴力与疯狂之间的、聪明又迷失的女主人公，这一切让她的作品在评论界成了疯狂而无可归类的存在。最终评论家倾向于给她贴上顽劣的魔幻现实主义的标签。她对这个概念嗤之以鼻，正如她反感现实主义是“真实”的唯一版本的这个观念。“我对现实主义没有意见。但现实主义有不同的类别。我认为我自问的问题和现实息息相关。”[4]</p><p class="long-para">卡特的好友兼她作品最兢兢业业的评论家洛娜·塞奇（Lorna Sage）提到，1979年卡特不仅发表了《萨德式女人》还出版了她最著名的短篇小说集《染血之室》（The Bloody Chamber）——这是她第一次在短篇小说集中公然改写传统故事的结局，比如，让蓝胡子的新娘反抗蓝胡子，让小红帽勾引大灰狼——正是在那一年，她对“转变”这个主题的兴趣变得容易被读者接受。此后，一种全新的幽默、更饱满的热情和对挣脱清教束缚的热切渴望开始在她的作品中显现。</p><p class="long-para">显然，卡特的最后两部小说让评论家感到安全得多，在他们看来，《马戏团之夜》（Nights at the Circus）中长翅膀的酒吧女招待和《明智的孩子》中能将腿踢得很高的舞女的世界整体上比她以前的作品“更温和”[5]，卡特以《霍夫曼博士的魔鬼欲望机器》（The Infernal Desire Machines of Doctor Hoffman，1972）和《新夏娃的激情》（The Passion of New Eve，1977）等为代表的早期作品——男主人公变性或被一班男杂技演员轮奸是其中司空见惯的典型情节——是对文学准则的质疑、讽刺和改写。</p><p class="medium-para">但是从她的第一部小说《影舞》（Shadow Dance，1966）到《明智的孩子》（1991），卡特的作品不遗余力地拆解浪漫主义、欲望、主流叙事和社会法规构成的精密机械和小说本身的机理，将一切赤裸裸地展现在读者面前，并向读者演示它们是如何运作的。</p><div class="para-break"></div><p class="long-para">从开头轻快的谜语开始，《明智的孩子》中的一切都与双重性相关——尤其是社会双重性，卡特迫切地指出。叙述者是一位过生日的老太太，她是一个双人组合——诺拉和朵拉，“传奇的欠思姐妹”——的一员。她们来自一座由两部分组成的城市的“错误的一边”（她们的家庭、她们从事的艺术，以及艺术的世界，都具有双重性）。“很久很久以前，大致可以这样区分”，朵拉说道，将现实和财富的到来给一贯贫穷、鱼龙混杂的伦敦南部带来的复杂影响编织成童话。她们只能庆幸自己幸运地在这里拥有一处房产，莎翁路四十九号。“要是没这屋，诺拉和我就得流落街头，拖着几个塑料袋的家当走来走去……好不容易可以进收容所过夜就兴奋高歌，结果因为妨碍安宁又立刻被赶出来，在街头苟延残喘，挨饿受冻，最后孤零零地挂掉，像破布一样被风吹走。”</p><p class="medium-para">这部载歌载舞的欢乐小说的开篇对跳舞和歌唱的快乐、黑暗、轻快的表现是史无前例的，全书的五个章节也是五幕精彩的荒诞剧，记述一日光阴又横跨整个20世纪，融合了文学、古典戏剧、廉价的杂耍秀和好莱坞电影，向古往今来的一切娱乐形式致敬。</p><p class="long-para">不过，这部小说更多地是在赞颂将高雅艺术和低俗艺术融为一体的杰出英国文艺炼金术师——莎士比亚。莎士比亚的生日——一个微风拂面的春日——也是小说中的双胞胎老姐妹，她们的双胞胎父亲、叔叔及其他亲戚（当然也都是双胞胎）的生日。这场美妙绝伦的演出尽显人间百态，章节以转变收尾，语句有自己的韵律与节奏，关注英国气质和传统，发扬出去“找点乐子”的精神，以莎士比亚式的双重性——双胞胎和替身、父亲与女儿、失去又找回的家庭、戏剧与悲剧——为主题。但《明智的孩子》的审美格局绝对超越悲剧——朵拉曾平静而决绝地说：“我断然拒绝演悲剧。”——也超越喜剧。这部小说深受莎士比亚晚期的浪漫主义戏剧影响，如《辛白林》（Cymbeline）、《暴风雨》（The Tempest）、《泰尔亲王配力克里斯》（Pericles）、《冬天的故事》，极端对立又紧密相连的生死是故事的核心，但真正的艺术在于重生。</p><p class="long-para">卡特的欠思姐妹的离经叛道也（无疑）是双重的——首先，她们是莎士比亚戏剧演员梅齐尔·罕择、英国戏剧“皇室”的国王（卡特笔下最温和的普洛斯彼罗[Prospero][6]式角色，魔术师佩瑞格林的双胞胎兄弟）的私生子；第二，她们自己的“戏剧艺术”——在“杂耍秀场的一角”跳舞，在舞厅谋生——同样不为世俗接受。尽管她们的亲祖母曾经出演过莎士比亚戏剧的所有的女主角，甚至女扮男装演过哈姆雷特，她们最终还是沦为被抛弃的、以欠思[7]（罕择不正是欠思的高雅说法，卡特又一次随意却巧妙地赋予了这个词新的内涵）为名的私生子。她们的诞生是一个意外，多亏了欠思阿嬷的善良、想象和发明才得以生存，这本书中有很多阅尽世事的非凡老太太，欠思阿嬷就是其中之一。“这个家庭是阿嬷发明的。她将手边有的东西放进来——两个没妈的迷途小娃，一个戴着扁塌男帽、衣衫褴褛的流浪儿——凭借自己的坚毅个性一手创造出这个家……我多次注意到人类有种特性：如果没有家庭，他们会自己发明一个。”</p><div class="para-break"></div><p class="long-para">每一章是都对想象力中蕴藏的创造力的赞美。在诺拉和朵拉从小海盗到擅闯舞台的老人的人生旅程中，卡特向我们呈现了艺术和流行文化打破两者所谓边界的精彩互动，并指出要有“棒极了的腿”才能演莎翁剧。奥斯汀、米尔顿、科沃德、狄更斯、卡罗尔、华兹华斯、菲茨杰拉德、布莱希特和肖的穿插（有时其实是客串）“露面”之外，还有弗雷德·阿斯泰尔、鲁比·基勒，W. C. 费尔兹、霍华德·休斯和查理·卓别林（死而复生，下体“尺寸惊人”）等明星的短暂出现——这部汇聚了一大群大大小小的明星的小说对好莱坞20世纪30年代制作的《仲夏夜之梦》（卡特在这部360多页的小说中插入的众多的莎翁剧之一）进行了戏仿。“我尝试融入所有的莎士比亚作品，”她在去世前几个月接受作家保罗·贝利（Paul Bailey）的电台采访时说，“我是说，实际上我做不到……你知道的，加入《泰特斯·安德洛尼克斯》就很难……但我加了很多进去！”[8]</p><p class="long-para">同时，每一章都围绕一则家庭事件展开；都庆祝一个生日；都歌颂粗俗、难以违抗的生活，让“他正躺在床上复习莎士比亚”这样的句子变成自成一派的有趣而性感的影射便是一个典型的例子。这里的关键概念是庆祝，尽管它从来都不是一件易事，庆祝活动总是快乐的，狂欢式的。诚如朵拉所说：“管它是好是坏，只要有事发生，提醒我们还活在人世就行了”。这些明智的孩子从很小就知道表演是对各种可能性的开放态度，是一种希望，朵拉称之为期待。“我……向来最爱这一刻，当灯光暗下，布幕亮起，你知道有件神奇的事即将发生。就算接下来发生的事扫兴之至也无所谓，那份期待之情永远纯净无比。”</p><p class="long-para">1980年，在一篇有关作家柯莱特（Colette）及她在法国舞台上摸爬滚打、声名狼藉的岁月的精彩文章中，卡特透露她着迷于那样的生活，“女性在不以身涉险的前提下四处流浪冒险的极致人生”。她认为柯莱特以舞台人生为主题的小说《流浪女伶》（La Vagabonde）“仍是对在男性主导的社会中生存的自由女性所面对的两难境地的最真实的展示”[9]。在卡特的其他作品中，剧院被人们烧毁以发泄愤怒,追求自由。但在《明智的孩子》和《马戏团之夜》中，她笔下的剧院是积极的场所：在这个女人和穷人难以生存的世界里，人们对它加以利用并得以谋生，这一切赋予了剧院别样的意义。卡特在《萨德式女人》的开头提到了针对女性的可怖的涂鸦式表现——女性被视作零，一个被动的、环形的“O”，一个“代表虚空的符号”，“一张被拔除牙齿的哑口”，一种虚无的存在——“性别差异的整个形而上学可能源于这一基本图像”。[10]如果将此与卡特在她的最后两部小说中对马戏团、剧院——我们表演的场所——的处理相比较，一种全新的、有潜力的表演形而上学就成为可能。</p><p class="medium-para">在卡特的其他作品中，女孩和女人会因她们的镜中倒影及如何解读它们而感到困扰。在这部小说中，镜中倒影有了与以往不同的、更加广阔的内涵。它意味着姐妹情谊、家庭、让朵拉想要活下去的爱，还代表力量。“我们两个本身都没什么特别——瘦瘦小小，鼠棕色短发——但加在一起，人们便为之注目。”欠思姐妹生动地展示了团结的力量。“分开来看，我们两个毫无特殊之处，但加在一起……”就能写就传奇。</p><div class="para-break"></div><p class="long-para">这并不意味卡特——在一个莎士比亚一心只想赚钱的世界里——描写女孩和女人的社会地位时不尖锐。“抱最好的希望，做最坏的打算。”描写女孩们在舞台上拾级而下的场景——一种弗洛伊德式的下降（尤其是蒂芬妮，“下楼梯时脚后留下血痕”）——时，将好莱坞解读为“一间非常古怪的妓院……这里所有供人交易的女孩都是影子”时，金钱、阶级和性别被她紧密地联系在一起，最能体现这一点的莫过于这部小说中的鬼魂——一闪而过、近乎透明的小咪，欠思姐妹的生母，一个在出租给演员的廉价供膳宿舍中负责倒尿壶的浮萍一般的女孩，她意外或者说果不其然怀孕了，随后英年早逝。</p><p class="medium-para">但是，根据朵拉的说法，诺拉自己的第一次性经验是又冷又醉时在黑暗的小巷中发生的，对方是有夫之妇，对，也是在杂剧中饰演鹅的演员。朵拉说，有人可能会称之为低贱下流，但与杂剧鹅的结合满足了她的渴望，生活可以拥有超越其本身的意义，只要我们如是选择。</p><p class="long-para">卡特本人喜欢一点出人意料的戏剧性。在她的作品的一篇最新序言中，她提到做一个“因言词犀利恶毒而臭名昭著”，“能像被激怒的士兵一样骂街的和颜悦色的中年英国淑女”[11]是多么自由。十多年前，她在给洛娜·塞奇的信中提到了她希望留给未来可能有的女儿的智慧箴言。卡特在一个文学聚会上遇到了酗酒、自残的小说家伊丽莎白·斯玛特（Elizabeth Smart），并由此想起了自己对有些恰巧是女性的作家自我放纵、自我伤害的行径的厌恶，她在给塞奇的信中讲述了她为何加入一家新出版社——后来的维拉戈图书（Virago Books）——的董事会。“驱动我这么做的渴望是我希望我的女儿不要陷入写下‘我在中央车站坐下哭泣’这样的语句的境地，尽管这是精致的句子。‘我在中央车站扯掉他的睾丸’还差不多，我是这么希望的。”[12]</p><p class="long-para">《明智的孩子》的轻快的源头，可以说，是一种大声表达，和它的黑暗双胞胎、镜中倒影——静默。“其他则是沉默”是悲剧中的话语。永葆蓬勃之声的秘诀是，像奥斯汀一样，拒绝沉溺于愧疚和痛苦中。《明智的孩子》的生命和灵魂是朵拉，卡特形容她“以英国气质为人格”[13]，最能彰显朵拉个性的正是她不屈不挠的第一人称叙述——她的声音。“简言之，这就是美国人的悲剧。他们环顾世界，心想:‘一定有比这更好的东西!’但是没有。抱歉，兄弟，就只有这个啦。你看到什么就是什么。只有此时此地。”她在第三章中如是说，而这一章的主题正是天堂和天堂的虚妄，在陈述中，朵拉用心地用老生常谈让她锋利的话语更温和，更人道。</p><div class="para-break"></div><p class="long-para">老生常谈总是夸张的，其本身就是一种口头的集体意见。卡特对口头语言的政治——传统的口头表达不仅时常令书面语言相形见绌，更常为其提供鲜活的创作养分——尤其感兴趣。“我碰巧出生在20世纪，所以识字。”她说道。在卡特的家族史中，识字能力总是偶然获得的，他父亲家族的一些成员接受了早期的苏格兰教育，母亲家族受教育的时间则晚得多，是“19世纪80年代教育法案”出台之后。“我一直认为，对署名作者的拔高，对人类95%左右的成员而言是不公平的，大多数人不会写字，但他们一直在不断发明创造……莎士比亚令我十分崇敬的品质之一，就是他不是很在乎自己的作品有没有得到出版。在我看来，为口头文学创作的莎士比亚在很多方面是很老派的。”[14]</p><p class="long-para">朵拉·欠思是卡特小说中唯一完全是女性的第一人称叙事主人公——她和卡特一样明白“我们用口舌传承历史”，也清楚自己是一位离经叛道的记录者，从现状来看，女性的声音更难在历史上留下痕迹。诺拉的声音，卡特的绝妙创造，蕴藏着双重性，既是个人的，又是集体的，讲述了一个群体共同的经历和人生。她喜欢那些让众多的危险故事得以流传下来的老生常谈：“但诺拉和我知道被包养的女人得如何乖乖听命行事以争上游。”老话也可以是性感的：“怀抱希望的旅程胜过抵达，佩瑞叔叔常说。我也总是比较喜欢前戏。”</p><p class="long-para">这位“非主流的记录者”是欠思姐妹中更精通文学的那一位。两姐妹的名字与两位男性，20世纪的思想与文学的巨擘，弗洛伊德和乔伊斯，有关，但两姐妹逃脱了她们的名字所隐含的命运。朵拉的文学教育来自她的美国男友爱尔兰（明显以斯科特·菲茨杰拉德为原型）——“爱尔兰蛮多才多艺的，尽管有些才艺不很灵光。”——她是一位会对教学内容提出异议的写作者。最终朵拉叙事者的身份是一把双刃剑，认为朵拉的叙述像单口喜剧的卡特会不时提醒我们这一点。她是否只是一个疯疯癫癫、醉醺醺的老女人，“一身寒酸旧皮草，浓妆艳抹活像海报里的女人，蛇皮凉鞋里的脚指甲涂成橘色（‘波斯哈密瓜’）、浑身酒气”，希望你给她买一杯酒，让她倾诉人生故事。因为即便她是20世纪的女版老水手[15]，她也同时写出了这样老练而具有冲击力的段落：</p><p class="medium-para">但是，说真的，在我们人生那些嘈杂但互补的叙述中，这些光辉灿烂的暂停有时确实会出现，如果你选择在这样一个暂停之处结束故事，拒绝让故事继续，那么就可以称之为圆满结局。</p><div class="para-break"></div><p class="medium-para">在关于柯莱特的文章中，卡特提到西蒙娜·波伏瓦曾在回忆录中记录她和柯莱特同处一室（甚至是直接对话）时心中那种难以置信的感觉。“当然，”卡特沉思道，“就像波伏瓦不可能一丝不挂地在舞台上跳舞一样，柯莱特也写不出《第二性》，这准确地界定了两位伟大女性的局限性。”[16]与柯莱特或波伏瓦相比，卡特伟大的最后一部小说更接近一部集两家之长的作品。</p><p class="long-para">《明智的孩子》的无忧无虑几乎是隐忍克制的。一本关于老太太的书不可避免地会成为一本关于“所有凡人的人生”的书。“吾等从何而来？又将去向何处？我当然知道第二个问题的答案：注定遭到遗忘，不留半点痕迹。”这部光鲜灿烂的小说不避讳黑暗，不否认“战争是事实，不能靠打炮打掉”。《明智的孩子》的无忧无虑是对悲剧、贫穷、私生、等级和最令人悲痛的“英年早逝”的回应。要如何应对？“我们也会继续又唱又跳，直到就这么倒下咽气，对吧，小鬼。”在她的评论文章中，卡特多次将轻快与坚韧联系在一起。她说她最喜欢的电影明星之一露易丝·布鲁克斯（Louise Brooks）[17]在帕布斯特的《潘多拉的魔盒》（Pandora’s Box）中“象征着美与无忧无虑的心中蕴含的颠覆性的暴力”[18]。在这样一部既探讨衰败又讲述新生和世代传承的小说中，年过七十的诺拉和朵拉在大英帝国的一角去一家破落的老电影院看自己年轻时出演的电影《仲夏夜之梦》，“两个疯疯癫癫老骚婆眼睛紧盯自己过去的鬼魂”。</p><p class="long-para">由此可见，这部小说——为生命力高唱赞歌，无数出生、生日与重生在新生绽放的大结局达到高潮——是作者善意的设计。《明智的孩子》从头到尾是一场表演、一场戏。多么精彩的表演。一场关乎爱的表演。一场悬念丛生、超乎想象的表演，换句话说，一场令人信服的表演。一场关于生存的表演。一场鼓励发声、拒绝沉默的表演。一场关于和衷共济的表演，也证明了父亲、母亲甚至自我的角色可以由多人承担，换句话说，是可以共享的。在这场演出中，过去的遗憾也被修复了，它好似一份回赠给历史的礼物，来自一位喜欢用自己的智慧展示，事物固有的面貌可以——只要我们发挥想象——被改变的作家。“抱最好的希望，做最坏的打算。”到了最后，这句老话被颠覆了。小说的结局充满希望。</p><p class="medium-para">卡特的最后一位女主人公知道如何进行角色反转。在她笔下，她不幸的母亲小咪，一个逝去女孩的模糊残影，大胆而性感。在去世前不久接受电台采访时，卡特告诉保罗·贝利：</p><div class="para-break"></div><p class="long-para">我姑姑辛西娅，我们叫她小咪。我的小咪姑姑是一个极度不快乐、不满足的女人，她六十多岁时惊天动地地发疯了，最后死在了……斯普林菲尔德精神病院。她性格轻佻……总是被外界压制。1914年战争快要结束时，她在这附近上中学，当时我祖母被叫去学校，学校老师不知道拿小咪怎么办好，他们不知道小咪毕业之后要做什么。我祖母纯真且认真地说，我们一直以为她可以去歌舞厅工作……我是说，女校长以为我祖母是说小咪可以去站街……小咪后来成了一位办公室职员，就像我说的那样，很不快乐。我想也许我会送她去歌舞厅跳舞。[19]</p><p class="medium-para">《明智的孩子》是一个失而复得、返老还童的故事。它创造了超现实的世代传承。让其所触碰的一切焕然一新。满载活力、激情、机智、欢闹、希望、技艺、艺术和爱。从很多意义上说，这都是一部重燃生命之火的作品，是卡特最后的遗产，是她留给世界的善良、激烈、刺耳的潜力。睿智无双。快乐无上。</p><p class="short-para">[1]莎士比亚：《冬天的故事》，李华英译，北京：外语教学与研究出版社，2016。</p><p class="medium-para">[2]Angela Carter,Shaking a Leg: Selected Journalism and Writings(London: Chatto & Windus, 1997), p. 37.</p><div class="para-break"></div><p class="medium-para">[3]Angela Carter,Shaking a Leg: Selected Journalism and Writings(London: Chatto & Windus, 1997),p. 40。</p><p class="medium-para">[4]‘Omnibus: Angela Carter’s Curious Room’, BBC transmission script, 15 September 1992, p. 24.</p><p class="medium-para">[5]Entry on Angela Carter,The Cambridge Guide to Women’s Writing in English, ed. Lorna Sage (Cambridge: Cambridge University Press, 1999), p. 116.</p><p class="short-para">[6]普洛斯彼罗是莎士比亚戏剧《暴风雨》中的人物。——译者注</p><div class="para-break"></div><p class="medium-para">[7]本书主角姓Chance,有“机会”或“偶然”之义;其父姓Hazard,意为“危险”或“冒险”。分别译为“欠思”及“罕择”，以传达其中“不假思索”或“机缘巧合”的意味。（此条脚注出自本书译者严韵）</p><p class="medium-para">[8]‘The Third Ear’, Interview with Paul Bailey, BBC Radio 4, June 1991. (我在这篇序中引用了这篇访谈，卡特在其中谈了很多关于当时刚刚出版的《明智的孩子》的内容，非常感谢保罗·贝利为我提供访谈稿。)</p><p class="medium-para">[9]Shaking a Leg：Selected Journalism and Writings, pp. 520-1.</p><p class="medium-para">[10]Angela Carter,The Sadeian Woman: An Exercise in Cultural History, (London: Virago Press, 1979) pp. 45.</p><div class="para-break"></div><p class="medium-para">[11]Shaking a Leg：Selected Journalism and Writings,  p. 604.</p><p class="medium-para">[12]Lorna Sage,Good As Her Word: Selected Journalism, (London: Fourth Estate, 2003), p. 75.</p><p class="short-para">[13]‘The Third Ear’, Interview with Paul Bailey.</p><p class="short-para">[14]‘The Third Ear’, Interview with Paul Bailey.</p><div class="para-break"></div><p class="medium-para">[15]典出《古舟子咏》（The Rime of the Ancient Mariner），英国诗人塞缪尔·泰勒·柯勒律治（Samuel Taylor Coleridge）创作的叙事长诗，讲述了一位老水手在海上的经历。——译者注</p><p class="medium-para">[16]Shaking a Leg：Selected Journalism and Writings,  p. 525.</p><p class="medium-para">[17]露易丝·布鲁克斯（1906—1985），美国女影星，以在20世纪20年代的默片中轻松自如地扮演放荡堕落的角色而闻名。——译者注</p><p class="medium-para">[18]Shaking a Leg：Selected Journalism and Writings, p. 351.</p><div class="para-break"></div><p class="short-para">[19]‘The Third Ear’, Interview with Paul Bailey.</p></div></section><section class="chapter-section">
+<h1 class="chapter-title" id="chapter-6">
+    3
+</h1>
+<div class="content"><p class="medium-para">前几星期我们又把那片子看了一遍，已经好多年没看过。事实上，我们已经好多年没上过电影院，其中有种种原因，很重要的一点是本地跳蚤窝专放塞尔维亚克罗地亚原音附字幕的片子，这对区区在下的眼睛有点吃力。我的眼力不行了，看不见，眼镜又放在家里；当然我本来就不打算戴眼镜出门，宝贝儿，我现在只剩虚荣可恃了。放映时间是星期天下午三点，在诺丁山，十万八千里远，我们得搭两班公车，在“苏格兰商店”[1]转车。</p><p class="long-para">天啊！时代真是变了。银幕上的人比坐在底下的人多，而且那儿真是名副其实的跳蚤窝，我大腿根内侧被咬，这部位可敏感得很，在公共场所公然搔挠铁定会被警察抓。电影看到一半，外面下起雨，漏雨滴在诺拉身上，我们要不就得撑伞，要不就得换位置。我们起身时，看见后排有个男人跪着，脸埋在男朋友的裤裆正起劲。事实上，整个下午只有这一点让我高兴，知道至少有人挺开心，在那阵阵透风、潮湿空荡、满是鼠臭和陈年烟草和杰耶消毒水和丝绒反潮味道的剧院里，我可一点都不开心，拖着这具二手身体坐在那儿，看它当年依然崭新的模样。</p><p class="short-para">诺拉一度用手肘拱拱我的肋骨。“妈呀！”她说。“我们当年真漂亮！”</p><p class="short-para">简直让人想哭。</p><div class="para-break"></div><p class="medium-para">虽然观众稀疏，但终场还有零零星星掌声，尽管我紧张地怀疑那可能意带反讽。之后一个男生在街头追上我们：“你们该不会就是欠思姊妹吧？”我们大乐。我们在他那本《城区》[2]上签名，然后他凑近悄声问我们，她的本名是不是真的叫黛西·达克[3]。</p><p class="medium-para">他靠得那么近，我看见他胡子上有小滴小滴珍珠似的精液，让我看得好不入迷。我说，没错，是真的，然后——实在忍不住，事后恨不得咬掉自己舌头——我说，你有没有注意到他嘴巴形状很滑稽？那是因为他帮好莱坞每一个制作人都吹过喇叭。他走之后，诺拉一口咬定我伤了人家感情，还说她觉得他嘴巴形状正常得很，不过总之他看来一点也没不愉快嘛。</p><p class="medium-para">走出电影院时，诺拉顺手拿了一份折页传单，此时正眯着眼看。《仲夏夜之梦》，梅齐尔·罕择导演，美国好莱坞出品。“朵拉，”她说，“这里为什么说它是‘集媚俗大成的杰作’？”</p><p class="medium-para">我们想找个地方喝杯茶，但“乔·里昂斯”都没了，都已经呜呼哀哉。你记不记得那些里昂斯茶馆？店面厚厚白石膏形成卷卷花纹，就像走进结婚蛋糕，金字招牌写道：乔·里昂斯。你沿着柜台往前挪，水煮蛋加吐司放在鸽笼般的锡盘小洞里保温，质感湿润、果肉多多的巴斯面包[4]顶端有冰糖碎块闪亮，旁边摆一小坨奶油。女侍会把滚水——呼咻！热腾腾注入胖胖白茶壶，你的热茶就泡好了，喝完后杯底残留茶叶，可以用来算命。</p><div class="para-break"></div><p class="short-para">我已经好几年，好几十年，没有喝过杯里有茶叶的茶了。不知道这年头算命的怎么办，看手相吗？</p><p class="medium-para">真绝，居然会怀念乔·里昂斯。以前我们只有手头拮据时才会去那儿吃午餐，当时我们还在到处找演出机会，天天跑经纪人办公室、舞台后门等。然后我们会一人花六便士买点吃的，附有薯条、一根香肠、一些豆子。</p><p class="short-para">像乔·里昂斯茶馆这种地方，只有消失了，你才会怀念。</p><p class="medium-para">但我们找了半天，诺丁山硬是找不到地方喝茶，于是改喝杯琴酒振作精神，波多贝罗路那间酒馆活像空洞透风的大谷仓。外面仍在下雨，天色渐暗。有时我纳闷我们干吗继续活着。</p><div class="para-break"></div><p class="medium-para">那年头，四法辛[5]等于一便士，英国四面完全环水；如今呢，已经没有便士这种东西，而这个多雾的三角小岛仿佛挂在云下——现在是空运时代。好像鼓起嘴一口就能吹去莎翁路四十九号和纽约那栋公寓之间的距离，好像我明天就能身在彼处，如果那公寓仍然存在，如果佩瑞格林仍然存在，如果过去不是比海更深更难渡越的话。</p><p class="medium-para">我这辈子只飞过一次，是在美国好莱坞，《仲夏夜之梦》的拍摄现场吊钢索。那年头，从伦敦到好莱坞可是大费周章，得花上好几星期，先越过大西洋，再横跨美洲。第一段是水路，阿诺和我就这样抵达曼哈顿，通往我们父亲梦想的大门，当时一大清早，我们站在栏杆旁，看得目瞪口呆。</p><p class="medium-para">从没见过这样的地方。以前在电影里看到的景象只是实物的苍白影子而已。那么多高楼大厦，排成长长一排排，随着我们进港而渐次移动分开。面前一切似乎都直接从海中拔地而起，像失落的城市探出头换气。我们的心开始狂跳，感觉任何事都可能发生。</p><p class="long-para">我们靠着栏杆看得目瞪口呆，就像一般旅客，但我们打扮得可时髦了，我还有证据哦，剪报在这儿。哪，看到没？《纽约邮报》头版，我们穿着最体面的套装——夏帕瑞丽[6]，不骗你——炭灰羊毛料，领口袖口镶狐皮，纽扣是四分音符[7]和八分音符形状（典型的夏帕瑞丽风格），柔软高顶小帽斜斜半遮左眼。我们事先已经互相交代，要看起来火辣，但保持冷静；我们的姿势与套装搭配得天衣无缝，髋骨向前凸出，肩膀垂下，重心放在一条腿上。</p><div class="para-break"></div><p class="medium-para">看看头条标题：“纽约喜迎莎士比亚珍宝”，副标题：“孪生姊妹带来宝贵礼物”。看到诺拉怀里那个像断头娃娃的东西没？你绝对不会相信的。那是个罐子，某种坛子，差不多是火葬场用来装骨灰那种大小，中空，外形是一尊胸像，也就是，没错，威廉·莎士比亚的胸像。这是我们父亲在特伦河畔的斯托克特别定做的，秃顶假发可以掀开，就是盖子。</p><p class="short-para">那么这古怪容器里装的是什么？</p><p class="short-para">泥土。</p><p class="medium-para">就像吸血鬼德古拉伯爵，我们带着一罐泥土旅行，片刻不离身。泥土来自埃文河畔的斯特拉特福[8]，由某个助手虔敬地从那大剧院庭园里挖起，然后交给诺拉和我，我们的神圣使命便是把这珍贵泥土带到新世界，让梅齐尔第一天开镜前撒在《仲夏夜之梦》的拍片现场。</p><div class="para-break"></div><p class="long-para">他和艾夫人还有双胞胎女儿当然早就先到美国，处理“前制作”事宜。花了好长时间才搞定。火灾那一夜，秃头男——我们很快就学会跟其他人一样叫他“成吉思汗”——的宣言是一时激动脱口而出，之后耗了好久，“雅典附近一座树林”[9]才在卡尔弗城[10]附近的空地上搭起来。但现在，哦，想来让人多么兴奋！只消再搭三天火车就到好莱坞，我们的明星梦也将一蹴而就，至少在纽约那个早晨我们或许曾这么想。我从没见过这么多照相机。咔嚓，咔嚓，闪光。我们靠岸。咔嚓，闪光，咔嚓。我们带泥土通关时甚至上了“帕赛新闻”[11]。但阿嬷的座右铭打小就牢牢印在我们心中：“抱最好的希望，做最坏的打算。”我们有备而来。</p><p class="short-para">然后：“女孩们！”</p><p class="short-para">佩瑞来迎接我们了，将我们紧紧一搂，还是旧日那熟悉的大熊拥抱，他红着脸哧哧笑，像个小孩。</p><p class="medium-para">“喜欢吗？”他问我们，往壮阔的地平线挥手比画，仿佛那是他买给我们的礼物。“喜欢吗？”他说，在那辆载我们回家，内衬皮革是白色的加长礼车里挥手比画。“喜欢吗？”他问我们，在我们的目的地挥手比画。</p><div class="para-break"></div><p class="medium-para">那地方简直离谱，装潢得活像西班牙小教堂。皮革镀金的护墙板，一道霓虹灯下是一幅葛雷柯的基督诞生图真迹，霓虹灯可以推开，露出湿式吧台[12]。他波一声打开香槟。四处散放几把铸铁大椅，光看就够你长痔疮。这是客厅。然后你走上盘旋的楼梯来到卧房，窗户占了半面墙，看出去是中央公园，公园彼端摩天大厦的钢铁蕾丝歌舞团一览无遗。房里一张圆床直径足有六尺，堆铺着北极熊皮，床顶的天花板上一面圆镜。</p><p class="medium-para">“这个幸运女孩是谁？”我们窥看她华丽的衣柜时，我问。他手指按在唇上：“最高机密！”这时白色的电话响了，打断我们。佩瑞拿起听筒，没讲话，只静静地听，露出哀愁表情，然后叹口气挂上。</p><p class="short-para">“可怜的婆娘。”他说，但没告诉我们指的是谁。</p><p class="long-para">一只大波斯猫——也是白色，搭配电话色调——从床上跳下，争取一点注意，把头往我们炭灰色裙子上蹭，弄得我们满身毛。猫儿在哪里尿尿？这里可是十五楼耶，问题不小。但若要论人类的卫浴设备，简直奢侈得让人尴尬——一间浴室供那位女士（不管她是谁）专用，以粉红大理石和铬钢装潢；另一间给佩瑞用，比较低调，黑瓷砖，还有——配得真好——黑浴巾。诺拉放下酒杯，脱光衣服冲了个澡，我则躺下休息，在熊皮毡上好好伸个懒腰。佩瑞也躺了下来。</p><div class="para-break"></div><p class="short-para">“快点，老头子，从实招来吧。”</p><p class="medium-para">别人绝对想不到佩瑞已经超过四十岁。我不知道罕择兄弟跟时间签下什么邪门约定，但你简直看不出他哪里有变老。一头胡萝卜发色的叔叔别来无恙，头发依然是鲜亮、惹眼、坏男孩式的红，也依然东翘西翘。他鼻上点点雀斑从未消退，身材比以前更加庞大，简直像座仓库。他的西装是巧克力棕，有一道白色宽条镶边，鞋子是白色巧克力色相间。他看起来活脱是个皮条客，不过是爬到这一行顶端的皮条客。</p><p class="short-para">“这一切，”他说，又补充道，“包括我，都属于……”</p><p class="medium-para">这时，仿佛抓准时机上台，她一阵风似的卷了进来。她当然有理由大摇大摆进门，毕竟这可是她家，她在纽约的临时寓所！尽管发现一个赤裸的歌舞女郎在洗澡，另一个穿着衣服的又——怎么看都像是——正在跟她的情人鬼混，她却一点也不困窘局促，只朝我们咧嘴露出那著名微笑，踢开鞋子。</p><div class="para-break"></div><p class="short-para">“杂交狂欢什么时候开始？”她问。</p><p class="medium-para">岱丽雅·迪蕾尼。连这名字都有种旧时代的感觉，这年头明星都叫芬克包姆或哈肯布希或布朗了。她生性爱热闹，本名黛西·达克，家住贺斯特街，七个兄弟姊妹中排行老幺，父亲是卖鱼小贩，穷得连尿壶都没。多年前那个纽约早晨，她才二十五岁，就像我们一直缺少的姊妹；当时她刚从美发院回来，维持阴毛漂淡，修剪成心形。黛西可是什么花招都不会漏掉。</p><p class="long-para">黛西·达克从小就开始在婚礼上、才艺表演中唱歌，别名“梦幻小朵莉”，又一个颇具旧时代感的称号。1918年在纽约开始拍电影，片中被狗从火场救出，融化愤世嫉俗观众的铁石心肠，等等。1921年到好莱坞，抛开“小朵莉”，变成麦克·塞纳特[13]的出浴美女，然后上桌跳舞，坐在车后的折叠式座位，好一个“烈火青春”化身。她简直是为电影量身打造——个子很小，离五尺还差一寸，头大得很完美，使她的脸足以横跨银幕。葛洛丽亚·斯旺森就是这样，琼·克劳馥也是。要有张大脸，拍特写才好看。</p><p class="medium-para">她压下天生的鼻音——她来自布朗克斯区——以有声片功成名就，典型的三十年代金发女郎，难缠、甜蜜、好色、有趣、浪荡、温柔。我很喜欢岱丽雅·迪蕾尼。她那些高级洋装都肯借我们穿。</p><div class="para-break"></div><p class="medium-para">她常把老佩瑞又捶又打，好像他是个巨大的泰迪熊。她喜欢年长的男人，因为禁酒令初期她父亲无辜死于富尔顿鱼市一场枪战，而她这种喜好——我可以告诉你——在好莱坞可挺管用，她一路往上爬，途中在所有阶级高于副导的人的内裤上都留下口红印，不骗你。</p><p class="medium-para">她就这么走进来，穿着巴拉西厄[14]白套装，搭配那只搭配电话的白猫。她爱死那只猫，去哪儿都要带着。她脱下貂皮大衣，我们又一起喝了些香槟，然后，玲玲！玲玲！电话又响了。</p><p class="short-para">“找你的。”佩瑞格林说。“前一次我接了。”</p><p class="medium-para">她拿起话筒凑近耳边——然后朝电话大吼“去死吧！”，响得连杨克斯[15]都能听得一清二楚。她狠狠一拽，从墙上扯下电话接头，把整台电话直接摔出卧房窗户，随着玻璃破碎声，听筒和送话口分别画出弧线越过高空，天知道落在哪里，但我相信是轻轻落在中央公园的草地上。</p><div class="para-break"></div><p class="short-para">“对付骚扰电话就该这样。”她对佩瑞说。</p><p class="medium-para">她真的很有风格，浑身是戏。嘴馋时，她会大叫：“鱼来！”一弹手指，立刻就有个奴仆不知从哪儿冒出，送上一只虾仁，用牙签戳着。她把Duck多加两个小点，变成Dück，如此就跟唐老鸭和亨利母鸡都没关系了——“唐老鸭和亨利母鸡，这两个男人怪来兮。”佩瑞说。</p><p class="short-para">男扮女装的家禽？</p><p class="short-para">“你最好相信。”黛西说。“这就是好莱坞。”</p><div class="para-break"></div><p class="medium-para">我们两人他都爱，但只跟我谈心。有些事情就是这样。离开纽约前最后那天早晨，他开那辆白车载我出门，来到一处人行道停下，旁边地上一个大洞，是建筑工地。</p><p class="short-para">“这就是纽约。”他说。“眼看他楼塌了，眼看他楼起了。”</p><p class="short-para">“这里以前是什么，佩瑞叔叔？”</p><p class="medium-para">“这里以前是……以前是……”他说不下去，泪水滚落脸颊，于是我明白他特地带我来看的正是昔日的广场饭店遗址，而苔丝狄蒙娜，苔丝狄蒙娜死了。[16]</p><div class="para-break"></div><p class="long-para">我们搭乘20世纪公司的火车前往加州。如今我们也加入黛西的随从阵容，一路都是长茎玫瑰殷勤款待。她的白车载我们一行人来到中央车站时，有头戴看似三便士的帽子的警察挡住群众，群众大喊尖叫，猛朝她递花，递纸，递铅笔：“岱丽雅！岱丽雅！”又挣又抓想接近她。她只是个小个子，但步伐悠然仿佛优雅天成，又是微笑，又是挥手，又是飞吻的乐此不疲；我们可吓坏了，缩藏在佩瑞的大衣下，躲开那么多饥渴的，像“小红帽”故事里的野狼要大口吃掉你的眼和嘴。黛西是本日特餐，我们也差点像附餐沙拉被一并吞下，所幸我们快快冲过红地毯钻进私人车厢，黛西的猫跑在我们前面，速度之快连耳朵都被风吹平了。</p><p class="medium-para">甚至火车吐着蒸汽离站时，仍有众多影迷追在两旁：“岱丽雅！岱丽雅！”直到火车钻入隧道，他们被迫留下，悽悽惨惨戚戚，渴望着她。</p><p class="short-para">这是我第一次尝到“名”的滋味。把我吓坏了。</p><p class="long-para">你希望自己的名牌挂在门上吗？如果是，就要开派对享乐。黛西随时都想开派对享乐。她的卧铺——唔，与其说卧铺，不如说套房——整个装潢成白色，那是她最爱的颜色，只有她的蓝貂皮大衣例外。到处都是湿式吧台，我没看到任何干式吧台。隔壁是四分之三张床。她色眯眯地指出，这下她得睡在佩瑞身上了，这话倒也没错，他一个人便占满那整张床——他似乎就在我们眼前愈长愈大，愈来愈膨胀，愈来愈扩张，在那列加速载着我们所有人穿越美洲大陆的火车上，前往一个充满忘忧酒精与情欲纠缠的伟大之州，也就是说，那里尽是酒色乐趣。</p><div class="para-break"></div><p class="medium-para">不消说，诺拉很快又谈起恋爱。车上另有一个也打算到好莱坞闯天下的年轻小孩，但不是站在镜头前，而是站在炉子前——他要加入叔叔的外烩事业，至少他是这么说的。那小子非常爱音乐，小提琴盒从不离手，参加岱丽雅的派对时也紧抓不放，但不肯拉一曲给我们听，他说琴弦断了一根。他出身所谓小意大利，休士顿街以南，但他父亲原先来自巴勒摩。深陷的煤灰色眼睛，头发黑得像沥青。我这么说吧，诺拉的确很喜欢换口味。</p><p class="short-para">东尼的通心粉香又香。</p><p class="short-para">给我们看你的大香肠。</p><p class="short-para">抱歉啦，牧师。</p><div class="para-break"></div><p class="short-para">东尼是个好孩子，但一点也不能触动我的心。我们在芝加哥换车。前进！前往迪尔伯思车站！前往豪华特快车！</p><p class="long-para">诺拉的东尼并非——可以这么说——与我们同一等级，他搭的是三等车厢，因此诺拉常踮着脚尖走到火车后半截，爬上他的上铺，躲进粗毛呢绿帘。她说，他们就这么一做好几个小时，像蛇一样。他进入她身体之后，两人便动也不动，让火车代劳：咻——咻——咻——咻，咻——咻——咻——咻，火车头蒸汽愈来愈足，活塞动得愈来愈快、愈来愈快、愈来愈快、最后呼咿咿咿咿咿咿咿……因此诺拉认识东尼后便没再参加派对作乐，但我乐意得很。白猫坐在枕头上打呼噜。一有时间，我就用这问题来活动脑筋：豪华特快车上，它要在哪儿尿尿?</p><p class="long-para">黛西旁若无人大口灌琴酒，一半时间都醉得像蝾螈，始终不穿内裤，她说内裤对身体不好。佩瑞的魔法宝刀未老，只要有几个宾客聚在一起，他就表演把她锯成两半。这些宾客中有一个男人总吸引着我的眼光，尽管他年纪已经不小，戴眼镜，发色斑驳灰白。他的西装皱兮兮，有时还有污渍，领带松垮垮，有时根本没打;就算他有种与众不同的气质，浑身上下还是写满了“穷途潦倒”，而且总一身酒味。然而，在豪华特快穿过新墨西哥和亚利桑纳途中，在那些跟黛西·达克——又名岱丽雅·迪蕾尼——派对作乐的俗丽宾客之中，他是佩瑞最常交谈的对象，我用眼角瞄着他们，尽管某个助理制作，或替身演员，或第二男主角一条腿夹在我大腿间——所谓跳舞等于站着性交就是这样，我的经验可多着哪。但寒酸的牛角眼镜不会跳舞，只会一口吞下琴酒，比手画脚，醉昏过去，但他身上有什么吸引了我？</p><p class="medium-para">“朵拉，亲爱的，”佩瑞没漏看我飘移的眼光，说道：“来见见我的好朋友，我的同伙，我的兄弟，我的合作伙伴，写这剧本的只有他跟我，还有莎士比亚。爱尔兰，这位是小花朵拉。”</p><div class="para-break"></div><p class="medium-para">东西就装在我手提包里，以备不时之需。诺拉去找她的东尼了，所以我可以独占我们的房间。我把东西装起来时，他想避到外面走道上，但我说：“别走，你可以别过视线，或者看也没关系——我不怕羞。”但他怕羞，绰号叫爱尔兰，本性也像爱尔兰人；我把东西装起来时，他看向窗外群山上的月亮。</p><p class="short-para">夜色，沉默，沙漠，岩石，月光。</p><p class="medium-para">“天啊，你真美。”他转回身看到我时说。我早就知道他会这么说。他们都这么说。可惜呀，我也早就知道我没法对他报以相同的赞美。</p><p class="medium-para">我的第一个老男人。不，这样讲对他不公平。他并不真的很老，没我现在这么老，当时只刚过四十，跟我的痞子叔叔不相上下，而痞子叔叔呢，彼时彼刻正让黛西享受——据她自己向来的说法——她这辈子最快乐的时光。但爱尔兰可说有个老灵魂，远大前途已经在他身后，日暮途穷。我知道我必须非常温柔。</p><div class="para-break"></div><p class="medium-para">你看，那里那排书。看看里面的题献：“我生命中的光”“早晨的欢乐”“我的最后机会”。我的同父异母弟弟/堂弟小崔对这些题词很是印象深刻，有次还要我做个节目，我说“不”，别再啃陈年老骨头了。有时会有研究生写信来问，我都把信烧掉。可怜的老爱尔兰。我给了他一个女孩能给的一切——一点快乐，一点痛苦，一串笑声，一条泪湿手帕。至于他，嗯，是他给了我写出上面那种句子的能力。别瞧不起它哟，这叫抒情。</p><p class="long-para">你可以在他著名的《好莱坞》故事里找到我。日暮途穷的最后火焰，但是，哦，光芒多么明亮！在他的传记里，我从来只是个小注脚，他们把我出生日期搞错，把我跟诺拉搞混，诸如此类。而且我也得说，在我离开他之后，他作品里对我的描述可毫无爱意，就算密友看了也认不出那是我。我成了水性杨花、人尽夫也的歌舞女郎，鲜红唇膏如血四处淌流，十只鲜红指甲，一颗赤红的心[17]，性感、贪婪、欺诈，粗俗之至，一口刺耳的伦敦土腔，只知投机，对诗人的敏感心灵毫不顾念，不可信任，不知道她关起门来做些什么。这就是诗人许给我的永恒，那王八蛋。</p><p class="medium-para">但这一切幻灭尚远在他的前方，事实上也在我的前方。豪华特快上那一夜，火车开始爬坡，月色照在窗外光秃群山上。我直起身面对他，他怕羞得连外套都还没脱，尽管车厢里相当暗，只有火车呼咻咔嗒轰隆声，还有黛西那永不结束的派对随风传来的笑声。我动手解他的领带。朋友叫他爱尔兰，因为他是爱尔兰裔，但其实是彻头彻尾的美国人。罗斯·欧弗拉赫提，外号“爱尔兰”，又名“南加州的契诃夫”。</p><p class="short-para">我当然记得他的名字。怎么可能不记得？你绝对忘不了难缠的顾客。</p><div class="para-break"></div><p class="short-para">欢迎来到似假还真的国度！在这里，每个月夜都有月亮照在查理·卓别林身上。欢迎来到梦的国度。</p><p class="long-para">先前我们只在伯恩茅斯看过一棵棕榈，如今大吃一惊，那树竟那么高大多毛。还有阳光。“就像神恩祝福。”爱尔兰说。他是那么高兴我让他重振雄风，连天气都好像心存善意。但我不肯搬去跟他住，门儿都没有，我还保留足够的理智，尽管我必须说，当时我对他确实很着迷——着迷于他褪色但仍强烈的魅力；他自信表面下的脆弱；他带着优雅东岸腔调的轻盈男中音；他虚掷的才华，连现在乱诌的、按长度算钱的烂剧本都仍残留些许枯萎光彩。而且他让我的文法突飞猛进，更不用说运用隐喻的能力大幅提升，从这部回忆录就看得出来。但同居是不可能的。诺拉跟我搬进了“雅顿森林”。</p><p class="long-para">传奇的雅顿森林，众星长住的汽车旅馆，装潢成古英国风。彼时彼地，还有哪儿比它更适合？那些小小平房半是木材搭建，以稻草为顶——安妮·海瑟薇[18]小屋的翻版——每一栋都爬满铁线莲，坐落在日本园丁细心照顾的小小草本花园，此外沃里克郡的苹果树、进口的橡树，应有尽有。佩瑞也住这里的一间平房，其他时间则在片厂跟爱尔兰从早工作到晚，待在两人共用的办公室忙着写剧本。但黛西来来去去，因为她有自己的家，不是吗？事实上，她那个家是座足有三十间房的豪宅，还有一大堆家务必须处理。毕竟她是已婚妇女啊。</p><p class="medium-para">但雅顿森林是个可爱、缥缈、奇幻的地方，你可以在那儿过着二维空间的华美生活，有嘶嘶叫的草坪——那些洒水器总是转不停！——还有一座鲜蓝如土耳其石的橡叶形游泳池，旁边立着粉红得吓人的红鹤，非常有《皆大欢喜》的味道（尽管时代不合）。我们常在池旁帆布椅上一躺就好几个小时，把不习惯阳光的苍白躯体暴露在阳光下，爱尔兰的一篇《好莱坞》故事称之为“激切但总有些不诚恳的日光”。</p><div class="para-break"></div><p class="short-para">注意到了吧，现在它已经不是祝福了。</p><p class="short-para">日光要怎么不诚恳啊，爱尔兰？</p><p class="medium-para">他对我投以怜悯眼光，继续读他的《欢乐之家》[19]。上帝原谅我，我又粗俗了。他已经有些苦恼地注意到了，我不时会显得很粗俗。但无论如何，所谓不诚恳的日光仍然让我不解。他的意思是阳光言不由衷吗？如果是，那又是什么意思？或者他的意思是，如果太阳看到比我强的人，就会掉头照耀他们？但太阳照在每个人身上啊，不管他们有没有跟片厂签约。加州阳光是我见过最民主的东西了。</p><p class="medium-para">而且，老实说，它改变了我。在加州那几个月，一切都密谋合力改变我，尽管我不清楚从哪样变成哪样，但我知道，如果今天你要我与威尔斯亲王共舞一曲探戈，我会叫你滚一边去。</p><div class="para-break"></div><p class="long-para">雅顿森林禁止爱尔兰进入，因为多年前他身为新秀从纽约来此时，在欢迎派对上放火烧了一栋屋子的稻草顶，那时他的胸毛还没变灰，每天早上提去片厂的公事包也还没藏着一只马丁尼摇杯。但我们还是尽可能掩护他混过柜台，让他穿上佩瑞的开司米大衣戴上毡帽，假扮某个大导演，然后他会在佩瑞的白钢琴上弹出几段小酒馆调调的不羁无羁[20]，爱尔兰蛮多才多艺的，尽管有些才艺不很灵光。他们会引吭高歌。《当爱尔兰眼睛微笑》是当然的选择。《漫步神秘园》[21]。还有那首让一个男人死而复活的老歌，他们最爱了，扯开喉咙合唱：</p><p class="short-para">噼啪哗啦啦，跟舞伴跳起，</p><p class="short-para">猛踏地板，双脚乱踢，</p><p class="short-para">我跟你说的可没错，</p><div class="para-break"></div><p class="short-para">芬尼根守灵大伙儿都乐。</p><p class="short-para">唱到最后一句，爱尔兰直挺挺倒下，然后佩瑞洒几滴烈酒在他身上。</p><p class="short-para">看呀他复活了，看他爬起来。</p><p class="short-para">提摩太从床上坐起来。</p><div class="para-break"></div><p class="short-para">爱尔兰随着歌词做动作——</p><p class="short-para">他说：“怎么把酒救火似的乱洒，</p><p class="short-para">天老爷啊，你们以为我死了吗？”</p><p class="short-para">好一对云雀啊。</p><div class="para-break"></div><p class="medium-para">此外，我也常搭计程车去他那荒郊野地的住处。几级台阶通往一间活动房屋，里面有张窄小的床，一把椅子，一张桌子。一切都干净整齐，独居男人整理东西就是这样，干净，整齐，有点荒寂——没有杯子插朵花，没有明信片放在壁炉架上，什么装饰也没。只有他的铅笔插在果酱罐里，一叠黄色笔记簿，还有一个存放空酒瓶的纸箱。我把他放平在窄床上，取悦他，而可怜的老家伙也很感激，至少当时如此。</p><p class="long-para">除了几样小小必需品，他的活动房屋像修道院一样寒素，里面满是书。片厂下班之后，他会开车回家，喝几杯放松一下，然后翻翻自己的旧作——二十二岁的一本畅销书，二十五岁辜负众望的第二本小说，二十八岁的一本烂小说，然后是三十二岁一本卖不出去的作品。众人最记得他的就是这一本，还有后来的《好莱坞挽歌》，灵感来源便是区区在下——浓妆艳抹的娼妇，七十五岁生日这天被全世纪遗忘，却老当益壮得不像话，而死去的他则已变得不朽。</p><p class="medium-para">思考过自己虚掷的天才，使自己彻底沮丧之后，他便转向更高尚的东西，比方翻翻雪莱，直到酒杯和书都从手中滑落，他醉昏睡去。</p><p class="short-para">他怎么会想到教育我？因为他没钱买貂皮大衣，所以便送我“文化”。</p><div class="para-break"></div><p class="short-para">普鲁斯特令我望而却步。</p><p class="medium-para">他那甜蜜、糊涂的脑袋，褪色的金发，长长睫毛的浅色大眼，像黛西那只波斯猫的短直鼻子，还有柔软而软弱的嘴，显示对感官享受的罪恶感——我发现这是典型的北美人性格，也就是说，他们喜欢性爱没错，但还是认为这种事会让他们手掌长毛。</p><p class="medium-para">爱尔兰虽然很受我显然粗野无文的特质吸引，但还是认为，到头来，唯一可以让跟我睡觉变成并非坏事的方法，就是事后两人一起阅读亨利·詹姆斯。这我当然很乐意，因为我从十二岁就开始赚钱糊口，在当时的短短半生中实在没空念书学习，而爱尔兰有时想起这一点，便原谅了我的一切。</p><p class="short-para">别误会我的意思。很多方面，他是个可爱的男人，但他老坚持要原谅我，尽管明明没有什么需要原谅的事。</p><div class="para-break"></div><p class="long-para">与此同时，诺拉继续吃意大利面、做爱，那种堂而皇之的单纯是我向来羡慕的。她也在学做奶酪甜酥卷和卷筒面——而且恋情仍然热火朝天，尚无冷却迹象，一有空就去东尼叔叔店里帮忙，事实上，他们在一起很多时候都是在做这个。有时候，回到雅顿森林的她甚至散发出家居气息，洋装沾了一抹面粉，脸颊上抹了一道番茄酱。她忙着谈恋爱，我也是，跟我的情人一同为他的勃起努力，那状态不但很难获得，要维持也极为费力，但我可从来不曾咕哝抱怨，我不想伤他的心。等到终于完事，我们会叫汉堡来吃，对他饱经翻读的藏书展开攻击，按照字母顺序来，从A开始。</p><p class="medium-para">他如此爱恋我的青春美丽，连酒都少喝了，一箱箱空瓶全是汽水、汽水、汽水，打起嗝活像唱歌剧，排气咏叹调。研读两小时当晚的作家之后，我们会喝杯汽水放松，他会念首十四行诗给我听：“我能否把你比作夏季的一天……”[22]</p><p class="short-para">然后，雷声隆隆响起。</p><p class="long-para">雅典附近那座树林占据整个舞台，在艺术的大力指导下，样片里只照出一片黑，啥也看不见，于是若干部分改喷上银色喷漆，让色彩变亮一点。这片树林的设计考虑到与小仙子体型的比例，所以足足比实物大了一倍，甚至更大。雏菊大如你的头，白得像鬼魂；洋地黄足有比萨斜塔那么高，一摇就发出铃铛声。满是裂纹的纠结树干，一丛丛巨大叶片——橡树、白杨树、有刺灌木，像阳伞，或滑翔机，或帆布篷。一堆堆旋花蔓像彩带和七叶树果实遍地四散，没错，也像七叶树果实满是尖刺。此外，在脚边乱滚，或黏于花苞，或悬在半空仿佛刚从野玫瑰或莲香报春花滴落的，是假露珠，也就是大颗大颗的人造珍珠，用线串着挂起。还有发条鸟——歌鸫、燕雀、麻雀、云雀——展翅低头，唱出女高音、女中音、女低音，合唱仙子歌曲。</p><div class="para-break"></div><p class="medium-para">因为这座森林没有自然风，他们便弄来一架吹风的机器。如果是我，我会让喝下一瓶七喜汽水的爱尔兰负责这工作，但没人问我的建议。每当人造风吹起，那些硬邦邦的花叶简直铿锵有声。</p><p class="medium-para">这其中最欠缺的便是幻象。在我看来，这座雅典附近的树林实在太实质了。专精于魔术把戏的佩瑞格林很喜欢这树林，正因为它如此具体。“从帽子里抓出来的一定要是活兔子。”他说。但这里丝毫没有剧院那种魔法味道，当灯光转暗，布幕下方亮起，观众静下来，你深吸一口气……全无那种我们用口水、胶水和意志力拼凑出来的，人与人之间的魔力。事实上，这座树林，这整场梦，都是特别定做，手工打造，不留半点想象余地。</p><p class="short-para">伸着舌叉的小花蛇，</p><p class="short-para">多刺的箭猪，都不许露面——[23]</p><div class="para-break"></div><p class="medium-para">果然一应俱全，蛇和刺猬关在笼里等，别提还有蝾螈、蠕虫、蜘蛛、黑甲虫、蜗牛，养蛇和养刺猬的人随侍在旁哄它们高兴，等待一声令下，在小仙子开始合唱时放它们在布景里随处四散。</p><p class="short-para">这一切对我来说都写实得过头。</p><p class="long-para">我费了九牛二虎之力才看出重点所在，但终究还是看出来了，尽管迟至那一天，我们在诺丁山重看《仲夏夜之梦》，两个疯疯癫癫老骚婆眼睛紧盯自己过去的鬼魂时，我这才终于醒悟当年自己始终不能体会的东西。因为那时我还年轻，还没生活在历史里；年轻的我要的是稍纵即逝，是转瞬一刻，只活在当下光彩夺目的这一刻，活在翻涌的热血中，活在掌声里。抓住这一天。吃掉手中的桃子。明天永远不会来。但是没错，明天确实会来，而且我可以告诉你，它一旦来了就会持续天杀的好长一段时间。但如果你把过去放在电影胶片上，它就能长久保存，就像储存果酱留待冬天。那个来要签名的小孩让我们大乐，我简直希望当年我们多拍几部电影。</p><p class="long-para">成吉思汗花起预算毫不吝啬。就连小小仙子都是真的，片厂从全国各地找来侏儒。没多久，不管是真是假，夸张的故事开始流传——有个可怜家伙掉进马桶，挣扎扑腾了半小时，才被冲进去急着撒尿的某人捞出来；另一个家伙去“布朗达比”[24]吃汉堡，店员却要给他坐儿童高椅；还有一个管服装的女生，帮我试我的“豌豆花”服装——粉红胸罩、短裤和怒发冲冠的假发，多么艺术——时，边哧哧笑边猛眨眼告诉我，那天她帮一个看起来差不多九岁、十岁的家伙量身，便假扮米老鼠逗他放松，拿泡泡糖请他吃，帮他脱下外套。老天！他真够害羞。然后脱他的衬衫。“不要！不要！”他用小小尖尖的声音叫，但她仍然坚持，最后脱下他的长裤。</p><div class="para-break"></div><p class="short-para">“好家伙，那可是个三十岁的成年男人哪！”</p><p class="medium-para">想起这段，她笑得花枝乱颤，一根别针失手戳到我左屁股。我的文学字母导览旅程中，爱尔兰刚介绍到B字部的彭斯[25]。</p><p class="medium-para">“无论如何，男人就是男人。”我向服装女士表示，她脸红了，说有些男人的“无论如何”比较大。整体说来，女士们对那些小仙子男生都挺客气，只有“迫克”例外，她们避之唯恐不及。</p><p class="long-para">迫克看起来像个小男人，但不是，他是个老小孩。迫克毛手毛脚，一见面就要捏你，还有各种不堪启齿的习惯。你可能会冷不防发现迫克在你的换洗衣物篮里缩成一团，呼吸着你脏内衣裤的味道。出门吃晚饭，不管餐厅多高档，只要有手从桌布下伸来，你就知道迫克也出门了，正在屋里四处乱翻，搜寻膝盖高度的东西。他多年前就是好莱坞的小童星，现在尽管已十足老迈，扮演可爱小孩仍然吃香，为了票房，我们非留着他不可，尽管他喜欢在女厕墙上钻洞偷看，其他还干什么我就不得而知。他也是拍片现场的间谍，会向成吉思汗报告可怜的爱尔兰的字纸篓里有空瓶，后面停车场有用过的保险套。他脾气坏得不得了，还咬过警察的腿，据说是因为违反交通规则被拦下。</p><div class="para-break"></div><p class="medium-para">老太太爱死他了。他收到的影迷来信比我们任何人都多，红心和花朵的卡片向他要照片，加上一大堆礼物包括水手服、泰迪熊、玩具车，还争相表示想领养他，因为他的男高音有如天使。我从没听过那样的声音，现在仍犹在耳畔：</p><p class="short-para">“夜莺，快奏起音乐……”[26]</p><p class="short-para">足以融化你的心。</p><p class="short-para">好，既然我们的父亲出演仙王奥布朗，那么谁演仙后提泰妮娅？我让你猜三次。</p><div class="para-break"></div><p class="short-para">放弃了吗？</p><p class="short-para">咦，当然是黛西·达克啰。</p><p class="short-para">因为她可不是成吉思汗的老婆吗！？！</p><p class="medium-para">原来这整桩“华丽、愚蠢、粗俗超凡的大费周章”——这是爱尔兰的形容——只是为了炫耀她，或者用行话来说，就是“展示”她的风采、她的才华、她的明星特质、她的——不好意思，我偷笑一下——纯粹格调。</p><div class="para-break"></div><p class="medium-para">亲爱的老黛西。她的确是不折不扣的巡回剧团成员，胆识、美腿、肺活量、大奶子、厚脸皮、出言不逊、明星特质一应俱全。但是格调——没有。</p><p class="long-para">他们所谓的前制作业就这样继续下去。然后安妮·海瑟薇小屋的白色电话响了。当时诺拉和我正在倒立：那么多意大利面对诺拉的屁股造成不良影响，而我在爱尔兰那里喝的汽水也让我膨胀得吓人，所以我们开始运动。我一脚接起话筒，听到声音立刻翻倒在地。那声音总是让我心跳加速，我从没习惯过，也永远习惯不了。如今若我打开电视，恰好听到那堂皇的男中音欣喜之至地广告着不管什么，管它是爽口薄荷糖还是卷筒卫生纸，我都会变得警醒又向往，就像唱片标签上那只狗：“它主人的声音。”</p><p class="short-para">有那么严重吗，朵拉？</p><p class="short-para">人只有一个父亲啊。</p><div class="para-break"></div><p class="medium-para">梅齐尔已经彻底打入好莱坞。他在山上租一栋西班牙庄园式的房子，把艾夫人安置在那儿，她对四周的荒谬怪诞人事似乎始终处于感到逗趣又不失优雅的状态。至于梅齐尔，你还来不及说“杰克·鲁宾孙”，他已经成了所谓“英国殖民地”的头头。</p><p class="long-para">英国殖民地那群人有够古怪，男的都戴单片眼镜，女的都戴珠宝头冠，在古装剧里扮演格莱斯顿、迪斯雷利、维多利亚女王、南丁格尔等等。他们自成一个小团体，不与一般市井小民来往，星期六下午其他人玩多P杂交，他们开茶会，星期天打板球，太阳下山时喝粉红琴酒，讲话活像上唇打了石膏。老保姆——就是那个妹妹住在肯宁顿的，世界真小啊——穿制服戴面纱，有时会出现在罕择家大庭院，照看一对锈红头发、绑麻花辫、穿棉布洋装的小女孩，就是我们天杀的堂妹，原来她们也要来搅局，充当《仲夏夜之梦》编制外的小仙子。好个全家团聚乐陶陶。</p><p class="medium-para">但我们父亲来电，是不是要欢迎我们来到好莱坞？是不是要告诉我们，他的梦一定要我们参与才算完整？是才怪。他只要他那捧泥土。</p><p class="long-para">在雅顿森林落脚这几个星期以来，我们过得晕陶陶，根本没去想那莎士比亚小坛。我想不起那东西最后是谁保管。我们该不会把它忘在火车上了吧？我们搜遍小屋里里外外，打开每一个行李箱……最后开始出冷汗了，才无意间发现它在主卧室外的一间整洁小房，我想那里大概供做更衣室，或者如果老爷喝得烂醉回家，太太可以把他塞进去。我们从没进过那小角落，里面蛮暗的，窗帘总是拉上阻隔阳光，但莎士比亚小坛就在那儿，安然无恙，放在迷你五斗柜上仿佛一座小神龛，因为有人把它好好供着，点起一圈蜡烛，还烧着一炷香。房里充满庄严的仪式感，我们十分惊愕。</p><div class="para-break"></div><p class="medium-para">是谁这么费心？后来我们发现是那位负责打扫的墨西哥太太。天主教，多么天主教。她想这小坛既然包得那么仔细，里面一定放有圣物，于是顶礼以待。我们实在不想打扰那个小坛，但还是该检查一下泥土是否还在，因此将它打开。哎唷！难怪她点了香。她一定以为圣物开始腐烂了。我们一掀开盖，罐里就冒出一股恶臭，让这处临时小教堂充满确切无疑的味道。</p><p class="short-para">这下子我们终于知道黛西的波斯猫在豪华特快上究竟上哪儿尿尿了。</p><p class="medium-para">我们把沦为猫砂的东西倒出窗外，但这下那神圣泥土（虽然遭到玷污）没了，该怎么办？简单。我们用雅顿森林的泥土重新装满小坛，还特别选了仿伊丽莎白式精致花园的泥土，觉得这样会比较真实。如此一来，神圣泥土又完好如初啦。梅齐尔计划在开镜第一天将它遍撒那座雅典附近的树林，作为祝圣仪式，向演员致敬，同时也是拍照宣传的大好机会。</p><p class="long-para">《仲夏夜之梦》开拍的那天我记得清清楚楚，仿佛只是昨天。我们全体穿着戏服到场——好一群拉里拉杂的乌合之众。没有那种蝴蝶翅膀、头戴花冠的逊仙子，才没有呢。分饰“豌豆花”和“芥菜籽”的我们，胸罩和短裤上缝饰叶子强调重点，毛扎扎假发上还有小灯泡，但看到其他人的服装之后，我得说我们感觉自己还算走运，因为有些人前额顶着鹿角，不雅部位以毛皮遮掩；有些人扮成会飞的甲虫，僵硬发亮的紧身上衣背后开衩；还有一两个人手臂成了树枝，加上大量皮革和羽毛。</p><div class="para-break"></div><p class="medium-para">此外，别忘了，雅典附近的树林里不只住着仙子。一只披挂马鞍和辔头的巨鼠小跑过去，一只头戴婚纱花冠的兔子，一些戴面具的蜻蜓，几只庞大青蛙。矮人、巨人、小孩，全混在一起。突然间我的心一沉，打从骨子里感觉到这部电影会赔得很惨。</p><p class="medium-para">为这场开镜典礼，成吉思汗狠狠掏了腰包。他从伯克利找来一个演奏古乐器的百人乐团，让他们穿上紧身裤和襞领，其中还有个人头戴犹太男子的无边小帽。鲁特琴很难调音，这是它不再流行的原因之一，他们全体努力了半天，雅典附近的树林仍充满叮叮咚咚的不协调声响。</p><p class="long-para">迫克空翻经过，捏了我一把；爱尔兰送来一个飞吻。他已经醉醺醺，把公事包紧抓胸前，不久就会醉得更厉害。他戒酒中断了，因为我爽了一次约。我又不是他的，对吧，他以为他是谁啊。我才刚开始上德文课，不是吗？有一天午餐时，诺拉去东尼那儿来份细面加口交的快餐，我则拿着当天要读的书到片厂餐厅吃热狗。一个矮不隆咚的德国男人，平头，臭脚丫，松垮垮蓝西装，没打领带，不知是哪里的剧本顾问之类，瞄了一眼我那本书的书名。“叔本华！”他鄙夷说道。他讲话简短不客气，常出人意表。他总是看事情黑暗的那一面，在好莱坞就像一剂良药，让我保持脚踏实地。</p><p class="medium-para">爱尔兰朝我送来一个反讽的飞吻。佩瑞格林一手搂着爱尔兰肩膀，不只表示感情好，也为了撑他站直。艾夫人也在场，身穿浪凡[27]洋装配珍珠项链，这出戏里她的角色只是导演夫人，但她女儿则身穿戏服。梅齐尔让他的小萨丝琦亚客串一个角色，印度王子。</p><div class="para-break"></div><p class="short-para">奥布朗满肚子都是气恼和烦忧，</p><p class="short-para">为了仙后不答应他一个要求。</p><p class="short-para">从印度国王那儿她偷来个儿童，</p><p class="short-para">十分乖巧伶俐，做她的侍从。[28]</p><div class="para-break"></div><p class="medium-para">就是那个印度王子，身穿金线织成的睡衣，同样金线织成的包头巾以紫水晶别针别上紫羽毛。不折不扣的未成年狐狸精。伊莫珍只是另一个仙子，只有一句台词：“还有我。”但副导，也就是爱女心切的佩瑞格林，拼命给服装部门施压，最后取消了原设计的猫头鹰面具和羽毛短衣，改穿粉红蓬蓬纱裙，使伊莫珍显得格格不入，非常惹眼。</p><p class="medium-para">现场有个拍新闻短片的小组，黛西·达克因而更加尖刻机灵妙语如珠，她身穿仙后洋装，搭配薄纱亮片，看！没有内裤痕迹哦，成吉思汗则照常穿马裤配皮鞭，跨坐一把帆布椅，扬扬得意欣赏自己打造的仙境。记者、摄影师、秘书、女场记、布景陈设员，全绕着他团团转，在爱尔兰酸毒的笔下，这场面使人忍不住联想到一堆蛆爬在腐肉上。</p><p class="medium-para">但这团混战中有个不太搭调的人物，之所以引人注意，是因为太不显眼，反而捉住我的视线——缩头缩脑，穿戴防水风衣、墨镜、头巾，仿佛服装部门分配她一套B级片里的“伪装服”。黛西走到哪，这个可悲的小影子就悄悄溜过去跟到哪，若黛西凑巧朝她方向看，她就躲进人群。真怪。这是怎么回事？</p><p class="long-para">然后，指挥一声令下，古老乐手终于聚集起来；说到指挥，是谁这么有能耐，竟让斯托科夫斯基[29]都乖乖穿起紧身裤？一堆叮叮咚咚声中，全体开始演奏一首（可能是）加亚尔德舞曲，不过鲁特琴部听来又好像试图演奏孔雀舞曲。乐声停，梅齐尔从林间走出，在一阵镁光灯猛闪之中准备致辞，高举一个金边鲜红天鹅绒垫（我知道它千真万确曾是《江山美人》[30]的道具，服装部门的人告诉我的），垫子上放着那只莎士比亚罐，里面装着——你也知道我不是骗你的——真正的泥土，充满各种联想意义，来自雅顿森林。</p><div class="para-break"></div><p class="medium-para">梅齐尔朝我们微笑，我不得不伸出一只手按着诺拉胳臂稳住自己，她也同时伸出一只手按着我胳臂。他微笑，然后说“各位朋友”，那声音有如贺喜巧克力糖浆，尽管我一如往常立刻着迷于他的魅力，但满心焦虑：他接下来会不会说“各位罗马人，各位同胞”[31]，只因这一刻如此意义重大、如此充满张力，使他突然跳到另一段演说？但他连搞错的机会都没有。</p><p class="short-para">“各位朋友！”</p><p class="short-para">成吉思汗好不容易把视线从黛西身上转开，才看梅齐尔一眼就跳起来，活像挨了枪。</p><p class="short-para">“卡！”</p><div class="para-break"></div><p class="short-para">梅齐尔紧攥小坛，当场呆住。</p><p class="short-para">“各位，休息五分钟。”成吉思汗说。</p><p class="medium-para">鲁特琴手们焦虑地离开，找个安静角落试着调音，摄影师也停止按快门。一阵惊讶错杂的说话声。佩瑞格林和爱尔兰两人笑得前仰后合，乐不可支。艾夫人表现出不解与不悦的样子，但程度远不如她丈夫激烈，后者随即抛开尊贵架势，怒声质问成吉思汗：“你在搞什么……”</p><p class="short-para">“脱掉！”成吉思汗咆哮道。我看见黛西把手帕往嘴里塞，免得也爆笑出声。</p><div class="para-break"></div><p class="short-para">“什么？”</p><p class="medium-para">我个人倒认为他的戏服是套杰作，事实上很有芭蕾风味。一顶高高尖尖的王冠，仿佛鱼骨搭成；黑色长假发，披垂背后；毛皮开襟短上衣，露出赤裸胸口；一条看似婴儿头骨组成的项链；还有一条蛇皮紧身裤。</p><p class="short-para">他穿起那条紧身裤多么合身伟岸！</p><p class="short-para">“脱掉！”</p><div class="para-break"></div><p class="medium-para">问题就是梅齐尔穿起那条紧身裤太合身伟岸了。成吉思汗花这么大一笔钱，可不是为了要让合演明星的那话儿抢去他妻子的风头；他大声刺耳地解释，重新开始之前，梅齐尔必须回更衣室，多穿一条超级强力的弹力护身。甚或两条。</p><p class="short-para">“懂了吗？”</p><p class="long-para">否则——你感觉成吉思汗的意思好像是说——他会亲自把那乱来的部位咬掉。这时在场的人已经吓得不敢笑了，连爱尔兰都清醒过来，不过——我可以告诉你——憋红了脸，猛咬手帕的人也不只黛西一个。贵族出身的艾夫人过了片刻才明白过来丈夫面对什么窘境，于是一手牵起一个女儿，颇有尊严地掉头就走。我很敬佩她这么做。舞台上突然好安静，静得可以听见小萨丝琦亚边走边追问：“妈咪，爹地做错了什么？妈咪？我们为什么要走开？妈咪，为什么大家都生爹地的气？”</p><p class="medium-para">起初梅齐尔的脸涨得通红，然后变成惨白，深色眼睛像烧热的煤块发亮。他紧抓那坛神圣泥土，怒视成吉思汗，气得说不出话。要是他有格调，我指的是真正的格调，就应该当场转身，拂袖而去。但这样说太不公平。想想此刻多么事关重大，事关整部电影，事关他在好莱坞的未来——也事关他能否为英格兰，为莎士比亚与圣乔治[32]，夺回北美；更事关他能否实现父亲的遗志。此外，还事关他能否大赚一笔，咱们别忘了钱。</p><div class="para-break"></div><p class="medium-para">但是，当下暂时成了墨西哥式的对峙僵局。成吉思汗怒目而视。梅齐尔怒目而视。在众仙子和愚人和编剧的着迷注视下，两人继续互相怒目而视，直到佩瑞格林用魔术戏法打破紧张气氛。尽管他憋笑憋得肚子很痛，但保持头脑清醒镇定，跨过地上的电缆，穿过灯光和摄影机，在成吉思汗和我们大家的众目睽睽之下，就这么跪在兄弟面前。</p><p class="short-para">“我知道麻烦出在哪里。”佩瑞格林说。</p><p class="short-para">他手敏捷一挥，从梅齐尔服装的问题部位变出一只赤红色金刚鹦鹉。</p><p class="medium-para">他起身，朝四面八方鞠躬行礼，手指托着金刚鹦鹉秀给我们看。鹦鹉拍拍翅膀，东张西望，那只犀利精明的圆圆小眼不知怎么让我想起阿嬷。</p><div class="para-break"></div><p class="short-para">“我想现在一切都没问题了。”佩瑞格林对成吉思汗说，后者惊讶得讲不出话。</p><p class="short-para">但鹦鹉没有讲不出话。它头侧向一旁，洪亮宣布：“这又不是啥罪！”</p><p class="short-para">它自佩瑞指端跃下飞起，落在黛西肩膀上，这下那可怜的女孩终于有机会可以笑，再憋下去她快呛死了。</p><p class="short-para">“这又不是啥罪！”鹦鹉又说，来回换脚跳动，眨眨眼。“这又不是啥罪！”</p><div class="para-break"></div><p class="medium-para">接下来，谢天谢地，气氛缓和了。起初成吉思汗迟疑笑了几声，然后粗声大笑起来。快门咔嚓，摄影机转动，镁光灯闪灭，节目又重新上路了。谢天谢地，多亏那只金刚鹦鹉挽救了局面。它显然是为梅·蕙丝的宣传活动训练的，后来逃了出来。</p><p class="medium-para">这整段插曲期间，我看到片厂一名大猩猩似的警卫抓住了黛西那个穿风衣的影子，一只毛茸茸巨掌按住她嘴不让她出声，以最不光彩的方式——像消防队员扛人那样——把她请出去，但警卫看起来好像也觉得蛮无聊，仿佛这已不是头一遭。到底是怎么回事？但现在突然一阵沉重的寂静，所有人视线转向梅齐尔，看他高举莎士比亚罐，仿佛那是圣杯。</p><p class="short-para">“各位朋友，我们聚集在这里，纪念一个神圣的名字——莎士比亚。”</p><p class="medium-para">我注意到，爱尔兰正举起一个棕色纸袋往嘴边送，自动自发朝佩瑞格林敬酒。鹦鹉又飞起来，在屋顶下方某处飞来飞去。佩瑞格林接过棕色纸袋，朝鹦鹉敬酒喝了一口。</p><div class="para-break"></div><p class="long-para">“我手上这只形状饶有古趣的坛子，做成我心目中最伟大的英格兰英雄的模样。坛里装的只是一点点泥土，除此之外别无他物。泥土而已。但对我而言，它格外珍贵，因为这是英格兰的泥土，也许可以说是最英格兰的泥土，比红宝石、美女芳心更珍贵。因为这泥土千里迢迢来自威廉·莎士比亚的家乡，是的！宁静古老的埃文河畔的斯特拉特福。将这把泥土像婴孩般温柔对待，掬起它带来此地的，是两位可爱的英格兰少女，宛如山林精灵，宛如玫瑰，对我而言几乎等同亲生女儿一般珍贵……我的侄女。豌豆花！芥菜籽！”</p><p class="medium-para">他呼唤我们，我们知道该怎么做。尽管他再度背叛我们，而且这次是公开背叛，但我们还是轻快奔向他，一人跪在一侧，依偎在他膝旁，诺拉穿黄我穿粉红，两人都泪水盈眶。是啊，几乎等同亲生女儿一般珍贵！</p><p class="short-para">“朵拉……莉欧诺拉……”</p><p class="medium-para">当然，他搞错了我们谁是谁，他跟我们不熟到连闻都闻不出差别何在。但接着他走远了，现在是家族团聚时刻：他伸手挥向流放到作家群中的佩瑞格林。</p><div class="para-break"></div><p class="long-para">“还有我的兄弟，我的亲兄弟……欢迎！欢迎加入我们这项伟大计划，你在其中扮演了多么重要的角色！也欢迎，欢迎所有聚集此地的各位，这么多人群策群力，与我们一同展开这项伟大任务，借助贵宝地伟大电影业的所有宝藏，为那位天才诗人创造一份光辉永恒的纪念。只要还有人讲英语，他就会备受尊崇，他了解我们所有人的真实，每一字每一句都说出了放诸四海而皆准的真实——他使英语生色、辉煌，也让我们这些老英格兰人沾了点光，我们扬帆四海，肩负使命，要传播莎士比亚唇舌曾说过的语言！”</p><p class="short-para">他滔滔不绝说到这里，你几乎可以看见那副唇舌，放在红色绸垫上，隔着玻璃展示。</p><p class="short-para">此刻梅齐尔晃动身体，垂首致意，声音变成流畅甜美的呢喃。</p><p class="short-para">“让我们向这位伟大人物的远见致敬……”</p><div class="para-break"></div><p class="short-para">手中皮鞭正敲着大腿的成吉思汗起身，鞠躬，趁机瞄了梅齐尔胯下一眼，确认一切依然正常。</p><p class="medium-para">“这位伟大人物在伦敦找上我，说：‘让我们把这项艺术的璀璨光芒带给全世界，并将这份璀璨光芒献给莎士比亚！’”</p><p class="short-para">大家都鼓起掌，因为别无选择，只有爱尔兰例外，棕色纸袋又回到他手上，再也不分离。</p><p class="short-para">“现在让我们迎接仙境之后——提泰妮娅！”</p><div class="para-break"></div><p class="medium-para">黛西·达克屁股坐在座椅扶手上，对照相机友善挥手，顺便小露一下乳沟，然后走上台与梅齐尔并肩而立。迫克的双手难得竟安分了整整十分钟，现在捏了经过他身旁的田鼠一把，后者尖叫一声。高栖梁上的鹦鹉突然拉了一泡发绿、半稀的东西，那东西落下途中累积了足够的重力加速度，碰到地面时发出一声余音袅袅的啪嗒！</p><p class="short-para">“现在，让我们这些可怜的演员牵起手来。”</p><p class="long-para">他紧握黛西·达克的双手，铆足劲对她展露那保卫尔[33]般又热又浓的迷人微笑，她登时小鹿乱撞。这女人性格强硬得像一双旧靴，此刻却明显心里一阵小鹿乱撞。片厂里一片满意的骚动和安心的窸窣，仿佛他对他们施了魔咒，用那声音，用那风采。每个人都伸手握住其他人的手，仿佛这是除夕夜，该合唱《美好往昔》[34]了。仙子紧牵亚马孙女战士，亚马孙女战士紧牵雅典人，粗鲁的技工紧牵情人，诺拉和我紧牵彼此，但我另一只手被迫克一把抓住。</p><p class="short-para">要是肯赏个脸，高抬贵手，</p><div class="para-break"></div><p class="short-para">我是各位知恩图报的朋友。[35]</p><p class="medium-para">说完这段莫名其妙的收尾词，梅齐尔仰脸迎向明亮灯光，双唇微启，这副能挑动内裤的微笑一定就是我可怜母亲当年的祸源。黛西看着他，仿佛天国之门开启，让她瞥见门内景象。她迷上他了，天雷勾地火。摄影机转动，快门咔嚓，镁光灯闪灭。但迫克愤怒喊叫起来，像摸到滚烫砖块一样松开我的手。两只小拳头遥朝梅齐尔那弹力护身的争论区域挥舞，不停叫嚷：“那是我的台词，你这王八蛋！”</p><p class="short-para">我眼角瞄见爱尔兰正弯腰呕吐。</p><p class="medium-para">成吉思汗挥鞭打下迫克的双手，咬牙嘶嘶说道：“有没有听说过剪辑室地板上的脸？[36]”迫克当场闭嘴，乖乖退下。然后梅齐尔用没紧握黛西·达克的那只手高举起那坛泥土。</p><div class="para-break"></div><p class="short-para">这儿有田野里的仙露，</p><p class="short-para">众仙子个个且洒且舞。</p><p class="short-para">兜遍宫室，穿廊绕户，</p><p class="short-para">把恬静安宁一路散布……</p><div class="para-break"></div><p class="short-para">为……莎士比亚之名送上祝福！[37]</p><p class="long-para">他深情望着黛西的眼，黛西也深深回望。然后他放开她，手伸进罐里，将雅顿森林的泥土撒在周遭地板，手势迷人又庄严，举起两根手指做祝福状。要是有那机会，他一定会是很棒的教皇。然后古乐器再度演奏，我看见黛西悄悄拭去一滴泪，因为这整个过程都好动人，而且，在佩瑞扶着爱尔兰离开，灯光师助理拿灭火用的沙子倒在爱尔兰的呕吐物上时，这位眼尖小姐有幸目睹梅齐尔·罕择那可能功效不彰的三角裤里出现明显骚动，这将对大家的婚姻都带来坏处。</p><p class="long-para">成吉思汗的办公室摆满兰花，全是他自己种的。他最喜欢那些肉食的品种，常喂它们吃苍蝇，不管某个小演员正在办公桌对面的沙发上发抖。办公桌上放了张银相框的黛西照片，让那些可怜女孩见识到，要是你对成吉思汗好一点，他可以把你高高捧上令人眩晕的云端。光是看见黛西，就足以让她们乖乖脱裤子。这对成吉思汗而言完全是美梦成真，原始赤裸的权力。他是一间非常古怪的妓院的龟公兼老鸨，这里所有供人交易的女孩都是影子；他买卖影子，但经手的现金跟好久以前他当电车司机时常偷的钱一样真实，当时他还住在布鲁克林，头还没秃，还没为黛西抛下布鲁克林的原配。他每天把电车开回车库，人家都会向他致谢。我的意思是，他大可以把它当废铁卖了，不是吗？这么一个有远见的男孩怎抗拒得了好莱坞？于是他来到此地，使自己梦想成真。名副其实地让梦想成真，因为这就是他赚钱为生的方式。</p></div></section><section class="chapter-section">
+<h1 class="chapter-title" id="chapter-7">
+    4
+</h1>
+<div class="content"><p class="medium-para">“让别人的笔去写罪咎和悲苦。”A字部，简·奥斯汀，《曼斯菲尔德庄园》。我不想谈战争。只想说打仗可不是嘉年华。一点也不是。</p><p class="medium-para">是的，没错，我有我的记忆，但我宁可自己保留，多谢各位。不过有些事我永远也忘不了：邦德街那只每天一大早就叫的公鸡；有次我还看到一头斑马沿着肯辛顿高街奔驰，那时约莫午夜，正值灯火管制期——那晚有月亮，它的条纹荧荧发光；还有炸弹过后，几乎成了废墟，还有冒烟就立刻长出来的那些花，仿佛是说生命照样要继续下去，就算少了你。</p><p class="long-para">我们应该爱国，在后院养了头猪，喂它馊水——马铃薯皮、泡过的茶叶。阿嬷很爱那头猪，当然绝对听不得人提屠宰场，但阿嬷翘辫子之后，它终究还是成了葬礼上的美味烤肉。要是她知道我们才将她火化完就大吃她心爱的猪，一定会大发脾气，但不这样我们还能拿什么招待吊丧宾客?有些人大老远跑来，我们总不能请人家吃包心菜刨丝吧。退居穷乡僻壤的艾夫人让老保姆送来一蒲式耳[1]苹果做酱料。我们特别请大家不要送花，至少在这件事上坚持了阿嬷的原则。</p><p class="medium-para">阿欣带孩子来参加丧礼，但运将不在，他去了北非，再也没回来，可怜人，一口木箱埋进沙漠。遭此打击的阿欣始终没恢复，就这么日渐憔悴，最后四九年被亚洲流感带走。大批前任房客——老迈的慢板舞者，堪称古董的女高音；邻居；布里克斯顿市场青菜摊的老板；众多酒馆老板；《你愿意》的工作人员有一半都来了，加上作曲家的母亲，穿着新做的黑丧服外套。我有点期望金发男高音会辗转听说这消息，前来吊丧，但没这么好运。</p><div class="para-break"></div><p class="medium-para">我们有够想念佩瑞格林，但他投入特务工作，英勇报国去也。天知道他到底做了什么，但后来获颁勋章一枚。此外，也只有天知道他到底在哪儿：我们在《泰晤士报》登了讣闻，结果当天有人敲门，来了辆吉普车，一名驾驶兵，十二箱薄荷酒，一桶健力士。于是吊丧宾客尽兴而返，不但吃得满嘴油光，也喝得满口酒气，这就是佩瑞格林向阿嬷致敬的方式。</p><p class="medium-para">烧掉骨头之后——因为那猪完全是偷偷送进鬼门关，战时私宰肉品可是要被送上断头台的——诺拉和我坐下来，就在这间早餐室，在这两把皮椅上，听着我们未来将独居于此的这栋窄长屋里的沉默，两个人好好哭了一场，因为这是我们童年变本加厉的结束，现在我们真的只能靠自己，一切完全只能靠自己了。</p><p class="medium-para">我们失去的不只是阿嬷。我们出生、母亲死去的那天，她是唯一的见证人；她一走，就再也没有活人记得那个面目不详的鬼魂。我们的童年全跟着她消失无踪，因此我们不但失去她本人，也失去了好一部分的自己。想起自己曾经嘲笑她年老的裸体，我们羞愧不已。</p><p class="medium-para">当时我们即将迈向三十大关，不过，如今从这年高德劭的山头回顾过往，我简直不敢相信，很久以前我们曾以为人生在三十岁就会结束；但那时候我们确实感觉穷途末路，即便没有打仗亦然，而战争结束后我们再也不一样了。</p><div class="para-break"></div><p class="medium-para">战争结束后，天气永远是冷的。连着好多年，我们手指都冻得发青。战前，我们还年轻，我们在阳光普照的加州；战争中，肾上腺素支撑着你，也永远不乏男人来温暖你。但战后，疲惫感袭来，血液也变得比较稀薄，人家说那是“艰苦年代”——然而我真的相信，我们觉得那么冷其实是因为阿嬷不在了，而不是因为斯塔福德·克里普斯[2]的经济政策，或者四十年代末那些寒冷冬天，诸如此类。</p><p class="medium-para">没有了阿嬷——没有人添柴顾火，夜里留一盏灯等门，早上起床烧水泡茶，敲着那面大铜锣告诉我们她已经炒好干燥蛋，蛋在盘子上快凉了——这屋就只是间谷仓，我们不自在地四处乱荡，水槽堆满脏碗盘，楼梯脏兮兮，炉子是冷的，炉上的平底锅里有罐头豆子慢慢变成化石，等等等等。</p><p class="medium-para">我们任这屋颓败破落，这里只是我们回来睡觉的地方。有时我们会自己烤片吐司吃。阿嬷一死，这屋子也没有了心。阵阵穿堂风在门厅赛跑，吹得毛毡掀起摆动；我们从来不换床单，床单灰扑扑，满是污渍和碎屑。时运对跳舞的而言，也不好过，尽管我们努力勇敢面对。</p><p class="long-para">然后四处巡回的灰败岁月开始了，剧院愈来愈小，观众愈来愈稀疏，歌舞女郎穿得愈来愈少，那是我们走下坡的年代。谷底是一场在博尔顿演出的裸体秀兼杂剧：《金发娃与三只胸》[3]。“你把裤子脱了，剧名就可以改叫‘金鸟毛’。”诺拉对助理舞台监督说，但他不肯。那些裸体秀！歌舞厅的垂死挣扎。当时有条法律规定，女生脱光光可以，但是不能动，不能用到半块肌肉，移动半寸——只能精赤大条站在那儿给人看，战后歌舞厅已堕落到这个地步。再也没有奥立弗·梅索[4]设计的服装，塞西尔·比顿设计的布景，但我们可始终穿着丁字裤和内裤，从来没脱光，我们依旧唱歌、跳舞。但我们感觉这行的艺术已经转着漩涡流下排水孔，而那时高档艺术正蓬勃发展，我们父亲靠莎剧的年长角色打下一片天——泰门、恺撒、冈特的约翰——但他一如既往，仍然不想跟我们有任何瓜葛。</p><div class="para-break"></div><p class="long-para">我多次注意到人类有种特性：如果没有家庭，他们会自己发明一个。于是那时我们常往萨塞克斯郡跑，去看艾夫人。琳德园只剩一堆焦黑砖块，伊顿广场那栋房子离婚时又卖了，因此艾夫人从加州回来后，遣走了琳德园专属农庄的住户，住进那炉灶和梁柱暴露在外的地方。她起居室总挂着一幅梅齐尔的全身像，几乎占去整面墙，尽管画框镀金却带来一股阴郁气氛，因为画里的他是老奸巨猾的理查三世扮相，一身黑衣，眼中闪着一抹邪恶的光。她在那画上方装了盏灯，永远开着，前面一只脚凳上也永远放着玻璃罐插一小束花——三月的野生黄水仙、桂竹香、雏菊，依季节而定，永远是鲜花。就连地上积雪，她也照样出门，包头巾穿雨靴，在草丘[5]上到处找白屈菜、早开的紫罗兰、春白堇，后面总是跟着一只汪汪叫的小狗。</p><p class="medium-para">四六年那个苦寒的冬天，我和诺拉实在不忍心她在风雪中到处翻挖找花，于是带了一大把温室康乃馨去看她，那花比在萨佛伊吃一顿烧烤还贵。天杀的萨丝琦亚也在，活蹦乱跳，还有伊莫珍。她们正就读皇家戏剧艺术学院，萨丝琦亚还带来她的好朋友，一个打扮得人五人六的小蹄子，穿着黑天鹅绒毛松长裤和芭蕾舞鞋。看到那束康乃馨，萨丝琦亚笑得跟什么似的。</p><p class="short-para">“真应景！”她说。“‘……有人叫它大自然的杂种。’《冬天的故事》，第四幕，第三景。”[6]</p><p class="short-para">殊不知这等于半斤笑八两。她母亲吓坏了，连忙掩饰。</p><div class="para-break"></div><p class="short-para">“这学期，我的小萨丝琦亚要演佩蒂达哦，很棒吧？”</p><p class="short-para">不过如果那狗屁倒灶的什么RADA只教会她女儿这个，诺拉和我根本不想听。多廉价的笑话！我们不屑理会。</p><p class="long-para">虽然女儿去念RADA不在家，但有老保姆跟她做伴，还有村里一个妇人负责做粗活。所以每当来度周末的客人关切地问她：“小艾，你孤零零一个人在这儿怎么过活？”我就好笑。在这儿要使唤人几乎连动都不用动，就连走到屋外上茅房，都会绊到一个缩身蹲着照料草本植物的小老头。但艾夫人会露出淡淡微笑，说她已经习惯独处，以园艺自娱等等。她总是戴着大帽子待在花园，指使园丁做这做那；杂志报道过她，她的铁线莲很有名。晚上她会坐在屋里，在墙上龇牙咧嘴的梅齐尔陪伴下,拿着刺绣圆框一针一线缝呀缝，听留声机唱片，就像她现在在莎翁路四十九号地下室前半部分的习惯。然后到了十点钟，老保姆会端来一杯好立克，送她上床睡觉。</p><p class="medium-para">有时，她女儿会去见父亲，回来时多了新手表、曾属于莎拉·伯恩哈特[7]的金十字架、杜丝[8]、埃伦·特里签名的《莎士比亚全集》，但梅齐尔连张圣诞卡也不曾寄给她，仿佛他们分手是她的错似的。</p><div class="para-break"></div><p class="medium-para">艾夫人越老，模样就越英国。她的五官越来越透明，表情越来越谦和勇敢。她开始穿开襟羊毛衫。大战还没爆发，她的神情已经显得忧伤，忧伤跟她很搭，一如淡彩。她逐渐以忧伤出名，尽管——或者该说正因为——她永远带着那不屈不挠的微笑，真正米尼佛太太[9]的微笑。</p><p class="medium-para">那农舍非常可爱，浅色砖，爬满地衣的瓦，坐落在一处草丘，视野尽头就是英吉利海峡，旁边有座围着墙的小果园，里面养羊。现在想起那座果园，我记得的总是初春景色，苹果树根间长着樱草，花蕾初生，烟囱升起袅袅轻烟，阿诺和我从附近村子搭计程车来，红色摩洛哥皮高跟鞋，泥巴。</p><p class="medium-para">我这辈子从没像在那农舍那么冷过。又冷又怕，连躲防空洞都没那么糟。夜里，我们两人挤在寒冷的床上，银狐大衣盖在棉被外保暖，脚趾踢到老保姆为我们放进被窝的石制汤婆子2即热水袋，但此处因是石制品，不适合称“袋”，斟酌改译为此一较古老的名称。2造成瘀青，听着夜鸟鸣鸣，猫头鹰飞扑而下时老鼠和田鼠的吱吱叫声。四周全是生物在互相杀戮，我们冷得全身僵硬，怕得全身结冻。我宁可待在星期六半夜十二点半的瑞顿路。</p><p class="short-para">老实说，虽然那农舍风景如画、令人浮想联翩，但我们去那儿只是因为喜欢她。</p><div class="para-break"></div><p class="long-para">她会安排我们合睡一张床，永远在那间刷着白石灰的房，平常老保姆用作缝纫室——铁床柱，洗脸盆架是广叶松木，一个裁缝用的假人投下无头阴影，让我毛骨悚然。至于浴室，就让我拉上一层纱遮住吧，那儿的铁浴缸简直是萨塞克斯郡所有蜘蛛的养殖场。我们从不斗胆踏进“亲亲小花蕾”姊妹俩的闺房，但艾夫人的房间可说是座神殿——供奉对象你猜是谁？——到处摆满他的照片，加上一张，只有一张，佩瑞的照片，画面上他正从高礼帽里变出萨丝琦亚。楼梯又窄又陡，像木材质打磨光亮——艾夫人不肯铺地毯，说最喜欢木头的活生生质感——诺拉和我小心翼翼边走边滑，非常清楚萨丝琦亚和伊莫珍（如果她们在家）正在嘲笑我们的鞋。</p><p class="medium-para">门厅里，一口虫蛀橡木箱上放了个盛着干燥香花的中式大碗，散发刺鼻的忧伤气息，那气息属于老太太和心碎。到处都挂着水彩画，是琳德家人好久以前在威尼斯、在阿尔卑斯山、在湖区画的；褪色的印花棉布；磨损成网状的旧地毡。处处流露出一种褴褛而昂贵的破落感，那种格调我们自知永远不可能企及。我们幸运的欠思姊妹注定只能大起大落，要不就亮眼花俏，要不就寒酸肮脏。</p><p class="medium-para">食物不值一提。我们一直希望她会带头组织东萨塞克斯郡的黑市，但老保姆总是叫我们别忘了带配给券，端上桌的是乡村派、牧羊人派之类，不管材料是什么看来都很难吃，尽管餐盘是切尔西陶瓷，把手末端呈圆球状的刀叉是纯银（已经发黑，刻着琳德家徽：一只鹈鹕啄整自己胸口羽毛）。食物糟透了。我们仍然紧张兮兮，不知道接下来该用哪把祖传叉子。</p><p class="medium-para">而且总是冷得要命，不只床上如此。我们连坐在桌旁都穿着毛皮大衣，尽管萨丝琦亚和伊莫珍投来讽刺眼光；她们穿着芭蕾舞裙长度的宽松褶裙和高领毛衣，遗传了上层阶级能忍受极端温度的本领。我们彼此厌恶，她们简直不能忍受看见我们终于打入她们家，尤其因为现在她们也成了被抛弃的女儿。因此，当艾夫人问我们，是否有空来参加萨丝琦亚和伊莫珍的二十一岁生日，诺拉讽刺地说：“跟真的一样！”</p><div class="para-break"></div><p class="medium-para">“不是，我说真的，亲爱的。”艾夫人说。“我希望你们俩都能到。”然后她眼里闪动一抹光，只稍稍一亮，但如今这情景鲜少出现，看到让我很高兴。“全家人都会出席哦！”</p><p class="medium-para">点头跟眨眼一样可以传达暗示。我们打从VJ日[10]起不曾见过佩瑞半根毫毛，只接到一张里约热内卢寄来的金刚鹦鹉明信片，但我知道尽管事隔多年，艾夫人心里对他仍有一份温情，我甚至曾经希望哪天她能和佩瑞在一起试试。我追问过她一次，那时我们在果园里喝武夷红茶，时值五月，苹果花已经开过，但我仍穿着大衣。</p><p class="short-para">“你都不想念佩瑞吗？”我含蓄地问她。</p><p class="short-para">想到他，她眼里立刻闪动一抹光，但那是否定的光亮。</p><div class="para-break"></div><p class="medium-para">“那种男人不能嫁，亲爱的。”她说。褪色的蓝眼，若隐若现的血管，头上草帽用草履虫图案的丝巾系在下巴。年长贵妇羊。但她对佩瑞还算了解，他居无定所，简直像个云游四方的嘉年华。我握住她家的瓷杯暖手，因为除此别无他法取暖——那杯子没了把手，一侧倒是有道大裂痕——同时纳闷，不知我母亲是否也这样看待梅齐尔，认为他短期而言很棒，但绝对不适合长程。</p><p class="medium-para">我的感觉是，这两兄弟都不是好丈夫的料，但我一个字也没说。在艾夫人那里，很多话留着没说。我再也不曾遇过琳德家那样深刻的沉默，尤其她女儿在家时，未说出的话像雾悬浮在那些沉默中，钻进你的肺，让你呼吸困难。</p><p class="short-para">“天知道我们干吗老跑去那里。”诺拉说。“星期天我们大可待在这儿，泡个澡，做做头发。”</p><p class="medium-para">她也半点都不想莅临亲亲小花蕾的二十一岁生日，绝对不。佩瑞可以来找我们，她说。她非常坚决。“不去！不去！就是不去！”然后我们的佩瑞叔叔打电话来，说他可以开车载我们去，当晚我们就能回到布里克斯顿。</p><div class="para-break"></div><p class="short-para">“但是我们不送礼。”诺拉说。“才不送生日礼物给那两条毒蛇。这是我的限度。”</p><p class="medium-para">我们之所以去，全是看在艾夫人分上，不是吗？我们带了一瓶苏格兰威士忌送她。就这样，佩瑞格林开着一辆天杀的大宾利敞篷车来了，在莎翁路上按喇叭，准备载我们去琳德园专属农庄吃这辈子最糟糕的周日午餐。</p><p class="medium-para">“抱歉来晚了。”他说。“我绕道冈特林匆匆拜访了一位朋友。”他大大眨了下眼，这个酒色之徒。但他只迟了二十分钟。</p><p class="medium-para">佩瑞体型比以往更巨大，被巴西的太阳晒得棕亮，从他脸庞的轮廓神情，你绝不会相信他已经六十了，也不会相信他的孪生兄弟如今正在排演《李尔王》。那头浓密的锈红色头发没有半根灰白，雀斑脸上也没有半条鱼尾纹，一如他首度来敲这屋门时那样精力充沛乐呵呵。当然，他又发了，因为挖到了石油。</p><div class="para-break"></div><p class="medium-para">是的，石油。就在他出于多愁善感，用《仲夏夜之梦》赚的钱买的半干旱土地，得州罕择郡的那片牧场。石油。他又有钱得一塌糊涂了，宾利后座塞满罐头、纸包、瓶罐，我很高兴看到大部分标签都写着里约、巴黎和纽约，因为咱们布里克斯顿这儿仍然过着一星期半条培根、一小坨奶油的生活，这就是你的份，这就叫作配给。</p><p class="short-para">他坐在车上按喇叭，整条莎翁路都窸窣掀起蕾丝窗帘，每家老太婆都在偷瞄是谁来接我们。</p><p class="long-para">他把我们又搂又亲好不亲热，但我看得出来他有点失魂落魄。这回轮到我坐前座，看着他慌慌张张，紧张、欢喜、焦虑、分神集于一身。他闯红灯，时速表一度高达九十[11]，途中差点撞上一只狐狸，连忙踩刹车，害得后座正吃着一盒比利时巧克力的诺拉猛然往前一倾，鼻子黏上一颗紫罗兰奶油口味的。他有时零星哼起歌，有时没听见你问话，你还得拉拉他手臂。几英里之后，诺拉和我便体谅地保持沉默。“抱最好的希望，做最坏的打算。”我打从骨子里知道，今天一定会哭着收场，因此我和诺拉都交叉手指暗自祈祷，因为我们不希望这老坏蛋伤心，也不希望艾夫人伤心，尤其是在这一天，但我实在看不出这一天还能有其他什么结局。</p><p class="medium-para">当然，我们心底一直知道他是她们的父亲，虽然我们假装没这回事。我嫉妒得要命，但实情如此，生物学就是生物学，你糊弄不了精子。我不确定梅齐尔是否知情。虽然“他的”女儿红头发，但他母亲在世时也是红发，何况，谁想得到犹如恺撒之妻[12]化身的艾夫人会做出这种事？也许那两姊妹自己察觉有异，因此很不快乐；如果你想的话，或许可以把她们的一切恶劣行径归因于此，不过你若认识她们，就不会这么宽宏大量了。</p><div class="para-break"></div><p class="medium-para">斯特里汉姆，诺伯利，索顿荒野，克洛伊顿。到红丘时，诺拉已经吃光那盒巧克力，说她在后座好寂寞，于是爬到前座挤在我们中间。他带来了阳光，我们打开车篷，高唱：“请指挥你的脚/走向有太阳太阳太阳的街道。”他情绪高昂起来。我们还是小女孩呢，才刚满三十。我们三人一路飞驰，却不知这将是我们最后一次乘车同行。</p><p class="medium-para">车到三桥，他比较愿意开口了，跟我们讲起巴西。丛林和丛林里的生物——这是他新的着迷对象。他要去皇家学会演讲哦，讲他在丛林发现的蝴蝶，而且一讲完就打算立刻回去再找更多。</p><p class="short-para">“我打算，”他堂皇宣布，“把余生奉献给鳞翅目。”</p><p class="medium-para">我们扬眉对看，又一项新的狂热。就像变戏法，就像电影，就像石油，就像间谍活动。他在丛林可以待多久不感到无聊？我们不知道，我们怎么也猜不到，他还没开始无聊就先失去踪影。</p><div class="para-break"></div><p class="medium-para">结果，这一天是萨丝琦亚掌管厨房。那年冬天她刚首度登台，跟那个穿天鹅绒长裤的好友一起在她父亲制作的《麦克白》中饰演女巫，那角色很符合她人格，但她对大锅里的内容[13]比自己名字挂上看板更有兴趣，因此她那赢得RADA金牌的好友获选扮演考狄利娅，与梅齐尔同台，萨丝琦亚则舞锅弄碗。</p><p class="medium-para">当然，如今她已成为电视第一名厨。我每次打开电视都会看到她，正忙着把什么东西切得四分五裂，或者剥什么东西的皮，或者拿着小菜刀猛砍某块跟她无冤无仇的肉。</p><p class="long-para">老保姆被赶出厨房，萨丝琦亚正为自己的午餐派对下厨，试做烤鸭配豌豆；而出身阶级和世代都远疱厨的艾夫人，现在也笨手笨脚尽量帮忙，因为今天是她女儿的生日。老保姆坐在果园一把折叠椅上，跷着脚看《闲谈者》[14]享清福，之后才轮到她起身上菜。连伊莫珍都劳动大驾在花园里摆餐具，因为今天天气太好了，他们决定在户外用餐，伊莫珍正用小石子压住餐巾，以免被风吹走。上浆的白桌布中央，玻璃罐插着一束石竹，上方是爬满老式玫瑰的凉棚，紫丁香也开了，就是小艾夫人那一度曾登上《乡村生活》杂志的著名白色紫丁香。</p><p class="medium-para">车驶近，我看见这儿已停了一辆劳斯莱斯，错综复杂难以消化的情绪立刻排山倒海而来，每当接近他，我总是如此——欢喜、怖惧、消沉、单相思。白色紫丁香更是火上浇油，那香味，我感觉好像有人一把握住我的心，使劲猛捏。</p><div class="para-break"></div><p class="medium-para">两鬓各一道飞霜——我们父亲老得比他兄弟明显，但老得很优雅。起初我们相处有点僵硬，尽管艾夫人勇敢地言笑晏晏，不过佩瑞砰一声打开一瓶酒，众人举杯：“敬她们姊妹俩！”然后围桌坐下。我不情不愿也入了席，诺拉亦然，因为，不管这批组合多么随机，但我们毕竟是一家人，他们是我们仅有的家人。喝到第二瓶酒，情况稍微解冻了，一点点。</p><p class="long-para">汤。老保姆现在恢复勤务，从厨房端出一个冒热气的炖锅，对萨丝琦亚的烹调本领比对自己手艺更自豪。于是我们从汤喝起，那是荨麻汤，萨丝琦亚在某本古书里找到的食谱，至少她是这么说的。一道古老的、伊丽莎白时代的汤。也许莎士比亚就喝过这种汤！说到这，她特别朝她“父亲”微笑，又说她和伊莫珍多崇拜他等等。莎士比亚或许喝过这种恶心的汤，但我不相信他能不吐出来。我出于礼貌勉强喝下一两匙，这汤非常非常苦，但两位盲目宠爱女儿的男士都喝得盘底朝天，佩瑞还要求再来一盘。</p><p class="long-para">然后鸭端上来，满是血水。我一阵反胃，赶快再喝点香槟壮胆，只夹起小小一片焦黑鸭皮——那鸭的外层倒是非常够热——放在自己盘里。但我从上菜大钵盛豌豆时，豆子蹦了出来，萨丝琦亚狠狠瞪我一眼，仿佛料准我迟早会在她这顿优雅大餐中露出马脚，显露本色，因此，为了跟她作对，我干脆拿布丁匙舀豌豆吃。但两位男士合力把鸭一扫而空，争比谁吃得多，谁把她称赞得最动听，我却饿得直冒酸水，终于突然想到：“她是不是故意的？”一份下毒的肉！她神情没透露什么，那张脸平静椭圆像块肥皂。</p><p class="medium-para">她头发梳成柔软的大髻。要是我们遗传到那红又红的头发就好了。当时我们仍然保持黑发，但当然已经烫了。贵宾狗头。她身穿石南色羊毛上衣加薄外套，戴珍珠首饰，但老是异想天开的伊莫珍的打扮则——她假惺惺笑道——“搭配我们四周的草丘”，18世纪式牧羊女装，连顶端弯曲的长手杖都不缺，手杖上还绑个蓝色蝴蝶结。幸好我在她身上没看见她那宠物白鼠的踪影，尽管威廉·希齐专栏说她走到哪都带着那只老鼠。</p><div class="para-break"></div><p class="short-para">“真美味，亲爱的。”艾夫人说。“萨丝琦亚真厉害！”但她自己也吃得很少。</p><p class="medium-para">好古怪的一顿饭。丑恶的食物，苍蝇，爬上你腿的蚂蚁和其他刺扎扎的小东西——在花园用餐的种种不适——以及罕择家族成员之间暂时保持的脆弱和平，都让那场合多了种特别的滋味，又甜又酸，像中菜的糖醋排骨。难以下咽的奶酒饮料之后，蛋糕端出来了，谢天谢地是从哈罗德订的，插着二十一根蜡烛。她们吹蜡烛，我们拍手，佩瑞的双手拂过眼前，我看见他快哭了。</p><p class="medium-para">以前我从没想过身为父亲可能是什么滋味，直到那一刻看见佩瑞几乎哭出来。然而，我想他爱诺拉和我，就像爱萨丝琦亚和伊莫珍一样多，说不定还更多。但你要了解，那是不同的爱。我们不是他的骨肉。</p><p class="medium-para">不过话说回来，人本来就不是自己父亲的骨肉，对吧？只不过几百万精子里有小小一只游上子宫颈，要忘记这事发生过是多么、多么容易。我们是梅齐尔的骨肉，或者该说他射出的东西触发了我们的存在，但他对我们只偶尔感觉怜悯，加上不时一点模糊的好感，至于那份好感从何而来他似乎不甚了了。但他爱萨丝琦亚和伊莫珍也爱得晕头转向，当她们吹熄生日蜡烛，我看见他眼睛也湿了。</p><div class="para-break"></div><p class="medium-para">我真希望我们今天跟平常一样，是搭火车然后从车站叫计程车来的，这样就可以快快闪人。现在我们却得等到佩瑞准备离开，而那可能还要好几小时。</p><p class="medium-para">艾夫人用餐刀轻敲酒杯，表示佩瑞格林想说些话。他站起身，脸上——以爱尔兰可能会用的词来形容——满是欢喜与忧伤交集的四月情怀，说：</p><p class="medium-para">“我亲爱的四个女孩，”——他朝我们方向举杯，眼睛周围眯出笑纹，但萨丝琦亚眼光怨毒——“我说不出今天对我这老恶棍意义多么重大，能与大家共度你们俩可爱红发娃终于成人的这一天，你们有了人生的钥匙，有了结婚的权利……不过别急着跑去结婚，亲爱的，那样我们会很寂寞。”</p><p class="short-para">她们惺惺假笑。</p><div class="para-break"></div><p class="medium-para">“要在这意义非凡的一天，为你们选一份适合的好礼物，真不容易。我花了很长时间绞尽脑汁，搔头苦思。不要什么花里胡哨、花哨不实的东西，而要一份能长长久久，跟你们俩一样美丽又能永久流传的东西。所以……送给你们，致上我全心的爱。”</p><p class="medium-para">现在他已经泪水盈眶，从外套左右口袋各掏出一个包好的盒子，尺寸恰是钻石手镯的大小。她们高兴又期待地假笑着。</p><p class="short-para">“拆开来看吧，亲爱的！”</p><p class="medium-para">他期待地看着她们撕开包装纸。原来盒子是金属制，上方还钻了小洞。越来越奇怪了。伊莫珍先打开她那份，才瞄一眼就尖叫丢下；萨丝琦亚看看她那份，说：“我的老天爷！”</p><div class="para-break"></div><p class="short-para">两个盒子各装着小小的草叶窝，窝里是一只毛毛虫。</p><p class="medium-para">“以你们命名的。”佩瑞格林说。“萨丝琦亚·罕择。伊莫珍·罕择。全雨林最美的两种蝴蝶。以后所有教科书里都会有你们的名字。只要人们依然喜爱蝴蝶，你们的名字就会挂在他们嘴边，你们会得到一种美丽的永恒。它们是稀有品种，就像你们俩。”</p><p class="short-para">萨丝琦亚和伊莫珍面无表情瞪着眼前的盒子，无疑原先期望分得一点石油财富。</p><p class="short-para">“就这样？”伊莫珍说着，用叉子戳戳毛虫。虫没动。“我想我这只死了。”她说。</p><div class="para-break"></div><p class="short-para">萨丝琦亚“啪”一声盖上盒子，丢在桌上。</p><p class="short-para">“多谢哦。”她语气充满讽刺。</p><p class="medium-para">佩瑞格林的脸垮了，突然间年纪全显出来了。不只这样，他看来足有一百岁，一百一十岁。而且他立刻泄了气，仿佛有人拿针戳进撑满西装的他，精力随之漏掉。梅齐尔也许毕竟还是对兄弟有些感情，总之，他连忙打圆场，也站起身，举起酒杯。</p><p class="medium-para">“敬两位寿星，我的五月亲亲小花蕾！”我们全又喝了一杯，然后他说：“我也准备了份非常特别的礼物，要送给我最爱的女儿……一个新的——”</p><div class="para-break"></div><p class="short-para">时机拿捏得恰到好处。所有人都盯着他看。</p><p class="short-para">“——继母！”</p><p class="medium-para">这下子，哦！我可真高兴起来了！多精彩的画面！她们下巴掉下，眼珠凸出。伊莫珍一声哀鸣，萨丝琦亚站起来一把抓住蛋糕刀，发髻散了，红蛇般的头发披散，发夹噼啪落下有如冰雹。</p><p class="short-para">“这算什么？”</p><div class="para-break"></div><p class="short-para">梅齐尔坚守立场。</p><p class="short-para">“我要娶我的考狄利娅。”他温柔说道，舌头轻抚翻弄着“我”这个字。</p><p class="short-para">“你的考狄利娅。”萨丝琦亚平板复述，愤怒被惊愕取代。她松手，蛋糕刀掉落。“你的考狄利娅！”</p><p class="short-para">“你的考狄利娅！”伊莫珍回音一般复述，慢了一拍。“可是你的考狄利娅是——”</p><div class="para-break"></div><p class="short-para">“——是我的好朋友！”萨丝琦亚哀鸣。</p><p class="medium-para">正是。RADA金牌得主，默默无名，却获得与梅齐尔的李尔王同台的机会，现在还要嫁给他；不过你若迷信的话，可能会看见兰纳夫·罕择和艾丝黛拉·蕾诺拉夫妇留下的可怕阴影笼罩他们，那一对也是老少配，结果床前、床上和床下都哭着收场。至少梅齐尔没把考狄利娅藏进车子后备厢带来，在这情绪十分不合适的时刻秀出她，但他一定知道这消息等于投下一颗大炸弹。连艾夫人都有点脸色发青，但佩瑞恢复了愉快神情，一掌拍上兄弟肩膀。</p><p class="short-para">“傻老头，有你的！”他声如洪钟说道。</p><p class="short-para">“好啊，”萨丝琦亚咬牙切齿迸出，“那个奸诈狡猾的小贱人，我要——”</p><div class="para-break"></div><p class="short-para">“哦，萨丝琦亚，萨丝琦亚。”艾夫人说。“别阻挡你父亲最后一次幸福的机会——”</p><p class="medium-para">萨丝琦亚连盘子带蛋糕往苹果树一砸，蛋糕四分五裂，碎块和蜡烛到处散落。然后她动手打破花盆，把甜点盘摔在地上猛踩。伊莫珍谵妄般哧哧笑着，挥动绑缎带的手杖打碎酒杯，毫不留情。看见毛毛虫成了肉泥，佩瑞发出一声可怜兮兮的呜咽；艾夫人担心祖传餐具即将惨遭不测，开始扭绞双手，晃动身体。此时萨丝琦亚的哀鸣已接近歇斯底里，于是梅齐尔利落赏了她一巴掌，就像电影里演的那样。</p><p class="short-para">“够了，年轻女士！”</p><p class="medium-para">她立刻住了嘴，一手摸着脸颊，那双琳德蓝眼难以置信地瞪着他。然后是眼泪。他揽她入怀，喃喃说道：“乖，乖，亲爱的。”她挣脱，冲进屋摔上门，隔了一两分钟，伊莫珍也跟着跑掉，只不过她得先打开姐姐已经摔上的门，然后才能再摔一次。剩下我们几个隔着碎裂餐具面面相觑，我这辈子从没感觉自己这么多余，诺拉也有同感。我们不约而同站起。</p><div class="para-break"></div><p class="short-para">“我去叫辆天杀的计程车。”我说。“我受够了。”</p><p class="medium-para">“喝过咖啡再走吧。”艾夫人非常英勇地说，但佩瑞不由分说把自己的藤椅往后一推，力道之猛使得椅子翻倒，底下一时困住一只尖声吠叫的小狗，八成是约克夏。</p><p class="short-para">“我也要走了。”他宣布。“回丛林去。现在，这一分钟就走。经过这番家族团聚，我会很高兴与鳄鱼为伴。”</p><p class="medium-para">我们发现原先打算送艾夫人的那瓶苏格兰威士忌被忘在车子后座滚来滚去，于是半路找个地方停下，三个人轮流喝。很遗憾，我必须说，佩瑞看起来糟透了，活像道林·格雷的画像[15]。我们回家的路上，云层闭拢天空，太阳不见了，一切又冷又灰。</p><div class="para-break"></div><p class="short-para">“然而我爱她们。”他说。“天啊，我好爱她们。这就是我的惩罚，对不对？我的罪就是我的罚。”</p><p class="medium-para">他不肯进门来坐坐，只待在车上看我们爬上门阶，脸拉得足有一英里长。我们转身，向他飞吻挥手道别，但他连动都不动。最后我们实在太冷，只好进屋关上门。我有种不好的预感：“我们再也见不到他了。”他发色仍然鲜艳，红得像狐狸，时值黄昏，街灯逐渐亮起，他就这么坐在那辆大车里，即将展开最后一趟旅程。</p><p class="medium-para">我们从窗帘缝往外看，见他终于开走，驶进暮色。他回到他在阿尔巴尼的住处，打包行李，取消了皇家学会的演讲，当晚就前往南安普顿，他是个说到做到的人。艾夫人出事后，我们试着透过警方找他，甚至试过国际刑警组织。没人找得到他，他隐姓埋名，抹去了自己。</p><p class="short-para">就这样。</p><div class="para-break"></div><p class="short-para">就算他曾信口讲到库斯科[16]的绿色原野或伊基多族[17]，我们也从来没听过。</p><p class="short-para">我们的脚步声回响在莎翁路四十九号的门厅，发出悲哀难耐的声音。“空洞。”回音说。“空洞。”</p><p class="short-para">“他们应该在一起试试。”诺拉说。“管它其他什么东西。”</p><p class="short-para">“她跟我说过：‘那种男人不能嫁！’”</p><div class="para-break"></div><p class="short-para">“我不是说他和艾夫人。我是说他和阿嬷。”</p><p class="long-para">诺拉很有先见之明，把那瓶苏格兰威士忌也带进屋，尽管这从来不是我喜欢的酒，但风暴之际什么港口都好。我们打开前屋的电暖炉，喝了两杯，放起留声机。我们卷起地毡，挖出所有精彩老歌，那些历久不衰的好歌，洁西，比妮，《我们改天再见》，尽管我们当时压根儿没想到再也见不到他，还有那些刮伤磨损的老唱片，唱着港口灯光和分离，多么一语成谶，只是我们当时不知道，还有那些“宝贝”歌，例如《你呀你究竟是不是》，最后我们在唱片堆底找到开天辟地第一张，好多年前他送给我们的第一张：《我能给你的只有爱，宝贝》——就是它让我们发现唱歌跳舞多么开心。</p><p class="medium-para">我们俩都有点微醺，正唱着歌、跳着舞，音乐放得震天价响，这时电话响了，是艾夫人的老保姆打来的，于是不久后，不便于行的艾夫人即将搬进我们地下室前半部分，因为老保姆告诉我们的消息是，艾夫人跌下了那道光可鉴人、没铺地毯、我们一再警告过她要小心的楼梯，跌坐在门厅石板地上，脊椎就这样摔坏、折断或移位了，从此再也不能走路，但当时我们还不知道这一点，只知道艾夫人一屁股摔个四脚朝天，老保姆慌得没了主意。</p><p class="short-para">“你叫救护车没？”</p><div class="para-break"></div><p class="short-para">至少她头脑还够清醒，已经这么做了。</p><p class="short-para">“萨丝琦亚和伊莫珍呢？”</p><p class="medium-para">她气得破口大骂，我一个字也听不清，还得把话筒拿离耳朵远一点，她的声音吵得我心烦意乱，但终于搞懂她的意思之后，我简直不敢相信，因为她们拍屁股走人了。</p><p class="medium-para">原来，我们不欢而散之后，不久梅齐尔也离开了，情绪备受打击的艾夫人爬上床。老保姆正在洗堆满水槽的脏碗盘，听见楼上房里有争吵声，然后是惊天动地的咚隆、砰、啪啦！她立刻飞奔出厨房，手里还抓着抹布，发现身穿薇耶勒法兰绒睡衣的艾夫人在楼梯底端跌作一团，发出呻吟。</p><div class="para-break"></div><p class="medium-para">然后两个女孩飞奔下楼，手上都抓着行李袋、提包、枕头套，里面塞满各式财物，一把推开老保姆，就这么跑进夜色。她们趿着平底鞋一路走到村里，敲开面包师傅的门，那人基于对琳德家族的盲目封建忠诚，开着送面包的车载她们到火车站，完全不知道琳德园专属农庄刚发生了可怕的意外。</p><p class="medium-para">她是失足跌落，还是被人推下？这是问题所在。但关于此事，艾夫人的僵硬上唇从不曾泄漏半个字、半句耳语。要是我们提起，就算再怎么委婉，她都会一副非常非常英国的样子，安静但坚决地改变话题。但我确实知道，在她摔下楼前，那两个恶劣女儿才刚要她签字把农庄和名下最后一点钱都转移给她们。这件事我们想不知道都不行，因为现在她一文不名，也无家可归了。</p><p class="medium-para">佩瑞格林已经走人，我打电话给我父亲，但他去未婚妻在冈特林的地下室公寓过夜了，也联络不上。艾夫人瘫躺在路易士综合医院，左眼角渗出一滴泪，看了真让人心碎。</p><p class="medium-para">我们就这样继承了艾夫人，但她其实不麻烦的，尽管以前咱们布里克斯顿舞蹈学院还在“一、二、三、跳！”的年头，她常拿银头手杖往天花板猛戳：“别再吵了！”</p><div class="para-break"></div><p class="medium-para">以前咱们小蒂蒂还在蹒跚学步时，她也曾帮忙照看，常唱摇篮曲给小蒂听，那首歌讲的是马，许多漂亮的小马。我说“唱”，但其实更接近没音调的哼，不过照样哄小蒂睡着。她还教过小蒂十字绣，不过我想小蒂从没用过这项才艺。</p><p class="short-para">就这样，不义之人飞黄腾达。</p><p class="medium-para">我一直认为萨丝琦亚之所以成名，主要原因在于她的后颈。她的颈背很漂亮，红发梳髻像只蹲着孵蛋的罗德岛红鸡，无论她做什么，颈背都出现在镜头前，亲密、暴露而性感，不管她是俯身在炉子上，用汤匙充满暗示地往锅里戳来戳去，还是拿着尖叉捅进鸡腿，一副喜不自禁的虐待狂模样。我从没看过比她更不雅的电视节目，连炫彩乔治在皇家综艺秀的演出都比不上她。</p><p class="long-para">多年前，她刚开始崭露头角时，我们在电视上看过她炖一只野兔。她以缓慢、淫逸的动作切开兔子。“刀一定要够利！”她沙声说道，一根手指沿着刀锋滑上滑下，不过看见萨丝琦亚拿刀，我和诺拉无法不想起她二十一岁生日手抓蛋糕刀撒泼的样子。接着她浓情蜜意为野兔准备一锅洗澡水，切碎葱、蒜、洋葱，加入一束调味香草和一品脱红酒，把惨遭分尸的可怜兔子放进去炖上一天半。然后她纡尊降贵，用大火热锅加以翻炒，直到表面焦黄。然后所有东西又送进烤箱，再焖将近一天。她用面粉加水调成面糊，封住陶锅的盖子。“别淘气，别偷看哟！”她挑逗地眨眼警告。终于到了开封的时候！那野兔已经半烂，然后烧化，然后被食用。如果世上有神，而且神是属兔的，那么最后审判日萨丝琦亚可就麻烦大了。“真美味。”她呻吟道，一根手指蘸起酱汁，吸吮。她舔舔嘴唇，粉红舌尖流连在唇边。“呣……”</p><div class="para-break"></div><p class="medium-para">我们看着这段实在恶心的节目，阿嬷的鬼魂在一阵包心菜惊雷中显灵了。看到萨丝琦亚对那野兔下的毒手，我们明白了自己吃肉是错的。</p><p class="short-para">那为什么还继续吃肉？我跟你直说，我们害怕要是吃太多沙拉，有朝一日会发现自己变成了阿嬷。</p><p class="long-para">萨丝琦亚为崔斯专炖过一只野兔，让他从此完蛋。当时她住在切尔西一栋精巧小小房，不时为《哈泼时尚》写写文章。（“鳗鱼……哦，婀娜多姿、曲线玲珑、龙飞凤舞的大海子民！”诸如此类，等等。）她一定殚精竭虑想了很久，该如何报复第三任罕择夫人抢走她父亲，最后写信给当时只是少年，就读比得莱斯的小崔斯专，暗示：她，萨丝琦亚，握有罕择家某些不为人知的秘密。天知道她写了或承诺了什么，也没人晓得他期中假日来按她门铃是出于好色还是乖巧，但你还来不及说“奶黄酱”，她就已经脱掉了他的格子长裤，尽管她年纪足以做他母亲。</p><p class="medium-para">事实上，她跟他母亲正是同样年纪。这下她觉得自己扯平了，于是和乳玛林夫人阁下又恢复友谊，甚至一起拍过番茄酱广告。但萨丝琦亚最会记恨，因此，我们偶尔巧遇时——一次在彼得·琼斯百货的丝袜柜台，另一次在史罗恩广场等计程车——我从她那双琳德蓝眼里看得出，见到我她仍然只想到一件东西——“山扁豆强力泻药”。</p><div class="para-break"></div><p class="long-para">她报复了父亲的妻子，也报复了父亲。她们两姊妹始终没原谅他裁撤她们的津贴。老保姆告诉我们，他是在她们二十一岁生日下午，我们离开之后，向她们宣布这项大好消息的。他冷静得什么似的，告诉她们他无法供养两个家庭，现在既然她们姊妹俩已经成年可以赚钱自立，他会帮她们找到好工作。她们目瞪口呆坐在那儿，听他向她们保证：她们不会少掉一个朋友，反而多得一个母亲[18]。然后天空下起雨，他便跳进劳斯莱斯开走，她们还震惊得愣在那儿，来不及痛骂他。而这，根据老保姆的说法，就是那场大吵的原因，把昔日的艾夫人变成了我们的轮椅，让她无家可归，一文不名，得靠家族左手边这一支系奉养。</p><p class="medium-para">老保姆当然什么都告诉我们，一直如此，连她搬去帮梅齐尔带小崔斯专和小葛瑞司之后亦然。不然她还能做什么，可怜的老太婆，她困住了。艾夫人没钱继续请她，我们又能要一个看见字纸篓里的琴酒空瓶和马桶里的保险套就啧啧不赞许的老保姆干什么？</p><p class="medium-para">不过，唉，悲哀的是，漂在马桶里的小小胶套在六十年代逐渐减少，七十年代更是彻底消失，而且跟避孕药发明没半点关系，却跟缺乏机会大有关系。</p><p class="medium-para">老保姆常从肯辛顿镇搭137路公车过河来。当她告诉我们萨丝琦亚和崔斯专的事时，艾夫人惊叫出声，手里的刺绣圆框也掉了。那年头他还是小孩，才十七岁，而萨丝琦亚早就过了四十，正朝停经的大厄之年迈进。但他们的事最让我们不安的并不在于老少配这一点，对此我们跟法国人一样态度开明；我们担心，是因为我们全认识萨丝琦亚。然而老保姆有她自己的疑虑。</p><div class="para-break"></div><p class="medium-para">“近亲相奸。”老保姆说。她正在喝茶，我注意到她在我们家老是把杯子转到不顺手的那一面喝。是啦，诺拉洗碗盘确实颇随便，尤其天黑之后，但老保姆在我们家也从来不上厕所，就连你看得出她憋尿快憋爆的时候也一样。我在想，我们的卫生水准是不是下滑了？</p><p class="short-para">“近亲相奸。”</p><p class="short-para">“不用担心啦，阿婆。别忘了，梅齐尔不是她的——”</p><p class="medium-para">但轮椅手指按在唇上，因为老保姆照理说不应该知道这事。（不过她当然知道，多年前就是她亲口证实了这项我们最害怕的猜测。但轮椅始终不知道她知道。认为这种事应该瞒着下人。）</p><div class="para-break"></div><p class="short-para">“可是话说回来，”诺拉说，“也许佩瑞——”</p><p class="long-para">我们以前怎么都没想到？那个坏老头！“刚才去冈特林拜访了一位朋友”，可不是吗！但他怎么认识乳玛林夫人阁下，他们又为什么这么做？难道佩瑞一心一意要贯彻罕择家族生父不明的传统，至死方休吗？但我们全没法验证这个理论，因为佩瑞格林不在，又只有老保姆跟第三任罕择夫人说得上话，可也不够熟，于是我们只能如此揣测：发红如火的崔斯专，继承了佩瑞格林和热情澎湃、惨遭杀害的可怜艾丝黛拉的血统；而瘦削、眼眶深陷的葛瑞司头发黑得像渡鸦，一双保卫尔眼睛——换句话说，这两个男孩简直是佩瑞格林和梅齐尔的翻版，就算个性不像，至少外表像。所以，当年的“司仪”是谁，我们也只能猜了。</p><p class="medium-para">但我们从没见过葛瑞司。他是个谜。他十七岁时皈依，在崔斯专发现性爱的年纪他找到上帝,不久便离家去念神学院了。他从没跟我们通过任何音讯，没有信，没有圣诞卡，因为，演员跟神父或许有很多共同点，但耶稣会士和歌舞女郎——除了用来开猥亵的玩笑——则无。</p><p class="medium-para">也许萨丝琦亚在少年崔斯专的食物里动了手脚，掺进什么爱情灵药，跟她生日那道令人作呕的莎士比亚荨麻汤出自同一本古书。他一再回到她身旁，一而再，再而三。当然，这秘密在家族之外可是守得死紧。明面上他有各式各样的女朋友，咱们小蒂芬妮是知名度最高的一个，出现在《世界新闻》[19]的头条，而且，你知道吗，我想他是真的爱她。</p><div class="para-break"></div><p class="medium-para">爱。爱是什么？我说爱是什么意思？有一段时间，他要她在身旁。但结果她还是不足以让他戒掉萨丝琦亚，尽管萨丝琦亚现在已经足足六十岁。他的耳顺之年情妇。萨丝琦亚，耳顺之年的性感女郎。</p><p class="short-para">“算了啦，阿朵，六十岁时要是碰上哪个男人要你，你也不会拒绝啊。”诺拉责备我。她认为我在吃醋。</p><p class="short-para">也许吧。</p><p class="short-para">萨丝琦亚。</p><div class="para-break"></div><p class="medium-para">但轮椅也为此哀伤，而且更让她难过的是，两个女儿已经对她不闻不问四十年，她想她到死都没法再看她们一眼，所以，当父亲生日宴会的请柬终于寄来，我们知道得带她一起去，尽管她没有正式获邀。我们就打算这么做，等我们先把自己打扮得花枝招展之后。</p><p class="short-para">“我们今晚该穿什么？”诺拉说。</p><p class="long-para">轮椅不成问题。她还有一件四十年代残留的诺曼·哈内尔设计的漂亮礼服，我们依然可以把她套进那衣服，因为她吃得像麻雀一样少，一毫克也没胖过。白绸上衣，薄纱裙，我们会把裙子弄得蓬松，遮住她的轮椅。珍珠项链。她女儿把她的东西抢个精光，精巧珍玩塞满枕头套，但总算没动手扯下她脖子上的珍珠。我们让她泡了澡，倒进她最喜欢的芙萝丽丝牌晚香玉。那个澡可让我们大费周章！诺拉扶着她一只胳臂，我扶着另一只，把她放进浴缸。诺拉用一块法兰绒布帮她擦背。然后我们用一条柔软大毛巾裹住她，诺拉替她梳理头发。</p><p class="short-para">“你们对我真好。”轮椅的声音里有种可疑的颤抖。</p><div class="para-break"></div><p class="medium-para">“废话少说，你这老太婆。”诺拉说。对她讲话语气得强硬点，否则她又要哭了。我们帮她扑上爽身粉，用毛毡包好，安置在开着暖炉的厨房，留给她一壶新泡的茶，让她看下午电视上播的《相见恨短》。我们得等水再度烧热，自己才能洗澡。我拿起一个香水瓶，闻到怀旧的味道。</p><p class="short-para">“这么着吧。”我对诺拉说。“今晚你擦点‘一千零一夜’，我擦点‘蝴蝶夫人’。”</p><p class="short-para">“就像过去一样。”她说着，眼里闪起亮光。</p><p class="short-para">“咱们别这么夸张。”</p><div class="para-break"></div><p class="medium-para">因为我们是两个瘦不拉叽的老丑婆，准备穿的洋装上一次见天日差不多是在咱们小蒂出生那年，因为打那时起我们就没再买过晚礼服，迈入中年的我们已经没那需要。买给我们这两瓶令人怀念的美妙香水的也是咱们小蒂蒂，贴心的好孩子，那是崔斯专带她去托斯卡尼度假一周时，她在免税商店买的。</p><p class="medium-para">那是一趟不幸的旅程。不过他一定爱她，至少爱过短短一阵，因为她是第一个让他壮起胆子带去见萨丝琦亚的女孩。</p><p class="long-para">萨丝琦亚的别墅坐落在佛罗伦萨和西耶那之间一处山丘，四周是基安蒂[20]葡萄园，车道旁两排松树，你也知道那一套，搞不好还在她那天杀的节目里看过。那房子还可以抵税，因为她在那里拍过一系列节目：“托斯卡尼唇舌间。”我看过一次下午的重播，当时我重感冒哪儿也不能去，结果就看到萨丝琦亚抚摸一只火腿。“帕玛的猪多么幸运！”她吟道。“每天吃凝乳和乳浆，就像小小的莫菲小姐[21]，死后又成为猪类的超凡典范——意式生火腿！”</p><p class="medium-para">他们回来后，我对小蒂好好追问了一番，她先是乱扯成熟的无花果和新鲜罗勒云云，然后才承认她大部分时间都因为拉肚子卧床休养，困守那可以望见葡萄园的砖地大房间，唯一娱乐只有把萨丝琦亚的节目录影带看个不停，因为她没有读书的习惯。但这下子她信心满满，尽管连个蛋都不曾煮过，居然当场就说要做奶油白酱意大利面给我们吃，不过我们说，门儿都没有。</p><div class="para-break"></div><p class="medium-para">在我听来，好的肠胃毛病像是萨丝琦亚在菜里多加了点料，但总之，萨丝琦亚对这意料之外的小女孩保持足够礼貌，足以引起我的怀疑，因为她通常是个超级势利眼。但蒂芬妮丝毫没起疑，高兴得不得了。“他的家人开始接受我了！你看他姑姑[22]都对我敞开了胸怀！”</p><p class="medium-para">那胸怀可是铁石打造的。小蒂不知道，她怎会知道，崔斯专和那女人已经有过一段，而我也必须承认她仍然貌美，一直貌美，白肤加红发，尽管她眉毛和睫毛稀疏，一定得画；一旦好好洗个脸，她外表就失色了一半。但小蒂蒂最漂亮的样子是不化妆，头发随意披在背后，然后——</p><p class="medium-para">——然后我又来了，只愿想着小蒂蒂，但现在欠思姊妹应该戴上最灿烂的微笑，从衣柜找出最时髦的礼服，去庆祝她们父亲的百岁诞辰。</p><p class="medium-para">我心想，楼上一定找得出我们能穿的衣服，因为我们什么也没丢过，只把那些陈年玩意儿堆在阿嬷房里，二楼前半部分有八角窗的大房间，全屋最好的一间，不过她走后我们两个都不忍心接收搬进那房，所以她的东西也全都还在。</p><div class="para-break"></div><p class="long-para">阿嬷的房间冷得要死，光线暗淡犹如薄暮，只有一个四十瓦灯泡，但我不想拉开窗帘，仿佛天光会吓跑残留空气中的樟脑丸、水煮包心菜和琴酒味，我们喜欢认为她借由这味道让我们感觉她仍与我们同在。她那些照片仍在壁炉架上排排站。中央主位摆的是佩瑞格林，身穿变把戏的西装，全身的平坦表面都停满鸽子，像座广场雕像，温暖的微笑简直可以烘暖你的手，尽管那只是一张照片，而且他已经死了。一大堆我们的照片：小时候光屁股在后院，仔细瞧还看得见一个邻居隔着围篱偷瞄，既愤慨又色眯眯；扮成麻雀的我们，小小年纪第一次参加杂剧演出；《你愿意》的黑色紧身裤袜，妹妹头金色假发；甚至有一张豌豆花和芥菜籽，披着树林中一片月光；一张雅顿森林的可爱快照，我们跟佩瑞格林在泳池边玩耍；戴着水手帽，慰劳三军。永远都是我们两个，成双结对，在阿嬷的壁炉架上永远年轻。</p><p class="medium-para">她一直不喜欢塞西尔·比顿为《风尚》杂志拍的那张照片，始终收在梳妆台抽屉里。他把我们打扮成彩绘娃娃，脸颊上两片圆圆胭脂，带着可怕的人工微笑，身穿荷叶边衣裙坐在地板上，双腿伸直，仿佛是木头做的。有钱男人的玩物。还真含蓄。他保姆以前常帮他拿闪光灯，你知道。</p><p class="medium-para">咱家阿欣也在壁炉架上，婚礼当天；咱家阿欣带着一个、两个、三个处于学步不同阶段的小孩，或抱或牵。幸好阿嬷在欣西雅四九年死于亚洲流感之前就走了，她从来不想活得比我们任何一个人长。</p><p class="medium-para">就我所知，在我们跟她相处的整段时间，房里这张大床她从不曾与人共享，只有晚年偶尔让猫上床。她的床，剥得光光，赤裸的枕头缩靠在一起像尸体。我们感觉应该噤声，轻手轻脚。</p><div class="para-break"></div><p class="long-para">打开衣柜，我们在柜门镜中看见自己仿佛在一池灰尘里游动，有那么一瞬间，柔焦之下，我们看来真的像重回青春少女时代。而且，我可以告诉你，翻看那些旧衣真是勾起好多回忆。首先是内衣——丝、绸、蕾丝，湖绿、玫瑰粉红、肉色、黑红缎带，直筒筒的二十年代，滑溜溜的三十年代，弯曲曲的四十年代，水蛇腰，风流寡妇，托高胸罩。在这叠衣物底下，我瞄到某样海军蓝的东西——我们穿去上舞蹈课的灯笼裤！沃辛顿老师的舞蹈课！谁想得到阿嬷竟还留着我们的旧灯笼裤！</p><p class="medium-para">接着是洋装。有些装在塑料袋里：斜肩丝上衣，缀满珠珠足有一吨重的紧身小洋装。另有些用布盖着，大大的渔网裙、有撑架的塔夫绸大蓬裙、颈背处打结的露背装、没肩带的、袒露整个背的，等等，全高高堆在阿嬷床上。</p><p class="short-para">“半个世纪的晚礼服。”诺拉说。“派对服装的世界史。”</p><p class="short-para">“我们应该把这些捐给V&A。”我说。</p><div class="para-break"></div><p class="short-para">“哪会有人想付钱看我的旧衣服？”</p><p class="short-para">“以前有人付钱看你不穿衣服。”</p><p class="short-para">“他们应该把我们放在博物馆才对。”</p><p class="short-para">“我们应该把这栋屋子改成博物馆。”</p><div class="para-break"></div><p class="short-para">“灰尘博物馆。”</p><p class="short-para">诺拉在那堆破布里翻来翻去，发出一阵窃笑，拿起一件白如水沫、缀有水晶珠的乔琪纱洋装。</p><p class="short-para">“豪华特快！”她说。“记得吗？”</p><p class="medium-para">“‘她身穿一袭伪装贞洁的纯白，衣衫随着她的移动闪着寒光，一片微妙、暧昧、蛛网般的柔软，藏着冰霜的秘密。“借个火吧？”半是信任半是傲慢的粗哑嗓音，比那张涂着紫心唇膏的苍白脸庞老，那声音招摇着刺耳沙哑像挥舞旗帜，好不自豪。’”Ⅰ字部，爱尔兰，绰号“爱尔兰”的罗斯·欧弗拉赫提。《好莱坞挽歌》。就是这一件！他根本不知道我是跟黛西借的。</p><div class="para-break"></div><p class="short-para">“你怎么不把它卖给得州那家图书馆？我在报上看过，他们买了一箱他喝过的空酒瓶。”</p><p class="short-para">但我也发现了一样她的暧昧纪念品，可以用来取笑。</p><p class="short-para">“唉，诺拉……我都不知道你还留着这个。”</p><p class="short-para">“给我！”</p><div class="para-break"></div><p class="short-para">她一把夺过去，是《仲夏夜之梦》拍片现场服装部门拿出来的那幅面纱，让她披着嫁给东尼。</p><p class="short-para">“那个王八蛋。”她说。“我希望他已经埋在水泥地里了。”</p><p class="short-para">她把面纱塞到看不见的地方，塞在她的长袖连身工作服底下，这时，一袭雪纺纱滑落地上。</p><p class="short-para">“朵拉？记得这件吗？”</p><div class="para-break"></div><p class="medium-para">她举起它。印花图案，大团泼洒似的玫瑰、杜鹃、牡丹，浅淡的色彩，朦胧粉红，柔和浅紫，薰衣草。我将它凑在脸上，它柔软如尘埃。初吻，初恋，眼睛蓝得像装糖的红袋，皮肤像鲜奶油。</p><p class="short-para">“求你啦，我的亲亲，要记得我啊。”[23]</p><p class="short-para">他在滇缅公路一去不回。有个喜剧演员告诉我的，五二年《裸女雀跃》后台，在谢菲尔德。</p><p class="short-para">“好了，朵拉，没什么好哭的。”</p><div class="para-break"></div><p class="short-para">“你记不记得他的名字？”</p><p class="short-para">她扬起眉毛，意思是问我，谁的名字？</p><p class="medium-para">“我们十七岁生日那天你送了我一份礼物，记得吗？今天是我们的纪念日，五十八年前的今天。那是我的第一次，记得吗？”</p><p class="short-para">她想了又想，但只想得起她自己的第一次和那鹅和流产，然后嘴角开始往下撇。</p><div class="para-break"></div><p class="medium-para">“有时候，”她说，“我觉得在这世界上有点寂寞。你难道都不会觉得有点寂寞吗，朵拉？没父亲，没母亲，没娃儿也没亲爱的小孩。你难道都不会想要搂抱什么吗？”</p><p class="medium-para">没有亲爱的小孩。我很清楚，对她而言这才是重点所在，但覆水难收哭也没用，尽管这句成语用在这里不太合适。总之现在已经来不及了。</p><p class="medium-para">“我得承认，有时候真的有够寂寞，尤其当你关在房里对着天杀的文字处理机打个不停，一头栽进过去的回忆，而我却关在地下室面对老年。”</p><p class="short-para">“别这样说可怜的轮椅。”</p><div class="para-break"></div><p class="short-para">“我指的不是轮椅，你清楚得很。我指的是我们的老年，桌边的第四位客人。”</p><p class="medium-para">“往好的地方看。”我劝她。“我还有你，你还有我，我们还有轮椅，她可以算是我们的老小孩，因为我们帮她洗澡又喂她吃饭，甚至帮她换尿布。我们的父亲虽然没尽责，但佩瑞叔叔确实是个很棒的甜心干爹，这你清楚得很。我们虽然没见过亲生母亲，但阿嬷就等于我们的母亲，这话可一点也没错。”</p><p class="short-para">灯泡一明一灭又一明，仿佛是阿嬷表示同意。</p><p class="short-para">“可是，”她说，“我还是希望……”</p><div class="para-break"></div><p class="short-para">她把那件旧雪纺纱揉成一团，抱在怀里。</p><p class="short-para">“要是小蒂蒂是我们的，”她说，摇着怀里的雪纺纱宝宝，“我会——”</p><p class="short-para">我用指节揉去满眶泪水。今天不能再哭了。</p></div></section><section class="chapter-section">
+<h1 class="chapter-title" id="chapter-8">
+    5
+</h1>
+<div class="content"><p class="short-para">我们过河到对岸。河像一把剑，挡在布里克斯顿和光鲜亮丽之间。我纳闷，大家为什么要叫它泰晤士河老爹。</p><p class="medium-para">摄政公园里，灌木丛像熊一样缩身蹲者，黄水仙和郁金香苍白如幽魂，在我们的生日之风中摇曳，雨后的风恢复清新，湿润而微温。罕择家外的街上可真热闹！大批箱型车，架起来的炽亮灯光，满地能绊倒你的电缆，还有各式人员——戴眼镜穿连帽外套的秃头男人群聚交谈，穿牛仔裤的女孩拿着写字板到处走来走去，加上影迷、闲人、好奇的人，全在那儿伸长脖子猛张望。</p><p class="medium-para">罕择宅十分气派。我们曾不经意地路过一两次，只是想去看一下……满腔的爱被拒于门外，宝贝儿。灰泥粉刷，柱子和柱廊，前方凸出一扇八角窗，门口一道石阶，我们以前常梦想走上那石阶，现在真的可以俨然名正言顺走上去，不过得先找来一个身强体壮的家仆应付轮椅。</p><p class="long-para">但是看到电视台的人，轮椅退缩不前，在计程车后座——我们叫了辆传统大黑头车，普通出租车绝对没办法连人带椅装下她——啜泣哀鸣。什么？透过九点新闻让全国人看到她像一篮待洗衣物被推来推去？多可怕的公开羞辱！看哪，当年第一美女如今沦落得何等悲哀！她哀哭起来，但幸好诺拉先前在金丝手提包里塞了条白色雪纺纱大方巾，怕这可怜的老东西晚上肩膀会冷，于是这时掏出来往轮椅头上一盖。顿时安静无声。我叫住一个身穿古装背心紧身裤的仆役。</p><div class="para-break"></div><p class="short-para">“麻烦你抱这位女士上楼梯，我们会带着轮椅跟上。”</p><p class="long-para">“没问题。”他说着露出微笑，对轮椅柔声劝哄，人们对待非常老的老人和小孩都是这样。她实在太轻，他毫不费力抱起她。在他怀中，一身白礼服披面纱的她看来像修女，或者鬼魂，或者非常年迈的新娘，直到那双琳德蓝眼隔着面纱对他一亮，他突然脸红了，直起腰，惊讶又骄傲地抱着她往前走去，四周摄影机咻咻运转，闪光灯此起彼落，一阵窃窃私语：“那是谁？她是谁？”因为，当她眼睛闪亮，美丽的老骨架突显出来，便突然又变回好久以前的那位艾夫人，迷得众人目瞪口呆。</p><p class="short-para">诺拉正在跟轮椅奋战，试图折叠起来，我则付钱给运将。</p><p class="medium-para">四周正在发生的一切，全是可怜的爱尔兰一定会痛恨的那种场面。拉风名车开来，吐出燕尾服和长礼服，门一开车内小灯就会亮，因此每对男女的亮相虽为时短暂但气势十足。群众为之疯狂，尽管目前为止，所有宾客看起来跟我们一样都是老废物，但我得说其中没有任何旧相识，无疑因为他们全是正宗嫡传。</p><div class="para-break"></div><p class="short-para">然后我感觉有人拉我袖子，某个衣衫褴褛的老家伙。我一看到他就觉得有些眼熟，却想不起在哪儿见过他。</p><p class="long-para">到我这把年纪，记忆变得非常挑三拣四。是的，感官印象我记得很清楚，鲜明清晰得有如幻觉。一只按在我乳房上的手，尽管我想不起手的主人到底是谁；培根三明治的滋味，那年头培根在平底锅里嗞嗞作响，就像蜜蜂嗡嗡飞在薰衣草丛；第一次剪头发那天，阳光照在我们细嫩颈背上的感觉。但是除此之外，要挖起任何记忆都得费一番功夫。前几天，我死也想不起爱尔兰最喜欢的酒是哪个牌子，尽管我们分手时他朝我丢了一瓶代替道别。而且还是满满的一瓶，撞墙摔碎，酒汁流淌下来。“哦，你看，”我说，“爱尔兰地图耶。”他领略不出其中的幽默。“他一定很爱你，才会拿满满的一瓶丢你。”我告诉诺拉这事时，她说。</p><p class="short-para">但那牌子叫什么名字？只要把这类细节搞对，你说什么人家都会相信。</p><p class="short-para">“灌木老磨坊”？也许是“灌木老磨坊”。可怜的老爱尔兰，好多年前就去天上那个大酒厂了。</p><div class="para-break"></div><p class="medium-para">某些方面，我的记忆力正常得很，但其他方面就不行了。我就这么站在那儿绞尽脑汁，而他哑声说道：“施舍半镑让咱喝杯茶吧，太太。”</p><p class="medium-para">他伸出手，这时，在那袭前陆军大衣的污垢衣领下，在那件脏得不忍卒睹，纽扣全掉光的衬衫缝隙中，我瞥见了欧洲和非洲的轮廓，当场恍然大悟。我面前站的是炫彩乔治的遗迹。</p><p class="medium-para">嗟乎，伟人堕落至何等境地。虽说《仲夏夜之梦》那时我便已看出他未来的走向，奇的是他竟然又撑了半个世纪。想起来，他一定跟梅齐尔一样老了；也跟佩瑞一样老，要是佩瑞还活着的话。</p><p class="short-para">我发现我又让自己想起了英年早逝的人，一直勇敢努力制造的欢乐心情当场烟消云散。</p><div class="para-break"></div><p class="medium-para">但是，说到这，既然我们的心刚碎，为什么今晚又穿得花不溜丢地出门？问得好。我想是看在我们老头的分上吧。为我们之存在的作者庆生，尽管他把我们归类为“闲杂人等”。</p><p class="short-para">就算我跟父亲从来算不上熟稔，但至少我知道他是谁。我是个明智的孩子，不是吗？</p><p class="short-para">我呆站瞪着炫彩乔治，但他没认出我。</p><p class="medium-para">“不然五便士也好。”他说，放弃了一部分（但并非全部）希望。岁月和酒精毁了他的声音，黄色街灯的无情灯光让他身上那些大洲失去粉红。我手中拿着一张二十镑，本来要付给运将，但钞票上的莎士比亚说：“好心一点。”</p><div class="para-break"></div><p class="medium-para">“拿去吧。”我说着把莎翁的文学文化塞进那个曾扮演织工线团儿的人手里。“念在《仲夏夜之梦》的分上。唯一的条件是，你必须把这笔钱全拿去买酒。”</p><p class="short-para">他当然一把抓过那张钞票，但很老派地瞪我一眼。</p><p class="short-para">“你不会以为咱们老兵那么堕落吧。”他责备道。</p><p class="medium-para">“快去吧。”我说。“你不知道今天是莎士比亚的生日吗？为英格兰、哈利和圣乔治高呼上帝。去吧，为私生子喝一杯。”</p><div class="para-break"></div><p class="medium-para">听到这话他乜斜我一眼，似乎误会了我的意思[1]，但他当然不会因此争吵，既然一句侮辱可以换来酷酷一张二十镑。于是他蹒跚走开，紧捏着战利品，简直不敢相信自己的好运。</p><p class="short-para">“你不应该助纣为虐。”计程车司机责备我。</p><p class="medium-para">“我以前认识他，很久很久以前。”我说着又掏出另一张莎士比亚，递给他，补偿我先前对不值得施舍的穷人的慷慨。我听得懂暗示。</p><p class="short-para">“快点啦。”诺拉说，急得跳脚。</p><div class="para-break"></div><p class="medium-para">我们并肩迈步走上台阶，毫不顾忌展露出虽年迈但还不算太糟的腿；彼此一个暗号，我们同时脱下银狐大衣搭在身后，所有闪光灯立刻大作。我感觉好像活了过来。</p><p class="medium-para">门厅有穿着低胸古装的年轻小姐为宾客保管外套和大衣，名人美女四处走动。古装的鲁特琴手——我们父亲的派对总少不了他们——聚集在楼梯间平台，古老音乐飘下楼来。另外，幸福呀！还有一道波浪花纹似的向上楼梯，就像梅·蕙丝的华丽线条。</p><p class="short-para">“轮椅呢？那小子把她弄哪儿去了？”</p><p class="short-para">“我也不知。”</p><div class="para-break"></div><p class="medium-para">我们放弃寻找轮椅，交出毛皮大衣，再度以好莱坞架势走上楼梯，但上去后看见一面镀金大镜子，镜中的我俩让我狠狠吃了一惊——两个滑稽的老女孩，浓妆足有一寸，衣服比人年轻了六十岁，丝袜上满是星星，又短又小的裙子勉强盖住屁股。好一副戏仿画面。诺拉也同时看见我们的倒影，脚步也为之一停。</p><p class="short-para">“哎呀呀，阿朵。”她说。“我们可真是过火啦。”</p><p class="medium-para">我们忍俊不禁，笑我们把自己弄成这模样，然后，在姊妹之情撑腰下，我们大胆招摇跨进宴会厅。我们还是很有看头的，即使他们受不了看见我们。</p><p class="long-para">屋里有一间宴会厅，宴会厅可好看了。八角窗下方正临公园，另一头有若干长窗。金顶红色大理石柱撑起天花板，天花板上雕刻各式各样石膏像，有爵床科植物叶冠、凤梨、竖琴、棕榈叶、葡萄串和四处埋伏的小天使。一座吊灯用链子垂挂，活像超大结婚蛋糕，插着真的蜡烛，明亮辉耀闪闪烁烁，投射出彩虹般七彩光芒。厅内其他地方也插满蜡烛，墙架上，分枝烛台上，单独一枝或成群结队，让空气中充满热蜡味，让我们全暖和起来，让大家肤色好看许多——在场每个人都上了年纪，只有侍者例外，他们身穿古装背心紧身裤，用银托盘端着窄长杯泡泡香槟，穿梭在众人之间，头下脚上倒映在拼花地板，仿佛变戏法。</p><div class="para-break"></div><p class="medium-para">然后我的心跳停顿，我又回到十七岁，还是个用粉扑拍鼻子、心跳不已的处女，因为这里有紫丁香，到处都是紫丁香。成钵、成瓶、成束的白色紫丁香，今晚的花饰主题。紫丁香的香味让我恍恍惚惚，我们加入长长队伍朝父亲的方向移动，他坐在一处壁龛，类似王位的座椅上。</p><p class="medium-para">他没有像大多数宾客那样身着西装或燕尾服，而是穿一袭土耳其式紫长袍，满是刺绣，气派十足。我心想，结肠造瘘术；但那长袍跟他仍然浓密茂盛的、略长的白蜡色头发十分相称。他手上好几枚戒指，像国王或教宗，脖上戴着一面大金牌，看来犹如君王，但不失喜庆气氛。我的心猛然一蹬，开始愈跳愈快。</p><p class="medium-para">我们耐心排队，等着祝他“生日快乐”，前后分别是封爵的演员和电视节目主持人，他们隔着我们彼此闲扯淡，让我们很火大，但我们决定忍耐老太太所受的视而不见待遇——注意，尽管打扮俗丽花枝招展，我们的年龄和性别仍然使他们对我们视若无睹——因为今天场合特殊，换做平常我们可是会激烈抗议。香槟来回穿梭，我前后伸手抓了两杯，我紧张死了，我可以告诉你。</p><p class="long-para">我环顾四周找轮椅，但到处看不见她的人影，几乎开始担心她——但我先担心起自己，确切讲来是担心我的膀胱容量，因为那个封爵的演员吻了梅齐尔的手一下，然后两下，然后又一下，因为摄影机没拍到，先是这里出问题，又是那里出问题，就这么像录像带循环放下去，我真希望自己没喝第二杯香槟，因为记起第一次见他时我紧张得尿了裤子。但诺拉保持镇静，尽管那些鲁特琴手演奏的曲子足以让人心碎：《永远的道兰，永远的道伦斯》《垂泪》[2]。</p><div class="para-break"></div><p class="medium-para">第三任罕择夫人穿着一套以她年龄而言太过俏皮的薇薇安·韦斯特伍德[3]，守在丈夫身旁，戴满钻石的一手保护性地按在他肩上，但眼神满室逡巡。空气里，昂贵的香水与胡后水跟紫丁香和蜡烛味较劲，美食香味也开始飘上楼来。一个古装背心紧身裤的侍者端着沉沉一托盘鸡腿摇摇晃晃走过，我饿死了，我们午餐就没吃，但总不能手拿鸡腿跪在父亲面前祝寿吧？乳玛林夫人阁下脸上的微笑之僵，简直快绷破拉过皮的脸，看得出来她并不开心。</p><p class="short-para">当然啦！她正在张望崔斯专来了没。</p><p class="short-para">而他不见踪影。</p><p class="medium-para">我纳闷，不知神秘的耶稣会士葛瑞司·罕择神父是否打算现身，如果是，他又是否打算穿神职礼服。我对葛瑞司神父好奇得不得了，我从没见过他，而身为罕择家族的非官方史家，我实在很想见到他，因为，以家族里这些父亲的表现看来，我们也该有个独身的神父了——可说是非战斗人员。</p><div class="para-break"></div><p class="medium-para">摄影师到处都是，活像苍蝇，你永远不知道什么时候会发现有一只正把他的虫吻伸进你的饮料。我向一名侍者打听到，原来这整场宴会，从第一句哈啰到最后一声打嗝，都要录下来流传后世；我们的父亲一心要展示自己，至死方休。</p><p class="short-para">“豌豆花！”他叫道，“还有芥菜籽！”</p><p class="long-para">他一手揽住我们一个，乳玛林夫人阁下继续坚持不懈的微笑，并不因宾客不同而改换笑容，而且她无疑心有旁骛，否则一定会问我们他妈的是哪根葱，哪来这两个身穿迷你裙，脚踏颤巍巍高跟鞋的年长公民。她已经分不出我们跟亚当之间有什么差别1英文里一般形容完全不认识某个（男）人，可说分不出他和亚当谁是谁；这里作者把此词用在女性角色身上，是幽默的口吻，也呼应前文说她们老去后仿佛只是假扮女性。1，但我们对她记得可清楚，星期天在琳德园专属农庄，穿着拼布宽褶裙，对萨丝琦亚说的某句尖酸刻薄的话报以奉承阿谀的笑声。但坐着的梅齐尔尽可能给了我们一人一个大拥抱，然后闭上眼，深深吸口气。</p><p class="short-para">“唉，亲爱的，你们得帮我恢复一下记忆……你们哪一个擦‘一千零一夜’，哪一个擦‘蝴蝶夫人’来着？”</p><div class="para-break"></div><p class="medium-para">那个微笑！要命的是，我们再度爱上他了，就像多年前那个八月的假日，当时又害怕又年轻又愚蠢的他第一次伤了我们的心。我们看得出他现在三者皆非。我们为他神魂颠倒。我们不需要任何言语，言语多说无益，只要他的微笑。诺拉抽抽嗒嗒哭得稀里哗啦，他伸出那青筋毕露、满是老人斑的老手，迟疑、颤抖地摸摸她的脸颊，足以让人心碎。</p><p class="short-para">“别哭呀。”他说，“这是我们的生日宴会啊。”</p><p class="short-para">这下可好，我也哭了起来。</p><p class="long-para">“爸。”诺拉说，我也说：“爸。”他又抱了我们一下。“我可爱的女娃儿。”我不知道是什么改变了他。也许……也许，在那游戏节目看到心神涣散的可怜小蒂蒂，使他几十年来第一次想起“漂亮小咪”。也许。他让自己侧面保持某个角度，如此一来摄影机就拍不出他的双下巴，这是情不自禁的反应，流在他血管里的本能。只因他在半个英格兰的众目睽睽下公开悔过，并不表示就不够真心。他又抱我们一下，然后再抱一下，弥补多年来我们从不曾得到的那些拥抱。我十七岁那年，一个充满白色紫丁香的美好夜晚，他向我邀舞，而现在，照理他应该完成这个圆圈，带诺拉走进舞池，但我们身后那个电视节目主持人一直猛推猛搡，于是我们说：“爸，待会儿见。”然后走开。</p><div class="para-break"></div><p class="medium-para">我们又拿了杯酒，躲在一根柱子后恢复镇定。我们情不自禁，咧嘴笑个不停，活像柴郡猫[4]。并不是他说了什么，也并不是事情有了任何改变，但我们得到了一点点爱。</p><p class="medium-para">鸡肉经过，她拿起一根鸡大腿。“我简直吃得下一匹马。”她咬了一口。“好吃。”她逐渐恢复沉着。一根香草卡在门牙间，她用指甲挑出来，看了看。</p><p class="short-para">“迷迭香。”她说。“《托斯卡尼的餐桌》，BBC一台，星期五晚上八点半。这外烩是萨丝琦亚做的。”</p><p class="short-para">她把吃了一半的鸡腿丢进烟灰缸。</p><div class="para-break"></div><p class="medium-para">“你的睫毛膏花得一塌糊涂。”我说。而且我尿急得不得了，于是我们前往女厕，在那儿发现了艾夫人。她仿佛被某个坏心咒语又变回轮椅，躲在洗身盆后，仍罩着面纱，全身颤抖，打扮成朱丽叶奶妈的老保姆则在一旁柔声劝慰安抚。显然，他们安排老保姆守在厕所，就是为了让她应付喝醉的客人。</p><p class="short-para">“我无法面对他。”艾夫人说。“因为我对他做过那种事。我爱他，却背叛了他。”</p><p class="medium-para">“她需要来点烈的。”诺拉说。老保姆起先撮起嘴唇不以为然，但诺拉从镀金丝手提包拿出琴酒后，她也立刻喝了一口。最后我们终于一左一右把轮椅带回宴会厅，但只要人群稍微分开，让她看见梅齐尔，她就抖得好厉害，整个人简直抖得快散了，因此我们把她安置在一座卡诺瓦[5]裸体像后面，她又喝一口琴酒，定下心，看看接下来发生什么事。</p><p class="short-para">接下来发生的是，黛西·达克。</p><div class="para-break"></div><p class="medium-para">一阵巴洛克式号角声。不骗你，打从《仲夏夜之梦》的杀青派对之后，我就没再亲耳听过巴洛克式的号角。众人噤声，窃窃私语，人群后退，但艾夫人突然激动起来，伸长脖子拼命往前，还想掀掉面纱，但我按住她的手——我有种感觉，时机还没到，她还不该露出脸。她又是咕哝又是嘟哝，仍遮好自己，安心坐稳看那王室般的入场架势，尽管像雾里看花。</p><p class="long-para">那可真是王室般的架势。叭叭，叭叭，叭叭，叭！小号吹奏。然后鲁特琴手——音没调准，夹杂许多走调的音符——试着演奏《哈啰，朵莉！》，她就这么进来了，众人一阵喝彩，还有人站在椅子上争睹。我必须承认，她看来足有百万美金[6]，尽管都是旧钞。仍然娇小，穿上高跟鞋也只有五尺，但我得说，好一个荷尔蒙替代疗法的惊人活广告，皮肤没有半条皱纹，不过话说回来，鲨鱼皮又不会起皱纹是吧，嘴巴别这么坏了，朵拉。她棕色皮肤闪闪发亮，就像周日的烤牛肉，棕色肩膀丰润，亮棕色头发掺杂几抹灰白——她很聪明，没有试图扮成三十五岁，四十岁就行了。一口牙齿活像贝希斯坦平台钢琴，笑起来亮得让我猛眨眼。她一袭紧身滑亮白绸礼服，身后摇摇摆摆走来一个小身影，抱着百朵玫瑰的大花束几乎看不见人。我心想那一定是黛西养的小白脸，走进来活像事后才加上的附注，不过他可不是我想象中的小白脸模样——迷你小个子，不合适的漂染假发，一套会在黑暗中发光的灰色丝质意大利西装，脸孔像个老小孩。为了她好，我希望他有些不足为外人道的长处。</p><p class="short-para">好个老黛西。我一眼就看出来，她已经灌饱了一肚子酒。</p><p class="medium-para">她走到厅中央，停下脚步，开朗地高举双臂过头，朝四面八方送出那不间断的、比白还白的微笑，然后才朝梅齐尔轰炸。《哈啰，朵莉！》终于停了，谢天谢地。如雷掌声响起。</p><div class="para-break"></div><p class="medium-para">梅齐尔摇摇摆摆起身，晃悠悠走下座台，拥抱她，多年后终于公开与她和好，就像刚才跟我们和好一样，不过他们比我们花了更多时间为自己摆出最上相的侧面角度，而黛西赢了，因为，尽管远渡重洋，她依然头脑清醒。</p><p class="long-para">这点让我哀伤，但我必须承认——我们父亲的心肠变软，恐怕跟他的大脑变软不无关系。老保姆告诉我们，有一天他搭地铁前往加里克俱乐部，某个怪老头一把抓住他的手，叫得整个车厢的人都听见：“我的老天爷啊，你以前不是梅齐尔·罕择吗？”从此之后，他就不对劲了，开始颓唐，对自己没把握，拒绝出门，甚至藏起那顶宝贝硬纸板王冠，指天誓日说自己已经太老，不能再戴它。他脑袋变得有点糊涂了。但事情就是这样，没有乌云哪来的银边[7]。</p><p class="medium-para">亲爱的老黛西。镜头拍到一半，她发现了我们，就这么抛下跟她拥抱到一半的梅齐尔。媒体记者在她身后大叫：她跑去亲那两个皱巴巴的穷老太婆干吗？很久很久以前，我们曾经比她年轻，但她现在不显老，当然也颇有身价。</p><p class="long-para">那小白脸老大不高兴地跟着上前几步，又老大不高兴地后退，抱着玫瑰不知所措，直到梅齐尔好心招手要他过去，接过玫瑰，然后，以自然而然的即兴演出手法交给乳玛林夫人，她看起来大吃一惊，又把花塞给那个仍在一旁徘徊的电视节目主持人，后者把花丢给一个穿尚保罗·高缇耶猫装的汗淋淋的悲剧演员，于是那束玫瑰开始在全厅四处传接，最后一名侍女接过它拿到女厕，永远有办法的老保姆把它插进一个马桶直到宴会结束，因为除此别无其他够宽的容器装得下。</p><div class="para-break"></div><p class="medium-para">黛西瞥见披着尸衣般面纱的轮椅，高兴得尖叫起来，但她没时间叙旧，因为此时媒体人又抛下我们全部人，转而跑向门口——乳玛林像只犬指向那里，开始颤抖呜咽：浪子终于回家了！</p><p class="medium-para">怎能有人以为崔斯专会狠心不参加父亲的百岁大寿，尽管这一天他已经双双失去了情人和小孩？这不是很温馨吗？温馨个屁。在我看来，小崔斯专唯一能做的像样举动就是切腹谢罪。但表演总得继续下去，不是吗？</p><p class="medium-para">崔斯专看起来心力交瘁。身穿晚礼服没错，但脸色发青，仿佛呕吐了一整天，而且步伐非常不稳，被两个姑姑一人一边搀扶。打从亲亲小花蕾那场倒霉的二十一岁生日会，我们就不曾再跟她们说过话，只偶尔在百货公司碰见。艾夫人呻吟一声，紧抓轮椅扶手。“冷静一点！”我们嘶嘶说道。她咬面纱堵住自己的嘴，黛西从手提包拿出银质随身小扁瓶，示意她来一口，但艾夫人咬着雪纺纱摇摇头。我很高兴看到时间已抚平了这两人之间的伤口。</p><p class="long-para">但时间并不一定能抚平一切。看见萨丝琦亚，我又感到历来熟悉的那一种厌恶的哆嗦。她的头发红得不能再红，梳成法国结式[8]，穿一袭尚·缪伊设计的某种油灰色衣服。至于伊莫珍打扮得实在太过火，头上顶着一个鱼缸，里面有条鱼。不哄你，一条活生生的鱼。闪光灯噼啪炸亮活像盖·福克斯之夜[9]，伊莫珍转向四面八方，点头、鞠躬、微笑接受众人注目，金鱼随着缸里的水东冲西摇，险象环生。我拼命思考这鱼是什么意思，然后灵光一现：《金鱼阿金》——她的儿童节目。她打扮成自己的广告来参加这场宴会。她一身青铜色长衫用亮片缀成鱼鳞，向父亲打招呼的方式也很符合角色：不停开合嘴巴。她穿戏服来此，用金鱼方式无声向他祝寿倒也好，气氛因而轻松了一点。</p><div class="para-break"></div><p class="medium-para">两个女孩——我还叫她们“女孩”呢，但她们早就过了六十；免费公车证拿出来给我们看看吧，两位女士——一人一边亲吻老头的脸颊，祝他生日快乐之后，他又哭了，然后她们退下，留下崔斯专站在他面前。这就是狗仔队久等的一刻，看他跌跌撞撞上前跪下，脸埋在梅齐尔膝头，肩膀抖动。凄切的鲁特琴声中，我听见他在啜泣。摄影师纷纷涌上前，抢拍特写。</p><p class="medium-para">他母亲蹲下来抱住他，梅齐尔揽住他的头。老梅齐尔做了个可悲的动作，挥手试图赶开摄影机，要媒体让他们独处，让他们自己承受这一刻，不想被全世界阖家大小旁观，但他们的人生至此才要求隐私已经来不及了。在众目睽睽下笑，在众目睽睽下哭，在众目睽睽下生，在众目睽睽下死。他们脸上赤裸裸的情绪是演员脸上看不到的。今晚，他们是新闻影片的主角。最难受的莫过于看见自己的孩子受苦。</p><p class="short-para">但接着我想起今天早上布兰达的脸，于是知道还有比这更难受的事，巴不得亲手宰了崔斯专·罕择。</p><p class="short-para">但天杀的表演仍然要继续。</p><div class="para-break"></div><p class="medium-para">萨丝琦亚把情况掌握得很好，因为她是冷血婆娘，此时用眉毛向乐手示意，巴洛克号角再度响起。一群意大利康提戏剧学院的小男孩，穿戴着迷你襞领和蓬蓬短裤，四处跑来跑去捏熄烛火，留下几十阵辛涩烟雾。</p><p class="short-para">蛋糕推进来了。</p><p class="medium-para">我早该想到蛋糕是萨丝琦亚烤的。这是她的杰作，非常巨大，做成环球剧院[10]模型，不骗你。蛋糕呈球体，分为好几层，屋瓦是有波纹的巧克力糖霜，大得足以将一百枝蜡烛插满屋顶一圈，此时烛火正熊熊燃烧，蛋糕被十二名小小随从用类似轿子的抬法扛出来。四周掌声雷动，黛西把提包和随身酒瓶塞给小白脸之后也热烈拍手，但艾夫人在面纱后静静悄悄啜泣，我们也不想拍手，一点也不想，一点也不。</p><p class="medium-para">一名随从交给萨丝琦亚一把剑，就是用来比剑的那种。诺拉和我猛然倒抽一口气，想起另一个生日、另一个蛋糕、突然爆发的惊人暴力——但，这步骤显然已排练过很多次，她将剑柄朝外递给梅齐尔，而梅齐尔一脚轻轻把崔斯专移到一侧（真巧妙，舞台老手！），颤巍巍站起身。</p><div class="para-break"></div><p class="short-para">蛋糕上摇曳的生日蜡烛是全厅唯一光源，照出怪异的影子，让老头看起来憔悴。</p><p class="short-para">众人噤声，一轮鼓声响起。</p><p class="short-para">乳玛林夫人阁下正分心拍抚崔斯专的手，这时迟一步才想起轮到她开口了。</p><p class="short-para">“祝你百岁生日快乐，亲爱的！”从她脸上的笑容看，那蛋糕不是奶油做的。又一个称职的剧团成员。</p><div class="para-break"></div><p class="short-para">我们的父亲举起剑。我为他感到难过，看得出他很吃力。他举起剑，然后——</p><p class="short-para">然后——</p><p class="short-para">我很希望自己能说，在这刺激的一刻，鼓声、祝贺、火光、突然噤声中，那大蛋糕炸开或裂开，从中跳出——</p><p class="short-para">但我若这样讲，就是撒谎。</p><div class="para-break"></div><p class="medium-para">实际情况是这样：鼓、火光、噤声，蛋糕刀高举，但还来不及切下，前门就响起震耳欲聋的敲门声。震耳欲聋。那敲门声之强劲，连生日蜡烛都震得东倒西歪，烛泪滴在巧克力瓦片上；一束束紫丁香也随之摇晃，散落串串花朵；甚至我们脚下的拼花地板似乎都在颤抖，快要翘起。</p><p class="short-para">一阵兴奋之情传遍全厅。某件不按脚本来的事要发生了。</p><p class="medium-para">门开处，风吹进来。就是今天早上那奇异的风，曾刮起树叶，吹动朵拉·欠思疲惫的细胞，此刻咆哮着冲上楼，冲进宴会厅，掀起裙子使女人纷纷尖叫，将烛火几乎吹灭殆尽又重新刮亮，阵阵翻卷艾夫人的面纱，几乎整个吹开，她仍把面纱咬在嘴里。甜美雷声般的笑声随风抢先而来，每个人都转头去看来者是谁，是谁带着一阵欢乐的风暴迟到。</p><p class="short-para">还可能是谁呢？</p><div class="para-break"></div><p class="medium-para">记得他以前常跟爱尔兰唱那首老歌：“都柏林城住着麦可·芬尼根……”然后守灵时，尸体跳起来，复活了。歌词最后一句是——</p><p class="short-para">“天老爷啊！”我们的佩瑞格林唱道。“你们以为我死了吗？”</p><p class="medium-para">他足有仓库那么大，甚至更大，活像座塔，身上穿的似乎就是我们小时候第一次见到他时那件磨损老旧的飞行夹克，咧嘴微笑，发色一如红椒——没有半点灰白，显然丝毫未受岁月摧残。</p><p class="medium-para">他明明可以从机场打个电话，通知一声他会到，对不对？而且，这年头就算巴西一定也有电话了。但要是他事先来电，就会破坏惊奇效果——典型的佩瑞格林作风，抢去自己兄弟的风头。</p><div class="para-break"></div><p class="short-para">话说回来，今天也是我们佩瑞叔叔的百岁生日啊。</p><p class="short-para">我早就打从骨子里知道，今天会发生奇奇怪怪的事。</p><p class="medium-para">跟佩瑞一起随风而来的，是几十、几百只蝴蝶，有红，有黄，有棕与琥珀相间，有无比神秘的紫罗兰配黑，有绿色小小只，有大理石蓝与卡其色相间的庞然大物，在厅里四处飞旋，停在女人的裸肩上，男人的秃头上。诺拉和我的发上各停了两只。</p><p class="medium-para">梅齐尔丢下剑，突然坐倒，脸色白得像纸，这回摄影机竟也停拍了，仿佛佩瑞格林不但抢去兄弟的风头，更超出一切可能性。被十二双腿扛着待切的蛋糕在梅齐尔的面前徘徊，不知如何是好，四周一阵交头接耳疑问声，因为在场当然已经没有认识佩瑞的人了，只有她和我和他和她们，说不定梅齐尔甚至以为自己见了鬼。</p><div class="para-break"></div><p class="medium-para">但这鬼是多么实质，甚至脚步沉重。吊灯颤抖，紫丁香掉落，佩瑞格林向前走来，蛋糕往一侧歪去。他头上停满花冠般的蝴蝶，他非常非常轻地取下一只，色彩鲜红亮丽，轻盈翅膀展开约有六寸，在他手中轻轻颤动。他将蝴蝶递到梅齐尔面前。</p><p class="medium-para">“我们每一个女儿，”他说，“都各有一种以她们名字命名的蝴蝶。我还把这一种以你命名，你这没用的糟老头。”</p><p class="medium-para">完全是男人表达感情的语言。原因：多年不见使感情变好？或者该归为模棱两可？但我很高兴看见他们和好。梅齐尔看着那只美丽得如此不真实的蝴蝶，接着抬头看着他的兄弟，露出微笑。然后动物园蝴蝶馆的馆长拿着大网子进来了，网住所有美丽蝴蝶另带到温暖舒适的地方，因为佩瑞格林很关心它们的福祉。众人一片喧腾混乱，但我们挤上前去索吻。</p><p class="short-para">“小花朵拉！你一点都没变！”</p><div class="para-break"></div><p class="long-para">我正想说非也，想向他指出我的鱼尾纹、灰白头发、火鸡皮似松垮的脖子，但我从他眼神看出他这么说是真心的，他是真的真的爱我们，因此看不出我们有任何改变；在时间强加给我们的瘦巴巴、皱兮兮外壳下，他看见我们永远是那两个小女孩。因为他虽处处留情却也忠实，对他爱的人永不变心，看不出对方有任何改变。这时，我纳闷，我是否也是这样的人？看见佩瑞的时候，我看见的是否也是我所爱之人的灵魂，而非身体？而或许，在我的欲望的魔法圈圈之外，他的肉体皮囊其实也跟侄女们一样已经老得不成形状？</p><p class="medium-para">但我注意到自己用了“我的欲望”这个词，粉快就停止朝那方向去想。这时轮到诺拉上前让佩瑞拥抱亲吻，然后是黛西·达克，如此这般，但我把自己吓了一大跳，赶快再喝一杯香槟冷静下来，因为打从停经“巨变”时起，本人下面那儿就不曾像现在这样突感一阵热血汹涌。</p><p class="medium-para">萨丝琦亚保持疏远，态度冷淡；伊莫珍试图溜掉，但被头饰阻碍，于是他一把抓住她紧紧拥抱，金鱼当场滑出鱼缸，她连忙跪下，想从那摊水里捉起它，但鱼滑溜得像块肥皂，让他们满舞池一阵好追。电视拍摄小组和摄影师和记者都不知道该拍哪里，有这么多哀伤、欢乐、怨恨和追逐在同时发生，众人吵吵嚷嚷手忙脚乱，直到佩瑞格林瞥见藏在一根柱子后，罩着一层厚纱的某个身形，突然停下脚步，手里还捧着那只喘不过气的金鱼。</p><p class="short-para">“该不会是……”他说。</p><div class="para-break"></div><p class="medium-para">“快放回来！”伊莫珍猛催，跪在他脚边。佩瑞心不在焉把鱼放回缸里，这时噤声安静在人群中一圈圈扩散，最后全厅一片沉寂，所有眼光都集中在不见庐山真面目的艾夫人身上。她手指在轮椅扶手上一下紧握，一下放开，然后把自己往后推，仿佛想离开舞台，回到没人能看见她的侧幕，但轮椅撞上了墙，因为这里再也无处可退。</p><p class="medium-para">梅齐尔感觉到有事发生，伸长脖子张望，大半个身子倚着乳玛林，因此他清楚看见了佩瑞拉开面纱的那一刻。然后是一阵迷惑的暂停，梅齐尔再度坐回宝座，神情不解，脸色累得发灰，尽管好戏这才即将开始。我想他一点也不知道轮椅上这位女士是谁。只听乳玛林直问：“那是谁？那是谁？”但萨丝琦亚和伊莫珍惊恐后退，是嘛，当然啰。</p><p class="short-para">佩瑞轻声说：“你好啊，亮眼睛。”</p><p class="short-para">艾夫人说：“哎，是佩瑞格林呀！”眼中亮光闪动。</p><div class="para-break"></div><p class="short-para">他把她转过来面对众人。</p><p class="short-para">“各位女士各位先生，”他说，“这位是艾塔兰妲·罕择夫人。当年第一美女。”</p><p class="medium-para">突然她又恢复了往日风采，不过因为一头白色卷发，在我看来比以前更像绵羊，但显然绵羊的魅力无法挡，因为每个人都一阵惊呼。佩瑞带头鼓掌，众人随即跟上。她探抓着面纱，仿佛有点想再度遮起自己，但我看得出她很高兴。梅齐尔吃了一惊。</p><p class="short-para">“小艾！”</p><div class="para-break"></div><p class="medium-para">于是，现在三任罕择夫人同处一室。我在想，不知我们母亲的鬼魂是否也在这里某处，飘在蛋糕上方烟雾蒙蒙的空中。蛋糕有点摇晃，因为抬的人手臂开始酸了。</p><p class="medium-para">“我带了一样特别的东西给你，装在箱子里。”佩瑞格林对梅齐尔说。“麻烦给我们一点灯光好吗？”小小随从四处奔跑，重新点燃蜡烛，直到厅里大亮。</p><p class="long-para">佩瑞一定事先给了巴洛克号角手小费，因为他们再度吹起一阵响亮，此时六名矮壮结实、棕色皮肤、戴阳具套、身披羽毛的男人——显然是佩瑞的巴西朋友——抬进一口箱子，箱上贴满早已关门大吉的旅馆和船运公司的标签。他们将箱子抬到宴会厅中央，放在拼花地板上。佩瑞格林在掌心吐口口水，摩拳擦掌，大拉拉走上前去，起初我想：他打算变戏法，因为他摆出了暌违已久的变戏法架势：“各位女士、各位先生，我袖子里什么也没有。”步伐灵活敏捷。一百岁？怎么也不像！</p><p class="short-para">“他跟魔鬼签了约。”诺拉小声说。</p><div class="para-break"></div><p class="short-para">他对着梅齐尔发话，挺着大肚子尽可能深深鞠了一躬。</p><p class="short-para">“梅齐尔，我亲爱的兄弟，”他说，“我送给你……罕择家族的未来。”</p><p class="short-para">他掀开箱盖。</p><p class="short-para">“这是说，”他补充道，“如果她愿意接受你的话。”</p><div class="para-break"></div><p class="short-para">我们凭直觉猜到了里面是谁。</p><p class="medium-para">箱中跨出咱们小蒂蒂，神清气爽，一点也没有憔悴痕迹，只不过眼神不再像温驯的鸽子（不管是切过的，还是整只的），看来身心健全得几乎过头。她换了衣服，穿着一身工作服和一双大大的马丁靴，但看来比以前更可人，简直艳光四射。依然是我们的小蒂，我们的心头肉。</p><p class="medium-para">我们又哭又笑，踩着脚下的荒唐高跟鞋，半滑半跑过简直像溜冰场的地面，同时巴洛克号角吹个不停，我心想：也许我们已经死掉，上天堂了。但最初的激动情绪平息后，我们还在这里。</p><p class="medium-para">崔斯专的反射神经倒是很发达，一眨眼就跪到她面前，又是笑又是哭，或者说他演同时又笑又哭的样子演得不错。</p><div class="para-break"></div><p class="short-para">“我爱你，蒂芬妮。原谅我。”</p><p class="medium-para">她低头瞪着他看，仿佛陷入沉思，这点让我看了很高兴——她以前从不仔细思考什么。她用手指抹抹鼻子，她不知怎么得了重感冒，总之不是因为沉在河里。</p><p class="short-para">“门儿都没有。”最后她宣布。</p><p class="short-para">崔斯专呆了，往后跌坐在自己脚跟上。</p><div class="para-break"></div><p class="short-para">“可是，蒂芬妮，我愿意娶你啊！”</p><p class="medium-para">“死都不要，你这王八蛋。”她就这么在众人面前说道。天啊，那一刻我多以她为傲！“你在大庭广众下那样羞辱我，就算你是全世界最后一个男人，我也不会嫁你。改娶你姑姑吧。”</p><p class="medium-para">很明显地击中了。萨丝琦亚脸色煞白，失手掉了酒杯。可怜的老梅齐尔丈二金刚，当然搞不清楚这番流水板台词过招，但儿子遭拒的模样令他心痛不已。</p><p class="short-para">“哦，亲爱的孩子。”他那宛如陈年波特酒的浓郁醇厚声音说，“怜悯他吧，怜悯你尚未出世的孩子吧。”</p><div class="para-break"></div><p class="medium-para">我蛮为梅齐尔感到难过，这孙子还没出生就得而复失。他看起来那么可怜，而且今天毕竟是他生日，小蒂本可能有所动摇，但崔斯专破坏了一切，突然戏剧化起来。</p><p class="short-para">“我的宝宝！想想我的宝宝！”他揪扯头发，捶胸顿足。</p><p class="medium-para">“振作点，像个男人吧你，或至少试着像个男人。”蒂芬妮犀利地说。“你没资格当父亲。当父亲不是只会打炮就够了，你知道。”</p><p class="medium-para">我们俩一人紧握她一只手，她也紧紧回握。我心想，到时候我们要教这宝宝跳踢踏和芭蕾。然后屋外又有人大声敲门。</p><div class="para-break"></div><p class="medium-para">“一定是我爸妈来了。”她自信地宣布。现在所有仆役都聚在宴会厅，看这整场现实人生的好戏看呆了，没人去开门，但一阵破碎哗啦声传来，显示锁住的前门对名列前茅的轻重量级拳手不成问题。蒂芬妮临走抛下最后几句话。</p><p class="short-para">“等宝宝出生，我们倒很欢迎你爸妈来看，但你长大成熟之前别想来凑热闹。”</p><p class="medium-para">他仍呆跪原地，这时布兰达和里洛伊绕过他，走去拥抱女儿，四周闪光灯大作。鲁特琴声又起——《某某勋爵的粉扑》——我想佩瑞也塞了点钱给他们。挺像往日时光，有灯光，有音乐，有剧情。小蒂、布兰达和里洛伊在噼啪掌声中离开，搭计程车回家去也，摄影记者本来都要追上去，但里洛伊把其中一人揪着耳朵丢下楼之后，他们就此止步。</p><p class="medium-para">佩瑞说他凑巧碰上咱们小蒂，前一天晚上他从机场进入市区的路上，看见她在街上乱逛，差点被他搭的计程车撞倒。</p><div class="para-break"></div><p class="short-para">“所以我把她带回‘旅行者俱乐部’——”</p><p class="short-para">“哦，佩瑞格林！”我叫道，突然想到一个可怕的可能。“你该不会吧！”</p><p class="short-para">“我当然绝对没有。”他生气了。“这是什么话！我才不会趁落难少女之危。”</p><p class="medium-para">崔斯专靠在萨丝琦亚肩上哭。从他母亲的眼神，我看得出她也恨死了萨丝琦亚，尽管她们N年前在那RA什么DA曾是最好的朋友。结果现在天杀的萨丝琦亚又把她挤出她本该与儿子共同演出的这个激动场面。乳玛林全身熊熊燃烧着受挫的母爱，伸手抓起一块蛋糕（蛋糕已经累得沉到地上），拔掉一根烧尽只剩短短残余的蜡烛，把那块蛋糕塞进儿子手里。</p><div class="para-break"></div><p class="short-para">“吃点东西吧，亲爱的。”她说，“吃一口也好，让你恢复点体力。”</p><p class="medium-para">一声刺耳尖叫，碎屑四处飞散，因为萨丝琦亚挥手打掉送到崔斯专唇边的蛋糕，崩溃地倒在妹妹怀里，而她妹妹立刻又开始那著名的金鱼模仿，嘴巴一开一合，哦！哦！哦！但发不出声音。佩瑞向来反应快，一把抓起伊莫珍的金鱼缸，把水往萨丝琦亚泼去，她立刻清醒过来，马上疯狂乱扭身子，好不容易把金鱼抖出她的V领上衣。</p><p class="medium-para">是的，她承认了，她亲手为父亲烤的这个生日蛋糕确实掺了东西，不过那东西究竟会让他生病，生重病，还是直接完蛋大吉，我来不及听到，因为这下现场哗然，灯光、摄影机、可怜老头的哀鸣、他妻子的反唇相讥、他儿子的惊呼，其他所有人也七嘴八舌加入混乱。连佩瑞都脸色凝重，仿佛这该怪他，一副良心不安的样子——可能是百年来第一次。他和艾夫人这两个始作俑者相互靠近。此时，萨丝琦亚对着梅齐尔哀嚎：</p><p class="short-para">“你从来没爱过我们！”</p><div class="para-break"></div><p class="medium-para">萨丝琦亚也该明智一点了。还记得多年前布莱顿码头上的炫彩乔治，以及他那则笑话的关键句吗？我实在忍不住了，冲口而出：</p><p class="short-para">“别担心，亲爱的，他不是你父亲！”</p><p class="medium-para">要是霍雷肖在第一幕第一场就对哈姆雷特如此耳语，会怎么样？再想想这话会让考狄利娅的人生多么不同。反过来说，莎翁那最后几出喜剧会变得黑暗许多，你不觉得吗，如果玛丽娜[11]以及——尤其是——佩蒂达其实并非她们父亲的亲生女儿……</p><p class="short-para">喜剧是发生在别人身上的悲剧。</p><div class="para-break"></div><p class="long-para">炫彩乔治说出“他不是你父亲”时，布莱顿码头几乎笑翻；当我在罕择宅里说出同一句话，四下静得简直可以听见一根针掉地的声音。然后，我真希望自己没开口，让全世界继续保持不知情，因为等那时间仿佛暂停的沉默一秒过去，众人领会这句话的意思之后，若说先前现场一片哗然，现在则是一片大乱。萨丝琦亚扑向佩瑞格林握拳乱打，艾夫人以轮椅的极速用自己身体挡在他们之间，发出可怜的叫喊，伊莫珍（谢天谢地，现在她头上没有鱼缸了）追着艾夫人要听更多当时情况细节，还发出歇斯底里的低能的哧哧笑声，诺拉和黛西·达克显然拿黛西的随身酒瓶好好喝了几大口，现在正互相撑靠着对方，而且——我很遗憾地必须说——简直快笑破肚皮。</p><p class="long-para">梅齐尔朝艾夫人看了“你怎能做出这种事”的一眼，艾夫人则抓着轮椅撑起上身——何止“亮眼睛”！现在她更像蛇发女妖美杜莎，胸中郁积的不平一口气全发泄出来，好一场精彩演出。来得及抢到四周散置的镀金小椅的人就此坐下，其他人不顾弄脏礼服和长裤席地而坐，全变成完美的观众：安静一如老鼠，在紧张时刻窸窸窣窣，听见惊人秘密时倒抽一口气，有时阵阵含蓄发笑；侍者则靠墙闲站，态度比较没那么投入，本身就是专业人士，对表演投以评论的眼光，而非忘情入戏。</p><p class="medium-para">“难道她们身上流的不是罕择家的血？”她叫道，声音洪亮饱满，宛如小号。“罕择家的血！罕择家那珍贵独特的血，让父母认不出自己的孩子，让女儿背叛母亲！”</p><p class="medium-para">梅齐尔咳嗽，结巴，在宝座上扭动。她已把他的尴尬装瓶封存太多年，如今“砰！”泡沫源源涌出，或者该说波涛汹涌翻江倒海，全泼洒在地。佩瑞以单臂扼颈的摔跤招式制住萨丝琦亚，她安静下来直盯着艾夫人，眼睛瞪得如小盘子那么大；她从没想到她母亲个性有这么激烈的一面，我也是。</p><div class="para-break"></div><p class="short-para">“你把我丢在家里，独守着你无法填满的空虚子宫，梅齐尔！”</p><p class="short-para">众人一阵震惊。</p><p class="medium-para">“你无法填满我的子宫，梅齐尔，不过在我之前你倒是另外播了种，对一个天真无辜的女孩始乱终弃，丢下她独自死去，更变本加厉背叛抛弃她的女儿——”</p><p class="medium-para">——她手势比向我们，诺拉迅速板起一张扑克脸，众人又惊得倒抽一口气，所有眼睛都转向我们，好像温布尔登网球赛的现场观众。我纳闷，我们是否该鞠个躬？</p><div class="para-break"></div><p class="medium-para">“——没错！你从不承认这两个女儿，仿佛你认为罕择家的血一旦跟打扫房间的女仆的血混合，就失去了所有价值——”</p><p class="short-para">他激动地比个手势表示否认，她厉声抢白：</p><p class="short-para">“没错，你就是这么认为！”</p><p class="short-para">一点杂剧似的动作，想开口说台词：“才不，我没有！”但他没这么走运，现在什么也拦不住她。</p><div class="para-break"></div><p class="medium-para">“灌注在这双‘五月的亲亲小花蕾’身上的是你的血，罕择家的血，你多么爱这两个女儿，尽管她们抢走了她们母亲的家和钱——”</p><p class="short-para">阵阵倒抽气、掩口惊呼声，所有眼睛这下转向萨丝琦亚和伊莫珍，她们为之退缩，面有怯色。</p><p class="short-para">“‘五月的亲亲小花蕾’身上流的是你的血，罕择家的血，但她们根本不是梅齐尔·罕择的种！”</p><p class="medium-para">众人纷纷“哦！”“啊！”惊呼。至于我，先前一直纳闷措辞文雅的艾夫人要怎么形容她通奸行为的技术层面。对“血”和那实际具有生殖力的液体做出区分之后，她该如何称呼后者？“洨”？“精”？以她此刻的措辞语气，精子和精液太像专业术语。我很高兴她采取有品位的中庸之道——“种”，不过这让我再一次想到，罕择家族的两支系间存在严重的语言问题。</p><div class="para-break"></div><p class="long-para">别误会我。我们对她已经很有感情，始终很欢迎她住在我们地下室前半部分，有什么吃的都不忘她一份；我也知道她是身不由己——我真的认为，要是能改变她一定会改。但她讲话永远是那种华丽高调，连今日此刻也不例外，尽管她正在发泄一切，让几十年来的轻描淡写全化为乌有。现在她说的内容重点其实就是：很久以前，她跟小叔来了一下，因此，世界上就有了两个女孩。对不起，抱歉，梅齐尔。但她不能就这么说出来，是吧？她就是得好好发挥一番。当然，她说的东西有些我也不知道，现在听了，让许多其他事变得清楚，但她的口气那么严重，好像这是什么生死攸关的事，我们欠思姊妹怎能相信这一点？我们早就知道没有什么事攸关生死，除非是生与死本身。</p><p class="medium-para">“不是你的种，梅齐尔，但这两个女儿的品性确实跟你如出一辙！她们偷走我的钱，把我赶出我自己的家，将我对她们的爱弃如敝屣，一如你曾做过的那样，梅齐尔！”</p><p class="medium-para">她痛哭起来。同情的众人纷纷传去手帕，佩瑞格林脸上也淌着泪，亲亲小花蕾紧靠彼此，充满羞愧与哀伤。艾夫人恢复镇定，拿诺拉那皱兮兮的面纱抹抹脸、擤擤鼻子，仿佛重新打起精神，继续说下去：</p><p class="short-para">“你丢下我孤单寂寞，梅齐尔，只顾没完没了地饥渴追求名声，只顾继续跟你死去的父亲进行庞大的竞赛——”</p><div class="para-break"></div><p class="medium-para">庞大的竞赛？这可是第一次听说，我嗤之以鼻。但回想起来，我先前又怎么可能听说？我们的父亲跟我从来就不是那种所谓能交谈的关系。</p><p class="short-para">“——我被抛下，孤单寂寞，只有空虚的子宫为伴。然后——”</p><p class="medium-para">但她是完美的上流仕女，无法讲完这个句子。她抬起头，恳求地看向佩瑞格林，他一个箭步来到她身旁揽住她的肩，而两个女儿也哭着凑过来缩在她脚边，表示悔悟。佩瑞格林直直看向梅齐尔。</p><p class="short-para">“这两个小怪物是我的女儿，梅齐尔。原谅我，梅齐尔。原谅我们每个人。”</p><div class="para-break"></div><p class="medium-para">一阵啪啪掌声，但又逐渐消退，因为人们醒悟到这一切都是真的。孱弱、可爱的艾夫人耗尽力气，精疲力竭地接过黛西的小酒瓶喝了一口，同时录影带为后代记录下每一举每一动。黛西很是印象深刻，开口问迷你影集的版权签给了谁。</p><p class="medium-para">这时，萨丝琦亚和伊莫珍都抓着艾夫人的裙子亲吻，哀求她原谅她们，既往不咎，等等。接下来是情绪激动的母女和好场面，可怜的老佩瑞被冷落在一旁，我也稍稍退开，径自思索：母亲永远是母亲，因为母亲是一项生理事实，而父亲则是可以转移阵地的流水席。梅齐尔头埋在双掌中，看起来好颓唐，乳玛林空自挥动双手，不知该怎么逗他高兴。</p><p class="medium-para">黛西和诺拉头凑在一起商量了一会儿，然后黛西手肘碰碰小白脸，让他活回来——他先前看起来好像暂时陷入恍惚状态。她们与鲁特琴手讨论一阵，然后音乐齐声奏起，而那个声音！那个天使般的声音直上云霄，轻轻摇动吊灯——男童女高音，如此纯洁，如此有力。这声音我以前在好莱坞听过，但这次歌声不是要警告我们避开小花蛇。</p><p class="short-para">“哦，”他唱道，“我深爱的父亲……”</p><div class="para-break"></div><p class="medium-para">黛西的男伴不是小白脸，而是当年她和梅齐尔婚礼上的伴郎。他戴着假发，脑袋也糊涂了，但那嗓音仍足以打动铁石心肠。她在奥斯卡颁奖典礼与他重逢，他负责颁给她“终身成就奖”。他有钱得要命，头脑迷糊，她一吩咐他就会唱歌。“这是我最棒的一次婚姻。”她说。黛西·达克变成了黛西·迫克。</p><p class="short-para">“我爱您，是的，我爱您……”</p><p class="medium-para">诺拉以眼神向我示意。我们该公开认父了。我们把往上跑得已经快走光的裙子朝下拉一拉，摸摸头发，高跟鞋在地毯上踩出嗒、嗒、嗒的性感声响，但我们看来像皱巴巴的小孩大胆穿起妈妈的衣服，我们的心快乐得几乎满溢。我们把脸颊贴在梅齐尔手上，这下他忍不住了，就这么融化在大家面前。</p><p class="short-para">“哦，我深爱的父亲——”</p><div class="para-break"></div><p class="medium-para">迫克光辉的咏叹词唱到最后几个音符，吊灯上的水晶随之响动。梅齐尔抬起头，给了女儿们一个颤巍巍的含泪微笑，在座没有人不眼泪汪汪。</p><p class="short-para">“该哭的人是我。”他说着，亲吻我们。</p><p class="medium-para">我简直可以发誓，就在这时幕落了，灯亮了，观众全体起立鼓掌，但诺拉稍后指出，那里没有幕，灯本来就亮着，而且那批观众若鼓掌就太没礼貌了。因此这些都是我想象出来的。但总之，这场感人无比的大和解之后，接着是一小段中场休息。每个人都站起来伸伸腿，热烈讨论到目前为止的剧情，侍者则带走蛋糕。这个生日没有人吹蜡烛，蜡烛是自己熄的，但我们所有的愿望都实现了，我们就那么坐在那儿，微笑不停。</p><p class="medium-para">鲁特琴演奏一段普契尼[12]，然后暂停，怀旧时间到了。我竖起耳朵：遗忘的旋律从记忆中飘出……这几首曲子选自——还会是什么——《你愿意》，我们随着音乐哼歌，轮到《哦我的情妹》时，他们演奏成狐步舞曲，于是，诺拉手肘碰了碰梅齐尔。</p><div class="para-break"></div><p class="short-para">“喂，老爸。”她说。“跳支舞怎么样？给咱这个荣幸吧。”</p><p class="medium-para">她一手伸向他，领他走进舞池。很久以前，我十七岁生日那一夜，他曾与我共舞。今晚，在我们父亲的百岁大寿，他与苹果的另一半走进舞池，乐队演奏的音乐来自男人还习惯戴帽的年头。再一次，在座没有人不眼泪汪汪。他转圈有点不稳，容易摇晃，但她知道怎么带舞，两人脸上都带着傻傻的暖心微笑，为了一样失而复得的东西，如此这般。</p><p class="medium-para">但佩瑞垂头丧气，每一场团聚都没他的份。他出现在我身旁，神色消沉。“她们还是不想理我。”他说。“这也怪不得她们。天啊，朵拉，我真是个烂人。”</p><p class="short-para">看着爸和诺拉，我变得十分多愁善感。</p><div class="para-break"></div><p class="short-para">“你对我们一直很好，亲爱的。”我提醒他。“诺拉一直觉得你应该娶阿嬤。”</p><p class="short-para">“什么？！？”</p><p class="short-para">“那样，我们就真的是一家人了。”</p></div></section><section class="chapter-section">
+<h1 class="chapter-title" id="chapter-9">
+    人物表（依出场次序排列）
+</h1>
+<div class="content"><p class="short-para">朵拉·欠思</p><p class="short-para">诺拉·欠思</p><p class="short-para">同卵双胞胎，梅齐尔·罕择的私生女，但官方说法为佩瑞格林·罕择之女</p><p class="short-para">蒂芬妮</p><div class="para-break"></div><p class="short-para">她们的干女儿</p><p class="short-para">梅齐尔·罕择（爵士）</p><p class="short-para">佩瑞格林·罕择</p><p class="short-para">异卵双胞胎，为艾丝黛拉与兰纳夫·罕择夫妇（详见后文）之子</p><div class="para-break"></div><p class="short-para">艾塔兰妲·罕择夫人（原姓琳德）</p><p class="short-para">梅齐尔·罕择第一任妻子，萨丝琦亚与伊莫珍之母</p><p class="short-para">岱丽雅·迪蕾尼（原名黛西·达克）</p><p class="short-para">梅齐尔·罕择第二任妻子，原为“成吉思汗”（详见后文）的第二任妻子</p><div class="para-break"></div><p class="short-para">萨丝琦亚·罕择</p><p class="short-para">伊莫珍·罕择</p><p class="short-para">同卵双胞胎，法律上为梅齐尔·罕择之女，生理上为佩瑞格林·罕择之女</p><p class="short-para">崔斯专·罕择</p><div class="para-break"></div><p class="short-para">葛瑞司·罕择</p><p class="short-para">异卵双胞胎，梅齐尔·罕择第三度婚姻所出</p><p class="short-para">“乳玛林夫人阁下”</p><p class="short-para">梅齐尔·罕择第三任妻子，崔斯专与葛瑞司之母</p><div class="para-break"></div><p class="short-para">欠思“阿嬤”</p><p class="short-para">诺拉·欠思与朵拉·欠思的监护人</p><p class="short-para">“星舞”艾丝黛拉·罕择</p><p class="short-para">梅齐尔·罕择与佩瑞格林·罕择之母</p><div class="para-break"></div><p class="short-para">“路易斯·卡罗尔”</p><p class="short-para">一个给小孩拍照的人</p><p class="short-para">兰纳夫·罕择</p><p class="short-para">艾丝黛拉·罕择之夫</p><div class="para-break"></div><p class="short-para">卡西乌斯·布司</p><p class="short-para">艾丝黛拉·罕择的男友</p><p class="short-para">“漂亮小咪”</p><p class="short-para">一名孤女，诺拉·欠思与朵拉·欠思之母</p><div class="para-break"></div><p class="short-para">“咱家阿欣”</p><p class="short-para">一名孤女，梅维丝之母，布兰达的外祖母，蒂芬妮的曾外祖母</p><p class="short-para">沃辛顿老师</p><p class="short-para">一名舞蹈教师</p><div class="para-break"></div><p class="short-para">沃辛顿太太</p><p class="short-para">她的母亲，负责伴奏</p><p class="short-para">炫彩乔治</p><p class="short-para">爱国喜剧演员</p><div class="para-break"></div><p class="short-para">“杂剧的鹅”</p><p class="short-para">诺拉·欠思的第一个男友</p><p class="short-para">主男</p><p class="short-para">“杂剧的鹅”之妻</p><div class="para-break"></div><p class="short-para">记不起名字的金发男高音</p><p class="short-para">朵拉·欠思的第一个男友</p><p class="short-para">“钢琴先生”</p><p class="short-para">音乐家，作曲家，朵拉·欠思的男友</p><div class="para-break"></div><p class="short-para">“成吉思汗”</p><p class="short-para">一名电影制作人</p><p class="short-para">他的第一任妻子</p><p class="short-para">一个善妒的女人</p><div class="para-break"></div><p class="short-para">东尼</p><p class="short-para">意大利裔美国人，诺拉·欠思的未婚夫</p><p class="short-para">罗斯·欧弗拉赫提（外号“爱尔兰”）</p><p class="short-para">美国作家，朵拉·欠思的男友</p><div class="para-break"></div><p class="short-para">流亡好莱坞的德国激进分子（未提及姓名）</p><p class="short-para">朵拉·欠思的男友</p><p class="short-para">“迫克”</p><p class="short-para">男性女高音，岱丽雅·迪蕾尼第三任丈夫</p><div class="para-break"></div><p class="short-para">布兰达</p><p class="short-para">“咱家阿欣”的外孙女，蒂芬妮之母</p><p class="short-para">里洛伊</p><p class="short-para">她的丈夫</p><div class="para-break"></div><p class="medium-para">此外尚有（不按出场序排列）：野孩子，猫，歌舞团女生，歌舞团男生，裸体女郎，跑龙套的，喜剧演员，影迷，自由法国人，自由波兰人，自由挪威人，各国的陆、海、空三军官兵，媒体名人，电视节目工作人员，市场摊贩，意大利康提学院学生，亚马孙河流域原住民，摄影师，电影发烧友，群众，临时演员。</p><p class="short-para">[1]原文为拉丁文dramatis personae。</p></div></section>
+    </div>
+    
+    <div class="chapter-nav">
+        <button class="nav-btn" id="prevChapter" disabled>← 上一章</button>
+        <button class="nav-btn" id="nextChapter">下一章 →</button>
+    </div>
+    
+    <script>
+// ===== 统一的导航管理器 =====
+(function() {
+    'use strict';
+    
+    // ========== 核心状态 ==========
+    const state = {
+        currentChapter: 0,
+        totalChapters: 0,
+        mode: 'desktop',
+        chapters: [],
+        chapterData: [],
+        readingStartTime: Date.now(),
+        chaptersCompleted: 0,
+        lastTipTime: 0,
+        fatigueLevel: 1.0,
+        lastLanguageSwitch: 0,
+        technicalTermCount: 0,
+        tipCount: 0,
+        drawerClickCount: 0,
+        shelfClickCount: 0  // 记录书架点击次数
+    };
+    
+    // ========== DOM元素缓存 ==========
+    const elements = {
+        header: null,
+        chapters: [],
+        sidebarChapters: [],
+        progressBar: null,
+        progressText: null,
+        prevBtn: null,
+        nextBtn: null,
+        themeToggle: null,
+        shelfLink: null
+    };
+    
+    // ========== 移动端元素 ==========
+    const mobile = {
+        drawerTrigger: null,
+        drawerPanel: null,
+        drawerClose: null,
+        drawerOverlay: null,
+        drawerChapters: null,
+        backToTop: null
+    };
+    
+    // ========== 章节数据 ==========
+    window.__CHAPTER_DATA__ = window.__CHAPTER_DATA__ || [];
+    
+    // ========== 提示语库 ==========
+    const tipMessages = {
+        chinese: {
+            short: [
+                { icon: "✌️", text: "这一节get到了" },
+                { icon: "📖", text: "又读完一小节" },
+                { icon: "✨", text: "知识点+1" }
+            ],
+            medium: [
+                { icon: "🌱", text: "理解加深中" },
+                { icon: "💪", text: "状态不错，继续" },
+                { icon: "🔍", text: "这个观点有意思" }
+            ],
+            long: [
+                { icon: "🏃", text: "已经读完1/3了" },
+                { icon: "⛰️", text: "半山腰了，加油" },
+                { icon: "🎪", text: "快到章节结尾了" }
+            ]
+        },
+        mixed: {
+            short: [
+                { icon: "🌐", text: "中英切换自如" },
+                { icon: "🎯", text: "Technical terms get!" },
+                { icon: "📚", text: "Bilingual reading" }
+            ],
+            medium: [
+                { icon: "🌍", text: "Great progress!" },
+                { icon: "⚡", text: "You're on fire!" },
+                { icon: "💡", text: "理解无国界" }
+            ],
+            long: [
+                { icon: "📊", text: "Halfway through" },
+                { icon: "🚀", text: "保持这个节奏" },
+                { icon: "🎯", text: "目标越来越近" }
+            ]
+        },
+        english: {
+            short: [
+                { icon: "🌍", text: "Great progress!" },
+                { icon: "⚡", text: "You're on fire!" },
+                { icon: "🎯", text: "Nailing it!" }
+            ],
+            medium: [
+                { icon: "💪", text: "Keep going!" },
+                { icon: "🌟", text: "You're doing great" },
+                { icon: "📈", text: "Making progress" }
+            ],
+            long: [
+                { icon: "🏃", text: "1/3 done, keep it up" },
+                { icon: "⛰️", text: "Halfway there" },
+                { icon: "🎪", text: "Almost there" }
+            ]
+        },
+        milestone: {
+            25: { icon: "🏁", text: "征程开始，已完成1/4" },
+            50: { icon: "🎪", text: "半程回顾，收获满满" },
+            75: { icon: "🚀", text: "冲刺阶段，即将完成" },
+            100: { icon: "🏆", text: "恭喜！你读完了整本书" }
+        },
+        rest: [
+            { icon: "☕", text: "累了？休息一下" },
+            { icon: "🧘", text: "眼睛需要放松" },
+            { icon: "🌙", text: "读完这章就休息" }
+        ],
+        timeBased: {
+            morning: { icon: "🌅", text: "早安，用阅读开启新的一天" },
+            night: { icon: "🌙", text: "夜深了，读完这章就休息吧" },
+            long: { icon: "⏰", text: "已专注阅读 {minutes} 分钟" }
+        }
+    };
+    
+    // ========== 初始化 ==========
+    function init() {
+        cacheElements();
+        loadChapterData();
+        detectMode();
+        setupMobileElements();
+        setupEventListeners();
+        setupResizeListener();
+        loadThemePreference();
+        initReadingTracker();
+        initShelfAnimation();
+        
+        if (elements.chapters.length > 0) {
+            state.totalChapters = elements.chapters.length;
+            state.chapterData = window.__CHAPTER_DATA__;
+            goToChapter(0);
+            
+            // 首次加载显示欢迎提示
+            setTimeout(() => {
+                const hour = new Date().getHours();
+                if (hour >= 5 && hour <= 8) {
+                    showTip(tipMessages.timeBased.morning.icon, tipMessages.timeBased.morning.text, 2000);
+                } else if (hour >= 22 || hour <= 4) {
+                    showTip(tipMessages.timeBased.night.icon, tipMessages.timeBased.night.text, 2000);
+                }
+            }, 1000);
+        }
+    }
+    
+    // ========== 书架按钮动画初始化 ==========
+    function initShelfAnimation() {
+        if (!elements.shelfLink) return;
+        
+        // 从localStorage读取书架点击次数
+        const saved = localStorage.getItem('shelfClickCount');
+        state.shelfClickCount = saved ? parseInt(saved) : 0;
+        
+        // 前3次显示动效
+        if (state.shelfClickCount < 3) {
+            elements.shelfLink.classList.add('first-load');
+            
+            // 3秒后移除动效（避免一直跳动）
+            setTimeout(() => {
+                elements.shelfLink.classList.remove('first-load');
+            }, 3000);
+        }
+        
+        // 点击事件
+        elements.shelfLink.addEventListener('click', (e) => {
+            // 增加点击次数
+            state.shelfClickCount++;
+            localStorage.setItem('shelfClickCount', state.shelfClickCount);
+            
+            // 移除动效
+            elements.shelfLink.classList.remove('first-load');
+            
+            // 实际跳转由href处理，不需要额外操作
+        });
+    }
+    
+    // ========== 加载章节数据 ==========
+    function loadChapterData() {
+        console.log('📚 加载章节数据:', window.__CHAPTER_DATA__.length, '章');
+    }
+    
+    // ========== 缓存DOM元素 ==========
+    function cacheElements() {
+        elements.header = document.querySelector('.header');
+        elements.chapters = document.querySelectorAll('.chapter-section');
+        elements.sidebarChapters = document.querySelectorAll('.sidebar-chapter');
+        elements.progressBar = document.getElementById('progressBar');
+        elements.progressText = document.getElementById('progressText');
+        elements.prevBtn = document.getElementById('prevChapter');
+        elements.nextBtn = document.getElementById('nextChapter');
+        elements.themeToggle = document.getElementById('themeToggle');
+        elements.shelfLink = document.querySelector('.shelf-link');
+    }
+    
+    // ========== 模式检测 ==========
+    function detectMode() {
+        state.mode = window.innerWidth > 1200 ? 'desktop' : 'mobile';
+        document.body.setAttribute('data-mode', state.mode);
+    }
+    
+    // ========== 设置响应式监听 ==========
+    function setupResizeListener() {
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                const newMode = window.innerWidth > 1200 ? 'desktop' : 'mobile';
+                if (newMode !== state.mode) {
+                    state.mode = newMode;
+                    document.body.setAttribute('data-mode', state.mode);
+                }
+            }, 250);
+        });
+    }
+    
+    // ========== 阅读追踪初始化 ==========
+    function initReadingTracker() {
+        state.readingStartTime = Date.now();
+        
+        const saved = localStorage.getItem('readingStats');
+        if (saved) {
+            try {
+                const stats = JSON.parse(saved);
+                state.chaptersCompleted = stats.chaptersCompleted || 0;
+                state.tipCount = stats.tipCount || 0;
+                state.drawerClickCount = stats.drawerClickCount || 0;
+            } catch (e) {}
+        }
+        
+        // 每10分钟更新疲劳度
+        setInterval(updateFatigueLevel, 60000);
+    }
+    
+    // ========== 更新疲劳度 ==========
+    function updateFatigueLevel() {
+        const minutes = Math.floor((Date.now() - state.readingStartTime) / 60000);
+        state.fatigueLevel = 1.0 + (minutes * 0.1);
+        
+        const lastSwitch = (Date.now() - state.lastLanguageSwitch) / 60000;
+        if (lastSwitch < 5) {
+            state.fatigueLevel += 0.2;
+        }
+        
+        state.fatigueLevel += state.technicalTermCount * 0.01;
+        state.fatigueLevel = Math.min(state.fatigueLevel, 3.0);
+        
+        if (state.fatigueLevel > 2.0) {
+            showRestTip();
+        }
+    }
+    
+    // ========== 保存阅读数据 ==========
+    function saveReadingStats() {
+        const stats = {
+            chaptersCompleted: state.chaptersCompleted,
+            tipCount: state.tipCount,
+            drawerClickCount: state.drawerClickCount,
+            lastRead: new Date().toISOString()
+        };
+        localStorage.setItem('readingStats', JSON.stringify(stats));
+    }
+    
+    // ========== 显示智能提示 ==========
+    function showTip(icon, text, duration = 3000) {
+        const now = Date.now();
+        const hourAgo = now - 3600000;
+        if (state.lastTipTime > hourAgo && state.tipCount >= 3) {
+            return;
+        }
+        
+        if (state.fatigueLevel > 2.5 && Math.random() > 0.3) {
+            return;
+        }
+        
+        state.lastTipTime = now;
+        state.tipCount++;
+        saveReadingStats();
+        
+        const oldTip = document.querySelector('.reading-tip');
+        if (oldTip) oldTip.remove();
+        
+        const tip = document.createElement('div');
+        tip.className = 'reading-tip';
+        tip.innerHTML = `<span class="tip-icon">${icon}</span><span class="tip-text">${text}</span>`;
+        document.body.appendChild(tip);
+        
+        setTimeout(() => {
+            tip.classList.add('fade-out');
+            setTimeout(() => tip.remove(), 200);
+        }, duration);
+    }
+    
+    // ========== 显示休息提示 ==========
+    function showRestTip() {
+        const rest = tipMessages.rest[Math.floor(Math.random() * tipMessages.rest.length)];
+        showTip(rest.icon, rest.text, 2000);
+    }
+    
+    // ========== 根据场景获取章节提示 ==========
+    function getChapterTip(chapterIndex, progress) {
+        const chapter = state.chapterData[chapterIndex];
+        if (!chapter) return null;
+        
+        const languageType = chapter.language_type || 'chinese';
+        const totalUnits = chapter.total_units || 500;
+        
+        let lengthType = 'medium';
+        if (totalUnits < 500) lengthType = 'short';
+        else if (totalUnits > 1500) lengthType = 'long';
+        
+        let tipPool;
+        if (progress === 'complete') {
+            if (languageType === 'chinese') tipPool = tipMessages.chinese[lengthType];
+            else if (languageType === 'english') tipPool = tipMessages.english[lengthType];
+            else tipPool = tipMessages.mixed[lengthType];
+        } else {
+            if (languageType === 'chinese') tipPool = tipMessages.chinese.medium;
+            else if (languageType === 'english') tipPool = tipMessages.english.medium;
+            else tipPool = tipMessages.mixed.medium;
+        }
+        
+        if (!tipPool || tipPool.length === 0) return null;
+        
+        return tipPool[Math.floor(Math.random() * tipPool.length)];
+    }
+    
+    // ========== 检查并触发章节提示 ==========
+    function checkChapterTip(chapterIndex, isComplete = false) {
+        const chapter = state.chapterData[chapterIndex];
+        if (!chapter) return;
+        
+        const totalUnits = chapter.total_units || 500;
+        const languageType = chapter.language_type || 'chinese';
+        
+        let baseProbability = 0.3;
+        
+        if (isComplete) {
+            if (totalUnits < 500) baseProbability = 0.2;
+            else if (totalUnits < 1500) baseProbability = 1.0;
+            else baseProbability = 1.0;
+        } else {
+            if (languageType === 'chinese') baseProbability = 0.4;
+            else if (languageType === 'english') baseProbability = 0.8;
+            else baseProbability = 0.6;
+        }
+        
+        baseProbability *= (1 + (state.fatigueLevel - 1.0) * 0.5);
+        
+        if (Math.random() > baseProbability) return;
+        
+        const tip = getChapterTip(chapterIndex, isComplete ? 'complete' : 'midway');
+        if (tip) {
+            showTip(tip.icon, tip.text);
+            
+            if (isComplete) {
+                if (elements.progressBar) {
+                    elements.progressBar.classList.add('flash');
+                    setTimeout(() => elements.progressBar.classList.remove('flash'), 300);
+                }
+                
+                const titleElement = document.getElementById(`chapter-${chapterIndex}`);
+                if (titleElement) {
+                    titleElement.classList.add('flash');
+                    setTimeout(() => titleElement.classList.remove('flash'), 500);
+                }
+            }
+        }
+    }
+    
+    // ========== 检查全书里程碑 ==========
+    function checkMilestone() {
+        const percent = Math.round((state.currentChapter + 1) / state.totalChapters * 100);
+        
+        if ([25, 50, 75, 100].includes(percent)) {
+            const milestone = tipMessages.milestone[percent];
+            if (milestone) {
+                showTip(milestone.icon, milestone.text, 4000);
+                
+                if (percent === 100 && elements.progressBar) {
+                    elements.progressBar.style.height = '8px';
+                    setTimeout(() => {
+                        elements.progressBar.style.height = 'var(--progress-height)';
+                    }, 2000);
+                }
+            }
+        }
+    }
+    
+    // ========== 创建移动端元素 ==========
+    function setupMobileElements() {
+        const drawerHTML = `
+            <div class="mobile-drawer-trigger" id="drawerTrigger">
+                <span class="menu-icon">☰</span>
+            </div>
+            <div class="drawer-panel" id="drawerPanel">
+                <div class="drawer-header">
+                    <span class="drawer-title">📖 目录</span>
+                    <button class="drawer-close" id="drawerClose">✕</button>
+                </div>
+                <ul class="drawer-chapters" id="drawerChapters"></ul>
+            </div>
+            <div class="drawer-overlay" id="drawerOverlay"></div>
+            <button class="back-to-top" id="backToTop">↑</button>
+        `;
+        
+        document.body.insertAdjacentHTML('afterbegin', drawerHTML);
+        
+        mobile.drawerTrigger = document.getElementById('drawerTrigger');
+        mobile.drawerPanel = document.getElementById('drawerPanel');
+        mobile.drawerClose = document.getElementById('drawerClose');
+        mobile.drawerOverlay = document.getElementById('drawerOverlay');
+        mobile.drawerChapters = document.getElementById('drawerChapters');
+        mobile.backToTop = document.getElementById('backToTop');
+        
+        mobile.drawerTrigger.classList.add('first-load');
+        setTimeout(() => {
+            mobile.drawerTrigger.classList.remove('first-load');
+        }, 2000);
+        
+        populateDrawer();
+        bindMobileEvents();
+        setupScrollTrigger();
+    }
+    
+    // ========== 填充抽屉目录 ==========
+    function populateDrawer() {
+        if (!mobile.drawerChapters || !elements.sidebarChapters.length) return;
+        
+        elements.sidebarChapters.forEach(item => {
+            const link = item.querySelector('a');
+            if (link) {
+                const newLi = document.createElement('li');
+                newLi.className = item.className;
+                newLi.innerHTML = link.outerHTML;
+                mobile.drawerChapters.appendChild(newLi);
+            }
+        });
+    }
+    
+    // ========== 滚动触发器逻辑 ==========
+    function setupScrollTrigger() {
+        let lastScrollTop = 0;
+        let expandTimer;
+        let idleTimer;
+        
+        window.addEventListener('scroll', () => {
+            if (!mobile.drawerTrigger) return;
+            
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop < lastScrollTop && state.mode === 'mobile') {
+                clearTimeout(expandTimer);
+                mobile.drawerTrigger.classList.add('expand');
+                
+                expandTimer = setTimeout(() => {
+                    mobile.drawerTrigger.classList.remove('expand');
+                }, 1500);
+            }
+            
+            lastScrollTop = scrollTop;
+            
+            clearTimeout(idleTimer);
+            mobile.drawerTrigger.classList.remove('idle');
+            
+            idleTimer = setTimeout(() => {
+                if (state.mode === 'mobile' && !mobile.drawerPanel.classList.contains('open') && state.drawerClickCount < 3) {
+                    mobile.drawerTrigger.classList.add('idle');
+                }
+            }, 3000);
+        });
+    }
+    
+    // ========== 绑定移动端事件 ==========
+    function bindMobileEvents() {
+        if (!mobile.drawerTrigger || !mobile.drawerClose || !mobile.drawerOverlay) return;
+        
+        mobile.drawerTrigger.addEventListener('click', () => {
+            toggleDrawer();
+            
+            state.drawerClickCount++;
+            saveReadingStats();
+            
+            if (!localStorage.getItem('drawerUsed')) {
+                showTip("📖", "目录已打开");
+                localStorage.setItem('drawerUsed', 'true');
+            }
+        });
+        
+        mobile.drawerClose.addEventListener('click', closeDrawer);
+        mobile.drawerOverlay.addEventListener('click', closeDrawer);
+        
+        let touchStartX = 0;
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        });
+        
+        document.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            
+            if (touchStartX < 30 && touchEndX - touchStartX > 50) {
+                if (!mobile.drawerPanel?.classList.contains('open')) {
+                    openDrawer();
+                }
+            }
+            
+            if (mobile.drawerPanel?.classList.contains('open') && touchStartX - touchEndX > 50) {
+                closeDrawer();
+            }
+        });
+        
+        if (mobile.backToTop) {
+            mobile.backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    }
+    
+    // ========== 绑定所有事件 ==========
+    function setupEventListeners() {
+        window.addEventListener('scroll', handleScroll);
+        
+        if (elements.themeToggle) {
+            elements.themeToggle.addEventListener('click', toggleTheme);
+        }
+        
+        document.querySelectorAll('.tool-card').forEach(card => {
+            card.addEventListener('click', toggleToolExample);
+        });
+        
+        if (elements.prevBtn) {
+            elements.prevBtn.addEventListener('click', () => goToChapter(state.currentChapter - 1));
+        }
+        if (elements.nextBtn) {
+            elements.nextBtn.addEventListener('click', () => goToChapter(state.currentChapter + 1));
+        }
+        
+        document.addEventListener('click', (e) => {
+            const link = e.target.closest('.sidebar-chapter a, .drawer-chapter a');
+            if (link) {
+                e.preventDefault();
+                const href = link.getAttribute('href');
+                const chapterId = parseInt(href.replace('#chapter-', ''));
+                goToChapter(chapterId);
+            }
+        });
+    }
+    
+    // ========== 跳转到指定章节 ==========
+    function goToChapter(index) {
+        if (index < 0 || index >= state.totalChapters) return;
+        
+        const wasLastChapter = state.currentChapter === state.totalChapters - 1;
+        const previousChapter = state.currentChapter;
+        state.currentChapter = index;
+        
+        elements.chapters.forEach((chap, i) => {
+            chap.style.display = i === index ? 'block' : 'none';
+        });
+        
+        if (elements.prevBtn) elements.prevBtn.disabled = index === 0;
+        if (elements.nextBtn) elements.nextBtn.disabled = index === state.totalChapters - 1;
+        
+        scrollToChapter(index);
+        updateAllHighlights();
+        
+        if (previousChapter !== index && !wasLastChapter) {
+            state.chaptersCompleted++;
+            saveReadingStats();
+            
+            checkChapterTip(previousChapter, true);
+            checkMilestone();
+            
+            const minutes = Math.floor((Date.now() - state.readingStartTime) / 60000);
+            if (minutes > 0 && minutes % 10 === 0 && minutes <= 60) {
+                const timeTip = tipMessages.timeBased.long;
+                showTip(timeTip.icon, timeTip.text.replace('{minutes}', minutes));
+            }
+        }
+        
+        if (state.mode === 'mobile' && mobile.drawerPanel?.classList.contains('open')) {
+            closeDrawer();
+        }
+    }
+    
+    // ========== 滚动到章节 ==========
+    function scrollToChapter(index) {
+        const chapterElement = document.getElementById(`chapter-${index}`);
+        if (!chapterElement) return;
+        
+        const headerHeight = elements.header ? elements.header.offsetHeight : 80;
+        const rect = chapterElement.getBoundingClientRect();
+        const scrollTo = window.pageYOffset + rect.top - headerHeight - 20;
+        
+        window.scrollTo({
+            top: Math.max(0, scrollTo),
+            behavior: 'smooth'
+        });
+    }
+    
+    // ========== 更新高亮 ==========
+    function updateAllHighlights() {
+        document.querySelectorAll('.sidebar-chapter, .drawer-chapter').forEach(item => {
+            item.classList.remove('active');
+        });
+        
+        const activeSidebarItem = document.querySelectorAll('.sidebar-chapter')[state.currentChapter];
+        if (activeSidebarItem) activeSidebarItem.classList.add('active');
+        
+        if (mobile.drawerChapters) {
+            const activeDrawerItem = mobile.drawerChapters.querySelectorAll('.sidebar-chapter')[state.currentChapter];
+            if (activeDrawerItem) activeDrawerItem.classList.add('active');
+        }
+    }
+    
+    // ========== 滚动处理 ==========
+    function handleScroll() {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        
+        if (elements.progressBar) {
+            elements.progressBar.style.width = scrolled + '%';
+        }
+        
+        if (elements.progressText) {
+            elements.progressText.textContent = `${Math.round(scrolled)}%`;
+        }
+        
+        if (mobile.backToTop) {
+            if (winScroll > window.innerHeight) {
+                mobile.backToTop.classList.add('show');
+            } else {
+                mobile.backToTop.classList.remove('show');
+            }
+        }
+        
+        detectCurrentChapter();
+        
+        const currentChapterData = state.chapterData[state.currentChapter];
+        if (currentChapterData) {
+            const chapterElement = document.getElementById(`chapter-${state.currentChapter}`);
+            if (chapterElement) {
+                const rect = chapterElement.getBoundingClientRect();
+                const totalHeight = rect.height;
+                const scrolledInChapter = Math.abs(rect.top);
+                
+                if (totalHeight > 0) {
+                    const progress = scrolledInChapter / totalHeight;
+                    if (progress > 0.3 && progress < 0.4 && !sessionStorage.getItem('tip-30')) {
+                        checkChapterTip(state.currentChapter, false);
+                        sessionStorage.setItem('tip-30', 'true');
+                    } else if (progress > 0.6 && progress < 0.7 && !sessionStorage.getItem('tip-60')) {
+                        checkChapterTip(state.currentChapter, false);
+                        sessionStorage.setItem('tip-60', 'true');
+                    }
+                }
+            }
+        }
+    }
+    
+    // ========== 检测当前章节 ==========
+    function detectCurrentChapter() {
+        const headerHeight = elements.header ? elements.header.offsetHeight : 80;
+        
+        for (let i = 0; i < elements.chapters.length; i++) {
+            const titleElement = document.getElementById(`chapter-${i}`);
+            if (titleElement) {
+                const rect = titleElement.getBoundingClientRect();
+                if (rect.top <= headerHeight + 50 && rect.bottom > headerHeight) {
+                    if (state.currentChapter !== i) {
+                        state.currentChapter = i;
+                        updateAllHighlights();
+                        sessionStorage.removeItem('tip-30');
+                        sessionStorage.removeItem('tip-60');
+                    }
+                    break;
+                }
+            }
+        }
+    }
+    
+    // ========== 抽屉控制 ==========
+    function toggleDrawer() {
+        if (mobile.drawerPanel?.classList.contains('open')) {
+            closeDrawer();
+        } else {
+            openDrawer();
+        }
+    }
+    
+    function openDrawer() {
+        if (!mobile.drawerPanel || !mobile.drawerOverlay) return;
+        mobile.drawerPanel.classList.add('open');
+        mobile.drawerOverlay.classList.add('active');
+    }
+    
+    function closeDrawer() {
+        if (!mobile.drawerPanel || !mobile.drawerOverlay) return;
+        mobile.drawerPanel.classList.remove('open');
+        mobile.drawerOverlay.classList.remove('active');
+    }
+    
+    // ========== 主题切换 ==========
+    function toggleTheme() {
+        document.body.classList.toggle('dark-mode');
+        const isDark = document.body.classList.contains('dark-mode');
+        if (elements.themeToggle) {
+            elements.themeToggle.textContent = isDark ? '☀️ 日间' : '🌙 夜间';
+        }
+        localStorage.setItem('darkMode', isDark ? '1' : '0');
+    }
+    
+    // ========== 工具卡片 ==========
+    function toggleToolExample(e) {
+        e.stopPropagation();
+        const card = e.currentTarget;
+        const example = card.querySelector('.tool-example');
+        const expandText = card.querySelector('.tool-expand');
+        
+        if (example) {
+            example.classList.toggle('active');
+            if (expandText) {
+                expandText.textContent = example.classList.contains('active') ? '收起示例' : '查看示例';
+            }
+        }
+    }
+    
+    // ========== 加载主题偏好 ==========
+    function loadThemePreference() {
+        if (localStorage.getItem('darkMode') === '1') {
+            document.body.classList.add('dark-mode');
+            if (elements.themeToggle) {
+                elements.themeToggle.textContent = '☀️ 日间';
+            }
+        }
+    }
+    
+    // ========== 启动 ==========
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Chapter One</title>
+        <style>
+            .page {
+                width: 210mm;
+                height: 297mm;
+                margin: 20px auto;
+                padding: 15mm;
+                background: white;
+                box-shadow: 0 2px 5px #ccc;
+                overflow: hidden;
+                --scale: 1.5;
+                --right-scale: 1.8;
+                --card-gap: 0.8;
+                --min-scale: 0.7;
+                --min-card-gap: 0.3;
+            }
+            
+            .header {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 10mm;
+                padding-bottom: 5mm;
+                border-bottom: 1px solid #eee;
+            }
+            .header h1 {
+                font-size: calc(16pt * var(--scale) * 0.8);
+                margin: 0;
+            }
+            .page-num {
+                font-size: calc(10pt * var(--scale) * 0.7);
+                color: #666;
+            }
+            
+            .content {
+                display: flex;
+                gap: 10mm;
+                height: calc(297mm - 80mm);
+                position: relative;
+            }
+            
+            .left {
+                flex: 5;
+                font-size: calc(12pt * var(--scale));
+                line-height: 1.8;
+                overflow: hidden;
+                position: relative;
+            }
+            .left p {
+                margin: 0 0 calc(5mm * var(--scale)) 0;
+                text-indent: 2em;
+                word-wrap: break-word;
+            }
+            .spacing {
+                height: calc(8mm * var(--scale));
+            }
+            .highlight {
+                background: #fff9c4;
+                padding: 0 2px;
+                font-weight: bold;
+            }
+            
+            .right {
+                flex: 4;
+                padding-left: 5mm;
+                border-left: 1px dashed #eee;
+                overflow: hidden;
+                position: relative;
+            }
+            .word-card {
+                margin-bottom: calc(10mm * var(--right-scale) * var(--card-gap));
+                padding: calc(5mm * var(--right-scale) * 0.8);
+                background: #f9f9f9;
+                border-radius: 4px;
+                word-wrap: break-word;
+            }
+            .word {
+                font-weight: bold;
+                font-size: calc(14pt * var(--right-scale));
+            }
+            .phonetic {
+                color: #0288d1;
+                font-size: calc(12pt * var(--right-scale));
+                margin: calc(2mm * var(--right-scale) * var(--card-gap)) 0;
+                font-style: italic;
+            }
+            .meaning {
+                color: #d32f2f;
+                font-size: calc(13pt * var(--right-scale));
+                margin: calc(2mm * var(--right-scale) * var(--card-gap)) 0;
+            }
+            .synonym {
+                color: #7b1fa2;
+                font-size: calc(13pt * var(--right-scale));
+                margin: calc(2mm * var(--right-scale) * var(--card-gap)) 0;
+            }
+            .no-words {
+                color: #999;
+                text-align: center;
+                margin-top: 20mm;
+                font-size: calc(12pt * var(--right-scale));
+            }
+            
+            @media print {
+                .page {
+                    width: 100%;
+                    height: 100%;
+                    margin: 0;
+                    padding: 0;
+                    box-shadow: none;
+                    page-break-after: always;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div class="page" data-page="1" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第1/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>Chapter One</p><p class="spacing"></p><p>HYPOTHESIS: When given a choice between A (a slightly inconveniencing situation) and B (a colossal shitshow with devastating consequences), I will inevitably end up selecting B.</p><p class="spacing"></p><p>Two years, eleven months later</p><p class="spacing"></p><p>In Olive's <span class="highlight">defense</span>, the man didn't seem to mind the kiss too much.</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">defense</div>
+                <div class="phonetic">[/dɪˈfens/]</div>
+                <div class="meaning">意思：n. 防御；辩护；防守</div>
+                <div class="synonym">同义词：defense mechanism（防御机制）, in defense of（为……辩护）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="2" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第2/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>It did take him a moment to adjust--perfectly <span class="highlight">understandable</span>, given the sudden circumstances. It was an awkward, uncomfortable, <span class="highlight">somewhat</span> painful minute, in which Olive was simultaneously <span class="highlight">smashing</span> her lips against his and pushing herself as high as her toes would extend to keep her mouth at the same level as his face. Did he have to be so tall? The kiss must have looked like some <span class="highlight">clumsy</span> <span class="highlight">headbutt</span>, and she grew anxious that she was not going to be able to pull the whole thing off. Her friend Anh, whom Olive had <span class="highlight">spotted</span> coming her way a few seconds ago, was going to take one look at this and know at once that Olive and Kiss Dude couldn't possibly be two people in the middle of a date.</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">understandable</div>
+                <div class="phonetic">[/ˌʌndərˈstændəbl/]</div>
+                <div class="meaning">意思：adj. 可理解的；合理的</div>
+                <div class="synonym">同义词：perfectly understandable（完全可以理解）, understandable concern（合情合理的担忧）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">somewhat</div>
+                <div class="phonetic">[/ˈsʌmwʌt/]</div>
+                <div class="meaning">意思：adv. 有点；稍微</div>
+                <div class="synonym">同义词：somewhat different（略有不同）, somewhat reluctantly（有点不情愿地）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">smashing</div>
+                <div class="phonetic">[/ˈsmæʃɪŋ/]</div>
+                <div class="meaning">意思：adj. 极好的；粉碎的；v. 粉碎</div>
+                <div class="synonym">同义词：smashing success（巨大的成功）, have a smashing time（玩得很开心）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">clumsy</div>
+                <div class="phonetic">[/ˈklʌmzi/]</div>
+                <div class="meaning">意思：adj. 笨拙的；不得体的</div>
+                <div class="synonym">同义词：clumsy attempt（笨拙的尝试）, clumsy apology（不得体的道歉）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">headbutt</div>
+                <div class="phonetic">[/ˈhedbʌt/]</div>
+                <div class="meaning">意思：n./v. 用头撞人</div>
+                <div class="synonym">同义词：throw a headbutt（用头撞人）, headbutt someone（用头撞某人）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">spotted</div>
+                <div class="phonetic">[/ˈspɒtɪd/]</div>
+                <div class="meaning">意思：adj. 有斑点的；v. 发现（spot的过去式）</div>
+                <div class="synonym">同义词：spotted dog（斑点狗）, spotted the mistake（发现了错误）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="3" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第3/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>Then that <span class="highlight">agonizingly</span> slow moment went by, and the kiss became . . . different. The man inhaled sharply and inclined his head a <span class="highlight">tiny</span> bit, making Olive feel less like a <span class="highlight">squirrel</span> monkey climbing a <span class="highlight">baobab</span> tree, and his hands--which were large and <span class="highlight">pleasantly</span> warm in the AC of the <span class="highlight">hallway</span>--closed around her waist. They slid up a few inches, coming to wrap around Olive's rib cage and holding her to himself. Not too close, and not too far.</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">agonizingly</div>
+                <div class="phonetic">[/ˈæɡənaɪzɪŋli/]</div>
+                <div class="meaning">意思：adv. 痛苦地；令人烦恼地</div>
+                <div class="synonym">同义词：agonizingly slow（慢得令人痛苦）, agonizingly painful（痛苦难忍）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">tiny</div>
+                <div class="phonetic">[/ˈtaɪni/]</div>
+                <div class="meaning">意思：adj. 极小的；微小的</div>
+                <div class="synonym">同义词：tiny little（微小的）, tiny fraction（极小的一部分）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">squirrel</div>
+                <div class="phonetic">[/ˈskwɪrəl/]</div>
+                <div class="meaning">意思：n. 松鼠</div>
+                <div class="synonym">同义词：v. 贮藏</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">baobab</div>
+                <div class="phonetic">[/ˈbeɪəʊbæb/]</div>
+                <div class="meaning">意思：n. 猴面包树</div>
+                <div class="synonym">同义词：baobab tree（猴面包树）, baobab fruit（猴面包果）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">pleasantly</div>
+                <div class="phonetic">[/ˈplezəntli/]</div>
+                <div class="meaning">意思：adv. 愉快地；舒适地</div>
+                <div class="synonym">同义词：pleasantly surprised（惊喜地）, pleasantly warm（温暖宜人）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">hallway</div>
+                <div class="phonetic">[/ˈhɔːlweɪ/]</div>
+                <div class="meaning">意思：n. 走廊；门厅</div>
+                <div class="synonym">同义词：hallway leading to（通往……的走廊）, apartment hallway（公寓门厅）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="4" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第4/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>Just so.</p></div>
+                <div class="right"><p class="no-words">无匹配单词</p></div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="5" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第5/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>It was more of a <span class="highlight">prolonged</span> <span class="highlight">peck</span> than anything, but it was quite nice, and for the life span of a few seconds Olive forgot a large number of things, including the fact that she was pressed against a random, unknown dude. That she'd barely had the time to whisper "Can I please kiss you?" before locking lips with him. That what had originally driven her to put on this entire show was the hope of fooling Anh, her best friend in the whole world.</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">prolonged</div>
+                <div class="phonetic">[/prəˈlɒŋd/]</div>
+                <div class="meaning">意思：adj. 延长的；持久的</div>
+                <div class="synonym">同义词：prolonged exposure（长时间暴露）, prolonged period（长期）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">peck</div>
+                <div class="phonetic">[/pek/]</div>
+                <div class="meaning">意思：v./n. 啄；轻吻</div>
+                <div class="synonym">同义词：peck at（啄食；小口吃）, give a peck（轻吻一下）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="6" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第6/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>But a good kiss will do that: make a girl forget herself for a while. Olive found herself melting into a broad, solid chest that showed absolutely no give. Her hands traveled from a defined jaw into surprisingly thick and soft hair, and then--then she heard herself sigh, as if already out of breath, and that's when it hit her like a <span class="highlight">brick</span> on the head, the <span class="highlight">realization</span> that-- No. No.</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">brick</div>
+                <div class="phonetic">[/brɪk/]</div>
+                <div class="meaning">意思：n. 砖；砖块</div>
+                <div class="synonym">同义词：like a ton of bricks（非常猛烈地）, brick wall（砖墙）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">realization</div>
+                <div class="phonetic">[/ˌriːəlaɪˈzeɪʃn/]</div>
+                <div class="meaning">意思：n. 实现；领悟</div>
+                <div class="synonym">同义词：come to the realization（意识到）, realization of a dream（梦想的实现）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="7" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第7/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>Nope, nope, no .</p><p class="spacing"></p><p>She should not be enjoying this. Random dude, and all that.</p><p class="spacing"></p><p>Olive gasped and pushed herself away from him, <span class="highlight">frantically</span> looking for Anh. In the 11:00 p.m. <span class="highlight">bluish</span> glow of the biology labs' <span class="highlight">hallway</span>, her friend was nowhere to be seen. Weird. Olive was sure she had <span class="highlight">spotted</span> her a few seconds earlier.</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">frantically</div>
+                <div class="phonetic">[/ˈfræntɪkli/]</div>
+                <div class="meaning">意思：adv. 疯狂地；狂乱地</div>
+                <div class="synonym">同义词：search frantically（疯狂搜索）, wave frantically（拼命挥手）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">bluish</div>
+                <div class="phonetic">[/ˈbluːɪʃ/]</div>
+                <div class="meaning">意思：adj. 带蓝色的；浅蓝的</div>
+                <div class="synonym">同义词：bluish tint（浅蓝色调）, bluish light（淡蓝色的光）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">hallway</div>
+                <div class="phonetic">[/ˈhɔːlweɪ/]</div>
+                <div class="meaning">意思：n. 走廊；门厅</div>
+                <div class="synonym">同义词：hallway leading to（通往……的走廊）, apartment hallway（公寓门厅）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">spotted</div>
+                <div class="phonetic">[/ˈspɒtɪd/]</div>
+                <div class="meaning">意思：adj. 有斑点的；v. 发现（spot的过去式）</div>
+                <div class="synonym">同义词：spotted dog（斑点狗）, spotted the mistake（发现了错误）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="8" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第8/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>Kiss Dude, on the other hand, was standing right in front of her, lips parted, chest rising and a weird light <span class="highlight">flickering</span> in his eyes, which was exactly when it <span class="highlight">dawned</span> on her, the <span class="highlight">enormity</span> of what she had just done. Of who she had just--</p><p class="spacing"></p><p>Fuck her life.</p><p class="spacing"></p><p>Fuck. Her. Life.</p><p class="spacing"></p><p>Because Dr. Adam Carlsen was a known ass.</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">flickering</div>
+                <div class="phonetic">[/ˈflɪkərɪŋ/]</div>
+                <div class="meaning">意思：adj. 闪烁的；摇曳的</div>
+                <div class="synonym">同义词：flickering light（闪烁的灯光）, flickering flame（摇曳的火焰）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">dawned</div>
+                <div class="phonetic">[/dɔːnd/]</div>
+                <div class="meaning">意思：v. 破晓；开始明白（dawn的过去式）</div>
+                <div class="synonym">同义词：dawn on（逐渐明白）, morning dawned（天亮了）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">enormity</div>
+                <div class="phonetic">[/ɪˈnɔːməti/]</div>
+                <div class="meaning">意思：n. 巨大；严重性</div>
+                <div class="synonym">同义词：the enormity of the task（任务的艰巨性）, enormity of the crime（罪行的严重性）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="9" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第9/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>This fact was not remarkable in and of itself, as in <span class="highlight">academia</span> every position above the graduate student level (Olive's level, sadly) required some degree of <span class="highlight">assness</span> in order to be held for any length of time, with <span class="highlight">tenured</span> <span class="highlight">faculty</span> at the very peak of the ass <span class="highlight">pyramid</span>. Dr. Carlsen, though--he was exceptional. At least if the rumors were anything to go by.</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">academia</div>
+                <div class="phonetic">[/ˌækəˈdiːmiə/]</div>
+                <div class="meaning">意思：n. 学术界；学术生涯</div>
+                <div class="synonym">同义词：in academia（在学术界）, leave academia（离开学术界）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">assness</div>
+                <div class="phonetic">[/ˈæsnəs/]</div>
+                <div class="meaning">意思：n. 愚蠢；固执（非正式）</div>
+                <div class="synonym">同义词：sheer assness（十足的愚蠢）, what assness（多么愚蠢）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">tenured</div>
+                <div class="phonetic">[/ˈtenjəd/]</div>
+                <div class="meaning">意思：adj. 终身的；有终身职位的</div>
+                <div class="synonym">同义词：tenured professor（终身教授）, tenured position（终身职位）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">faculty</div>
+                <div class="phonetic">[/ˈfæklti/]</div>
+                <div class="meaning">意思：n. 才能；全体教职员；（大学的）系</div>
+                <div class="synonym">同义词：mental faculties（心智能力）， faculty member（教员）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">pyramid</div>
+                <div class="phonetic">[/ˈpɪrəmɪd/]</div>
+                <div class="meaning">意思：n. 金字塔；锥体</div>
+                <div class="synonym">同义词：pyramid scheme（金字塔骗局）, pyramid structure（金字塔结构）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="10" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第10/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>He was the reason Olive's roommate, Malcolm, had to completely <span class="highlight">scrap</span> two research projects and would likely end up graduating a year late; the one who had made Jeremy throw up from anxiety before his <span class="highlight">qualifying</span> exams; the sole <span class="highlight">culprit</span> for half the students in the department being forced to <span class="highlight">postpone</span> their thesis defenses. Joe, who used to be in Olive's cohort and would take her to watch out-of-focus European movies with <span class="highlight">microscopic</span> <span class="highlight">subtitles</span> every Thursday night, had been a research assistant in Carlsen's lab, but he'd decided to drop out six months into it for "reasons." It was probably for the best, since most of Carlsen's remaining graduate assistants had perennially shaky hands and often looked like they hadn't slept in a year.</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">scrap</div>
+                <div class="phonetic">[/skræp/]</div>
+                <div class="meaning">意思：n. 碎片；废料；v. 废弃</div>
+                <div class="synonym">同义词：scrap metal（废金属）, scrap paper（便条纸）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">qualifying</div>
+                <div class="phonetic">[/ˈkwɒlɪfaɪɪŋ/]</div>
+                <div class="meaning">意思：adj. 资格的；预选的；v. 合格（qualify的ing形式）</div>
+                <div class="synonym">同义词：qualifying exam（资格考试）, qualifying round（预选赛）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">culprit</div>
+                <div class="phonetic">[/ˈkʌlprɪt/]</div>
+                <div class="meaning">意思：n. 罪犯；肇事者；原因</div>
+                <div class="synonym">同义词：main culprit（罪魁祸首）, identify the culprit（找出肇事者）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">postpone</div>
+                <div class="phonetic">[/pəˈspəʊn/]</div>
+                <div class="meaning">意思：v. 推迟；延期</div>
+                <div class="synonym">同义词：postpone until（推迟到）, postpone indefinitely（无限期推迟）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">microscopic</div>
+                <div class="phonetic">[/ˌmaɪkrəˈskɒpɪk/]</div>
+                <div class="meaning">意思：adj. 微观的；显微镜的</div>
+                <div class="synonym">同义词：microscopic level（微观层面）, microscopic examination（显微镜检查）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">subtitles</div>
+                <div class="phonetic">[/ˈsʌbtaɪtlz/]</div>
+                <div class="meaning">意思：n. 字幕；副标题</div>
+                <div class="synonym">同义词：watch with subtitles（看带字幕的）, English subtitles（英文字幕）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="11" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第11/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>Dr. Carlsen might have been a young academic rock star and biology's <span class="highlight">wunderkind</span>, but he was also mean and hypercritical, and it was obvious in the way he spoke, in the way he carried himself, that he thought himself the only person doing decent science within the Stanford biology department. Within the entire world, probably. He was a <span class="highlight">notoriously</span> moody, <span class="highlight">obnoxious</span>, terrifying dick.</p><p class="spacing"></p><p>And Olive had just kissed him.</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">wunderkind</div>
+                <div class="phonetic">[/ˈvʊndəkɪnd/]</div>
+                <div class="meaning">意思：n. 神童；天才少年</div>
+                <div class="synonym">同义词：child wunderkind（少年天才）, wunderkind of the art world（艺术界神童）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">notoriously</div>
+                <div class="phonetic">[/nəʊˈtɔːriəsli/]</div>
+                <div class="meaning">意思：adv. 众所周知地；臭名昭著地</div>
+                <div class="synonym">同义词：notoriously difficult（出了名的难）, notoriously unreliable（众所周知不可靠）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">obnoxious</div>
+                <div class="phonetic">[/əbˈnɒkʃəs/]</div>
+                <div class="meaning">意思：adj. 讨厌的；可憎的</div>
+                <div class="synonym">同义词：obnoxious behavior（令人讨厌的行为）, completely obnoxious（极其讨厌）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="12" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第12/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>She wasn't sure how long the silence lasted--only that he was the one to break it. He stood in front of Olive, ridiculously <span class="highlight">intimidating</span> with dark eyes and even darker hair, staring down from who knows how many inches above six feet--he must have been over half a foot taller than she was. He <span class="highlight">scowled</span>, an expression that she recognized from seeing him attend the <span class="highlight">departmental</span> <span class="highlight">seminar</span>, a look that usually <span class="highlight">preceded</span> him raising his hand to point out some <span class="highlight">perceived</span> fatal flaw in the speaker's work.</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">intimidating</div>
+                <div class="phonetic">[/ɪnˈtɪmɪdeɪtɪŋ/]</div>
+                <div class="meaning">意思：adj. 吓人的；令人生畏的</div>
+                <div class="synonym">同义词：intimidating presence（令人生畏的存在）, look intimidating（看起来很吓人）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">scowled</div>
+                <div class="phonetic">[/skaʊld/]</div>
+                <div class="meaning">意思：v. 怒视；皱眉（scowl的过去式）</div>
+                <div class="synonym">同义词：scowled at（对……怒视）, scowled angrily（生气地皱眉）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">departmental</div>
+                <div class="phonetic">[/ˌdiːpɑːtˈmentl/]</div>
+                <div class="meaning">意思：adj. 部门的；系里的</div>
+                <div class="synonym">同义词：departmental meeting（部门会议）, departmental policy（部门政策）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">seminar</div>
+                <div class="phonetic">[/ˈsemɪnɑː(r)/]</div>
+                <div class="meaning">意思：n. 研讨会；研讨班</div>
+                <div class="synonym">同义词：attend a seminar（参加研讨会）, research seminar（研究研讨会）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">preceded</div>
+                <div class="phonetic">[/prɪˈsiːdɪd/]</div>
+                <div class="meaning">意思：v. 先于；在……之前（precede的过去式）</div>
+                <div class="synonym">同义词：preceded by（ preceded by）, preceded in death（先于……去世）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">perceived</div>
+                <div class="phonetic">[/pəˈsiːvd/]</div>
+                <div class="meaning">意思：adj. 感知到的；认为的</div>
+                <div class="synonym">同义词：v. 感知（perceive的过去式）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="13" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第13/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>Adam Carlsen. Destroyer of research careers, Olive had once <span class="highlight">overheard</span> her adviser say.</p><p class="spacing"></p><p>It's okay. It's fine. Totally fine . She was just going to pretend nothing had happened, nod at him politely, and <span class="highlight">tiptoe</span> her way out of here. Yes, solid plan.</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">overheard</div>
+                <div class="phonetic">[/ˌəʊvəˈhɜːd/]</div>
+                <div class="meaning">意思：v. 无意中听到（overhear的过去式）</div>
+                <div class="synonym">同义词：overheard conversation（无意中听到的对话）, overheard someone say（无意中听到某人说）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">tiptoe</div>
+                <div class="phonetic">[/ˈtɪptəʊ/]</div>
+                <div class="meaning">意思：n. 脚尖；v. 踮着脚走</div>
+                <div class="synonym">同义词：on tiptoe（踮着脚尖）, tiptoe around（小心翼翼地绕过/回避）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="14" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第14/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>"Did you . . . Did you just kiss me?" He sounded puzzled, and maybe a little out of breath. His lips were full and <span class="highlight">plump</span> and . . . God. Kissed. There was simply no way Olive could get away with denying what she had just done.</p><p class="spacing"></p><p>Still, it was worth a try.</p><p class="spacing"></p><p>"Nope."</p><p class="spacing"></p><p>Surprisingly, it seemed to work.</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">plump</div>
+                <div class="phonetic">[/plʌmp/]</div>
+                <div class="meaning">意思：adj. 丰满的；圆胖的</div>
+                <div class="synonym">同义词：v. 使丰满</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="15" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第15/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>"Ah. Okay, then." Carlsen <span class="highlight">nodded</span> and turned around, looking <span class="highlight">vaguely</span> <span class="highlight">disoriented</span>. He took a couple of steps down the <span class="highlight">hallway</span>, reached the water <span class="highlight">fountain</span>--maybe where he'd been headed in the first place.</p><p class="spacing"></p><p>Olive was starting to believe that she might actually be off the hook when he <span class="highlight">halted</span> and turned back with a skeptical expression.</p><p class="spacing"></p><p>"Are you sure?"</p><p class="spacing"></p><p>Dammit.</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">nodded</div>
+                <div class="phonetic">[/ˈnɒdɪd/]</div>
+                <div class="meaning">意思：v. 点头（nod的过去式）</div>
+                <div class="synonym">同义词：nodded in agreement（点头同意）, nodded off（打瞌睡）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">vaguely</div>
+                <div class="phonetic">[/ˈveɪɡli/]</div>
+                <div class="meaning">意思：adv. 含糊地；隐约地</div>
+                <div class="synonym">同义词：vaguely familiar（隐约熟悉）, vaguely remember（依稀记得）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">disoriented</div>
+                <div class="phonetic">[/dɪsˈɔːrientɪd/]</div>
+                <div class="meaning">意思：adj. 迷失方向的；迷茫的</div>
+                <div class="synonym">同义词：feel disoriented（感到迷茫）, become disoriented（迷失方向）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">hallway</div>
+                <div class="phonetic">[/ˈhɔːlweɪ/]</div>
+                <div class="meaning">意思：n. 走廊；门厅</div>
+                <div class="synonym">同义词：hallway leading to（通往……的走廊）, apartment hallway（公寓门厅）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">fountain</div>
+                <div class="phonetic">[/ˈfaʊntən/]</div>
+                <div class="meaning">意思：n. 喷泉；源泉</div>
+                <div class="synonym">同义词：water fountain（饮水机）, fountain of youth（青春泉）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">halted</div>
+                <div class="phonetic">[/hɔːltɪd/]</div>
+                <div class="meaning">意思：v. 停止；暂停（halt的过去式）</div>
+                <div class="synonym">同义词：halted production（停止生产）, came to a halt（停了下来）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="16" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第16/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>"I--" She buried her face in her hands. "It's not the way it looks."</p><p class="spacing"></p><p>"Okay. I . . . Okay," he repeated slowly. His voice was deep and low and sounded a lot like he was on his way to getting mad. Like maybe he was already mad. "What's going on here?"</p></div>
+                <div class="right"><p class="no-words">无匹配单词</p></div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="17" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第17/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>There was simply no way to explain this. Any normal person would have found Olive's situation odd, but Adam Carlsen, who obviously considered <span class="highlight">empathy</span> a bug and not a feature of humanity, could never understand. She let her hands fall to her sides and took a deep breath.</p><p class="spacing"></p><p>"I . . . listen, I don't mean to be rude, but this is really none of your business."</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">empathy</div>
+                <div class="phonetic">[/ˈempəθi/]</div>
+                <div class="meaning">意思：n. 共情；同理心</div>
+                <div class="synonym">同义词：show empathy（表示同理心）, lack of empathy（缺乏共情）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="18" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第18/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>He stared at her for a moment, and then he <span class="highlight">nodded</span>. "Yes. Of course." He must be getting back into his usual <span class="highlight">groove</span>, because his tone had lost some of its surprise and was back to normal--dry. <span class="highlight">Laconic</span>. "I'll just go back to my office and begin to work on my <span class="highlight">Title</span> IX complaint."</p><p class="spacing"></p><p>Olive exhaled in relief. "Yeah. That would be great, since-- Wait. Your what?"</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">nodded</div>
+                <div class="phonetic">[/ˈnɒdɪd/]</div>
+                <div class="meaning">意思：v. 点头（nod的过去式）</div>
+                <div class="synonym">同义词：nodded in agreement（点头同意）, nodded off（打瞌睡）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">groove</div>
+                <div class="phonetic">[/ɡruːv/]</div>
+                <div class="meaning">意思：n. 沟槽； groove；习惯</div>
+                <div class="synonym">同义词：v. 使形成沟槽</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">Laconic</div>
+                <div class="phonetic">[/ləˈkɒnɪk/]</div>
+                <div class="meaning">意思：adj. 简洁的；简明的</div>
+                <div class="synonym">同义词：laconic reply（简洁的回答）, laconic style（简洁的风格）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">Title</div>
+                <div class="phonetic">[/ˈtaɪtl/]</div>
+                <div class="meaning">意思：n. 标题；头衔；所有权</div>
+                <div class="synonym">同义词：v. 加标题</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="19" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第19/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>He <span class="highlight">cocked</span> his head. "<span class="highlight">Title</span> IX is a federal law that protects against sexual misconduct within academic settings--"</p><p class="spacing"></p><p>"I know what <span class="highlight">Title</span> IX is."</p><p class="spacing"></p><p>"I see. So you <span class="highlight">willfully</span> chose to <span class="highlight">disregard</span> it."</p><p class="spacing"></p><p>"I-- What? No. No, I didn't!"</p><p class="spacing"></p><p>He shrugged. "I must be mistaken, then. Someone else must have assaulted me."</p><p class="spacing"></p><p>"Assault--I didn't 'assault' you."</p><p class="spacing"></p><p>"You did kiss me."</p><p class="spacing"></p><p>"But not really ."</p><p class="spacing"></p><p>"Without first securing my <span class="highlight">consent</span>."</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">cocked</div>
+                <div class="phonetic">[/kɒkt/]</div>
+                <div class="meaning">意思：v. 翘起；竖起（cock的过去式）；adj. 翘起的</div>
+                <div class="synonym">同义词：cocked hat（翘边三角帽）， cocked his head（歪着头）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">Title</div>
+                <div class="phonetic">[/ˈtaɪtl/]</div>
+                <div class="meaning">意思：n. 标题；头衔；所有权</div>
+                <div class="synonym">同义词：v. 加标题</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">willfully</div>
+                <div class="phonetic">[/ˈwɪlfəli/]</div>
+                <div class="meaning">意思：adv. 故意地；任性地</div>
+                <div class="synonym">同义词：willfully ignore（故意忽视）， willfully disobey（任性违抗）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">disregard</div>
+                <div class="phonetic">[/ˌdɪsrɪˈɡɑːd/]</div>
+                <div class="meaning">意思：n./v. 忽视；不理会</div>
+                <div class="synonym">同义词：disregard for safety（忽视安全）， total disregard（完全无视）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">consent</div>
+                <div class="phonetic">[/kənˈsent/]</div>
+                <div class="meaning">意思：n./v. 同意；许可</div>
+                <div class="synonym">同义词：consent form（同意书）， by mutual consent（经双方同意）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="20" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第20/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>"I asked if I could kiss you!"</p><p class="spacing"></p><p>"And then did so without waiting for my response."</p><p class="spacing"></p><p>"What? You said yes."</p><p class="spacing"></p><p>"Excuse me?"</p><p class="spacing"></p><p>She frowned. "I asked if I could kiss you, and you said yes."</p><p class="spacing"></p><p>"Incorrect. You asked if you could kiss me and I <span class="highlight">snorted</span>."</p><p class="spacing"></p><p>"I'm pretty sure I heard you said yes."</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">snorted</div>
+                <div class="phonetic">[/snɔːtɪd/]</div>
+                <div class="meaning">意思：v. 哼着鼻子说；喷鼻息（snort的过去式）</div>
+                <div class="synonym">同义词：snorted with laughter（噗嗤一笑）， snorted in disgust（厌恶地哼了一声）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="21" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第21/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>He lifted one eyebrow, and for a minute Olive let herself daydream of <span class="highlight">drowning</span> someone. Dr. Carlsen. Herself. Both sounded like great options.</p><p class="spacing"></p><p>"Listen, I'm really sorry. It was a weird situation. Can we just forget that this happened?"</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">drowning</div>
+                <div class="phonetic">[/ˈdraʊnɪŋ/]</div>
+                <div class="meaning">意思：v. 淹没；溺死（drown的ing形式）；adj. 淹没的</div>
+                <div class="synonym">同义词：drowning in work（埋头工作）， drowning sensation（溺水感）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="22" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第22/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>He studied her for a long moment, his <span class="highlight">angular</span> face serious and something else, something that she couldn't quite <span class="highlight">decipher</span> because she was too busy noticing all over again how damn <span class="highlight">towering</span> and broad he was. Just <span class="highlight">massive</span>. Olive had always been slight, just this side of too <span class="highlight">slender</span>, but girls who are five eight rarely felt <span class="highlight">diminutive</span>. At least until they found themselves standing next to Adam Carlsen. She'd known that he was tall, of course, from seeing him around the department or walking across campus, from sharing the elevator with him, but they'd never interacted. Never been this close.</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">angular</div>
+                <div class="phonetic">[/ˈæŋɡjələ(r)/]</div>
+                <div class="meaning">意思：adj. 有角的；瘦削的</div>
+                <div class="synonym">同义词：angular face（棱角分明的脸）， angular shape（有角的形状）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">decipher</div>
+                <div class="phonetic">[/dɪˈsaɪfə(r)/]</div>
+                <div class="meaning">意思：v. 破译；辨认</div>
+                <div class="synonym">同义词：decipher the code（破译密码）， decipher handwriting（辨认笔迹）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">towering</div>
+                <div class="phonetic">[/ˈtaʊərɪŋ/]</div>
+                <div class="meaning">意思：adj. 高耸的；杰出的</div>
+                <div class="synonym">同义词：towering figure（杰出人物）， towering cliffs（高耸的悬崖）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">massive</div>
+                <div class="phonetic">[/ˈmæsɪv/]</div>
+                <div class="meaning">意思：adj. 巨大的；大规模的</div>
+                <div class="synonym">同义词：massive amount（大量）， massive heart attack（严重心脏病发作）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">slender</div>
+                <div class="phonetic">[/ˈslendə(r)/]</div>
+                <div class="meaning">意思：adj. 苗条的；纤细的；微薄的</div>
+                <div class="synonym">同义词：slender figure（苗条身材）， slender chance（微小的机会）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">diminutive</div>
+                <div class="phonetic">[/dɪˈmɪnjətɪv/]</div>
+                <div class="meaning">意思：adj. 小的；小型的；n. 爱称</div>
+                <div class="synonym">同义词：diminutive form（缩小形式）， diminutive person（身材矮小的人）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="23" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第23/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>Except for a second ago, Olive. When you almost put your <span class="highlight">tongue</span> in his--</p><p class="spacing"></p><p>"Is there something wrong?" He sounded almost concerned.</p><p class="spacing"></p><p>"What? No. No, there isn't."</p><p class="spacing"></p><p>"Because," he continued calmly, "kissing a stranger at midnight in a science lab might be a sign that there is."</p><p class="spacing"></p><p>"There isn't."</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">tongue</div>
+                <div class="phonetic">[/tʌŋ/]</div>
+                <div class="meaning">意思：n. 舌头；语言</div>
+                <div class="synonym">同义词：tongue twister（绕口令）， mother tongue（母语）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="24" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第24/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>Carlsen <span class="highlight">nodded</span>, thoughtful. "Very well. Expect mail in the next few days, then." He began to walk past her, and she turned to yell after him.</p><p class="spacing"></p><p>"You didn't even ask my name!"</p><p class="spacing"></p><p>"I'm sure anyone could figure it out, since you must have <span class="highlight">swiped</span> your badge to get in the labs area after hours. Have a good night."</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">nodded</div>
+                <div class="phonetic">[/ˈnɒdɪd/]</div>
+                <div class="meaning">意思：v. 点头（nod的过去式）</div>
+                <div class="synonym">同义词：nodded in agreement（点头同意）, nodded off（打瞌睡）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">swiped</div>
+                <div class="phonetic">[/swaɪpt/]</div>
+                <div class="meaning">意思：v. 滑动；刷（卡）；偷（swipe的过去式）</div>
+                <div class="synonym">同义词：swiped left（向左滑动）， swiped his card（刷了他的卡）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="25" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第25/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>"Wait!" She leaned forward and stopped him with a hand on his wrist. He paused immediately, even though it was obvious that it would take him no effort to free himself, and stared <span class="highlight">pointedly</span> at the spot where her fingers had wrapped around his skin--right below a wristwatch that probably cost half her yearly graduate salary. Or all of it.</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">pointedly</div>
+                <div class="phonetic">[/ˈpɔɪntɪdli/]</div>
+                <div class="meaning">意思：adv. 尖锐地；直言地</div>
+                <div class="synonym">同义词：pointedly ignore（故意不理睬）， say pointedly（尖锐地说）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="26" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第26/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>She let go of him at once and took one step back. "Sorry, I didn't mean to--"</p><p class="spacing"></p><p>"The kiss. Explain."</p><p class="spacing"></p><p>Olive bit into her lower lip. She had truly <span class="highlight">screwed</span> herself over. She had to tell him, now. "Anh Pham." She looked around to make sure Anh was really gone. "The girl who was passing by. She's a graduate student in the biology department."</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">screwed</div>
+                <div class="phonetic">[/skruːd/]</div>
+                <div class="meaning">意思：v. 拧紧；欺骗（screw的过去式）；adj. 用螺丝固定的；搞砸的</div>
+                <div class="synonym">同义词：screwed up（搞砸了）， have it screwed on（头脑清醒）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="27" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第27/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>Carlsen gave no <span class="highlight">indication</span> of knowing who Anh was.</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">indication</div>
+                <div class="phonetic">[/ˌɪndɪˈkeɪʃn/]</div>
+                <div class="meaning">意思：n. 指示；迹象</div>
+                <div class="synonym">同义词：give an indication（给出指示）， clear indication（明确的迹象）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="28" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第28/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>"Anh has . . ." Olive pushed a <span class="highlight">strand</span> of brown hair behind her ear. This was where the story became embarrassing. Complicated, and a little <span class="highlight">juvenile</span> sounding. "I was seeing this guy in the department. Jeremy Langley, he has red hair and works with Dr. . . . Anyway, we went out just a couple of times, and then I brought him to Anh's birthday party, and they just sort of hit it off and--"</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">strand</div>
+                <div class="phonetic">[/strænd/]</div>
+                <div class="meaning">意思：n. （线、绳等的）股；缕；海滩；v. 使搁浅；使陷入困境</div>
+                <div class="synonym">同义词：strand of hair（一缕头发）， stranded on an island（困在岛上）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">juvenile</div>
+                <div class="phonetic">[/ˈdʒuːvənaɪl/]</div>
+                <div class="meaning">意思：adj. 青少年的；幼稚的；n. 青少年</div>
+                <div class="synonym">同义词：juvenile delinquency（青少年犯罪）， juvenile court（少年法庭）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="29" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第29/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>Olive <span class="highlight">shut</span> her eyes. Which was probably a bad idea, because now she could see it painted on her <span class="highlight">lids</span>, how her best friend and her date had <span class="highlight">bantered</span> in that <span class="highlight">bowling</span> <span class="highlight">alley</span>, as if they'd known each other their whole lives; the never-exhausted topics of conversation, the laughter, and then, at the end of the night, Jeremy following Anh's every move with his <span class="highlight">gaze</span>. It had been painfully clear who he was interested in. Olive waved a hand and tried for a smile.</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">shut</div>
+                <div class="phonetic">[/ʃʌt/]</div>
+                <div class="meaning">意思：v. 关闭；adj. 关闭的</div>
+                <div class="synonym">同义词：shut down（关闭；停工）， shut up（闭嘴；关闭）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">lids</div>
+                <div class="phonetic">[/lɪdz/]</div>
+                <div class="meaning">意思：n. 盖子；眼睑（lid的复数）</div>
+                <div class="synonym">同义词：close the lids（盖上盖子）， heavy lids（沉重的眼皮）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">bantered</div>
+                <div class="phonetic">[/ˈbæntəd/]</div>
+                <div class="meaning">意思：v. 开玩笑；逗乐（banter的过去式）</div>
+                <div class="synonym">同义词：bantered with friends（和朋友开玩笑）， bantered back and forth（互相调侃）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">bowling</div>
+                <div class="phonetic">[/ˈbəʊlɪŋ/]</div>
+                <div class="meaning">意思：n. 保龄球运动</div>
+                <div class="synonym">同义词：go bowling（去打保龄球）， bowling ball（保龄球）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">alley</div>
+                <div class="phonetic">[/ˈæli/]</div>
+                <div class="meaning">意思：n. 小巷；小径；球道</div>
+                <div class="synonym">同义词：bowling alley（保龄球馆；球道）， blind alley（死胡同）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">gaze</div>
+                <div class="phonetic">[/ɡeɪz/]</div>
+                <div class="meaning">意思：n./v. 凝视；注视</div>
+                <div class="synonym">同义词：gaze at（凝视）， fix one's gaze（凝视）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="30" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第30/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>"Long story short, after Jeremy and I ended things he asked Anh out. She said no because of . . . girl code and all that, but I can tell that she really likes him. She's afraid to hurt my feelings, and no matter how many times I told her it was fine she wouldn't believe me."</p></div>
+                <div class="right"><p class="no-words">无匹配单词</p></div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="31" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第31/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>Not to mention that the other day I <span class="highlight">overheard</span> her <span class="highlight">confess</span> to our friend Malcolm that she thought Jeremy was awesome, but she could never betray me by going out with him, and she sounded so <span class="highlight">dejected</span>. Disappointed and insecure, not at all like the <span class="highlight">spunky</span>, larger-than-life Anh I am used to.</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">overheard</div>
+                <div class="phonetic">[/ˌəʊvəˈhɜːd/]</div>
+                <div class="meaning">意思：v. 无意中听到（overhear的过去式）</div>
+                <div class="synonym">同义词：overheard conversation（无意中听到的对话）, overheard someone say（无意中听到某人说）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">confess</div>
+                <div class="phonetic">[/kənˈfes/]</div>
+                <div class="meaning">意思：v. 承认；忏悔</div>
+                <div class="synonym">同义词：confess to（承认）， confess one's sins（忏悔罪过）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">dejected</div>
+                <div class="phonetic">[/dɪˈdʒektɪd/]</div>
+                <div class="meaning">意思：adj. 沮丧的；灰心的</div>
+                <div class="synonym">同义词：look dejected（看起来很沮丧）， feel dejected（感到沮丧）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">spunky</div>
+                <div class="phonetic">[/ˈspʌŋki/]</div>
+                <div class="meaning">意思：adj. 充满勇气的；精神十足的</div>
+                <div class="synonym">同义词：spunky girl（勇敢的女孩）， spunky attitude（活力十足的态度）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="32" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第32/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>"So I just lied and told her that I was already dating someone else. Because she's one of my <span class="highlight">closest</span> friends and I'd never seen her like a guy this much and I want her to have the good things she deserves and I'm positive that she would do the same for me and--" Olive realized that she was <span class="highlight">rambling</span> and that Carlsen couldn't have cared less. She stopped and <span class="highlight">swallowed</span>, even though her mouth felt dry. "Tonight. I told her I'd be on a date tonight ."</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">closest</div>
+                <div class="phonetic">[/ˈkləʊsɪst/]</div>
+                <div class="meaning">意思：adj. 最靠近的；最亲密的（close的最高级）</div>
+                <div class="synonym">同义词：closest friend（最亲密的朋友）， closest thing to（最接近……的东西）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">rambling</div>
+                <div class="phonetic">[/ˈræmblɪŋ/]</div>
+                <div class="meaning">意思：adj. 杂乱无章的；漫步的；n. 漫谈</div>
+                <div class="synonym">同义词：rambling speech（漫无边际的讲话）， rambling old house（格局凌乱的老房子）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">swallowed</div>
+                <div class="phonetic">[/ˈswɒləʊd/]</div>
+                <div class="meaning">意思：v. 吞咽；忍受（swallow的过去式）</div>
+                <div class="synonym">同义词：swallowed hard（艰难地咽下）， swallowed his pride（放下自尊）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="33" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第33/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>"Ah." His expression was unreadable.</p><p class="spacing"></p><p>"But I'm not. So I decided to come in to work on an <span class="highlight">experiment</span>, but Anh showed up, too. She wasn't supposed to be here. But she was. Coming this way. And I <span class="highlight">panicked</span>--well." Olive wiped a hand down her face. "I didn't really think."</p><p class="spacing"></p><p>Carlsen didn't say anything, but it was there in his eyes that he was thinking, Obviously .</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">experiment</div>
+                <div class="phonetic">[/ɪkˈsperɪmənt/]</div>
+                <div class="meaning">意思：n./v. 实验；尝试</div>
+                <div class="synonym">同义词：conduct an experiment（做实验）， experiment with（尝试……）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">panicked</div>
+                <div class="phonetic">[/ˈpænɪkt/]</div>
+                <div class="meaning">意思：adj. 惊慌失措的；v. 使恐慌（panic的过去式）</div>
+                <div class="synonym">同义词：get panicked（变得惊慌）， panicked reaction（惊慌的反应）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="34" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第34/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>"I just needed her to believe that I was on a date."</p><p class="spacing"></p><p>He <span class="highlight">nodded</span>. "So you kissed the first person you saw in the <span class="highlight">hallway</span>. Perfectly logical."</p><p class="spacing"></p><p>Olive <span class="highlight">winced</span>. "When you put it like that, perhaps it wasn't my best moment."</p><p class="spacing"></p><p>"Perhaps."</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">nodded</div>
+                <div class="phonetic">[/ˈnɒdɪd/]</div>
+                <div class="meaning">意思：v. 点头（nod的过去式）</div>
+                <div class="synonym">同义词：nodded in agreement（点头同意）, nodded off（打瞌睡）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">hallway</div>
+                <div class="phonetic">[/ˈhɔːlweɪ/]</div>
+                <div class="meaning">意思：n. 走廊；门厅</div>
+                <div class="synonym">同义词：hallway leading to（通往……的走廊）, apartment hallway（公寓门厅）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">winced</div>
+                <div class="phonetic">[/wɪnst/]</div>
+                <div class="meaning">意思：v. 畏缩；脸部肌肉抽搐（wince的过去式）</div>
+                <div class="synonym">同义词：winced in pain（痛得皱眉）， winced at the thought（一想到就畏缩）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="35" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第35/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>"But it wasn't my worst, either! I'm pretty sure Anh saw us. Now she'll think that I was on a date with you and she'll hopefully feel free to go out with Jeremy and--" She shook her head. "Listen. I'm so, so sorry about the kiss."</p><p class="spacing"></p><p>"Are you?"</p><p class="spacing"></p><p>"Please, don't report me. I really thought I heard you say yes. I promise I didn't mean to . . ."</p></div>
+                <div class="right"><p class="no-words">无匹配单词</p></div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="36" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第36/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>Suddenly, the <span class="highlight">enormity</span> of what she had just done fully <span class="highlight">dawned</span> on her. She had just kissed a random guy, a guy who happened to be the most <span class="highlight">notoriously</span> unpleasant <span class="highlight">faculty</span> member in the biology department. She'd misunderstood a <span class="highlight">snort</span> for <span class="highlight">consent</span>, she'd basically attacked him in the hallway, and now he was staring at her in that odd, pensive way, so large and focused and close to her, and . . .</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">enormity</div>
+                <div class="phonetic">[/ɪˈnɔːməti/]</div>
+                <div class="meaning">意思：n. 巨大；严重性</div>
+                <div class="synonym">同义词：the enormity of the task（任务的艰巨性）, enormity of the crime（罪行的严重性）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">dawned</div>
+                <div class="phonetic">[/dɔːnd/]</div>
+                <div class="meaning">意思：v. 破晓；开始明白（dawn的过去式）</div>
+                <div class="synonym">同义词：dawn on（逐渐明白）, morning dawned（天亮了）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">notoriously</div>
+                <div class="phonetic">[/nəʊˈtɔːriəsli/]</div>
+                <div class="meaning">意思：adv. 众所周知地；臭名昭著地</div>
+                <div class="synonym">同义词：notoriously difficult（出了名的难）, notoriously unreliable（众所周知不可靠）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">faculty</div>
+                <div class="phonetic">[/ˈfæklti/]</div>
+                <div class="meaning">意思：n. 才能；全体教职员；（大学的）系</div>
+                <div class="synonym">同义词：mental faculties（心智能力）， faculty member（教员）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">snort</div>
+                <div class="phonetic">[/snɔːt/]</div>
+                <div class="meaning">意思：v./n. 哼着鼻子说；喷鼻息</div>
+                <div class="synonym">同义词：snort with laughter（噗嗤一笑）， give a snort（哼了一声）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">consent</div>
+                <div class="phonetic">[/kənˈsent/]</div>
+                <div class="meaning">意思：n./v. 同意；许可</div>
+                <div class="synonym">同义词：consent form（同意书）， by mutual consent（经双方同意）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="37" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第37/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>Shit .</p><p class="spacing"></p><p>Maybe it was the late night. Maybe it was that her last coffee had been sixteen hours ago. Maybe it was Adam Carlsen looking down at her, like that . All of a sudden, this entire situation was just too much.</p></div>
+                <div class="right"><p class="no-words">无匹配单词</p></div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="38" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第38/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>"Actually, you're absolutely right. And I am so sorry. If you felt in any way <span class="highlight">harassed</span> by me, you really should report me, because it's only fair. It was a horrible thing to do, though I really didn't want to . . . Not that my intentions matter; it's more like your <span class="highlight">perception</span> of . . ."</p><p class="spacing"></p><p>Crap, crap, crap.</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">harassed</div>
+                <div class="phonetic">[/ˈhærəst/]</div>
+                <div class="meaning">意思：adj. 疲惫的；受骚扰的；v. 骚扰（harass的过去式）</div>
+                <div class="synonym">同义词：feel harassed（感到疲惫不堪）， sexually harassed（遭受性骚扰）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">perception</div>
+                <div class="phonetic">[/pəˈsepʃn/]</div>
+                <div class="meaning">意思：n. 感知；认识；观念</div>
+                <div class="synonym">同义词：perception of reality（对现实的感知）， visual perception（视觉感知）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="39" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第39/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>"I'm going to leave now, okay? Thank you, and . . . I am so, so, so sorry." Olive <span class="highlight">spun</span> around on her <span class="highlight">heels</span> and ran away down the <span class="highlight">hallway</span>.</p><p class="spacing"></p><p>"Olive," she heard him call after her. "Olive, wait--"</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">spun</div>
+                <div class="phonetic">[/spʌn/]</div>
+                <div class="meaning">意思：v. 旋转；纺（spin的过去式）</div>
+                <div class="synonym">同义词：spun around（快速转身）， spun a story（编了个故事）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">heels</div>
+                <div class="phonetic">[/hiːlz/]</div>
+                <div class="meaning">意思：n. 脚后跟；高跟鞋（heel的复数）</div>
+                <div class="synonym">同义词：click one's heels（用脚跟叩击）， high heels（高跟鞋）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">hallway</div>
+                <div class="phonetic">[/ˈhɔːlweɪ/]</div>
+                <div class="meaning">意思：n. 走廊；门厅</div>
+                <div class="synonym">同义词：hallway leading to（通往……的走廊）, apartment hallway（公寓门厅）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="40" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第40/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>She didn't stop. She <span class="highlight">sprinted</span> down the stairs to the first floor and then out the building and across the pathways of the <span class="highlight">sparsely</span> lit Stanford <span class="highlight">campus</span>, running past a girl walking her dog and a group of students laughing in front of the library. She continued until she was standing in front of her apartment's door, stopping only to unlock it, making a <span class="highlight">beeline</span> for her room in the hope of avoiding her roommate and whoever he might have brought home tonight.</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">sprinted</div>
+                <div class="phonetic">[/ˈsprɪntɪd/]</div>
+                <div class="meaning">意思：v. 冲刺；全速奔跑（sprint的过去式）</div>
+                <div class="synonym">同义词：sprinted to catch（冲刺去抓）， sprinted ahead（冲到前面）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">sparsely</div>
+                <div class="phonetic">[/ˈspɑːsli/]</div>
+                <div class="meaning">意思：adv. 稀疏地；稀少地</div>
+                <div class="synonym">同义词：sparsely populated（人口稀少）， sparsely furnished（家具稀少）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">campus</div>
+                <div class="phonetic">[/ˈkæmpəs/]</div>
+                <div class="meaning">意思：n. 校园</div>
+                <div class="synonym">同义词：on campus（在校园内）， campus life（校园生活）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">beeline</div>
+                <div class="phonetic">[/ˈbiːlaɪn/]</div>
+                <div class="meaning">意思：n. 直线；最短距离</div>
+                <div class="synonym">同义词：make a beeline for（径直走向）， straight beeline（笔直的路）</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="41" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第41/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>It wasn't until she <span class="highlight">slumped</span> on her bed, staring at the glow-in-the-dark stars glued to her ceiling, that she realized she had <span class="highlight">neglected</span> to check on her lab mice. She had also left her laptop on her <span class="highlight">bench</span> and her sweatshirt somewhere in the lab, and she had completely forgotten to stop at the store and buy the coffee she'd promised Malcolm she'd get for tomorrow morning.</p></div>
+                <div class="right">
+            <div class="word-card">
+                <div class="word">slumped</div>
+                <div class="phonetic">[/slʌmpt/]</div>
+                <div class="meaning">意思：v. 倒下；大幅度下降（slump的过去式）；adj. 倒下的</div>
+                <div class="synonym">同义词：slumped in a chair（瘫坐在椅子上）， slumped shoulders（耷拉的肩膀）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">neglected</div>
+                <div class="phonetic">[/nɪˈɡlektɪd/]</div>
+                <div class="meaning">意思：adj. 被忽视的；未经妥善照管的</div>
+                <div class="synonym">同义词：v. 忽视（neglect的过去式）</div>
+            </div>
+            
+            <div class="word-card">
+                <div class="word">bench</div>
+                <div class="phonetic">[/bentʃ/]</div>
+                <div class="meaning">意思：n. 长椅；工作台；替补队员</div>
+                <div class="synonym">同义词：v. 把……换下场</div>
+            </div>
+            </div>
+            </div>
+        </div>
+        
+        <div class="page" data-page="42" style="--scale:1.5; --right-scale:1.8; --card-gap:0.8;">
+            <div class="header">
+                <h1>Chapter One</h1>
+                <div class="page-num">第42/42页</div>
+            </div>
+            <div class="content">
+                <div class="left"><p>Shit. What a disaster of a day.</p><p class="spacing"></p><p>It never occurred to Olive that Dr. Adam Carlsen--known ass--had called her by her name.</p></div>
+                <div class="right"><p class="no-words">无匹配单词</p></div>
+            </div>
+        </div>
+        
+        
+        <script>
+            window.addEventListener('load', function() {
+                const pages = document.querySelectorAll('.page');
+                pages.forEach(page => adjustPageLayout(page));
+            });
+            
+            function adjustPageLayout(page) {
+                const rightSection = page.querySelector('.right');
+                const leftSection = page.querySelector('.left');
+                
+                adjustRightSection(page, rightSection);
+                adjustLeftSection(page, leftSection);
+            }
+            
+            function adjustRightSection(page, rightSection) {
+                let cardGap = parseFloat(getComputedStyle(page).getPropertyValue('--card-gap'));
+                let rightScale = parseFloat(getComputedStyle(page).getPropertyValue('--right-scale'));
+                const minCardGap = parseFloat(getComputedStyle(page).getPropertyValue('--min-card-gap'));
+                const minScale = parseFloat(getComputedStyle(page).getPropertyValue('--min-scale'));
+                const gapStep = 0.05;
+                const scaleStep = 0.05;
+                
+                while (isOverflowing(rightSection) && cardGap > minCardGap) {
+                    cardGap = Math.max(cardGap - gapStep, minCardGap);
+                    page.style.setProperty('--card-gap', cardGap.toFixed(2));
+                    forceRepaint(rightSection);
+                }
+                
+                while (isOverflowing(rightSection) && rightScale > minScale) {
+                    rightScale = Math.max(rightScale - scaleStep, minScale);
+                    page.style.setProperty('--right-scale', rightScale.toFixed(2));
+                    forceRepaint(rightSection);
+                }
+            }
+            
+            function adjustLeftSection(page, leftSection) {
+                let leftScale = parseFloat(getComputedStyle(page).getPropertyValue('--scale'));
+                const minScale = parseFloat(getComputedStyle(page).getPropertyValue('--min-scale'));
+                const scaleStep = 0.05;
+                
+                while (isOverflowing(leftSection) && leftScale > minScale) {
+                    leftScale = Math.max(leftScale - scaleStep, minScale);
+                    page.style.setProperty('--scale', leftScale.toFixed(2));
+                    forceRepaint(leftSection);
+                }
+            }
+            
+            function isOverflowing(element) {
+                return element.scrollHeight > element.offsetHeight || 
+                       element.scrollWidth > element.offsetWidth;
+            }
+            
+            function forceRepaint(element) {
+                element.offsetHeight;
+            }
+        </script>
+    </body>
+    </html>

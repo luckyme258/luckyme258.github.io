@@ -2,6 +2,7 @@ name: 更新books4me目录书籍列表
 
 on:
   push:
+    branches: [main, master]
     paths:
       - 'books4me/*.html'
       - 'books4me/**/*.html'
@@ -12,119 +13,103 @@ on:
 jobs:
   update-books4me-list:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
-      - name: 检出代码
-        uses: actions/checkout@v3
+      - name: 检出仓库代码
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-      
-      - name: 设置 Python
-        uses: actions/setup-python@v4
+          fetch-depth: 0  # 仅保留，不影响核心逻辑
+
+      - name: 设置Python环境
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-      
-      - name: 生成书籍列表（books4me目录）
+
+      - name: 生成书籍列表JSON（books4me）
         run: |
+          mkdir -p books4me
           cat > generate_books4me.py << 'EOF'
-          # 代码逻辑和上面完全一致，仅修改 books_dir = 'books4me'
           import os
           import json
-          import time
-          import glob
-          
-          def get_category_icon(category):
-              icons = {'童话':'🧚', '科幻':'🚀', '文学':'📚', '历史':'🏛️', '哲学':'🤔', '诗歌':'🎭', '传记':'📜', '技术':'💻', '艺术':'🎨', '教育':'📖'}
-              return icons.get(category, '📘')
-          
-          def parse_filename(filename):
-              name = filename.replace('.html', '')
-              category = '未分类'
-              title = name
-              author = ''
-              if '_' in name:
-                  parts = name.split('_')
-                  if len(parts)>=2: category, title = parts[0], parts[1]
-                  if len(parts)>=3: author = parts[2]
-              return {'category':category, 'title':title, 'author':author}
-          
-          def get_file_time(filepath):
-              try:
-                  import subprocess
-                  result = subprocess.run(['git', 'log', '-1', '--format=%ct', filepath], capture_output=True, text=True)
-                  if result.returncode ==0 and result.stdout.strip():
-                      return int(result.stdout.strip())*1000
-              except: pass
-              return int(os.path.getmtime(filepath)*1000)
-          
-          def main():
-              books_dir = 'books4me'  # 重点：对应books4me目录
-              if not os.path.exists(books_dir):
-                  os.makedirs(books_dir)
-                  empty_data = {'lastUpdated':int(time.time()*1000), 'totalBooks':0, 'totalCategories':0, 'categories':[], 'books':[], 'categoryStats':[]}
-                  with open(f'{books_dir}/books.json', 'w', encoding='utf-8') as f:
-                      json.dump(empty_data, f, ensure_ascii=False, indent=2)
-                  return
-              
-              all_books = []
-              html_files = glob.glob(f'{books_dir}/**/*.html', recursive=True)
-              for filepath in html_files:
-                  filename = os.path.basename(filepath)
-                  if filename == 'index.html': continue
-                  rel_path = os.path.relpath(filepath, books_dir).replace('\\', '/')
-                  parsed = parse_filename(filename)
-                  stat = os.stat(filepath)
-                  file_time = get_file_time(filepath)
+          from datetime import datetime
+
+          category_icons = {
+              '童话': '🧚', '科幻': '🚀', '文学': '📚', 
+              '历史': '🏛️', '哲学': '🤔', '诗歌': '🎭',
+              '传记': '📜', '技术': '💻', '艺术': '🎨',
+              '小说': '📖', '散文': '✍️', '科普': '🔬',
+              '心理学': '🧠', '经济学': '💰', '管理学': '📊',
+              '未分类': '📘'
+          }
+
+          target_dir = 'books4me'
+          books = []
+          category_stats = {}
+
+          for filename in os.listdir(target_dir):
+              if filename.endswith('.html') and filename != 'index.html':
+                  file_path = os.path.join(target_dir, filename)
+                  try:
+                      file_stats = os.stat(file_path)
+                  except:
+                      continue
+                  
+                  name_parts = filename[:-5].split('_')
+                  title = name_parts[0] if len(name_parts) > 0 else '未知书籍'
+                  author = name_parts[1] if len(name_parts) > 1 else '佚名'
+                  category = name_parts[2] if len(name_parts) > 2 else '未分类'
+                  
+                  if category not in category_stats:
+                      category_stats[category] = 0
+                  category_stats[category] += 1
+                  
                   book = {
-                      'id':filename, 'file':rel_path, 'filename':filename,
-                      'title':parsed['title'], 'category':parsed['category'], 'author':parsed['author'],
-                      'size':stat.st_size, 'lastModified':file_time, 'addedTime':file_time
+                      'title': title,
+                      'author': author,
+                      'category': category,
+                      'file': filename,
+                      'size': file_stats.st_size,
+                      'lastModified': int(file_stats.st_mtime * 1000)
                   }
-                  all_books.append(book)
-              
-              # 按书名排序
-              all_books.sort(key=lambda x: x['title'])
-              
-              # 按分类统计（优化逻辑，可读性更高）
-              categories = {}
-              for book in all_books:
-                  cat = book['category']
-                  if cat not in categories:
-                      categories[cat] = []
-                  categories[cat].append(book)  # 优化点：替换拼接列表的方式
-              
-              # 生成最终数据
-              output_data = {
-                  'lastUpdated':int(time.time()*1000), 'totalBooks':len(all_books), 'totalCategories':len(categories),
-                  'categories':list(categories.keys()), 'books':all_books,
-                  'categoryStats':[
-                      {'name':cat, 'count':len(books), 'icon':get_category_icon(cat)} 
-                      for cat, books in categories.items()
-                  ]
-              }
-              
-              # 写入books.json
-              with open(f'{books_dir}/books.json', 'w', encoding='utf-8') as f:
-                  json.dump(output_data, f, ensure_ascii=False, indent=2)
-              
-              print(f'✅ books4me目录生成完成：{len(all_books)} 本书，{len(categories)} 个分类')
-          
-          if __name__ == '__main__':
-              main()
+                  books.append(book)
+
+          category_list = []
+          for cat, count in sorted(category_stats.items()):
+              category_list.append({
+                  'name': cat,
+                  'count': count,
+                  'icon': category_icons.get(cat, '📘')
+              })
+
+          result = {
+              'totalBooks': len(books),
+              'totalCategories': len(category_stats),
+              'categories': sorted(list(category_stats.keys())),
+              'categoryStats': category_list,
+              'books': books,
+              'lastUpdated': int(datetime.now().timestamp() * 1000)
+          }
+
+          with open(os.path.join(target_dir, 'books.json'), 'w', encoding='utf-8') as f:
+              json.dump(result, f, ensure_ascii=False, indent=2)
           EOF
           
-          python3 generate_books4me.py
-      
-      - name: 提交更改（books4me目录）
+          python generate_books4me.py
+
+      - name: 直接提交并推送（无pull，适配单人场景）
         run: |
+          # 配置Git用户信息
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          # 优化：设置上游分支 + 容错，避免pull报错
-          git checkout ${{ github.ref_name }} || git checkout main
-          git pull origin ${{ github.ref_name }} --rebase --set-upstream || git pull origin main --rebase
+          
+          # 🌟 核心修改：直接添加文件，无pull/merge/stash
           git add books4me/books.json
-          # 检查是否有更改，有则提交
-          git diff --quiet && git diff --staged --quiet || git commit -m "🤖 自动更新books4me目录书籍列表 [skip ci]"
-          # 推送（增加容错，失败重试一次）
-          git push || git push --force-with-lease
+          
+          # 仅当有修改时提交
+          if git diff --cached --quiet; then
+              echo "✅ 无更新，跳过提交"
+          else
+              git commit -m "自动更新books4me/books.json - $(date +'%Y-%m-%d %H:%M:%S')"
+              # 直接推送，无pull步骤
+              git push origin ${{ github.ref_name }}
+              echo "✅ books.json 推送成功"
+          fi

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 书籍阅读库</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 0 20px;
+            line-height: 1.6;
+        }
+        h1 { color: #333; }
+        .notice {
+            background: #f8f9fa;
+            border-left: 4px solid #0366d6;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        a { color: #0366d6; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>📚 我的电子书库</h1>
+    
+    <div class="notice">
+        <strong>ℹ️ 使用说明</strong>
+        <p>本阅读器支持多主题切换：明亮、暗黑、护眼</p>
+        <p>点击下方书籍开始阅读，或直接访问阅读器：</p>
+        <code>reader.html?book=书籍目录名&chapter=章节文件名</code>
+    </div>
+
+    <h2>📖 书籍列表</h2>
+    <div id="book-list">加载中...</div>
+
+    <script>
+        async function loadBooks() {
+            try {
+                // 尝试加载由 CI 生成的书籍列表
+                const response = await fetch('books/index.json');
+                if (response.ok) {
+                    const books = await response.json();
+                    displayBooks(books);
+                } else {
+                    // 如果没有 index.json，尝试列出 books 目录下的子目录
+                    // 这里需要 GitHub API，简化起见显示说明
+                    document.getElementById('book-list').innerHTML = `
+                        <p>书籍列表正在生成中...</p>
+                        <p>你可以直接访问：</p>
+                        <ul>
+                            <li><a href="reader.html?book=漂亮朋友">《漂亮朋友》</a></li>
+                            <li><a href="reader.html?book=A_Curse_So_Dark_and_Lonely">《A Curse So Dark and Lonely》</a></li>
+                        </ul>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById('book-list').innerHTML = '加载失败';
+            }
+        }
+        
+        function displayBooks(books) {
+            const html = books.map(book => `
+                <div style="margin: 10px 0;">
+                    <a href="reader.html?book=${book.id}" style="font-size: 1.2em;">
+                        📘 ${book.title}
+                    </a>
+                    <span style="color: #666; margin-left: 10px;">${book.author || '未知作者'}</span>
+                </div>
+            `).join('');
+            document.getElementById('book-list').innerHTML = html;
+        }
+        
+        loadBooks();
+    </script>
+</body>
+</html>

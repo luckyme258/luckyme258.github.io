@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
+    <title>生活_收纳的基本：整理家之前，你需要知道的事_[美] 克莉·希勒,[美] 乔安娜·特普林 - 未知作者</title>
+    <style>
+:root {
+    --bg: #ffffff;
+    --bg-rgb: 255, 255, 255;
+    --text: #2d3748;
+    --accent: #4299e1;
+    --light-accent: #e8f4f8;
+    --card-bg: #f5fafe;
+    --card-shadow: 0 2px 8px rgba(66, 153, 225, 0.15);
+    --border-radius: 12px;
+    --line-height: 1.8;
+    --container-width: 800px;
+    --spacing: 32px;
+    --progress-height: 4px;
+    --header-height: 80px;
+    --nav-height: 70px;
+}
+
+.d0 {
+    --bg: #0a0c10;
+    --bg-rgb: 26, 32, 44;
+    --text: #ffffff;
+    --accent: #7472FE;
+    --light-accent: #2d3748;
+    --card-bg: #2d3748;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "思源黑体", "Source Han Sans CN", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: var(--line-height);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.p0 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: var(--progress-height);
+    background: linear-gradient(90deg, var(--accent), #7472FE);
+    z-index: 101;
+    transition: width 0.1s ease;
+    pointer-events: none;
+}
+
+.h0 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(var(--bg-rgb), 0.4);
+    backdrop-filter: blur(11px);
+    border-bottom: 1px solid var(--light-accent);
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    min-height: var(--header-height);
+}
+
+.h1 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+}
+
+.s0 {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    color: var(--accent);
+    padding: 8px 4px;
+    margin-left: -4px;
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+@keyframes shelfBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+.s0.f0 {
+    animation: shelfBounce 0.5s ease 2;
+}
+
+.s0:active {
+    transform: scale(0.95);
+}
+
+.s1 {
+    font-size: 24px;
+    line-height: 1;
+}
+
+.s2 {
+    font-size: 12px;
+    color: var(--accent);
+    opacity: 0.8;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+@media (max-width: 280px) {
+    .s2 {
+        display: none;
+    }
+}
+
+.h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 1;
+    min-width: 30px;
+}
+
+.h2 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.p1 {
+    font-size: 18px;
+    color: var(--text);
+    opacity: 0.9;
+    white-space: nowrap;
+    font-weight: 550;
+    flex-shrink: 0;
+}
+
+.p1::before {
+    content: "阅读进度 ";
+    font-size: inherit;
+    color: inherit;
+    opacity: 0.8;
+}
+
+.t0 {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    color: var(--text);
+    font-size: 14px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    flex-shrink: 0;
+}
+
+.t0:hover {
+    background: var(--accent);
+    color: white;
+}
+
+@media (max-width: 428px) {
+    .p1::before {
+        content: "";
+    }
+}
+
+@media (max-width: 375px) {
+    .h3 {
+        font-size: 16px;
+        max-width: 150px;
+    }
+    .p1 {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 320px) {
+    .h3 {
+        max-width: 120px;
+        font-size: 15px;
+    }
+    .p1 {
+        font-size: 15px;
+        min-width: 45px;
+    }
+    .t0 {
+        padding: 6px 8px;
+        font-size: 13px;
+    }
+}
+
+.c0 {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: calc(var(--header-height) + 20px) 16px 120px;
+    background-color: #F8F5F0;
+    filter: contrast(1.02);
+}
+
+.s3 {
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--light-accent);
+}
+
+.s4 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--text);
+    border-left: 6px solid var(--accent);
+    padding-left: 20px;
+    line-height: 1.3;
+    transition: border-left-color 0.3s ease;
+}
+
+.s4.x0 {
+    animation: titleFlash 0.5s ease;
+}
+
+@keyframes titleFlash {
+    0% { border-left-color: var(--accent); }
+    50% { border-left-color: #ffaa00; }
+    100% { border-left-color: var(--accent); }
+}
+
+.s5 {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 40px 0 20px;
+    color: var(--text);
+}
+
+.c1 p {
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+/* ===== 数字编码段落样式 ===== */
+.c1 p[class*="1"] { color: #2D2D2D; font-weight: 550; text-indent: 2em; }
+
+.c1 p[class^="1"] { margin-bottom: 24px; }
+.c1 p[class^="2"] { margin-bottom: 16px; }
+.c1 p[class^="3"] { margin-bottom: 32px; }
+
+.c1 p[class$="1"] { letter-spacing: 0.02em; line-height: 1.8; }
+.c1 p[class$="2"] {
+    letter-spacing: 0.01em;
+    line-height: 1.6;
+    text-indent: 0;
+    margin-bottom: 1.2em;
+}
+.c1 p[class$="3"] {
+    letter-spacing: 0.015em;
+    line-height: 1.7;
+    text-indent: 1em;
+}
+
+.d0 .c1 p[class*="1"] { color: var(--text); }
+.d0 .c1 p[class$="1"] { letter-spacing: normal; line-height: var(--line-height); text-indent: 2em; }
+.d0 .c1 p[class$="2"] { text-indent: 0; }
+.d0 .c1 p[class$="3"] { text-indent: 1em; }
+
+.r4 {
+    height: 8px;
+    margin: 16px 0;
+    opacity: 0.3;
+    border-bottom: 1px dashed var(--light-accent);
+}
+
+.h4 {
+    color: #2D2D2D;
+    font-weight: inherit;
+    text-indent: 0;
+}
+
+.g0 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin: 32px 0;
+}
+
+.g1 {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 24px;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    border: 1px solid rgba(66, 153, 225, 0.1);
+}
+
+.g1:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(66, 153, 225, 0.2);
+}
+
+.g2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.g3 {
+    background-color: var(--accent);
+    color: white;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.g4 {
+    color: var(--accent);
+    font-size: 14px;
+}
+
+.g5 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text);
+}
+
+.g6 {
+    font-size: 15px;
+    margin-bottom: 12px;
+    line-height: 1.7;
+}
+
+.g7 {
+    display: none;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--light-accent);
+    font-size: 14px;
+    color: var(--text);
+    opacity: 0.9;
+}
+
+.g7.a0 {
+    display: block;
+}
+
+.s6 {
+    background-color: var(--light-accent);
+    border-radius: var(--border-radius);
+    padding: 28px;
+    margin: 40px 0;
+    border-left: 6px solid var(--accent);
+}
+
+.s7 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--accent);
+}
+
+.b0 {
+    position: fixed;
+    left: 30px;
+    top: 100px;
+    width: 220px;
+    z-index: 85;
+    display: none;
+    overflow-y: auto;
+    max-height: calc(100vh - 150px);
+}
+
+.b0::-webkit-scrollbar { width: 6px; }
+.b0::-webkit-scrollbar-track { background: transparent; }
+.b0::-webkit-scrollbar-thumb {
+    background: rgba(66, 153, 225, 0.2);
+    border-radius: 4px;
+}
+
+@media (min-width: 1200px) {
+    .b0 { display: block; }
+    .c0 { margin-left: 260px; }
+}
+
+.b1 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--light-accent);
+    position: sticky;
+    top: 0;
+    background-color: var(--bg);
+    z-index: 86;
+    padding-top: 4px;
+}
+
+.b2 { list-style: none; margin: 0; padding: 0; }
+
+.b3 { margin-bottom: 4px; }
+
+.b3 a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 15px;
+    padding: 8px 12px;
+    display: block;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+    line-height: 1.4;
+}
+
+.b3.a0 a {
+    background-color: var(--light-accent);
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.b3.v1 a { font-weight: 600; }
+.b3.v2 a { padding-left: 24px; font-size: 14px; }
+.b3.v3 a { padding-left: 36px; font-size: 14px; }
+.b3.v4 a { padding-left: 48px; font-size: 13px; }
+
+@media (max-width: 1199px) {
+    .b0 { display: none !important; }
+    .c0 {
+        max-width: 100%;
+        padding: calc(var(--header-height) + 20px) 16px 100px;
+        margin-left: 0;
+    }
+    .c1 { margin-left: 48px; padding-left: 0; }
+    .s4 { margin-left: 48px; padding-left: 0; font-size: 26px; }
+    .s5 { margin-left: 48px; padding-left: 0; font-size: 20px; }
+    .g0 { margin-left: 48px; grid-template-columns: 1fr; }
+    .s6 { margin-left: 48px; }
+    .c1 p { font-size: 18px; line-height: 1.6; }
+}
+
+.m0 {
+    position: fixed;
+    left: 0;
+    bottom: calc(70px + 16px + env(safe-area-inset-bottom, 0));
+    width: 32px;
+    height: 50px;
+    background: rgba(var(--bg-rgb), 0.4);
+    backdrop-filter: blur(11px);
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    border-right: 1px solid rgba(66, 153, 225, 0.2);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 95;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (max-width: 1199px) {
+    .m0 { display: flex; }
+}
+
+.m0 .m1 {
+    color: var(--accent);
+    font-size: 20px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.m2 {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 80%;
+    max-width: 320px;
+    background: rgba(var(--bg-rgb), 0.95);
+    backdrop-filter: blur(10px);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 100;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+    border-right: 1px solid rgba(66, 153, 225, 0.2);
+    overflow-y: auto;
+    padding: 20px 0;
+}
+
+.m2.o0 { transform: translateX(0); }
+
+.m3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--light-accent);
+    margin-bottom: 10px;
+}
+
+.m4 { font-size: 18px; font-weight: 600; color: var(--accent); }
+
+.m5 {
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: var(--text);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+}
+
+.m5:hover { background: var(--accent); color: white; }
+
+.m6 { list-style: none; padding: 0; margin: 0; }
+
+.m7 { margin: 2px 0; }
+
+.m7 a {
+    text-decoration: none;
+    color: var(--text);
+    display: block;
+    padding: 10px 20px;
+    font-size: 15px;
+    line-height: 1.4;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+}
+
+.m7 a:active {
+    background: var(--light-accent);
+    border-left-color: var(--accent);
+}
+
+.m7.a0 a {
+    background: var(--light-accent);
+    border-left-color: var(--accent);
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.m8 {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.m8.a0 { opacity: 1; visibility: visible; }
+
+.n0 {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 70px;
+    background: rgba(var(--bg-rgb), 0.4);
+    backdrop-filter: blur(11px);
+    border-top: 1px solid rgba(66, 153, 225, 0.2);
+    padding: 0 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 90;
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+    height: calc(70px + env(safe-area-inset-bottom, 0));
+}
+
+.n1 {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(66, 153, 225, 0.3);
+    padding: 0 20px;
+    height: 52px;
+    border-radius: 26px;
+    cursor: pointer;
+    color: #4299e1;
+    font-size: 15px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    min-width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 1 auto;
+}
+
+.n1:hover:not(:disabled) {
+    background: #4299e1;
+    color: white;
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3);
+    border-color: transparent;
+}
+
+.n1:disabled {
+    background: rgba(200, 200, 200, 0.3);
+    color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(200, 200, 200, 0.2);
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+@media (max-width: 375px) {
+    .n1 { padding: 0 12px; min-width: 80px; font-size: 14px; }
+}
+
+.u0 {
+    position: fixed;
+    bottom: calc(70px + 16px + env(safe-area-inset-bottom, 0));
+    right: 16px;
+    width: 44px;
+    height: 44px;
+    border-radius: 22px;
+    background: rgba(var(--bg-rgb), 0.4);
+    backdrop-filter: blur(11px);
+    border: 1px solid rgba(66, 153, 225, 0.2);
+    color: var(--accent);
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 91;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.u0.w0 { display: flex; }
+.u0:hover { background: var(--accent); color: white; }
+
+.i0 {
+    position: fixed;
+    bottom: calc(70px + 16px + env(safe-area-inset-bottom, 0));
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(var(--bg-rgb), 0.2);
+    backdrop-filter: blur(8px);
+    border-radius: 16px;
+    padding: 8px 12px;
+    color: var(--text);
+    font-size: 14px;
+    z-index: 96;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    animation: tipFadeIn 0.3s ease;
+    pointer-events: none;
+    white-space: nowrap;
+    max-width: 80%;
+    border: 1px solid rgba(66, 153, 225, 0.2);
+}
+
+.i0 .i1 { font-size: 14px; }
+
+.i0.i3 { animation: tipFadeOut 0.2s ease forwards; }
+
+@keyframes tipFadeIn {
+    from { opacity: 0; transform: translate(-50%, 10px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes tipFadeOut {
+    from { opacity: 1; transform: translate(-50%, 0); }
+    to { opacity: 0; transform: translate(-50%, 10px); }
+}
+
+@keyframes progressFlash {
+    0% { height: var(--progress-height); }
+    50% { height: 6px; }
+    100% { height: var(--progress-height); }
+}
+
+.p0.x0 { animation: progressFlash 0.3s ease; }
+
+.d0 .m0 {
+    background: rgba(26, 32, 44, 0.6);
+    border-color: rgba(116, 114, 254, 0.3);
+}
+
+.d0 .m2 {
+    background: rgba(10, 12, 16, 0.98);
+    border-right-color: rgba(116, 114, 254, 0.2);
+}
+
+.d0 .n0 {
+    background: rgba(26, 32, 44, 0.4);
+    border-color: rgba(116, 114, 254, 0.2);
+}
+
+.d0 .n1 {
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid rgba(116, 114, 254, 0.4);
+    color: #7472FE;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.d0 .n1:hover:not(:disabled) {
+    background: #7472FE;
+    color: white;
+    box-shadow: 0 4px 12px rgba(116, 114, 254, 0.3);
+}
+
+.d0 .n1:disabled {
+    background: rgba(50, 50, 50, 0.5);
+    color: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(100, 100, 100, 0.2);
+}
+
+.d0 .u0 {
+    background: rgba(26, 32, 44, 0.6);
+    border-color: rgba(116, 114, 254, 0.3);
+}
+
+.d0 .i0 {
+    background: rgba(26, 32, 44, 0.8);
+    border-color: rgba(116, 114, 254, 0.3);
+}
+
+.d0 .s0,
+.d0 .s2 { color: #7472FE; }
+
+.d0 .c0 { background-color: var(--bg); filter: none; }
+
+.g0, .g1, .g1 *,
+.s6, .s6 * {
+    filter: none !important;
+    background-color: var(--card-bg) !important;
+    color: var(--text) !important;
+    font-weight: inherit !important;
+    text-indent: 0 !important;
+    letter-spacing: normal !important;
+    line-height: var(--line-height) !important;
+    margin-bottom: inherit !important;
+}
+</style>
+    <script>
+        window.__CHAPTER_DATA__ = [{"total_units": 0, "language_type": "chinese"}, {"total_units": 90, "language_type": "chinese"}, {"total_units": 0, "language_type": "chinese"}, {"total_units": 6946, "language_type": "chinese"}, {"total_units": 11432, "language_type": "chinese"}, {"total_units": 22014, "language_type": "chinese"}, {"total_units": 2034, "language_type": "chinese"}, {"total_units": 153, "language_type": "chinese"}, {"total_units": 597, "language_type": "chinese"}];
+    </script>
+</head>
+<body>
+    <div class="p0" id="progressBar"></div>
+    
+    <header class="h0">
+        <div class="h1">
+            <a href="https://luckyme258.github.io/books/index.html" class="s0">
+                <span class="s1">📚</span>
+                <span class="s2">书架</span>
+            </a>
+            <span class="h3" title="生活_收纳的基本：整理家之前，你需要知道的事_[美] 克莉·希勒,[美] 乔安娜·特普林">生活_收纳的基本：整理家之前，你需要知道的事_[美] 克莉·希勒,[美] 乔安娜·特普林</span>
+        </div>
+        <div class="h2">
+            <span class="p1" id="progressText">0%</span>
+            <button class="t0" id="themeToggle">🌙 夜间</button>
+        </div>
+    </header>
+    
+    <div class="b0"><div class="b1">📖 目录</div><ul class="b2">
+<li class="b3 v1">
+    <a href="#chapter-0" title="封面">封面</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-1" title="版权信息">版权信息</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-2" title="插图">插图</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-3" title="序言 我们做得到，你也能行">序言 我们做得到，你也能行</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-4" title="清理">清理</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-5" title="收纳">收纳</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-6" title="保持">保持</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-7" title="灵感来源">灵感来源</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-8" title="致谢">致谢</a>
+</li></ul></div>
+    
+    <div class="c0">
+        <section class="s3">
+<h1 class="s4" id="chapter-0">
+    封面
+</h1>
+<div class="c1"><p class="11">[内容提取可能不完整]</p></div></section><section class="s3">
+<h1 class="s4" id="chapter-1">
+    版权信息
+</h1>
+<div class="c1"><p class="11">书名:收纳的基本：整理家之前，你需要知道的事</p><p class="11">作者:（美）克莉·希勒 （美）乔安娜·特普林</p><p class="11">译者:陈晓宇</p><p class="11">ISBN:9787521724929</p><p class="11">中信出版集团制作发行</p><p class="11">版权所有•侵权必究</p></div></section><section class="s3">
+<h1 class="s4" id="chapter-2">
+    插图
+</h1>
+<div class="c1"><p class="11">[内容提取可能不完整]</p></div></section><section class="s3">
+<h1 class="s4" id="chapter-3">
+    序言 我们做得到，你也能行
+</h1>
+<div class="c1"><p class="21">如 果一想到整理家里，你就有点儿喘不过气，这本书可以让你放松下来。老实说，我们虽然是本书的作者，但也搞不定熨衣服、煮饭这样简单的家务（煮饭盖盖子吗？要搅拌吗？为什么煮饭这么复杂？）。不过，我们在整理房间上有绝招，走进一间房间，扫一眼室内杂物，马上就能想到一个有条不紊的整理计划。所以，如果像我们这样不擅长做家务的人都能把混乱的家理出头绪，你也一定可以。</p><p class="31">“超级家居整理”（The Home Edit，简称THE）公司刚成立的时候，我们就定下明确的目标：颠覆人们对整理的看法。现在……我们明白这不是给大脑做手术，也不是治疗癌症。但是，我们亲身感受到整理带给生活的巨大改变：清除室内杂物，让每一处空间更实用。孩子能在橱柜里找到麦片，自己解决早餐（早上多睡30分钟，真的是千金不换），或者清理了20年前的衣服（别怀旧了，你的女儿以后不会想要你的T恤）之后终于找到了自己想要的衣物。</p><p class="21">我们可不像一般的整理师，只知道用储物盒和标签收纳，我们想真正发挥空间的作用，并且让它看起来更美观。所以，我们设计了一个独一无二的系统，让空间在实用的基础上增加一重视觉美感，这快赶上室内设计师的工作了。</p><p class="31">我们这样做，不是因为要把家放在网上炫耀，或者真的想把所有东西按照颜色分类，而是因为我们认为整理空间不仅仅是把东西放到固定的位置，也不应该只是为了房间的外观。我们想要展现功能与形式统一的神奇魅力——高效、方便使用且具有美感的空间，能一下子捕获所有人的心。它不仅能让家里的每个角落变得更赏心悦目，我们还发现，功能与形式的统一会让人更愿意保持空间的整洁。这才是意义所在！如果客户没法儿维持我们整理后的状态，那么我们的工作就没起作用。</p><div class="r4"></div><p class="21">如果一年后再去你家，我们可不愿意再次使用“超级家居整理术”。说实在的，我们回访客户的时候，第一件事情就是去查看梳妆台抽屉或衣柜，看它们是不是像我们上周整理过的那样整洁。如果是这样，我们就奖励自己一个五星好评。你猜怎么着？我们的业绩表上全是五星，因为我们的整理系统确实有用（当然，记录这些是因为我们对客户好评的喜爱不亚于对贴纸图表的爱）。</p><p class="31">不久之后，我们感觉有大事发生。美国各地的客户，比如格温妮丝·帕特洛、莫莉·希姆斯、瑞秋·佐伊、蒂凡妮·西森和敏迪·卡灵 ，都希望我们提供服务。接着，我们的作品开始登上《多米诺》（Domino）、《建筑文摘》（Architectural Digest）、《今日秀》（Today Show），甚至是塔吉特的官网（这是我们人生中最激动的经历；好吧，生孩子也是）。我们的曝光度越高，受到的质疑越多：“我家到底能不能那样？格温妮丝·帕特洛的家，一定费钱、费时又费工。”实际上，并非如此。我们不会骗你说整理很容易，因为确实需要花费时间、力气和心思，而且比人们想象中更需要激情。但是如果你建立好整理系统，并按照规矩收纳——不奢望一蹴而就，你家也能像明星的家一样整洁。这点你可以放心，因为我们做得到，任何人都能行！（请翻到18页，“你能成为好的整理者吗？”）</p><h3 class="h7 h4">背后的故事</h3><p class="21">成为整理师之前，我们就是普通人，做着普通的工作，甚至可能比普通人还普通。我们开始时并未想到要成为整理师，甚至也没想到会一起开公司。事实上，我俩之前根本不认识！真的！所以，在继续谈论家居整理的内容之前，请允许我们稍稍介绍一下自己……实际上由我们的朋友利娅来讲述我们的相遇更合适，因为我们因她结缘。</p><p class="11">利娅眼中我俩的相遇</p><div class="r4"></div><p class="21">2015年5月，克莉第一次搬到纳什维尔。来到这儿之后，她的想法是：“我一个33岁的女人，到了一个陌生的城市，谁也不认识。因为丈夫的工作，我们搬来这里，然后呢？！”她开始感到恐慌。搬家之前，克莉就想过成立一家公司，但对她来说在洛杉矶开公司更靠谱些——她在那儿有客户基础（而且绝对不少）。她想，反正自己从来没有按照常理出牌，所以不管听起来多荒谬，她都要开一家整理公司，搬家了也要开。</p><p class="31">克莉刚搬到纳什维尔，我们就在Instagram（照片墙）上互相“关注”了（不然现在成年人怎么交朋友？），很快便相约一起吃早餐。我们聊孩子、丈夫，身为犹太移民在纳什维尔的感受（这里总共只有11个犹太人）以及经营公司的事。她说，她正在考虑开一家提供全方位服务的家居整理公司，我说：“哎，等等！我有个叫乔安娜的朋友也想在这儿开整理公司。她也是犹太人，也有两个孩子，老公也从事音乐工作，也刚搬来这里！”我想，这真是太棒了！她们一定会一见钟情！</p><p class="21">我赶紧给乔安娜打电话，告诉她命运的安排，她的反应是“不是吧。我不想，谢谢你的提议”。她的原话是：“我不想跟人合作。跟她一起吃顿午饭，或者交个朋友都行。但是我以前从不跟人合伙做生意，合伙开公司肯定行不通。”不过，事情还是有进展的，至少她俩一起吃午饭了。我也没抱太大希望，但也没想到这两人的午餐吃了4个小时，而且已经开始讨论把整理生意做到全世界。剩下的事情，你们都知道啦！不用谢我哦！</p><p class="11">爱你们的利娅</p><div class="r4"></div><p class="31">显然，从见面的那刻开始，我们就决定了一起开公司。那天4小时的午饭之后，晚上我们一边给孩子们洗澡，一边用短信沟通公司的蓝图。我们想到用“超级家居整理”这个名字注册域名和社交账号，甚至开始填写有限责任公司的注册申请文件。整理师就是这么高效，不是吗？当然，多年之后回想起来，我们自己都觉得惊讶——我们竟然和一个只认识几小时的人合作，别说调查背景了，甚至连在谷歌上搜索一下对方都没有。搞笑的是，我们由一位共同的“朋友”牵线，而这个朋友也只是在Instagram上认识的网友。确实不是最合常理的举动，但是我们原本也不是循规蹈矩的人。毕竟，我们刚刚搬到一个陌生的地方，身边没有朋友或家人，所以，只能继续跟随自己的直觉。</p><p class="31">当然，这是我们做过的最疯狂的事情，但是成功了，我把这归结于“犹太人日常用品和秘密武器”（请看第50页）。我们都相信直觉，正是这一点让我们合作无间。我们俩在很多方面都大相径庭，喜欢不同的香槟和糖果，但是相似点也很多！我们都能抓住直觉，并展开行动；我们不会浪费时间分析，纠结到愁眉苦脸；我们只是去做，去实现自己的想法，无论是白手起家开公司，整理客户的杂物，还是解决遇到的任何困难。有时我们因为工作而痴迷于购物，无法自拔（这里要向我们的老公致歉），这个以后再说。</p><p class="21">在空间整理方面，我们的差异总是相得益彰。克莉曾在时尚圈工作，有艺术专业背景，总能从美学角度提出建议；乔安娜的整理背景更传统，因此成为这项工作的核心。我们在风格和实用性之间找到了平衡，因为我们尤为坚信，整洁对一个家来说至关重要，只有整洁的家才能有效且高效地运转，心灵才能因此获得平静。</p><p class="11">如果你有以下举动，就是一个有“强迫症”的整理狂：</p><div class="r4"></div><p class="11">1.在脑子里（有时付诸行动）开始重新整理商店的陈设。</p><p class="11">2.总是思考为什么星巴克不把甜味剂按照颜色排列而是搞得一团糟。</p><p class="11">3.把整理家里当作主要的有氧运动。</p><p class="11">4.朋友总会开玩笑地给你家的东西挪个位置，看你能不能发现。（我们每次都会察觉，所以别再瞎搞了！）</p><div class="r4"></div><p class="11">5.给任何放在固定位置的物品贴标签。</p><p class="31">我们知道，别人觉得我们俩疯了：谁会这么想不通去做整理师？疯子才会想每天替别人清理囤积的意大利面和成堆的衣服。所以，当有人问我们为什么想做整理师的时候，我们会回答，因为我们在其他方面不擅长，这确实是我们唯一擅长的事。我们只是在这一领域很有天赋（至少还有长处，感谢老天爷），不仅如此，我们也真的对此充满热情。这不仅是我们的工作，还是我们大脑运行的结果。当我们走进一户人家，发现到处是凌乱的抽屉时，我们会感到兴奋；我们喜欢抽丝剥茧，找到房间凌乱的根源，然后找到最佳对策。很快你就会知道如何处理凌乱的抽屉。（准备好迎接属于你的激动时刻！）</p><p class="31">我们不是为了收集五星好评、获得自我满足才做整理师（不过我们真的喜欢得到好评）。我们喜欢针对整理问题进行提问，想知道人们如何自己整理和收纳，想给尽可能多的人提供答案。我们想把能给你带来平静和秩序的工具带到你的家里。我们想最终让你明白的不仅仅是东西该放到哪里，还有为什么这么放。最后，我们希望最终的结果会让你像我们的客户一样开心。我们想让你对自己的家和自己的整理能力感到满意！“我就是不会整理的人”，这种借口我们听了太多。其实，你完全可以学会整理。我们不仅会帮你成为擅长整理的人，还会给你自信，让你相信自己的整理系统会长久有用。</p><p class="11">看这里</p><div class="r4"></div><p class="11">还有什么比摆放整齐的冰箱看着更舒服呢（当然，这是我们的一面之词）？赶紧开始整理吧！</p><h3 class="h7 h4">你能成为好的整理者吗？</h3><p class="21">就像我们之前说的那样，你不需要成为职业整理师，也能很好地收纳物品。只要你了解基本流程，保持适当坦诚，并掌握一系列策略、工具、技巧和诀窍，就能找到整理空间的最佳方式。如果你还是没信心，问问自己这些问题：</p><p class="11">1. 当家里的东西都收拾妥当的时候，我是否会感到一丝平静？</p><p class="11">2. 看到真的十分整齐的物品时，我是否为之倾心？</p><div class="r4"></div><p class="11">3. 我是否相信整理物品能让生活更轻松？</p><p class="21">如果你对这些问题中的任何一个的回答是肯定的，那么你就能够处理本书中说到的任何问题。你对此是否擅长并不重要——我们会帮你实现；关键是，你想要这么做。</p><h3 class="h7 h4">我们的承诺</h3><p class="31">假如你不像我们这般急不可耐地直接翻到“杂物抽屉不再杂乱”的部分（好吧，着急的话就翻到第193页），那就给我们点儿时间谈谈整理的重要性吧。相信我们，假如我们仅仅为了登上杂志封面而整理房间，那我们早就失业了。因为仅仅为了好看而布置的空间，不可能长期保持那种状态，而且整理房间的意义不仅限于美感。搞清楚你为什么觉得有必要让家里变得有序，这和怎么收拾家里一样重要。不然，你很难有动力清理那么多架子和抽屉，更不用说在接下来的几个月里让它们保持整洁了。所以，即便我们知道你急于开始，还是希望你花些时间了解整理对你和你的家庭有哪些常见的好处，并在你选择从哪个空间开始整理时把这些记在心里。</p><p class="11">1.节省时间。 简单算一下就知道了：如果你知道东西都放在哪儿，就能更快找到，用完之后更快收好。</p><div class="r4"></div><p class="21">2.节省开销。 除了最初购买的基础装备（抽屉隔断、储物盒、储物篮、挂钩等），你能清楚地看到家中常备的厕纸、麦片、T恤和胶带，就不会找不到已经买过的东西，也不会忘记已经买过。而且留出一定的空间给固定的物品，你就不会买更多东西，除非有足够的空间。</p><p class="31">3.保持清醒。 作为母亲和妻子，我们经常要扮演家里的守门人——其实每家都有一个这样的“多面手”，他们知道每件东西放在哪儿。无论是零食、牙膏还是发绳，如果每件物品都有各自的位置，而且在容易取用的地方，就会很方便。然后，每个人都知道东西放在哪儿，如何自取，而且更重要的是，用完之后能收好。这就是我们喜欢整理家庭游戏室的原因之一：不仅看着舒服，而且能激发创造力，还能给孩子们营造一个视觉体系，以便他们也参与整理。</p><p class="31">4.标志结束。 众所周知，我们会给自己的东西赋予情感价值，而且这种依恋的情感很强烈。释放或了断的最好方式，大概就是处理掉那些给你带来压力的物品（不管你是否意识到它们在拖你后腿）。当你笃定不会再生小孩的时候，就把婴儿的衣服捐出去，甚至是那些你觉得有一天能够穿进去的牛仔裤，也可以打包，这些都是了断。这在我们看来不是小事，因为它们需要谨慎处理——人们常常因为内心的情感陷阱而拒绝了断。我们有个客户一直不愿意整理相册，因为她妈妈刚去世。没有人想要处理如此复杂的感情，但是我们心里也清楚，通过一步步清理空间（物质上和情绪上），你会得到健康和满意的解脱。</p><p class="21">5.抚慰人心。 我们喜欢整理家里的一个重要原因是，当每件东西都归置好之后，我们会感到非常平静，我们也常听客户这么说。当你身处一个杂物极少且井然有序的空间时，你会感到更踏实，更能喘口气儿；每样东西都安排妥当，没有黑洞一样的橱柜或是衣柜让你觉得心烦意乱。我们大多数客户反馈，在我们整理过他们的家之后，他们的压力减轻不少。如果你与平和的内心之间只差一支马克笔和一些亚克力储物盒，那么我们乐于为你效劳！</p><div class="r4"></div><h3 class="h7 h4">整理师也需要人帮忙整理</h3><p class="21">本书的结构安排都为了一个目的，即让你收获最好的结果，而不至于完全无所适从；让你的空间发挥最大潜能；帮你长时间保持空间的完美、整洁。阅读本书，就像我们两人亲自到家为你服务一样。所以，不管你对自己的整理有多大信心，我们都强烈建议你按照我们的计划执行，因为真的有用！</p><p class="21">而且事实上，即便是整理师，也需要指导。真的，即便是最有条理和秩序的A型人格的人，也需要客观、公正、无私的人帮他们在这条路上继续走下去。</p><p class="31">说实话，我们亲身体会到面对一个令人恐惧的大项目有多难……比如，写这本书。我们根本不知道从哪儿开始，收拾家里也是一样。所以，任何成年人此时都会寻求帮助，以便回到正轨。而且，不瞒你们说，整理一本书的内容不亚于整理一个空间：你必须清点所有你想要留下的东西，舍弃不想要的东西，把剩下的东西按类别分类，确保它们尽可能易于取用、整体看起来好看。但即便我们对整理的过程了然于心，但在写作的过程中，如果没有指导也很难完成，因为这对我们来说是全新的领域（翻到第9页）。我们希望，在你的整理旅程开启之时，这本书会成为你的指南。因为我们都是一类人，在世界中心理所当然地呼唤帮手！</p><p class="11">• 瑞秋·佐伊是好莱坞著名造型师，其余几位是美国演艺明星。——译者注</p><div class="r4"></div></div></section><section class="s3">
+<h1 class="s4" id="chapter-4">
+    清理
+</h1>
+<div class="c1"><p class="31">命 中注定的午餐之后的那个夜晚，我俩顾不上给孩子好好洗个澡，就忙着互相发短信，绞尽脑汁想为我们的新公司取一个完美的名字。我们试了好几种组合，当“超级家居整理”这个词冒出来的时候，我们决定就用它了。这就是我们想要的名字，清楚地诠释了我们的整理哲学：清理家中所有物品。或者更具体地说，整理过程的开端就是把你的物品削减到最常用、最喜欢和最重要这几类。我们公司的标志——简洁的花体字被月桂枝围在中间，仅保留最核心的部分，优雅地呈现流畅的韵律和节制的气质——概括了这一理念。</p><p class="21">不管是整理衣橱、游戏室还是冰箱，我们都会从适当的清理开始。所以，在讨论具体的空间需求之前，我们一定要好好聊一聊清理。它是整理方法论的关键，这套方法能帮助你充分评估空间和所有需要归置的物品。了解这些物品的唯一方式，以及整理它们的最佳方法，是确保所有你想要让它看上去非常棒的东西，确实值得花费时间和精力。简单来说，清理过程如下：</p><p class="11">1.把所有东西拿出来</p><p class="11">掏空要整理的空间（也就是说，一件也不留）。</p><div class="r4"></div><p class="11">2.分门别类</p><p class="11">把相似的物品放在一起，这样你才能看得更清楚。</p><p class="11">3.断舍离</p><p class="11">丢掉那些不会再用或不喜欢的东西。</p><div class="r4"></div><p class="21">我们知道不是每个人都喜欢清理。即便它有时会让你感到很难受，或者在整理的过程中经历一连串情绪起伏，但是这和去健身房或是吃蔬菜一样，都是为了自己好。清理是让整理系统可持续的基础，如果光想着去家具店或塔吉特百货（我们敢说，你很快就会推着推车在这些地方购物）而跳过这部分，你就是在给自己找麻烦。经过清理，你才能给要用的、喜欢的东西腾出空间，那些一直堆在家里、破坏家中完美秩序的东西，赶紧丢掉吧。</p><h3 class="h7 h4">拥抱“低标生活”</h3><p class="21">“低标生活”是我们提出的一种信条，用来形容勉强度过一天但是仍有成就感的生活。你值得因为这种生活方式拍拍自己的肩膀，给自己一个肯定，然后倒杯喝的，瘫在沙发上。“低标”可以应用到生活的方方面面：给孩子洗澡，我们就给为人父母的自己打五星；用微波炉加热剩下的比萨，就再来一个五星。洗头而不是把油油的头发扎起来，超五星！</p><p class="11">低标生活守则</p><p class="11">我们的行为准则大致如下：</p><div class="r4"></div><p class="11">1.加热食物也是烹饪。</p><p class="11">2.比萨就是一种没有生菜的沙拉……上面有奶酪、番茄，再加一大块面包丁。我们的比萨游戏挺好的！</p><p class="11">3.运动服每天都能穿，因为生活就是一种锻炼。</p><p class="11">4.香槟本质上就是气泡水。</p><div class="r4"></div><p class="11">5.逛商店也算有氧运动。</p><p class="21">关键是把生活标准降得足够低，让自己轻松实现各种小胜利，毕竟生命那么短暂，没有时间因为没穿像样的裤子或是没有每天健身而不停自责。</p><p class="21">整理也是一样。大到让人望而却步的任务太可怕了，但每次实现一个很小很小的目标，就能激励你继续下去。假如整理是生活中唯一设置高标准的领域，那么最难的部分我们已经替你做完了。我们为你设定了更容易的标准，这样你的任务变得简单易行，并且能轻松实现。给自己点儿耐心，每完成工程的一小步就给自己打五星，不要吝啬，也不要担心。</p><p class="21">整理中最大的陷阱之一是选择了一个太棘手的任务——还有一个小时就要接孩子放学了你才开始收拾，家里被弄得一团糟，然后你挣扎着想把每件东西归位。最后，你发誓再也不这么做了。如果你按照我们的方法来，我们保证这种情况不会发生。</p><div class="r4"></div><p class="21">整理的关键是保持动力。从一个较小的工程开始，然后把你之前获得的自信和经验应用到更大的工程上。我们知道，你幻想着家里所有干货都放在好看的罐子里——会的！但首先，你要清楚自己的时间、经验和能力。不需要为从小处着手感到羞愧。实际上，我们非常建议你从一个抽屉开始。</p><p class="21">是的！就是 从一个抽屉开始 。这是尝试整理的理想场所。按照清理的每一步收拾任何空间都行，只不过要一点点开始。掏空一个抽屉比掏空一个衣橱要容易得多，很快你就能看到隧道尽头的胜利曙光——整理抽屉里的东西更简单、更顺利。接着你可以把所有物品重新塞回去，然后翻到这本书第52页的《收纳》部分，看看怎么样归置剩下的东西。</p><p class="11">感觉很好？那就换个空间继续施展你的“超级家居整理术”魔力吧！</p><p class="11">接下来我们将告诉你哪些空间更容易整理，哪些更费时、费力。</p><div class="r4"></div><h3 class="h7 h4">入门级</h3><p class="11">一个抽屉</p><p class="21">任何抽屉都行！但是一开始只收拾一个。一个抽屉是最好的出发点，因为它小，好收拾，这样你才能旗开得胜。本书《收纳》部分有很多抽屉整理案例，可供你参考。我们私心推荐厨房的“杂物”抽屉，因为常常被用到！</p><p class="11">水槽下空间</p><p class="21">水槽下的区域真闹心，而且（看上去）非常具有挑战性，但其实很容易收拾。和抽屉一样，这里可以容纳不少东西，把东西放在合适的位置就行。</p><div class="r4"></div><h3 class="h7 h4">中等难度</h3><p class="11">卫生间</p><p class="21">我们还是建议从小处着手，每次处理一点，不过卫生间是小空间里容易收拾的。里面的东西你常用吗？有些是不是已经空了或者旧了？要么扔掉，要么留着，然后你就能宣告收拾卫生间胜利啦。</p><p class="11">游戏室</p><p class="21">收纳玩具让人头疼，但是其实可以很简单。如果你经常清理那些不再拿出来玩的、缺角的和用旧的玩具，你的任务会减轻很多。有什么好处呢？你可以把打算丢掉的玩具捐到当地的救助站。还有好处？清理孩子留下的烂摊子是世界上最好的有氧运动，可以说是最棒的低标生活！</p><div class="r4"></div><h3 class="h7 h4">高难度</h3><p class="11">衣帽间</p><p class="21">整理衣帽间有时候感觉像是在爬山。原因是，它不仅对体力是个挑战，还会让人精神疲惫、心情复杂。翻动衣架的时候，你的大脑一直在想，“这件裙子我还能穿吗？”“但是如果我决定再要一个孩子呢？”这都正常。这本书里有“断舍离的原则”（翻看第41页），帮犹豫不决的你决定东西的去留。别忘了，我们要过低标生活，整理的时候先把标准放低，以后再慢慢提高。</p><p class="11">厨房和食品柜</p><p class="21">食品柜在很多方面和衣柜完全相反：你不会对杏仁粉和腰果产生感情，所以更容易取舍。整理的难点是，这里是一个巨大的魔方，一旦被打散，重组起来就非常烦琐。厨房也是如此。所以，确保在清空架子和抽屉之前，好好清点你的储存空间，然后制订整理计划。《收纳》部分我们会给出很多厨房和食品柜整理案例，你要做的是选一个跟自己的家最接近的，直接照搬就行。</p><div class="r4"></div><h3 class="h7 h4">第一步：把所有东西拿出来</h3><p class="21">这一步，你的观念将向前迈出一大步。东西会因此变乱吗？当然。会发现一些让你心中隐隐作痛的东西吗？很可能。非要触碰抽屉、橱柜、衣橱里的每件东西，拿出来放到一边，再重新收纳吗？必须的。这意味着完成这一步之后，柜子里面应该完全是空的。只有这样，你才能找到丢在橱柜角落里灰扑扑的钱包，或者食品柜最里面过期的食物。</p><p class="31">如果你还把所有东西留在原处，等于在说，“这些东西我都会吃”或者“这些衣服我都会穿”，但我们要告诉你，正是这种想法让家里开始变得混乱的。如果不深入角落把每件东西都拿出来，你就是在逃避问题，甚至是给整理工程打下错误的基础。如果你还留着那些不在意的东西，那么建立一个高效、美观的收纳系统就难太多了。接下来是断舍离的环节，但是如果你不清楚自己有哪些东西，你很难有效地断舍离。评估每一件物品会帮助你搞清楚哪些东西你还需要、还在用、还喜欢，其他的丢掉就可以了。</p><p class="21">所以，先在厨房台面、床面或卫生间地面上腾出一块地方，把架子上和抽屉里的东西都拿出来。掏空之后，别忘了用抹布擦一擦，那里一定有不少灰尘和残渣。</p><h3 class="h7 h4">第二步：分门别类</h3><p class="21">当你把空间里的所有东西都拿出来之后，把它们大致分成几大类：运动服、T恤和牛仔裤；眼影、唇膏和洁面产品等。不用担心，把类似的东西放在一起就行了。比如，清理冰箱的时候，先把所有饮料放在一起，不要纠结牛奶要不要跟果汁或气泡水放在一起，暂且把它们都归为饮料一类。</p><div class="r4"></div><p class="21">把物品分门别类有好几层重要的意义。首先，你不会再次陷入一片混乱，甚至后悔自己买过这本书。其次，它能够帮助你完成最难的一步——舍弃那些不再穿、不再用或不想要的东西。你不需要一件件地查看，把东西简单分类之后，你就能更全面地看待自己的物品，看到哪些物品是重复的（比如，13件白色T恤），然后选出那些值得留下的。</p><p class="21">我们还要再说一遍，这时候不要开始整理哦。真的，我们经常在试图把水果放到篮子里的时候，立刻收手。我们还要提醒自己，不要得意忘形。如果在这个阶段就开始整理，你会把自己累倒。不这么做是有原因的：因为太难了。现阶段，不要想着给东西贴标签，专注分类即可。</p><h3 class="h7 h4">第三步：断舍离</h3><p class="21">给自己倒一大杯香槟（或者和乔安娜一样，来杯好茶），因为终于到了清理的时刻。好好看看眼前的每件东西，问问自己，这些东西值得我花费精力吗？现在是真正关键的时刻——决定哪些物品配得上你的关注、时间和精力，这关系到能否创造（并维持）一个每天都让你开心的整洁的禅意空间。我们允许你丢掉那些不再使用或不再热爱（甚至喜欢）的东西，所以这里提供了放大版的提示。</p><p class="11">大胆断舍离</p><div class="r4"></div><p class="31">只要发现一件在物质上或情感上对你不再有用的东西，你就可以将其舍弃——它没法儿再为你服务，却还占用房间里的宝贵空间和你的大脑。我们打赌每次看到原封不动的冰激凌机和整套瑞士火锅用具（你根本不会举行瑞士火锅派对），一次也没穿过的、婆婆送你的名牌夹克，还有没拆封的杏仁粉，你会有些许负罪感。可能你曾经计划要好好利用这些东西（计划最终都没有实施，又增加了你的负罪感——但是也有可能是因为我俩是土生土长的犹太人，负罪感是我们自身的一部分）。</p><p class="21">最重要的一点是，你要大胆丢掉那些占地方的东西。没人会提出要看看他们在圣诞节送你的那条围巾，没人好奇你家的洗碗巾上有奥黛丽·赫本的名言，也没人会问为什么你们不用15年前婚礼上收到的鸡尾酒杯。你自己买的东西，从未用过也没什么，我们都会犯这种错误。别再错上加错，赶紧丢掉吧。</p><p class="11">减少压力和愧疚感的断舍离诀窍：</p><p class="21">1.手里备好袋子。 买一包黑色垃圾袋，一些用来装垃圾，一些放要捐出去的东西，一些装留给朋友和家人的那些。在清理的时候，把东西打包很有必要，这个关键动作能让你保持动力。此外，清理掉地面或桌面上的东西，把它们装进袋子里，而不是从一堆移到另一堆，这个过程让人十分满足。</p><div class="r4"></div><p class="21">2.事先想好哪些东西要捐赠或送人。 可以跟“救世军”（Salvation Army ）约好上门来取，或者列好单子记下东西送给哪些人，不然那些要送人的袋子会堆在后备厢，一年都送不出去。制订计划的时候要实际一点，你真的要拖着15件未拆封的结婚礼物到快递点，然后一个个寄出去？那包打算在网上卖掉的衣服……你真的会卖掉，还是会用垃圾袋装起来，直到你完全忘记它们的存在？如果你觉得需要帮手，就叫朋友来帮忙吧！</p><p class="21">3.把要修的东西堆成一小堆（一定要小）。 少根表带的手表、屏幕碎掉的iPad（苹果平板电脑）、尺寸要修改的外套，这些东西都可以堆在一起，特别关注。修理好之后（一定要尽快，不能拖延），放回新腾出来的位置。</p><p class="21">4.选择储存或归档。 有些东西，不一定适合“保留或丢弃”这样的二分法。你可能需要留着它们，但不需要随时看见或随时取用。你的报税单不需要一直放在桌上，应该好好归档，放在合适的地方。有感情的东西可以打包放在阁楼或地下室，而不是占据客厅橱柜的宝贵空间。夏天的时候，厚重的冬季衣物不需要挂在衣柜中，可以放进高处的换季储物箱，拿的时候记得搬个小凳子。</p><p class="31">5.坚持清理，别放弃。 一旦找到清理的节奏，不要放弃，不要说留到下次再做。停下来再开始，是人们在攻克整理任务时容易失去兴趣和信心的重要原因。就像跑步一样（虽然我们对跑步了解不多，但这似乎是一个不错的比喻）：如果你打算跑5千米，但是每次训练间隔两周，那每次跑步对于你来说都是从零开始。一定要一鼓作气，才能改变家中的面貌，利用这股劲头，坚持下去。给清理留出大量时间，方为长久之计。整理物件可以待会再说，但一定要一次完成清理任务。于是，我们又要重复之前的话，不要一下整理太多，这是减少麻烦的关键；这一章的后面我们会给你指导。</p><div class="r4"></div><p class="21">6.再检查一下。 在进行下一步骤前，再看看留下的物品，确保每件都值得你花时间和精力放回你的空间。如果你感觉都对，恭喜你！你正式完成清理过程了！肯定一下自己的努力，喘口气。我们的方法论的剩余部分更有趣。</p><h3 class="h7 h4">断舍离的原则</h3><p class="21">当你判断东西要不要保留的时候，可以问自己这些问题。只要能帮你做决定，你甚至可以想象我们在你身后发问，这一点儿也不奇怪。</p><p class="21">1.我需要它吗？ 有些东西是生活的一部分，不管怎样我们都会把它放在身边。你可能真的不喜欢面包机，但是不会想把它扔掉。所以，如果你需要，就把它留下来。</p><p class="21">2.我用过它吗？ 确定用过吗？一年一次？烧烤盘就是这样一个例子，你可能只在感恩节用到它，即便不常用，但是至少确实用过。</p><div class="r4"></div><p class="21">3.我曾经想用它吗？ 这个问题通常适用于冰激凌机、瑞士火锅用具和健身器材。买的时候我们想得很好，但是家里的空间有限，所以，好好想想，你是会自己做冰激凌，还是直接从店里买一大盒回家。显然，我们会直接从商店买。</p><p class="21">4.我喜欢它吗？ 诚实地回答，如果你真的喜欢它，就把它留下。能让你开心的东西，完全可以留下。如果你不喜欢，就回到第2个问题，然后决定它的去留。</p><p class="31">5.我对它有感情吗？ 如果答案是肯定的，想想你对它的感情有多深。它类似于你的孩子在某人的生日派对上亲手为你做的陶器，还是外祖母传下来，但你并不喜欢，还打算以后传给女儿的瓷器？（罗伯塔，你在看吗？你的女儿克莉非常喜欢你的妈妈南希留下来的瓷器，并且非常乐意传给她自己的女儿斯特拉。）根据你是否认为这件物品值得情感依恋，选择捐掉或是妥善保存。如果一件东西对你来说很重要，即便你不喜欢，也可以把它留下，只要不占用家里的宝贵空间。你可以把这些东西放在橱柜顶层的架子上，或者阁楼、地下室和车库里，如果有必要的话，还可以租一间储藏室。因为它们不是你每天都会用的，所以不要让这些东西占用你的日常活动空间。</p><h3 class="h7 h4">“超级家居整理”购物法</h3><p class="21">一定在开始整理之前，了解家里的空间，这不需要我们再强调了吧。这将有助于你掌握所有物品的情况和空间本身的参数。在这个过程中，一定记得给你的空间拍照，这样在店里购物的时候就能拿来当作参考。若想凭借记忆力记住所有东西和需要填满的架子，最终的结果是你会跑好几趟商店，因为每次都会有东西忘记买。这里提供一些经过实践检验的小贴士：</p><div class="r4"></div><p class="21">· 测量空间大小， 包括高度、宽度、长度和深度。为了买到合适的产品，尺寸要精确到1/4英寸（6.35毫米），记下详细的数字，如架子的深度、层板之间的高度以及抽屉的深度和高度等。</p><p class="21">· 充分利用空间。 选择那些能有效利用每层架子的储物用品，一旦找到尺寸最合适的，就可以根据自己的品位选择。</p><p class="11">· 考虑留白。 比如地面是用来存放物品，还是保持开阔、干净？门口是利用起来，还是保持通畅？</p><p class="21">· 为某一处空间跑遍整家商店也是值得的。 因为你可能在洗漱用品区（比如，纸巾架）找到适合厨房的物品。</p><div class="r4"></div><p class="21">· 买齐各种尺寸的容器。 我们经常会从商店带着28个购物袋离开，但是我们发誓有应对这种疯狂的方法。你要在整理过程中给自己一些选择，因为感觉完美的东西并不总是如你所希望的那样有用。这不是问题！只要你不断尝试各种备选品，就一定能找到最合适的那个。</p><p class="11">· 大量购入！ 你需要的总是比想象中的多，所以多买些容器，不合适的退掉就行。</p><p class="21">· 考虑自己的生活方式。 在购买收纳品的过程中，一定要切实考虑你的日常生活习惯和家中每个人的需求。你是那种从杂货店回家后，有时间或精力把买回来的每一盒麦片都倒进一个小罐子里的人吗？还是会因为图省事用一个大罐子装所有的麦片？你是否有一个合适的收纳系统，把所有小东西放进储物盒里，然后一个个摆在书架上？只要你能长期保持，收纳就没问题。</p><p class="21">· 协调一致是关键， 所以最好买同一系列的储物容器，或者至少是同一色系的。产品搭配好，能够瞬间提升空间的质感，而不协调的产品只会让家里看起来更混乱。用品统一，让一切看起来更有品位。</p><div class="r4"></div><h3 class="h7 h4">不可或缺的收纳好物</h3><p class="11">重点关注家居店里的以下产品：</p><p class="21">· 鞋盒： 不是买鞋时自带的纸盒，我们推荐的是带盖塑料盒——有防尘的作用。它们可以用来装鞋，也可以有其他用途。而且，透明的塑料盒最适合放季节性的用品（这样，你就能记得自己收纳过的东西）。</p><p class="21">· 旋转托盘： 不仅可以放调味品，还能放手工艺品、洗漱用品、洗衣用品，还能放在厨房水槽下，用途多着呢！</p><p class="21">· 抽屉隔断： 选择无盖的那种，方便取用和收纳，放在需要快速又整齐地整理的地方，比如儿童游戏室。或者把隔断放在橱柜上，用来收纳小饰品和太阳镜。它们有可能被打翻（因为没有盖子），所以一定要放在稳定的台面上，边缘凸起的置物架是不错的选择。</p><div class="r4"></div><p class="21">· 防滑衣架： 别再用铁丝衣架了！虽说是开玩笑，但老实讲，如果东西总是滑落到地面，为什么要费劲挂起来呢？丝绒衣架真的特别好，什么都能挂得住。</p><p class="21">· 门后置物架： 每个橱柜或食品柜的内部都可以挂置物架，随便在网上搜一搜，你就能发掘置物架的很多用途：收纳鞋子、礼品包装纸、锅盖等。如果你还没买门后置物架，就真的落后咯。</p><p class="21">· 杂志盒： 我们从来没用杂志盒装过杂志，相反，我们用它来放手提包、手包、笔记本、文具、棋盘游戏和盒装拼图。</p><p class="11">· 带把手的储物篮： 这是我们最常使用的收纳容器，它能满足主要的收纳需求，放在柜顶也方便取用。</p><div class="r4"></div><p class="21">· 透明食品盒： 我们一定要先把食物放到透明的盒子里，然后再放进冰箱或冰柜。这样既能避免串味，还能分类储存。</p><p class="21">· 有内衬的储物篮： 不要把贵重物品放在容易钩住的储物篮里，选择有内衬的储物篮。它会让你的卧室看起来更温馨。</p><p class="11">· 分层储物架： 有了它，你的食品柜能更好地发挥作用。即便是柜子最里面的东西，你也能轻松拿到。</p><h2 class="h6 h4">我们的标志性做法</h2><p class="21">告诉你一个好消息：清理完所有东西、买到必备容器之后，接下来就轻松了，真正的整理终于开始了。俗话说，“磨刀不误砍柴工”，我们疯狂的背后是有章法的。</p><div class="r4"></div><h3 class="h7 h4">形式与功能同等重要</h3><p class="31">我们竭尽全力保持空间的美感，其中一个原因是我们清楚这能让客户充满动力去维持这种状态。事实上，如果一件事情让你感觉很棒，看上去也很棒，你会更愿意投入其中。就像你终于练出了身材线条，就会更有动力保持。你只需要提醒自己：“嗨，最难的部分已经完成了，你已经为改变搭建了一套系统——现在只要保持就行。”只不过，除了早晨进行有氧运动和只吃酸奶之外，你要做的是把麦片放进装早餐的储物盒里。这更简单！不管是雕琢手臂线条，还是精心整理游戏室，你都不愿意看到自己的努力付诸东流。</p><p class="21">不过，这里要明确一点，我们所说的“维持”，不是让家里时刻保持如同杂志封面的美感。即便是我们自己的家，也没那么厉害！我们不可能让每个抽屉和衣橱一直都完美，不过还是要让它们时刻保持良好的状态，因为纵容收纳系统的崩溃就像走下坡路——只要开始下滑一点点，后面就根本收不住；另外，身处秩序井然的美好空间，会让我们感到非常开心。</p><h3 class="h7 h4">令人眼前一亮的“彩虹收纳法”</h3><p class="21">“超级家居整理”的标志性做法之一，或者说我们和其他整理师的区别，是我们对ROYGBIV（红色、橙色、黄色、绿色、蓝色、靛蓝色、紫色，这下记住了吧）的偏爱：我们会根据颜色给物品分类，然后按照彩虹光谱排列。这多少考虑了设计因素——按照彩虹光谱排列的物品更令人赏心悦目，但本身也是一种整理策略。我们的大脑天生就能识别彩虹模式，所以我们自然而然就清楚东西放到哪儿。</p><p class="31">不管是药品、饮料、袋装零食、乐高玩具，还是T恤，如果按照彩虹光谱顺序摆放，就会形成与大脑产生自然共鸣的视觉流，你能更快找到物品，更容易收纳，而且在视觉上比其他方法更让你感觉舒服。我们的整理系统也因此更便于使用，因为有时候你要与别人共用这一系统。对孩子们来说，这种方法不仅能让他们准确地知道该把东西放在哪里，还能激发他们的创造力。忽然间，整理不再是一件苦差事，更像是一种挑战或游戏。所以我们向你保证，“彩虹收纳法”不仅有逻辑可循，而且实现了美学与功能的完美统一。</p><div class="r4"></div><h3 class="h7 h4">标签，标签，标签</h3><p class="31">另一个使我们的工作变得独一无二的标志，就是标签。但是我们不认为标签是给整理工作锦上添花，而是更相信这实际上是长时间维持空间整洁的秘诀。维持整理系统运作的关键不在于所选择的容器（尽管这也很重要）——而在于贴标签。这些标签，可以是手写、打印或是刺绣的，不管哪种形式，本质上它们就是一套收纳说明。“彩虹收纳法”就是这样一个直观的框架（本身也是一套标识），清楚具体地标明容器内的物品，让你和孩子、伴侣、客人，甚至任何人都能直截了当地明白东西该放在哪里。</p><p class="31">一旦东西都收纳到指定的位置，你就成功地维持了这个收纳系统。所以，正确使用标签很重要。它必须既有概括性，又够具体，种类划分要完美到不用想就知道杂物、洗好的衣服和新买的工艺品放在哪里。你需要一个简单的路线图，能够灵活应对偶尔出现的意外状况。你不想被标识得过分具体的容器限制住，所以会开始随意放置——这样总比不收拾好，然后收纳系统开始崩溃：天门大开，地狱的妖魔鬼怪都蹦出来，让你家再度陷入一片混乱。我们的良心不允许这种情况发生，所以在你下笔写标签之前，有些事情必须想清楚。</p><p class="31">先想好大类，然后才是具体分类。大的分类，比如食品柜里的“早餐”。但是如果你发现家里有很多燕麦，那也可以为它们单独创建一个小类，或者在浴室里，你可能囤了很多护发产品和各种干洗洗发露（咳咳，别忘了我们的低标生活哦）。在这种情况下，你可以在一个储物箱上标上“头发用品”的大类，再用一个储物盒专门装“干洗洗发露”。不是所有标签都要标得这么具体，不然你会发现有些东西买回家，你根本不知道把它们放在哪个储物盒。我们的经验是先分几个大类，这不会出错。再考虑精细分类是第二步。</p><p class="11">这里提供一些家里不同的空间需要的大小分类标签。标签没有对错之分，关键是让所有东西都有自己的位置！</p><div class="r4"></div><p class="11">我们自创的五大标签</p><p class="11">1.犹太人日常用品和秘密武器（没有什么比这个更棒！）</p><p class="11">2.婴儿用品、围兜和“尿不湿”</p><p class="11">3.闪亮的假发和织物</p><div class="r4"></div><p class="11">4.必须保留的东西</p><p class="11">5.梦想中的牛仔裤</p><p class="11">• 以基督教作为信仰基本的国际性宗教及慈善公益组织，以街头布道、慈善活动和社会服务著称。——译者注</p></div></section><section class="s3">
+<h1 class="s4" id="chapter-5">
+    收纳
+</h1>
+<div class="c1"><p class="21">我 们刚开始计划写这本书的时候，想把它做成烹饪书的感觉（诚然，讽刺的是，我们都不做饭）。然而，整理和烹饪确实有相似之处：我们想向你展示各种整理的办法，配以诱人的图片，希望你按照我们的方法去整理也能达到类似的效果。</p><p class="31">我们的这本“食谱”想告诉你，如何像我们一样整理家中的空间。最终，你获得的可能不是一锅炖菜，但是你会恢复头脑的清醒和家中的整洁。我们在这部分会涉及家中的许多空间，并且讲述按照我们的方式如何收拾整个家，但是不要感到有压力。罗马不是一天建成的，家也不是一天能整理好的。我们之所以展示不同美感、不同收纳难度的空间，是为了给你提供各种灵感，以便你随时开始整理自己的家。如果是从入门级收纳开始，你可以先整理好每个抽屉，直到你准备好整理一个更大的空间，并且在此过程中依然能感受到内心的平静。务必牢记我们的低标生活格言（翻回第26页），一切都没有问题。记住，每次完成一小步，都是一场胜利。另外，打底裤要归在裤子类。</p><h2 class="h6 h4">玄关</h2><p class="21">我们从玄关开始收纳，这块地方每家都有自己的安排。对一些人来说，它可能意味着一个临时衣帽间，对另一些人来说，这里是门口的收纳衣柜。不管怎样，有一点是不变的：我们在进门的时候，都需要一个地方随手放些常用物品。即使是在寸土寸金的纽约小公寓，也要在墙上镶一个挂钩，或在门口摆张小桌子用来放钥匙和信件。</p><p class="21">清点每天进出家门需要的东西，常用的有背包、外套、帽子、手提包、雨伞、信件和钥匙等，当然，每家的分类不尽相同。然后花时间想一想，每天你进门的时候，这些东西都被放在哪儿。比如，鞋子堆在地上？信件放在厨房操作台？弄清楚每天出门的必需品，你就可以按照自己的需求以及你家的空间来规划玄关布局。</p><div class="r4"></div><p class="11">让你家玄关时刻保持如杂志封面般完美的5种方法</p><p class="11">1.一个人住。</p><p class="11">2.为你家孩子另辟入口。</p><p class="11">3.别放东西。</p><div class="r4"></div><p class="11">4.把收信地址改成邻居的邮箱，一周取一次信件。</p><p class="11">5.外出不要穿鞋子或外套，这样进出大门的时候就不需要穿脱。</p><p class="11">……还是承认吧，玄关不可能时刻保持完美，不过收拾整理也算有氧运动，别嫌麻烦。</p><h3 class="h7 h4">临时玄关</h3><p class="21">有些人家里的玄关只容得下一张桌子，此时收纳的诀窍是想尽办法利用这块地方，井井有条地摆放所有出门必备品。在不到3平方英尺（约0.28平方米）大小的玄关，我们也能让它满足一家四口的日常需求，而且易于打理。</p><div class="r4"></div><h3 class="h7 h4">传统玄关</h3><p class="21">标准的玄关一般有3~4个分区，每个区域都有挂钩和置物格，就像一块井然有序的空白画布等你落笔。你也可以把这里当作繁忙的纽约中央车站 ，所以最好给家里每个人留一块地方，让他们负责整理自己的区域！</p><h3 class="h7 h4">莫莉·西姆斯家的玄关</h3><p class="21">莫莉·西姆斯家的玄关也是传统格局，不过带坐垫的休息区和高光漆为这里增色不少！然而，收纳原则和上一处玄关一样，家里每人一个钩子挂衣帽，剩下的东西放进储物篮里。</p><h3 class="h7 h4">海边的玄关</h3><p class="21">有时我们可以给传统标准来点儿有趣的变化。海边住所的玄关，严格意义上更像是一个沙室……不过在这里不用考虑帽子和手套的收纳，收好防晒霜和泳镜就行。</p><p class="11">小贴士/ 精心搭配为客人准备的遮阳帽和毛巾，你的玄关会更有风格。</p><div class="r4"></div><h3 class="h7 h4">多功能玄关柜</h3><p class="21">我们喜欢充分利用每一寸储藏空间。如果你家的门厅有一个壁橱或是储藏柜，那么考虑一下你能存放哪些类别的物品。左图的玄关柜里，我们收纳了外套、鞋子、雨具、药品和分类存放的常用物品。</p><p class="11">小贴士/ 如果家里有小孩，大人的药品最好放在高处的置物格，在孩子够得着的区域放绷带等更安全的物品！</p><h3 class="h7 h4">玄关衣柜</h3><p class="21">不是说衣柜只能用来放衣服。一些物品只要能收起来，贴好归类标签，就能和衣服一样放进衣柜。右图的例子里，我们需要把户外用品和待客用品放在紧靠门后的地方，以便从隔板上拿取，这个衣柜就成了完美的答案。</p><h3 class="h7 h4">克里斯蒂娜·阿普尔盖特 家的玄关</h3><p class="21">克里斯蒂娜家的玄关完美展示了她作为“超级妈妈”的地位。是的，工作再忙，她也没忘记给孩子准备足球比赛的零食。我们非常希望她能分享一些“超级妈妈经”，于是作为交换，我们很乐意帮她整理孩子的所有课外活动用具——舞蹈课背包、空手道训练服和足球鞋。</p><div class="r4"></div><p class="11">小贴士/ 把最重的物品放在低层架子上——实用又安全！</p><h2 class="h6 h4">家庭洗衣房</h2><p class="21">我们可不喜欢洗衣服，但是收拾洗衣房是我们的快乐时光（虽然这么说，但我们是整理专家，而不是玩乐家，所以别轻信我们的话）。洗衣房是我们最爱整理的空间之一，原因有以下几点：</p><p class="21">1.不管你是自己住，还是一大家人一起住，洗衣房都是经常使用的地方，这极大地得益于其功能性。我们这些整理狂，就是喜欢帮别人改造这一空间。</p><p class="11">2.小小的改变和少量产品就能让这里焕然一新。</p><div class="r4"></div><p class="11">3.洗衣房收拾好了，洗衣服这件琐事也能更轻松。不过只是稍微轻松一点儿，我们还是不爱做这件事。</p><p class="21">有些人竭尽全力把洗衣房打造得像杂志封面一样，有些人则把洗衣机塞进家里的某个角落。说实话，这两种情况我们都喜欢。如果洗衣房设计精美，我们喜欢用同样精心设计的功能进一步提升它的空间美感；至于那些不受重视甚至被看作眼中钉的洗衣空间，我们会把它变成既实用又上镜的角落。</p><p class="21">改造洗衣房之前，先想好你要储存的几类物品。很显然，你需要洗涤剂，那去污剂、干燥剂和其他清洁产品呢？要不要找地方放抹布和毛巾？是留出叠衣服的地方，还是把衣服拿到别处？想好物品分类和洗衣流程，你就能制订一个完美的计划。即使后面计划有所变化，你也能拥有一个好的起点！</p><h3 class="h7 h4">收纳必需品的橱柜</h3><p class="21">承认吧！这看上去很棒，不是吗？白色的储物盒放清洁喷雾剂和洗涤剂，容易拿取的盒子装熨斗，这样的极简安排，不失为一种干净、清爽的设计。</p><div class="r4"></div><p class="11">小贴士/ 写标签的时候放开写，最好写得又大又粗！</p><h3 class="h7 h4">没有储物空间的洗衣房</h3><p class="21">有时，一间漂亮的房间，在功能上却可能有所欠缺。左图的这间洗衣房，简洁时尚，但却没有一个架子或橱柜。但是，没有什么是一个篮子不能解决的！利用好柜台或洗衣机上方的台面，就不怕没地方放东西了。</p><h3 class="h7 h4">洗衣房里的单层储物架</h3><p class="21">嗨，只要好好利用，有一个架子总比没有强！右图的两个架子，都能存放洗涤、清洁和户外用品。所以，我们在每个家里都用类似的方式收纳。</p><p class="11">小贴士/ 使用可以尽情堆叠的储物容器。真的！能堆多高就堆多高，这样你就拥有更多宝贵的储物空间！</p><div class="r4"></div><h3 class="h7 h4">多功能洗衣房</h3><p class="21">不是谁家都有一个大到能举办高中舞会的洗衣房，但是假如你幸运地拥有这么一间，你会想把每个橱柜和抽屉都收纳整齐，特别是当你把洗衣用品之外的东西也放进来的时候。不然，这里很容易就变成和杂物抽屉一样糟糕的地方。</p><h3 class="h7 h4">在洗衣服间隙喘口气</h3><p class="21">给一大家子人洗衣服，没完没了，这真让人受不了。但是，想象一下，每次打开橱柜拿洗涤剂的时候，你都能享受片刻禅意，这样的角落是不是令人向往？这种感觉当然不可能持续到洗完衣服，但是还是能有点儿用！</p><p class="11">洗衣房里的规矩</p><p class="21">要用容易擦拭的储物盒，因为洗涤剂很容易洒出来。不要用只是看着好看的编织篮，除非你想让篮子被染成蓝色。</p><div class="r4"></div><p class="11">要用储物罐装洗衣球，不要用产品自带的塑料容器。不要把洗涤剂放在家里其他房间，因为这样做没有意义。</p><p class="11">要在洗衣房中储存家中各处会用到的东西。</p><h3 class="h7 h4">备用品供给站</h3><p class="21">洗衣房里很少只放洗衣用品，通常架子上和橱柜里会放一些备用品，比如灯泡、电池、狗粮和婴儿用品等。只要分类得当、标识清楚，这完全可行。</p><p class="11">小贴士/ 从商店买回来的东西，先拆掉多余的包装，这样就能快速取用，而且放在储物篮里看着更舒服。</p><div class="r4"></div><h3 class="h7 h4">别忘了门后空间</h3><p class="21">我们非常喜欢利用门后置物架来增加存储空间。这看起来像变魔术——你总能放下更多东西，还不占其他地方。你可能已经注意到，我们总会在书中极力推荐那些看上去没那么特别的东西，但是职业整理师就是这样：空间和收纳的理念已经融于我们的血液。</p><h3 class="h7 h4">开架存储也是好方法</h3><p class="21">任何空间的开放式置物架都有些棘手，因为你要时刻保证它的美观。如果置物架放在经常使用的区域，比如洗衣房，那就更麻烦了——既然没有门掩盖各种物品，就不能随意放置，这样才能时刻保持空间的整洁。</p><p class="21">小贴士/ 可堆叠的透明储物盒是收纳日用品的利器，而且方便取用。这些储物盒很轻，堆叠在一起很安全，无论用不用标签，你都能知道里面放了哪些东西（但是，你知道我们对标签的偏爱，所以加一个呗）。</p><h3 class="h7 h4">凯伦·费尔柴尔德家的洗衣房</h3><p class="21">毫无疑问，我们见过最好看的一间洗衣房属于Little Big Town（一个乡村音乐组合）的凯伦·费尔柴尔德，由天才设计师瑞秋·霍尔沃森设计。与其令人惊叹的大空间相比，我们更喜欢这里的多功能设计——桌面和台面可以叠衣服，抽屉可以存放礼品包装纸，还有橱柜可以用来收纳居家用品。墙上的艺术品增添了房间的气质，这样在洗衣的时候你不会感觉脱离整个家的氛围。这真的是梦想中的洗衣房。</p><div class="r4"></div><h2 class="h6 h4">卫生间</h2><p class="21">卫生间是我们最爱整理的另一处空间。我知道肯定有人在想：哪个房间不是你们的最爱？还真不是。车库、地下室和阁楼，也让我们头疼。但是卫生间如此有趣，充满无限可能，简直是整理师的乐园！整理卫生间还有一个好处，就是这里的物品分类清楚，而且每家每户一般差不多。通常，卫生间的物品分成如下几类：</p><p class="11">面部</p><p class="11">头发</p><p class="11">牙齿</p><div class="r4"></div><p class="11">洗浴和身体</p><p class="11">有时还会出现其他几类：</p><p class="11">眼部</p><p class="11">化妆品</p><div class="r4"></div><p class="11">美发用品</p><p class="11">棉签和化妆棉备用品</p><p class="11">旅行装</p><p class="21">受制于你家的空间和你的时间，你多半会在以上分类框架下进一步细分。比如，化妆品可以分成腮红、唇膏和眼影。不一定要分得这么细，所以你不必过分纠结，让自己不胜其烦。只要你能把物品分成几大类，然后收拾妥当，就算没有精力再细分，也算打了一场胜仗。之后等你有时间了再细微调整，这时你可以一手端着红酒杯，另一只手轻轻松松就能把干洗洗发露和定型喷雾区分开，多容易啊！</p><div class="r4"></div><h3 class="h7 h4">拯救皮肤的橱柜</h3><p class="21">现在，家里的镜面柜可不只放药品。这些柜子占据卫生间最好的位置，所以常常用来存放每天都要使用的物品。左图这个没有药品 的镜面柜，我们专门用来放置每天都要用的面部保养品。</p><p class="21">小贴士/ 在购买产品之前测量好置物空间的尺寸，总是很重要。但是测量镜面柜不能马虎！注意每层架子的深度，别忘了减掉柜门的铰链尺寸，不然储物盒可能放不下。</p><h3 class="h7 h4">拯救皮肤的抽屉</h3><p class="21">如果你家的卫生间放不下镜面柜，保养品也可以放在抽屉里！绝大多数瓶瓶罐罐都能平放，和竖着放时一样稳固——只是要盖紧盖子，以免漏出来。</p><p class="11">小贴士/ 抽屉分隔盒不仅有助于收纳，还能防止漏出来的化妆水弄脏抽屉。</p><div class="r4"></div><h3 class="h7 h4">没有抽屉的卫生间</h3><p class="21">如果你家的卫生间没有抽屉，可以用组合架或者移动小推车来增加储物空间。这两种办法都能兼顾功能性和独特的设计元素，正好给一成不变的卫生间来点儿有趣的变化。而且，当需要补货的时候，你还能推着小推车到处走，可有意思了（试试你就知道了）。</p><h3 class="h7 h4">日用品抽屉</h3><p class="21">你的日用品抽屉就是卫生间的“大热门”，这里装的是你一天至少要用两次的东西：牙刷、牙膏、隐形眼镜、面巾纸等等。右图的日用品抽屉还放着备用品，当你需要新的剃刀或牙刷时，直接打开抽屉就行。</p><h3 class="h7 h4">水槽下能放一切</h3><p class="21">卫生间水槽下的空间和厨房水槽下的空间一样重要，一定要利用起来。这里最适于储存大瓶洗发露、护发产品、乳液，等等。好好利用起来吧！</p><h3 class="h7 h4">开架存放亚麻制品</h3><p class="21">理论上，叠好的亚麻制品和毛巾放在开放的架子上会很好看。可惜的是，我们不是住在酒店或水疗会所（不过倒也不是没有希望），不管我们怎么努力，家里的毛巾也不可能看起来和酒店一样整洁。但是，用几个储物篮把它们装起来，也能看上去有模有样，你也就不用抓狂了。</p><div class="r4"></div><p class="11">小贴士/ 如果附近的架子放不下，厕纸可以放进地上的储物篮里。不过要保留外包装，防止积灰。</p><h3 class="h7 h4">好看囤货架</h3><p class="21">开放式存储架通常适合那些可以展示的物品，比如碗碟或书籍。备用的洗漱品一般放在看不到的地方，比如藏在橱柜门后或抽屉里。不过，展示一些高端产品和清洁用品，能让卫生间改头换面。</p><p class="21">小贴士/ 只要有可能，尽量选择与置物架深度一致、外沿齐平的储物盒，这种储物盒看起来像定制的一样，可以在视觉上提升空间的质感。（里面放什么根本不重要！）</p><h3 class="h7 h4">客用卫生间的抽屉</h3><p class="21">布置客用卫生间可有意思了，因为你可以把自己平常不用的东西都放进去。无论是高级牙膏还是高端洗漱用品，随你怎么放，反正不是每天都用。</p><div class="r4"></div><p class="21">小贴士/ 客用卫生间的抽屉是练习收纳技能的好地方。这里不是每天都会用到，所以几乎没什么风险（除非你也有一个严格的妈妈叫罗伯塔），不可能出错！</p><h3 class="h7 h4">台面收纳</h3><p class="21">有些人喜欢把化妆品放在梳妆台上可以看到的地方，有些人因为缺乏储存空间，需要利用梳妆台。不管是上述哪种情况，可堆叠的亚克力储物盒都能改变你的生活！好吧，可能没这么大的影响，但是你家的卫生间一定会焕然一新。</p><h3 class="h7 h4">洗漱用品柜</h3><p class="21">如果你家的卫生间有一个储藏柜，可就太幸运了，用上储物盒，把东西都归置到储藏柜靠前和中间的位置。一旦喷雾瓶和急救用品都整齐地摆放好，你就不会嫌弃它们碍眼了！</p><p class="21">小贴士/ 不要老想着用储物盒……隔板下的挂篮能放置你方便取用的物品，而且它能充分利用隔板之间的垂直空间。</p><div class="r4"></div><h3 class="h7 h4">按照香味存储</h3><p class="21">有时在收纳的过程中，一个特别的主题会浮现在我们的脑海中，我们知道那可以单独作为一类。左图案例中，除了清洁用品和乳液，香味也有自己的标签：葡萄柚、橙子和椰子。给葡萄柚单独分一类，这多有意思啊！每件物品都值得拥有属于自己的高光时刻，即使是柑橘味的洗浴用品。</p><h3 class="h7 h4">等等，还有要装的！</h3><p class="21">就在你感觉已经搞定分类收纳的物品时，忽然发现还有没收纳的东西，这该怎么办？冷静，我们还留了一手：备用品橱柜。备用空间，令人心满意足，有了它，我们在另一个橱柜坚持给香味分类的举动才显得更有意义。</p><p class="21">小贴士/ 我们想要透明容器方便看清储存的物品，但有时也不想让所有个人物品都展示出来，此时磨砂材质的容器一举两得。</p><h2 class="h6 h4">居家工作室</h2><p class="31">居家工作室这块区域，我们有时整理得特别顺手，有时却不知如何下手。通常我们不知道会在客户的居家工作室里遇到什么状况，因为每一家都截然不同：有的堆满文件和公文，有的里面都是手工材料和礼品包装纸，有的是在一间屋子里做家庭生意。还有一些工作室里堆了几十年都不舍得丢掉的文件（哎，这些东西收拾起来可真没意思）。所以，当我们鼓足勇气开始整理居家工作室的时候，都会揣着一颗颤抖的心，深吸一口气，准备迎接漫长的一天。</p><div class="r4"></div><p class="21">虽说如此，我们还是要向你展示一下我们最为自豪的几个案例，帮助你整理自己的办公空间。每一间居家工作室都是独一无二的，我们希望你能从这些案例中获取点滴灵感，并将它们汇集到一起，满足自家需要。</p><h3 class="h7 h4">首饰工作间</h3><p class="21">这里有一个小建议：如果你也有几百万颗小珠子、吊饰和藜麦大小的水晶要整理（当然不可能只有我们才遇到这种麻烦），千万不要把它们一股脑儿倒进烤盘里分拣。它们会磁化，自动形成某种奇怪的DNA（脱氧核糖核酸）双螺旋结构，这种混乱局面是无解的，你根本没办法将它们恢复原状。</p><p class="21">不过，埋头整理比沙砾还小的珠子整整3天之后，我们发现一切变得那么和谐美妙，并且结果让人无比自豪。谢天谢地，我们还能站在这儿说话，因为我们也是摸着石头过河。</p><h3 class="h7 h4">妈妈的万能抽屉</h3><p class="21">就在我们庆幸拥有自己的一块地方——按照个人需求打造的居家工作室——的时候，忽然想起早已为人父母的我们，不可能拥有完全属于自己的地方。是不是听起来很熟悉？你要给家里的每个人准备他们经常会用到的东西，还要保证不用每次都跟在他们的屁股后面把东西收回原处。</p><div class="r4"></div><h3 class="h7 h4">暗调储物架</h3><p class="21">已婚夫妇的收纳项目通常以太太的物品为主。但有时，我们也会照顾到丈夫的需求。右图就是一例，我们特别开心有机会整理这块线条感十足的黑色空间，为这个橱柜打造合适的收纳方案。</p><p class="21">小贴士/ 在家建立一个集中充电站，给每天使用的电子产品（手机、笔记本电脑等）充电，这样给它们充电的时候，你可以暂时丢开这些设备。</p><h3 class="h7 h4">乔伊·周的居家工作室</h3><p class="21">我们知道，我们必须为乔伊·周的生活品牌Oh Joy！的诞生地带去缤纷的彩虹光谱。她可是彩色印刷世界的女王，在她那儿，标准的黑白美学根本行不通。所以，当我们看到这个彩虹色的组合抽屉时，感觉眼前一亮。</p><p class="11">小贴士/ 大部分人都没有时间整理相簿，所以我们的低标生活方式坚决提倡使用照片盒。</p><div class="r4"></div><h3 class="h7 h4">墙上办公室</h3><p class="21">如果你想拥有属于自己的空间，但是又没有独立的房间，那么可以利用一面开放的墙壁轻松解决这个难题。墙面组合架加上一点儿空间就能打造一间临时办公室——我们会把它放在客卧。没客人的时候，你就能避开人群，在这里专心工作。客人来了后，这里就变成一张桌子，上面放上漂亮的篮子，里面装毛巾和洗漱用品。</p><h3 class="h7 h4">艺术工作室</h3><p class="21">有时，办公室不一定只能是办公室的样子，也可以是你每天寻找乐趣的创意空间，顺便还能挣生活费。听起来正合我们胃口！我们第一次走进这位艺术家的工作室时，真的惊掉了下巴。这么多颜色！我们几乎无法控制自己，开始用颜料瓶创造一道又一道彩虹。</p><p class="21">小贴士/ 购买储物用具的时候，一定要打破常规！不要把自己限制在“办公产品”区域，逛遍商场你可能会找到更有用的东西。商场每个区域都逛逛，尽可能多地选择（反正不合适的话也可以退货）。记住： 擦亮 眼睛，装满购物车，一定没错。</p><h3 class="h7 h4">家庭指挥中心</h3><p class="21">如果你需要处理家庭的纸质文件，记录学校的日程安排，还要应付数不尽的账单，那可能就得填写各种表格和待办事项。对于有同样麻烦的人，我们建议设立一个家庭指挥中心，指挥所有文件的进出。</p><div class="r4"></div><p class="11">小贴士/ 在桌面上营造美好的书写氛围，以此来平衡处理账单带来的不适感（和无趣）。</p><h3 class="h7 h4">劳伦·康拉德的手工用具橱柜</h3><p class="21">我们自己选出了一些特别满意的项目，在这份“史上最中意”榜单上，劳伦·康拉德的办公室名列前茅（我们没法儿只选出一位获胜者，就像说不出最喜欢自己的哪个孩子一样）。</p><p class="21">劳伦喜欢用带盖的白色储物盒存放手工用具、针线和办公用品，但是我们特别希望她的漂亮针织线能更显眼一点儿，而她也允许我们用亚克力储物盒随意发挥。于是我们一起坐在地板上缠线球，像小猫一样开心。</p><p class="21">注：①公平贸易是一种有组织的社会运动，在其贴有公平贸易标签的产品及相关产品之中，它提倡一种关于全球劳工、环保及社会政策的公平性标准，其产品从手工艺品到农产品不一而足，这个运动特别关注那些从发展中国家销售到发达国家的外销品。——译者注</p><div class="r4"></div><p class="11">小贴士/ 尽可能给你的储物盒留些空间，别装得太满，轻盈透气的收纳更有质感。</p><h3 class="h7 h4">备用品橱柜</h3><p class="21">不是每家都能有一个单独的办公空间。但是，剪刀、文具和打印纸总得有地方放。如果你家的空间有限，记得充分利用储物柜。你可以把任何一个空置的储物柜（即便是在厨房）变成你的办公用品补给站。</p><h3 class="h7 h4">工艺品橱柜</h3><p class="21">我们喜欢把每管颜料和每只马克笔按照色彩分类，并且乐此不疲。哪怕是手工爱好者唯恐避之不及的亮片，只要不洒在我们自己的家里，我们也乐意把它们分类收好。</p><h2 class="h6 h4">游戏室</h2><p class="21">我们从家里4个比较容易整理的空间开始，带你慢慢过渡到另外4个空间，而且不得不承认，整理后4个空间更有挑战性。但是，它们的整理过程是一样的，不过是将这些方法应用到整理起来更复杂的空间。虽说游戏室或孩子的房间里要整理的东西比玄关橱柜多得多，但它们都以同样的方式进行：把东西清空、分类、清理，然后分门别类，形成一个井然有序、标识清晰且易于保持的收纳系统。</p><div class="r4"></div><p class="21">但是，在这种棘手的空间（有时，小孩真的会把吃过的泡泡糖粘在墙上），你可能需要更多指导，赶紧看看我们的小诀窍吧。</p><h3 class="h7 h4">5种方法成功处理孩子的东西（如果你囤得太多而无从下手）</h3><p class="21">1.一定等他们不在家的时候处理这个难题。 等他们去上学或是出去玩的时候，甚至在他们入睡之后，拿出抢超市特卖商品的气势，赶紧把家里该丢的东西丢进袋子里；你也可以放宽标准，只丢掉那些他们在几个月内都没有碰过的玩具。</p><p class="21">2.千万别问你家孩子“还喜欢这个吗？”。 这么一问，他们的注意力立马就会被这个毛绒玩具吸引，虽然他们可能好几个月都没碰它了。相信自己的直觉，丢掉那些你认为他们不会再用的东西。</p><p class="21">3.玩具上缺少的零件，永远也找不回来。 绝对不可能找回来。只有丢掉这些残缺的玩具，才能结束家里的混乱对你的折磨。</p><div class="r4"></div><p class="21">4.如果怕孩子会想念不见的东西，就把它们放到车库或储物柜一段时间。 我们将其称为“断舍离看守所”，里面的东西都在等待命运的最终宣判。万一孩子向你要清理掉的东西，你就故作沉思状：“嗯……我来帮你找找吧。”或者用令人信服的语气说：“哦，我把它和你的其他艺术课作业一起收起来了。”总有一天，他们会明白，收起来就是扔了，但是好在现在他们还听不懂。</p><p class="21">5. 现在，这一点非常重要，请记住： 不要保留任何派对礼包里的东西。 这些小玩意儿最多在你家的书架上待20小时，然后你就可以毫不留情地丢掉——我们只允许孩子们在从派对回家的路上玩一会儿，之后便要将它们都丢掉。</p><h3 class="h7 h4">文具抽屉</h3><p class="21">如同我们之前反复强调的那样，从游戏室里最容易整理的空间开始：一个抽屉。右图就是一个装满蜡笔、铅笔、马克笔和荧光笔的抽屉，因为说不定什么时候学校的作业就要用到它们，所以我们谨遵童子军的格言：时刻准备着。</p><h3 class="h7 h4">豪华游戏室</h3><p class="21">我们以前从未见过左图这么棒的游戏室，以后也不太可能，所以让我们一起为之惊叹吧。等到恢复理智（好像连喊了5分钟的“天啊”和“我做不到啊”才开始工作），我们把这里分成几个区域：作业区、制作区、阅读角、艺术和手工中心，等等。</p><div class="r4"></div><h3 class="h7 h4">让孩子出去玩的抽屉</h3><p class="21">有的家长允许孩子在室内进行涂鸦艺术创作（如果我们的孩子以后也身处这样的家居环境，肯定也会觉得头疼），每次看到这样的情形，我们只能打心底表示佩服。但是，说实话，街头涂鸦粉笔真的不该出现在室内，它应该配得上自己名字中的“街头”二字。况且，游戏不一定要局限在游戏室内。为了保持室内整洁，我们把这个抽屉放在后门旁边，让孩子们可以拿了东西出去玩。</p><h3 class="h7 h4">随意取用的玩具柜</h3><p class="21">在整理孩子独享的空间时，我们会遵循一条核心原则：要以方便为主。方便他们自己取用，方便他们自己收拾，方便大人协助，因为我们得承认自身的责任使然。其中一种常用的收纳法是把东西放进透明储物盒里，然后贴上标签。储物盒一定要很轻，孩子的小手也能抓取，而且我们要提供必要的视觉提示，督促他们自己收拾玩具。</p><p class="21">小贴士/ 一个秩序井然的游戏室让整理变成游戏。让你家孩子根据颜色把东西分类放进可堆叠的储物盒里。皆大欢喜！</p><h3 class="h7 h4">让女孩疯狂的角落</h3><p class="21">如果你家孩子痴迷过家家，让我们来拯救你吧。我们测试过各种方案来收拾家里数不清的小玩意儿，所以我们有很大把握，可堆叠的储物盒能大大减少收纳的沮丧，又丝毫不会影响孩子摆弄迷你饰品的乐趣。</p><div class="r4"></div><h3 class="h7 h4">深不可测的手工用品柜</h3><p class="31">这个手工用品柜是迄今为止我们最为自豪的收纳成就之一。这里看似不难收拾，却堆得满满当当。如果把这个橱柜里的东西都堆在地板上，你无法想象客厅会变成什么样子：成堆的颜料、胶水、胶棒、胶带、填色书、手工折纸和DIY套装。当这个橱柜被清空后，我们才发现，这个看似小小的柜子，其实深不可测。如果你家没有合适的用品，想充分利用这块空间还真不容易。好在我们经过了谨慎的挑选，结果不错，两年后这里还是这样整洁！我们亲自查看过哦。</p><h3 class="h7 h4">学习小站</h3><p class="21">随着孩子长大，专门留出一个地方给他们做作业就显得越来越有必要。无论是卧室一角、家庭娱乐室还是游戏室，你都可以把它变成学习小站。你会发现源源不断的灵感帮你完成这项工作。我们最喜欢的一种方式是安装带工作台和开放式置物架的墙上组合柜。当然，我们一定会用彩虹装饰品装扮这里。</p><p class="21">小贴士/ 找一些有趣的装饰物（比如右图的金边玻璃樽），里面放上特别的文具，比如和纸胶带。这是展示趣味收藏的独特方法。</p><h3 class="h7 h4">抽屉里的手工艺杯</h3><p class="21">我们十分痴迷于手工用品，这听起来有点儿讽刺，因为我们从来没用它们做过手工。我们精于收纳，却没那么心灵手巧。老实说，一想到一堆小扣子或是塑料眼睛散落在游戏室，我们就感到不安。但是我们的那些客户敢把这些东西买回家，这里真的要感谢他们，因为整理这些手工用品是我们的最爱。但是为客户而做可以，我们自己就算了。</p><div class="r4"></div><p class="11">小贴士/ 其实不用特意去买放手工艺品的杯子，你可以用一次性纸杯、酸奶盒甚至茶杯。</p><h3 class="h7 h4">格温妮丝·帕特洛家的游戏室</h3><p class="21">我们竟然进到格温妮丝·帕特洛家的游戏室，每每想到，我们都感觉激动得要昏过去，直到现在也难以平静——任谁都会有和我们一样的反应吧。人们总会问我们最满意的整理案例，这间游戏室绝对能进入“超级家居整理”的荣誉殿堂。不仅仅因为这是格温妮丝·帕特洛家的游戏室，还因为我们用尽浑身解数，把这里变成了游戏室收纳的绝唱。</p><h3 class="h7 h4">挂起来的玩具架</h3><p class="21">如果你家没有多余的橱柜、抽屉或是柜子放玩具和手工用品，一组工业风墙上置物架也是不错的选择。它可以挂在客厅、卧室或者游戏室，提升室内的装饰效果。左图这个船形置物架的上方还有一个“烟囱”，正好用来放铅笔和钢笔！</p><p class="11">小贴士/ 这种墙上组合架特别适合装在儿童房放尿布和湿巾，等孩子长大了也可以用来放玩具和书本。</p><div class="r4"></div><h3 class="h7 h4">楼梯下的储物间</h3><p class="21">《绿野仙踪》让我们理所当然地害怕龙卷风，同样，《哈利·波特》也让人们对楼梯下的储物间没有什么好感 。所以，我们强烈推荐在这块区域存放小孩以外的任何东西。你一定不想让自己的孩子也住在这里。不过，把小孩的东西放在这里不是挺好的想法吗？</p><h2 class="h6 h4">衣帽间</h2><p class="21">整理衣帽间不适合“玻璃心”。收纳过程中遍布（不小心就会碰到引信引爆）情绪炸弹。就在你认为自己有点儿进展的时候，就摸到一件过去某个重要场合穿过的连衣裙，或者你怀第一个宝宝时穿的毛衣。即使你成功克服了这些障碍，又会发现10年前的衣服，提醒你再也瘦不回去。不过，如果定下一些目标和准则（也可以翻到第41页重读“断舍离的原则”），你就能顺利通过这一关。</p><h3 class="h7 h4">衣帽间收纳准则</h3><p class="21">1.收纳衣帽间的第一条准则，就是不要与他人谈论你正在收纳衣帽间这件事。 不要跟朋友说，他们等着接收你不要的东西；不要跟你的婆婆说，她会时不时检查送给你的围巾和毛衣是不是还在；更不要跟你的女儿说，她会突然求你留下一个老物件，但是之后根本不会再理会。如果你已经结婚，肯定不想跟自己的伴侣谈论这件事，因为对方会查看你的进度，不停打断你。</p><p class="11">2.现实一点。 这一点再怎么强调都不为过。如果你发现一条怀孕前穿的低腰牛仔裤，跟它说再见吧。</p><div class="r4"></div><p class="21">3.相信自己的直觉。 不管出于什么原因，你不再喜欢某件衣服，那么接下来的几个月你也不会喜欢它。你肯定不想让自己不喜欢的东西占据宝贵的储物空间。</p><p class="21">4.不要有负罪感 ——不管是别人送给你的，还是自己花大价钱买来而舍不得扔的。不要觉得难过！留着它只会占据你家的衣帽间的宝贵地盘，从而导致放不下自己真正喜欢的东西，这才真让人难过。相反，如果东西挺值钱，你可以把它放到网上或者二手店卖掉，也可以送给喜欢它的人，或者捐给需要的人。这些都是不错的选择，绝不能留着不需要的东西。</p><p class="21">5.别反悔。 一旦你决定丢掉某件东西，就不能让它有机会再回到衣帽间。不能走下坡路。坚持住，一定别碰已经决定捐出去的那些衣服。</p><h3 class="h7 h4">瑞秋·佐伊的衣帽间</h3><p class="21">整理瑞秋·佐伊的巨大衣帽间，不亚于参加“家居整理奥运会”。其实，我们之前想象过比赛中会发生什么，而且觉得自己完全能搞定，回头看，那时的想法根本不着边。目前为止，整理瑞秋·佐伊的衣帽间就是我们离想象最近的一次。</p><div class="r4"></div><p class="11">小贴士/ 要挂这么多外套就需要用质量好的细衣架。虽然一开始投入很多，但真的值得！</p><h3 class="h7 h4">没有衣帽间也没问题</h3><p class="21">架子上排开一列衣物篮，就能创造一个衣帽间。我们在一家人的卫生间里设计了一个这样的衣帽间。其实，任何一个空置的带隔板的柜子都可以。把衣物篮摆在柜子顶层或悬挂衣物的下方，或者改造一个鞋柜。每寸空间都可以充分利用。</p><p class="21">小贴士/ 如果你读过近藤麻理惠的《怦然心动的人生整理魔法》，那么你应该知道怎么折衣服。就算没读过也很简单，就是把过去堆放的衣服竖起来，这样更容易看清楚——不用非把抽屉（或篮子）里所有东西拿出来才找得到自己想要的那件T恤。</p><h3 class="h7 h4">鞋柜</h3><p class="21">室内设计师朱莉·库奇真的知道自己要什么，所以在主卧利用一整面墙放鞋子。她不仅确保每层隔板之间都留出足够的层高，方便放高跟鞋，还设计了放高筒靴的格子。巧妙的布局让我们的整理更轻松（所以，我们花了好一会儿称赞这个设计）。</p><div class="r4"></div><p class="21">小贴士/ 如果你家里没有设计放靴子的地方，可以调节衣柜的层板，把高筒靴放进去，或者用可调节的书架放鞋子。只要层高合适就能用！</p><h3 class="h7 h4">校服和运动服衣柜</h3><p class="21">孩子们不再只是上学：他们课后的每一分钟都被各种俱乐部、体育活动和团队活动填满了。所以，在给上学的孩子们收纳的时候，我们也会尽量考虑到每一项课外活动用品的存储空间（这是有原因的！），这样他们换各种制服就更方便。</p><h3 class="h7 h4">托马斯·瑞特和妻子阿金斯的衣帽间</h3><p class="21">如果你认为女士的衣服比男士多，那么我们要说，还真不一定。有时，男士的衣服可能多得多……不过说实在的，乡村乐手托马斯·瑞特本就因多变的造型声名在外，我们也想通过一种收纳方式把他的所有衣物归置妥当，同时展现他本人的品位。</p><p class="21">小贴士/ 存储空间不够的时候，别忘了上面！衣柜顶层通常有额外的空间，特别适合存放大件行李箱或换季衣物。</p><div class="r4"></div><h3 class="h7 h4">极简衣柜</h3><p class="21">有些衣柜只有一根挂衣杆，幸运的话，可能有一层板。此时，我们会尝试一些创意方案，充分利用空间。现在，你一定已经发现我们对门后储物的偏爱。这个方法真的太好用了，我们希望所有人和我们一样利用好这个地方。还有手推车，谁不想来一辆呢？</p><h3 class="h7 h4">宴会厅那么大的衣帽间</h3><p class="21">说实话，你可以在这个衣帽间里举办高中舞会，甚至是一场小型婚礼和招待会。实际上，这里不应该叫衣帽间。不过，我们着手整理的时候（这里其实已经很整洁了），想多花些力气让这里看起来更上镜。</p><h3 class="h7 h4">小空间衣柜</h3></div></section><section class="s3">
+<h1 class="s4" id="chapter-6">
+    保持
+</h1>
+<div class="c1"><p class="11">（我们保证你家会一直这么整洁）</p><p class="31">我 们不会说谎，维持你刚收拾好的空间的美感，需要费点儿力气。但这并不会很难，也不会很费劲儿，只是需要你坚守刚刚创造的秩序。无论是收拾家里，还是保养汽车和身体，你都要有些警觉，觉察哪些东西要定期检查，以维持良好的秩序。好在经历了我们在前面讲到的清理和整理步骤之后，你已经创造了一个可以随取随用的系统。如果之前的步骤你都没有做错，那么这个系统不仅可以充分协调你的空间大小和东西数量，还能充分发挥特定空间的功能。所以，稍稍花点儿心思——那种让家养植物（是多肉植物，可不是娇贵的兰花）活下来的心思，轻松维持家中整洁。</p><p class="21">幸运的是，“超级家居整理”的精髓是一环套一环，所以保持整洁要多容易有多容易。我们让你做的每件事都是有原因的，不仅是为了让你家的橱柜、食品柜、冰箱能在照片墙上看起来更好看。从精简物品到贴标签，再到协调色彩——让空间既美观又实用——每一步都不是心血来潮。现在，我们赶紧开始讨论怎么避免半年之后你家再次陷入混乱吧！</p><h3 class="h7 h4">长期成功的小秘诀</h3><p class="11">让其他人一起帮忙</p><p class="21">我们常常听到这样的抱怨“我的室友没法儿维持”或是“我的孩子会把这儿搞乱”。但是不要仅仅因为和别人住在一起，就认定家里没法儿保持空间整洁。如我们之前所说，维持收纳秩序要费点儿力气，但并不会很费劲儿。你可以这样想：自己是不是在餐具抽屉里放上了一个餐具分类格？如果是这样的话，每个人用了餐具之后，不是都默认勺子放在这一格，刀叉放在另一格吗？</p><p class="31">遵守收纳系统在其他空间也是一样！这和把餐具从洗碗机拿出来，收进抽屉一样简单，特别是当你听从我们关于贴标签和使用彩虹色收纳的建议（详见第49页和47页）时。并不是说，你的同伴太粗心或室友太大意就不能帮你维持空间的整洁。而且，我们收纳的时候，也不会觉得小孩太小没法儿参与整理行动。我们自己的小孩都被当成家居整理的学徒来训练，所以我们也非常鼓励你的孩子一起整理。实际上，让家人都参与家居整理，对长期维持你家的收纳秩序至关重要。不管是谁，只要和你住在同一屋檐下，每天都使用这个空间，他就应该了解维持你的劳动成果有多重要；这才是关键。</p><p class="11">买一件，丢一件</p><p class="21">这并非通用规则，但是确实能帮助你避免重回混乱的终极灾难。在你把家里收拾一新……然后开始囤更多东西之后，这条规则就能发挥作用。好在一个构建良好的收纳系统不仅能够满足你目前的收纳所需，也能灵活接纳未来会买入的东西。</p><p class="31">但是，假如你过分热衷于购买新款毛衣，或是囤一堆牙膏，那再好的系统也拿你没办法。我们会把这个规则比喻成避免过度饮食的“二八定律”：你不想吃到十成饱，那样吃完只想躺在沙发上；饮食的理想状态是八成饱——既满足又舒服。家居整理也是如此：你想留出一点儿空间，这样在买了一双新鞋、一件外套或一包特价卫生纸的时候，仍旧能把这些新东西收在家里，同时维持空间的舒适和清爽。如果你开始滥用这些备用空间，把东西塞进各个角落，很快你将失去那种让你感觉整洁方便的家居环境。</p><p class="31">一个塞满东西的空间，就像你吃了太多炸薯条后的肚子，得松开皮带缓缓。即便可以能腾出地方，你也不会感觉舒服，而且触碰了收纳系统（和你的自尊）的底线。所以，我们建议，当你买一些东西回家时，请一定丢掉一些东西。我们常说：“要么拥有东西，要么拥有空间，但是两者不可兼得。”我们不会站在你家的卫生间的洗漱台旁边，举着棒球棒威胁你不要把多余的保湿霜塞进卫生间——毕竟那是你家，你想怎么样都行。但是，我们希望你能明白什么是刚刚好的量，这样你才能做出正确的选择，以确保刚收拾好的空间一直维持良好的状态。但是，假如把我俩想象成挥着棒球棒的恶人对你来说更有用，那我们也不反对。这是你自己的整理之路，我们不过是你前行的后盾。</p></div></section><section class="s3">
+<h1 class="s4" id="chapter-7">
+    灵感来源
+</h1>
+<div class="c1"><p class="21">一旦你感觉家里又有凌乱的迹象（确有可能），赶紧登录一些家居网站，关注一些家居整理账号，或者逛逛家居商店，你会马上再次拥有整理家里的能量和动力。有时，添置一些新的杂志架，或是放一个好看的盒子在书架上，就能让家里保持整洁。</p></div></section><section class="s3">
+<h1 class="s4" id="chapter-8">
+    致谢
+</h1>
+<div class="c1"><p class="21">我要跟我的丈夫约翰、我的孩子斯特拉和萨顿说“谢谢”。斯特拉，我知道你觉得这本书不可能完成，但是这次真的完成了。然后我还要特别感谢杰米帮助我维系家庭和事业；感谢我的父母一直做我的强力后盾；感谢我的妈妈罗伯塔对我的巨大影响；感谢我的婆婆丽兹一直支持我；感谢我的兄弟达希尔，他才是我们家族的作家。我爱你们，无以言表。</p><p class="11">——克莉</p><p class="21">谢谢我的外祖父A.阿尤·埃尔金德，他一直胸怀大志并且如此教育我们；谢谢我的外祖母罗塞拉，日复一日坚定地为我的事业呐喊助威；谢谢我的父母——莎莉和斯图亚特，姐姐亚历克西斯，姨妈马西，公婆——盖尔和马文，祖父母——丽塔和厄夫。当然，不能少了我的丈夫杰瑞米、孩子迈尔斯和马洛，谢谢他们无私的支持，支持我完成写这本书的冒险。</p><p class="11">——乔安娜</p><p class="21">没有经纪人林赛·埃奇库姆，编辑安杰林·博尔希奇，设计师米娅·约翰逊，制作经理金·泰纳，制作编辑阿比·奥拉迪波，排版亚历山德里娅·马丁内斯和主编埃斯林·贝尔顿这个了不起的团队，以及他们的支持与付出，我们根本不可能完成这本书。最后，特别的感谢送给我们的粉丝、关注者和客户。</p></div></section>
+    </div>
+    
+    <div class="n0">
+        <button class="n1" id="prevChapter" disabled>← 上一章</button>
+        <button class="n1" id="nextChapter">下一章 →</button>
+    </div>
+    
+    <script>
+(function() {
+    'use strict';
+    
+    const state = {
+        currentChapter: 0,
+        totalChapters: 0,
+        mode: 'desktop',
+        chapters: [],
+        chapterData: [],
+        readingStartTime: Date.now(),
+        chaptersCompleted: 0,
+        lastTipTime: 0,
+        fatigueLevel: 1.0,
+        lastLanguageSwitch: 0,
+        technicalTermCount: 0,
+        tipCount: 0,
+        drawerClickCount: 0,
+        shelfClickCount: 0
+    };
+    
+    const elements = {
+        header: null,
+        chapters: [],
+        sidebarChapters: [],
+        progressBar: null,
+        progressText: null,
+        prevBtn: null,
+        nextBtn: null,
+        themeToggle: null,
+        shelfLink: null
+    };
+    
+    const mobile = {
+        drawerTrigger: null,
+        drawerPanel: null,
+        drawerClose: null,
+        drawerOverlay: null,
+        drawerChapters: null,
+        backToTop: null
+    };
+    
+    window.__CHAPTER_DATA__ = window.__CHAPTER_DATA__ || [];
+    
+    const tipMessages = {
+        chinese: {
+            short: [
+                { icon: "✌️", text: "这一节get到了" },
+                { icon: "📖", text: "又读完一小节" },
+                { icon: "✨", text: "知识点+1" }
+            ],
+            medium: [
+                { icon: "🌱", text: "理解加深中" },
+                { icon: "💪", text: "状态不错，继续" },
+                { icon: "🔍", text: "这个观点有意思" }
+            ],
+            long: [
+                { icon: "🏃", text: "已经读完1/3了" },
+                { icon: "⛰️", text: "半山腰了，加油" },
+                { icon: "🎪", text: "快到章节结尾了" }
+            ]
+        },
+        mixed: {
+            short: [
+                { icon: "🌐", text: "中英切换自如" },
+                { icon: "🎯", text: "Technical terms get!" },
+                { icon: "📚", text: "Bilingual reading" }
+            ],
+            medium: [
+                { icon: "🌍", text: "Great progress!" },
+                { icon: "⚡", text: "You're on fire!" },
+                { icon: "💡", text: "理解无国界" }
+            ],
+            long: [
+                { icon: "📊", text: "Halfway through" },
+                { icon: "🚀", text: "保持这个节奏" },
+                { icon: "🎯", text: "目标越来越近" }
+            ]
+        },
+        english: {
+            short: [
+                { icon: "🌍", text: "Great progress!" },
+                { icon: "⚡", text: "You're on fire!" },
+                { icon: "🎯", text: "Nailing it!" }
+            ],
+            medium: [
+                { icon: "💪", text: "Keep going!" },
+                { icon: "🌟", text: "You're doing great" },
+                { icon: "📈", text: "Making progress" }
+            ],
+            long: [
+                { icon: "🏃", text: "1/3 done, keep it up" },
+                { icon: "⛰️", text: "Halfway there" },
+                { icon: "🎪", text: "Almost there" }
+            ]
+        },
+        milestone: {
+            25: { icon: "🏁", text: "征程开始，已完成1/4" },
+            50: { icon: "🎪", text: "半程回顾，收获满满" },
+            75: { icon: "🚀", text: "冲刺阶段，即将完成" },
+            100: { icon: "🏆", text: "恭喜！你读完了整本书" }
+        },
+        rest: [
+            { icon: "☕", text: "累了？休息一下" },
+            { icon: "🧘", text: "眼睛需要放松" },
+            { icon: "🌙", text: "读完这章就休息" }
+        ],
+        timeBased: {
+            morning: { icon: "🌅", text: "早安，用阅读开启新的一天" },
+            night: { icon: "🌙", text: "夜深了，读完这章就休息吧" },
+            long: { icon: "⏰", text: "已专注阅读 {minutes} 分钟" }
+        }
+    };
+    
+    function init() {
+        cacheElements();
+        loadChapterData();
+        detectMode();
+        setupMobileElements();
+        setupEventListeners();
+        setupResizeListener();
+        loadThemePreference();
+        initReadingTracker();
+        initShelfAnimation();
+        
+        if (elements.chapters.length > 0) {
+            state.totalChapters = elements.chapters.length;
+            state.chapterData = window.__CHAPTER_DATA__;
+            goToChapter(0);
+            
+            setTimeout(() => {
+                const hour = new Date().getHours();
+                if (hour >= 5 && hour <= 8) {
+                    showTip(tipMessages.timeBased.morning.icon, tipMessages.timeBased.morning.text, 2000);
+                } else if (hour >= 22 || hour <= 4) {
+                    showTip(tipMessages.timeBased.night.icon, tipMessages.timeBased.night.text, 2000);
+                }
+            }, 1000);
+        }
+    }
+    
+    function initShelfAnimation() {
+        if (!elements.shelfLink) return;
+        
+        const saved = localStorage.getItem('shelfClickCount');
+        state.shelfClickCount = saved ? parseInt(saved) : 0;
+        
+        if (state.shelfClickCount < 3) {
+            elements.shelfLink.classList.add('f0');
+            setTimeout(() => {
+                elements.shelfLink.classList.remove('f0');
+            }, 3000);
+        }
+        
+        elements.shelfLink.addEventListener('click', (e) => {
+            state.shelfClickCount++;
+            localStorage.setItem('shelfClickCount', state.shelfClickCount);
+            elements.shelfLink.classList.remove('f0');
+        });
+    }
+    
+    function loadChapterData() {
+        console.log('📚 加载章节数据:', window.__CHAPTER_DATA__.length, '章');
+    }
+    
+    function cacheElements() {
+        elements.header = document.querySelector('.h0');
+        elements.chapters = document.querySelectorAll('.s3');
+        elements.sidebarChapters = document.querySelectorAll('.b3');
+        elements.progressBar = document.getElementById('progressBar');
+        elements.progressText = document.getElementById('progressText');
+        elements.prevBtn = document.getElementById('prevChapter');
+        elements.nextBtn = document.getElementById('nextChapter');
+        elements.themeToggle = document.getElementById('themeToggle');
+        elements.shelfLink = document.querySelector('.s0');
+    }
+    
+    function detectMode() {
+        state.mode = window.innerWidth > 1200 ? 'desktop' : 'mobile';
+        document.body.setAttribute('data-mode', state.mode);
+    }
+    
+    function setupResizeListener() {
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                const newMode = window.innerWidth > 1200 ? 'desktop' : 'mobile';
+                if (newMode !== state.mode) {
+                    state.mode = newMode;
+                    document.body.setAttribute('data-mode', state.mode);
+                }
+            }, 250);
+        });
+    }
+    
+    function initReadingTracker() {
+        state.readingStartTime = Date.now();
+        
+        const saved = localStorage.getItem('readingStats');
+        if (saved) {
+            try {
+                const stats = JSON.parse(saved);
+                state.chaptersCompleted = stats.chaptersCompleted || 0;
+                state.tipCount = stats.tipCount || 0;
+                state.drawerClickCount = stats.drawerClickCount || 0;
+            } catch (e) {}
+        }
+        
+        setInterval(updateFatigueLevel, 60000);
+    }
+    
+    function updateFatigueLevel() {
+        const minutes = Math.floor((Date.now() - state.readingStartTime) / 60000);
+        state.fatigueLevel = 1.0 + (minutes * 0.1);
+        
+        const lastSwitch = (Date.now() - state.lastLanguageSwitch) / 60000;
+        if (lastSwitch < 5) state.fatigueLevel += 0.2;
+        
+        state.fatigueLevel += state.technicalTermCount * 0.01;
+        state.fatigueLevel = Math.min(state.fatigueLevel, 3.0);
+        
+        if (state.fatigueLevel > 2.0) showRestTip();
+    }
+    
+    function saveReadingStats() {
+        const stats = {
+            chaptersCompleted: state.chaptersCompleted,
+            tipCount: state.tipCount,
+            drawerClickCount: state.drawerClickCount,
+            lastRead: new Date().toISOString()
+        };
+        localStorage.setItem('readingStats', JSON.stringify(stats));
+    }
+    
+    function showTip(icon, text, duration = 3000) {
+        const now = Date.now();
+        const hourAgo = now - 3600000;
+        if (state.lastTipTime > hourAgo && state.tipCount >= 3) return;
+        if (state.fatigueLevel > 2.5 && Math.random() > 0.3) return;
+        
+        state.lastTipTime = now;
+        state.tipCount++;
+        saveReadingStats();
+        
+        const oldTip = document.querySelector('.i0');
+        if (oldTip) oldTip.remove();
+        
+        const tip = document.createElement('div');
+        tip.className = 'i0';
+        tip.innerHTML = `<span class="i1">${icon}</span><span class="i2">${text}</span>`;
+        document.body.appendChild(tip);
+        
+        setTimeout(() => {
+            tip.classList.add('i3');
+            setTimeout(() => tip.remove(), 200);
+        }, duration);
+    }
+    
+    function showRestTip() {
+        const rest = tipMessages.rest[Math.floor(Math.random() * tipMessages.rest.length)];
+        showTip(rest.icon, rest.text, 2000);
+    }
+    
+    function getChapterTip(chapterIndex, progress) {
+        const chapter = state.chapterData[chapterIndex];
+        if (!chapter) return null;
+        
+        const languageType = chapter.language_type || 'chinese';
+        const totalUnits = chapter.total_units || 500;
+        
+        let lengthType = 'medium';
+        if (totalUnits < 500) lengthType = 'short';
+        else if (totalUnits > 1500) lengthType = 'long';
+        
+        let tipPool;
+        if (progress === 'complete') {
+            if (languageType === 'chinese') tipPool = tipMessages.chinese[lengthType];
+            else if (languageType === 'english') tipPool = tipMessages.english[lengthType];
+            else tipPool = tipMessages.mixed[lengthType];
+        } else {
+            if (languageType === 'chinese') tipPool = tipMessages.chinese.medium;
+            else if (languageType === 'english') tipPool = tipMessages.english.medium;
+            else tipPool = tipMessages.mixed.medium;
+        }
+        
+        if (!tipPool || tipPool.length === 0) return null;
+        return tipPool[Math.floor(Math.random() * tipPool.length)];
+    }
+    
+    function checkChapterTip(chapterIndex, isComplete = false) {
+        const chapter = state.chapterData[chapterIndex];
+        if (!chapter) return;
+        
+        const totalUnits = chapter.total_units || 500;
+        const languageType = chapter.language_type || 'chinese';
+        
+        let baseProbability = 0.3;
+        
+        if (isComplete) {
+            if (totalUnits < 500) baseProbability = 0.2;
+            else baseProbability = 1.0;
+        } else {
+            if (languageType === 'chinese') baseProbability = 0.4;
+            else if (languageType === 'english') baseProbability = 0.8;
+            else baseProbability = 0.6;
+        }
+        
+        baseProbability *= (1 + (state.fatigueLevel - 1.0) * 0.5);
+        if (Math.random() > baseProbability) return;
+        
+        const tip = getChapterTip(chapterIndex, isComplete ? 'complete' : 'midway');
+        if (tip) {
+            showTip(tip.icon, tip.text);
+            
+            if (isComplete) {
+                if (elements.progressBar) {
+                    elements.progressBar.classList.add('x0');
+                    setTimeout(() => elements.progressBar.classList.remove('x0'), 300);
+                }
+                const titleElement = document.getElementById(`chapter-${chapterIndex}`);
+                if (titleElement) {
+                    titleElement.classList.add('x0');
+                    setTimeout(() => titleElement.classList.remove('x0'), 500);
+                }
+            }
+        }
+    }
+    
+    function checkMilestone() {
+        const percent = Math.round((state.currentChapter + 1) / state.totalChapters * 100);
+        
+        if ([25, 50, 75, 100].includes(percent)) {
+            const milestone = tipMessages.milestone[percent];
+            if (milestone) {
+                showTip(milestone.icon, milestone.text, 4000);
+                if (percent === 100 && elements.progressBar) {
+                    elements.progressBar.style.height = '8px';
+                    setTimeout(() => {
+                        elements.progressBar.style.height = 'var(--progress-height)';
+                    }, 2000);
+                }
+            }
+        }
+    }
+    
+    function setupMobileElements() {
+        const drawerHTML = `
+            <div class="m0" id="drawerTrigger">
+                <span class="m1">☰</span>
+            </div>
+            <div class="m2" id="drawerPanel">
+                <div class="m3">
+                    <span class="m4">📖 目录</span>
+                    <button class="m5" id="drawerClose">✕</button>
+                </div>
+                <ul class="m6" id="drawerChapters"></ul>
+            </div>
+            <div class="m8" id="drawerOverlay"></div>
+            <button class="u0" id="backToTop">↑</button>
+        `;
+        
+        document.body.insertAdjacentHTML('afterbegin', drawerHTML);
+        
+        mobile.drawerTrigger = document.getElementById('drawerTrigger');
+        mobile.drawerPanel = document.getElementById('drawerPanel');
+        mobile.drawerClose = document.getElementById('drawerClose');
+        mobile.drawerOverlay = document.getElementById('drawerOverlay');
+        mobile.drawerChapters = document.getElementById('drawerChapters');
+        mobile.backToTop = document.getElementById('backToTop');
+        
+        populateDrawer();
+        bindMobileEvents();
+    }
+    
+    function populateDrawer() {
+        if (!mobile.drawerChapters || !elements.sidebarChapters.length) return;
+        
+        elements.sidebarChapters.forEach(item => {
+            const link = item.querySelector('a');
+            if (link) {
+                const newLi = document.createElement('li');
+                newLi.className = item.className;
+                newLi.innerHTML = link.outerHTML;
+                mobile.drawerChapters.appendChild(newLi);
+            }
+        });
+    }
+    
+    function bindMobileEvents() {
+        if (!mobile.drawerTrigger || !mobile.drawerClose || !mobile.drawerOverlay) return;
+        
+        mobile.drawerTrigger.addEventListener('click', () => {
+            toggleDrawer();
+            state.drawerClickCount++;
+            saveReadingStats();
+            if (!localStorage.getItem('drawerUsed')) {
+                showTip("📖", "目录已打开");
+                localStorage.setItem('drawerUsed', 'true');
+            }
+        });
+        
+        mobile.drawerClose.addEventListener('click', closeDrawer);
+        mobile.drawerOverlay.addEventListener('click', closeDrawer);
+        
+        let touchStartX = 0;
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        });
+        
+        document.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            if (touchStartX < 30 && touchEndX - touchStartX > 50) {
+                if (!mobile.drawerPanel?.classList.contains('o0')) openDrawer();
+            }
+            if (mobile.drawerPanel?.classList.contains('o0') && touchStartX - touchEndX > 50) {
+                closeDrawer();
+            }
+        });
+        
+        if (mobile.backToTop) {
+            mobile.backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    }
+    
+    function setupEventListeners() {
+        window.addEventListener('scroll', handleScroll);
+        
+        if (elements.themeToggle) {
+            elements.themeToggle.addEventListener('click', toggleTheme);
+        }
+        
+        document.querySelectorAll('.g1').forEach(card => {
+            card.addEventListener('click', toggleToolExample);
+        });
+        
+        if (elements.prevBtn) {
+            elements.prevBtn.addEventListener('click', () => goToChapter(state.currentChapter - 1));
+        }
+        if (elements.nextBtn) {
+            elements.nextBtn.addEventListener('click', () => goToChapter(state.currentChapter + 1));
+        }
+        
+        document.addEventListener('click', (e) => {
+        // ===== 处理 Page Up/Down 翻页，考虑上下玻璃框 =====
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'PageDown' || e.key === 'PageUp') {
+                e.preventDefault();
+               
+                const headerHeight = 85;  // 固定头部高度  顶部留白太多：减小 headerHeight（比如75px，顶部被遮挡：增大 headerHeight（比如85px）
+                const footerHeight = 75;  // 固定底部高度  底部留白太多：减小 footerHeight（比如65px）底部被遮挡：增大 footerHeight（比如75px）
+                const viewportHeight = window.innerHeight;
+                const currentScroll = window.pageYOffset;
+               
+                // 计算安全滚动区域（考虑玻璃框）
+                const safeHeight = viewportHeight - headerHeight - footerHeight;
+               
+                if (e.key === 'PageDown') {
+                    // 向下翻页：滚动一个安全高度
+                    const nextScroll = Math.min(
+                        currentScroll + safeHeight,
+                        document.documentElement.scrollHeight - viewportHeight
+                    );
+                    window.scrollTo({ top: nextScroll, behavior: 'smooth' });
+                } else if (e.key === 'PageUp') {
+                    // 向上翻页
+                    const prevScroll = Math.max(0, currentScroll - safeHeight);
+                    window.scrollTo({ top: prevScroll, behavior: 'smooth' });
+                }
+            }
+        });
+
+            const link = e.target.closest('.b3 a, .m7 a');
+            if (link) {
+                e.preventDefault();
+                const href = link.getAttribute('href');
+                const chapterId = parseInt(href.replace('#chapter-', ''));
+                goToChapter(chapterId);
+            }
+        });
+    }
+    
+    function goToChapter(index) {
+        if (index < 0 || index >= state.totalChapters) return;
+        
+        const wasLastChapter = state.currentChapter === state.totalChapters - 1;
+        const previousChapter = state.currentChapter;
+        state.currentChapter = index;
+        
+        elements.chapters.forEach((chap, i) => {
+            chap.style.display = i === index ? 'block' : 'none';
+        });
+        
+        if (elements.prevBtn) elements.prevBtn.disabled = index === 0;
+        if (elements.nextBtn) elements.nextBtn.disabled = index === state.totalChapters - 1;
+        
+        scrollToChapter(index);
+        updateAllHighlights();
+        
+        if (previousChapter !== index && !wasLastChapter) {
+            state.chaptersCompleted++;
+            saveReadingStats();
+            checkChapterTip(previousChapter, true);
+            checkMilestone();
+            
+            const minutes = Math.floor((Date.now() - state.readingStartTime) / 60000);
+            if (minutes > 0 && minutes % 10 === 0 && minutes <= 60) {
+                const timeTip = tipMessages.timeBased.long;
+                showTip(timeTip.icon, timeTip.text.replace('{minutes}', minutes));
+            }
+        }
+        
+        if (state.mode === 'mobile' && mobile.drawerPanel?.classList.contains('o0')) {
+            closeDrawer();
+        }
+    }
+    
+    function scrollToChapter(index) {
+        const chapterElement = document.getElementById(`chapter-${index}`);
+        if (!chapterElement) return;
+        
+        const headerHeight = elements.header ? elements.header.offsetHeight : 80;
+        const rect = chapterElement.getBoundingClientRect();
+        const scrollTo = window.pageYOffset + rect.top - headerHeight - 20;
+        
+        window.scrollTo({ top: Math.max(0, scrollTo), behavior: 'smooth' });
+    }
+    
+    function updateAllHighlights() {
+        document.querySelectorAll('.b3, .m7').forEach(item => {
+            item.classList.remove('a0');
+        });
+        
+        const activeSidebarItem = document.querySelectorAll('.b3')[state.currentChapter];
+        if (activeSidebarItem) activeSidebarItem.classList.add('a0');
+        
+        if (mobile.drawerChapters) {
+            const activeDrawerItem = mobile.drawerChapters.querySelectorAll('.b3')[state.currentChapter];
+            if (activeDrawerItem) activeDrawerItem.classList.add('a0');
+        }
+    }
+    
+    function handleScroll() {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        
+        if (elements.progressBar) elements.progressBar.style.width = scrolled + '%';
+        if (elements.progressText) elements.progressText.textContent = `${Math.round(scrolled)}%`;
+        
+        if (mobile.backToTop) {
+            if (winScroll > window.innerHeight) {
+                mobile.backToTop.classList.add('w0');
+            } else {
+                mobile.backToTop.classList.remove('w0');
+            }
+        }
+        
+        detectCurrentChapter();
+        
+        const currentChapterData = state.chapterData[state.currentChapter];
+        if (currentChapterData) {
+            const chapterElement = document.getElementById(`chapter-${state.currentChapter}`);
+            if (chapterElement) {
+                const rect = chapterElement.getBoundingClientRect();
+                const totalHeight = rect.height;
+                const scrolledInChapter = Math.abs(rect.top);
+                
+                if (totalHeight > 0) {
+                    const progress = scrolledInChapter / totalHeight;
+                    if (progress > 0.3 && progress < 0.4 && !sessionStorage.getItem('tip-30')) {
+                        checkChapterTip(state.currentChapter, false);
+                        sessionStorage.setItem('tip-30', 'true');
+                    } else if (progress > 0.6 && progress < 0.7 && !sessionStorage.getItem('tip-60')) {
+                        checkChapterTip(state.currentChapter, false);
+                        sessionStorage.setItem('tip-60', 'true');
+                    }
+                }
+            }
+        }
+    }
+    
+    function detectCurrentChapter() {
+        const headerHeight = elements.header ? elements.header.offsetHeight : 80;
+        
+        for (let i = 0; i < elements.chapters.length; i++) {
+            const titleElement = document.getElementById(`chapter-${i}`);
+            if (titleElement) {
+                const rect = titleElement.getBoundingClientRect();
+                if (rect.top <= headerHeight + 50 && rect.bottom > headerHeight) {
+                    if (state.currentChapter !== i) {
+                        state.currentChapter = i;
+                        updateAllHighlights();
+                        sessionStorage.removeItem('tip-30');
+                        sessionStorage.removeItem('tip-60');
+                    }
+                    break;
+                }
+            }
+        }
+    }
+    
+    function toggleDrawer() {
+        if (mobile.drawerPanel?.classList.contains('o0')) {
+            closeDrawer();
+        } else {
+            openDrawer();
+        }
+    }
+    
+    function openDrawer() {
+        if (!mobile.drawerPanel || !mobile.drawerOverlay) return;
+        mobile.drawerPanel.classList.add('o0');
+        mobile.drawerOverlay.classList.add('a0');
+    }
+    
+    function closeDrawer() {
+        if (!mobile.drawerPanel || !mobile.drawerOverlay) return;
+        mobile.drawerPanel.classList.remove('o0');
+        mobile.drawerOverlay.classList.remove('a0');
+    }
+    
+    function toggleTheme() {
+        document.body.classList.toggle('d0');
+        const isDark = document.body.classList.contains('d0');
+        if (elements.themeToggle) {
+            elements.themeToggle.textContent = isDark ? '☀️ 日间' : '🌙 夜间';
+        }
+        localStorage.setItem('darkMode', isDark ? '1' : '0');
+    }
+    
+    function toggleToolExample(e) {
+        e.stopPropagation();
+        const card = e.currentTarget;
+        const example = card.querySelector('.g7');
+        const expandText = card.querySelector('.g4');
+        
+        if (example) {
+            example.classList.toggle('a0');
+            if (expandText) {
+                expandText.textContent = example.classList.contains('a0') ? '收起示例' : '查看示例';
+            }
+        }
+    }
+    
+    function loadThemePreference() {
+        if (localStorage.getItem('darkMode') === '1') {
+            document.body.classList.add('d0');
+            if (elements.themeToggle) {
+                elements.themeToggle.textContent = '☀️ 日间';
+            }
+        }
+    }
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();
+</script>
+</body>
+</html>

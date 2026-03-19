@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 书籍阅读器</title>
+    <!-- Markdown 解析器 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- 代码高亮 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <!-- 基础样式 -->
+    <link rel="stylesheet" href="themes/theme-base.css">
+    <!-- 默认主题（由 JS 动态加载） -->
+    <style>
+        /* 你的阅读器样式 */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .header {
+            position: sticky;
+            top: 0;
+            background: var(--bg-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+        .theme-switcher button {
+            padding: 5px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            background: var(--bg-color);
+            color: var(--text-color);
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .theme-switcher button.active {
+            border-width: 2px;
+            border-color: var(--link-color);
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .markdown-body {
+            box-sizing: border-box;
+            min-width: 200px;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 45px;
+        }
+        @media (max-width: 767px) {
+            .markdown-body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>
+            <a href="index.html" style="color: var(--link-color);">📚 书库</a>
+            <span style="margin: 0 10px;">/</span>
+            <span id="book-title">加载中...</span>
+        </div>
+        <div class="theme-switcher">
+            <button class="theme-btn" data-theme="theme1">🌞 明亮</button>
+            <button class="theme-btn" data-theme="theme2">🌙 暗黑</button>
+            <button class="theme-btn" data-theme="theme3">📜 护眼</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="content" class="markdown-body">加载中...</div>
+    </div>
+
+    <script>
+        // 解析 URL 参数
+        const urlParams = new URLSearchParams(window.location.search);
+        const bookName = urlParams.get('book');      // 如: 漂亮朋友
+        const chapter = urlParams.get('chapter') || 'index.md';  // 默认加载目录页
+        
+        // 主题切换
+        const themeStyle = document.createElement('link');
+        themeStyle.rel = 'stylesheet';
+        document.head.appendChild(themeStyle);
+        
+        // 从 localStorage 读取保存的主题
+        const savedTheme = localStorage.getItem('book-reader-theme') || 'theme1';
+        themeStyle.href = `themes/${savedTheme}.css`;
+        
+        // 高亮当前主题按钮
+        document.querySelectorAll('.theme-btn').forEach(btn => {
+            if (btn.dataset.theme === savedTheme) {
+                btn.classList.add('active');
+            }
+            btn.addEventListener('click', function() {
+                const theme = this.dataset.theme;
+                themeStyle.href = `themes/${theme}.css`;
+                localStorage.setItem('book-reader-theme', theme);
+                
+                document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // 加载书籍内容
+        async function loadBook() {
+            if (!bookName) {
+                document.getElementById('content').innerHTML = '❌ 未指定书籍';
+                return;
+            }
+            
+            try {
+                // 根据你的 main.py 生成的结构，文件路径是:
+                // books/漂亮朋友/index.md 或 books/漂亮朋友/chapters/01-第一章.md
+                let filePath;
+                if (chapter === 'index.md') {
+                    filePath = `books/${bookName}/index.md`;
+                } else {
+                    filePath = `books/${bookName}/chapters/${chapter}`;
+                }
+                
+                const response = await fetch(filePath);
+                if (!response.ok) throw new Error('文件不存在');
+                
+                const markdown = await response.text();
+                
+                // 配置 marked 支持代码高亮
+                marked.setOptions({
+                    highlight: function(code, lang) {
+                        if (lang && hljs.getLanguage(lang)) {
+                            return hljs.highlight(code, { language: lang }).value;
+                        }
+                        return hljs.highlightAuto(code).value;
+                    }
+                });
+                
+                document.getElementById('content').innerHTML = marked.parse(markdown);
+                document.querySelectorAll('pre code').forEach(block => hljs.highlightElement(block));
+                
+                // 从 markdown 中提取书名（如果有 H1 标题）
+                const titleMatch = markdown.match(/^#\s+(.+)$/m);
+                if (titleMatch) {
+                    document.getElementById('book-title').textContent = titleMatch[1];
+                } else {
+                    document.getElementById('book-title').textContent = bookName;
+                }
+                
+            } catch (error) {
+                document.getElementById('content').innerHTML = `❌ 加载失败: ${error.message}`;
+            }
+        }
+        
+        loadBook();
+    </script>
+</body>
+</html>

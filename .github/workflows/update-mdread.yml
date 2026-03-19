@@ -1,0 +1,101 @@
+name: Update mdRead Books Index
+
+on:
+  push:
+    paths:
+      - 'mdRead/books/**'        # 监控 mdRead/books 的变化
+    branches: [ main ]
+  workflow_dispatch:              # 允许手动触发
+
+permissions:
+  contents: write
+
+jobs:
+  update-books-index:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      
+      - name: Generate books index.json
+        run: |
+          cd mdRead
+          
+          cat > generate_index.py << 'EOF'
+import json
+from pathlib import Path
+from datetime import datetime
+import subprocess
+
+books_dir = Path('books')
+if not books_dir.exists():
+    print("书籍目录不存在")
+    exit(0)
+
+books_list = []
+
+for book_dir in sorted(books_dir.iterdir()):
+    if not book_dir.is_dir():
+        continue
+    
+    print(f"处理: {book_dir.name}")
+    
+    # 读取 meta.json
+    meta = {}
+    meta_file = book_dir / 'meta.json'
+    if meta_file.exists():
+        with open(meta_file, 'r', encoding='utf-8') as f:
+            meta = json.load(f)
+    
+    # 获取章节列表
+    chapters_dir = book_dir / 'chapters'
+    chapters = []
+    if chapters_dir.exists():
+        chapters = sorted([f.stem for f in chapters_dir.glob('*.md')])
+    
+    # 获取最后修改时间
+    try:
+        result = subprocess.run(
+            ['git', 'log', '-1', '--format=%cd', '--date=short', str(book_dir)],
+            capture_output=True, text=True
+        )
+        last_modified = result.stdout.strip() or datetime.now().strftime('%Y-%m-%d')
+    except:
+        last_modified = datetime.now().strftime('%Y-%m-%d')
+    
+    books_list.append({
+        'id': book_dir.name,
+        'title': meta.get('title', book_dir.name),
+        'author': meta.get('author', '未知'),
+        'total_chapters': len(chapters),
+        'last_modified': last_modified,
+        'has_notes': (book_dir / 'notes').exists()
+    })
+
+# 写入 index.json
+with open('books/index.json', 'w', encoding='utf-8') as f:
+    json.dump(books_list, f, ensure_ascii=False, indent=2)
+
+print(f"✅ 已生成 {len(books_list)} 本书的索引")
+EOF
+
+          python3 generate_index.py
+      
+      - name: Commit and push if changed
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add mdRead/books/index.json
+          if git diff --staged --quiet; then
+            echo "没有变化"
+          else
+            git commit -m "📚 自动更新 mdRead 书籍索引"
+            git push
+          fi
