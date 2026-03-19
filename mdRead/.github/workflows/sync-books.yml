@@ -1,0 +1,72 @@
+name: Sync Books from ncxAnalyser
+
+on:
+  # 可以手动触发
+  workflow_dispatch:
+  # 也可以定时检查更新（比如每天）
+  # schedule:
+  #   - cron: '0 0 * * *'
+
+jobs:
+  sync-books:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      
+      - name: Install dependencies
+        run: |
+          pip install requests
+      
+      - name: Generate books index
+        run: |
+          cd mdRead
+          
+          # 创建 books 目录（如果不存在）
+          mkdir -p books
+          
+          # 生成书籍列表 JSON 供前端使用
+          python3 -c "
+import json
+from pathlib import Path
+
+books_dir = Path('books')
+index = []
+
+for book_dir in books_dir.iterdir():
+    if book_dir.is_dir():
+        meta_file = book_dir / 'meta.json'
+        if meta_file.exists():
+            with open(meta_file, 'r', encoding='utf-8') as f:
+                meta = json.load(f)
+                index.append({
+                    'id': book_dir.name,
+                    'title': meta.get('title', book_dir.name),
+                    'author': meta.get('author', ''),
+                    'chapters': meta.get('total_chapters', 0)
+                })
+        else:
+            index.append({
+                'id': book_dir.name,
+                'title': book_dir.name,
+                'author': '未知'
+            })
+
+with open('books/index.json', 'w', encoding='utf-8') as f:
+    json.dump(index, f, ensure_ascii=False, indent=2)
+
+print(f'已生成 {len(index)} 本书的索引')
+          "
+      
+      - name: Commit and push if changed
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add mdRead/books/index.json
+          git diff --quiet && git diff --staged --quiet || git commit -m "Update books index"
+          git push
