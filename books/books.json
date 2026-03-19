@@ -1,6 +1,6 @@
 {
-  "lastUpdated": 1773946010042,
-  "totalBooks": 54,
+  "lastUpdated": 1773948842824,
+  "totalBooks": 49,
   "totalCategories": 14,
   "categories": [
     "百科",
@@ -10,10 +10,10 @@
     "网文",
     "科幻",
     "虚构",
-    "传记",
     "历史",
     "奇幻",
     "生活",
+    "传记",
     "推理",
     "剧情",
     "社科"
@@ -251,28 +251,6 @@
       "addedTime": 1773857305000
     },
     {
-      "id": "传记_光电帝国：爱迪生、特斯拉、威斯汀豪斯三大巨头的世界电力之争_琼斯.html",
-      "file": "传记_光电帝国：爱迪生、特斯拉、威斯汀豪斯三大巨头的世界电力之争_琼斯.html",
-      "filename": "传记_光电帝国：爱迪生、特斯拉、威斯汀豪斯三大巨头的世界电力之争_琼斯.html",
-      "title": "光电帝国：爱迪生、特斯拉、威斯汀豪斯三大巨头的世界电力之争",
-      "category": "传记",
-      "author": "琼斯",
-      "size": 784929,
-      "lastModified": 1771445285000,
-      "addedTime": 1771445285000
-    },
-    {
-      "id": "虚构_分成两半的子爵 _卡尔维诺.html",
-      "file": "虚构_分成两半的子爵 _卡尔维诺.html",
-      "filename": "虚构_分成两半的子爵 _卡尔维诺.html",
-      "title": "分成两半的子爵 ",
-      "category": "虚构",
-      "author": "卡尔维诺",
-      "size": 202147,
-      "lastModified": 1771446789000,
-      "addedTime": 1771446789000
-    },
-    {
       "id": "科幻_基地Foundation  Empire 02_Isaac Asimov.html",
       "file": "科幻_基地Foundation  Empire 02_Isaac Asimov.html",
       "filename": "科幻_基地Foundation  Empire 02_Isaac Asimov.html",
@@ -326,17 +304,6 @@
       "size": 268098,
       "lastModified": 1773857305000,
       "addedTime": 1773857305000
-    },
-    {
-      "id": "奇幻_好兆头_特里 尼尔.html",
-      "file": "奇幻_好兆头_特里 尼尔.html",
-      "filename": "奇幻_好兆头_特里 尼尔.html",
-      "title": "好兆头",
-      "category": "奇幻",
-      "author": "特里 尼尔",
-      "size": 287323,
-      "lastModified": 1771485860000,
-      "addedTime": 1771485860000
     },
     {
       "id": "虚构_巴黎圣母院_雨果.html",
@@ -471,17 +438,6 @@
       "addedTime": 1773857305000
     },
     {
-      "id": "历史_百年战争简史_戴蒙德.html",
-      "file": "历史_百年战争简史_戴蒙德.html",
-      "filename": "历史_百年战争简史_戴蒙德.html",
-      "title": "百年战争简史",
-      "category": "历史",
-      "author": "戴蒙德",
-      "size": 548059,
-      "lastModified": 1771446789000,
-      "addedTime": 1771446789000
-    },
-    {
       "id": "网文_神墓_辰东.html",
       "file": "网文_神墓_辰东.html",
       "filename": "网文_神墓_辰东.html",
@@ -592,17 +548,6 @@
       "addedTime": 1773857305000
     },
     {
-      "id": "历史_财富之城  威尼斯海洋霸权_罗杰 · 克劳利.html",
-      "file": "历史_财富之城  威尼斯海洋霸权_罗杰 · 克劳利.html",
-      "filename": "历史_财富之城  威尼斯海洋霸权_罗杰 · 克劳利.html",
-      "title": "财富之城  威尼斯海洋霸权",
-      "category": "历史",
-      "author": "罗杰 · 克劳利",
-      "size": 847956,
-      "lastModified": 1771484503000,
-      "addedTime": 1771484503000
-    },
-    {
       "id": "科幻_银河帝国1：基地_阿西莫夫.html",
       "file": "科幻_银河帝国1：基地_阿西莫夫.html",
       "filename": "科幻_银河帝国1：基地_阿西莫夫.html",
@@ -647,28 +592,28 @@
     },
     {
       "name": "虚构",
-      "count": 8,
+      "count": 7,
       "icon": "📘"
     },
     {
-      "name": "传记",
-      "count": 4,
-      "icon": "📜"
-    },
-    {
       "name": "历史",
-      "count": 7,
+      "count": 5,
       "icon": "🏛️"
     },
     {
       "name": "奇幻",
-      "count": 3,
+      "count": 2,
       "icon": "📘"
     },
     {
       "name": "生活",
       "count": 1,
       "icon": "📘"
+    },
+    {
+      "name": "传记",
+      "count": 3,
+      "icon": "📜"
     },
     {
       "name": "推理",
