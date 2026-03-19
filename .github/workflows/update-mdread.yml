@@ -30,7 +30,6 @@ jobs:
           python3 -c "
 import json
 from pathlib import Path
-from datetime import datetime
 
 books_dir = Path('books')
 if not books_dir.exists():
@@ -42,9 +41,6 @@ for book_dir in sorted(books_dir.iterdir()):
     if not book_dir.is_dir():
         continue
     
-    print(f'处理: {book_dir.name}')
-    
-    # 读取 meta.json
     meta = {}
     meta_file = book_dir / 'meta.json'
     if meta_file.exists():
@@ -54,15 +50,11 @@ for book_dir in sorted(books_dir.iterdir()):
     books_list.append({
         'id': book_dir.name,
         'title': meta.get('title', book_dir.name),
-        'author': meta.get('author', '未知'),
-        'total_chapters': len(list((book_dir / 'chapters').glob('*.md'))) if (book_dir / 'chapters').exists() else 0
+        'author': meta.get('author', '未知')
     })
 
-# 写入 index.json
 with open('books/index.json', 'w', encoding='utf-8') as f:
     json.dump(books_list, f, ensure_ascii=False, indent=2)
-
-print(f'✅ 已生成 {len(books_list)} 本书的索引')
 "
 
       - name: Commit and push if changed

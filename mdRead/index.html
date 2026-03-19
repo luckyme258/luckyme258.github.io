@@ -40,7 +40,7 @@
         async function loadBooks() {
             try {
                 // 尝试加载由 CI 生成的书籍列表
-                const response = await fetch('books/index.json');
+                const response = await fetch('/mdRead/books/index.json');
                 if (response.ok) {
                     const books = await response.json();
                     displayBooks(books);
