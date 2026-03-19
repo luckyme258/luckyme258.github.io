@@ -1,0 +1,16 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #24292e;
+    --link-color: #0366d6;
+    --border-color: #e1e4e8;
+    --code-bg: #f6f8fa;
+    --blockquote-bg: #f9f9f9;
+    --blockquote-border: #dfe2e5;
+    --table-border: #dfe2e5;
+    --table-stripe: #f8f9fa;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
