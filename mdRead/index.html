@@ -1,127 +1,233 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📚 书籍阅读库</title>
+    <title>📚 半亩书廊 · 书籍列表</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
+            background: #f5f2ed;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 0 20px;
-            line-height: 1.6;
-            background-color: #fafafa;
-            color: #333;
+            padding: 2rem 1rem;
+            min-height: 100vh;
         }
-        h1 { 
-            color: #2c3e50; 
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        h2 {
-            color: #34495e;
-            margin-top: 30px;
-        }
-        .notice {
-            background: #f8f9fa;
-            border-left: 4px solid #3498db;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 8px 8px 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        a { 
-            color: #2980b9; 
-            text-decoration: none; 
-            transition: color 0.2s;
-        }
-        a:hover { 
-            color: #3498db; 
-            text-decoration: underline; 
-        }
-        #book-list {
-            margin: 20px 0;
-        }
-        #book-list div {
-            background: white;
-            padding: 15px 20px;
-            margin: 10px 0;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        #book-list div:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-        }
-        #book-list a {
-            font-size: 1.2em;
-            font-weight: 500;
-            display: inline-block;
-            margin-right: 10px;
-        }
-        #book-list span {
-            color: #7f8c8d;
-            font-size: 0.9em;
-        }
-        code {
-            background: #ecf0f1;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9em;
-        }
-        .footer {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #bdc3c7;
+        
+        .header {
             text-align: center;
-            color: #7f8c8d;
-            font-size: 0.9em;
+            margin-bottom: 3rem;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            color: #3e2e21;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .subtitle {
+            color: #8b6f4c;
+            font-size: 1.1rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.2rem;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid #f0e4d8;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #3e2e21;
+        }
+        
+        .stat-label {
+            color: #8b6f4c;
+            font-size: 0.9rem;
+            margin-top: 0.3rem;
+        }
+        
+        /* 书籍网格 - 静态生成 */
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .book-card {
+            background: white;
+            border-radius: 1.2rem;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid #f0e4d8;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .book-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(139, 111, 76, 0.15);
+            border-color: #cbb295;
+        }
+        
+        .book-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .book-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2b211b;
+            margin-bottom: 0.3rem;
+            line-height: 1.4;
+        }
+        
+        .book-author {
+            color: #8b6f4c;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer {
+            text-align: center;
+            color: #9b8978;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #ebddcf;
+            font-size: 0.9rem;
+        }
+        
+        .update-time {
+            display: inline-block;
+            background: #f0e4d8;
+            padding: 0.3rem 1rem;
+            border-radius: 2rem;
+            margin-top: 1rem;
+        }
+        
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            .book-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
         }
     </style>
 </head>
 <body>
-    <h1>📚 我的电子书库</h1>
-    
-    <div class="notice">
-        <strong>ℹ️ 使用说明</strong>
-        <p>本阅读器支持多主题切换：明亮、暗黑、护眼</p>
-        <p>点击下方书籍开始阅读，或直接访问阅读器：</p>
-        <code>reader.html?book=书籍目录名&chapter=章节文件名</code>
-        <p style="margin-top: 10px; font-size: 0.9em;">
-            例如：<code>reader.html?book=漂亮朋友&chapter=01-第一章.md</code>
-        </p>
+    <div class="container">
+        <div class="header">
+            <h1>
+                <span>📚</span>
+                半亩书廊
+            </h1>
+            <div class="subtitle">闲来翻书 · 静中观心</div>
+        </div>
+
+        <!-- 统计数据 - 会被脚本替换 -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">4</div>
+                <div class="stat-label">藏书总数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">1</div>
+                <div class="stat-label">全部分类</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">03-20</div>
+                <div class="stat-label">最后更新</div>
+            </div>
+        </div>
+
+        <!-- 书籍网格 - 会被脚本替换 -->
+        <div class="book-grid">
+  <a href="reader.html?book=中国龙组" class="book-card">
+    <div class="book-category">
+      <span>📘</span>
+      未分类
     </div>
-
-    <h2>📖 书籍列表</h2>
-    <!-- BOOKS_LIST_START -->
-<div id="book-list">
-  <div style="margin: 10px 0;">
-    <a href="reader.html?book=中国龙组" style="font-size: 1.2em;">📘 中国龙组</a>
-    <span style="color: #666; margin-left: 10px;">风华爵士,</span>
-  </div>
-  <div style="margin: 10px 0;">
-    <a href="reader.html?book=亲切的恶魔:星新一脑洞小说集" style="font-size: 1.2em;">📘 亲切的恶魔:星新一脑洞小说集 (译林幻系列)</a>
-    <span style="color: #666; margin-left: 10px;"></span>
-  </div>
-  <div style="margin: 10px 0;">
-    <a href="reader.html?book=漂亮朋友" style="font-size: 1.2em;">📘 译文 名著文库 漂亮朋友</a>
-    <span style="color: #666; margin-left: 10px;"></span>
-  </div>
-  <div style="margin: 10px 0;">
-    <a href="reader.html?book=神墓" style="font-size: 1.2em;">📘 神墓</a>
-    <span style="color: #666; margin-left: 10px;"></span>
-  </div>
+    <div class="book-emoji">📖</div>
+    <div class="book-title">中国龙组</div>
+    <div class="book-author">风华爵士,</div>
+    <div class="book-meta">
+      <span>331章</span>
+      <span>2026-03-20</span>
+    </div>
+  </a>
+  <a href="reader.html?book=亲切的恶魔:星新一脑洞小说集" class="book-card">
+    <div class="book-category">
+      <span>📘</span>
+      未分类
+    </div>
+    <div class="book-emoji">📖</div>
+    <div class="book-title">亲切的恶魔:星新一脑洞小说集 (译林幻系列)</div>
+    <div class="book-author"></div>
+    <div class="book-meta">
+      <span>44章</span>
+      <span>2026-03-20</span>
+    </div>
+  </a>
+  <a href="reader.html?book=神墓" class="book-card">
+    <div class="book-category">
+      <span>📘</span>
+      未分类
+    </div>
+    <div class="book-emoji">📖</div>
+    <div class="book-title">神墓</div>
+    <div class="book-author"></div>
+    <div class="book-meta">
+      <span>714章</span>
+      <span>2026-03-20</span>
+    </div>
+  </a>
+  <a href="reader.html?book=漂亮朋友" class="book-card">
+    <div class="book-category">
+      <span>📘</span>
+      未分类
+    </div>
+    <div class="book-emoji">📖</div>
+    <div class="book-title">译文 名著文库 漂亮朋友</div>
+    <div class="book-author"></div>
+    <div class="book-meta">
+      <span>20章</span>
+      <span>2026-03-20</span>
+    </div>
+  </a>
 </div>
-<!-- BOOKS_LIST_END -->
 
-    <div class="footer">
-        <p>📚 使用 Python 自动生成 | 🎨 支持多主题切换 | 🔄 每日自动更新</p>
-        <p style="font-size: 0.8em; margin-top: 10px;">
-            GitHub: <a href="https://github.com/luckyme258/luckyme258.github.io">luckyme258/mdRead</a>
-        </p>
+        <div class="footer">
+            <div>📖 静坐读书 · 随心所阅</div>
+            <div class="update-time">🕒 最后更新: 2026-03-20 05:01</div>
+        </div>
     </div>
 </body>
 </html>
