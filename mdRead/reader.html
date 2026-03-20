@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
-    <title>阅读器 - 我的读书笔记</title>
+    <title>阅读器 - 半亩书廊</title>
     <style>
         :root {
             --bg: #ffffff;
             --bg-rgb: 255, 255, 255;
             --text: #2d3748;
             --text-light: #718096;
-            --accent: #4299e1;
-            --accent-dark: #3182ce;
-            --light-accent: #e8f4f8;
-            --card-bg: #f5fafe;
-            --card-shadow: 0 2px 8px rgba(66, 153, 225, 0.15);
+            --accent: #cbb295;
+            --accent-dark: #b58b64;
+            --light-accent: #f5ede5;
+            --card-bg: #fcf7f1;
+            --card-shadow: 0 2px 8px rgba(139, 111, 76, 0.1);
             --border-radius: 12px;
             --line-height: 1.8;
             --container-width: 800px;
@@ -26,14 +26,14 @@
         }
 
         .dark-mode {
-            --bg: #0a0c10;
-            --bg-rgb: 26, 32, 44;
+            --bg: #1a1a1a;
+            --bg-rgb: 26, 26, 26;
             --text: #e2e8f0;
             --text-light: #a0aec0;
-            --accent: #7472FE;
-            --accent-dark: #5a58cc;
-            --light-accent: #2d3748;
-            --card-bg: #2d3748;
+            --accent: #b58b64;
+            --accent-dark: #9b6e48;
+            --light-accent: #2d2d2d;
+            --card-bg: #2a2a2a;
         }
 
         * {
@@ -47,7 +47,7 @@
             color: var(--text);
             line-height: var(--line-height);
             transition: background-color 0.3s ease, color 0.3s ease;
-            font-family: "思源黑体", "Source Han Sans CN", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: "思源黑体", "Source Han Sans CN", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", sans-serif;
         }
 
         /* 进度条 */
@@ -57,7 +57,7 @@
             left: 0;
             width: 0%;
             height: var(--progress-height);
-            background: linear-gradient(90deg, var(--accent), #7472FE);
+            background: linear-gradient(90deg, var(--accent), #cbb295);
             z-index: 101;
             transition: width 0.1s ease;
             pointer-events: none;
@@ -176,7 +176,7 @@
         }
 
         .chapter-sidebar::-webkit-scrollbar-thumb {
-            background: rgba(66, 153, 225, 0.2);
+            background: rgba(203, 178, 149, 0.3);
             border-radius: 4px;
         }
 
@@ -222,6 +222,7 @@
             border-radius: 6px;
             transition: background-color 0.2s ease;
             line-height: 1.4;
+            cursor: pointer;
         }
 
         .sidebar-chapter.active a {
@@ -240,11 +241,6 @@
             font-size: 13px;
         }
 
-        .sidebar-chapter.level-3 a {
-            padding-left: 44px;
-            font-size: 12px;
-        }
-
         /* 主内容区 */
         .container {
             max-width: var(--container-width);
@@ -253,38 +249,57 @@
             transition: margin-left 0.3s;
         }
 
-        .chapter-section {
-            margin-bottom: 60px;
-            padding-bottom: 40px;
-            border-bottom: 1px solid var(--light-accent);
-        }
-
-        .chapter-title {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 24px;
-            color: var(--text);
-            border-left: 6px solid var(--accent);
-            padding-left: 20px;
-            line-height: 1.3;
-        }
-
-        .chapter-subtitle {
-            font-size: 24px;
-            font-weight: 600;
-            margin: 40px 0 20px;
-            color: var(--text);
-        }
-
-        .content p {
+        /* Markdown 渲染样式 */
+        .markdown-body {
             font-size: 18px;
             line-height: 1.8;
-            margin-bottom: 1.2em;
-            text-align: justify;
         }
 
-        .content p:first-child {
-            margin-top: 0;
+        .markdown-body h1 {
+            font-size: 2em;
+            border-left: 4px solid var(--accent);
+            padding-left: 20px;
+            margin: 1.5em 0 0.5em;
+            color: var(--text);
+        }
+
+        .markdown-body h2 {
+            font-size: 1.5em;
+            margin: 1.2em 0 0.5em;
+            color: var(--text);
+        }
+
+        .markdown-body h3 {
+            font-size: 1.25em;
+            margin: 1em 0 0.5em;
+        }
+
+        .markdown-body p {
+            margin-bottom: 1.2em;
+            line-height: 1.8;
+        }
+
+        .markdown-body blockquote {
+            border-left: 4px solid var(--accent);
+            padding: 0.5em 1em;
+            margin: 1em 0;
+            background: var(--light-accent);
+            border-radius: 8px;
+        }
+
+        .markdown-body hr {
+            margin: 2em 0;
+            border: none;
+            border-top: 1px solid var(--light-accent);
+        }
+
+        .markdown-body a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .markdown-body a:hover {
+            text-decoration: underline;
         }
 
         /* 工具卡片 */
@@ -300,14 +315,13 @@
             border-radius: var(--border-radius);
             padding: 24px;
             box-shadow: var(--card-shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease;
             cursor: pointer;
-            border: 1px solid rgba(66, 153, 225, 0.1);
+            border: 1px solid rgba(203, 178, 149, 0.2);
         }
 
         .tool-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(66, 153, 225, 0.2);
         }
 
         .tool-header {
@@ -323,7 +337,6 @@
             font-size: 12px;
             padding: 4px 8px;
             border-radius: 4px;
-            font-weight: 600;
         }
 
         .tool-expand {
@@ -336,7 +349,6 @@
             font-size: 18px;
             font-weight: 600;
             margin-bottom: 8px;
-            color: var(--text);
         }
 
         .tool-content {
@@ -351,8 +363,6 @@
             padding-top: 12px;
             border-top: 1px dashed var(--light-accent);
             font-size: 14px;
-            color: var(--text);
-            opacity: 0.9;
         }
 
         .tool-example.active {
@@ -384,7 +394,7 @@
             height: 70px;
             background: rgba(var(--bg-rgb), 0.4);
             backdrop-filter: blur(11px);
-            border-top: 1px solid rgba(66, 153, 225, 0.2);
+            border-top: 1px solid rgba(203, 178, 149, 0.2);
             padding: 0 16px;
             display: flex;
             justify-content: space-between;
@@ -396,16 +406,15 @@
 
         .nav-btn {
             background: rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(66, 153, 225, 0.3);
+            border: 1px solid rgba(203, 178, 149, 0.3);
             padding: 0 20px;
             height: 52px;
             border-radius: 26px;
             cursor: pointer;
-            color: #4299e1;
+            color: var(--accent);
             font-size: 15px;
             font-weight: 700;
             transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             min-width: 100px;
             display: flex;
             align-items: center;
@@ -413,19 +422,14 @@
         }
 
         .nav-btn:hover:not(:disabled) {
-            background: #4299e1;
+            background: var(--accent);
             color: white;
             transform: scale(1.02);
-            box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3);
-            border-color: transparent;
         }
 
         .nav-btn:disabled {
-            background: rgba(200, 200, 200, 0.3);
-            color: rgba(255, 255, 255, 0.5);
-            border: 1px solid rgba(200, 200, 200, 0.2);
-            cursor: not-allowed;
             opacity: 0.5;
+            cursor: not-allowed;
         }
 
         /* 移动端抽屉 */
@@ -439,13 +443,12 @@
             backdrop-filter: blur(11px);
             border-top-right-radius: 16px;
             border-bottom-right-radius: 16px;
-            border-right: 1px solid rgba(66, 153, 225, 0.2);
+            border-right: 1px solid rgba(203, 178, 149, 0.2);
             display: none;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             z-index: 95;
-            transition: all 0.3s ease;
         }
 
         @media (max-width: 1199px) {
@@ -457,7 +460,6 @@
         .menu-icon {
             color: var(--accent);
             font-size: 20px;
-            font-weight: bold;
         }
 
         .drawer-panel {
@@ -473,7 +475,6 @@
             transition: transform 0.3s ease;
             z-index: 100;
             box-shadow: 4px 0 20px rgba(0,0,0,0.15);
-            border-right: 1px solid rgba(66, 153, 225, 0.2);
             overflow-y: auto;
             padding: 20px 0;
         }
@@ -488,7 +489,6 @@
             align-items: center;
             padding: 16px 20px;
             border-bottom: 1px solid var(--light-accent);
-            margin-bottom: 10px;
         }
 
         .drawer-title {
@@ -501,19 +501,11 @@
             width: 32px;
             height: 32px;
             border-radius: 16px;
-            background: rgba(255,255,255,0.2);
-            border: none;
+            background: transparent;
+            border: 1px solid var(--light-accent);
             color: var(--text);
             font-size: 18px;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .drawer-close:hover {
-            background: var(--accent);
-            color: white;
         }
 
         .drawer-chapters {
@@ -532,16 +524,13 @@
             display: block;
             padding: 10px 20px;
             font-size: 14px;
-            line-height: 1.4;
-            transition: all 0.2s ease;
-            border-left: 3px solid transparent;
+            cursor: pointer;
         }
 
         .drawer-chapter.active a {
             background: var(--light-accent);
-            border-left-color: var(--accent);
-            font-weight: 600;
             color: var(--accent);
+            font-weight: 600;
         }
 
         .drawer-overlay {
@@ -572,7 +561,7 @@
             border-radius: 22px;
             background: rgba(var(--bg-rgb), 0.4);
             backdrop-filter: blur(11px);
-            border: 1px solid rgba(66, 153, 225, 0.2);
+            border: 1px solid rgba(203, 178, 149, 0.2);
             color: var(--accent);
             font-size: 20px;
             cursor: pointer;
@@ -580,16 +569,10 @@
             display: none;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
         }
 
         .back-to-top.show {
             display: flex;
-        }
-
-        .back-to-top:hover {
-            background: var(--accent);
-            color: white;
         }
 
         /* 加载状态 */
@@ -600,75 +583,11 @@
             color: var(--text-light);
         }
 
-        /* 错误状态 */
         .error {
             text-align: center;
             padding: 100px 20px;
             font-size: 18px;
             color: #e53e3e;
-        }
-
-        /* Markdown 渲染样式 */
-        .markdown-body {
-            font-size: 18px;
-            line-height: 1.8;
-        }
-
-        .markdown-body h1 {
-            font-size: 2em;
-            border-bottom: 1px solid var(--light-accent);
-            padding-bottom: 0.3em;
-            margin: 1.5em 0 0.5em;
-        }
-
-        .markdown-body h2 {
-            font-size: 1.5em;
-            margin: 1.2em 0 0.5em;
-        }
-
-        .markdown-body h3 {
-            font-size: 1.25em;
-            margin: 1em 0 0.5em;
-        }
-
-        .markdown-body blockquote {
-            border-left: 4px solid var(--accent);
-            padding: 0.5em 1em;
-            margin: 1em 0;
-            background: var(--light-accent);
-            border-radius: 8px;
-        }
-
-        .markdown-body pre {
-            background: #2d3748;
-            padding: 1em;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin: 1em 0;
-        }
-
-        .markdown-body code {
-            background: var(--light-accent);
-            padding: 0.2em 0.4em;
-            border-radius: 4px;
-            font-family: monospace;
-        }
-
-        .markdown-body table {
-            border-collapse: collapse;
-            width: 100%;
-            margin: 1em 0;
-        }
-
-        .markdown-body th,
-        .markdown-body td {
-            border: 1px solid var(--light-accent);
-            padding: 8px;
-            text-align: left;
-        }
-
-        .markdown-body th {
-            background: var(--light-accent);
         }
 
         @media (max-width: 768px) {
@@ -678,24 +597,25 @@
             .tools-grid {
                 grid-template-columns: 1fr;
             }
-            .chapter-title {
-                font-size: 24px;
-            }
-            .content p {
+            .markdown-body {
                 font-size: 16px;
+            }
+            .markdown-body h1 {
+                font-size: 1.6em;
             }
             .progress-text::before {
                 content: "";
             }
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
     <div class="progress-bar" id="progressBar"></div>
     
     <header class="header">
         <div class="header-left">
-            <a href="/mdRead/books/README.md" class="shelf-link">
+            <a href="/mdRead/books/index.html" class="shelf-link">
                 <span class="shelf-icon">📚</span>
                 <span class="shelf-text">书架</span>
             </a>
@@ -734,8 +654,7 @@
     <div class="drawer-overlay" id="drawerOverlay"></div>
     
     <button class="back-to-top" id="backToTop">↑</button>
-    
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
     <script>
         // 解析 URL 参数
         function getUrlParams() {
@@ -753,9 +672,7 @@
             currentChapter: 0,
             totalChapters: 0,
             chapters: [],
-            chapterFiles: [],
-            mode: 'desktop',
-            markdownContent: null
+            chapterUrls: []
         };
         
         // DOM 元素
@@ -785,10 +702,9 @@
                 return;
             }
             
-            state.bookId = params.book;
-            elements.bookTitle.textContent = state.bookId;
+            state.bookId = decodeURIComponent(params.book);
             
-            // 加载书籍元数据
+            // 加载元数据
             await loadBookMetadata();
             
             if (state.totalChapters === 0) {
@@ -799,7 +715,6 @@
             // 确定要加载的章节
             let chapterIndex = 0;
             if (params.chapter) {
-                // 处理章节号（可能是 "01" 或 "1"）
                 let chapterNum = parseInt(params.chapter);
                 if (isNaN(chapterNum)) chapterNum = 1;
                 chapterIndex = Math.max(0, Math.min(chapterNum - 1, state.totalChapters - 1));
@@ -813,56 +728,92 @@
             setupMobileEvents();
             loadThemePreference();
             
-            // 滚动监听
             window.addEventListener('scroll', handleScroll);
         }
         
-        // 加载书籍元数据
+        // 加载元数据
         async function loadBookMetadata() {
             try {
+                // 从 meta.json 获取
                 const metaUrl = `/mdRead/books/${state.bookId}/meta.json`;
+                console.log('加载元数据:', metaUrl);
+                
                 const response = await fetch(metaUrl);
-                if (!response.ok) throw new Error('元数据加载失败');
-                const meta = await response.json();
-                elements.bookTitle.textContent = meta.title || state.bookId;
-                state.totalChapters = meta.total_chapters || 0;
+                if (response.ok) {
+                    const meta = await response.json();
+                    elements.bookTitle.textContent = meta.title || state.bookId;
+                    state.totalChapters = meta.total_chapters || 0;
+                    console.log(`元数据加载成功，共 ${state.totalChapters} 章`);
+                } else {
+                    console.log('meta.json 不存在，尝试从 index.md 解析');
+                    await loadFromIndex();
+                }
+                
+                if (state.totalChapters === 0) {
+                    throw new Error('无法获取章节数量');
+                }
                 
                 // 构建章节列表
                 state.chapters = [];
-                state.chapterFiles = [];
-                for (let i = 1; i <= state.totalChapters; i++) {
-                    const chapterNum = i.toString().padStart(2, '0');
-                    state.chapterFiles.push(`${chapterNum}-*.md`);
+                for (let i = 0; i < state.totalChapters; i++) {
                     state.chapters.push({
                         index: i,
-                        title: `第${i}章`,
-                        file: `${chapterNum}-*.md`
+                        number: (i + 1).toString().padStart(2, '0'),
+                        title: `第${i + 1}章`
                     });
                 }
                 
-                // 加载实际的章节标题（从第一个章节文件读取）
-                if (state.totalChapters > 0) {
-                    await loadChapterTitles();
-                }
+                // 加载实际章节标题
+                await loadChapterTitles();
                 
                 // 渲染侧边栏
                 renderSidebar();
                 
             } catch (error) {
                 console.error('加载元数据失败:', error);
-                showError('无法加载书籍信息');
+                showError(`加载失败: ${error.message}`);
+            }
+        }
+        
+        // 从 index.md 解析元数据
+        async function loadFromIndex() {
+            const indexUrl = `/mdRead/books/${state.bookId}/index.md`;
+            const response = await fetch(indexUrl);
+            if (response.ok) {
+                const content = await response.text();
+                // 解析目录中的章节数量
+                const chapterMatches = content.matchAll(/\[.*?\]\(.*?chapters\/(\d{2,3}-[^)]+)\)/g);
+                let count = 0;
+                for (const match of chapterMatches) {
+                    count++;
+                }
+                if (count > 0) {
+                    state.totalChapters = count;
+                    console.log(`从 index.md 解析到 ${count} 章`);
+                }
             }
         }
         
         // 加载章节标题
         async function loadChapterTitles() {
-            for (let i = 0; i < Math.min(state.totalChapters, 10); i++) {
-                try {
-                    const chapterNum = (i + 1).toString().padStart(2, '0');
-                    const url = `/mdRead/books/${state.bookId}/chapters/${chapterNum}-*.md`;
-                    // 由于文件名不确定，需要先获取实际文件名
-                    // 这里简化处理，实际需要列出目录或从索引获取
-                } catch (e) {}
+            // 尝试从 index.md 获取章节标题
+            const indexUrl = `/mdRead/books/${state.bookId}/index.md`;
+            const response = await fetch(indexUrl);
+            if (response.ok) {
+                const content = await response.text();
+                const lines = content.split('\n');
+                let chapterIndex = 0;
+                
+                for (const line of lines) {
+                    // 匹配目录链接
+                    const match = line.match(/\[(.*?)\]\(.*?chapters\/(\d{2,3}-[^)]+)\)/);
+                    if (match && chapterIndex < state.totalChapters) {
+                        state.chapters[chapterIndex].title = match[1];
+                        state.chapters[chapterIndex].filename = match[2];
+                        chapterIndex++;
+                    }
+                }
+                console.log(`加载了 ${chapterIndex} 个章节标题`);
             }
         }
         
@@ -871,77 +822,88 @@
             if (index < 0 || index >= state.totalChapters) return;
             
             state.currentChapter = index;
-            const chapterNum = (index + 1).toString().padStart(2, '0');
+            const chapter = state.chapters[index];
+            const chapterNum = chapter.number;
             
-            // 显示加载状态
             elements.container.innerHTML = '<div class="loading">📖 加载章节中...</div>';
             
             try {
-                // 先尝试获取章节文件列表（从 index.md）
-                const indexUrl = `/mdRead/books/${state.bookId}/index.md`;
-                const indexResponse = await fetch(indexUrl);
-                if (indexResponse.ok) {
-                    const indexContent = await indexResponse.text();
-                    // 解析 index.md 获取章节文件名映射
-                    const chapterMatch = indexContent.match(new RegExp(`\\[.*?\\]\\(${state.bookId}/chapters/(${chapterNum}-[^)]+)\\)`));
-                    if (chapterMatch) {
-                        const filename = chapterMatch[1];
-                        const chapterUrl = `/mdRead/books/${state.bookId}/chapters/${filename}`;
-                        const response = await fetch(chapterUrl);
-                        if (response.ok) {
-                            const markdown = await response.text();
-                            renderMarkdown(markdown);
-                            updateNavigationButtons();
-                            updateUrl();
-                            return;
+                let markdown = null;
+                let loadedUrl = null;
+                
+                // 1. 如果有保存的文件名，直接使用
+                if (chapter.filename) {
+                    const url = `/mdRead/books/${state.bookId}/chapters/${chapter.filename}`;
+                    console.log('尝试加载:', url);
+                    const response = await fetch(url);
+                    if (response.ok) {
+                        markdown = await response.text();
+                        loadedUrl = url;
+                    }
+                }
+                
+                // 2. 尝试常见文件名模式
+                if (!markdown) {
+                    const patterns = [
+                        `${chapterNum}-*.md`,
+                        `${chapterNum}-第${index+1}章.md`,
+                        `${chapterNum}-第一章.md`,
+                        `chapter-${chapterNum}.md`,
+                        `${index+1}.md`
+                    ];
+                    
+                    for (const pattern of patterns) {
+                        // 由于文件名不确定，需要尝试从 index.md 获取实际文件名
+                        const indexUrl = `/mdRead/books/${state.bookId}/index.md`;
+                        const idxResponse = await fetch(indexUrl);
+                        if (idxResponse.ok) {
+                            const idxContent = await idxResponse.text();
+                            const fileMatch = idxContent.match(new RegExp(`\\[.*?\\]\\(.*?chapters/(${chapterNum}-[^)]+)\\)`));
+                            if (fileMatch) {
+                                const filename = fileMatch[1];
+                                const url = `/mdRead/books/${state.bookId}/chapters/${filename}`;
+                                console.log('从 index 找到:', url);
+                                const response = await fetch(url);
+                                if (response.ok) {
+                                    markdown = await response.text();
+                                    loadedUrl = url;
+                                    break;
+                                }
+                            }
+                        }
+                        
+                        // 直接尝试通配符模式（需要服务器支持，GitHub Pages 不支持通配符）
+                        const url = `/mdRead/books/${state.bookId}/chapters/${pattern.replace('*', '')}`;
+                        const response = await fetch(url);
+                        if (response.ok && !response.url.includes('404')) {
+                            markdown = await response.text();
+                            loadedUrl = url;
+                            break;
                         }
                     }
                 }
                 
-                // 回退：尝试常见文件名
-                const possibleFiles = [
-                    `${chapterNum}-*.md`,
-                    `${parseInt(chapterNum)}-*.md`,
-                    `chapter-${chapterNum}.md`
-                ];
-                
-                for (const file of possibleFiles) {
-                    const url = `/mdRead/books/${state.bookId}/chapters/${file}`;
-                    const response = await fetch(url);
-                    if (response.ok) {
-                        const markdown = await response.text();
-                        renderMarkdown(markdown);
-                        updateNavigationButtons();
-                        updateUrl();
-                        return;
-                    }
+                if (markdown) {
+                    renderMarkdown(markdown);
+                    updateNavigationButtons();
+                    updateUrl();
+                    console.log(`✅ 章节 ${index + 1} 加载成功: ${loadedUrl}`);
+                } else {
+                    throw new Error(`无法找到第 ${index + 1} 章的文件`);
                 }
-                
-                throw new Error('章节文件不存在');
                 
             } catch (error) {
                 console.error('加载章节失败:', error);
-                elements.container.innerHTML = `<div class="error">❌ 加载失败: ${error.message}</div>`;
+                elements.container.innerHTML = `<div class="error">❌ 加载失败: ${error.message}<br><br>请检查 chapters 目录下是否存在第 ${index + 1} 章的文件</div>`;
             }
         }
         
-        // 渲染 Markdown 内容
+        // 渲染 Markdown
         function renderMarkdown(markdown) {
-            // 使用 marked 解析 Markdown
+            // 使用 marked 解析
             const html = marked.parse(markdown);
             
-            // 提取标题用于侧边栏显示
-            const titleMatch = markdown.match(/^#\s+(.+)$/m);
-            if (titleMatch && state.chapters[state.currentChapter]) {
-                state.chapters[state.currentChapter].title = titleMatch[1];
-                renderSidebar();
-            }
-            
-            elements.container.innerHTML = `
-                <div class="markdown-body">
-                    ${html}
-                </div>
-            `;
+            elements.container.innerHTML = `<div class="markdown-body">${html}</div>`;
             
             // 处理工具卡片点击
             document.querySelectorAll('.tool-card').forEach(card => {
@@ -961,22 +923,24 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         
-        // 渲染侧边栏目录
+        // 渲染侧边栏
         function renderSidebar() {
-            const renderList = (chapters, container) => {
+            const renderList = (chapters, container, isDrawer = false) => {
+                if (!container) return;
                 container.innerHTML = '';
+                
                 chapters.forEach((ch, idx) => {
                     const li = document.createElement('li');
                     li.className = `sidebar-chapter level-1`;
+                    if (!isDrawer) li.classList.add('sidebar-chapter');
                     if (idx === state.currentChapter) li.classList.add('active');
                     
                     const a = document.createElement('a');
-                    a.href = '#';
-                    a.textContent = ch.title || `第${idx + 1}章`;
+                    a.textContent = `${ch.number} ${ch.title}`;
                     a.addEventListener('click', (e) => {
                         e.preventDefault();
                         loadChapter(idx);
-                        closeDrawer();
+                        if (isDrawer) closeDrawer();
                     });
                     
                     li.appendChild(a);
@@ -984,17 +948,17 @@
                 });
             };
             
-            renderList(state.chapters, elements.sidebarChapters);
-            renderList(state.chapters, elements.drawerChapters);
+            renderList(state.chapters, elements.sidebarChapters, false);
+            renderList(state.chapters, elements.drawerChapters, true);
         }
         
-        // 更新导航按钮状态
+        // 更新导航按钮
         function updateNavigationButtons() {
             elements.prevBtn.disabled = state.currentChapter === 0;
             elements.nextBtn.disabled = state.currentChapter === state.totalChapters - 1;
         }
         
-        // 更新 URL（不刷新页面）
+        // 更新 URL
         function updateUrl() {
             const chapterNum = (state.currentChapter + 1).toString().padStart(2, '0');
             const url = new URL(window.location.href);
@@ -1011,7 +975,6 @@
             elements.progressBar.style.width = scrolled + '%';
             elements.progressText.textContent = `${Math.round(scrolled)}%`;
             
-            // 显示/隐藏回到顶部按钮
             if (winScroll > window.innerHeight) {
                 elements.backToTop.classList.add('show');
             } else {
@@ -1030,7 +993,6 @@
             });
             
             elements.themeToggle.addEventListener('click', toggleTheme);
-            
             elements.backToTop.addEventListener('click', () => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
@@ -1052,21 +1014,6 @@
             elements.drawerTrigger.addEventListener('click', openDrawer);
             elements.drawerClose.addEventListener('click', closeDrawer);
             elements.drawerOverlay.addEventListener('click', closeDrawer);
-            
-            let touchStartX = 0;
-            document.addEventListener('touchstart', (e) => {
-                touchStartX = e.touches[0].clientX;
-            });
-            
-            document.addEventListener('touchend', (e) => {
-                const touchEndX = e.changedTouches[0].clientX;
-                if (touchStartX < 30 && touchEndX - touchStartX > 50) {
-                    openDrawer();
-                }
-                if (elements.drawerPanel.classList.contains('open') && touchStartX - touchEndX > 50) {
-                    closeDrawer();
-                }
-            });
         }
         
         function openDrawer() {
@@ -1094,7 +1041,6 @@
             }
         }
         
-        // 错误显示
         function showError(message) {
             elements.container.innerHTML = `<div class="error">❌ ${message}</div>`;
         }
