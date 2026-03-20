@@ -88,6 +88,13 @@
             min-width: 0;
         }
 
+        .shelf-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
         .shelf-link {
             display: flex;
             align-items: center;
@@ -111,6 +118,12 @@
             color: var(--accent);
             opacity: 0.8;
             white-space: nowrap;
+        }
+
+        .shelf-divider {
+            color: var(--text-light);
+            font-size: 14px;
+            opacity: 0.5;
         }
 
         .book-title {
@@ -615,10 +628,17 @@
     
     <header class="header">
         <div class="header-left">
-            <a href="https://luckyme258.github.io/mdRead/" class="shelf-link">
-                <span class="shelf-icon">📚</span>
-                <span class="shelf-text">书架</span>
-            </a>
+            <div class="shelf-links">
+                <a href="https://luckyme258.github.io/mdRead/" class="shelf-link">
+                    <span class="shelf-icon">📚</span>
+                    <span class="shelf-text">书架</span>
+                </a>
+                <span class="shelf-divider">|</span>
+                <a href="https://luckyme258.github.io/books/" class="shelf-link">
+                    <span class="shelf-icon">📖</span>
+                    <span class="shelf-text">书架2</span>
+                </a>
+            </div>
             <span class="book-title" id="bookTitle">加载中...</span>
         </div>
         <div class="header-right">
