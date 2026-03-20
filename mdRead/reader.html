@@ -779,12 +779,13 @@
                     state.chapters.push({
                         index: i,
                         number: (i + 1).toString().padStart(2, '0'),
-                        title: `第${i + 1}章`
+                        title: `第${i + 1}章`,
+                        filename: null
                     });
                 }
                 
-                // 加载实际章节标题
-                await loadChapterTitles();
+                // 加载实际章节标题和文件名
+                await loadChapterTitlesAndFiles();
                 
                 // 渲染侧边栏
                 renderSidebar();
@@ -814,26 +815,56 @@
             }
         }
         
-        // 加载章节标题
-        async function loadChapterTitles() {
-            // 尝试从 index.md 获取章节标题
+        // 加载章节标题和文件名
+        async function loadChapterTitlesAndFiles() {
+            // 从 index.md 获取章节标题和文件名
             const indexUrl = `/mdRead/books/${state.bookId}/index.md`;
+            console.log('加载 index.md:', indexUrl);
+            
             const response = await fetch(indexUrl);
             if (response.ok) {
                 const content = await response.text();
-                const lines = content.split('\n');
+                console.log('index.md 内容长度:', content.length);
+                
+                // 使用正则匹配所有章节链接
+                // 格式: [标题](漂亮朋友/chapters/01-第一章.md) 或 [标题](chapters/01-第一章.md)
+                const linkRegex = /\[(.*?)\]\(.*?chapters\/(\d{2,3}-[^)]+\.md)\)/g;
+                let match;
                 let chapterIndex = 0;
                 
-                for (const line of lines) {
-                    // 匹配目录链接
-                    const match = line.match(/\[(.*?)\]\(.*?chapters\/(\d{2,3}-[^)]+)\)/);
-                    if (match && chapterIndex < state.totalChapters) {
-                        state.chapters[chapterIndex].title = match[1];
-                        state.chapters[chapterIndex].filename = match[2];
-                        chapterIndex++;
+                while ((match = linkRegex.exec(content)) !== null && chapterIndex < state.totalChapters) {
+                    const title = match[1];
+                    const filename = match[2];
+                    console.log(`匹配到第 ${chapterIndex + 1} 章: "${title}" -> ${filename}`);
+                    
+                    if (chapterIndex < state.chapters.length) {
+                        state.chapters[chapterIndex].title = title;
+                        state.chapters[chapterIndex].filename = filename;
+                    }
+                    chapterIndex++;
+                }
+                
+                console.log(`成功加载 ${chapterIndex} 个章节的标题和文件名`);
+                
+                // 如果匹配到的章节数少于总数，尝试另一种格式
+                if (chapterIndex < state.totalChapters) {
+                    console.log('尝试第二种匹配模式...');
+                    const altRegex = /- \[(.*?)\]\((.*?)\)/g;
+                    while ((match = altRegex.exec(content)) !== null && chapterIndex < state.totalChapters) {
+                        const link = match[2];
+                        if (link.includes('chapters/')) {
+                            const filenameMatch = link.match(/chapters\/(\d{2,3}-[^)]+\.md)/);
+                            if (filenameMatch && chapterIndex < state.chapters.length) {
+                                state.chapters[chapterIndex].title = match[1];
+                                state.chapters[chapterIndex].filename = filenameMatch[1];
+                                console.log(`备用模式: 第 ${chapterIndex + 1} 章: "${match[1]}" -> ${filenameMatch[1]}`);
+                                chapterIndex++;
+                            }
+                        }
                     }
                 }
-                console.log(`加载了 ${chapterIndex} 个章节标题`);
+            } else {
+                console.log('无法加载 index.md');
             }
         }
         
@@ -843,7 +874,6 @@
             
             state.currentChapter = index;
             const chapter = state.chapters[index];
-            const chapterNum = chapter.number;
             
             elements.container.innerHTML = '<div class="loading">📖 加载章节中...</div>';
             
@@ -851,53 +881,39 @@
                 let markdown = null;
                 let loadedUrl = null;
                 
-                // 1. 如果有保存的文件名，直接使用
+                // 1. 优先使用从 index.md 解析到的文件名
                 if (chapter.filename) {
                     const url = `/mdRead/books/${state.bookId}/chapters/${chapter.filename}`;
-                    console.log('尝试加载:', url);
+                    console.log('尝试加载 (从 index.md):', url);
                     const response = await fetch(url);
                     if (response.ok) {
                         markdown = await response.text();
                         loadedUrl = url;
+                        console.log(`✅ 章节 ${index + 1} 加载成功: ${url}`);
+                    } else {
+                        console.log(`❌ 文件不存在: ${url}`);
                     }
                 }
                 
-                // 2. 尝试常见文件名模式
+                // 2. 如果没有找到，尝试常见文件名模式
                 if (!markdown) {
                     const patterns = [
-                        `${chapterNum}-*.md`,
-                        `${chapterNum}-第${index+1}章.md`,
-                        `${chapterNum}-第一章.md`,
-                        `chapter-${chapterNum}.md`,
+                        `${chapter.number}-${chapter.title}.md`,
+                        `${chapter.number}-${chapter.title.replace(/[^\\u4e00-\\u9fa5a-zA-Z0-9]/g, '')}.md`,
+                        `${chapter.number}-第${index+1}章.md`,
+                        `${chapter.number}-第一章.md`,
+                        `chapter-${chapter.number}.md`,
                         `${index+1}.md`
                     ];
                     
                     for (const pattern of patterns) {
-                        // 由于文件名不确定，需要尝试从 index.md 获取实际文件名
-                        const indexUrl = `/mdRead/books/${state.bookId}/index.md`;
-                        const idxResponse = await fetch(indexUrl);
-                        if (idxResponse.ok) {
-                            const idxContent = await idxResponse.text();
-                            const fileMatch = idxContent.match(new RegExp(`\\[.*?\\]\\(.*?chapters/(${chapterNum}-[^)]+)\\)`));
-                            if (fileMatch) {
-                                const filename = fileMatch[1];
-                                const url = `/mdRead/books/${state.bookId}/chapters/${filename}`;
-                                console.log('从 index 找到:', url);
-                                const response = await fetch(url);
-                                if (response.ok) {
-                                    markdown = await response.text();
-                                    loadedUrl = url;
-                                    break;
-                                }
-                            }
-                        }
-                        
-                        // 直接尝试通配符模式（需要服务器支持，GitHub Pages 不支持通配符）
-                        const url = `/mdRead/books/${state.bookId}/chapters/${pattern.replace('*', '')}`;
+                        const url = `/mdRead/books/${state.bookId}/chapters/${pattern}`;
+                        console.log('尝试加载 (模式匹配):', url);
                         const response = await fetch(url);
-                        if (response.ok && !response.url.includes('404')) {
+                        if (response.ok) {
                             markdown = await response.text();
                             loadedUrl = url;
+                            console.log(`✅ 章节 ${index + 1} 加载成功: ${url}`);
                             break;
                         }
                     }
@@ -907,14 +923,13 @@
                     renderMarkdown(markdown);
                     updateNavigationButtons();
                     updateUrl();
-                    console.log(`✅ 章节 ${index + 1} 加载成功: ${loadedUrl}`);
                 } else {
-                    throw new Error(`无法找到第 ${index + 1} 章的文件`);
+                    throw new Error(`无法找到第 ${index + 1} 章的文件<br><br>期望文件名: ${chapter.filename || '未找到'}<br>请检查 chapters 目录`);
                 }
                 
             } catch (error) {
                 console.error('加载章节失败:', error);
-                elements.container.innerHTML = `<div class="error">❌ 加载失败: ${error.message}<br><br>请检查 chapters 目录下是否存在第 ${index + 1} 章的文件</div>`;
+                elements.container.innerHTML = `<div class="error">❌ 加载失败: ${error.message}</div>`;
             }
         }
         
