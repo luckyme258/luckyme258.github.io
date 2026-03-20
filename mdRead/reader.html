@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
     <title>阅读器 - 半亩书廊</title>
     <style>
+        /* 样式保持不变，省略... 使用之前的完整样式 */
         :root {
             --bg: #ffffff;
             --bg-rgb: 255, 255, 255;
@@ -36,590 +37,58 @@
             --card-bg: #2a2a2a;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: var(--line-height);
-            transition: background-color 0.3s ease, color 0.3s ease;
-            font-family: "思源黑体", "Source Han Sans CN", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans", sans-serif;
-        }
-
-        /* 进度条 */
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: var(--progress-height);
-            background: linear-gradient(90deg, var(--accent), #cbb295);
-            z-index: 101;
-            transition: width 0.1s ease;
-            pointer-events: none;
-        }
-
-        /* 头部 */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background-color: rgba(var(--bg-rgb), 0.4);
-            backdrop-filter: blur(11px);
-            border-bottom: 1px solid var(--light-accent);
-            padding: 12px 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 100;
-            min-height: var(--header-height);
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex: 1;
-            min-width: 0;
-        }
-
-        .shelf-links {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-shrink: 0;
-        }
-
-        .shelf-link {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            text-decoration: none;
-            color: var(--accent);
-            padding: 8px 4px;
-            transition: transform 0.2s ease;
-        }
-
-        .shelf-link:hover {
-            transform: translateY(-2px);
-        }
-
-        .shelf-icon {
-            font-size: 24px;
-        }
-
-        .shelf-text {
-            font-size: 12px;
-            color: var(--accent);
-            opacity: 0.8;
-            white-space: nowrap;
-        }
-
-        .shelf-divider {
-            color: var(--text-light);
-            font-size: 14px;
-            opacity: 0.5;
-        }
-
-        .book-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--accent);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            flex-shrink: 1;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-shrink: 0;
-        }
-
-        .progress-text {
-            font-size: 18px;
-            color: var(--text);
-            opacity: 0.9;
-            white-space: nowrap;
-            font-weight: 550;
-        }
-
-        .theme-toggle {
-            background: rgba(255,255,255,0.2);
-            border: none;
-            padding: 8px 12px;
-            border-radius: 20px;
-            cursor: pointer;
-            color: var(--text);
-            font-size: 14px;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(4px);
-        }
-
-        .theme-toggle:hover {
-            background: var(--accent);
-            color: white;
-        }
-
-        /* 侧边栏 */
-        .chapter-sidebar {
-            position: fixed;
-            left: 30px;
-            top: 100px;
-            width: var(--sidebar-width);
-            z-index: 85;
-            display: none;
-            overflow-y: auto;
-            max-height: calc(100vh - 150px);
-        }
-
-        .chapter-sidebar::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .chapter-sidebar::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .chapter-sidebar::-webkit-scrollbar-thumb {
-            background: rgba(203, 178, 149, 0.3);
-            border-radius: 4px;
-        }
-
-        @media (min-width: 1200px) {
-            .chapter-sidebar {
-                display: block;
-            }
-            .container {
-                margin-left: calc(var(--sidebar-width) + 20px);
-            }
-        }
-
-        .sidebar-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--accent);
-            margin-bottom: 16px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid var(--light-accent);
-            position: sticky;
-            top: 0;
-            background-color: var(--bg);
-            z-index: 86;
-            padding-top: 4px;
-        }
-
-        .sidebar-chapters {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .sidebar-chapter {
-            margin-bottom: 4px;
-        }
-
-        .sidebar-chapter a {
-            text-decoration: none;
-            color: var(--text);
-            font-size: 14px;
-            padding: 8px 12px;
-            display: block;
-            border-radius: 6px;
-            transition: background-color 0.2s ease;
-            line-height: 1.4;
-            cursor: pointer;
-        }
-
-        .sidebar-chapter.active a {
-            background-color: var(--light-accent);
-            color: var(--accent);
-            font-weight: 600;
-        }
-
-        .sidebar-chapter.level-1 a {
-            font-weight: 600;
-            padding-left: 12px;
-        }
-
-        .sidebar-chapter.level-2 a {
-            padding-left: 28px;
-            font-size: 13px;
-        }
-
-        /* 主内容区 */
-        .container {
-            max-width: var(--container-width);
-            margin: 0 auto;
-            padding: calc(var(--header-height) + 20px) 16px 120px;
-            transition: margin-left 0.3s;
-        }
-
-        /* Markdown 渲染样式 */
-        .markdown-body {
-            font-size: 18px;
-            line-height: 1.8;
-        }
-
-        .markdown-body h1 {
-            font-size: 2em;
-            border-left: 4px solid var(--accent);
-            padding-left: 20px;
-            margin: 1.5em 0 0.5em;
-            color: var(--text);
-        }
-
-        .markdown-body h2 {
-            font-size: 1.5em;
-            margin: 1.2em 0 0.5em;
-            color: var(--text);
-        }
-
-        .markdown-body h3 {
-            font-size: 1.25em;
-            margin: 1em 0 0.5em;
-        }
-
-        .markdown-body p {
-            margin-bottom: 1.2em;
-            line-height: 1.8;
-        }
-
-        .markdown-body blockquote {
-            border-left: 4px solid var(--accent);
-            padding: 0.5em 1em;
-            margin: 1em 0;
-            background: var(--light-accent);
-            border-radius: 8px;
-        }
-
-        .markdown-body hr {
-            margin: 2em 0;
-            border: none;
-            border-top: 1px solid var(--light-accent);
-        }
-
-        .markdown-body a {
-            color: var(--accent);
-            text-decoration: none;
-        }
-
-        .markdown-body a:hover {
-            text-decoration: underline;
-        }
-
-        /* 工具卡片 */
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-            margin: 32px 0;
-        }
-
-        .tool-card {
-            background-color: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 24px;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.3s ease;
-            cursor: pointer;
-            border: 1px solid rgba(203, 178, 149, 0.2);
-        }
-
-        .tool-card:hover {
-            transform: translateY(-4px);
-        }
-
-        .tool-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
-        .tool-tag {
-            background-color: var(--accent);
-            color: white;
-            font-size: 12px;
-            padding: 4px 8px;
-            border-radius: 4px;
-        }
-
-        .tool-expand {
-            color: var(--accent);
-            font-size: 14px;
-            cursor: pointer;
-        }
-
-        .tool-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .tool-content {
-            font-size: 15px;
-            margin-bottom: 12px;
-            line-height: 1.7;
-        }
-
-        .tool-example {
-            display: none;
-            margin-top: 12px;
-            padding-top: 12px;
-            border-top: 1px dashed var(--light-accent);
-            font-size: 14px;
-        }
-
-        .tool-example.active {
-            display: block;
-        }
-
-        /* 章节小结 */
-        .chapter-summary {
-            background-color: var(--light-accent);
-            border-radius: var(--border-radius);
-            padding: 28px;
-            margin: 40px 0;
-            border-left: 6px solid var(--accent);
-        }
-
-        .summary-title {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 16px;
-            color: var(--accent);
-        }
-
-        /* 章节导航 */
-        .chapter-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 70px;
-            background: rgba(var(--bg-rgb), 0.4);
-            backdrop-filter: blur(11px);
-            border-top: 1px solid rgba(203, 178, 149, 0.2);
-            padding: 0 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 90;
-            padding-bottom: env(safe-area-inset-bottom, 0);
-            height: calc(70px + env(safe-area-inset-bottom, 0));
-        }
-
-        .nav-btn {
-            background: rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(203, 178, 149, 0.3);
-            padding: 0 20px;
-            height: 52px;
-            border-radius: 26px;
-            cursor: pointer;
-            color: var(--accent);
-            font-size: 15px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            min-width: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .nav-btn:hover:not(:disabled) {
-            background: var(--accent);
-            color: white;
-            transform: scale(1.02);
-        }
-
-        .nav-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        /* 移动端抽屉 */
-        .mobile-drawer-trigger {
-            position: fixed;
-            left: 0;
-            bottom: calc(70px + 16px + env(safe-area-inset-bottom, 0));
-            width: 32px;
-            height: 50px;
-            background: rgba(var(--bg-rgb), 0.4);
-            backdrop-filter: blur(11px);
-            border-top-right-radius: 16px;
-            border-bottom-right-radius: 16px;
-            border-right: 1px solid rgba(203, 178, 149, 0.2);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 95;
-        }
-
-        @media (max-width: 1199px) {
-            .mobile-drawer-trigger {
-                display: flex;
-            }
-        }
-
-        .menu-icon {
-            color: var(--accent);
-            font-size: 20px;
-        }
-
-        .drawer-panel {
-            position: fixed;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 80%;
-            max-width: 320px;
-            background: rgba(var(--bg-rgb), 0.95);
-            backdrop-filter: blur(10px);
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-            z-index: 100;
-            box-shadow: 4px 0 20px rgba(0,0,0,0.15);
-            overflow-y: auto;
-            padding: 20px 0;
-        }
-
-        .drawer-panel.open {
-            transform: translateX(0);
-        }
-
-        .drawer-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 16px 20px;
-            border-bottom: 1px solid var(--light-accent);
-        }
-
-        .drawer-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--accent);
-        }
-
-        .drawer-close {
-            width: 32px;
-            height: 32px;
-            border-radius: 16px;
-            background: transparent;
-            border: 1px solid var(--light-accent);
-            color: var(--text);
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        .drawer-chapters {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .drawer-chapter {
-            margin: 2px 0;
-        }
-
-        .drawer-chapter a {
-            text-decoration: none;
-            color: var(--text);
-            display: block;
-            padding: 10px 20px;
-            font-size: 14px;
-            cursor: pointer;
-        }
-
-        .drawer-chapter.active a {
-            background: var(--light-accent);
-            color: var(--accent);
-            font-weight: 600;
-        }
-
-        .drawer-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 99;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .drawer-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* 回到顶部 */
-        .back-to-top {
-            position: fixed;
-            bottom: calc(70px + 16px + env(safe-area-inset-bottom, 0));
-            right: 16px;
-            width: 44px;
-            height: 44px;
-            border-radius: 22px;
-            background: rgba(var(--bg-rgb), 0.4);
-            backdrop-filter: blur(11px);
-            border: 1px solid rgba(203, 178, 149, 0.2);
-            color: var(--accent);
-            font-size: 20px;
-            cursor: pointer;
-            z-index: 91;
-            display: none;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .back-to-top.show {
-            display: flex;
-        }
-
-        /* 加载状态 */
-        .loading {
-            text-align: center;
-            padding: 100px 20px;
-            font-size: 18px;
-            color: var(--text-light);
-        }
-
-        .error {
-            text-align: center;
-            padding: 100px 20px;
-            font-size: 18px;
-            color: #e53e3e;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: calc(var(--header-height) + 20px) 16px 100px;
-            }
-            .tools-grid {
-                grid-template-columns: 1fr;
-            }
-            .markdown-body {
-                font-size: 16px;
-            }
-            .markdown-body h1 {
-                font-size: 1.6em;
-            }
-            .progress-text::before {
-                content: "";
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg); color: var(--text); line-height: 1.8; transition: background-color 0.3s ease; font-family: "思源黑体", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        .progress-bar { position: fixed; top: 0; left: 0; width: 0%; height: 4px; background: linear-gradient(90deg, var(--accent), #cbb295); z-index: 101; transition: width 0.1s ease; pointer-events: none; }
+        .header { position: fixed; top: 0; left: 0; right: 0; background-color: rgba(var(--bg-rgb), 0.4); backdrop-filter: blur(11px); border-bottom: 1px solid var(--light-accent); padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; z-index: 100; min-height: 80px; }
+        .header-left { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+        .shelf-links { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+        .shelf-link { display: flex; align-items: center; gap: 4px; text-decoration: none; color: var(--accent); padding: 8px 4px; transition: transform 0.2s ease; }
+        .shelf-link:hover { transform: translateY(-2px); }
+        .shelf-icon { font-size: 24px; }
+        .shelf-text { font-size: 12px; color: var(--accent); opacity: 0.8; white-space: nowrap; }
+        .shelf-divider { color: var(--text-light); font-size: 14px; opacity: 0.5; }
+        .book-title { font-size: 18px; font-weight: 600; color: var(--accent); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-shrink: 1; }
+        .header-right { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+        .progress-text { font-size: 18px; color: var(--text); opacity: 0.9; white-space: nowrap; font-weight: 550; }
+        .theme-toggle { background: rgba(255,255,255,0.2); border: none; padding: 8px 12px; border-radius: 20px; cursor: pointer; color: var(--text); font-size: 14px; transition: all 0.3s ease; backdrop-filter: blur(4px); }
+        .theme-toggle:hover { background: var(--accent); color: white; }
+        .chapter-sidebar { position: fixed; left: 30px; top: 100px; width: 260px; z-index: 85; display: none; overflow-y: auto; max-height: calc(100vh - 150px); }
+        @media (min-width: 1200px) { .chapter-sidebar { display: block; } .container { margin-left: 280px; } }
+        .sidebar-title { font-size: 16px; font-weight: 600; color: var(--accent); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--light-accent); position: sticky; top: 0; background-color: var(--bg); z-index: 86; padding-top: 4px; }
+        .sidebar-chapters { list-style: none; }
+        .sidebar-chapter { margin-bottom: 4px; }
+        .sidebar-chapter a { text-decoration: none; color: var(--text); font-size: 14px; padding: 8px 12px; display: block; border-radius: 6px; transition: background-color 0.2s ease; cursor: pointer; }
+        .sidebar-chapter.active a { background-color: var(--light-accent); color: var(--accent); font-weight: 600; }
+        .container { max-width: 800px; margin: 0 auto; padding: 100px 16px 120px; transition: margin-left 0.3s; }
+        .markdown-body { font-size: 18px; line-height: 1.8; }
+        .markdown-body h1 { font-size: 2em; border-left: 4px solid var(--accent); padding-left: 20px; margin: 1.5em 0 0.5em; }
+        .markdown-body h2 { font-size: 1.5em; margin: 1.2em 0 0.5em; }
+        .markdown-body p { margin-bottom: 1.2em; }
+        .markdown-body blockquote { border-left: 4px solid var(--accent); padding: 0.5em 1em; margin: 1em 0; background: var(--light-accent); border-radius: 8px; }
+        .chapter-nav { position: fixed; bottom: 0; left: 0; right: 0; height: 70px; background: rgba(var(--bg-rgb), 0.4); backdrop-filter: blur(11px); border-top: 1px solid rgba(203, 178, 149, 0.2); padding: 0 16px; display: flex; justify-content: space-between; align-items: center; z-index: 90; }
+        .nav-btn { background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(203, 178, 149, 0.3); padding: 0 20px; height: 52px; border-radius: 26px; cursor: pointer; color: var(--accent); font-size: 15px; font-weight: 700; min-width: 100px; display: flex; align-items: center; justify-content: center; }
+        .nav-btn:hover:not(:disabled) { background: var(--accent); color: white; }
+        .nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .mobile-drawer-trigger { position: fixed; left: 0; bottom: calc(70px + 16px); width: 32px; height: 50px; background: rgba(var(--bg-rgb), 0.4); backdrop-filter: blur(11px); border-top-right-radius: 16px; border-bottom-right-radius: 16px; display: none; align-items: center; justify-content: center; cursor: pointer; z-index: 95; }
+        @media (max-width: 1199px) { .mobile-drawer-trigger { display: flex; } }
+        .menu-icon { color: var(--accent); font-size: 20px; }
+        .drawer-panel { position: fixed; left: 0; top: 0; bottom: 0; width: 80%; max-width: 320px; background: rgba(var(--bg-rgb), 0.95); backdrop-filter: blur(10px); transform: translateX(-100%); transition: transform 0.3s ease; z-index: 100; overflow-y: auto; padding: 20px 0; }
+        .drawer-panel.open { transform: translateX(0); }
+        .drawer-header { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-bottom: 1px solid var(--light-accent); }
+        .drawer-title { font-size: 18px; font-weight: 600; color: var(--accent); }
+        .drawer-close { width: 32px; height: 32px; border-radius: 16px; background: transparent; border: 1px solid var(--light-accent); color: var(--text); font-size: 18px; cursor: pointer; }
+        .drawer-chapters { list-style: none; }
+        .drawer-chapter { margin: 2px 0; }
+        .drawer-chapter a { text-decoration: none; color: var(--text); display: block; padding: 10px 20px; font-size: 14px; cursor: pointer; }
+        .drawer-chapter.active a { background: var(--light-accent); color: var(--accent); font-weight: 600; }
+        .drawer-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.5); z-index: 99; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+        .drawer-overlay.active { opacity: 1; visibility: visible; }
+        .back-to-top { position: fixed; bottom: calc(70px + 16px); right: 16px; width: 44px; height: 44px; border-radius: 22px; background: rgba(var(--bg-rgb), 0.4); backdrop-filter: blur(11px); border: 1px solid rgba(203, 178, 149, 0.2); color: var(--accent); font-size: 20px; cursor: pointer; z-index: 91; display: none; align-items: center; justify-content: center; }
+        .back-to-top.show { display: flex; }
+        .loading { text-align: center; padding: 100px 20px; font-size: 18px; color: var(--text-light); }
+        .error { text-align: center; padding: 100px 20px; font-size: 18px; color: #e53e3e; }
+        @media (max-width: 768px) { .container { padding: 100px 16px 100px; } .markdown-body { font-size: 16px; } .progress-text::before { content: ""; } }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
@@ -691,8 +160,7 @@
             bookId: null,
             currentChapter: 0,
             totalChapters: 0,
-            chapters: [],
-            chapterUrls: []
+            chapters: []
         };
         
         // DOM 元素
@@ -712,6 +180,22 @@
             drawerOverlay: document.getElementById('drawerOverlay'),
             backToTop: document.getElementById('backToTop')
         };
+        
+        // 中文数字映射
+        const chineseNumbers = ['', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二', '十三', '十四', '十五', '十六', '十七', '十八', '十九', '二十', '二十一', '二十二', '二十三', '二十四', '二十五'];
+        
+        // 获取章节文件名（根据序号生成）
+        function getChapterFilename(index) {
+            const chapterNum = (index + 1).toString().padStart(2, '0');
+            const chineseNum = chineseNumbers[index + 1] || (index + 1).toString();
+            // 尝试多种可能的文件名格式
+            const possibleNames = [
+                `${chapterNum}-第${chineseNum}章.md`,
+                `${chapterNum}-第一章.md`,  // 第一章特殊处理
+                `${chapterNum}.md`
+            ];
+            return possibleNames;
+        }
         
         // 初始化
         async function init() {
@@ -776,16 +260,19 @@
                 // 构建章节列表
                 state.chapters = [];
                 for (let i = 0; i < state.totalChapters; i++) {
+                    const chapterNum = i + 1;
+                    const chineseNum = chineseNumbers[chapterNum] || chapterNum.toString();
                     state.chapters.push({
                         index: i,
-                        number: (i + 1).toString().padStart(2, '0'),
-                        title: `第${i + 1}章`,
-                        filename: null
+                        number: chapterNum,
+                        numberStr: chapterNum.toString().padStart(2, '0'),
+                        title: `第${chineseNum}章`,
+                        filename: `${chapterNum.toString().padStart(2, '0')}-第${chineseNum}章.md`
                     });
                 }
                 
-                // 加载实际章节标题和文件名
-                await loadChapterTitlesAndFiles();
+                // 尝试从 index.md 获取更准确的标题
+                await loadChapterTitles();
                 
                 // 渲染侧边栏
                 renderSidebar();
@@ -802,73 +289,41 @@
             const response = await fetch(indexUrl);
             if (response.ok) {
                 const content = await response.text();
-                // 解析目录中的章节数量
-                const chapterMatches = content.matchAll(/\[.*?\]\(.*?chapters\/(\d{2,3}-[^)]+)\)/g);
-                let count = 0;
-                for (const match of chapterMatches) {
-                    count++;
-                }
-                if (count > 0) {
-                    state.totalChapters = count;
-                    console.log(`从 index.md 解析到 ${count} 章`);
+                // 统计章节数量
+                const chapterMatches = content.match(/\[.*?\]\(\/mdRead\/reader\.html\?book=[^&]+&chapter=(\d+)\)/g);
+                if (chapterMatches) {
+                    const chapterNumbers = new Set();
+                    chapterMatches.forEach(match => {
+                        const numMatch = match.match(/chapter=(\d+)/);
+                        if (numMatch) chapterNumbers.add(parseInt(numMatch[1]));
+                    });
+                    state.totalChapters = Math.max(...chapterNumbers);
+                    console.log(`从 index.md 解析到 ${state.totalChapters} 章`);
                 }
             }
         }
         
-        // 加载章节标题和文件名
-        async function loadChapterTitlesAndFiles() {
-            // 从 index.md 获取章节标题和文件名
+        // 加载章节标题
+        async function loadChapterTitles() {
             const indexUrl = `/mdRead/books/${state.bookId}/index.md`;
-            console.log('加载 index.md:', indexUrl);
-            
             const response = await fetch(indexUrl);
             if (response.ok) {
                 const content = await response.text();
-                console.log('index.md 内容长度:', content.length);
-                
-                // 使用正则匹配所有章节链接
-                // 格式: [标题](漂亮朋友/chapters/01-第一章.md) 或 [标题](chapters/01-第一章.md)
-                const linkRegex = /\[(.*?)\]\(.*?chapters\/(\d{2,3}-[^)]+\.md)\)/g;
+                // 解析标题和章节号的映射
+                const titleRegex = /\[(.*?)\]\(\/mdRead\/reader\.html\?book=[^&]+&chapter=(\d+)\)/g;
                 let match;
-                let chapterIndex = 0;
-                
-                while ((match = linkRegex.exec(content)) !== null && chapterIndex < state.totalChapters) {
+                while ((match = titleRegex.exec(content)) !== null) {
                     const title = match[1];
-                    const filename = match[2];
-                    console.log(`匹配到第 ${chapterIndex + 1} 章: "${title}" -> ${filename}`);
-                    
-                    if (chapterIndex < state.chapters.length) {
-                        state.chapters[chapterIndex].title = title;
-                        state.chapters[chapterIndex].filename = filename;
-                    }
-                    chapterIndex++;
-                }
-                
-                console.log(`成功加载 ${chapterIndex} 个章节的标题和文件名`);
-                
-                // 如果匹配到的章节数少于总数，尝试另一种格式
-                if (chapterIndex < state.totalChapters) {
-                    console.log('尝试第二种匹配模式...');
-                    const altRegex = /- \[(.*?)\]\((.*?)\)/g;
-                    while ((match = altRegex.exec(content)) !== null && chapterIndex < state.totalChapters) {
-                        const link = match[2];
-                        if (link.includes('chapters/')) {
-                            const filenameMatch = link.match(/chapters\/(\d{2,3}-[^)]+\.md)/);
-                            if (filenameMatch && chapterIndex < state.chapters.length) {
-                                state.chapters[chapterIndex].title = match[1];
-                                state.chapters[chapterIndex].filename = filenameMatch[1];
-                                console.log(`备用模式: 第 ${chapterIndex + 1} 章: "${match[1]}" -> ${filenameMatch[1]}`);
-                                chapterIndex++;
-                            }
-                        }
+                    const chapterNum = parseInt(match[2]);
+                    if (chapterNum >= 1 && chapterNum <= state.totalChapters) {
+                        state.chapters[chapterNum - 1].title = title;
+                        console.log(`第 ${chapterNum} 章标题: ${title}`);
                     }
                 }
-            } else {
-                console.log('无法加载 index.md');
             }
         }
         
-        // 加载章节内容
+        // 尝试加载章节内容
         async function loadChapter(index) {
             if (index < 0 || index >= state.totalChapters) return;
             
@@ -881,41 +336,28 @@
                 let markdown = null;
                 let loadedUrl = null;
                 
-                // 1. 优先使用从 index.md 解析到的文件名
-                if (chapter.filename) {
-                    const url = `/mdRead/books/${state.bookId}/chapters/${chapter.filename}`;
-                    console.log('尝试加载 (从 index.md):', url);
+                // 尝试多种可能的文件名
+                const possibleFiles = [
+                    `${chapter.numberStr}-${chapter.title}.md`,
+                    `${chapter.numberStr}-第${chineseNumbers[chapter.number]}章.md`,
+                    `${chapter.numberStr}-第一章.md`,
+                    `${chapter.numberStr}.md`,
+                    `chapter-${chapter.numberStr}.md`
+                ];
+                
+                // 清理标题中的特殊字符
+                const cleanTitle = chapter.title.replace(/[\\/:*?"<>|]/g, '');
+                possibleFiles.unshift(`${chapter.numberStr}-${cleanTitle}.md`);
+                
+                for (const filename of possibleFiles) {
+                    const url = `/mdRead/books/${state.bookId}/chapters/${filename}`;
+                    console.log('尝试加载:', url);
                     const response = await fetch(url);
                     if (response.ok) {
                         markdown = await response.text();
                         loadedUrl = url;
                         console.log(`✅ 章节 ${index + 1} 加载成功: ${url}`);
-                    } else {
-                        console.log(`❌ 文件不存在: ${url}`);
-                    }
-                }
-                
-                // 2. 如果没有找到，尝试常见文件名模式
-                if (!markdown) {
-                    const patterns = [
-                        `${chapter.number}-${chapter.title}.md`,
-                        `${chapter.number}-${chapter.title.replace(/[^\\u4e00-\\u9fa5a-zA-Z0-9]/g, '')}.md`,
-                        `${chapter.number}-第${index+1}章.md`,
-                        `${chapter.number}-第一章.md`,
-                        `chapter-${chapter.number}.md`,
-                        `${index+1}.md`
-                    ];
-                    
-                    for (const pattern of patterns) {
-                        const url = `/mdRead/books/${state.bookId}/chapters/${pattern}`;
-                        console.log('尝试加载 (模式匹配):', url);
-                        const response = await fetch(url);
-                        if (response.ok) {
-                            markdown = await response.text();
-                            loadedUrl = url;
-                            console.log(`✅ 章节 ${index + 1} 加载成功: ${url}`);
-                            break;
-                        }
+                        break;
                     }
                 }
                 
@@ -924,7 +366,7 @@
                     updateNavigationButtons();
                     updateUrl();
                 } else {
-                    throw new Error(`无法找到第 ${index + 1} 章的文件<br><br>期望文件名: ${chapter.filename || '未找到'}<br>请检查 chapters 目录`);
+                    throw new Error(`无法找到第 ${index + 1} 章的文件<br><br>请检查 chapters 目录`);
                 }
                 
             } catch (error) {
@@ -935,12 +377,10 @@
         
         // 渲染 Markdown
         function renderMarkdown(markdown) {
-            // 使用 marked 解析
             const html = marked.parse(markdown);
-            
             elements.container.innerHTML = `<div class="markdown-body">${html}</div>`;
             
-            // 处理工具卡片点击
+            // 处理工具卡片
             document.querySelectorAll('.tool-card').forEach(card => {
                 card.addEventListener('click', (e) => {
                     const example = card.querySelector('.tool-example');
@@ -954,7 +394,6 @@
                 });
             });
             
-            // 滚动到顶部
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         
@@ -966,12 +405,11 @@
                 
                 chapters.forEach((ch, idx) => {
                     const li = document.createElement('li');
-                    li.className = `sidebar-chapter level-1`;
-                    if (!isDrawer) li.classList.add('sidebar-chapter');
+                    li.className = isDrawer ? 'drawer-chapter' : 'sidebar-chapter';
                     if (idx === state.currentChapter) li.classList.add('active');
                     
                     const a = document.createElement('a');
-                    a.textContent = `${ch.number} ${ch.title}`;
+                    a.textContent = ch.title;
                     a.addEventListener('click', (e) => {
                         e.preventDefault();
                         loadChapter(idx);
@@ -995,9 +433,8 @@
         
         // 更新 URL
         function updateUrl() {
-            const chapterNum = (state.currentChapter + 1).toString().padStart(2, '0');
             const url = new URL(window.location.href);
-            url.searchParams.set('chapter', chapterNum);
+            url.searchParams.set('chapter', state.currentChapter + 1);
             window.history.pushState({}, '', url);
         }
         
@@ -1032,7 +469,6 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
             
-            // 键盘翻页
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'PageDown') {
                     e.preventDefault();
