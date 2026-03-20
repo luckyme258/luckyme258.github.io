@@ -1,165 +1,1106 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>📚 书籍阅读器</title>
-    <!-- Markdown 解析器 -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <!-- 代码高亮 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <!-- 基础样式 -->
-    <link rel="stylesheet" href="themes/theme-base.css">
-    <!-- 默认主题（由 JS 动态加载） -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
+    <title>阅读器 - 我的读书笔记</title>
     <style>
-        /* 你的阅读器样式 */
-        body {
+        :root {
+            --bg: #ffffff;
+            --bg-rgb: 255, 255, 255;
+            --text: #2d3748;
+            --text-light: #718096;
+            --accent: #4299e1;
+            --accent-dark: #3182ce;
+            --light-accent: #e8f4f8;
+            --card-bg: #f5fafe;
+            --card-shadow: 0 2px 8px rgba(66, 153, 225, 0.15);
+            --border-radius: 12px;
+            --line-height: 1.8;
+            --container-width: 800px;
+            --spacing: 32px;
+            --progress-height: 4px;
+            --header-height: 80px;
+            --nav-height: 70px;
+            --sidebar-width: 260px;
+        }
+
+        .dark-mode {
+            --bg: #0a0c10;
+            --bg-rgb: 26, 32, 44;
+            --text: #e2e8f0;
+            --text-light: #a0aec0;
+            --accent: #7472FE;
+            --accent-dark: #5a58cc;
+            --light-accent: #2d3748;
+            --card-bg: #2d3748;
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            transition: background-color 0.3s, color 0.3s;
+            box-sizing: border-box;
         }
-        .header {
-            position: sticky;
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: var(--line-height);
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-family: "思源黑体", "Source Han Sans CN", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        /* 进度条 */
+        .progress-bar {
+            position: fixed;
             top: 0;
-            background: var(--bg-color);
-            border-bottom: 1px solid var(--border-color);
-            padding: 10px 20px;
+            left: 0;
+            width: 0%;
+            height: var(--progress-height);
+            background: linear-gradient(90deg, var(--accent), #7472FE);
+            z-index: 101;
+            transition: width 0.1s ease;
+            pointer-events: none;
+        }
+
+        /* 头部 */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(var(--bg-rgb), 0.4);
+            backdrop-filter: blur(11px);
+            border-bottom: 1px solid var(--light-accent);
+            padding: 12px 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 1000;
+            z-index: 100;
+            min-height: var(--header-height);
         }
-        .theme-switcher button {
-            padding: 5px 15px;
-            border: 1px solid var(--border-color);
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .shelf-link {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            text-decoration: none;
+            color: var(--accent);
+            padding: 8px 4px;
+            transition: transform 0.2s ease;
+        }
+
+        .shelf-link:hover {
+            transform: translateY(-2px);
+        }
+
+        .shelf-icon {
+            font-size: 24px;
+        }
+
+        .shelf-text {
+            font-size: 12px;
+            color: var(--accent);
+            opacity: 0.8;
+            white-space: nowrap;
+        }
+
+        .book-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--accent);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            flex-shrink: 1;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .progress-text {
+            font-size: 18px;
+            color: var(--text);
+            opacity: 0.9;
+            white-space: nowrap;
+            font-weight: 550;
+        }
+
+        .theme-toggle {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            padding: 8px 12px;
             border-radius: 20px;
-            background: var(--bg-color);
-            color: var(--text-color);
             cursor: pointer;
-            margin-left: 10px;
+            color: var(--text);
+            font-size: 14px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
         }
-        .theme-switcher button.active {
-            border-width: 2px;
-            border-color: var(--link-color);
+
+        .theme-toggle:hover {
+            background: var(--accent);
+            color: white;
         }
+
+        /* 侧边栏 */
+        .chapter-sidebar {
+            position: fixed;
+            left: 30px;
+            top: 100px;
+            width: var(--sidebar-width);
+            z-index: 85;
+            display: none;
+            overflow-y: auto;
+            max-height: calc(100vh - 150px);
+        }
+
+        .chapter-sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chapter-sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .chapter-sidebar::-webkit-scrollbar-thumb {
+            background: rgba(66, 153, 225, 0.2);
+            border-radius: 4px;
+        }
+
+        @media (min-width: 1200px) {
+            .chapter-sidebar {
+                display: block;
+            }
+            .container {
+                margin-left: calc(var(--sidebar-width) + 20px);
+            }
+        }
+
+        .sidebar-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--light-accent);
+            position: sticky;
+            top: 0;
+            background-color: var(--bg);
+            z-index: 86;
+            padding-top: 4px;
+        }
+
+        .sidebar-chapters {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .sidebar-chapter {
+            margin-bottom: 4px;
+        }
+
+        .sidebar-chapter a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 14px;
+            padding: 8px 12px;
+            display: block;
+            border-radius: 6px;
+            transition: background-color 0.2s ease;
+            line-height: 1.4;
+        }
+
+        .sidebar-chapter.active a {
+            background-color: var(--light-accent);
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .sidebar-chapter.level-1 a {
+            font-weight: 600;
+            padding-left: 12px;
+        }
+
+        .sidebar-chapter.level-2 a {
+            padding-left: 28px;
+            font-size: 13px;
+        }
+
+        .sidebar-chapter.level-3 a {
+            padding-left: 44px;
+            font-size: 12px;
+        }
+
+        /* 主内容区 */
         .container {
-            max-width: 800px;
+            max-width: var(--container-width);
             margin: 0 auto;
-            padding: 20px;
+            padding: calc(var(--header-height) + 20px) 16px 120px;
+            transition: margin-left 0.3s;
         }
+
+        .chapter-section {
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--light-accent);
+        }
+
+        .chapter-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--text);
+            border-left: 6px solid var(--accent);
+            padding-left: 20px;
+            line-height: 1.3;
+        }
+
+        .chapter-subtitle {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 40px 0 20px;
+            color: var(--text);
+        }
+
+        .content p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 1.2em;
+            text-align: justify;
+        }
+
+        .content p:first-child {
+            margin-top: 0;
+        }
+
+        /* 工具卡片 */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin: 32px 0;
+        }
+
+        .tool-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(66, 153, 225, 0.1);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(66, 153, 225, 0.2);
+        }
+
+        .tool-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .tool-tag {
+            background-color: var(--accent);
+            color: white;
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .tool-expand {
+            color: var(--accent);
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .tool-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .tool-content {
+            font-size: 15px;
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+
+        .tool-example {
+            display: none;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed var(--light-accent);
+            font-size: 14px;
+            color: var(--text);
+            opacity: 0.9;
+        }
+
+        .tool-example.active {
+            display: block;
+        }
+
+        /* 章节小结 */
+        .chapter-summary {
+            background-color: var(--light-accent);
+            border-radius: var(--border-radius);
+            padding: 28px;
+            margin: 40px 0;
+            border-left: 6px solid var(--accent);
+        }
+
+        .summary-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--accent);
+        }
+
+        /* 章节导航 */
+        .chapter-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: rgba(var(--bg-rgb), 0.4);
+            backdrop-filter: blur(11px);
+            border-top: 1px solid rgba(66, 153, 225, 0.2);
+            padding: 0 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 90;
+            padding-bottom: env(safe-area-inset-bottom, 0);
+            height: calc(70px + env(safe-area-inset-bottom, 0));
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(66, 153, 225, 0.3);
+            padding: 0 20px;
+            height: 52px;
+            border-radius: 26px;
+            cursor: pointer;
+            color: #4299e1;
+            font-size: 15px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            min-width: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background: #4299e1;
+            color: white;
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3);
+            border-color: transparent;
+        }
+
+        .nav-btn:disabled {
+            background: rgba(200, 200, 200, 0.3);
+            color: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(200, 200, 200, 0.2);
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        /* 移动端抽屉 */
+        .mobile-drawer-trigger {
+            position: fixed;
+            left: 0;
+            bottom: calc(70px + 16px + env(safe-area-inset-bottom, 0));
+            width: 32px;
+            height: 50px;
+            background: rgba(var(--bg-rgb), 0.4);
+            backdrop-filter: blur(11px);
+            border-top-right-radius: 16px;
+            border-bottom-right-radius: 16px;
+            border-right: 1px solid rgba(66, 153, 225, 0.2);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 95;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 1199px) {
+            .mobile-drawer-trigger {
+                display: flex;
+            }
+        }
+
+        .menu-icon {
+            color: var(--accent);
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .drawer-panel {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 80%;
+            max-width: 320px;
+            background: rgba(var(--bg-rgb), 0.95);
+            backdrop-filter: blur(10px);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            z-index: 100;
+            box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+            border-right: 1px solid rgba(66, 153, 225, 0.2);
+            overflow-y: auto;
+            padding: 20px 0;
+        }
+
+        .drawer-panel.open {
+            transform: translateX(0);
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--light-accent);
+            margin-bottom: 10px;
+        }
+
+        .drawer-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .drawer-close {
+            width: 32px;
+            height: 32px;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: var(--text);
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .drawer-close:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        .drawer-chapters {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .drawer-chapter {
+            margin: 2px 0;
+        }
+
+        .drawer-chapter a {
+            text-decoration: none;
+            color: var(--text);
+            display: block;
+            padding: 10px 20px;
+            font-size: 14px;
+            line-height: 1.4;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .drawer-chapter.active a {
+            background: var(--light-accent);
+            border-left-color: var(--accent);
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* 回到顶部 */
+        .back-to-top {
+            position: fixed;
+            bottom: calc(70px + 16px + env(safe-area-inset-bottom, 0));
+            right: 16px;
+            width: 44px;
+            height: 44px;
+            border-radius: 22px;
+            background: rgba(var(--bg-rgb), 0.4);
+            backdrop-filter: blur(11px);
+            border: 1px solid rgba(66, 153, 225, 0.2);
+            color: var(--accent);
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 91;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-top.show {
+            display: flex;
+        }
+
+        .back-to-top:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        /* 加载状态 */
+        .loading {
+            text-align: center;
+            padding: 100px 20px;
+            font-size: 18px;
+            color: var(--text-light);
+        }
+
+        /* 错误状态 */
+        .error {
+            text-align: center;
+            padding: 100px 20px;
+            font-size: 18px;
+            color: #e53e3e;
+        }
+
+        /* Markdown 渲染样式 */
         .markdown-body {
-            box-sizing: border-box;
-            min-width: 200px;
-            max-width: 980px;
-            margin: 0 auto;
-            padding: 45px;
+            font-size: 18px;
+            line-height: 1.8;
         }
-        @media (max-width: 767px) {
-            .markdown-body {
-                padding: 15px;
+
+        .markdown-body h1 {
+            font-size: 2em;
+            border-bottom: 1px solid var(--light-accent);
+            padding-bottom: 0.3em;
+            margin: 1.5em 0 0.5em;
+        }
+
+        .markdown-body h2 {
+            font-size: 1.5em;
+            margin: 1.2em 0 0.5em;
+        }
+
+        .markdown-body h3 {
+            font-size: 1.25em;
+            margin: 1em 0 0.5em;
+        }
+
+        .markdown-body blockquote {
+            border-left: 4px solid var(--accent);
+            padding: 0.5em 1em;
+            margin: 1em 0;
+            background: var(--light-accent);
+            border-radius: 8px;
+        }
+
+        .markdown-body pre {
+            background: #2d3748;
+            padding: 1em;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1em 0;
+        }
+
+        .markdown-body code {
+            background: var(--light-accent);
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        .markdown-body table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1em 0;
+        }
+
+        .markdown-body th,
+        .markdown-body td {
+            border: 1px solid var(--light-accent);
+            padding: 8px;
+            text-align: left;
+        }
+
+        .markdown-body th {
+            background: var(--light-accent);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: calc(var(--header-height) + 20px) 16px 100px;
+            }
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+            .chapter-title {
+                font-size: 24px;
+            }
+            .content p {
+                font-size: 16px;
+            }
+            .progress-text::before {
+                content: "";
             }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div>
-            <a href="index.html" style="color: var(--link-color);">📚 书库</a>
-            <span style="margin: 0 10px;">/</span>
-            <span id="book-title">加载中...</span>
+    <div class="progress-bar" id="progressBar"></div>
+    
+    <header class="header">
+        <div class="header-left">
+            <a href="/mdRead/books/README.md" class="shelf-link">
+                <span class="shelf-icon">📚</span>
+                <span class="shelf-text">书架</span>
+            </a>
+            <span class="book-title" id="bookTitle">加载中...</span>
         </div>
-        <div class="theme-switcher">
-            <button class="theme-btn" data-theme="theme1">🌞 明亮</button>
-            <button class="theme-btn" data-theme="theme2">🌙 暗黑</button>
-            <button class="theme-btn" data-theme="theme3">📜 护眼</button>
+        <div class="header-right">
+            <span class="progress-text" id="progressText">0%</span>
+            <button class="theme-toggle" id="themeToggle">🌙 夜间</button>
         </div>
+    </header>
+    
+    <div class="chapter-sidebar" id="sidebar">
+        <div class="sidebar-title">📖 目录</div>
+        <ul class="sidebar-chapters" id="sidebarChapters"></ul>
     </div>
-
-    <div class="container">
-        <div id="content" class="markdown-body">加载中...</div>
+    
+    <div class="container" id="container">
+        <div class="loading">📖 加载中...</div>
     </div>
-
+    
+    <div class="chapter-nav">
+        <button class="nav-btn" id="prevChapter" disabled>← 上一章</button>
+        <button class="nav-btn" id="nextChapter" disabled>下一章 →</button>
+    </div>
+    
+    <div class="mobile-drawer-trigger" id="drawerTrigger">
+        <span class="menu-icon">☰</span>
+    </div>
+    <div class="drawer-panel" id="drawerPanel">
+        <div class="drawer-header">
+            <span class="drawer-title">📖 目录</span>
+            <button class="drawer-close" id="drawerClose">✕</button>
+        </div>
+        <ul class="drawer-chapters" id="drawerChapters"></ul>
+    </div>
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    
+    <button class="back-to-top" id="backToTop">↑</button>
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
         // 解析 URL 参数
-        const urlParams = new URLSearchParams(window.location.search);
-        const bookName = urlParams.get('book');      // 如: 漂亮朋友
-        const chapter = urlParams.get('chapter') || 'index.md';  // 默认加载目录页
+        function getUrlParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                book: params.get('book'),
+                chapter: params.get('chapter'),
+                note: params.get('note')
+            };
+        }
         
-        // 主题切换
-        const themeStyle = document.createElement('link');
-        themeStyle.rel = 'stylesheet';
-        document.head.appendChild(themeStyle);
+        // 全局状态
+        const state = {
+            bookId: null,
+            currentChapter: 0,
+            totalChapters: 0,
+            chapters: [],
+            chapterFiles: [],
+            mode: 'desktop',
+            markdownContent: null
+        };
         
-        // 从 localStorage 读取保存的主题
-        const savedTheme = localStorage.getItem('book-reader-theme') || 'theme1';
-        themeStyle.href = `themes/${savedTheme}.css`;
+        // DOM 元素
+        const elements = {
+            container: document.getElementById('container'),
+            bookTitle: document.getElementById('bookTitle'),
+            progressBar: document.getElementById('progressBar'),
+            progressText: document.getElementById('progressText'),
+            prevBtn: document.getElementById('prevChapter'),
+            nextBtn: document.getElementById('nextChapter'),
+            themeToggle: document.getElementById('themeToggle'),
+            sidebarChapters: document.getElementById('sidebarChapters'),
+            drawerChapters: document.getElementById('drawerChapters'),
+            drawerTrigger: document.getElementById('drawerTrigger'),
+            drawerPanel: document.getElementById('drawerPanel'),
+            drawerClose: document.getElementById('drawerClose'),
+            drawerOverlay: document.getElementById('drawerOverlay'),
+            backToTop: document.getElementById('backToTop')
+        };
         
-        // 高亮当前主题按钮
-        document.querySelectorAll('.theme-btn').forEach(btn => {
-            if (btn.dataset.theme === savedTheme) {
-                btn.classList.add('active');
-            }
-            btn.addEventListener('click', function() {
-                const theme = this.dataset.theme;
-                themeStyle.href = `themes/${theme}.css`;
-                localStorage.setItem('book-reader-theme', theme);
-                
-                document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-        
-        // 加载书籍内容
-        async function loadBook() {
-            if (!bookName) {
-                document.getElementById('content').innerHTML = '❌ 未指定书籍';
+        // 初始化
+        async function init() {
+            const params = getUrlParams();
+            
+            if (!params.book) {
+                showError('请指定书籍参数');
                 return;
             }
             
+            state.bookId = params.book;
+            elements.bookTitle.textContent = state.bookId;
+            
+            // 加载书籍元数据
+            await loadBookMetadata();
+            
+            if (state.totalChapters === 0) {
+                showError('未找到章节信息');
+                return;
+            }
+            
+            // 确定要加载的章节
+            let chapterIndex = 0;
+            if (params.chapter) {
+                // 处理章节号（可能是 "01" 或 "1"）
+                let chapterNum = parseInt(params.chapter);
+                if (isNaN(chapterNum)) chapterNum = 1;
+                chapterIndex = Math.max(0, Math.min(chapterNum - 1, state.totalChapters - 1));
+            }
+            
+            // 加载章节
+            await loadChapter(chapterIndex);
+            
+            // 设置事件监听
+            setupEventListeners();
+            setupMobileEvents();
+            loadThemePreference();
+            
+            // 滚动监听
+            window.addEventListener('scroll', handleScroll);
+        }
+        
+        // 加载书籍元数据
+        async function loadBookMetadata() {
             try {
-                // 根据你的 main.py 生成的结构，文件路径是:
-                // books/漂亮朋友/index.md 或 books/漂亮朋友/chapters/01-第一章.md
-                let filePath;
-                if (chapter === 'index.md') {
-                    filePath = `books/${bookName}/index.md`;
-                } else {
-                    filePath = `books/${bookName}/chapters/${chapter}`;
+                const metaUrl = `/mdRead/books/${state.bookId}/meta.json`;
+                const response = await fetch(metaUrl);
+                if (!response.ok) throw new Error('元数据加载失败');
+                const meta = await response.json();
+                elements.bookTitle.textContent = meta.title || state.bookId;
+                state.totalChapters = meta.total_chapters || 0;
+                
+                // 构建章节列表
+                state.chapters = [];
+                state.chapterFiles = [];
+                for (let i = 1; i <= state.totalChapters; i++) {
+                    const chapterNum = i.toString().padStart(2, '0');
+                    state.chapterFiles.push(`${chapterNum}-*.md`);
+                    state.chapters.push({
+                        index: i,
+                        title: `第${i}章`,
+                        file: `${chapterNum}-*.md`
+                    });
                 }
                 
-                const response = await fetch(filePath);
-                if (!response.ok) throw new Error('文件不存在');
-                
-                const markdown = await response.text();
-                
-                // 配置 marked 支持代码高亮
-                marked.setOptions({
-                    highlight: function(code, lang) {
-                        if (lang && hljs.getLanguage(lang)) {
-                            return hljs.highlight(code, { language: lang }).value;
-                        }
-                        return hljs.highlightAuto(code).value;
-                    }
-                });
-                
-                document.getElementById('content').innerHTML = marked.parse(markdown);
-                document.querySelectorAll('pre code').forEach(block => hljs.highlightElement(block));
-                
-                // 从 markdown 中提取书名（如果有 H1 标题）
-                const titleMatch = markdown.match(/^#\s+(.+)$/m);
-                if (titleMatch) {
-                    document.getElementById('book-title').textContent = titleMatch[1];
-                } else {
-                    document.getElementById('book-title').textContent = bookName;
+                // 加载实际的章节标题（从第一个章节文件读取）
+                if (state.totalChapters > 0) {
+                    await loadChapterTitles();
                 }
+                
+                // 渲染侧边栏
+                renderSidebar();
                 
             } catch (error) {
-                document.getElementById('content').innerHTML = `❌ 加载失败: ${error.message}`;
+                console.error('加载元数据失败:', error);
+                showError('无法加载书籍信息');
             }
         }
         
-        loadBook();
+        // 加载章节标题
+        async function loadChapterTitles() {
+            for (let i = 0; i < Math.min(state.totalChapters, 10); i++) {
+                try {
+                    const chapterNum = (i + 1).toString().padStart(2, '0');
+                    const url = `/mdRead/books/${state.bookId}/chapters/${chapterNum}-*.md`;
+                    // 由于文件名不确定，需要先获取实际文件名
+                    // 这里简化处理，实际需要列出目录或从索引获取
+                } catch (e) {}
+            }
+        }
+        
+        // 加载章节内容
+        async function loadChapter(index) {
+            if (index < 0 || index >= state.totalChapters) return;
+            
+            state.currentChapter = index;
+            const chapterNum = (index + 1).toString().padStart(2, '0');
+            
+            // 显示加载状态
+            elements.container.innerHTML = '<div class="loading">📖 加载章节中...</div>';
+            
+            try {
+                // 先尝试获取章节文件列表（从 index.md）
+                const indexUrl = `/mdRead/books/${state.bookId}/index.md`;
+                const indexResponse = await fetch(indexUrl);
+                if (indexResponse.ok) {
+                    const indexContent = await indexResponse.text();
+                    // 解析 index.md 获取章节文件名映射
+                    const chapterMatch = indexContent.match(new RegExp(`\\[.*?\\]\\(${state.bookId}/chapters/(${chapterNum}-[^)]+)\\)`));
+                    if (chapterMatch) {
+                        const filename = chapterMatch[1];
+                        const chapterUrl = `/mdRead/books/${state.bookId}/chapters/${filename}`;
+                        const response = await fetch(chapterUrl);
+                        if (response.ok) {
+                            const markdown = await response.text();
+                            renderMarkdown(markdown);
+                            updateNavigationButtons();
+                            updateUrl();
+                            return;
+                        }
+                    }
+                }
+                
+                // 回退：尝试常见文件名
+                const possibleFiles = [
+                    `${chapterNum}-*.md`,
+                    `${parseInt(chapterNum)}-*.md`,
+                    `chapter-${chapterNum}.md`
+                ];
+                
+                for (const file of possibleFiles) {
+                    const url = `/mdRead/books/${state.bookId}/chapters/${file}`;
+                    const response = await fetch(url);
+                    if (response.ok) {
+                        const markdown = await response.text();
+                        renderMarkdown(markdown);
+                        updateNavigationButtons();
+                        updateUrl();
+                        return;
+                    }
+                }
+                
+                throw new Error('章节文件不存在');
+                
+            } catch (error) {
+                console.error('加载章节失败:', error);
+                elements.container.innerHTML = `<div class="error">❌ 加载失败: ${error.message}</div>`;
+            }
+        }
+        
+        // 渲染 Markdown 内容
+        function renderMarkdown(markdown) {
+            // 使用 marked 解析 Markdown
+            const html = marked.parse(markdown);
+            
+            // 提取标题用于侧边栏显示
+            const titleMatch = markdown.match(/^#\s+(.+)$/m);
+            if (titleMatch && state.chapters[state.currentChapter]) {
+                state.chapters[state.currentChapter].title = titleMatch[1];
+                renderSidebar();
+            }
+            
+            elements.container.innerHTML = `
+                <div class="markdown-body">
+                    ${html}
+                </div>
+            `;
+            
+            // 处理工具卡片点击
+            document.querySelectorAll('.tool-card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    const example = card.querySelector('.tool-example');
+                    const expandText = card.querySelector('.tool-expand');
+                    if (example) {
+                        example.classList.toggle('active');
+                        if (expandText) {
+                            expandText.textContent = example.classList.contains('active') ? '收起示例' : '查看示例';
+                        }
+                    }
+                });
+            });
+            
+            // 滚动到顶部
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // 渲染侧边栏目录
+        function renderSidebar() {
+            const renderList = (chapters, container) => {
+                container.innerHTML = '';
+                chapters.forEach((ch, idx) => {
+                    const li = document.createElement('li');
+                    li.className = `sidebar-chapter level-1`;
+                    if (idx === state.currentChapter) li.classList.add('active');
+                    
+                    const a = document.createElement('a');
+                    a.href = '#';
+                    a.textContent = ch.title || `第${idx + 1}章`;
+                    a.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        loadChapter(idx);
+                        closeDrawer();
+                    });
+                    
+                    li.appendChild(a);
+                    container.appendChild(li);
+                });
+            };
+            
+            renderList(state.chapters, elements.sidebarChapters);
+            renderList(state.chapters, elements.drawerChapters);
+        }
+        
+        // 更新导航按钮状态
+        function updateNavigationButtons() {
+            elements.prevBtn.disabled = state.currentChapter === 0;
+            elements.nextBtn.disabled = state.currentChapter === state.totalChapters - 1;
+        }
+        
+        // 更新 URL（不刷新页面）
+        function updateUrl() {
+            const chapterNum = (state.currentChapter + 1).toString().padStart(2, '0');
+            const url = new URL(window.location.href);
+            url.searchParams.set('chapter', chapterNum);
+            window.history.pushState({}, '', url);
+        }
+        
+        // 滚动处理
+        function handleScroll() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+            
+            elements.progressBar.style.width = scrolled + '%';
+            elements.progressText.textContent = `${Math.round(scrolled)}%`;
+            
+            // 显示/隐藏回到顶部按钮
+            if (winScroll > window.innerHeight) {
+                elements.backToTop.classList.add('show');
+            } else {
+                elements.backToTop.classList.remove('show');
+            }
+        }
+        
+        // 事件监听
+        function setupEventListeners() {
+            elements.prevBtn.addEventListener('click', () => {
+                if (state.currentChapter > 0) loadChapter(state.currentChapter - 1);
+            });
+            
+            elements.nextBtn.addEventListener('click', () => {
+                if (state.currentChapter < state.totalChapters - 1) loadChapter(state.currentChapter + 1);
+            });
+            
+            elements.themeToggle.addEventListener('click', toggleTheme);
+            
+            elements.backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // 键盘翻页
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'PageDown') {
+                    e.preventDefault();
+                    if (state.currentChapter < state.totalChapters - 1) loadChapter(state.currentChapter + 1);
+                } else if (e.key === 'PageUp') {
+                    e.preventDefault();
+                    if (state.currentChapter > 0) loadChapter(state.currentChapter - 1);
+                }
+            });
+        }
+        
+        // 移动端抽屉
+        function setupMobileEvents() {
+            elements.drawerTrigger.addEventListener('click', openDrawer);
+            elements.drawerClose.addEventListener('click', closeDrawer);
+            elements.drawerOverlay.addEventListener('click', closeDrawer);
+            
+            let touchStartX = 0;
+            document.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+            });
+            
+            document.addEventListener('touchend', (e) => {
+                const touchEndX = e.changedTouches[0].clientX;
+                if (touchStartX < 30 && touchEndX - touchStartX > 50) {
+                    openDrawer();
+                }
+                if (elements.drawerPanel.classList.contains('open') && touchStartX - touchEndX > 50) {
+                    closeDrawer();
+                }
+            });
+        }
+        
+        function openDrawer() {
+            elements.drawerPanel.classList.add('open');
+            elements.drawerOverlay.classList.add('active');
+        }
+        
+        function closeDrawer() {
+            elements.drawerPanel.classList.remove('open');
+            elements.drawerOverlay.classList.remove('active');
+        }
+        
+        // 主题切换
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            elements.themeToggle.textContent = isDark ? '☀️ 日间' : '🌙 夜间';
+            localStorage.setItem('darkMode', isDark ? '1' : '0');
+        }
+        
+        function loadThemePreference() {
+            if (localStorage.getItem('darkMode') === '1') {
+                document.body.classList.add('dark-mode');
+                elements.themeToggle.textContent = '☀️ 日间';
+            }
+        }
+        
+        // 错误显示
+        function showError(message) {
+            elements.container.innerHTML = `<div class="error">❌ ${message}</div>`;
+        }
+        
+        // 启动
+        init();
     </script>
 </body>
 </html>
