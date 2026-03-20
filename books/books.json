@@ -1,5 +1,5 @@
 {
-  "lastUpdated": 1774012583981,
+  "lastUpdated": 1774012623500,
   "totalBooks": 53,
   "totalCategories": 14,
   "categories": [
@@ -103,9 +103,9 @@
       "title": "Just for the Summer",
       "category": "校园",
       "author": "Abby Jimenez",
-      "size": 851861,
-      "lastModified": 1772269963000,
-      "addedTime": 1772269963000
+      "size": 694369,
+      "lastModified": 1774012608000,
+      "addedTime": 1774012608000
     },
     {
       "id": "校园_Same Time Next Summer_安娜贝尔.html",
@@ -213,9 +213,9 @@
       "title": "The Summer I Turned Pretty",
       "category": "校园",
       "author": "珍妮",
-      "size": 406190,
-      "lastModified": 1773857305000,
-      "addedTime": 1773857305000
+      "size": 406117,
+      "lastModified": 1774012608000,
+      "addedTime": 1774012608000
     },
     {
       "id": "校园_Tweet Cute_艾玛 劳德.html",
@@ -488,9 +488,9 @@
       "title": "神墓",
       "category": "网文",
       "author": "辰东",
-      "size": 9393005,
-      "lastModified": 1773853080000,
-      "addedTime": 1773853080000
+      "size": 9392932,
+      "lastModified": 1774012608000,
+      "addedTime": 1774012608000
     },
     {
       "id": "剧情_神秘博士_BBC.html",
@@ -598,9 +598,9 @@
       "title": "银河帝国1：基地",
       "category": "科幻",
       "author": "阿西莫夫",
-      "size": 490152,
-      "lastModified": 1773857305000,
-      "addedTime": 1773857305000
+      "size": 490079,
+      "lastModified": 1774012608000,
+      "addedTime": 1774012608000
     }
   ],
   "categoryStats": [
