@@ -1,7 +1,7 @@
 {
-  "lastUpdated": 1774012709617,
-  "totalBooks": 56,
-  "totalCategories": 14,
+  "lastUpdated": 1774012761912,
+  "totalBooks": 59,
+  "totalCategories": 15,
   "categories": [
     "百科",
     "校园",
@@ -14,6 +14,7 @@
     "历史",
     "奇幻",
     "生活",
+    "社评",
     "推理",
     "社科",
     "剧情"
@@ -59,9 +60,9 @@
       "title": "A Curse So Dark and Lonely",
       "category": "校园",
       "author": "Brigid Kemmerer",
-      "size": 838348,
-      "lastModified": 1773857305000,
-      "addedTime": 1773857305000
+      "size": 838275,
+      "lastModified": 1774012743000,
+      "addedTime": 1774012743000
     },
     {
       "id": "校园_Better Than the Movies_Lynn Painter).html",
@@ -213,9 +214,9 @@
       "title": "The Love Hypothesis",
       "category": "校园",
       "author": "Ali Hazelwood",
-      "size": 674150,
-      "lastModified": 1773857305000,
-      "addedTime": 1773857305000
+      "size": 674077,
+      "lastModified": 1774012743000,
+      "addedTime": 1774012743000
     },
     {
       "id": "侦探_The Sherlock Holmes福尔摩斯策略_瑞格.html",
@@ -394,6 +395,17 @@
       "addedTime": 1773857305000
     },
     {
+      "id": "社评_旧山河_刀尔登.html",
+      "file": "社评_旧山河_刀尔登.html",
+      "filename": "社评_旧山河_刀尔登.html",
+      "title": "旧山河",
+      "category": "社评",
+      "author": "刀尔登",
+      "size": 342207,
+      "lastModified": 1774012743000,
+      "addedTime": 1774012743000
+    },
+    {
       "id": "历史_时间的战争：五百年钟表博弈史_范主.html",
       "file": "历史_时间的战争：五百年钟表博弈史_范主.html",
       "filename": "历史_时间的战争：五百年钟表博弈史_范主.html",
@@ -433,9 +445,9 @@
       "title": "昨日的世界",
       "category": "传记",
       "author": "茨威格",
-      "size": 950420,
-      "lastModified": 1773857305000,
-      "addedTime": 1773857305000
+      "size": 950347,
+      "lastModified": 1774012743000,
+      "addedTime": 1774012743000
     },
     {
       "id": "心理_欲罢不能：刷屏时代如何摆脱行为上瘾_亚当 · 奥尔特.html",
@@ -532,9 +544,9 @@
       "title": "神秘博士",
       "category": "剧情",
       "author": "BBC",
-      "size": 5276495,
-      "lastModified": 1773857305000,
-      "addedTime": 1773857305000
+      "size": 5276422,
+      "lastModified": 1774012743000,
+      "addedTime": 1774012743000
     },
     {
       "id": "侦探_福尔摩斯探案集_柯南道尔.html",
@@ -543,9 +555,9 @@
       "title": "福尔摩斯探案集",
       "category": "侦探",
       "author": "柯南道尔",
-      "size": 3285541,
-      "lastModified": 1773857305000,
-      "addedTime": 1773857305000
+      "size": 3285468,
+      "lastModified": 1774012743000,
+      "addedTime": 1774012743000
     },
     {
       "id": "心理_稀缺_艾尔德.html",
@@ -625,6 +637,28 @@
       "addedTime": 1773857305000
     },
     {
+      "id": "历史_财富之城  威尼斯海洋霸权_罗杰 · 克劳利.html",
+      "file": "历史_财富之城  威尼斯海洋霸权_罗杰 · 克劳利.html",
+      "filename": "历史_财富之城  威尼斯海洋霸权_罗杰 · 克劳利.html",
+      "title": "财富之城  威尼斯海洋霸权",
+      "category": "历史",
+      "author": "罗杰 · 克劳利",
+      "size": 823157,
+      "lastModified": 1774012743000,
+      "addedTime": 1774012743000
+    },
+    {
+      "id": "历史_贸易打造的世界 1400至今的社会文化与世界经济_彭慕兰  史蒂文·托皮克.html",
+      "file": "历史_贸易打造的世界 1400至今的社会文化与世界经济_彭慕兰  史蒂文·托皮克.html",
+      "filename": "历史_贸易打造的世界 1400至今的社会文化与世界经济_彭慕兰  史蒂文·托皮克.html",
+      "title": "贸易打造的世界 1400至今的社会文化与世界经济",
+      "category": "历史",
+      "author": "彭慕兰  史蒂文·托皮克",
+      "size": 803970,
+      "lastModified": 1774012743000,
+      "addedTime": 1774012743000
+    },
+    {
       "id": "科幻_银河帝国1：基地_阿西莫夫.html",
       "file": "科幻_银河帝国1：基地_阿西莫夫.html",
       "filename": "科幻_银河帝国1：基地_阿西莫夫.html",
@@ -679,7 +713,7 @@
     },
     {
       "name": "历史",
-      "count": 6,
+      "count": 8,
       "icon": "🏛️"
     },
     {
@@ -689,6 +723,11 @@
     },
     {
       "name": "生活",
+      "count": 1,
+      "icon": "📘"
+    },
+    {
+      "name": "社评",
       "count": 1,
       "icon": "📘"
     },
