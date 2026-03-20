@@ -1,6 +1,6 @@
 {
-  "lastUpdated": 1774013770960,
-  "totalBooks": 64,
+  "lastUpdated": 1774014195092,
+  "totalBooks": 63,
   "totalCategories": 15,
   "categories": [
     "百科",
@@ -63,17 +63,6 @@
       "size": 838275,
       "lastModified": 1774012743000,
       "addedTime": 1774012743000
-    },
-    {
-      "id": "校园_Better Than the Movies_Lynn Painter).html",
-      "file": "校园_Better Than the Movies_Lynn Painter).html",
-      "filename": "校园_Better Than the Movies_Lynn Painter).html",
-      "title": "Better Than the Movies",
-      "category": "校园",
-      "author": "Lynn Painter)",
-      "size": 617226,
-      "lastModified": 1772262258000,
-      "addedTime": 1772262258000
     },
     {
       "id": "校园_Better Than the Movies_Lynn Painter.html",
@@ -733,7 +722,7 @@
     },
     {
       "name": "校园",
-      "count": 16,
+      "count": 15,
       "icon": "📘"
     },
     {
