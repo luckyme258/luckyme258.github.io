@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
+    <title>虚构_黄衣之王_罗伯特 - 未知作者</title>
+    <style>
+:root {
+    --bg: #ffffff;
+    --bg-rgb: 255, 255, 255;
+    --text: #2d3748;
+    --accent: #4299e1;
+    --light-accent: #e8f4f8;
+    --card-bg: #f5fafe;
+    --card-shadow: 0 2px 8px rgba(66, 153, 225, 0.15);
+    --border-radius: 12px;
+    --line-height: 1.8;
+    --container-width: 800px;
+    --spacing: 32px;
+    --progress-height: 4px;
+    --header-height: 80px;
+    --nav-height: 70px;
+}
+
+.d0 {
+    --bg: #0a0c10;
+    --bg-rgb: 26, 32, 44;
+    --text: #ffffff;
+    --accent: #7472FE;
+    --light-accent: #2d3748;
+    --card-bg: #2d3748;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "思源黑体", "Source Han Sans CN", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: var(--line-height);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.p0 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: var(--progress-height);
+    background: linear-gradient(90deg, var(--accent), #7472FE);
+    z-index: 101;
+    transition: width 0.1s ease;
+    pointer-events: none;
+}
+
+.h0 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(var(--bg-rgb), 0.4);
+    backdrop-filter: blur(11px);
+    border-bottom: 1px solid var(--light-accent);
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    min-height: var(--header-height);
+}
+
+.h1 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+}
+
+.s0 {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    color: var(--accent);
+    padding: 8px 4px;
+    margin-left: -4px;
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+@keyframes shelfBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+.s0.f0 {
+    animation: shelfBounce 0.5s ease 2;
+}
+
+.s0:active {
+    transform: scale(0.95);
+}
+
+.s1 {
+    font-size: 24px;
+    line-height: 1;
+}
+
+.s2 {
+    font-size: 12px;
+    color: var(--accent);
+    opacity: 0.8;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+@media (max-width: 280px) {
+    .s2 {
+        display: none;
+    }
+}
+
+.h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 1;
+    min-width: 30px;
+}
+
+.h2 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.p1 {
+    font-size: 18px;
+    color: var(--text);
+    opacity: 0.9;
+    white-space: nowrap;
+    font-weight: 550;
+    flex-shrink: 0;
+}
+
+.p1::before {
+    content: "阅读进度 ";
+    font-size: inherit;
+    color: inherit;
+    opacity: 0.8;
+}
+
+.t0 {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    color: var(--text);
+    font-size: 14px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    flex-shrink: 0;
+}
+
+.t0:hover {
+    background: var(--accent);
+    color: white;
+}
+
+@media (max-width: 428px) {
+    .p1::before {
+        content: "";
+    }
+}
+
+@media (max-width: 375px) {
+    .h3 {
+        font-size: 16px;
+        max-width: 150px;
+    }
+    .p1 {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 320px) {
+    .h3 {
+        max-width: 120px;
+        font-size: 15px;
+    }
+    .p1 {
+        font-size: 15px;
+        min-width: 45px;
+    }
+    .t0 {
+        padding: 6px 8px;
+        font-size: 13px;
+    }
+}
+
+.c0 {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: calc(var(--header-height) + 20px) 16px 120px;
+    background-color: #F8F5F0;
+    filter: contrast(1.02);
+}
+
+.s3 {
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--light-accent);
+}
+
+.s4 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--text);
+    border-left: 6px solid var(--accent);
+    padding-left: 20px;
+    line-height: 1.3;
+    transition: border-left-color 0.3s ease;
+}
+
+.s4.x0 {
+    animation: titleFlash 0.5s ease;
+}
+
+@keyframes titleFlash {
+    0% { border-left-color: var(--accent); }
+    50% { border-left-color: #ffaa00; }
+    100% { border-left-color: var(--accent); }
+}
+
+.s5 {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 40px 0 20px;
+    color: var(--text);
+}
+
+.c1 p {
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+/* ===== 数字编码段落样式 ===== */
+.c1 p[class*="1"] { color: #2D2D2D; font-weight: 550; text-indent: 2em; }
+
+.c1 p[class^="1"] { margin-bottom: 24px; }
+.c1 p[class^="2"] { margin-bottom: 16px; }
+.c1 p[class^="3"] { margin-bottom: 32px; }
+
+.c1 p[class$="1"] { letter-spacing: 0.02em; line-height: 1.8; }
+.c1 p[class$="2"] {
+    letter-spacing: 0.01em;
+    line-height: 1.6;
+    text-indent: 0;
+    margin-bottom: 1.2em;
+}
+.c1 p[class$="3"] {
+    letter-spacing: 0.015em;
+    line-height: 1.7;
+    text-indent: 1em;
+}
+
+.d0 .c1 p[class*="1"] { color: var(--text); }
+.d0 .c1 p[class$="1"] { letter-spacing: normal; line-height: var(--line-height); text-indent: 2em; }
+.d0 .c1 p[class$="2"] { text-indent: 0; }
+.d0 .c1 p[class$="3"] { text-indent: 1em; }
+
+.r4 {
+    height: 8px;
+    margin: 16px 0;
+    opacity: 0.3;
+    border-bottom: 1px dashed var(--light-accent);
+}
+
+.h4 {
+    color: #2D2D2D;
+    font-weight: inherit;
+    text-indent: 0;
+}
+
+.g0 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin: 32px 0;
+}
+
+.g1 {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 24px;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    border: 1px solid rgba(66, 153, 225, 0.1);
+}
+
+.g1:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(66, 153, 225, 0.2);
+}
+
+.g2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.g3 {
+    background-color: var(--accent);
+    color: white;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.g4 {
+    color: var(--accent);
+    font-size: 14px;
+}
+
+.g5 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text);
+}
+
+.g6 {
+    font-size: 15px;
+    margin-bottom: 12px;
+    line-height: 1.7;
+}
+
+.g7 {
+    display: none;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--light-accent);
+    font-size: 14px;
+    color: var(--text);
+    opacity: 0.9;
+}
+
+.g7.a0 {
+    display: block;
+}
+
+.s6 {
+    background-color: var(--light-accent);
+    border-radius: var(--border-radius);
+    padding: 28px;
+    margin: 40px 0;
+    border-left: 6px solid var(--accent);
+}
+
+.s7 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--accent);
+}
+
+.b0 {
+    position: fixed;
+    left: 30px;
+    top: 100px;
+    width: 220px;
+    z-index: 85;
+    display: none;
+    overflow-y: auto;
+    max-height: calc(100vh - 150px);
+}
+
+.b0::-webkit-scrollbar { width: 6px; }
+.b0::-webkit-scrollbar-track { background: transparent; }
+.b0::-webkit-scrollbar-thumb {
+    background: rgba(66, 153, 225, 0.2);
+    border-radius: 4px;
+}
+
+@media (min-width: 1000px) {
+    .b0 { display: block; }
+    .c0 { margin-left: 260px; }
+}
+
+.b1 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--light-accent);
+    position: sticky;
+    top: 0;
+    background-color: var(--bg);
+    z-index: 86;
+    padding-top: 4px;
+}
+
+.b2 { list-style: none; margin: 0; padding: 0; }
+
+.b3 { margin-bottom: 4px; }
+
+.b3 a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 15px;
+    padding: 8px 12px;
+    display: block;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+    line-height: 1.4;
+}
+
+.b3.a0 a {
+    background-color: var(--light-accent);
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.b3.v1 a { font-weight: 600; }
+.b3.v2 a { padding-left: 24px; font-size: 14px; }
+.b3.v3 a { padding-left: 36px; font-size: 14px; }
+.b3.v4 a { padding-left: 48px; font-size: 13px; }
+
+@media (max-width: 1199px) {
+    .b0 { display: none !important; }
+    .c0 {
+        max-width: 100%;
+        padding: calc(var(--header-height) + 20px) 16px 100px;
+        margin-left: 0;
+    }
+    .c1 { margin-left: 48px; padding-left: 0; }
+    .s4 { margin-left: 48px; padding-left: 0; font-size: 26px; }
+    .s5 { margin-left: 48px; padding-left: 0; font-size: 20px; }
+    .g0 { margin-left: 48px; grid-template-columns: 1fr; }
+    .s6 { margin-left: 48px; }
+    .c1 p { font-size: 18px; line-height: 1.6; }
+}
+
+.m0 {
+    position: fixed;
+    left: 0;
+    bottom: calc(70px + 16px + env(safe-area-inset-bottom, 0));
+    width: 32px;
+    height: 50px;
+    background: rgba(var(--bg-rgb), 0.4);
+    backdrop-filter: blur(11px);
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    border-right: 1px solid rgba(66, 153, 225, 0.2);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 95;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (max-width: 1199px) {
+    .m0 { display: flex; }
+}
+
+.m0 .m1 {
+    color: var(--accent);
+    font-size: 20px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.m2 {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 80%;
+    max-width: 320px;
+    background: rgba(var(--bg-rgb), 0.95);
+    backdrop-filter: blur(10px);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 100;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+    border-right: 1px solid rgba(66, 153, 225, 0.2);
+    overflow-y: auto;
+    padding: 20px 0;
+}
+
+.m2.o0 { transform: translateX(0); }
+
+.m3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--light-accent);
+    margin-bottom: 10px;
+}
+
+.m4 { font-size: 18px; font-weight: 600; color: var(--accent); }
+
+.m5 {
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: var(--text);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+}
+
+.m5:hover { background: var(--accent); color: white; }
+
+.m6 { list-style: none; padding: 0; margin: 0; }
+
+.m7 { margin: 2px 0; }
+
+.m7 a {
+    text-decoration: none;
+    color: var(--text);
+    display: block;
+    padding: 10px 20px;
+    font-size: 15px;
+    line-height: 1.4;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+}
+
+.m7 a:active {
+    background: var(--light-accent);
+    border-left-color: var(--accent);
+}
+
+.m7.a0 a {
+    background: var(--light-accent);
+    border-left-color: var(--accent);
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.m8 {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.m8.a0 { opacity: 1; visibility: visible; }
+
+.n0 {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 70px;
+    background: rgba(var(--bg-rgb), 0.4);
+    backdrop-filter: blur(11px);
+    border-top: 1px solid rgba(66, 153, 225, 0.2);
+    padding: 0 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 90;
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+    height: calc(70px + env(safe-area-inset-bottom, 0));
+}
+
+.n1 {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(66, 153, 225, 0.3);
+    padding: 0 20px;
+    height: 52px;
+    border-radius: 26px;
+    cursor: pointer;
+    color: #4299e1;
+    font-size: 15px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    min-width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 1 auto;
+}
+
+.n1:hover:not(:disabled) {
+    background: #4299e1;
+    color: white;
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3);
+    border-color: transparent;
+}
+
+.n1:disabled {
+    background: rgba(200, 200, 200, 0.3);
+    color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(200, 200, 200, 0.2);
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+@media (max-width: 375px) {
+    .n1 { padding: 0 12px; min-width: 80px; font-size: 14px; }
+}
+
+.u0 {
+    position: fixed;
+    bottom: calc(70px + 16px + env(safe-area-inset-bottom, 0));
+    right: 16px;
+    width: 44px;
+    height: 44px;
+    border-radius: 22px;
+    background: rgba(var(--bg-rgb), 0.4);
+    backdrop-filter: blur(11px);
+    border: 1px solid rgba(66, 153, 225, 0.2);
+    color: var(--accent);
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 91;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.u0.w0 { display: flex; }
+.u0:hover { background: var(--accent); color: white; }
+
+.i0 {
+    position: fixed;
+    bottom: calc(70px + 16px + env(safe-area-inset-bottom, 0));
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(var(--bg-rgb), 0.2);
+    backdrop-filter: blur(8px);
+    border-radius: 16px;
+    padding: 8px 12px;
+    color: var(--text);
+    font-size: 14px;
+    z-index: 96;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    animation: tipFadeIn 0.3s ease;
+    pointer-events: none;
+    white-space: nowrap;
+    max-width: 80%;
+    border: 1px solid rgba(66, 153, 225, 0.2);
+}
+
+.i0 .i1 { font-size: 14px; }
+
+.i0.i3 { animation: tipFadeOut 0.2s ease forwards; }
+
+@keyframes tipFadeIn {
+    from { opacity: 0; transform: translate(-50%, 10px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes tipFadeOut {
+    from { opacity: 1; transform: translate(-50%, 0); }
+    to { opacity: 0; transform: translate(-50%, 10px); }
+}
+
+@keyframes progressFlash {
+    0% { height: var(--progress-height); }
+    50% { height: 6px; }
+    100% { height: var(--progress-height); }
+}
+
+.p0.x0 { animation: progressFlash 0.3s ease; }
+
+.d0 .m0 {
+    background: rgba(26, 32, 44, 0.6);
+    border-color: rgba(116, 114, 254, 0.3);
+}
+
+.d0 .m2 {
+    background: rgba(10, 12, 16, 0.98);
+    border-right-color: rgba(116, 114, 254, 0.2);
+}
+
+.d0 .n0 {
+    background: rgba(26, 32, 44, 0.4);
+    border-color: rgba(116, 114, 254, 0.2);
+}
+
+.d0 .n1 {
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid rgba(116, 114, 254, 0.4);
+    color: #7472FE;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.d0 .n1:hover:not(:disabled) {
+    background: #7472FE;
+    color: white;
+    box-shadow: 0 4px 12px rgba(116, 114, 254, 0.3);
+}
+
+.d0 .n1:disabled {
+    background: rgba(50, 50, 50, 0.5);
+    color: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(100, 100, 100, 0.2);
+}
+
+.d0 .u0 {
+    background: rgba(26, 32, 44, 0.6);
+    border-color: rgba(116, 114, 254, 0.3);
+}
+
+.d0 .i0 {
+    background: rgba(26, 32, 44, 0.8);
+    border-color: rgba(116, 114, 254, 0.3);
+}
+
+.d0 .s0,
+.d0 .s2 { color: #7472FE; }
+
+.d0 .c0 { background-color: var(--bg); filter: none; }
+
+.g0, .g1, .g1 *,
+.s6, .s6 * {
+    filter: none !important;
+    background-color: var(--card-bg) !important;
+    color: var(--text) !important;
+    font-weight: inherit !important;
+    text-indent: 0 !important;
+    letter-spacing: normal !important;
+    line-height: var(--line-height) !important;
+    margin-bottom: inherit !important;
+}
+</style>
+    <script>
+        window.__CHAPTER_DATA__ = [{"total_units": 28106, "language_type": "chinese"}, {"total_units": 15218, "language_type": "chinese"}, {"total_units": 7837, "language_type": "chinese"}, {"total_units": 16415, "language_type": "chinese"}, {"total_units": 12743, "language_type": "chinese"}, {"total_units": 1381, "language_type": "chinese"}];
+    </script>
+</head>
+<body>
+    <div class="p0" id="progressBar"></div>
+    
+    <header class="h0">
+        <div class="h1">
+            <a href="https://luckyme258.github.io/books/index.html" class="s0">
+                <span class="s1">📚</span>
+                <span class="s2">书架</span>
+            </a>
+            <span class="h3" title="虚构_黄衣之王_罗伯特">虚构_黄衣之王_罗伯特</span>
+        </div>
+        <div class="h2">
+            <span class="p1" id="progressText">0%</span>
+            <button class="t0" id="themeToggle">🌙 夜间</button>
+        </div>
+    </header>
+    
+    <div class="b0"><div class="b1">📖 目录</div><ul class="b2">
+<li class="b3 v1">
+    <a href="#chapter-0" title="名誉修复人">名誉修复人</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-1" title="面具">面具</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-2" title="龙廷">龙廷</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-3" title="黄色印记">黄色印记</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-4" title="德伊斯小姐">德伊斯小姐</a>
+</li>
+<li class="b3 v1">
+    <a href="#chapter-5" title="附录：洛夫克拉夫特论钱伯斯">附录：洛夫克拉夫特论钱伯斯</a>
+</li></ul></div>
+    
+    <div class="c0">
+        <section class="s3">
+<h1 class="s4" id="chapter-0">
+    名誉修复人
+</h1>
+<div class="c1"><p class="21">• 出自法国作家阿道夫·杜德托(1799-1869)的作品<一花十刺>(Dix épines pour une fleur),原文为法语.----译者注(如无特殊说明,以下均为译者注)</p><p class="11">请不要嘲笑疯子，他们陷入的疯狂比我们更持久……这就是唯一的区别。</p><h2 class="h6 h4">1</h2><p class="11">• 本书出版于1895年，本文描绘的是作者想象中的未来，诸多概念为杜撰。</p><p class="31">到1920年年底 ，美国政府事实上已经完成了温思罗普总统任期内最后几个月制订的计划，全国上下一派安宁的景象，人人都知道关税和劳工问题是如何解决的。因德国夺取萨摩亚群岛而引发的对德战争没有给合众国留下明显伤疤，海军屡获大胜，随后冯·加滕劳贝将军的部队在新泽西州陷入困境，人们欢欣鼓舞，忘记了侵略军对诺福克的短暂占领。对古巴和夏威夷的投资获得了百分之百的回报，萨摩亚群岛作为加煤站也完全值得政府为此的支出。国防事业可谓蒸蒸日上：每个沿海城市都筑起了陆地防御工事；在总参谋部的监督之下，按照普鲁士体系建立的军队已经扩充至三十万人，全国的后备力量达到百万人之众；六个庞大的巡洋舰和战列舰舰队在六个通航海域巡逻，留下的后备蒸汽舰艇足以控制本土水域。西方的绅士们终于不得不承认，培养外交官的学院和培养大律师的法学院一样必不可少。因此，代表国家的驻外人员不再是不称职的爱国者。整个国家繁荣昌盛。</p><div class="r4"></div><p class="11">• 指1893年芝加哥世界博览会的园区建筑。</p><p class="11">• 指相对于欧洲的旧世界而言的美洲新大陆。</p><p class="31">芝加哥在第二次大火后一度瘫痪，但现在已经从废墟中再次崛起，这座拥有帝王气度的白色新城比1893年为玩乐而建造的那座白城 更加美丽。漂亮的建筑物在所有地方取代了糟糕的建筑物，甚至连纽约也不例外，对体面的渴望突然到来，扫除了一大部分既有的丑陋建筑物。人们不仅拓宽了街道，还铺设了平整的路面，安装了路灯并种植了树木。人们修建广场，拆除高架铁路，用地下铁路取代。新的政府大楼和兵营都是堪称艺术品的建筑物，环绕全岛的漫长石砌码头被改造成公园，对居民来说简直是天赐的礼物。政府向州立剧院和歌剧院提供的补贴带来了回报，美国国家设计院已经和欧洲的同类机构非常相似，没人羡慕艺术部部长在内阁中的地位或职务。得益于全新的国家骑警体系，林业与野生动物保护部部长的日子好过多了。我们从与英法两国签订的最新条约中获益良多。作为国家自保的一项措施，我们排除在国外出生的犹太人，建立新的黑人独立州萨沃尼，再加上移民审核、通过新的入籍法规，以及逐步集中行政权力，林林总总都促进了国家的稳定和繁荣。政府最终解决了印第安人问题，身穿民族服装的印第安侦察骑兵中队取代了前任战争部部长硬塞给残缺不全的兵团的卑微部队，这时全国民众长长地舒了一口气。规模空前的宗教联合大会过后，偏执和不宽容被送进了坟墓，仁爱和慈善让敌对教派携起手来。许多人认为新千年已经到来，至少在新世界 是这样。毕竟，新世界本身就是一个独立的世界。</p><p class="21">然而自保是第一法则，美国只能无助而悲哀地看着德国、意大利、西班牙和比利时在无政府主义的铁掌中痛苦挣扎，而俄国在高加索坐观其变，把这些国家逐一纳入控制。</p><div class="r4"></div><p class="21">在纽约，1899年夏天的标志性事件是拆除高架铁路。1900年的夏天将永远留在纽约人的记忆之中，因为道奇的雕像在这一年被撤走。同年冬天，民众开始呼吁废除禁止自杀的法律，这项运动最终在1920年4月结出果实，华盛顿广场开设了第一家公立弃生室。</p><p class="31">那天我走下麦迪逊大道阿切尔医生家门前的台阶，我去找他只是例行公事。四年前我从马背上摔了下来，后来我的后脑勺和颈部就常常感到不舒服。不过当时已经好几个月没有疼过了，那天医生送我出门时说我没有什么可治的了。听他说这句话当然配不上我付的诊疗费，我自己也知道，不过我并不吝惜那点钱，我怨恨的是他最初犯的错误。受伤后我躺在路上昏迷不醒，有人仁慈地开枪打死了我的马，人们把我抬起来，送我去看阿切尔医生。他声称我的大脑受到了影响，把我送进他私人开设的精神病院，害得我不得不接受精神错乱的治疗。最后，他终于认为我已经痊愈，而我知道我的头脑一直和他一样健全，甚至更加健全，但我还是乖乖地像他开玩笑说的那样“交了学费”，然后离开。我微笑着对他说，我迟早会为他的错误向他讨回公道，他愉快地放声大笑，让我每隔一段时间来拜访他一次。我照他说的做了，希望能找到机会和他算算这笔账，但他没有给我机会。我对他说，我会等着的。</p><p class="21">幸运的是，从马背上摔下来没有给我留下后遗症，我的整个性格反倒变好了。我以前是个满城闲逛的懒散年轻人，现在我充满活力，精神充沛，但懂得节制，而最重要的是（对，比其他一切都重要），我雄心勃勃。只有一件事情让我烦恼。尽管我嘲笑自己内心的不安，但它还是让我烦恼。</p><p class="31">我在疗养期间买了《黄衣之王》并读了第一遍。记得刚读完第一幕，我突然想到我最好别读下去了。我跳起来，把书扔进壁炉，书碰到格栅打开了，掉在炉膛里时被火光照亮。要不是我凑巧瞥见了第二幕的开场白，我恐怕永远也不会读完这本书。然而当我弯腰去捡的时候，翻开的那一页牢牢地抓住了我的视线，我出于惊恐尖叫起来，但也可能是出于喜悦。情绪的冲击过于强烈，我的每一根神经都经受了巨大的折磨。我从炭灰里抢回这本书，颤抖着上楼回到卧室，读了一遍又一遍，一会儿哭一会儿笑，时而吓得浑身发抖，当时的恐惧直到今天还在不时地袭击我。这就是让我烦恼的事情，因为我无法忘记卡尔克萨，黑星在那里的天空中闪耀，人们思想的影子会在下午逐渐拉长，双日每天沉入哈利湖，而苍白面具的记忆永远刻在了我的脑海里。我祈求上帝诅咒那位作家，就像那位作家用这个美丽而骇人的造物诅咒整个世界，它因简明而可怕，因真实而不可抗拒——这个世界如今就在“黄衣之王”的脚下颤抖。法国政府查封刚刚运抵巴黎的译本时，伦敦的人们当然迫不及待地想要读到它。我们都知道这本书如何像传染病那样从一个城市流到另一个城市，从一块大陆流到另一块大陆，在一个地方遭禁，在另一个地方被扣……人们在报刊和讲坛上抨击它，连最开放的文学无政府分子都在谴责它。书里那些邪恶的纸页没有违反任何明确的准则，也没有宣扬任何教义或践踏任何信仰。人们无法用任何已知的标准来评判它，尽管人人都承认《黄衣之王》奏响了最华美的艺术音符，但也都认为人类的天性无法承担那种重压，更不可能在蕴含着纯粹毒素的辞藻中健康成长。第一幕的平庸和质朴只会让随之而来的打击产生更可怖的后果。</p><div class="r4"></div><p class="31">我记得很清楚，1920年4月13日，政府在华盛顿南侧的伍斯特街和南第五大道之间设立了第一家公立弃生室。当时这里有很多破旧的建筑，外国人开了形形色色的咖啡馆和餐厅。1898年的冬天，政府收购了这个街区，法国人和意大利人开的咖啡馆和餐厅被夷为平地，镀金的铁栏杆把整个街区围了起来。这里被改建成一座美丽的花园，其中有草坪、花圃和喷泉。花园中央矗立着一座白色小楼，建筑风格具有浓厚的古典气息，周围花团锦簇。六根爱奥尼亚柱支撑屋顶，唯一的一扇门由青铜铸成。门前有一组命运女神的大理石雕像，这是年轻的美国雕塑家鲍里斯·伊万的杰作，他在巴黎去世时年仅二十三岁。</p><p class="31">我穿过大学城走进广场时，落成典礼正在进行。我在沉默的观众中穿行，却在第四街被警戒线拦住。美国枪骑兵的一个团在弃生室周围站成了一个空心方阵。面向华盛顿公园的架高讲台上站着纽约州的州长，他背后是纽约市与布鲁克林区的市长、警务总监、本州军队的司令官利文斯顿上校、美国总统的军事助理布隆特将军、坐镇总督岛的纽约市与布鲁克林区卫戍部队司令官汉密尔顿少将、北河舰队司令布夫比海军上将、医务总监兰斯福德、国家免费医院的工作人员、纽约州参议员怀斯和富兰克林，以及公共工程专员。国民警卫队的一个轻骑兵中队把讲台围在中间。</p><p class="31">州长正在结束他对医务总监简短发言的回应。我听见他说：“禁止自杀和惩罚企图自戕行为的法律已经废除。政府认为理当承认个人有权结束因肉体痛苦或精神绝望而无法忍受的生存。我们相信，把这样的个体从社会中清除出去，对社会来说是有益的。自新法律通过以来，美国的自杀人数并没有增加。意志消沉的群体中每天都有人成为自戕的受害者，政府现在决定在国内的每一座城市和村镇设立一个弃生室，他们是否愿意接受以这样的方式脱离苦海，就让我们拭目以待吧。”他停顿片刻，然后转向白色的弃生室，街道上鸦雀无声：“假如一个人再也无法承受尘世的折磨，那么毫无痛苦的死亡就在那里等待他。假如他想寻求死亡，就让他去那里投入死神的怀抱吧！”他随即转向总统的军事助理，说：“我宣布，弃生室从即刻起开放。”他重新转向浩瀚的人群，用清晰的声音喊道：“纽约和美利坚合众国的公民们，我代表政府宣布，弃生室从即刻起开放！”</p><p class="21">厉声喝令打破了庄严的寂静，轻骑兵中队跟上州长的马车，枪骑兵变阵，沿着第五大道列队等候卫戍部队的司令官，骑警紧随其后。我离开人群，盯着白色大理石砌成的弃生室看了一会儿，然后穿过南第五大道，顺着这条通衢长街的西侧走到布利克街。我在路口右转，在一家破旧的商店门前停下，这家店的招牌上写着：</p><div class="r4"></div><p class="31">我向门里望去，见到霍伯克在店堂尽头的小车间里忙碌。他刚好也抬起头，见到我之后用低沉而热情的嗓音喊道：“快请进，卡斯泰涅先生！”我跨过门槛时，他的女儿康斯坦丝起身迎接，向我伸出美丽的小手，但我看见失望使得她羞红了脸，知道她期待的是另一个卡斯泰涅，我的表哥路易。我微微一笑，宽慰认错人给她造成的困窘，称赞她正根据彩绘瓷盘做的刺绣条幅。老霍伯克坐在工作台前，用铆钉固定一件古老铠甲的破损护胫，小锤子敲出叮叮当当的声音，在古色古香的店铺里显得格外悦耳。他很快放下锤子，拿起小扳手忙活了一会儿。铠甲零件互相碰撞的柔和响声使得一阵快感传遍了我的全身。我喜欢听钢铁彼此摩擦的乐声，喜欢听铁锤敲打大腿甲的醇厚响声，喜欢听锁子甲的叮当声。这是我去找霍伯克的唯一原因。我对他本人从来都不感兴趣，对康斯坦丝也一样，只知道她爱上了路易。这个问题确实占据了我的注意力，有时甚至让我彻夜难眠。但我心底里知道一切都会好起来的，我应该安排好他们的未来，就像我为我的好医生约翰·阿切尔做的那样。然而，倘若我不是如此迷恋叮叮当当的捶打声，就根本不会像那天一样跑去拜访他们。我总是连着几个小时坐在那儿听，当一束阳光落在钢板镶嵌的花纹上时，那一刻的感官刺激使得我几乎不堪忍受。我会目不转睛地盯着看，将每一根神经拉得即将绷断的快感让我瞪大了眼睛，直到老铠甲师的某个动作挡住了那一束阳光。这时我会按捺住内心隐秘的悸动，身体往后靠在椅背上，继续倾听抛光布唰唰地摩擦铆钉锈斑的声音。</p><p class="11">康斯坦丝把条幅铺在大腿上做刺绣，不时停下，仔细查看来自大都会博物馆的彩绘瓷盘上的图案。</p><p class="11">“这是在给谁干活？”我问。</p><p class="31">霍伯克娓娓道来：他不但被大都会博物馆任命为养护铠甲藏品的铠甲师，同时还在照看几位富有的业余爱好者的藏品。这块护胫属于一身著名的铠甲，失踪多年，他的一位客户根据传闻追查到了巴黎奥赛码头的一家小店。霍伯克在磋商后买下了这块护胫，现在这身铠甲重新变得完整了。他放下锤子，向我讲述这身铠甲的故事：它的历史可以追溯到1450年，后来换了一任又一任主人，最终落入托马斯·斯坦布里奇之手。他的丰富藏品出售时，霍伯克的这位客户买下了这身铠甲，从那以后一直在寻找那块遗失的护胫，直到偶然在巴黎发现了它。</p><div class="r4"></div><p class="11">“你无法确定护胫依然存在，但依然坚持不懈地寻找？”我问。</p><p class="11">“当然了。”他平静地答道。</p><p class="11">听他这么说，我第一次对霍伯克本人产生了兴趣。</p><p class="11">“它对你来说很有价值。”我猜测道。</p><div class="r4"></div><p class="11">“不，”他笑道，“寻找它的快乐就是我的回报。”</p><p class="11">“你难道没有发财的志向吗？”我微笑道。</p><p class="11">“我唯一的志向就是成为全世界最优秀的铠甲师。”他严肃地答道。</p><p class="21">康斯坦丝问我有没有看到弃生室的落成典礼。那天早上，她也看到骑兵从百老汇大街经过，本来想去现场看看的，但她父亲希望她能尽快完成那个条幅，于是她就按照父亲的要求留下了。</p><div class="r4"></div><p class="11">“卡斯泰涅先生，你在那儿看见你表哥了吗？”她问我，柔软的睫毛微微颤动。</p><p class="11">“没有，”我漫不经心地答道，“路易的那个团正在韦斯特切斯特县演习。”我起身拿起帽子和手杖。</p><p class="21">“又要上楼去看那个疯子吗？”老霍伯克笑着说。假如霍伯克知道我多么痛恨“疯子”这个词，他绝对不会在我面前这么说。它激起了我内心的某些情绪，尽管我没兴趣向他解释，但还是平静地回答他：“我想我应该去看一眼怀尔德先生。”</p><p class="21">“可怜的人儿，”康斯坦丝说，摇了摇头，“年复一年地单独生活，穷苦、残疾，近乎痴呆，过得肯定很不容易。卡斯泰涅先生，你真是太善良了，能这么经常去探望他。”</p><div class="r4"></div><p class="21">“我觉得他是个恶人。”霍伯克说，拿起锤子继续敲打。我听着锤子在护胫上发出的悦耳的叮当声，等他敲完这一轮，我答道：“不，他不是恶人，也完全不痴呆。他的头脑就像一个藏宝室，他能从里面取出你和我愿意用几年生命去换取的珍宝。”</p><p class="11">霍伯克放声大笑。</p><p class="21">我不太耐烦地继续道：“没人像他那样了解历史。无论多么琐碎的小事，只要发生过就逃不过他的调查，他的记忆无懈可击，细节精确得不可思议。假如人们知道纽约有这么一个人，再怎么尊崇他也不为过。”</p><p class="11">“胡说八道。”霍伯克嘟囔道，在地上寻找一枚掉落的铆钉。</p><div class="r4"></div><p class="21">“他说，假如你去佩尔街的一间阁楼，”我说，勉强克制住内心的情绪，“在一大堆生锈的道具、破炉子和拾荒者的垃圾里翻一翻，就会找到俗称‘亲王纹章甲’的珐琅铠甲的腿罩和护膝，你还会觉得这是胡说八道吗？”</p><p class="21">霍伯克的锤子掉在了地上，他把锤子捡起来，以异常冷静的态度问我怎么会知道“亲王纹章甲”缺少了腿罩和护膝。</p><p class="11">“我也是前几天怀尔德先生提到的时候才知道的。他说它们就在佩尔街998号的阁楼里。”</p><p class="11">“胡说八道。”他叫道，但我注意到他的手在皮围裙底下颤抖。</p><div class="r4"></div><p class="21">“那么这也是胡说八道吗？”我笑呵呵地说，“怀尔德先生提到你时经常说你是阿文郡侯爵，而康斯坦丝小姐是——”</p><p class="21">我没有说完这句话，因为康斯坦丝跳了起来，脸上写满了惊恐。霍伯克望着我，慢慢抚平皮围裙。“这不可能，”他说，“怀尔德先生或许见多识广——”</p><p class="11">“比如他懂铠甲，还有‘亲王纹章甲’。”我笑着插嘴道。</p><p class="21">“对，”他缓缓地继续道，“他可能也懂铠甲，但他对阿文郡侯爵的看法是错误的。如你所知，他多年前杀死了诽谤他妻子的人，然后去了澳大利亚，死在他妻子之前。”</p><div class="r4"></div><p class="11">“怀尔德先生错了。”康斯坦丝喃喃道，嘴唇毫无血色，但声音甜美而平静。</p><p class="11">“要是你们坚持，那就让我们一致认为怀尔德先生在这件事上搞错了吧。”我说。</p><h2 class="h6 h4">2</h2><p class="31">我爬上已经爬惯了的三段残旧的楼梯，敲了敲走廊尽头的小门。怀尔德先生打开门，我走了进去。他锁好门上的两把锁，用沉重的箱子顶住门，然后过来在我身旁坐下，抬起他那双浅绿色的小眼睛打量我。他的鼻子和面颊上有五六道新的抓痕，固定人造耳朵的银线已经错位。在我的印象中，他从未狰狞得这么令人着迷。他没有耳朵，人造耳朵此刻歪斜着挂在金属细丝上，这是他的一个缺陷。它们是用蜡做的，涂成粉贝色，然而他这张脸的其他部分都是黄色的。他的左手连一根手指都没有，假如能装上几根人造手指，或许会让他过得更愉快，不过这似乎并没有给他带来任何不便，而他对他蜡制的耳朵也很满意。他个子很矮，比十岁孩童高不了多少，但手臂肌肉极为发达，大腿像运动员一样粗壮。然而，怀尔德先生身上最突出的还是他非凡的智慧和学识竟然装在那么一个脑袋里。他扁平的头部棱角分明，就像许多由于智力低下而被关进收容所的可怜人。说他精神失常的人不在少数，但我知道他和我一样神志健全。</p><p class="31">我不否认他是个怪人。他的疯癫表现在他养了一只母猫，热衷于逗弄它，直到它像恶魔似的扑向他的脸，这种行为当然很不正常。我一直无法理解他为什么要养那个小怪物，也不理解他把自己和这只粗暴凶恶的野兽关在房间里有什么乐趣。记得有一次，我正借着牛油灯的光线研读一份手稿，无意间抬起视线，见到怀尔德先生一动不动地蹲坐在高脚椅上，眼睛里闪着兴奋的光芒，而那只猫已经从炉子前的窝里站了起来，正蹑手蹑脚地穿过房间，直奔他而去。我还没来得及采取任何行动，它就伏在地上，腹部紧贴地面，身体微微颤抖，然后跳起来扑向他的面门。一个人和一只猫嚎叫着吐出白沫，抓挠扭打，直到猫尖叫着逃到了柜子底下，而怀尔德先生翻身躺在地上，四肢像蜘蛛垂死时的腿那样收缩蜷紧。我说过了，他是个怪人。</p><div class="r4"></div><p class="11">怀尔德先生爬上高脚椅，打量了一下我的脸，捡起并打开了一本翻得卷边的账本。</p><p class="21">“亨利·B．马修斯，”他读道，“经营教堂装饰品的惠索特父子公司的会计。4月3日来电。在赛马场上名誉受损，被认为逃债不还。望于8月1日前修复名誉。订金五美元。”他翻过这一页，用没有手指的关节滑过写得密密麻麻的条目。</p><p class="11">“P．格林·杜森伯里，新泽西州费尔比奇的福音牧师。名誉在包厘街受损。望尽快修复。订金一百美元。”</p><p class="11">他清了清嗓子，继续道：“4月6日来电。”</p><div class="r4"></div><p class="11">“看来你并不缺钱，怀尔德先生。”我说。</p><p class="11">“继续听。”他又咳嗽一声。</p><p class="21">“纽约切斯特公园的C．汉密尔顿·切斯特夫人。4月7日来电。名誉在法国迪耶普受损。望10月1日前修复。订金五百美元。</p><p class="11">“又：C．汉密尔顿·切斯特先生，美国海军‘雪崩号’的舰长，将于10月1日奉命从南海中队回国。”</p><div class="r4"></div><p class="11">“好的，”我说，“修复名誉是个非常赚钱的行当。”</p><p class="31">他抬起浅绿色的眼睛盯着我：“我只想证明我是正确的。你说过做一个名誉修复人是不可能成功的，还说即便我在某些事例中成功了，也会入不敷出。今天，我有五百名员工，他们的报酬很少，但对工作充满热情，哪怕激发热情的也许是恐惧。这些人存在于社会的各个阶层，有些人甚至是限制最严格的社交神殿的支柱，有些人则是金融街的后盾和骄傲，还有一些人在所谓‘才子佳人’队伍里拥有无可争议的影响力。我从回复广告的那些人里随意挑选出了他们。其实很容易，他们一个个都是胆小鬼。假如我愿意，我能在二十天内把人数翻三倍。因此你看，只要一个人想在同侪之间保住自己的名声，我就可以收买他。”</p><p class="11">“但他们可能会背叛你。”我提醒道。</p><p class="21">他用大拇指搓了搓他歪斜的耳朵，调整了一下假耳朵的角度。“我看不会，”他若有所指地喃喃道，“我很少用鞭子，就算用也只会用一次。另外，他们对我付的报酬很满意。”</p><div class="r4"></div><p class="11">“你的鞭子是怎么用的呢？”我问。</p><p class="11">他的表情有一瞬间可怕得令人难以直视，眼睛眯成了两团绿色的火花。</p><p class="11">“我请他们过来和我稍微聊一聊。”他用柔和的声音答道。</p><p class="11">敲门声打断了他的话，和蔼可亲的表情重新回到他的脸上。</p><div class="r4"></div><p class="11">“是谁？”他问。</p><p class="11">“斯泰莱特先生。”门外的人答道。</p><p class="11">“明天再来。”怀尔德先生答道。</p><p class="11">“不可能。”门外的人还想说什么，但被怀尔德先生的一声厉喝挡了回去。</p><div class="r4"></div><p class="11">“明天再来。”他重复道。</p><p class="11">我们听着一个人从门口离开，从楼梯口拐弯下楼。</p><p class="11">“那是谁？”我问。</p><p class="11">“阿诺德·斯泰莱特，纽约那份了不起的日报的老板和总编。”</p><div class="r4"></div><p class="11">他用没有手指的那只手敲了敲账本，补充道：“我给他的报酬少得可怜，但他觉得非常划算。”</p><p class="11">“阿诺德·斯泰莱特！”我惊讶地重复道。</p><p class="11">“是的。”怀尔德先生说，自得地清了清嗓子。</p><p class="21">就在他说话的时候，母猫走进了房间。它犹豫片刻，抬头看着他，然后吼了一嗓子。他从椅子上爬下来，蹲在地上，把猫抱在怀里，开始抚摸它。猫不再咆哮，发出响亮的咕噜声，随着他的抚摸，声音变得越来越响。</p><div class="r4"></div><p class="11">“笔记在哪儿？”我问。他指了指桌子，我第一百次拿起那份手稿：</p><p class="21">我逐页翻看这些破旧的纸页，把它们翻得如此破旧的正是我本人。尽管从开篇的“自毕宿星团的卡尔克萨、哈斯塔和毕宿五”到最后的“卡尔瓦多斯的路易·卡斯泰涅，生于1877年12月19日”，我都早已烂熟于心，但我还是全神贯注地读了起来，时而停下，大声朗读其中的部分内容，尤其吸引我注意力的是“卡尔瓦多斯的希尔德雷德，希尔德雷德·卡斯泰涅和伊迪丝·兰德斯·卡斯泰涅的独子，第一顺位继承人”，等等。</p><p class="11">等我读完，怀尔德先生点点头，咳嗽一声。</p><p class="11">“说到你正当的野心，”他说，“康斯坦丝和路易相处得怎么样？”</p><div class="r4"></div><p class="11">“她爱他。”我淡淡地说。</p><p class="11">趴在他膝头的猫突然转过身，朝他的眼睛挥动爪子，他把猫扔开，重新爬上我对面的椅子。</p><p class="11">“还有阿切尔医生！但只要你愿意，问题随时都能解决。”他继续道。</p><p class="11">“对，”我答道，“阿切尔医生可以等一等，但我要去见我的路易表哥了。”</p><div class="r4"></div><p class="21">“是的，你该去了。”他重复道，从桌上拿起另一个账本飞快翻看，“我们目前与一万人建立了联系。”他喃喃道，“在最初的二十八个小时里，我们能依靠的有十万人。四十八小时内，整个州会动员起来，之后是整个国家，而无法调动的部分——我指的是加利福尼亚和西北部，还不如从来就没有人居住。我是不会给他们发黄色印记的。”</p><p class="11">热血冲上我的头部，但我只是说：“新扫帚打扫得更干净。”</p><p class="21">“恺撒和拿破仑的野心相比之下都显得苍白无力，直到攫取了所有人的思想，甚至控制了他们尚未产生的念头，它才会罢休。”怀尔德先生说。</p><p class="11">“你说的是黄衣之王。”我呻吟道，不禁战栗。</p><div class="r4"></div><p class="11">“他是每一个帝王都侍奉过的王。”</p><p class="11">“我乐于侍奉他。”我答道。</p><p class="11">怀尔德先生坐在椅子上，用残废的手揉搓耳朵。“也许康斯坦丝并不爱他。”他猜测道。</p><p class="31">我刚开口回答，楼下的街道上突然响起军乐，淹没了我的声音。原来是驻扎在圣文森特山的第二十龙骑兵团结束了韦斯特切斯特县的演习，正在返回位于东华盛顿广场的新兵营。我的表兄就属于这个团。他们是一群好小伙子，身穿淡蓝色的紧身上衣和黄色双条纹的白色马裤，头戴神气的高顶皮军帽，贴合得像是直接从身上长出来的。每两个中队中有一个中队肩扛骑枪，枪尖上飘扬着黄色与白色的旌旗。乐队演奏着行军曲经过，随后是上校和参谋人员，马匹彼此挤擦，脚下踩着步点，头部齐刷刷地上下摆动，旌旗在枪尖上随风飘扬。士兵们骑着俊美的英国马匹，经历了韦斯特切斯特乡间的艰苦训练，皮肤晒得像褐色的浆果。马刀与马镫撞击出的音乐，再加上马刺和马枪的叮当碰撞声，使我听得心旷神怡。我看见路易骑马带领着他的中队。他是我见过的最英俊的一位军官。怀尔德先生爬上窗口的椅子，同样看见了他，但没有发表任何评论。经过霍伯克的小店时，路易扭过头望向店里，我能看见他晒黑的面颊上泛起了红晕。我猜康斯坦丝肯定就在窗前。等士兵们终于走完，最后几面旌旗消失在南第五大道上时，怀尔德先生从椅子上起身，拖开挡在门口的箱子。</p><div class="r4"></div><p class="11">“是的，”他说，“现在你该去见你的路易表哥了。”</p><p class="21">他打开门锁，我拿起帽子和手杖，出门回到走廊。楼梯间漆黑一片。我摸索着向下走，踩到了一个软乎乎的东西，它咆哮着朝我喷口水，我朝那只猫施出致命一击，但手杖落在栏杆上，砸得木屑乱飞，小怪兽逃回了怀尔德先生的房间。</p><p class="31">再次经过霍伯克的店门口时，我看见他还在忙着修补铠甲。我没有停下，而是回到布利克街上，然后向前走，拐上伍斯特街，绕过弃生室的院子，穿过华盛顿公园，径直走进我在本尼迪克公寓的房间。我在家里舒舒服服地吃了午饭，读《先驱报》和《流星报》，最后走进卧室，站在钢铁保险柜前，输入了时间密码。时间锁开启的这三分四十五秒对我来说堪比黄金。从我输入密码的那一刻开始，到我抓住把手拉开牢固铁门的那一刻为止，我都处在期待的狂喜之中。这些时刻就像是在天堂度过的。我知道我会在时限结束时见到什么，我知道这个巨大的保险箱为我（仅仅为我一个人）保管着什么。等保险箱终于打开时，我从天鹅绒底座上拿起闪耀着钻石光芒的纯金王冠，尽管等待时我已经陷入了极度的狂喜，但快乐在这个瞬间竟然又上升了一级。我每天都会这么做，然而随着日子一天天过去，等待和最终再次触碰它所带来的喜悦却还在继续增强。这是君王之中的君王、皇帝之上的皇帝才能佩戴的冠冕。黄衣之王也许会蔑视它，但他的王室奴仆终将戴上它。</p><p class="31">我把它抱在怀里，直到保险柜警报器响起刺耳的铃声，这才温柔而自豪地把它放回去，关上沉重的铁门。我慢慢走回面向华盛顿广场的书房，靠在窗台上。午后的阳光洒进窗户，微风拂动着公园里榆树和枫树已经发芽和长出嫩叶的枝杈。一群鸽子绕着纪念教堂的塔楼盘旋，时而落在屋顶紫色的瓦片上，时而落向大理石拱门前的莲花喷泉。园丁们正在喷泉周围的花圃里忙碌，新翻过的泥土散发着甘甜芬芳的气味。一匹肥壮的白马拉着割草机，叮叮当当地穿过碧绿的草坪，洒水车把水洒在沥青马路上。彼得·施托伊弗桑特的雕像（1897年，这尊雕像取代了号称是加里波第的那个怪物）周围，孩子们在春天的阳光下嬉戏，年轻的保姆们推着精致的婴儿车，却对脸色苍白的婴儿不管不顾，大概是因为有六名英姿飒爽的龙骑兵懒洋洋地靠坐在长椅上。透过树丛，我能看见华盛顿凯旋门在阳光下闪烁着银色的光芒，再往远处望去，广场东侧灰色石板的龙骑兵营与白色花岗岩的炮兵马厩充满了鲜活的色彩和忙碌的人群。</p><div class="r4"></div><p class="21">我望向对面广场角落里的弃生室。几个好奇的看客还在镀金的铁栏杆前徘徊，但院子里的小径上空无一人。我看着喷泉波光粼粼的水面泛起涟漪，麻雀已经发现了这个新浴场，长满灰褐色羽毛的小家伙挤满了水盆。两三只孔雀在草坪上觅食，两只灰白色的鸽子一动不动地坐在一个命运女神的手臂上，仿佛就是石像的一部分。</p><p class="31">我正要漫不经心地转身离开，弃生室院门附近那群好奇的围观者突然轻微地骚动起来，吸引了我的注意力。一个年轻人走进院门，紧张地迈开大步，沿着碎石小径走向弃生室的青铜大门。他在命运女神像前停下脚步，抬起头望向那三张神秘莫测的面孔。鸽子从石雕上的栖息处起飞，绕着神像盘旋片刻，然后飞向东方。年轻人用双手捂住脸，以难以形容的步态跑上大理石台阶，青铜大门在他背后徐徐关闭。半小时后，围观者百无聊赖地散开，受惊的鸽子回到了命运女神的怀抱。</p><p class="21">晚饭前，我戴上帽子去公园散步。就在我穿过中央车道的时候，一群军官刚好经过，其中一人喊道：“你好，希尔德雷德。”转回来和我握手。他正是我的路易表哥，微笑着站在那里，用马鞭轻轻拍打鞋跟上的马刺。</p><p class="21">“刚从韦斯特切斯特回来，”他说，“一直在过田园生活。牛奶和乳酪之类的，你知道的。你对戴太阳帽的挤奶小妞说她们长得漂亮，她们会说‘嗬嗬’和‘我可不觉得’。我在德尔莫尼科餐厅结结实实吃了一顿，险些没撑死。有什么新闻吗？”</p><div class="r4"></div><p class="11">“没有，”我愉快地答道，“今天上午看见你带着队伍回来了。”</p><p class="11">“你看见了？我没看见你。你在哪儿？”</p><p class="11">“怀尔德先生家的窗口。”</p><p class="11">“哈，该死！”他不耐烦地说了起来，“那家伙是个彻底的疯子！我没法理解你为什么……”</p><div class="r4"></div><p class="11">他看到自己的胡言乱语惹得我很不高兴，便连忙请求我原谅。</p><p class="21">“说真的，老弟，”他说，“我不是想说你喜欢的人的坏话，但我到死也想不通你能和怀尔德先生有什么共同语言。他没有良好的教养，这还是说得客气了呢，他又是个骇人的畸形儿，只有精神失常的犯罪分子的脑袋才会长成他那样。你很清楚他进过疯人院——”</p><p class="11">“我也进过。”我平静地打断他。</p><p class="21">路易像是吃了一惊，一时间不知道该说什么才好，但他很快回过神儿来，亲热地拍了拍我的肩膀。“你完全治好了。”他说，但我再次打断他。</p><div class="r4"></div><p class="11">“我猜你的意思是医生承认了我从一开始就不是疯子。”</p><p class="11">“当然了，我就是这个意思。”他哈哈大笑。</p><p class="21">我不喜欢他的笑声，因为我知道这是假笑，但我还是愉快地点点头，问他要去哪儿。路易扭头望向他的同僚，他们已经快走到百老汇大街了。</p><p class="21">“我们打算去尝一口不伦瑞克鸡尾酒。不过实话实说，我正想找个借口溜掉，去看一看霍伯克。来吧，你就是我送上门的借口。”</p><div class="r4"></div><p class="11">我们见到霍伯克的时候，他打扮整齐，穿了一身崭新的春装，站在店门口闻着芬芳的空气。</p><p class="21">“我刚决定晚饭前带康斯坦丝出去散个步，”他回答路易连珠炮般的问题，“我们打算去北河岸边的台地公园走一走。”</p><p class="21">就在这时，康斯坦丝出现了，路易弯腰亲吻她戴着手套的小手，她的脸色起初变得苍白，随即变得绯红。我想告辞，声称在上城约了人，但路易和康斯坦丝不肯放我走。我明白他们希望我留下，吸引老霍伯克的注意力，我转念一想，这样我也能盯紧路易，于是就答应了。他们叫住斯普林街上的一辆有轨马车，我跟着他们上车，在铠甲师旁坐下。</p><p class="21">北河岸边俯瞰码头的美丽公园和花岗岩台地于1910年开始修建，1917年秋完工，现在是这座大都市最受人欢迎的散步地点之一。公园从炮台一直延伸到第190街，脚下是壮观的大河，新泽西一侧岸边和高地区的美景一览无余。树木之间，咖啡馆和餐厅星罗棋布，卫戍部队的军乐队每周会在防浪墙的凉亭里演奏两次。</p><div class="r4"></div><p class="21">我们在谢里登将军骑马像脚下有阳光的长椅上坐下。康斯坦丝压低遮阳伞挡住她的双眼，她和路易开始窃窃私语，我听不清楚他们在聊什么。老霍伯克拄着象牙头手杖，点了一支高级雪茄，我有礼貌地拒绝了他的邀请，无所事事地露出微笑。太阳低悬在斯塔滕岛的树林之上，港口里被阳光照亮的无数船帆把海湾染成了金色。</p><p class="21">双桅帆船、纵帆船、游艇和笨重渡轮的甲板上都挤满了人，装着棕蓝白三色货车的铁路运输船、庄严而体面的蒸汽船、颓丧的漂泊蒸汽船、沿海贸易船、挖泥船、平底驳船，以及整个海湾随处可见、肆无忌惮的小拖船都在搅动着映着阳光的河水，小拖船喷着黑烟，时而拉响汽笛。一支白色战舰组成的舰队静静地停在河流中央，与忙碌的帆船、蒸汽船形成鲜明的对比。</p><p class="11">康斯坦丝快乐的笑声把我从沉思中唤醒。</p><p class="11">“你在看什么？”她问我。</p><div class="r4"></div><p class="11">“没什么，就在看舰队。”我微笑道。</p><p class="11">于是路易开始解释它们分别是什么船，根据每一艘船与总督岛上老红堡的相对位置把它们指给我们看。</p><p class="31">“那艘雪茄形的小船是鱼雷艇，”他说，“另外四艘紧挨着的也是，分别是‘海鲢号’、‘猎隼号’、‘海狐号’和‘章鱼号’。往上一点的炮艇是‘普林斯顿号’、‘尚普兰号’、‘静水号’和‘伊利号’。炮艇旁边是巡洋舰‘法拉格特号’和‘洛杉矶号’，往上一点是战列舰‘加利福尼亚号’和‘达科他号’，然后是旗舰‘华盛顿号’。停在威廉堡旁边的两个金属墩子是双炮塔的海防舰‘恐怖号’和‘雄壮号’，它们背后是撞击舰‘奥斯西奥拉号’。”</p><p class="21">康斯坦丝望着他，美丽的眼睛里饱含赞许。“作为一名士兵，你知道的东西可真多。”她说，我们一起笑了起来。</p><div class="r4"></div><p class="21">没多久，路易起身朝我和霍伯克点点头，向康斯坦丝伸出手臂，两人沿着防浪墙慢慢走远。霍伯克盯着他们的背影看了一会儿，然后转向我。</p><p class="11">“怀尔德先生说得对，”他说，“我在佩尔街一个堆满垃圾的阁楼上找到了亲王纹章甲遗失的腿罩和左护膝。”</p><p class="11">“998号？”我笑着问。</p><p class="11">“是的。”</p><div class="r4"></div><p class="11">“怀尔德先生确实很有智慧。”我说。</p><p class="11">“我想把这项重要发现的功劳献给他。”霍伯克继续道，“我希望让大家都知道，他配得上这份名声。”</p><p class="11">“他可不会为此感谢你的。”我连忙答道，“请不要把这件事说出去。”</p><p class="11">“你知道它值多少钱吗？”霍伯克问。</p><div class="r4"></div><p class="11">“不知道，也许值五十块钱吧。”</p><p class="11">“其实值五百块，但亲王纹章甲的主人愿意向帮他拼全盔甲的人支付两千块，这笔奖金同样属于怀尔德先生。”</p><p class="21">“他不会想要的！他一定会拒绝的！”我气愤地答道，“你了解怀尔德先生什么？他不需要钱。他很有钱，或者说很快就会比除我之外的任何活人都有钱。钱对我们毫无用处。他和我，我们要钱干什么？等……等到……”</p><p class="11">“等到什么时候？”霍伯克惊讶地问。</p><div class="r4"></div><p class="11">“你会知道的。”我答道，重新变得警惕起来。</p><p class="21">他眯起眼睛看着我，阿切尔医生也经常这么做，我知道他认为我的精神状况不稳定。算他走运，他没有直接把“疯子”这个词说出口。</p><p class="21">“不，”我看懂了他没有说出口的想法，“我的头脑并不糊涂，我和怀尔德先生一样神志健全。我没兴趣向你解释我在做什么，但这项投资的回报将远远超过金银珠宝。它将确保一个大洲——不，半个地球的幸福和富有！”</p><p class="11">“哦。”霍伯克说。</p><div class="r4"></div><p class="11">“而最终，”我的语气变得缓和，“必将确保全世界的幸福。”</p><p class="11">“同时增加你和怀尔德先生的幸福和财富？”</p><p class="11">“正是如此。”我微笑道，但听他说话的语气，我很想当场掐死他。</p><p class="21">他默默地盯着我看了几秒钟，用非常柔和的声音说：“卡斯泰涅先生，你为什么不暂时放下书本和学业，找个时间去山里稍微走一走呢？你以前很喜欢钓鱼，去兰奇利湖钓一两竿鳟鱼吧。”</p><div class="r4"></div><p class="11">“我对钓鱼已经不感兴趣了。”我答道，声音里找不到一丝不快。</p><p class="11">“你以前喜欢的事情那么多，”他继续道，“运动、帆船、射击、骑马……”</p><p class="11">“自从摔过那一次，我就再也不想骑马了。”我平静地说。</p><p class="11">“啊，对，那一次。”他重复道，转开视线不再看我。</p><div class="r4"></div><p class="21">我以为他的胡言乱语已经告一段落了，于是把话题转回怀尔德先生，但他再次扫视我的脸，眼神让我觉得非常不舒服。</p><p class="21">“怀尔德先生，”他又说，“你知道他今天下午做了什么吗？他下楼来，在前厅大门上钉了一块牌子，就钉在我的牌子旁边，上面写着：</p><p class="11">“你知道名誉修复人是干什么的吗？”</p><p class="11">“知道。”我答道，按捺住内心的怒火。</p><div class="r4"></div><p class="11">“哦。”他又说。</p><p class="21">路易和康斯坦丝回来了，停下来问我们要不要一起走走。霍伯克看看手表。就在这时，一团青烟从威廉堡的窗口射出来，日落时的炮声响彻河面，回声从对面的高地区传来。国旗沿着旗杆徐徐降下，战舰的白色甲板上吹响了军号，新泽西一侧的岸边点亮了第一批电灯。</p><p class="21">我和霍伯克一起往城里走，听见康斯坦丝悄声对路易说了一句我没听清的话，不过我听清楚了路易的回应“我亲爱的”。我和霍伯克走在前面穿过广场的时候，听见了路易轻声说“宝贝儿”和“我的康斯坦丝”。我知道时机已经成熟，应该和路易表哥谈一谈要事了。</p><h2 class="h6 h4">3</h2><p class="31">五月的一个清晨，我站在卧室的钢制保险柜前，再次试戴镶嵌宝石的金冠。我转向镜子的时候，钻石闪耀火光，锻打的沉重黄金在我头顶上燃烧，像是给我加上了一道光环。我回忆卡米拉的惨叫和回荡在卡尔克萨阴暗街道上的可怖词句。那是第一幕的末尾，我不敢去想接下来发生了什么，哪怕此刻我沐浴着春天的阳光，待在自己家的卧室里，周围是熟悉的物品，熙熙攘攘的街道和外面走廊里仆人的交谈声让我感到安心，我还是不敢。剧毒的词句慢慢渗入我的头脑，就像死神的汗水滴在床单上被布料吸收。我颤抖着摘下王冠，擦了擦额头，却想到了哈斯塔和我应得的野心。我回忆起上次与怀尔德先生告别时的情形，那只邪恶的野兽把他的脸抓得血肉模糊，我想起他说的话——天哪，他说的话！保险柜里的警铃发出刺耳的响声，我知道时间到了，但我不愿理睬，而是重新把冒火的王冠戴在头上，桀骜地转向镜子。我伫立良久，沉浸在自己眼睛里不断改变的神采之中。镜子里的那张脸很像我，但肤色更白，而且瘦得我几乎认不出来。我一直在咬牙切齿地重复一句话：“这一天到了！这一天到了！”而保险柜的警铃还在震响，钻石在我的眉头闪亮发光。我听见了开门声，但没有理睬，直到我在镜子里看见了两张脸，另一双眼睛与我对视，我才突然惊醒。我像闪电似的转过身，抓起梳妆台上的长匕首。我的表哥向后跳开，吓得面无血色，他叫道：“希尔德雷德！老天在上！”他看见我放下了手，又说：“是我，路易，你不认识我了吗？”我一言不发地站在那儿，就像一辈子从没说过话似的。他走到我面前，拿走我手里的匕首。</p><div class="r4"></div><p class="11">“这都是在干什么？”他用轻柔的声音问我，“你生病了吗？”</p><p class="11">“没有。”我答道。但我觉得他不一定听见了。</p><p class="21">“来，过来，老弟，”他叫道，“摘掉你那个黄铜的头冠，和我去书房坐一坐。你要去参加化装舞会吗？戴着这些亮晶晶的东西是要去演戏吗？”</p><p class="21">我很庆幸他以为王冠是用黄铜和假宝石做的，但我并不会因为他这么想而喜欢他。我让他从我手里拿走王冠，知道现在应该哄他高兴。他把华丽的王冠扔到半空中，然后接住，笑呵呵地望向我。</p><div class="r4"></div><p class="11">“这五毛钱花得很值。”他说，“是干什么用的？”</p><p class="21">我没有回答，而是从他手里拿走王冠放进保险柜，关上沉重的铁门。警铃可怕的啸叫声终于停下了。他好奇地打量我，但似乎没有注意到戛然而止的警铃声，而是把保险柜当成了饼干盒子。我担心他会去研究密码锁，于是领着他走进书房。路易一屁股坐在沙发上，用从不离手的马鞭赶走苍蝇。他身穿军服，上衣带有穗带，帽子非常神气，我注意到他的马靴上溅满了红色的泥点。</p><p class="11">“你去哪儿了？”我问。</p><p class="21">“在泽西的烂泥小溪里跳来跳去。”他说，“我没时间换衣服，急着来见你。能来一杯喝的吗？我要累死了，在马背上坐了一天一夜。”</p><div class="r4"></div><p class="11">我打开药柜，取出白兰地给他倒了一杯，他喝了两口，做个怪相。</p><p class="11">“也太差劲了。”他评论道，“我给你个地址，他们那儿卖的白兰地才是白兰地。”</p><p class="11">“对我来说已经够用了。”我冷冷地说，“我是用来擦胸膛的。”他瞪着我，又赶开一只苍蝇。</p><p class="21">“你看，老弟，”他说，“能听我一句劝吗？你把自己关在家里已经四年了，活得就像猫头鹰，从不去任何地方，从不锻炼身体，除了钻研你壁炉架上的这些书，就什么事情都不做。”</p><div class="r4"></div><p class="21">他扫了一眼成排的书架。“拿破仑、拿破仑，还是拿破仑！”他看着书名说，“上帝啊，你这儿除了拿破仑就没有别的书了吗？”</p><p class="21">“我只希望它们都是用黄金装订的。”我说，“不过等一等，对，其他的书倒是也有一本，《黄衣之王》。”我直勾勾地盯着他的眼睛。</p><p class="11">“你读过吗？”我问。</p><p class="11">“我？没有，感谢上帝！我才不想被逼疯呢。”</p><div class="r4"></div><p class="21">我看得出，这句话刚一出口他就后悔了。只有一个词比“精神失常”更让我厌恶，那就是“疯”。但我控制住自己，问他为什么认为《黄衣之王》很危险。</p><p class="21">“呃，我也不知道。”他连忙说，“我只记得它引起的激荡，还有讲坛和报刊对它的抨击。我记得这个怪物诞生后不久作者就自杀了，对吧？”</p><p class="11">“据我所知，他还活着。”我答道。</p><p class="11">“应该是真的，”他嘟囔道，“子弹杀不死那样的魔头。”</p><div class="r4"></div><p class="11">“这本书讲述了伟大的真相。”我说。</p><p class="21">“是啊，”他答道，“只是这些‘真相’会逼得人发狂，结束自己的生命。我不在乎这玩意儿是不是像他们说的‘艺术本身的最高精粹’。把它写出来就是在犯罪，我绝对不会翻开它。”</p><p class="11">“你来找我就是为了说这个？”我问。</p><p class="11">“不，”他说，“我来是为了告诉你我要结婚了。”</p><div class="r4"></div><p class="11">我猜有一个瞬间，我的心脏停止了跳动，但我强迫自己看着他的脸。</p><p class="11">“是的，”他继续道，露出幸福的笑容，“娶全世界最可爱的姑娘。”</p><p class="11">“康斯坦丝·霍伯克。”我机械地说。</p><p class="21">“你怎么知道的？”他叫道，惊呆了，“要不是四月的那个傍晚我们在晚餐前沿着河堤散步，连我自己都不可能知道。”</p><div class="r4"></div><p class="11">“什么时候举行婚礼？”我问。</p><p class="21">“定在九月，不过一小时前我们团接到调令，即将前往旧金山的普雷西迪奥。我们明天中午出发，就在明天。”他重复道，“但你想一想，希尔德雷德，明天我就是在这个世界上最幸福的男人了，因为康斯坦丝要和我一起走。”</p><p class="11">我向他伸出手表示祝贺，他紧紧握住，就像一个好脾气的傻瓜——要么他真的是，要么只是装出来的。</p><p class="21">“我就快要指挥一个中队了，这是我的结婚礼物。”他说个没完，“路易·卡斯泰涅上尉与夫人，怎么样，希尔德雷德？”</p><div class="r4"></div><p class="21">他告诉我婚礼的地点和参加者，逼着我答应做伴郎。我咬紧牙关，听着他幼稚的夸耀，没有把我内心的想法表现出来，但我的忍耐差不多要达到极限了。还好他适时地跳起来，拨动马刺叮当作响，然后说他必须走了，我没有挽留他。</p><p class="11">“我想求你为我做一件事情。”我平静地说。</p><p class="11">“说吧，就当我答应了。”他笑道。</p><p class="11">“今晚来见我，我们聊一刻钟。”</p><div class="r4"></div><p class="11">“没问题，小事一桩。”他说，但有点摸不着头脑，“哪儿见？”</p><p class="11">“随便哪儿，就底下的公园好了。”</p><p class="11">“几点呢，希尔德雷德？”</p><p class="11">“午夜。”</p><div class="r4"></div></div></section><section class="s3">
+<h1 class="s4" id="chapter-1">
+    面具
+</h1>
+<div class="c1"><p class="11">卡米拉：你，先生，应该摘下面具。</p><p class="11">陌生人：是吗？</p><p class="11">卡西尔达：是的，到时候了。我们都卸下了伪装，只有你除外。</p><p class="11">陌生人：但我没有戴面具。</p><div class="r4"></div><p class="11">（惊恐，退到卡西尔达身旁）</p><p class="11">卡米拉：没有戴面具？没有戴面具！</p><p class="11">——《黄衣之王》第一幕第二场</p><h2 class="h6 h4">1</h2><p class="21">尽管我对化学一窍不通，但还是听得入迷了。他拿起热娜维芙那天早上从圣母院拿来的一朵复活节百合花放进水盆里，液体顿时失去了水晶般的清澈，乳白色的泡沫一瞬间包裹了百合花。等泡沫消失时，液体呈现出乳白色，橙色和深红色的缤纷光彩在水面上跃动。然后，一道仿佛纯净阳光的光芒从百合花所在的盆底射了出来。他的手沉到盆底，捞出了百合花。“只要你选择了正确的时机，”他解释道，“就不会有任何危险。那道金光是信号。”</p><div class="r4"></div><p class="11">他把百合花递给我，我接过去。花已经变成了石头：最纯粹的大理石。</p><p class="11">“你看，”他说，“完美得无懈可击。哪个雕刻家能够做到呢？”</p><p class="11">大理石洁白如雪，但深层脉络带着一丝极浅的天青色，花心似有似无地呈现出淡淡的绯红色。</p><p class="21">他注意到我的困惑，于是微笑道：“别问我为什么。我不知道脉络和花心为什么带有颜色，但一直是这样的。昨天我试了热娜维芙的一条金鱼，你看。”</p><div class="r4"></div><p class="21">这条鱼像是用大理石雕成的，然而拿起来对着光看，会发现石头里带有美丽的浅蓝色脉络，从内部透出玫红色的光影，就像沉淀在蛋白石内部的色调。我往水盆里看，里面似乎又装满了最纯净的水晶。</p><p class="11">“我的手碰到了会怎么样？”我问他。</p><p class="11">“不知道，”他答道，“但最好别拿自己做实验。”</p><p class="11">“有一点我非常好奇，”我说，“那一道阳光是从哪儿来的？”</p><div class="r4"></div><p class="21">“它确实就像真正的阳光，”他说，“我也不知道是从哪儿来的，但每次我把有生命的东西泡进去，就会释放出一道阳光。也许……”他又露出笑容，“也许这是造物的生命火花在回归它的源头。”</p><p class="11">我知道他在开玩笑，抓起支腕杖假装威胁他，但他只是放声大笑，换了个话题：</p><p class="11">“留下吃午饭吧，热娜维芙会直接来这儿。”</p><p class="11">“我看见她去做晨间弥撒了。”我说，“她看上去又有活力又可爱，就像那朵百合花被你毁掉之前的样子。”</p><div class="r4"></div><p class="11">“你认为它被我毁掉了？”鲍里斯正色道。</p><p class="11">“毁掉了，或者永远保存了下来，谁能说得清呢？”</p><p class="21">我们坐在他的工作室里，不远处是尚未完成的命运女神群像。他在沙发上往后一靠，玩着手里的雕刻凿，眯起眼睛打量他的作品。</p><p class="11">• 指巴黎沙龙，最初是巴黎美术学院举办的官方艺术展览，始于1725年，持续到1890年。</p><div class="r4"></div><p class="21">“说起来，”他说，“我刚打磨完那尊最学院派的阿里阿德涅，估计还是要送到沙龙 去。今年我只做出来这么一个作品，然而在圣母像带来的成功之外，送这么一个东西过去让我觉得很惭愧。”</p><p class="21">以热娜维芙为原型雕刻的圣母像是一件无与伦比的大理石作品，去年在沙龙展出后轰动一时。我望着阿里阿德涅雕像。从技艺的角度来说，它非常优秀，然而我同意鲍里斯的观点，因为世人对他的期待恐怕更高。不过，那组壮观的群像还有一大半埋在我背后的那块大理石里，想在沙龙开展前完成是不可能做到的，命运女神只能耐心等待了。</p><p class="21">我们为鲍里斯·伊万感到骄傲。尽管他父亲是法国人，母亲是俄罗斯人，但他在美国出生，因此他把自己视为美国人，而我们也把他当作自己人。美术学院的人都叫他鲍里斯，然而能让他以同样亲热的方式直呼其名的只有两个人，一个是杰克·斯科特，另一个就是我。</p><p class="21">他对我的好感也许与我爱上了热娜维芙有关。不过我们从未向彼此挑明过这件事。然而当一切都水落石出时，她含泪告诉我她爱的其实是鲍里斯之后，我去了他家，向他表示祝贺。我一直认为那次见面时融洽的气氛并没有遮蔽我们任何人的视线，但至少对其中一人来说是莫大的安慰。我猜他和热娜维芙从未谈起过这件事，但他心里很清楚。</p><div class="r4"></div><p class="21">• 指法国作曲家夏尔·古诺(1818--1893)的<圣塞西莉亚弥撒曲>(Messe de Sainte Cécile),创作于1855年,<圣哉经>是其中的第四乐章.</p><p class="21">热娜维芙非常可爱。她犹如圣母的纯净面容仿佛古诺创作的弥撒曲里《圣哉经》乐章的化身 。但我更乐于见到她把那样的情绪换成所谓的“四月风云”。她常常像四月的天气一样多变，上午严肃、庄重而亲切，中午欢笑而任性，到了傍晚则会超乎任何人的预料。我更喜欢她这样，而不是那种圣母般的平静，她的宁静会搅动我的心灵深处。鲍里斯再次开口时，我正在做有关热娜维芙的白日梦。</p><p class="11">“亚历克，你觉得我的发现怎么样？”</p><p class="11">“我觉得好极了。”</p><div class="r4"></div><p class="11">“除了满足我本人的好奇心，我是不会随便使用它的，明白吗？这个秘密会跟我一起进坟墓。”</p><p class="11">“它会对雕塑这门艺术形成巨大的冲击，对吧？就像我们画家，照相害得我们得不偿失。”</p><p class="11">鲍里斯点点头，抚摸凿子的锋刃。</p><p class="11">“这个邪恶的新发现会腐化艺术界。没错，我不会向任何人透露我的秘密。”他缓缓地说。</p><div class="r4"></div><p class="31">很难找到比我更不了解如此现象的人了，但我当然听说过矿泉水富含硅质，落在里面的树叶和树枝过一段时间会变成石头。我依稀了解这个过程，明白硅石会逐个原子地取代植物质，最终的结果就是变成原物体的石质复制品。我承认自己一直对此缺乏兴趣，而通过这个过程形成的远古化石更是让我厌恶。看起来，鲍里斯对这个问题不但不反感，而且觉得好奇。他在研究中意外地发现了一种溶液，它会以闻所未闻的猛烈程度攻击浸泡在里面的物体，让本来要耗费多年的过程在一秒钟内完成。他刚才向我展示的这个奇异的现象，总结下来就是上面的情况。他沉吟良久，然后再次开口：</p><p class="21">“仔细思考我的新发现之后，我只感到恐惧。科学家会为这项发现而疯狂。其实很简单，它几乎是自己冒出来的。当我想到那个配方时，在金属附着的过程中起作用的那种新元素——”</p><p class="11">“什么新元素？”</p><p class="21">“哦，我还没考虑过要怎么命名呢，不过我很可能是不会对外公布的。世界上已经有很多人愿意为之杀人的贵金属了。”</p><div class="r4"></div><p class="11">我竖起了耳朵：“鲍里斯，难道你炼出金子了？”</p><p class="21">“不，更厉害。但是，亚历克，你要明白！”他笑道，站了起来，“你和我已经有了我们在尘世间需要的一切。哈！你的表情怎么那么阴森和贪婪！”我也笑了，说对黄金的欲望吞噬了我，最好还是换个话题吧。热娜维芙不久后回来了，我们早就把炼金术抛在了脑后。</p><p class="21">热娜维芙从头到脚一身银灰色的衣装。她把面颊转向鲍里斯，阳光在她金发的柔美曲线上闪耀，然后她看见了我，回应我的招呼。她以前总会抬起白皙的指尖送给我一个飞吻，但今天没有，我立刻抱怨她的疏忽。她笑着向我伸出手，但还没等碰到我的手就放了下去。她望向鲍里斯，说：“你必须请亚历克留下吃午饭。”这也和以前不一样了，因为在今天之前，她总是亲口对我说的。</p><p class="11">“好的。”鲍里斯随即说。</p><div class="r4"></div><p class="11">• 法语：这真是我的荣幸，夫人。</p><p class="21">“而你，我希望你会答应。”她扭头看我，露出礼节性的迷人微笑。她对待我的态度就好像我们前天才刚刚认识。我向她深鞠一躬，说了句“J'avais bien l'honneur, madame ”，但没有使用平时的戏谑语气，她嘟囔了两句客套话就消失了。鲍里斯和我面面相觑。</p><p class="11">“我看我还是回家吧，你说呢？”我问。</p><p class="11">“杀了我吧，我也不知道！”他坦白地答道。</p><div class="r4"></div><p class="21">就在我们讨论我是不是该告辞的时候，热娜维芙又出现在了门口，但摘掉了帽子。她美极了，只是面颊太红，可爱的眼睛又太亮。她径直走到我面前，挽起我的手臂。</p><p class="21">“午餐准备好了。亚历克，我是不是惹你生气了？我以为我头疼，但其实没有。鲍里斯，给我过来。”她用另一条胳膊挽起鲍里斯，“亚历克知道，除你以外，世上我最喜欢的就是他，所以他觉得偶尔受到冷落也没有什么大不了的。”</p><p class="11">• 法语：太好了！</p><p class="11">"A la bonheur! "我叫道,"谁说四月不能下雷雨呢?"</p><div class="r4"></div><p class="21">“准备好了吗？”鲍里斯朗声道，“完全好了。”我们手挽手冲进餐厅，把仆人们吓得够呛。说真的，谁能责怪我们呢？热娜维芙十八岁，鲍里斯二十三岁，而我还不到二十一岁。</p><h2 class="h6 h4">2</h2><p class="21">这段时间我在为热娜维芙的闺房做装饰工作，总是待在圣塞西尔街那座古雅的小房子里。我和鲍里斯忙得不可开交，但乐此不疲。我们三个人再加上杰克·斯科特经常在一起闲聊。</p><p class="21">一个平静的下午，我一个人在屋子里转悠，看看这儿的古董，钻钻那儿的角落，从没人能想到的角落掏出甜食和雪茄，最后在浴室停下脚步。鲍里斯浑身泥土，站在水龙头前洗手。</p><p class="21">浴室是用玫瑰色的大理石砌成的，只有地面镶嵌着玫红色和灰色的地砖。正中央是低于地面的浴池，有几级台阶通到底下，饰有雕纹的柱子撑起绘着湿壁画的天花板。整个室内装潢都出自我和鲍里斯之手。一尊可爱的石雕丘比特似乎刚刚落在他的基座上，他身穿白色的帆布工作服，一边忙着搓掉修长双手上的黏土和红色塑形蜡，一边扭头与丘比特打情骂俏。</p><div class="r4"></div><p class="11">“我看见你了，”他坚持道，“别想转开视线，假装没看见我。小骗子，你知道是谁创造了你！”</p><p class="21">在这样的对话中，解释丘比特的情绪永远是我的任务。当我准备回应他时，他抓住我的手臂，拖着我走向浴池，声称要淹死我。但下一个瞬间，他放下我的手臂，脸色变得惨白。“天哪！”他说，“我忘记浴池里灌满了那种溶液！”</p><p class="11">我吓得哆嗦了一下，冷冷地劝他最好别忘记他把宝贵的溶液放在哪儿了。</p><p class="11">“不过老天在上，你为什么要在这儿放一池子这种可怕的东西呢？”我问他。</p><div class="r4"></div><p class="11">“我想用大型动物做个实验。”他答道。</p><p class="11">“例如我！”</p><p class="21">“哈！我不该拿这个开玩笑，不过我确实想看看溶液在复杂度更高的生命体上的作用。我准备了一只大白兔。”他说，跟着我走进工作室。</p><p class="31">杰克·斯科特慢悠悠地走进来，衣服上沾满了颜料，拿走了他能拿的所有东方甜点，洗劫了烟盒，然后和鲍里斯一起出门去卢森堡美术馆了，罗丹的一件青铜合金新雕像和莫奈的一幅风景画正吸引着法国艺术界的挑剔眼光。我回到工作室继续创作。那是一件文艺复兴风格的屏风，鲍里斯打算用来装饰热娜维芙的闺房。然而做模特的小男孩今天很不听话，我怎么贿赂他都没用。按理说，他应该摆出一系列姿势让我画，但他在同一个姿势上从没停留过一秒钟。还不到五分钟，我就画了许多个小家伙的不同轮廓。</p><div class="r4"></div><p class="11">“我的朋友，你这是在摆姿势，还是在表演歌舞？”我问他。</p><p class="11">“看先生喜欢哪一个了。”他答道，露出天使般的笑容。</p><p class="11">我还能怎么办？只好放他滚蛋了。不过我自然付了他全天的工钱，我们就是这么娇惯模特。</p><p class="31">小家伙离开后，我敷衍地在画布上涂抹了几笔，但我的状态太糟糕了，于是把下午剩余的时间全花在了修改上。最终我刮干净调色盘，把画笔插在一碗黑肥皂水里，然后漫不经心地走进吸烟室。我真的认为除了热娜维芙的居室，整座屋子没有哪儿能比这儿更缺少烟草的芬芳。房间里杂乱无章，塞满了乱七八糟的东西，墙上挂着破旧的织锦，一台音色甜美、保养良好的古钢琴立在窗边。房间里有形形色色的武器架，陈旧的早已褪色，崭新的则明晃晃的，壁炉架上是印第安人和土耳其人的铠甲，还有两三张不错的画和一个烟斗架。我们经常来这里，在吸烟中寻找新的刺激。我觉得任何一种存在过的烟斗都被摆上过这个烟斗架。每次我们选好一个烟斗，就会立刻带着它去其他地方抽烟，因为总体而言，这个房间比屋子里其他房间都更加阴暗和缺乏吸引力。然而今天下午不一样，昏暗的光线让人放松，脚下的地毯和兽皮呈现出棕色，看上去软乎乎的，使得我很想打个瞌睡。大沙发上堆满了靠垫，我找到烟斗，在沙发上蜷起身子，在吸烟室里抽起了不习惯的烟。我选的是个烟杆柔韧的长烟斗，点上没多久我就开始做白日梦。过了一会儿，烟灭了，但我懒得动弹，继续做白日梦，很快就睡着了。</p><div class="r4"></div><p class="21">唤醒我的是我听过的最悲伤的音乐。房间里暗沉沉的，我不知道现在是几点。一道月光照亮了古钢琴的一角，音乐仿佛是从抛光的木头里飘出来的，就像檀香木匣子散发的香气。黑暗中有人起身，轻轻哭着向外走，我一时糊涂，喊了一声：“热娜维芙！”</p><p class="21">随着我的叫声，她倒在了地上。我痛斥自己的愚蠢，点起一盏灯，想把她从地上扶起来。她向后退开，轻轻喊痛，异常平静地让我去叫鲍里斯过来。我扶着她在大沙发上坐下，然后去找鲍里斯，但他不在家里，仆人也都去休息了。我紧张得不知所措，于是跑回去找热娜维芙。她依然躺在大沙发上，脸色苍白。</p><p class="11">“我找不到鲍里斯，仆人也都不在。”我说。</p><p class="11">“我知道，”她用微弱的声音答道，“鲍里斯和斯科特先生去埃普特了。刚才我请你去叫他，忘了这件事。”</p><div class="r4"></div><p class="21">“但这样的话，他要到明天下午才有可能回来，而你……你受伤了吗？是不是被我吓了一跳，摔倒了？我太愚蠢了，都怪我，但我当时还没睡醒。”</p><p class="11">“鲍里斯以为你在晚饭前就回家了。请原谅我们，居然把你一个人扔在这儿待了这么久。”</p><p class="21">“我睡了一大觉。”我笑道，“我睡得太熟了，刚才一睁眼看见一个人影走过来，都不知道自己是不是还在做梦，就喊了你的名字。你刚才在弹钢琴吗？弹得肯定非常轻。”</p><p class="21">只要能让她露出如释重负的表情，我愿意撒一千个比这句更不堪的谎。她朝我微笑，她的笑容是多么可爱呀！她用平时的声音说：“亚历克，我被地毯上的狼头绊倒了，好像扭伤了脚腕。请帮我叫一下玛丽，然后就回家吧。”</p><div class="r4"></div><p class="11">我照做了，等女仆来了就告辞离开。</p><h2 class="h6 h4">3</h2><p class="11">第二天中午我登门的时候，发现鲍里斯在工作室里焦躁地走来走去。</p><p class="21">“热娜维芙刚睡下，”他对我说，“扭伤并不严重，但她为什么会发高烧？医生说不出原因，或者只是不肯说。”他喃喃道。</p><p class="11">“热娜维芙在发烧？”我问。</p><div class="r4"></div><p class="21">“应该是的，而且夜里一阵一阵地犯糊涂，说胡话！总是开开心心的小热娜维芙，永远无忧无虑，却不停地说她的心碎了，她想死。”</p><p class="11">我的心脏一时间忘记了跳动。</p><p class="21">• 出自英国诗人罗伯特·勃朗宁（1812—1889）的诗作《安德烈亚·德尔·萨尔托》（Andrea del Sarto）。安德烈亚·德尔·萨尔托是文艺复兴时期的佛罗伦萨画家。</p><p class="21">鲍里斯靠在工作室的门上，低头看着脚下，双手插在口袋里，和善而敏锐的眼睛里阴云密布，“总带着笑意的优美嘴唇之上” 多了一道从未有过的忧虑线条。他吩咐女仆，一旦热娜维芙睁开眼睛就立刻来叫他。我们等了又等，鲍里斯继续踱步，摆弄塑形蜡和红土，变得越来越烦躁。他突然走向隔壁房间，喊道：“来看看我充满死亡的玫红色浴池吧！”</p><div class="r4"></div><p class="11">“是死亡吗？”我问，只是为了哄他高兴。</p><p class="31">“恐怕也不可能称之为生命吧。”他答道，从鱼缸里捞出一条金鱼，金鱼在他手里挣扎扭动，“我们要把它们一个个送到……管它送到哪儿去。”他的声音里有着癫狂的兴奋。我跟着他走向粉红色石板砌成的浴池，看着里面如水晶般清澈的液体，燥热的感觉像是有了重量，束缚了我的手脚和头脑。他把金鱼扔进浴池，小鱼在半空中激烈地扭动，鳞片反射出橙红色的光芒，等它碰到液体，却立刻变得僵直，径直沉向池底。浴池里泛起乳白色的泡沫，水面染上瑰丽的色彩，然后一道最纯净的光芒仿佛从无穷的深处射了出来。鲍里斯把手伸进浴池，捞出一件美丽的大理石雕像，其中有蓝色的脉络和玫红色的光影，乳白色的水珠闪闪发亮。</p><p class="31">“小孩子的把戏。”他喃喃道，向我投来疲惫而渴望的目光，就好像我能回答这样的疑问似的。还好，杰克·斯科特来了，加入了他满怀热情地称为“游戏”的勾当。他们必须用那只白兔做实验，就是现在，就在这儿。我乐于见到鲍里斯能暂时忘记心中的担忧，但不愿眼睁睁地看着一只热乎乎、活生生的动物失去生命，因此我拒绝留下。我随便抓了一本书在工作室里坐下，读了起来。哎呀呀！我凑巧拿到了《黄衣之王》。像是有几个世纪那么漫长的短短几分钟过后，我战栗着放下了这本书，而鲍里斯和杰克拿着他们的大理石白兔回来了。就在这时，楼上响起铃声，病房里传来叫声。鲍里斯像闪电似的跑了出去，随即又喊道：“杰克，去叫医生，把他带回来。亚历克，你过来。”</p><p class="31">我奔过去，在她的房门口停下脚步。一个惊恐的女仆急匆匆地出来，跑去拿药剂。热娜维芙坐得笔直，面颊烧成了深红色，眼睛闪闪发亮，嘴里不间断地说着胡话，反复挣脱鲍里斯温柔的怀抱，他只好叫我过去帮忙。我刚碰到她，她就吐出一口气，往后躺下，闭上了眼睛。我和鲍里斯还在俯身看着她的时候，她重新睁开眼睛，盯着鲍里斯的眼睛，这个烧糊涂了的可怜姑娘就这么说出了她的秘密。就在这一刻，我们三个人的生命拐上了全新的道路。长久以来把我们捆在一起的纽带突然断了，取而代之的是一种全新的关系，因为她喊出的是我的名字。在发烧的折磨下，她的心灵吐露了隐藏已久的遗憾。我震惊得不知如何是好，只能垂下头，面颊烫得像是燃烧的煤炭，血液在耳朵里涌动，隆隆的巨响使我失魂落魄。我丧失了行动和语言能力，只能在羞愧、悲伤和痛苦中听她说胡话。我无法让她住嘴，也无法去看鲍里斯。但就在这时，我感觉到一条胳膊搭在我的肩膀上，鲍里斯把他毫无血色的脸转向我。</p><div class="r4"></div><p class="21">“亚历克，这不是你的错，别因为她爱你而难过……”但他说不下去了。医生刚好在这时快步走进房间，嘴里说着：“唉，是热病！”我一把抓住杰克·斯科特，拖着他走到街道上，说：“鲍里斯希望一个人清静一下。”我们过街回到住处，那天晚上他注意到我也开始不舒服了，于是再次去找医生。我最后一段清晰的记忆是杰克在说“老天在上，医生，他这是怎么了，脸色为什么会变成这样”，我想到了《黄衣之王》和苍白的面具。</p><p class="31">我病得很重。两年前五月那个可怕的上午，热娜维芙对我低声说：“我爱你，但我最爱的应该是鲍里斯。”自从那一天起，压力就在逐渐积累，今天终于彻底决堤。我从没想象过情况会变得这么不堪承受。我表现得很平静，其实是在自欺欺人。一个又一个夜晚，我孤零零地躺在卧室里，内心争斗不休。我咒骂自己竟然会产生对鲍里斯不忠和对热娜维芙不敬的卑鄙念头，但早晨的阳光总能让我平静下来，带着被夜里的暴风雨洗涤干净的心灵，重新回到热娜维芙和我亲爱的鲍里斯身边。</p><p class="11">和他们在一起的时候，我的言语、行为甚至思想从没暴露过我内心的哀伤，连我自己都被骗了过去。</p><p class="31">自我欺骗的面具对我来说不再是面具，而是变成了我的一部分。夜晚会揭开面具，袒露出底下令人窒息的真相，然而除了我自己，没人能看见它，只要天一亮，面具就会重新落下。我躺在病床上的时候，这些念头在我受到折磨的脑海里转动，又无可救药地与幻象纠缠在一起：石头般沉重的白色怪物在鲍里斯的浴池里爬行，地毯上的狼头满嘴白沫，朝着躺在一旁微笑的热娜维芙咆哮。我还想到了黄衣之王，他裹着色彩奇异的褴褛袍服，还有卡西尔达的痛苦呼叫：“不要降祸于我们，我们的王，不要降祸于我们！”我癫狂地挣扎，想要摆脱梦魇，但我看见了哈利湖（稀薄而空荡荡的水面，没有任何涟漪，也没有一丝风搅动湖水），我还看见了月亮背面卡尔克萨的高塔。毕宿五、毕宿星团、阿拉尔、哈斯塔，滑行穿过云隙，而乌云翻涌着掠过，仿佛黄衣之王犹如鳞片的褴褛袍服。但在这一切之中，有一个理智的念头岿然不动，无论我混乱的头脑里发生了什么，它都没有任何动摇，因为它是我本人存在的首要理由：满足鲍里斯和热娜维芙的需要。这个义务是什么，以及它本身的性质从来都不明朗，有时候似乎是保护，有时候是支持，帮他们渡过危险的难关。无论它此刻具体是什么，整个重担都落在了我一个人的肩上，不管我病得多重或多虚弱，我都绝对不会不全心全意地做出回应。我身边总是围着很多人，其中以陌生的面孔为主，不过也有几张我熟悉的，鲍里斯就是其中之一。事后别人说这是不可能的，然而我知道至少有一次，他俯身查看我的情况。我只感觉到了轻轻的触碰，听见他说话的微弱回声。乌云随即重新遮蔽了我的感官，我再次失去了他，然而他确实站在我身旁，至少俯身仔细查看过我一次。</p><div class="r4"></div><p class="21">终于有一天早晨，我醒来了，看见床上洒满了阳光，而杰克·斯科特坐在一旁读书。我甚至没有大声说话的力气，连思考都做不到，更不用说回忆了，不过在杰克与我对视的那一瞬间，我挤出了一个无力的笑容。他跳起来，急切地问我需要什么，我用耳语般的声音说：“是的，鲍里斯。”杰克走到床头，弯腰整理我的枕头。我看不见他的脸，但他愉快地答道：“你必须等一等，亚历克，你太虚弱了，不能见客，连鲍里斯也不行。”</p><p class="31">我耐心等待，逐渐恢复了力气，过上几天就可以见想见的人了，但我也在思考和回忆。从过去的一切在我脑海里重新变得清晰的那一刻起，我就没有怀疑过等时机到来时我该怎么做。我确信鲍里斯同样下定了相应的决心，至于与我个人有关的问题，我知道他会像我一样认清现实。我不再要求见任何人，也不询问为什么没有他们的消息，为什么在我等待和恢复的这一周里，从没听到过别人提起他们的名字。我一心只在考虑正确的做法，忙着无力但坚决地抵抗绝望，因此默许了杰克的沉默，想当然地以为他是不敢提到他们，免得我发脾气，坚持要见他们。另一方面，我反复问自己，等我们三个人的生活回到正轨上，事情会变成什么样子呢？我们的关系将回到热娜维芙生病前的状态。鲍里斯和我会凝视对方的眼睛，但目光中不会存在怨恨、胆怯或不信任。我会去他们家里做客，再稍微享受一下那份关切和亲昵，然后就永远地从他们的生活中消失，不找任何借口，也不做任何解释。鲍里斯会明白的，热娜维芙唯一的安慰是她永远不会知道。再三思考之后，我似乎找到了在谵妄中一直陪伴着我的那种义务的意义，还有它唯一可能正确的答案。因此，等我觉得准备好了，有一天我叫杰克过来，说：</p><p class="11">“杰克，我想立刻见鲍里斯，顺便向热娜维芙送上我最亲切的问候……”</p><p class="31">等他终于让我明白他们两个人都去世了之后，我陷入了疯狂和愤怒，那一丁点刚刚恢复的力气被撕得粉碎。我胡乱咆哮，诅咒自己重新病倒，几个星期后终于从病床上爬了起来。现在的我是个二十一岁的男人，深信青春已经一去不返。我似乎失去了继续承受痛苦的能力。有一天，杰克交给我一封信和鲍里斯家的钥匙，我接过去的时候没有发抖，而是请他把一切都告诉我。我知道这是一个残忍的请求，然而对此我无能为力。他疲惫地把脸埋在消瘦的双手里，重新揭开了永远不会完全愈合的伤口。他用非常平静的语气说了起来：</p><div class="r4"></div><p class="21">“亚历克，除非你掌握了什么我不知道的线索，否则你就会和我一样难以理解发生了什么。我猜你不一定愿意听到这些细节，但你有必要知道，否则我就不会告诉你了。天知道我多么不想说，我会尽量简单一些的。</p><p class="21">“那天，我把你留给医生照顾，回去找鲍里斯，发现他正在雕命运三女神。他说热娜维芙在药物的作用下睡着了，还说她已经神志不清了。他继续雕刻，没有多说什么，我只是默默看着他。没过多久，我发现群像中的第三个人（直视前方，俯瞰世界的那个人）长着他的脸——不是你平时见到的模样，而是他当时和直到最后的那个模样。我很想为这件事找到一个解释，但无论如何都找不到。</p><p class="31">“总之，他继续雕刻，我默默地看着他，我们就这么僵持着，直到将近午夜。我们听见门突然打开和关上的声音，隔壁房间里响起急促的脚步声。鲍里斯冲了出去，我紧随其后，但我们来迟了一步。她躺在浴池底下，双手叠放在胸前，然后鲍里斯开枪打穿了自己的心脏。”杰克停了下来，眼角沁出了汗珠，瘦削的面颊微微抽搐。“我把鲍里斯搬回他的房间，回去排空了浴池里的可怕液体。我打开所有水龙头，冲掉了大理石上的每一滴药水。等我终于敢走下台阶的时候，看见她躺在池底，白得就像冬雪。最后我决定了应该怎么做，就走进实验室，先把水盆里的药水倒进下水道，然后把瓶瓶罐罐里的东西全都倒了进去。壁炉里有木柴，于是我生了火，撬开鲍里斯柜子的锁，烧掉了我能找到的所有文件、笔记本和信件。我用工作室里的木槌砸碎了所有空瓶子，把碎片装进煤桶，拎到地下室，倒进烧得通红的炉子。我这么来回走了六次，没有留下任何能让人找到鲍里斯发明的配方的线索。最后，我终于敢给医生打电话了。他是个好人，我们一起想办法，把整件事情掩盖了起来。要是没有他，我一个人是做不到的。我们付清了仆人的工钱，打发他们回乡下，老罗西埃声称鲍里斯和热娜维芙远赴他乡旅行去了，要过上好几年才会回来，他用这个故事堵住了他们的嘴巴。我们把鲍里斯埋在塞夫尔的小公墓里。医生是个好人，知道什么时候该怜悯一个活不下去的人。他开了心脏病的证明，没有问我任何问题。”</p><p class="11">说完，他从臂弯里抬起头，说：“亚历克，打开那封信吧，是写给我们俩的。”</p><div class="r4"></div><p class="21">我撕开信封，里面是鲍里斯一年前立的遗嘱。他把一切都留给了热娜维芙，万一她去世时没有孩子，圣塞西尔街的房子就归我所有，埃普特的管理权则归杰克·斯科特所有。我们去世后，除了他本人雕刻的石像，财产交还他在俄罗斯的母亲家族。这就是他留给我的东西。</p><p class="21">信纸在我眼前变得模糊，杰克起身走到窗前。过了一会儿，他回来坐下。我害怕听到他要说的话，但他还是用同样简洁与温和的语气告诉了我：</p><p class="21">“热娜维芙就躺在石雕室的圣母像面前。圣母俯下身子，温柔地注视她，而热娜维芙报以微笑，圣母恬静的面容也同样来自热娜维芙。”</p><p class="21">他说不下去了，于是握住我的手，说：“亚历克，勇敢一点。”第二天一早，他启程前往埃普特，去履行鲍里斯的嘱托。</p><div class="r4"></div><h2 class="h6 h4">4</h2><p class="31">那天晚上，我带着钥匙去了我熟悉的房子。一切都井井有条，但寂静得可怕。我两次走到石雕室门口，却无法逼着自己走进去。我实在做不到。我走进吸烟室，在古钢琴前坐下。琴键上放着一块小小的蕾丝手帕，我哽咽着转过身去。显然，我不可能待在这里，于是我锁上所有门窗和前后三道铁门，然后就离开了。第二天一早，阿尔西德收拾好我的行李，我请他替我照看我的住所，然后乘东方快车前往君士坦丁堡。在我游历东方的两年里，起初我们在通信中从不提到热娜维芙和鲍里斯，但后来他们的名字慢慢地出现了。我记得特别清楚的是杰克给我的一封回信里的一段话：</p><p class="21">第二年快结束时，我在印度收到了杰克的来信，这封信与我对他的了解有着天差地别，因此我决定立刻返回巴黎。他写道：</p><p class="11">我拍电报给他，说我乘下一班蒸汽船回来。</p><p class="21">见到他时，我觉得他变化不大，而他坚持说我的气色好极了。我很高兴能再次听到他的声音。我们坐在一起，聊着生活中的点点滴滴，两个人都觉得活在明媚的春光下是一件幸福的事。</p><div class="r4"></div><p class="21">我们在巴黎待了一个星期，然后我去埃普特和他住了一个星期，不过我们首先造访的是鲍里斯长眠的塞夫尔公墓。</p><p class="21">“咱们是不是应该把命运女神像放在他墓上的小树丛里？”杰克问。我回答：“我觉得只有圣母才能守护鲍里斯的坟墓。”然而我的回归并没有改善杰克的状况。他还在做梦，但依然记不住哪怕最起码一个梗概，他说那种令人难以呼吸的期待感有时候强烈得使他窒息。</p><p class="31">“你看，我不但没能帮助你，反而害了你。”我说，“试一试没有我的生活吧。”于是他独自前往海峡群岛度假，而我返回巴黎。这次回来我还没去过鲍里斯的房子（现在属于我了），但我知道自己必须去看看。杰克把他家管理得井井有条，房子里还有仆人，于是我放弃了自己的住所，搬到那里居住。我发现我的担忧没有成真，我没有坐立不安，反而能够安安静静地作画。我走遍了所有的房间，只有一间除外。我无法鼓起勇气走进热娜维芙长眠的石雕室，却能感觉到渴望在与日俱增：我想跪在她的身旁，凝视她的面容。</p><p class="31">四月的一个下午，我躺在吸烟室里做白日梦，就像两年前一样，机械地在灰褐色的东方地毯里寻找那张狼皮。最后，我分辨出了它尖尖的耳朵和扁平的凶恶头部，想到在一个梦里，热娜维芙就躺在狼皮旁。头盔依然挂在破旧的织锦上，其中有一顶古老的西班牙高顶盔，我记得以前我们拿这些古老的铠甲闹着玩，热娜维芙也戴上过这顶头盔。我把视线投向古钢琴，每一个发黄的琴键似乎都在回忆她的轻柔抚摸。我站起来，激情的力量牵引着我走向石雕室的紧闭房门。我用颤抖的双手推开沉重的双开大门，阳光从窗口倾泻而入，给丘比特的翅膀镀上了金色，像云霞似的萦绕于圣母的眉间，圣母温柔的面庞透出怜悯，俯视一尊纯净而美丽的大理石像。我跪在地上，在胸前画了个十字。热娜维芙躺在圣母脚下的阴影中，我在她洁白的手臂上看到了浅蓝色的脉络。她轻轻互握的双手之下，衣服的褶皱带有一丝玫红色，就好像她胸中有某种微弱的温暖光芒。</p><div class="r4"></div><p class="11">我肝肠寸断，俯身用嘴唇触碰她化作大理石的衣物，然后退出石雕室，回到寂静的房子里。</p><p class="21">一个女仆来了，拿给我一封信。我在小温室里坐下，准备读信，但就在我准备破开封蜡时，我注意到女仆没有离开，于是问她还有什么事。</p><p class="21">她紧张地说他们在房子里抓住了一只白兔，问我应该怎么处理。我说在屋后带围墙的花园里放生好了，然后打开那封信。信是杰克写来的，但前言不搭后语，我担心他丧失了理智。信里只有一连串的祈求，希望我不要离开鲍里斯的房子，务必等他回来。他无法告诉我为什么，只说是因为他做的梦，他说……他无法解释，但他确定我绝对不能离开圣塞西尔街的这座房子。</p><p class="21">读完信，我抬起头，看见送信给我的女仆站在门口，手里拿着一个玻璃碗，里面有两条金鱼游来游去。我说：“把金鱼放回鱼缸里，然后告诉我为什么又来打扰我。”</p><div class="r4"></div><p class="31">她勉强吞下哭声，把水和金鱼倒进温室尽头的水族箱里，转过身请求我允许她辞职。她说有人在捉弄她，显然是想找她的麻烦：大理石兔子被偷走了，而一只活兔子被带进家里；两条美丽的大理石金鱼不见了，她发现那两条平平常常的活金鱼在餐厅的地上扑腾。我安慰她，让她去休息，说我会自己去看看。我走进工作室，这里除了我的画具和几件石膏像就只有那朵化作大理石的百合花了。我看见百合花摆在房间尽头的桌子上，便气呼呼地走过去，但我从桌上拿起的那朵花新鲜而脆弱，飘出阵阵幽香。</p><p class="21">我突然明白了，跑过走廊冲向石雕室。我撞开房门，阳光洒在我的脸上，透过阳光，我看见圣母依然在天堂般的光辉之中微笑，而热娜维芙从大理石长椅上抬起她绯红的面庞，睁开了惺忪的睡眼。</p></div></section><section class="s3">
+<h1 class="s4" id="chapter-2">
+    龙廷
+</h1>
+<div class="c1"><p class="11">你为那些在地狱里被灼烧的人煎熬内心，</p><p class="11">而他们的火是自己给自己点的。</p><p class="11">你还要呼喊多久“怜悯他们吧，上帝”？</p><p class="11">• 出自爱德华·菲茨杰拉德英译《鲁拜集》第二版序言。</p><div class="r4"></div><p class="11">咦，你凭什么吩咐，神凭什么要听你的？</p><p class="21">圣巴纳贝教堂的晚祷已经结束，神职人员离开圣坛，唱诗班的孩子们挤挤攘攘地穿过圣所，回到座位上。穿制服的守门人沿着南侧通道走过来，每走四步就用法杖敲响一次脚下的石板，雄辩的布道者和善人C主教紧随其后。</p><p class="21">我的座位离圣所的围栏很近，因此我转身望向教堂的西侧，圣坛和讲坛之间的其他人也转身张望。教众重新坐好时，传来了窸窸窣窣的声音。布道者登上讲坛，管风琴的乐声立刻停歇。</p><p class="21">我一向觉得圣巴纳贝教堂的管风琴演奏很有意思。演奏管风琴是一门深奥的学问，对才疏学浅的我来说过于复杂，只能感觉到它显露出了生动但冰冷的智慧。此外它还具有法国文化的品质：高洁、自持、庄重而沉默。</p><div class="r4"></div><p class="31">然而今天从第一个和弦开始，我就觉察到了某种不祥和险恶的改变。晚祷的大多数时候，教堂管风琴尽职地为唱诗班的美丽歌声伴奏，然而有一只沉重的大手时而从管风琴所在的西侧游廊伸出来，放肆地搅扰清澈童声在教堂里造就的宁静气氛。这不只是刺耳与不和谐的问题，而且能听得出它不缺乏技巧。这样的情况反复出现，我不由得想到我的建筑学藏书里说过，早期的习惯是高坛一旦建好就立刻举行祝圣仪式，中殿有时候会到半个世纪后才完工，而且通常不会得到任何祝福。我心不在焉地想到，圣巴纳贝教堂会不会就是这样的情况，会不会有什么通常不该出现在基督教堂里的东西偷偷潜入，占据了西侧的游廊。我读到过这样的事情时有发生，不过不是在建筑学的书籍里。</p><p class="21">随后我想到圣巴纳贝教堂只有一百多年的历史，不由得苦笑，因为中世纪的迷信和这座18世纪洛可可风格的美丽小建筑物之间恐怕扯不上任何关系。</p><p class="21">然而此刻晚祷已经结束，在我们等待布道时，应该奏响的是适合沉思的几个幽静的和弦。随着神职人员的离去，教堂的下侧尽头却爆发出一连串不和谐音，仿佛不受控制。</p><p class="31">我属于更淳朴的上一代人，不喜欢在艺术里寻找微妙的心理学因素，也一向拒绝在音乐中寻求旋律与和弦之外的东西，但此刻听着管风琴发出的迷乱声音，我能感觉到有某种东西正在遭受追捕。踏板上上下下紧追不放，琴键在喧嚣中加油鼓劲。倒霉的家伙！无论他是谁，逃脱的希望都非常渺茫！我的气恼变成了愤怒。是谁干的？他怎么敢在神圣的仪式中这么演奏？我扫视周围的人，似乎没人表现出一丝一毫的不安。朝着圣坛跪下的修女们依然眉目祥和，白色头巾的浅影之下，虔诚的神情毫无改变。我身旁是一位衣着入时的女士，她期盼地望着C主教，从她的面容来看，管风琴也可能只是在演奏《圣母颂》。</p><div class="r4"></div><p class="21">还好，布道者终于在空中画了个十字，随后示意停止奏乐。我高兴地转头望着他。那天下午我走进了圣巴纳贝教堂，但直到此刻还没能如愿以偿地休息一下。</p><p class="21">连续三个夜晚的肉体受苦和精神折磨耗尽了我的一切。最后一个夜晚的情况尤其可怕，我拖着筋疲力尽的身躯和麻木又极度敏感的心灵来到我喜欢的教堂寻求治疗。我之所以会陷入这样的困境，是因为我在读《黄衣之王》。</p><p class="21">“日头一出，兽便躲藏，卧在洞里……”C主教用沉稳的声音开始布道，平静地扫视教众。但不知道为什么，我的视线转向了教堂较低的尽头。琴师从管风琴背后出来，沿着游廊向外走，我看见他进了一扇小门，门里是一段台阶，径直通往街道。他身材瘦削，他的衣服有多黑，脸就有多白。“快滚吧！”我心想，“带着你邪恶的音乐！希望结束时的即兴曲能由你的助手演奏。”</p><p class="21">我松了一口气，感到由衷的解脱，于是重新望向讲坛上那张温和的脸，静静地聆听布道，心灵终于得到了渴望的慰藉。</p><div class="r4"></div><p class="21">“孩子们，”布道者说，“这是人类灵魂最难领悟的一条真理：没有什么值得害怕的。人们总是不相信其实没有任何东西能够伤害自己。”</p><p class="11">多么奇怪的说法！我心想，天主教的神父怎么会有这种想法呢？我倒想知道他要怎么在神父们面前解释。</p><p class="11">“其实没有任何东西能伤害灵魂，”他用最平静和清楚的声音说了下去，“因为……”</p><p class="31">但我没有往下听。我的视线从他的脸上挪开（我还是不知道为什么），再次转向教堂较低的尽头。同一个男人从管风琴背后出来，和先前一样沿着游廊向外走。但这么短短的几十秒钟，他不可能回到那里，而就算他回去了，我也肯定会看见。我身上微微发冷，心脏直往下沉；然而，他的来去与我毫无关系。我望着他，无法不去看他黑色的身影和白色的面庞。等他走到正对着我的地方，他突然转过头，隔着教堂直勾勾地盯着我的眼睛，专注的致命目光里饱含仇恨，我从没见过这样的一双眼睛。祈求上帝不要让我再见到第二次了！很快，他消失在了那扇小门里，而不到一分钟之前，我看着他走进了同一扇门。</p><div class="r4"></div><p class="11">我坐在那里，竭力整理思绪。我最初的感觉就像一个孩子受到了严重的伤害，他会在哭喊之前憋住一口气。</p><p class="21">突然发现自己成了如此强烈的仇恨的目标，我感到极为痛苦。他对我来说完全是陌生人，为什么会这么仇恨我这个他从没见过的人？这样的痛楚一时间吞噬了其他情绪，连恐惧也屈服于悲伤。那一刻我的内心没有任何怀疑，然而下一个瞬间理性占了上风，不协调的感觉向我伸出援手。</p><p class="21">我说过圣巴纳贝教堂是一座新时代的圣殿，它并不大，但光线充足，几乎一眼就能看清每一个角落，一排连彩色玻璃都不镶的高窗把强烈的白光投在管风琴所在的游廊上。</p><p class="21">讲坛位于教堂中央，因此只要我面对讲坛，教堂西侧的任何动静都不可能逃过我的眼睛。管风琴师从那里经过时，我会看到他自然不足为奇，我只是算错了他第一次和第二次经过的间隔时间。第一次出去后，他从另一扇侧门回到了教堂里，那个让我心烦意乱的眼神纯属子虚乌有，我只是个神经质的笨蛋而已。</p><div class="r4"></div><p class="11">• 旧时的法国货币单位，一法郎等于一百生丁。</p><p class="31">我扫视四周。这里怎么可能容得下超自然的恐怖事物？C主教清朗的面容充满了理性，举止沉着冷静，姿态优雅从容，难道这一切还不足以驱散脑海里骇人的疑惑念头吗？我望向他的上方，险些笑出声来。讲坛的顶棚就像一块大风中的流苏锦缎桌布，固定顶棚的天使雕像神采飞扬，即便蛇怪爬上管风琴所在的游廊，她只需要举起金色号角轻轻一吹就能让它灰飞烟灭！我为这样的幻想暗自发笑，但觉得非常有趣，于是我坐在那儿嘲笑自己和其他的一切：首先是围栏外的那个老妖婆，收了我十个生丁 的座位费才放我进来（我在心里说，比起脸白得像是有贫血症的管风琴师，她倒更像个蛇怪）。是的，从那个面目可憎的老太婆开始，到……哈，是的！到C主教本人。虔诚突然间不翼而飞。尽管我这辈子从没做过这种事，此刻却产生了嘲讽的欲望。</p><p class="11">至于布道，我连一个字都听不进去，因为我的耳朵里在震响：</p><p class="11">圣保罗的袍角已被摸到。</p><div class="r4"></div><p class="11">向我们做了六次四旬斋的布道，</p><p class="21">• 出自罗伯特·勃朗宁的诗作<上至别墅,下至城市>(Up at a Villa--Down in the City).</p><p class="11">比过去的布道更加虚伪。</p><p class="11">与诗句共舞的是最怪诞和不虔诚的纷乱念头。</p><div class="r4"></div><p class="21">继续坐在这儿是毫无意义的，我必须离开教堂，摆脱这种可憎的情绪。我知道这么做很无礼，但还是起身走了出去。</p><p class="31">我跑下教堂门前的台阶时，圣奥诺雷街上春光明媚。一个路口停着一辆手推车，上面摆满了黄色的长寿花、里维埃拉的浅色紫罗兰、深色的俄罗斯紫罗兰和白色的罗马风信子，金色的含羞草像一团云似的簇拥着它们。街上全是星期天出来寻欢作乐的人们，我挥动手杖，和其他人一起欢笑。有一个人从背后挤过来，走在了我前面。他一直没有扭头看我，但他惨白的侧脸蕴含着与他那双眼睛一样的致命恶意。我尽可能长时间地看着他。他轻盈的背影散发着同样的威胁，他离我而去的每一步似乎都在执行与毁灭我有关的某种任务。</p><p class="31">我继续向前走，挪动几乎拒绝受我驱使的双脚，渐渐对某些早已遗忘的事情产生了要负责的感觉。我开始觉得他对我的威胁似乎是我罪有应得：事情起源于很久以前——非常久的以前。记忆多年来一直在悄然沉睡，但它确实存在，而且很快就会浮出水面与我对峙，但我要想办法逃脱。我竭尽全力，跌跌撞撞地跑上里沃利街，穿过协和广场，最后来到码头。我用虚弱的眼睛望向太阳，阳光穿过喷泉的白色水沫落在锈迹斑斑的河神青铜像上，我望向遥远的凯旋门，它像是由紫蓝色雾气凝成的建筑物，我又望向不计其数的灰色树干和隐约泛着绿色的光秃树枝。就在这时，我又看见了他，他从王后大道旁一条种着栗树的小巷里走了出来。</p><p class="21">我逃离河边，盲目地拐上香榭丽舍大街，走向凯旋门。落日余晖洒在环岛的绿色草地上，漫天霞光之中，他坐在长椅上，周围是许多孩子和年轻的母亲。他仅仅是个星期天随处闲逛的普通人，和其他人一样，也和我一样。我望着他充满恶意和仇恨的面庞，险些把这句话说出声来，但他没有看我。我偷偷溜过去，拖着灌铅般的双脚走上香榭丽舍大街。我知道每次遇到他，他离完成使命和我最终的宿命都会更近一步，而我依然想要拯救自己。</p><div class="r4"></div><p class="21">最后一抹夕阳穿过凯旋门洒向我，我从凯旋门脚下经过，却与他迎面相遇。我把他远远地抛在了香榭丽舍大街上，他却随着从布洛涅森林归来的人群走向了我。他与我近得擦肩而过，宽松的黑衣之下，他瘦削的身躯硬得就像铁块。他并不显得匆忙或疲惫，看不出拥有任何人类的情感，他的整个存在都在表达毁灭我的意愿和力量。</p><p class="11">我苦恼地望着他的背影，他沿着熙熙攘攘的香榭丽舍大街向前走，路上车水马龙，还能看见共和国卫队的头盔。</p><p class="21">他很快消失在了视线之外，于是我转身就跑，跑进布洛涅森林，穿过公园继续跑。我不知道要去哪儿，只知道自己似乎跑了很久。等我再回过神儿来的时候，夜幕已经降临，我坐在了一家小咖啡馆外的露天座位上，随后又回到了布洛涅森林。上次见到他已经是几个小时之前了。我的身体非常疲惫，心灵也饱受折磨，丧失了思考和感受的能力。我累了，太累了！我渴望回到自己的小窝躲起来。我决定回家，但家离我很远。</p><p class="11">我住的地方叫龙廷，是一条从雷恩街通往龙街的小巷。</p><div class="r4"></div><p class="31">这是一条巷道，也就是仅供步行者通过的小径。雷恩街的入口处有个阳台，由一条铸铁的巨龙支撑。小径两侧耸立着高大的老房子，在靠近两条街道的地方变得愈加狭窄。庞大的铁门白天向内打开，嵌入拱门内部的墙壁，午夜过后则会关上，封闭里面的小径，必须拉响两侧小门上的门铃才会有人出来放行。凹陷的石板路会积累恶心的臭水，陡峭的台阶通往底下开在小径一侧的一扇扇房门。房子的底层都是二手货和铁匠的商铺，整个白天都能听到铁锤敲打和金属碰撞的声响。</p><p class="11">尽管底层不讨人喜欢，上层却是愉快而舒适的生活场所和充满艰辛而诚实工作的地方。</p><p class="21">上面五层都是建筑师和画家的工作室，也住着我这种不再年轻但想独自生活的求学者。最初我来到此处生活的时候还很年轻，而且也不是一个人。</p><p class="11">我走了好一会儿才见到第一辆马车，等我快回到凯旋门时，终于有一辆空车经过，我连忙拦下坐了上去。</p><div class="r4"></div><p class="11">从凯旋门到雷恩街是半个多小时的车程，尤其今天还是个星期天，马儿拉了一天享乐的人们，早已疲惫不堪。</p><p class="21">马车走了好一会儿才从龙的翅膀底下钻过去，这段时间足够我一次又一次遇到那个敌人，然而一路上我再也没有看见他，此刻我的安乐窝已经近在咫尺。</p><p class="21">一小群孩子在宽阔的铁门前玩耍。门房夫妇和他们的黑色贵宾犬走来走去维持秩序，几对男女在人行道上跳华尔兹，和我打招呼，我向他们致意，然后匆匆走进铁门。</p><p class="11">住户都到外面的街上去了，龙廷显得非常荒凉，几盏高挂的煤气提灯释放出微弱的光芒，为我照亮脚下。</p><div class="r4"></div><p class="21">我住的房子位于小径的半中间，我的寓所在最顶上一层，楼梯几乎直接通到街面上，中间只隔着一小段过道。我一脚跨过门槛，亲切的古旧楼梯出现在眼前，往上走就是我休息和避世的地方了。我向右扭头望去，看见他就在我背后十步开外。他肯定跟着我走了进来。</p><p class="21">他径直走向我，步伐不紧不慢。他在看我。自从我们在教堂里第一次对视以来，这还是他第一次看我，我知道自己的大限已到。</p><p class="11">我面对他，沿着小径后退，想从龙街的出入口逃跑，但他用眼神告诉我，我永远也逃不掉。</p><p class="31">我们似乎走了许久，我后退，他前进，在彻底的寂静中走完了整条小径，最终我感觉到了拱门的阴影，下一步就走了进去。我本来想在此处转身跑上龙街，但投下影子的不是拱门，而是封死的拱室。通往龙街的大铁门关上了，我从包围我的黑暗中感觉到了事实，同一个瞬间也在他的脸上看到了真相。他的脸白得像在黑暗中发亮，以极快的速度向我靠近！犹如深渊的拱室、紧闭的巨大铁门、冰冷的铁锁，它们全都站在他那一边。他所代表的威胁已经到来，从深不可测的阴影中聚集起来扑向我，即将从他那双恶魔般的眼睛中发动攻击。我陷入绝望，用后背抵住上锁的铁门，准备与他殊死一搏。</p><div class="r4"></div><p class="21">先是椅子腿刮过石板的声音，教众起立时的沙沙声随之而来。我听见守门人用法杖敲打南侧通道地面的声音，他领着C主教前往圣器室。</p><p class="21">跪拜的修女结束了虔诚的冥想，起身行礼，列队离开。我旁边那位衣着入时的夫人也站了起来，动作既优雅又矜持。她离开时，不以为意的眼神扫过我的面庞。</p><p class="21">我简直觉得自己半死不活，但对身边的一切细节都异常敏感。我坐在慢悠悠地向外走的人群之中，过了一会儿也跟着起身，走向教堂的大门。</p><p class="21">我在布道的时候睡着了，是从头睡到了尾吗？我抬起头，看见他沿着游廊走向奏乐的位置，但我只看见了他的侧影。他瘦长的手臂半弯着裹在黑衣中，看上去就像不知名的可怖刑具，应该出现在中世纪城堡废弃的拷问室里。</p><div class="r4"></div><p class="21">但我从他手上逃掉了，哪怕他曾经用眼神对我说我永远也逃不掉。我真的逃掉了吗？某个东西给了他毁灭我的力量，它从遗忘之地归来了，我曾经希望能把它关在那里。现在我认出他了。死亡和迷失灵魂的可怖巢穴，多年前是我的软弱把他送到了那里去。他们改造了他，其他人已经认不出他了，但我依然认得出。我从第一眼就认出了他，对他的来意没有任何怀疑。虽然我知道这座迷人的小教堂能确保我肉体的安全，但他会在龙廷猎杀我的灵魂。</p><p class="21">我慢慢走向教堂的大门，管风琴在头顶隆隆奏响。炫目的光芒盈满了教堂，从我眼前抹去了圣坛。强光吞没了教众，拱门和穹顶也消失了。我抬起灼痛的眼睛，迎上那不可想象的光芒，看见黑星高悬天空，哈利湖潮湿的风吹凉了我的面颊。</p><p class="11">• 旧时的测量单位。</p><p class="11">而此刻，隔着无数里格 翻涌的云浪，我看见遥远的月亮滴着水花，而卡尔克萨的高塔在月背傲然耸立。</p><div class="r4"></div><p class="21">死亡和迷失灵魂的可怖巢穴，多年前是我的软弱把他送到了那里去。他们改造了他，其他人已经认不出他了，但我依然认得出。此刻我听见他的声音越来越高、越来越响，如雷霆般刺穿耀眼的光芒，而随着我的坠落，光芒变得越来越亮，火焰的波浪冲刷着我。我坠入深渊，听见黄衣之王对我的灵魂耳语：</p><p class="11">“ 落 到 活 神 的 手 里 ， 那 是 最 恐 怖 的 事 ！ ”</p></div></section><section class="s3">
+<h1 class="s4" id="chapter-3">
+    黄色印记
+</h1>
+<div class="c1"><p class="11">让红色的黎明猜测</p><p class="11">我们会做什么，</p><p class="11">当蓝色的星光熄灭时</p><p class="21">• 出自加拿大诗人布利斯·卡曼(1861--1929)的作品<海的儿女之歌>(Songs of the Sea Children).</p><div class="r4"></div><p class="11">一切都已结束。</p><h2 class="h6 h4">1</h2><p class="21">无法解释的事情何其多哉！为什么音乐中的某些和弦会让我想到秋叶的褐色与金光？为什么《圣塞西尔庄严弥撒曲》会让我的思绪徜徉于岩洞之中，而洞壁闪耀着纯银矿脉的参差光芒？百老汇大街六点钟的喧嚣为什么会让布列塔尼森林的景象出现在我眼前？阳光穿过春天的树叶洒下来，西尔维娅弯着腰，用好奇和温柔各半的眼神打量一只绿色的小蜥蜴，嘴里喃喃道：“想想看，这也是上帝的小小造物！”</p><p class="31">我第一次见到守墓人时，他背对着我。我冷冷地望着他，直到他走进教堂。我对他的关注并不比我对那天上午在华盛顿广场闲逛的人更多，等我关上窗户，转身回到工作室时就已经忘记他了。下午晚些时候，天气温暖，我再次打开窗户，把身子伸出去透气。一个男人站在教堂的墓地里，我再次注意到了他，却和早上一样毫无兴趣。我望向广场对面的喷泉，树木、柏油路、走动的保姆和享受假日的人群，用模糊的印象充满我的脑海。看了一会儿，我准备回去继续作画。然而就在我转身的时候，我倦怠的目光扫过了底下墓地里的男人。他的脸对着我，我不由自主地俯身仔细看了一眼。就在这时，他仰起头望向我，那一刻我想到了棺材里的蛆虫。我不知道他为什么会激起我的反感情绪，但肥胖的白色蛆虫的印象过于强烈和令人作呕，肯定通过我的表情流露了出来，因为他立刻转开了浮肿的脸，让我想到了剥开的栗子里被惊扰的蛴螬。</p><p class="21">我回到画架前，示意模特重新摆好姿势。画了一会儿，我意识到自己正以惊人的速度破坏已经完成的画作，于是拿起调色刀刮掉画布上的颜料。我把皮肤画成了不健康的菜黄色，我自己也不明白我为什么会使用如此病态的色彩，而不久之前，健康的色调还在画布上熠熠生辉。</p><div class="r4"></div><p class="11">我望向苔西。她一直没动，看到我皱起眉头打量她，一抹红晕爬上了她的颈部和面颊。</p><p class="11">“我做错了什么吗？”她问。</p><p class="11">“没有。我把胳膊画得一塌糊涂，杀了我也想不通我怎么会把这么恶心的颜色涂在画布上。”我答道。</p><p class="11">“难道是我的姿势摆得不好？”她追问道。</p><div class="r4"></div><p class="11">“不，你的姿势非常完美。”</p><p class="11">“所以不是我的错？”</p><p class="11">“当然不是，都怪我自己。”</p><p class="11">“非常抱歉。”她说。</p><div class="r4"></div><p class="21">我叫她休息一下，然后拿起碎布和松节油，打算去掉画布上那个恶心的色块。她出去抽烟，顺便看看《法兰西信使报》上的插图。</p><p class="21">不知道是松节油的问题还是画布有缺陷，总之我越是擦拭，画坏的地方就越是蔓延。我像海狸似的忙活，一心只想去掉那个色块，然而那疫病般的部分就在我眼前从画中人的一条肢体爬上另一条肢体。我惊恐起来，拼命想阻止它，然而没一会儿，连胸部的颜色也发生了改变，整个身体就像海绵吸水那样受到了感染。</p><p class="21">我发疯般地挥动调色刀、松节油和铲刀，一直在想应该怎么去找卖给我画布的杜瓦尔算账，但没过多久我就醒悟了过来，出问题的不是画布，也不是爱德华卖给我的颜料。“肯定是松节油，”我气恼地想，“要么就是下午的光线干扰了我的视觉，害得我看不清楚了。”我呼唤模特苔西的名字，她走过来靠在我的椅子上吐烟圈。</p><p class="11">“你这是干了什么？”她叫道。</p><div class="r4"></div><p class="11">“什么都没干，”我吼道，“肯定是松节油在作怪！”</p><p class="11">“现在这个颜色太可怕了。”她又说，“你难道觉得我的肤色像绿奶酪？”</p><p class="11">“不，当然不。”我愤怒地说，“你难道见过我画出这样的东西吗？”</p><p class="11">“没有，当然没有！”</p><div class="r4"></div><p class="11">“知道就好！”</p><p class="11">“肯定是松节油，或者其他什么出了问题。”她让步道。</p><p class="21">她套上一件日式浴袍走到窗口。我又是刮又是擦，最后终于厌烦了，于是抓起画笔，恶狠狠地在画布上胡乱涂抹，闹出来的响动终于钻进了苔西的耳朵。</p><p class="21">她见状就对我说：“干得好！骂人，犯傻，毁了你自己的画笔！你已经在那幅画上花了三个星期的时间，现在你自己看看吧，破坏画布对你能有什么好处？你们画家都是怪物，对吧？”</p><div class="r4"></div><p class="21">每次这么发火之后，我都会非常羞愧，今天也不例外。我把毁坏的画布转向墙壁，苔西帮我洗干净画笔，然后喜滋滋地去穿衣服。她在屏风背后教我怎么管住脾气，直到她觉得已经折磨够了我，才出来请我帮她系上腰间的扣子，因为她的手没法往背后伸那么远。</p><p class="11">“你从窗前回来，说你在教堂墓地里看见了一个长相可怕的男人，然后一切就都不对劲了。”她这么说。</p><p class="11">“是啊，他也许诅咒了我的画。”我说着打了个哈欠，于是看看怀表。</p><p class="11">“我知道，已经六点多了。”苔西对着镜子整理帽子。</p><div class="r4"></div><p class="21">“对，”我答道，“我没想把你留得这么晚。”我从窗口探出身子，但立刻厌恶地缩了回来，因为那个面目浮肿的年轻男人依然站在教堂墓地里。苔西见到我反感的表情，也探头去看窗外。</p><p class="11">“那就是你不喜欢的那个人？”她悄声问。</p><p class="11">我点点头。</p><p class="21">“我看不见他的脸，但他长得确实很胖，身体软绵绵的。不知道为什么……”她继续道，转过来看着我，“他让我想到了我做过的噩梦。不过……”她沉思道，低头看她漂亮的鞋子，“那真的是做梦吗？”</p><div class="r4"></div><p class="11">“我怎么知道呢？”我笑着说。</p><p class="11">苔西报以微笑。</p><p class="11">“梦里也有你，”她说，“所以你说不定知道些什么。”</p><p class="11">“苔西！苔西！”我抗议道，“别用你梦到了我这种话来调戏我！”</p><div class="r4"></div><p class="11">“但那是真的。”她坚持道，“想听我说一说吗？”</p><p class="11">“说吧。”我答道，点了支烟。</p><p class="11">苔西靠在窗台上，背对着打开的窗户，非常认真地说了起来：</p><p class="31">“去年冬天的一个晚上，我躺在床上胡思乱想。我给你摆了一天的姿势，虽说很累，但就是睡不着。我听见城里的钟声敲响了十点、十一点，然后是午夜。我肯定是午夜时分睡着的，因为我不记得听到过之后的钟声。我似乎还没来得及闭上眼睛，就梦见有某种东西迫使我去窗口。我起身，抬起窗扇向外看，视线所及之处，第二十五大街上连一个人都没有。我开始害怕，外面的一切都显得那么……那么黑暗和不适。就在这时，我听见了远远传来的车轮声，似乎就是我必须等待的。车轮声渐渐接近，最后我辨认出一辆马车行驶在街上。它离我越来越近，从窗户底下经过时，我发现那是一辆灵车。我吓得发抖，这时车夫突然转过来，直勾勾地盯着我。我醒来时就站在敞开的窗口，冷得瑟瑟发抖，但漆黑的灵车和车夫都不见了。去年三月我又做了这个梦，醒来时还是站在敞开的窗口。昨晚这个梦又来了。你记得昨晚在下雨，对吧？我在敞开的窗口醒来时，睡衣已经湿透了。”</p><div class="r4"></div><p class="11">“但我在梦里的哪儿呢？”我问。</p><p class="11">“你……你在棺材里，但你没有死。”</p><p class="11">“棺材里？”</p><p class="11">“对。”</p><div class="r4"></div><p class="11">“你是怎么知道的？你能看见我？”</p><p class="11">“不，但我就是知道你在那儿。”</p><p class="11">“你是吃了什么不干净的吗？威尔士兔肉还是龙虾沙拉？”我笑了起来，但她惊恐的叫声打断了我。</p><p class="11">“咦，怎么了？”我说，看着她缩到了窗边的墙角里。</p><div class="r4"></div><p class="11">“那个人……底下墓地里的人，他就是灵车的车夫。”</p><p class="21">“别胡扯了。”我说，但苔西吓得瞪大了双眼。我走到窗前向外看，那个人不见踪影。“行了，苔西，”我劝慰道，“别犯傻了。你摆姿势的时间太久，精神过于紧张了。”</p><p class="21">“你以为我能忘记那张脸吗？”她喃喃道，“我三次看见那辆灵车从我窗户底下经过，每次车夫都会转身盯着我。天哪，他的脸是那么白，那么……软，看上去像是尸体，而且是死了很久的尸体。”</p><p class="11">我拉着她坐下，灌了她一杯玛萨拉酒。我在她旁边坐下，想要开导她。</p><div class="r4"></div><p class="21">“你看，苔西，”我说，“去乡下住上一两个星期，保准你不会再梦见灵车了。你每天从早到晚当模特，到了夜里精神紧张也在所难免。你不能继续这样下去了。另外，白天你结束了这儿的工作，并没有回家好好休息，而是去了苏尔泽公园野餐，或者去埃尔多拉多或科尼岛的游乐园，所以等第二天上午来我这儿，你总是非常疲倦。你没有真的看见灵车，那只是吃坏了肚子做的噩梦。”</p><p class="11">她无力地笑了笑。</p><p class="11">“教堂墓地的那个人呢？”</p><p class="11">“哦，只是一个不太健康的普通人。”</p><div class="r4"></div><p class="21">“就像我真的就叫苔西·里尔登一样，斯科特先生，我向你发誓，教堂墓地里那个人的脸和灵车的车夫一模一样！”</p><p class="11">“灵车又怎么了？”我说，“那也是一门正当生意嘛。”</p><p class="11">“所以你认为我真的看见了灵车？”</p><p class="11">“嗯，”我模棱两可地说，“假如你看见了，车夫也不太可能就是底下那位先生。没什么好大惊小怪的。”</p><div class="r4"></div><p class="21">苔西起身，打开她散发着香味的手帕，从手帕边缘的花结里拿出一块口香糖放进嘴里。她戴上手套，向我伸出手，只说了一句“晚安，斯科特先生”就走了。</p><h2 class="h6 h4">2</h2><p class="31">第二天一早，门童托马斯给我带来了《先驱报》和一则消息：隔壁的教堂被卖掉了。我为此感谢上帝，倒不是说我这个天主教徒对隔壁的教众有什么意见，而是某个吵闹的布道者总在折磨我的神经，他的每一句话都在教堂的过道里回荡，响得就像站在我家的房间里喊叫，而且他的r辅音带着强烈的鼻音，使我本能地感到厌恶。还有一个人形的恶魔（他们的管风琴师）会用自己的诠释胡乱演奏动听的古老赞美诗，我恨不得喝他的血，因为他会用小和弦来演奏《荣耀颂》，只有缺乏经验的学生四重奏才会这么做。我相信牧师是个好人，然而听见他咆哮“耶和华对摩西说，耶和华是战士，他的名是耶和华，我要发烈怒，用刀杀你们”，我真不知道他要在炼狱里待多少个世纪才能洗清这样的罪孽。</p><p class="11">“谁买下了这块地？”我问托马斯。</p><p class="11">“不知道，先生。据说那位绅士住在汉密尔顿大楼，从房间里能看见教堂。他也许会造更多的工作室。”</p><div class="r4"></div><p class="11">我走到窗口。面目可憎的年轻人站在教堂墓地的铁门旁，光是看见他，昨天那种压倒性的厌恶感就卷土重来。</p><p class="11">“说起来，托马斯，”我问，“底下那个人是谁？”</p><p class="21">托马斯嗤之以鼻：“先生说的是那个恶心的家伙吗？他是教堂的守夜人，整晚就坐在台阶上，用讨人厌的眼神看着你。我真的很来气，很想揍他一顿，先生——对不起，先生……”</p><p class="11">“没什么，托马斯，继续说。”</p><div class="r4"></div><p class="31">“一天晚上，我和哈利一起回家，哈利就是另一个英国小子。我看见他坐在台阶上，当时莫莉和简也在，先生，就是洗盘子的两个姑娘。他用特别让人讨厌的眼神看着我们，我就走过去说：‘瞅啥呢，你这个肥鼻涕虫？’对不起，先生，这就是我的原话。但他一言不发，我就说：‘你出来，看我不揍扁你那张胖脸。’然后我拉开铁门进去了，但他还是什么都不说，只是用讨厌的眼神看我，于是我就给了他一拳。天哪！他的皮肤冷冰冰、黏糊糊的，光是碰一下就够你吐三天的。”</p><p class="11">“他是什么反应？”我好奇地问。</p><p class="11">“他什么反应都没有。”</p><p class="11">“那你呢？”</p><div class="r4"></div><p class="11">年轻人尴尬地涨红了脸，露出局促的笑容。</p><p class="21">“斯科特先生，我不是胆小鬼，但我就是搞不懂我为什么要跑。我在第五枪骑兵团服过役，先生。泰勒凯比尔战役中我是号手，还吃过子弹呢。”</p><p class="11">“你不会是要说你逃跑了吧？”</p><p class="11">“是的，先生，我逃跑了。”</p><div class="r4"></div><p class="11">“为什么？”</p><p class="11">“我也很想知道，先生。我一把抓住莫莉，拔腿就跑，其他几个人和我一样害怕。”</p><p class="11">“他们害怕什么呢？”</p><p class="21">托马斯刚开始不肯回答，但我的好奇心已经被挑了起来，于是继续逼问他。托马斯在美国待了三年，没有改掉他的伦敦口音，却让他像美国人一样害怕被嘲笑。</p><div class="r4"></div><p class="11">“斯科特先生，你不会相信我的。”</p><p class="11">“不，我相信。”</p><p class="11">“你会嘲笑我。”</p><p class="11">“没有的事！”</p><div class="r4"></div><p class="21">他迟疑着说：“唉，先生，我向上帝发誓，我给了他一拳，而他握住了我的手腕，我抓住他软塌塌、黏糊糊的拳头扭了一下，一根手指就掉在了我的掌心里。”</p><p class="21">托马斯露出了极度嫌恶和恐惧的表情，我肯定也为之动容了，因为他立刻又说：“太可怕了，所以现在我看见他总是绕着走。他让我浑身发凉。”</p><p class="21">托马斯告辞后，我走到窗口。那个男人站在教堂的围栏旁，双手搁在铁门上。我立刻退回到画架前，一时间既恶心又害怕，因为我看见他的右手缺少了中指。</p><p class="21">九点整，苔西准时来到工作室，说了一句“早上好，斯科特先生”就消失在了屏风背后。等她重新出现，在模特台上摆好姿势时，我换了一块新画布从头开始，这让她非常高兴。我作画的时候，她一直没有开口，然而等炭笔的沙沙声刚停下，我才拿起定色剂，她就叽叽喳喳地说了起来。</p><div class="r4"></div><p class="11">• 美国娱乐业先驱托尼·帕斯特（1837—1908）开设在百老汇十四街的剧院。</p><p class="11">“哎呀，昨晚我玩得真是太开心了。我们去了托尼·帕斯特剧院 。”</p><p class="11">“这个‘我们’是谁？”我问。</p><p class="21">“噢，有玛琪，你认识的，怀特先生的模特；有‘小红’麦考密克，我们叫她‘小红’是因为她有一头漂亮的红发，画家都喜欢死了；还有丽齐·伯克。”</p><div class="r4"></div><p class="11">我把定色剂喷在画布上，说：“好，继续说。”</p><p class="11">“我们看了凯丽和跳长裙舞的贝比·巴恩斯，等等。我还碰到了一段艳遇。”</p><p class="11">“所以你要背叛我了？”</p><p class="11">她笑着摇摇头。</p><div class="r4"></div><p class="11">“他是丽齐·伯克的哥哥，叫爱德，是个完美的绅士。”</p><p class="11">我觉得我有义务以父辈身份给她一些关于艳遇的建议，她听得露出了灿烂的笑容。</p><p class="21">“哎呀，我能处理好糟糕的艳遇，”她取出正在嚼的口香糖看了看，“但爱德不一样。丽齐是我最要好的朋友。”</p><p class="21">她讲述爱德从马萨诸塞州洛厄尔的袜厂回来，发现她和丽齐已经长大成人，而他是一个颇有成就的年轻人，想也不想就掏出五十美分买冰激凌和牡蛎，庆祝自己入职梅西百货，成为毛纺部的职员。她还没说完，我就又开始作画了，她重新摆好姿势，满脸笑容，像麻雀似的说个不停。到了中午，我的底稿已经差不多完成了，苔西过来看了看。</p><div class="r4"></div><p class="11">“这次好多了。”她说。</p><p class="11">• 两人都是当时著名的棒球运动员。</p><p class="31">我也这么认为，于是满意地坐下吃午饭，觉得一切都很顺利。苔西把午饭放在我对面的画桌上，我们从同一个瓶子里喝红葡萄酒，用同一根火柴点烟。我非常依恋苔西，眼看着她从一个孱弱笨拙的孩子长成现在这个纤细但玲珑有致的女人。她为我摆造型已经三年了，在我所有的模特中，我最喜欢的无疑是她。假如她变得像人们说的那样“凶悍”或“轻浮”，我肯定会非常烦恼，然而我从没注意到她的举止有任何堕落的迹象，从内心深处觉得她是个好姑娘。我从没和她讨论过道德，也不打算这么做，一部分原因是我本人不守清规戒律，另一部分原因是我知道即便我反对，她也会去做她喜欢的事情。不过，我还是希望她能远离麻烦，因为我希望她过得幸福，同时也因为我自私的愿望：我想留住我遇到过的最优秀的模特。我知道对苔西这样的姑娘来说，所谓的“艳遇”没有什么复杂的含义，更何况美国在这方面与巴黎毫无共同之处。但我活得很清醒，知道总有一天有人会以某种方式夺走苔西的芳心。尽管我自认为婚姻是无稽之谈，但我真心诚意地希望能有一位牧师站在未来的尽头。我毕竟是个天主教徒。望弥撒的时候，在胸前画十字时，我觉得包括我在内的整个世界都变得更加令人快乐，而忏悔对我有好处。像我这样过着单身生活的人，必须时时向人忏悔。不过，西尔维娅是天主教徒，这个理由对我来说就足够了。但我现在说的是苔西，她完全不一样。苔西同样是天主教徒，而且比我虔诚得多，因此总的来说，我并不怎么担心这个漂亮的模特，除非她坠入了爱河。另一方面我也知道，只有命运才能决定她的将来，而我在心里祈祷，希望命运能让她远离我这样的男人，只把爱德·伯克或吉米·麦考密克 之类的好男人扔到她面前，愿上帝保佑她可爱的脸蛋！</p><p class="11">苔西坐在椅子上朝天花板吐烟圈，轻轻摇动酒杯里的冰块。</p><div class="r4"></div><p class="11">“知道吗？昨天夜里我也做了个梦。”我说。</p><p class="11">“不会是关于那个男人的吧？”她笑着说。</p><p class="11">“就是关于他的。和你的梦差不多，但更加可怕。”</p><p class="11">说这种话足以证明我的愚蠢和鲁莽，但要知道，画家通常不通人情。</p><div class="r4"></div><p class="31">“我大概是在十点左右睡着的，”我说了下去，“过了一阵，我梦见我醒了。我清楚地听见了午夜的钟声、风吹树枝的沙沙声和从海湾传来的蒸汽船的汽笛声，即便到了现在，我也难以相信自己其实没有醒。我似乎躺在一个玻璃盖的箱子里，隐约看见路灯一盏接一盏经过。我必须告诉你，苔西，我所在的箱子好像在一辆带软垫的马车里，马车颠簸着驶过一段石板路。躺了一会儿，我开始不耐烦，想动一动身子，但箱子太狭窄了。我的双手叠放在胸前，我没法抬起胳膊来撑起身体。我听着外面的动静，尝试叫人帮忙，却发不出声音。我能听见拉车的马的马蹄声，甚至能听见车夫的呼吸声，同时又听见了另一个声音，似乎是窗扇被拉起来的声音。我竭力把脑袋转过去一点点，发现自己的视线不但穿过了箱子的玻璃盖，而且穿过了车篷侧面的玻璃窗。我看见了空荡荡、静悄悄的屋子，但没有任何灯光或生命的迹象，只有一座屋子除外。那座屋子的二楼开着一扇窗户，一个穿白衣的身影站在窗前望着底下的街道。那是你。”</p><p class="11">苔西把脸转了过去，胳膊肘撑在桌面上。</p><p class="21">“我能看见你的脸，”我继续说，“你似乎非常悲伤。然后马车驶了过去，拐进一条黑洞洞的窄巷，很快停下了。我等了又等，既害怕又不耐烦，于是闭上了眼睛，但一切都像坟墓似的寂静。我觉得我等了好几个小时，开始觉得不舒服了。我感觉到有人靠近我，于是睁开眼睛，看见了车夫那张惨白的脸透过棺材盖盯着我——”</p><p class="11">苔西的啜泣声打断了我的讲述。她颤抖得像风中的树叶，我意识到自己做了蠢事，想弥补自己造成的伤害。</p><div class="r4"></div><p class="21">“哎，苔丝，”我说，“我讲这些只是想告诉你，你的故事能影响另一个人的梦，你不会认为我真的躺在棺材里吧？你为什么在发抖？你还不明白吗？你的梦，再加上我对那个教堂守墓人无缘无故的厌恶——尽管他并没有任何恶意——在我入睡之后让我的大脑活跃了起来。”</p><p class="21">她把脸埋在双臂之间，哭得像是心都要碎了。我这是造了什么样的孽呀！然而我的愚蠢是没有边际的。我走过去，轻轻地搂住她。</p><p class="21">“苔西，我亲爱的，请原谅我，”我说，“我不该用那样的胡话来吓唬你。你是个敏感的好姑娘，坚贞的天主教徒不该把梦里的东西信以为真。”</p><p class="11">她紧紧握住我的手，把脑袋靠在我的肩膀上，但她依然在颤抖。我轻轻拍她，尝试安慰她。</p><div class="r4"></div><p class="11">“好了，苔丝，睁开眼睛，笑一笑吧。”</p><p class="11">她迟缓而无力地睁开眼睛与我对视，但她的眼神太不寻常了，我连忙继续安慰她。</p><p class="11">“全都是瞎说八道，苔西，你不用担心这些胡话会给你造成任何伤害。”</p><p class="11">“我不担心。”她说，但鲜红的嘴唇在微微颤抖。</p><div class="r4"></div><p class="11">“那是怎么一回事呢？你在害怕吗？”</p><p class="11">“是的，但不是为了我。”</p><p class="11">“那就是为了我了？”我欣喜地问。</p><p class="11">“是的，为了你。”她喃喃道，声音轻得几乎听不见，“我……我在乎你。”</p><div class="r4"></div><p class="21">起初我笑了起来，然而等我明白了她的意思，我突然浑身一震，愣愣地坐在那儿，就好像变成了石头。这是我犯下的最最愚蠢的罪行。在她做出回应，而我就要回答的那一刻，我想到了无数种回复她纯真表白的方法。我可以一笑而过，可以假装没听懂，向她保证我很健康，也可以直接声明她不能爱我。然而我的身体反应比我的头脑转得更快，事后我自然追悔莫及，因为我直接吻上了她的嘴唇。</p><p class="21">那天傍晚，我和往常一样在华盛顿公园散步，思索当天发生的事。我完全陷进去了，现在已经无路可退，我必须直面未来。我不是好人，甚至谈不上有良心，但我不想欺骗自己，更不想欺骗苔西。我生命中的激情就埋葬在布列塔尼阳光下的森林之中。是永远埋葬了吗？希望在高喊：“不！”三年来，我一直在倾听希望的声音；三年来，我一直在等待有人重新敲开我的心门。西尔维娅忘记了吗？希望在高喊：“不！”</p><p class="21">我说过我不是好人，这是事实，但我也不是喜剧里的恶棍。我一直过着随波逐流的鲁莽生活，尽情享受送上门的快乐，对造成的后果感到惋惜，有时甚至痛心疾首。除了绘画，我只对一件事认真，那就是隐藏在布列塔尼森林里的东西，如果它还没丢失的话。</p><p class="31">现在为白天发生的事后悔已经太晚了。无论当时的动机是怜悯，是突如其来的同情，还是更残忍的满足虚荣心的本能，此刻我面前的情况都是一样的。除非我想伤害一颗纯真的心灵，否则我的道路就已经被指定了。我从未怀疑过爱这种激情的烈度、强度和深度，以我在尘世间所能想象的全部经历，我别无选择。若是不做出回应，就只能与她断绝来往了。也许是因为我不敢给其他人带来痛苦，也许是因为我内心也有一丝阴郁的清教徒气质，总之对那个鲁莽的吻，我不愿推卸责任——其实她没有留给我这么做的时间，因为她立刻就打开了心门，洪流倾泻而出。有些人能够习惯性地履行职责，同时在给自己和其他人造成不幸之中找到某些变态的满足感，他们或许能承受这一切，但我不行，也不敢。风暴平息后，我当然也劝她最好还是去爱爱德·伯克，戴上一枚平常的金戒指，但她不听我的，而我认为，假如她非要爱上一个不能嫁的人，那这个人最好就是我。至少我可以用理智的好感来对待她，等她厌倦了这种痴迷，也不会因此而自暴自弃。尽管我知道前途艰险，但还是下定了决心。我想起了柏拉图式恋爱的通常结局，也想到了我每次听到这种事的嫌恶情绪。我知道对我这样道德感薄弱的人来说，这是给自己揽下了巨大的责任。我恐惧未来，然而连一刻也没有怀疑过她与我在一起时的安危。假如是苔西以外的其他女人，我也不会用道德来折磨自己了，因为我从没想到过要像辜负世间女子那样辜负苔西。我直面未来，看到这段关系有几种可能的结局。她也许会厌倦我们的关系，也许会变得成日怏怏不乐，到最后我要么和她结婚，要么抽身离开。假如我和她结婚，那我们是不可能幸福的。我得到了一个不适合我的妻子，而她得到了一个不适合任何女人的丈夫。我过去的生活使我丧失了结婚的资格。假如我抽身离开，她也许会病倒，在康复后嫁给爱德·伯克，但也有可能会或不顾一切或存心去做傻事。另一方面，假如她厌倦了我，包括爱德·伯克、结婚戒指、双胞胎、哈莱姆公寓和天晓得什么在内的美好景色就会在她眼前徐徐展开。等我走到华盛顿拱门旁的树林时，我做出了决定：无论如何她都能把我当作知心朋友，而未来就交给未来去自己解决吧。我回到家里，换上晚礼服，因为梳妆台上有一张散发着淡淡香味的小纸条，上面写着：</p><div class="r4"></div><p class="31">那天晚上我（不，应该说我们，我和卡米歇尔）在索拉里餐厅吃了晚饭。与伊迪丝在不伦瑞克酒店告别后，我独自走进华盛顿广场，这时曙光刚刚给纪念教堂的十字架镀上金色。我穿过树林，沿着从加里波第雕像通往汉密尔顿大楼的步道向前走，公园里连一个人影都没有，然而当我经过教堂墓地的时候，我看到一个人影坐在石阶上。瞥见那张惨白的浮肿面容，我不禁打了个寒战，连忙加快了脚步。这时他说了句什么，也许是对我说的，但也可能仅仅是自言自语，然而怒火突然在我的胸中点燃，因为这么一个怪物竟然敢对我说话。有那么一瞬间，我很想跑上去，用手杖砸烂他的脑袋，但我忍住了，继续向前走进汉密尔顿大楼，回到自己的房间里。我在床上辗转反侧，想把他的声音从耳边赶走，却无论如何都做不到。他的声音充斥了我的脑海，就像从炼脂釜里冒出的油腻浓烟或有毒的腐臭味。我躺在那里翻来覆去时，耳朵里的声音似乎变得愈加清晰，我逐渐听懂了他究竟在嘟囔什么。意义慢慢浮现在我的脑海里，就像被我遗忘的记忆，最后我终于从声音中听到了字词。他在说：</p><p class="11">“ 你 找 到 黄 色 印 记 了 吗 ？ ”</p><p class="11">“ 你 找 到 黄 色 印 记 了 吗 ？ ”</p><p class="11">“ 你 找 到 黄 色 印 记 了 吗 ？ ”</p><div class="r4"></div><p class="21">我怒不可遏。他这么说是什么意思？于是我诅咒了他和他的胡言乱语，翻了个身睡着了，然而等我醒来时，我脸色苍白，面容憔悴，因为我又做了前一晚的噩梦，它对我的摧残让我忍无可忍。</p><p class="21">我换上衣服，下楼去工作室。苔西已经坐在窗边了，我走进房间，她起身搂住我的脖子，给了我一个纯洁的吻。她看上去是那么娇美，我忍不住又吻了她一次，然后在画架前坐下。</p><p class="11">“咦，我昨天打的底稿去哪儿了？”我问。</p><p class="21">苔西显得有些忸怩，但没有回答。我在成堆的画布之中搜寻，嘴里说：“快点，苔西，去做好准备；我们必须好好利用上午的光线。”</p><div class="r4"></div><p class="21">最后我放弃了在其他画布中搜寻，转而在房间的各个角落里寻找消失的底稿，我注意到苔西站在屏风旁，依然穿着衣服。</p><p class="11">“怎么了？”我问，“觉得不舒服吗？”</p><p class="11">“没有。”</p><p class="11">“那就快点吧。”</p><div class="r4"></div><p class="11">“你要我……要我像以前那样摆姿势吗？”</p><p class="21">于是我明白了。我们之间出现了一个新问题，我失去了这辈子最优秀的裸体模特。我望着苔西，她涨红了脸。哎呀！哎呀呀！我们吃下了智慧之树的果实，伊甸园和纯真的天性成了昔日的一场梦——我指的当然是她。</p><p class="21">她大概注意到了我失望的表情，因为她说：“要是你坚持，我会继续当模特的。底稿在屏风后面，是我藏起来的。”</p><p class="31">“算了，”我说，“我们换个思路吧。”我走到衣帽间挑了一套摩尔人的装束，这套衣服真的来自北非，上面镶满了金银丝。苔西看得入迷，拿着它退到了屏风背后。等她再次出现，我惊呆了。她长长的黑发用绿松石发圈扎在额顶，卷曲的发梢搭在闪闪发亮的束腹上，脚上穿着绣花的尖头拖鞋，裙摆垂到脚踝，上面用银丝编织出奇异的阿拉伯花饰，绣着银线的深蓝色马甲和绿松石拼接的摩尔式短上衣完美地贴合她的曲线。她走到我面前，向我仰起微笑的脸。我从口袋里掏出挂着十字架的金项链，套在她的脖子上。</p><div class="r4"></div><p class="11">“这是你的了，苔西。”</p><p class="11">“我的？”她吃惊地说。</p><p class="21">“对，你的。好了，去摆姿势吧。”但她带着灿烂的笑容跑到了屏风背后，出来时拿着一个盒子，上面写着我的名字。</p><p class="11">“本来想今晚回家的时候给你的，”她说，“但我等不及了。”</p><div class="r4"></div><p class="21">我打开盒子。粉红色的棉布内衬上是个黑色的缟玛瑙胸针，上面拼嵌着一个奇异的金色符号或字母。它不是阿拉伯文，也不是中文，后来我发现它不属于人类的任何语言。</p><p class="11">“我只能给你这一样东西当作信物。”她羞怯地说。</p><p class="11">我很苦恼，但还是说我会把它当作宝贝，保证我会一直戴着它。她把胸针扣在我的大衣领口上。</p><p class="11">“你太糊涂了，苔西，不该去给我买这么珍贵的礼物。”我说。</p><div class="r4"></div><p class="11">“不是我买的。”她笑着说。</p><p class="11">“那是从哪儿来的？”</p><p class="21">她告诉我，有一天她从炮台公园的水族馆出来，捡到了这枚胸针，后来在报纸上登了失物招领的广告，但最终放弃了物归原主的希望。</p><p class="11">“那是去年冬天的事情了，”她说，“就在同一天，我第一次做了关于灵车的噩梦。”</p><div class="r4"></div><p class="21">我回想起昨晚的噩梦，但没有说什么。很快，我的炭笔就开始在新的画布上飞舞，而苔西一动不动地站在模特台上。</p><h2 class="h6 h4">3</h2><p class="31">第二天对我来说是个灾难性的日子。我把一幅装好框的画从一个画架搬到另一个画架上，脚在刚打过蜡的地板上滑了一下，重重地摔倒时刚好两个手腕着地。我的手腕严重扭伤，不可能握住画笔，因此我只能在工作室里走来走去，望着未完成的素描和速写，直到绝望攫住了我的心灵。我坐下抽烟，气恼地咬着大拇指。大雨抽打着窗户，打得教堂的屋顶哗哗作响，无休止的淅沥声害得我神经紧绷。苔西坐在窗边做针线活，时不时抬起头，用纯真的同情目光看着我，我不禁为自己的焦躁感到惭愧，于是开始寻找能够打发时间的消遣。我已经读完了图书室里的所有报纸和书籍，然而为了找点事情做，我还是走到书柜前，用胳膊肘打开柜门。我连每一本书的封皮颜色都了如指掌，我在图书室里转圈，扫视着一本本书，吹着口哨替自己打气。正要转身去餐厅时，我的视线落在了一本蛇皮装订的书上，它放在最后一个书柜最顶上一层的角落里。我不记得自己有这本书，而且从底下也看不清书脊上的浅淡文字，于是我回到吸烟室，请苔西来帮忙。她从工作室走过来，爬上去拿那本书。</p><p class="11">“是什么书？”我问。</p><p class="11">“《黄衣之王》。”</p><div class="r4"></div><p class="31">我惊呆了。是谁把它放在那儿的？它怎么会出现在我的房间里？我早就决定了，我绝对不会打开那本书，世上没有任何原因能说服我去买它。由于担心好奇心会诱使我打开它，我甚至在书店里也从不正眼看它。即便我有过读它的好奇心，我认识的小卡斯泰涅的悲剧也阻止了我去探究书里邪恶的内容。我一向拒绝听其他人讲述这本书，其实也没人胆敢大声讨论书里的第二部分，因此我完全不知道翻开它会揭示什么可怖的真相。我盯着它有毒的斑驳书脊，就好像它是一条蛇。</p><p class="11">“别碰它，苔西，”我说，“快下来。”</p><p class="21">当然了，我的告诫只是激起了她的好奇心，我还没来得及阻止，她就抓起那本书，蹦蹦跳跳地笑着跑进了工作室。我喊她的名字，但她只是看着我无法使用的双手，露出一抹折磨人的微笑，一溜烟地跑掉了，我不耐烦地跟了上去。</p><p class="31">“苔西！”我叫道，走进图书室，“听我说，我是认真的。给我放下那本书，千万别打开看！”但图书室里没有人。我找遍了两间客厅、卧室、洗衣房和厨房，最后回到图书室，开始系统性地搜寻。她把自己藏得非常好，足足过了半个小时，我才在楼上的储藏室里找到她。她蜷在格子窗旁，脸色煞白，一言不发，我立刻看出她的愚蠢已经得到了惩罚。《黄衣之王》搁在她的脚下，而且翻开到了第二部分。我看了看苔西，明白我来迟了，她已经打开了《黄衣之王》。于是我抓住她的手，拉着她回到工作室。她显得很茫然，我叫她躺在沙发上，她默默地照做了。躺了一会儿，她闭上眼睛，呼吸变得规律和深沉，但我无法确定她是不是睡着了。我在她身旁静静地坐了很久，她没有动，也没有开口，最终我站起来，走进空置的储藏室，用受伤比较轻的那只手捡起《黄衣之王》。这本书像铅块一样沉重，但我还是拿着它回到了工作室。我坐在沙发旁的地毯上，打开书从头读到尾。</p><div class="r4"></div><p class="11">我放下书，过于激动的情绪使我昏昏沉沉，于是疲惫地靠在沙发上，这时苔西睁开了眼睛，看着我。</p><p class="21">我们在沉闷而单调的紧张气氛中交谈，过了一段时间，我才意识到我们在讨论《黄衣之王》。天哪，写下这样的文字就是一种罪孽，它们像水晶一样清澈，像汩汩流淌的泉水一样动听，这些文字晶莹闪烁，就像美第奇家族的有毒钻石！天哪，一个能用这样的文字来迷惑和麻醉人类的灵魂，它是多么邪恶、多么应该受到诅咒。无论是无知的人还是智者都能理解书里的文字，它们比珠宝更珍贵，比音乐更能安抚心灵，但比死亡还要可怖！</p><p class="31">我们不停地交谈，对逐渐聚集的黑影毫不在意。她央求我扔掉那个黑色缟玛瑙胸针，因为我们现在知道了，镶嵌在上面的图案就是黄色印记。我永远也不可能知道我为什么会拒绝，然而此时此刻，我在卧室里写下这篇忏悔书时，我非常想知道究竟是什么按住了我的手，不让我取下胸前的黄色印记扔进火里。我确定自己很想这么做，然而苔西的恳求却徒劳无功。夜幕降临，几个小时过去了，我们依然在窃窃私语，谈论黄衣之王和苍白面具。浓雾笼罩的城市里，午夜钟声在迷蒙的塔尖上敲响。我们谈论哈斯塔和卡西尔达，而外面的雾气贴着白茫茫的窗户翻涌，就像云涛在拍打哈利湖的岸边。</p><p class="31">屋子里万籁俱寂，雾蒙蒙的街道上没有传来任何声音。苔西躺在靠垫上，昏暗的光线下，她的脸呈现出灰白色，但她的手紧紧地握着我的手。我知道她明白了，她能读懂我的心思，我也能读懂她的心思，因为我们已经理解了毕宿星团的奥秘，而真理的魅影已经埋下。就在我们迅速而无声地用心灵彼此问答时，黑影就在周围的暗处骚动。街道上远远地传来了一个声音，变得越来越近，那是车轮嘎吱转动的沉闷声响。它逐渐靠近，最终在大门口停下。我拖着身躯走到窗前，看见了一辆披着黑色翎毛的灵车。底下的铁门打开又关上，我跌跌撞撞地跑到门口，插上门闩，但我知道任何门闩或门锁都无法阻挡黄色印记引来的那个怪物。我听见他轻柔的脚步声穿过大厅。他来到了门口，门闩在他的触碰之下朽烂。他走进了房间。我瞪大眼睛，在黑暗中搜寻他的踪影，然而当他走进房间时，我并没有看见他，直到他用冰冷柔软的手抓住我，我这才尖叫起来，死命挣扎，但我的手使不上力气。他扯掉我外衣上的缟玛瑙胸针，一拳打在我的面门上。倒下的时候，我听见苔西在轻声哭叫，而她的灵魂已经出窍。即便我倒下了，也依然渴望跟随她，因为我知道黄衣之王掀开了他褴褛的袍服，而我只能恳求上帝的慈悲。</p><div class="r4"></div><p class="21">我可以继续说下去，但我看不出这能给世界带来什么好处。至于我，人类的救助和希望已经无法拯救我了。我躺在这里写下这些文字，甚至不在乎我会不会在写完之前死去。我看见医生在收拾药粉和瓶罐，朝我身旁的牧师做了个模棱两可的手势，不过我明白他的意思。</p><p class="31">他们会非常好奇，想了解这个悲剧——他们会为之写书，印刷千百万份报纸，但我要停笔了，听取我忏悔的神父在履行神圣的职责之后，会用圣印封存我的遗言。外部世界的人会派探子潜入残破的家园和被死亡摧残的炉边，报纸会大肆渲染鲜血和眼泪，然而对我来说，他们的刺探必须止步于这篇忏悔书。他们知道苔西死了，我也快死了；他们知道地狱般的尖叫惊醒了房子的住户，人们冲进我的房间，发现了一个活人和两具尸体，但他们不知道医生指着地上那堆骇人的腐烂东西（其实是教堂守墓人的尸体），嘴里说了什么：“我不知道该怎么解释，但那个人肯定死了几个月了！”</p><p class="11">我认为我就要死了，希望神父能……</p></div></section><section class="s3">
+<h1 class="s4" id="chapter-4">
+    德伊斯小姐
+</h1>
+<div class="c1"><p class="11">我相信</p><p class="11">我已掉进了黑暗的井里</p><p class="11">赫拉克利特说</p><p class="11">• 出自拉伯雷《巨人传》。</p><div class="r4"></div><p class="11">真理就藏在其中</p><p class="11">我所测不透的奇妙有三样，连我所不知道的共有四样：</p><p class="11">• 出自《圣经·旧约·箴言》。</p><p class="11">“就是鹰在空中飞的道，蛇在磐石上爬的道，船在海中行的道，男与女交合的道。”</p><div class="r4"></div><h2 class="h6 h4">1</h2><p class="21">景象过于荒凉，开始影响我的判断。我坐下，面对眼前的局势，假如可能的话，我希望回想起某些地标，它们也许能帮我摆脱此刻的困境。假如我能重新找到大海，那么一切就会变得明朗，因为我知道你可以从悬崖顶上看见格鲁瓦岛。</p><p class="21">我放下猎枪，在一块岩石后面跪下，点燃烟斗。我看了看怀表，快四点了。天亮以后，我已经从凯尔塞莱走了很远。</p><p class="21">前一天，我和古尔旺站在凯尔塞莱南面的悬崖顶上，眺望阴沉沉的荒原，而我此刻就在其中迷失了方向。当时在我眼中，这些延伸到地平线的沼地就像草场一样平整，尽管我知道距离感很有迷惑性，但我并没想到从凯尔塞莱望去仅仅是绿草茵茵的山洼的地方，实际上是长满了荆豆和石楠的巨大山谷，而看似是零散石块的东西其实是高耸的花岗岩峭壁。</p><p class="21">“对陌生人来说，这可不是个好地方。”老古尔旺当时这么说，“你最好带个向导。”我回答：“我是不可能迷路的。”但此刻我抽着烟，感受吹在脸上的海风，知道自己已经迷路了。四面都是沼地，满是开花的荆豆和石楠，还有一块块巨大的花岗岩石块。放眼望去连一棵树都没有，更不用说房子了。歇了一会儿，我拿起猎枪背对太阳，深一脚浅一脚地继续向前走。</p><div class="r4"></div><p class="21">时而有哗哗流淌的溪流与我行走的路线相交，然而顺着溪流走并没有用处，因为它们没有通往大海，而是汇入了沼地里长满芦苇的水塘。我顺着溪流走过几次，但最终都来到了烂泥塘或寂静的小池塘，被惊起的鸻鹬叽叽叫着飞走了。我开始感到疲惫，尽管垫着两层护肩，但猎枪还是磨破了我的肩膀。太阳渐渐西沉，阳光平射在金色的荆豆和沼地的水塘上。</p><p class="31">我继续向前走，巨大的影子为我领路，我每迈出一步，它似乎都会拉长一点。荆豆丛刮着我的裤脚，被我踩得噼啪作响，花瓣洒在黑褐色的土地上。我行走的路线两旁，矮树丛起伏不定。野兔从石楠丛中蹿出来，穿过凤尾草丛，沼泽的草丛里传来了野鸭懒怠的呱呱叫声，一只狐狸从我面前跑过。还有一次，我弯腰从湍急的小溪里舀水喝，一只苍鹭在我身旁的芦苇丛中笨重地拍打翅膀。我扭头望向太阳，太阳已经碰到了原野的边缘。我终于认命了，再走下去也只是白费力气。必须下定决心在沼地里度过至少一个夜晚，于是我干脆躺下来，舒展疲惫的身躯。暖洋洋的夕阳照在我身上，但海风渐渐大了，湿透了的狩猎靴让我感到阵阵寒意。海鸥在高空盘旋翻滚，就像片片纸屑，一只落单的杓鹬在遥远的沼泽里叫唤。太阳一点一点沉下去，夕照映红了天顶。我看着天空从淡金色变成粉红色，然后变成余烬的色彩。蠓虫像乌云似的在我头顶飞舞，一只蝙蝠在平静的半空中时而俯冲，时而高飞。我的眼皮开始打架。就在我和困意做斗争时，蕨丛里突然响起砰的一声，一只大鸟颤巍巍地悬停在我面前。一时间我无法动弹，只能呆呆地看着。紧接着，一个东西在蕨丛中贴着我蹿过去，大鸟腾空而起，转了半圈，一头栽进凤尾草丛。</p><p class="31">我立刻站了起来，隔着荆豆丛张望。不远处的石楠丛中传来了打斗声，但很快就恢复了平静。我端起枪走过去，来到石楠丛前却又松手把枪放下，愣愣地站在那里，惊讶得发不出声音。一只死去的野兔躺在地上，一只神气的猎鹰则站在野兔的尸体上，一只爪子插进了野兔的脖子，另一只爪子紧紧抓住野兔松弛的腹部。不过让我吃惊的并不是看见猎鹰站在猎物的尸体上，这种事我见过不止一次，而是猎鹰的爪子上拴着皮绳，皮绳上挂着一颗雪橇铃铛似的金属圆球。猎鹰转过来，用凶狠的黄眼睛瞪我，随后低下头，用弯曲的喙啄食猎物。就在这时，石楠丛中响起了急匆匆的脚步声，一个女孩穿过树丛跑了过来，连看都没看我一眼就径直走到猎鹰跟前，伸出戴着手套的手，从猎鹰的胸部底下抓住它，把它从猎物身上拿了起来。她熟练地用小头套盖住猎鹰的脑袋，抬起手让猎鹰站在护手上，然后弯腰捡起野兔。</p><p class="31">她用一根绳子绑住野兔的腿，把绳子的另一头拴在腰带上，转身穿过树丛往回走。从我身旁走过时，我脱帽致敬，她报以一个微不可察的欠身。刚才我被惊呆了，对眼前景象的赞叹占据了全部心神，因此我根本没想到这就是我的救星。直到她转身离开时，我这才想到，除非我想在寒风呼啸的沼地里过夜，否则就必须立刻恢复语言能力。听见我的第一句话，她犹豫起来。我走到她面前，发觉她美丽的眼睛里流露出恐惧。还好，等我谦恭地解释完我的困境时，她脸红了，惊异地看着我。</p><div class="r4"></div><p class="11">“你显然不是凯尔塞莱人！”她答道。</p><p class="21">她甜美的嗓音没有布列塔尼口音的痕迹，而且没有我熟悉的任何口音，却有某种我似乎听过的韵味，古朴而难以形容，就像老歌的旋律。</p><p class="11">我说我是美国人，不熟悉菲尼斯泰尔，来这儿打猎是为了找点乐子。</p><p class="11">“美国人，”她用她古朴动听的声音重复道，“我还没见过美国人呢。”</p><div class="r4"></div><p class="11">她一言不发地愣了一会儿，看着我说：“就算你有向导，走一整夜也到不了凯尔塞莱。”</p><p class="11">真是个令人愉快的好消息。</p><p class="11">“所以，”我答道，“我希望找一间农夫的小屋，好让我有东西可以吃，有屋顶可以睡觉。”</p><p class="11">停在她手腕上的猎鹰拍拍翅膀，摆摆脑袋。姑娘轻轻抚摸它丝滑的后背，又抬头看我。</p><div class="r4"></div><p class="21">“你看看周围，”她温和地说，“能看到沼地的尽头吗？往东南西北看一圈，除了沼地和树丛，你还能见到其他东西吗？”</p><p class="11">“不能。”我说。</p><p class="11">“这是一片荒地，进来很容易，但有时候进来的人就再也回不去了。这里没有什么农夫的小屋。”</p><p class="11">“好吧，”我说，“麻烦你告诉我凯尔塞莱在哪个方向，这样明天我就不会再走错路了。”</p><div class="r4"></div><p class="11">她再次望着我，神情接近怜悯。</p><p class="11">“唉，”她说，“进来很容易，只需要几个小时，但出去就是另一码事了，也许需要几百年。”</p><p class="11">我惊异地瞪着她，心想自己肯定是误会了她的意思。还没等我再次开口，她就拿起腰间的哨子吹了几声。</p><p class="11">“来坐下歇一歇吧，”她对我说，“你走了很远，肯定累了。”</p><div class="r4"></div><p class="11">她挽起百褶裙，示意我跟上，然后迈开优雅的步伐，走向蕨丛中一块平坦的石头。</p><p class="21">“他们会直接来这儿。”她在石块一头坐下，请我在另一头坐下。夕照开始褪色，一颗孤零零的星星在玫红色的雾霭间闪烁微光。一群水禽排成长长的三角队形，从我们的头顶上飞向南方，鸻鹬在沼泽里轻声呼叫。</p><p class="11">“这里的沼地非常美丽。”她静静地说。</p><p class="11">“是很美丽，但对陌生人很残忍。”我答道。</p><div class="r4"></div><p class="11">“既美丽又残忍，”她梦呓般地呢喃道，“既美丽又残忍。”</p><p class="11">“就像女人。”我傻乎乎地说。</p><p class="11">“哈。”她叫道，声音哽了一下，扭头看着我。她的黑眼睛与我对视，我觉得她似乎在生气，但也可能是害怕。</p><p class="21">“就像女人，”她低声重复道，“你这么说才残忍呢！”过了一会儿，她像是自言自语道：“他这么说可太残忍了！”</p><div class="r4"></div><p class="21">我不知道我是怎么为我这种不过脑子但也无伤大雅的话道歉的，然而我看得出来她非常不快，不禁认为自己在不知不觉间说了什么非常不恭敬的话，同时惊恐地想到了法语给外国佬设置的种种陷阱和圈套。就在我忙着想象我到底说了什么的时候，沼地里传来了几个人的声音，姑娘站起身来。</p><p class="21">“不，”她说，雪白的小脸上露出一丝笑容，“先生，我不会接受你的道歉，但我必须证明你的错误，那才是我真正的报复。看，哈斯塔和拉乌尔来了。”</p><p class="21">暮色中出现了两个男人的身影，一个人背着一个麻布口袋，另一个人像侍者端盘子似的托着一个铁环，铁环用带子固定在他的肩膀上，边缘上站着三只戴头罩的猎鹰，它们身上都有叮当作响的铃铛。姑娘走到驯鹰人旁边，手腕飞快地一转，把上面的猎鹰放在铁环上。猎鹰立刻朝侧面走了几步，和伙伴们依偎在一起，它们晃动头部，羽毛随风拂动，直到脚上的铃铛再次叮当作响。另一个男人走上前，恭敬地深鞠一躬，接过野兔放进装猎物的麻袋。</p><p class="21">“他们是我的侍从。”姑娘扭头对我说，温和的语气中带着高贵，“拉乌尔是个优秀的驯鹰人，有朝一日我会让他当首席猎手。哈斯塔是我无与伦比的助手。”</p><div class="r4"></div><p class="11">两个沉默的男人尊敬地向我行礼。</p><p class="21">“我是不是和你说过，先生，我要证明你的错误？”她继续道，“那么这就是我的报复：你必须接受我的招待，在我家中吃住。”</p><p class="21">我还没有回答，她就对两名侍从说了些什么，他们立刻转身穿过石楠丛而去。她亲切地示意我跟上，我不知道自己有没有让她明白我的感激之情是多么强烈，但她似乎听得很高兴，我们就这么一步步跨过已经蒙上露水的石楠。</p><p class="11">“看来你还不算太累嘛。”她说。</p><div class="r4"></div><p class="11">我对她说，见到她之后，我早就把疲惫忘到了九霄云外。</p><p class="21">“你不觉得你的殷勤话有点儿老套吗？”她说。见我露出惶惑和惭愧的神色，她又静静地说：“哦，但我很喜欢，我喜欢一切老套的东西，很高兴能听见你把话说得这么动听。”</p><p class="21">阴森森的薄雾笼罩之下，我们周围的沼地显得格外寂静。鸻鹬不再鸣叫，蟋蟀和野地里的所有小生灵都在我们经过时保持沉默，不过等我们走远，我听见它们又开始了欢唱。两个高大的驯鹰人在前方大步流星地穿过石楠丛，鹰铃的叮当声隐约传进我们的耳朵，就像远处敲响的钟声。</p><p class="21">一条俊美的猎狗突然从前方的雾气中冲了出来，紧接着是第二条和第三条，到了最后，有六条或不止六条猎狗围着我身旁的姑娘蹦蹦跳跳。她用戴着手套的手抚摸它们，示意它们安静，用我记忆里曾在古老的法语手稿里读到过的古雅词句对它们说话。</p><div class="r4"></div><p class="21">这时，站在前方驯鹰人的铁环上的猎鹰开始拍打翅膀和尖叫，有人在视线之外的某处吹响了猎号，声音回荡在沼地上。猎狗跑向前方，消失在暮色中，猎鹰在铁环上振翅啸叫，姑娘跟着猎号唱起歌谣，声音在夜空中显得既清澈又柔美：</p><p class="11">猎人，猎人，再去打猎吧，</p><p class="11">留下罗塞特和让纳东，</p><p class="11">咿呀，咿呀，咿呀哟，咿呀，</p><div class="r4"></div><p class="11">或者，从黎明时退走，</p><p class="11">让爱得以坦白，</p><p class="11">咿呀，咿呀哟，咿呀。</p><p class="31">听着她动人的歌声，我看见前方隐约出现了一团灰色的东西，那团东西很快变得清晰起来，欢快的号角声随即响起，盖过了猎狗和猎鹰的闹腾叫声。火把在城门口燃烧，光线从门里倾泻而出。我们踏上一座木桥，桥在我们脚下颤抖。我们越过护城河，走进四面是墙的石砌前院，桥在我们背后吱吱呀呀地升起。一扇内门打开了，一个男人走出来，向我身旁的姑娘弯腰行礼，递上一个杯子。她接过杯子，用嘴唇碰了碰，然后放下杯子，转身低声对我说：“欢迎来做客。”</p><div class="r4"></div><p class="21">这时，一名驯鹰人拿着另外一个杯子走过来，没有把杯子递给我，而是递给了姑娘。姑娘尝了一口，驯鹰人抬起手准备接过杯子，但她迟疑了一下，过来亲手把杯子递给了我。我能感觉到这代表着巨大的荣耀，但我不知道该怎么做，因此没有立刻把杯子拿到嘴唇边。姑娘的脸涨得通红，我明白自己必须立刻做些什么。</p><p class="21">“小姐，”我说得语无伦次，“一个陌生人被你从危难之中解救出来，他很可能到死也不知道自己陷入了困境，请允许他为全法国最温柔可爱的女主人干了这一杯。”</p><p class="21">“以上帝的名义。”她喃喃道，在胸前画十字，看着我一饮而尽。她走向内门，扭头对我打了个优雅的手势，然后拉着我的手走进屋子，一遍又一遍地说：“欢迎来做客，非常欢迎来德伊斯城堡做客。”</p><h2 class="h6 h4">2</h2><p class="21">第二天清晨，号角奏响的乐声唤醒了我。我跳下古老的床来到窗前，阳光透过深嵌的小窗照进房间。我望向底下的院子，号角声刚好停止。</p><div class="r4"></div><p class="21">一个男人站在一群猎狗中间，也许是昨晚那两个驯鹰人的兄弟。他背上扎着一只弯曲的号角，手里拿着长鞭，猎狗呜呜地叫着，围着他期待地跳来跳去。院墙外传来了马匹的踏步声。</p><p class="31">“上马！”一个布列塔尼口音的声音叫道。随着一阵蹄声，两个驯鹰人骑着马来到院子里的猎狗中间，猎鹰站在他们的手腕上。这时我听见了那个让我心潮澎湃的声音：“皮里乌·路易，管好猎狗，别不敢用马刺和鞭子。拉乌尔和加斯东，别再让那只鹰像巢鹰似的乱来了，要是觉得实在不行，就礼待鹰。把鸟训练得像哈斯塔手上那只养鹰其实并不难，但是，拉乌尔，你似乎怎么都驯不好那只野鹰。尽管它习惯了引绳，但光是上个星期就连犯两次错误，弄丢了猎物，活像只没脑子的枝鹰。训练好野鹰可真不容易。”</p><p class="21">难道我在做梦？这是驯鹰人的古老语言，我只在泛黄的手稿里读到过。被遗忘的中世纪古法语在我耳畔响起，猎狗汪汪直叫，鹰铃叮当作响，为马蹄声伴奏。她继续用那种早被遗忘的古老语言说话：</p><p class="21">“拉乌尔，要是你想拴上绳子，把那只野鹰留在树桩上，那我什么都不会说，因为我们不该让一只没训练好的幼鹰毁了这么个好日子。让它缓一缓，也许这样更好，能给它一点空间。我对这只鸟也许太着急了，历练和学习抓逃跑的猎物都需要时间。”</p><div class="r4"></div><p class="11">驯鹰人拉乌尔在马上躬身答道：“要是小姐乐意，还是允许我带上这只鹰吧。”</p><p class="21">“我当然乐意。”她答道，“我知道怎么训练猎鹰，我可怜的拉乌尔，但你还没怎么教过我训练苍鹰呢。皮里乌·路易先生，上马！”</p><p class="11">管猎狗的男人跑进一道拱门，很快就骑着一匹健壮的黑马回来了，背后跟着另一个骑马的猎手。</p><p class="11">“好！”她愉快地叫道，“格莱马雷克·雷内，出发！出发！所有人，出发！皮里乌先生，吹号！”</p><div class="r4"></div><p class="21">猎号的清脆声音响彻院子，猎狗冲出大门，奔腾的骏马跑出铺着石板的前院。吊桥上传来响亮的喧闹声，但声音随即变轻，很快就消失在了沼地的石楠和蕨丛之中。号角声渐渐远去，最终变得非常微弱，淹没在了突然响起的百灵鸟歌声里。我听见屋子里的一个人大声说话，底下的另一个人回答：</p><p class="11">“没法去打猎也没什么遗憾的，下次再去好了。对陌生人要有礼貌，佩拉热，记住了！”</p><p class="11">屋子里响起一个颤巍巍的微弱声音：“有礼貌。”</p><p class="31">床脚有个盛满冰水的大陶盆，我脱了个精光，从头到脚擦洗身体，然后找起衣服却没找到，不过门口的长凳上还有一堆衣服，我惊讶地拿起来看了一遍。由于我的衣服不见踪影，我只好穿上这身行头，它们放在那儿，显然是供我在等待衣服晾干时穿的，帽子、鞋子、银灰色的家纺布紧身猎装一应俱全，但这些合身的服装和鞋来自另一个世纪，让我想起了先前院子里三个驯鹰人的奇特打扮。我确定这不是法国或布列塔尼任何地区的现代服饰，直到我穿戴整齐，对着窗户之间的镜子打量自己，我才意识到自己的衣着更像中世纪的年轻猎人，而不是这个时代的布列塔尼人。我迟疑片刻，拿起帽子。我应该下楼，以这身奇怪的打扮出现在众人面前吗？我似乎没有其他出路，因为我的衣服不见踪影，而这个古老的房间里也没有用来召唤仆人的铃铛，于是我只好摘下一小根粘在帽子上的鹰翎，开门下楼去了。</p><div class="r4"></div><p class="31">楼梯脚下的大房间里，一位布列塔尼老妇人在壁炉旁用纺纱杆纺线。听见我的脚步声，她抬起头，露出坦率的笑容，用布列塔尼语祝我健康，我笑着用法语回答。这时，收留我的女主人出现了，优雅端庄地向我回礼，我不禁心如鹿撞。她乌黑的鬈发顶上戴着头饰，平息了我对衣物年代的怀疑。镶银边的家纺布猎装把她苗条的身段衬托得分外美丽，护腕上停着一只她钟爱的猎鹰。她直爽地握住我的手，领我走进院子里的花园，在桌边坐下，然后温柔地邀请我坐在她身旁。她用柔和古雅的口音问我昨晚休息得好不好，老佩拉热在我睡觉时准备的衣物穿起来是不是很不习惯。我的衣物和鞋子晾在花园墙边，我看了一眼，不禁感到厌恶。比起此刻这身高雅的衣物，它们是多么丑陋呀！我笑着这么对她说，她非常认真地表示赞同。</p><p class="21">“全都扔掉好了。”她静静地说。我吃了一惊，努力向她解释说，尽管我知道也许这就是此处的待客之道，但我绝对不能收下如此贵重的一身衣物，更何况穿着这么一身回到法国恐怕会成为世人眼中的笑柄。</p><p class="21">她仰起漂亮的脸蛋放声大笑，用我不懂的古法语说了句什么，这时佩拉热端着托盘急匆匆地走了过来，托盘上有两碗牛奶、一条白面包、水果、一块蜂窝和一壶深红色的葡萄酒。“你看，我还没吃早饭，因为我希望和你一起吃，我已经非常饿了。”她笑着说。</p><p class="21">“我到死也不会忘记你说过的任何一个字！”我脱口而出，面颊烧得发烫。“她会以为我疯了。”我对自己说，但她转向我，眼睛闪闪发亮。</p><div class="r4"></div><p class="11">“哎呀！”她喃喃道，“这么说，先生是很懂得骑士精神的了……”</p><p class="11">她在胸前画十字，掰开面包，我坐在那里望着她白皙的双手，不敢抬起眼睛看她。</p><p class="11">“你不吃吗？”她问，“为什么你看起来坐立不安？”</p><p class="21">咦，为什么呢？我立刻就知道了。我知道我愿意献出生命，也想用我的嘴唇去触碰她玫瑰色的手掌——现在我知道了，从昨晚在沼地上注视她黑色眼眸的那个瞬间起，我就爱上了她。突如其来的激情巨浪让我说不出话来。</p><div class="r4"></div><p class="11">“你还好吧？”她又问。</p><p class="21">于是我低声回答，就像在给自己宣判死刑：“不，我不好，因为我害了对你的相思病。”她既没有回答也没有任何举动，激情继续违背我的意志，逼着我说：“我不值得你浪费一分一毫的思绪，我浪费了你的好客，以胆大妄为来报答你的温柔好客，但我爱你。”</p><p class="11">她用双手撑着下巴，柔声答道：“我爱你。我喜欢听你这么说，因为我爱你。”</p><p class="11">“那我就要赢得你的芳心了。”</p><div class="r4"></div><p class="11">“来吧。”她答道。</p><p class="21">但我只能默默地坐着，面对着她。她同样一言不发，抬起的手掌撑着她美丽的脸蛋，面对我坐在那里，望着我的眼睛。尽管她和我都没有开口，但我知道她的灵魂已经回应了我的灵魂。我跳了起来，感觉到青春和爱的喜悦在每一根血管里奔涌。她可爱的面庞染上了明亮的色彩，就好像刚从梦中醒来，她用探询的目光看着我，我不禁高兴得浑身颤抖。我们吃着早饭，介绍各自的情况。我报上我的名字，她也说出了她叫什么：让娜·德伊斯小姐。</p><p class="21">• 即佛兰德的乔安娜（约1295—1374），中世纪布列塔尼杰出女性。在王位继承战争中，丈夫蒙福尔特伯爵被俘后，她接管军事指挥，成为抵抗阵营的关键领导者。</p><p class="31">她谈起父母的去世，谈起她在高墙内的小农庄里度过的十九年时光，陪伴她的只有保姆佩拉热、侍从格莱马雷克·雷内和四名驯鹰人：拉乌尔、加斯东、哈斯塔和侍奉过她父亲的皮里乌·路易。她没离开过这片沼地，其实除了驯鹰人和佩拉热，她就没见过其他人。她不知道自己是从哪儿听到凯尔塞莱这个地名的，也许是驯鹰人提到过。保姆佩拉热给她讲过狼人和“烈火”让娜 的故事。她会刺绣和纺亚麻。猎鹰和猎犬是她仅有的消遣。在沼地上遇到我的时候，我的声音吓得她险些晕倒。她的确在悬崖上看见过海船，然而在她驰骋的沼地上，却没有任何人类活动的迹象。老佩拉热讲过一个传说，假如在未经勘察的沼地上迷了路，那就再也回不来了，因为沼地被施了魔法。她不知道这是不是真的，在遇到我之前也从没思考过。她不知道驯鹰人有没有去过沼地外面，也不知道他们愿不愿意去。教她认字的是保姆佩拉热，但家里的书都有几百年的历史了。</p><div class="r4"></div><p class="21">向我讲述这一切的时候，她一脸可爱的严肃神情，而成年人很难流露出这样的表情。她觉得我的名字很容易发音，坚持说既然我叫菲利普，那我肯定有法国血统。她似乎不想了解外部的世界，我猜可能是保姆讲的故事让她失去了兴趣。</p><p class="11">我们在桌边迟迟没有起身，她朝野地里的小鸟扔葡萄，小鸟一点儿都不怕人，蹦蹦跳跳地来到了我们脚下。</p><p class="21">我拐弯抹角地提出要离开，但她充耳不闻，不知不觉间，我答应了在这儿待一周，和他们一起用猎鹰和猎狗打猎。我还征得了允许，等我回到凯尔塞莱，可以随时再来看她。</p><p class="21">“唉，”她天真地说，“要是你一去不回，我该怎么办才好呢？”我知道我无权惊吓她，假如我再次用我的爱宣誓，她肯定又会一言不发地坐在那儿，连大气都不敢出。</p><div class="r4"></div><p class="11">“你会经常来吗？”她问。</p><p class="11">“会的。”我说。</p><p class="11">“每天？”</p><p class="11">“每天。”</p><div class="r4"></div><p class="11">“噢，”她叹息道，“我太高兴了。走，去看看我的猎鹰。”</p><p class="21">她起身，再次抓住我的手，动作中流露出孩童般纯真的占有感。我们穿过花园和果园，来到小溪边的一块草坪上。草坪上散落着十五到二十个树桩，它们的根还埋在土里，除了两个树桩外，其他树桩上都停着猎鹰。皮绳的一头拴在树桩上，另一头用铆钉固定在猎鹰腿部紧靠爪子的地方。清澈的小溪蜿蜒淌过草地，每个树桩上的猎鹰都能很容易喝到水。</p><p class="21">姑娘刚一出现，鸟儿们就吵闹起来，她依次抚摸每一只猎鹰，时而把这只或那只鹰放在手腕上，时而俯身去调整另一些猎鹰的脚环。</p><p class="21">“它们多漂亮呀！”她说，“看，这是一只游隼。我们说它‘卑鄙’，因为它会直接劫走猎物。这是一只蓝隼。在驯鹰术里，我们说它‘高贵’，因为它会从猎物上方升起，盘旋着俯冲扑向猎物。这只白色的鸟是北方的灰隼，同样很‘高贵’。这是一只灰背隼，这是一只猎苍鹭的苍鹰。”</p><div class="r4"></div><p class="11">我问她是怎么学会这种古老的驯鹰语言的。她说不记得了，但想必是她父亲在她很小的时候教给她的。</p><p class="21">她带我离开，领我去看还在巢里的小鹰。她说：“在驯鹰术里，它们被称为‘巢鹰’。刚能离巢、在树枝间跳来跳去的幼鸟称‘枝鹰’。尚未换羽的幼鸟称为‘幼鹰’，在喂养下已经换羽的鹰称为‘养鹰’。抓到已经换羽的野生猎鹰，我们称之为‘野鹰’。拉乌尔首先教我的是怎么驯鹰。要我教你怎么做吗？”</p><p class="11">她坐在小溪旁的猎鹰群之中，我站在她脚边听她说。</p><p class="11">德伊斯小姐竖起一根玫红色的手指，非常认真地说了起来：“第一步，你必须抓住这只猎鹰。”</p><div class="r4"></div><p class="11">“我已经是您掌中的猎物了。”我答道。</p><p class="11">她发出银铃般的笑声，说驯服我很可能不太容易，因为我是“高贵的”。</p><p class="11">“我已经被驯服了，”我答道，“戴上了脚环和铃铛。”</p><p class="11">她笑得很开心：“很好，我勇敢的猎鹰，听见我的召唤，你会立刻回来吗？”</p><div class="r4"></div><p class="11">“我属于你。”我庄重地答道。</p><p class="11">她一言不发地坐在那里，面颊渐渐红了。她再次竖起那根手指：“听着，我说的是驯鹰——”</p><p class="11">“我听着呢，让娜·德伊斯小姐。”</p><p class="11">但她再次陷入了沉思，视线似乎落在了夏日白云外的某个地方。</p><div class="r4"></div><p class="11">“菲利普。”她最终说。</p><p class="11">“让娜。”我悄声说。</p><p class="11">“就是这样，这就是我所希望的，”她叹息道，“菲利普和让娜。”</p><p class="11">她向我伸出手，我轻轻亲吻。</p><div class="r4"></div><p class="11">“赢得我吧。”她说，这次是身体和灵魂同时发声。</p><p class="11">过了一会儿，她再次说：“我们继续说驯鹰吧。”</p><p class="11">“首先，”我说，“我们抓住了一只猎鹰。”</p><p class="21">让娜·德伊斯用双手抓住我的手，告诉我要用极大的耐心教小猎鹰停在手腕上，让它一点一点习惯带铃铛的脚环和蒙眼睛的头罩。</p><div class="r4"></div><p class="31">“首先要培养出它们的好胃口，”她说，“然后逐渐减少喂食，食物在驯鹰术中叫作‘食饵’。等它们像这些鸟一样在树桩上待了许多个夜晚之后，我就能让这只野鹰静静地待在我的手腕上了。下一步要教的是觅食，我把食饵拴在皮绳，也就是‘引绳’的末端，只要我在头上摇动这根绳子，就叫猎鹰过来。刚开始只要猎鹰一来，我就扔下食饵，让它吃地上的食物。过了一段时间，猎鹰就能学会抓住我正在摇动的食物，把它拽到地上了。过了这一步，教猎鹰攻击猎物就很简单了，但必须记住要礼待鹰，也就是让猎鹰尝到猎物的味道。”</p><p class="21">一只猎鹰突然发出尖叫声，打断了她的讲述。她起身去调整被风吹得甩来甩去的皮绳，但猎鹰依然在拍打翅膀和尖叫。</p><p class="11">“发生什么了？”她说，“菲利普，你看到了吗？”</p><p class="21">我扫视四周，起初并没有看见会引起骚动的任何东西，但此刻所有的猎鹰都开始尖叫和拍打翅膀了。很快，我的视线落在溪流边一块平坦的石头上，姑娘刚才就是从那儿站起来的。一条灰色的大蛇正缓缓游过石头的表面，漆黑的小眼睛在三角形的平坦的头部上方闪闪发亮。</p><div class="r4"></div><p class="11">“一条游蛇。”她静静地说。</p><p class="11">“没有毒吧？”我问。</p><p class="11">她指着它颈部黑色的V字花纹。</p><p class="11">“被咬了就会死，”她说，“是蝰蛇。”</p><div class="r4"></div><p class="11">我们望着它缓缓游过光滑的石块，爬向一块被阳光晒热的草地。</p><p class="11">我想过去看个究竟，但她拉住我的手臂，喊道：“别去，菲利普，我害怕。”</p><p class="11">“因为我？”</p><p class="11">“是的，菲利普，因为你。我爱你。”</p><div class="r4"></div><p class="31">我把她搂在怀里，亲吻她的嘴唇，但我只能一遍又一遍重复她的名字：“让娜，让娜，让娜。”她颤抖着趴在我的胸前，就在这时，草丛里有个东西碰了一下我的脚，但我没有在意。紧接着，我的脚踝也被碰了一下，一阵剧痛刺穿我的身体。我望着让娜·德伊斯甜美的脸蛋，深深地亲吻她，然后用所有力气把她抱起来，远远地扔了出去。我弯下腰，把蝰蛇从脚踝上扯下来，用脚跟踩碎了它的脑袋。我记得有一种虚弱和麻木的感觉，我记得自己倒在地上。透过逐渐模糊的视线看见让娜俯身贴近我。整个世界陷入黑暗，我依然能感觉到她的手臂搂着我的脖子，她柔软的面颊贴着我无力合上的嘴唇。</p><p class="21">等我再次睁开眼睛时，我惊恐地扫视四周，发现让娜已不见踪影。我看见小溪和那块平坦的石头，在身旁的草丛里看见了被踩死的蝰蛇，但猎鹰和木桩都消失了。我跳起来。花园、果树、吊桥和前院都消失了。我愣愣地望着残缺不全的废墟，上面长满了常青藤，看上去灰蒙蒙的，高大的树木从瓦砾堆里长出来。我拖着麻木的脚踯躅而行，刚走出几步，一只猎鹰从废墟里的树梢起飞，一圈接一圈地盘旋而上，最终消失在高处的云层中。</p><p class="21">“让娜，让娜！”我喊道，却发不出声音，然后跪倒在杂草丛中。就好像是上帝的旨意，我不知不觉地跪在了一座破败的神龛前，神龛的石块上雕着受七苦的圣母。我望着冰冷石块上圣母的悲伤面容，看见她的脚边有十字架和荆棘，刻在底下的文字是：</p><p class="11">但冰冷的石板上有一只女人的手套，依然温暖芬芳。</p><div class="r4"></div></div></section><section class="s3">
+<h1 class="s4" id="chapter-5">
+    附录：洛夫克拉夫特论钱伯斯
+</h1>
+<div class="c1"><p class="11">• 选自H. P．洛夫克拉夫特发表于1927年的文章《文学中的超自然恐怖》。</p><p class="11">• 杜穆里埃创作的小说，讲述了贫穷的模特特里尔比与几位艺术家之间的纠葛。</p><p class="31">罗伯特·钱伯斯的早期作品尽管不乏19世纪90年代典型的浮夸做作，其中的恐怖意境却非常逼真，可惜他后来的名声来自完全无关的领域。《黄衣之王》是一组有着松散联系的短篇小说，以一本受到禁毁的怪诞图书为背景，阅读这本书会造成惊吓、疯狂和诡异的悲剧。尽管各个故事的趣味性参差不齐，刻意使用因乔治·杜穆里埃的《特里尔比》 而流行一时的法国画室氛围导致内容过于琐碎，但它们确实达到了宇宙恐怖的全新高度。在这些短篇小说里，最震撼心灵的当数《黄色印记》，其中一个角色是个沉默可怖的教堂墓地守门人，他的脸浮肿得就像坟墓里的蛆虫。故事里有个少年和这个怪物有过争执，提到某个细节时，他不寒而栗：“唉，先生，我向上帝发誓，我给了他一拳，而他握住了我的手腕，我抓住他软塌塌、黏糊糊的拳头扭了一下，一根手指就掉在了我的掌心里。”一名画家在见到他之后，做了与另一个人一样的午夜灵车怪梦，而守门人向他搭话的声音又吓了他一跳。这个怪人发出喃喃自语的声音，充斥了主角的头脑，就像从炼脂釜里冒出的油腻浓烟或有毒的腐烂臭味。他喃喃自语的内容只有一句话：“你找到黄色印记了吗？”</p><p class="31">与主角做了同一个梦的人曾在街上捡到一件带有奇特文字的缟玛瑙饰物，后来把它交给画家。两人在怪异的情况下碰到了那本地狱般的恐怖禁书，从中获得了神志正常的凡人不该知晓的骇人知识，还得知这个饰物实际上是受到诅咒的哈斯塔异教流传下来的黄色印记，来自远古城市卡尔克萨（也是整部书的主题），而关于卡尔克萨的噩梦记忆似乎阴森地潜伏在每一个人的脑海深处。没过多久，两人听见了披着黑色翎毛的灵车隆隆驶来，车夫正是那个皮肤松弛、面如尸体的守门人。他走进被夜色包裹的屋子，前来搜寻黄色印记，所有门闩和栏杆都在他的触碰下朽烂。人类的喉咙不可能发出的尖叫声引来了附近的人们，当他们冲进屋子时，发现地上躺着三个人，两个已经死去，一个奄奄一息。其中一具尸体早已腐烂得不成样子，医生惊呼“那个人肯定死了几个月了”。值得关注的是，作者笔下与远古记忆中的诡奇国度相关的名称与典故大部分来自安布罗斯·比尔斯的作品。钱伯斯先生的其他早期作品也显示出了离奇和恐怖的元素，例如《群月制造者》和《寻找未知》。令人遗憾的是，他没有在这个方向做进一步的开拓，否则他很容易就能成为公认的大师。</p><p class="11">[全书完]</p></div></section>
+    </div>
+    
+    <div class="n0">
+        <button class="n1" id="prevChapter" disabled>← 上一章</button>
+        <button class="n1" id="nextChapter">下一章 →</button>
+    </div>
+    
+    <script>
+(function() {
+    'use strict';
+    
+    const state = {
+        currentChapter: 0,
+        totalChapters: 0,
+        mode: 'desktop',
+        chapters: [],
+        chapterData: [],
+        readingStartTime: Date.now(),
+        chaptersCompleted: 0,
+        lastTipTime: 0,
+        fatigueLevel: 1.0,
+        lastLanguageSwitch: 0,
+        technicalTermCount: 0,
+        tipCount: 0,
+        drawerClickCount: 0,
+        shelfClickCount: 0
+    };
+    
+    const elements = {
+        header: null,
+        chapters: [],
+        sidebarChapters: [],
+        progressBar: null,
+        progressText: null,
+        prevBtn: null,
+        nextBtn: null,
+        themeToggle: null,
+        shelfLink: null
+    };
+    
+    const mobile = {
+        drawerTrigger: null,
+        drawerPanel: null,
+        drawerClose: null,
+        drawerOverlay: null,
+        drawerChapters: null,
+        backToTop: null
+    };
+    
+    window.__CHAPTER_DATA__ = window.__CHAPTER_DATA__ || [];
+    
+    const tipMessages = {
+        chinese: {
+            short: [
+                { icon: "✌️", text: "这一节get到了" },
+                { icon: "📖", text: "又读完一小节" },
+                { icon: "✨", text: "知识点+1" }
+            ],
+            medium: [
+                { icon: "🌱", text: "理解加深中" },
+                { icon: "💪", text: "状态不错，继续" },
+                { icon: "🔍", text: "这个观点有意思" }
+            ],
+            long: [
+                { icon: "🏃", text: "已经读完1/3了" },
+                { icon: "⛰️", text: "半山腰了，加油" },
+                { icon: "🎪", text: "快到章节结尾了" }
+            ]
+        },
+        mixed: {
+            short: [
+                { icon: "🌐", text: "中英切换自如" },
+                { icon: "🎯", text: "Technical terms get!" },
+                { icon: "📚", text: "Bilingual reading" }
+            ],
+            medium: [
+                { icon: "🌍", text: "Great progress!" },
+                { icon: "⚡", text: "You're on fire!" },
+                { icon: "💡", text: "理解无国界" }
+            ],
+            long: [
+                { icon: "📊", text: "Halfway through" },
+                { icon: "🚀", text: "保持这个节奏" },
+                { icon: "🎯", text: "目标越来越近" }
+            ]
+        },
+        english: {
+            short: [
+                { icon: "🌍", text: "Great progress!" },
+                { icon: "⚡", text: "You're on fire!" },
+                { icon: "🎯", text: "Nailing it!" }
+            ],
+            medium: [
+                { icon: "💪", text: "Keep going!" },
+                { icon: "🌟", text: "You're doing great" },
+                { icon: "📈", text: "Making progress" }
+            ],
+            long: [
+                { icon: "🏃", text: "1/3 done, keep it up" },
+                { icon: "⛰️", text: "Halfway there" },
+                { icon: "🎪", text: "Almost there" }
+            ]
+        },
+        milestone: {
+            25: { icon: "🏁", text: "征程开始，已完成1/4" },
+            50: { icon: "🎪", text: "半程回顾，收获满满" },
+            75: { icon: "🚀", text: "冲刺阶段，即将完成" },
+            100: { icon: "🏆", text: "恭喜！你读完了整本书" }
+        },
+        rest: [
+            { icon: "☕", text: "累了？休息一下" },
+            { icon: "🧘", text: "眼睛需要放松" },
+            { icon: "🌙", text: "读完这章就休息" }
+        ],
+        timeBased: {
+            morning: { icon: "🌅", text: "早安，用阅读开启新的一天" },
+            night: { icon: "🌙", text: "夜深了，读完这章就休息吧" },
+            long: { icon: "⏰", text: "已专注阅读 {minutes} 分钟" }
+        }
+    };
+    
+    function init() {
+        cacheElements();
+        loadChapterData();
+        detectMode();
+        setupMobileElements();
+        setupEventListeners();
+        setupResizeListener();
+        loadThemePreference();
+        initReadingTracker();
+        initShelfAnimation();
+        
+        if (elements.chapters.length > 0) {
+            state.totalChapters = elements.chapters.length;
+            state.chapterData = window.__CHAPTER_DATA__;
+            goToChapter(0);
+            
+            setTimeout(() => {
+                const hour = new Date().getHours();
+                if (hour >= 5 && hour <= 8) {
+                    showTip(tipMessages.timeBased.morning.icon, tipMessages.timeBased.morning.text, 2000);
+                } else if (hour >= 22 || hour <= 4) {
+                    showTip(tipMessages.timeBased.night.icon, tipMessages.timeBased.night.text, 2000);
+                }
+            }, 1000);
+        }
+    }
+    
+    function initShelfAnimation() {
+        if (!elements.shelfLink) return;
+        
+        const saved = localStorage.getItem('shelfClickCount');
+        state.shelfClickCount = saved ? parseInt(saved) : 0;
+        
+        if (state.shelfClickCount < 3) {
+            elements.shelfLink.classList.add('f0');
+            setTimeout(() => {
+                elements.shelfLink.classList.remove('f0');
+            }, 3000);
+        }
+        
+        elements.shelfLink.addEventListener('click', (e) => {
+            state.shelfClickCount++;
+            localStorage.setItem('shelfClickCount', state.shelfClickCount);
+            elements.shelfLink.classList.remove('f0');
+        });
+    }
+    
+    function loadChapterData() {
+        console.log('📚 加载章节数据:', window.__CHAPTER_DATA__.length, '章');
+    }
+    
+    function cacheElements() {
+        elements.header = document.querySelector('.h0');
+        elements.chapters = document.querySelectorAll('.s3');
+        elements.sidebarChapters = document.querySelectorAll('.b3');
+        elements.progressBar = document.getElementById('progressBar');
+        elements.progressText = document.getElementById('progressText');
+        elements.prevBtn = document.getElementById('prevChapter');
+        elements.nextBtn = document.getElementById('nextChapter');
+        elements.themeToggle = document.getElementById('themeToggle');
+        elements.shelfLink = document.querySelector('.s0');
+    }
+    
+    function detectMode() {
+        state.mode = window.innerWidth > 1200 ? 'desktop' : 'mobile';
+        document.body.setAttribute('data-mode', state.mode);
+    }
+    
+    function setupResizeListener() {
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                const newMode = window.innerWidth > 1200 ? 'desktop' : 'mobile';
+                if (newMode !== state.mode) {
+                    state.mode = newMode;
+                    document.body.setAttribute('data-mode', state.mode);
+                }
+            }, 250);
+        });
+    }
+    
+    function initReadingTracker() {
+        state.readingStartTime = Date.now();
+        
+        const saved = localStorage.getItem('readingStats');
+        if (saved) {
+            try {
+                const stats = JSON.parse(saved);
+                state.chaptersCompleted = stats.chaptersCompleted || 0;
+                state.tipCount = stats.tipCount || 0;
+                state.drawerClickCount = stats.drawerClickCount || 0;
+            } catch (e) {}
+        }
+        
+        setInterval(updateFatigueLevel, 60000);
+    }
+    
+    function updateFatigueLevel() {
+        const minutes = Math.floor((Date.now() - state.readingStartTime) / 60000);
+        state.fatigueLevel = 1.0 + (minutes * 0.1);
+        
+        const lastSwitch = (Date.now() - state.lastLanguageSwitch) / 60000;
+        if (lastSwitch < 5) state.fatigueLevel += 0.2;
+        
+        state.fatigueLevel += state.technicalTermCount * 0.01;
+        state.fatigueLevel = Math.min(state.fatigueLevel, 3.0);
+        
+        if (state.fatigueLevel > 2.0) showRestTip();
+    }
+    
+    function saveReadingStats() {
+        const stats = {
+            chaptersCompleted: state.chaptersCompleted,
+            tipCount: state.tipCount,
+            drawerClickCount: state.drawerClickCount,
+            lastRead: new Date().toISOString()
+        };
+        localStorage.setItem('readingStats', JSON.stringify(stats));
+    }
+    
+    function showTip(icon, text, duration = 3000) {
+        const now = Date.now();
+        const hourAgo = now - 3600000;
+        if (state.lastTipTime > hourAgo && state.tipCount >= 3) return;
+        if (state.fatigueLevel > 2.5 && Math.random() > 0.3) return;
+        
+        state.lastTipTime = now;
+        state.tipCount++;
+        saveReadingStats();
+        
+        const oldTip = document.querySelector('.i0');
+        if (oldTip) oldTip.remove();
+        
+        const tip = document.createElement('div');
+        tip.className = 'i0';
+        tip.innerHTML = `<span class="i1">${icon}</span><span class="i2">${text}</span>`;
+        document.body.appendChild(tip);
+        
+        setTimeout(() => {
+            tip.classList.add('i3');
+            setTimeout(() => tip.remove(), 200);
+        }, duration);
+    }
+    
+    function showRestTip() {
+        const rest = tipMessages.rest[Math.floor(Math.random() * tipMessages.rest.length)];
+        showTip(rest.icon, rest.text, 2000);
+    }
+    
+    function getChapterTip(chapterIndex, progress) {
+        const chapter = state.chapterData[chapterIndex];
+        if (!chapter) return null;
+        
+        const languageType = chapter.language_type || 'chinese';
+        const totalUnits = chapter.total_units || 500;
+        
+        let lengthType = 'medium';
+        if (totalUnits < 500) lengthType = 'short';
+        else if (totalUnits > 1500) lengthType = 'long';
+        
+        let tipPool;
+        if (progress === 'complete') {
+            if (languageType === 'chinese') tipPool = tipMessages.chinese[lengthType];
+            else if (languageType === 'english') tipPool = tipMessages.english[lengthType];
+            else tipPool = tipMessages.mixed[lengthType];
+        } else {
+            if (languageType === 'chinese') tipPool = tipMessages.chinese.medium;
+            else if (languageType === 'english') tipPool = tipMessages.english.medium;
+            else tipPool = tipMessages.mixed.medium;
+        }
+        
+        if (!tipPool || tipPool.length === 0) return null;
+        return tipPool[Math.floor(Math.random() * tipPool.length)];
+    }
+    
+    function checkChapterTip(chapterIndex, isComplete = false) {
+        const chapter = state.chapterData[chapterIndex];
+        if (!chapter) return;
+        
+        const totalUnits = chapter.total_units || 500;
+        const languageType = chapter.language_type || 'chinese';
+        
+        let baseProbability = 0.3;
+        
+        if (isComplete) {
+            if (totalUnits < 500) baseProbability = 0.2;
+            else baseProbability = 1.0;
+        } else {
+            if (languageType === 'chinese') baseProbability = 0.4;
+            else if (languageType === 'english') baseProbability = 0.8;
+            else baseProbability = 0.6;
+        }
+        
+        baseProbability *= (1 + (state.fatigueLevel - 1.0) * 0.5);
+        if (Math.random() > baseProbability) return;
+        
+        const tip = getChapterTip(chapterIndex, isComplete ? 'complete' : 'midway');
+        if (tip) {
+            showTip(tip.icon, tip.text);
+            
+            if (isComplete) {
+                if (elements.progressBar) {
+                    elements.progressBar.classList.add('x0');
+                    setTimeout(() => elements.progressBar.classList.remove('x0'), 300);
+                }
+                const titleElement = document.getElementById(`chapter-${chapterIndex}`);
+                if (titleElement) {
+                    titleElement.classList.add('x0');
+                    setTimeout(() => titleElement.classList.remove('x0'), 500);
+                }
+            }
+        }
+    }
+    
+    function checkMilestone() {
+        const percent = Math.round((state.currentChapter + 1) / state.totalChapters * 100);
+        
+        if ([25, 50, 75, 100].includes(percent)) {
+            const milestone = tipMessages.milestone[percent];
+            if (milestone) {
+                showTip(milestone.icon, milestone.text, 4000);
+                if (percent === 100 && elements.progressBar) {
+                    elements.progressBar.style.height = '8px';
+                    setTimeout(() => {
+                        elements.progressBar.style.height = 'var(--progress-height)';
+                    }, 2000);
+                }
+            }
+        }
+    }
+    
+    function setupMobileElements() {
+        const drawerHTML = `
+            <div class="m0" id="drawerTrigger">
+                <span class="m1">☰</span>
+            </div>
+            <div class="m2" id="drawerPanel">
+                <div class="m3">
+                    <span class="m4">📖 目录</span>
+                    <button class="m5" id="drawerClose">✕</button>
+                </div>
+                <ul class="m6" id="drawerChapters"></ul>
+            </div>
+            <div class="m8" id="drawerOverlay"></div>
+            <button class="u0" id="backToTop">↑</button>
+        `;
+        
+        document.body.insertAdjacentHTML('afterbegin', drawerHTML);
+        
+        mobile.drawerTrigger = document.getElementById('drawerTrigger');
+        mobile.drawerPanel = document.getElementById('drawerPanel');
+        mobile.drawerClose = document.getElementById('drawerClose');
+        mobile.drawerOverlay = document.getElementById('drawerOverlay');
+        mobile.drawerChapters = document.getElementById('drawerChapters');
+        mobile.backToTop = document.getElementById('backToTop');
+        
+        populateDrawer();
+        bindMobileEvents();
+    }
+    
+    function populateDrawer() {
+        if (!mobile.drawerChapters || !elements.sidebarChapters.length) return;
+        
+        elements.sidebarChapters.forEach(item => {
+            const link = item.querySelector('a');
+            if (link) {
+                const newLi = document.createElement('li');
+                newLi.className = item.className;
+                newLi.innerHTML = link.outerHTML;
+                mobile.drawerChapters.appendChild(newLi);
+            }
+        });
+    }
+    
+    function bindMobileEvents() {
+        if (!mobile.drawerTrigger || !mobile.drawerClose || !mobile.drawerOverlay) return;
+        
+        mobile.drawerTrigger.addEventListener('click', () => {
+            toggleDrawer();
+            state.drawerClickCount++;
+            saveReadingStats();
+            if (!localStorage.getItem('drawerUsed')) {
+                showTip("📖", "目录已打开");
+                localStorage.setItem('drawerUsed', 'true');
+            }
+        });
+        
+        mobile.drawerClose.addEventListener('click', closeDrawer);
+        mobile.drawerOverlay.addEventListener('click', closeDrawer);
+        
+        let touchStartX = 0;
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        });
+        
+        document.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            if (touchStartX < 30 && touchEndX - touchStartX > 50) {
+                if (!mobile.drawerPanel?.classList.contains('o0')) openDrawer();
+            }
+            if (mobile.drawerPanel?.classList.contains('o0') && touchStartX - touchEndX > 50) {
+                closeDrawer();
+            }
+        });
+        
+        if (mobile.backToTop) {
+            mobile.backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    }
+    
+    function setupEventListeners() {
+        window.addEventListener('scroll', handleScroll);
+        
+        if (elements.themeToggle) {
+            elements.themeToggle.addEventListener('click', toggleTheme);
+        }
+        
+        document.querySelectorAll('.g1').forEach(card => {
+            card.addEventListener('click', toggleToolExample);
+        });
+        
+        if (elements.prevBtn) {
+            elements.prevBtn.addEventListener('click', () => goToChapter(state.currentChapter - 1));
+        }
+        if (elements.nextBtn) {
+            elements.nextBtn.addEventListener('click', () => goToChapter(state.currentChapter + 1));
+        }
+        
+        document.addEventListener('click', (e) => {
+            const link = e.target.closest('.b3 a, .m7 a');
+            if (link) {
+                e.preventDefault();
+                const href = link.getAttribute('href');
+                const chapterId = parseInt(href.replace('#chapter-', ''));
+                goToChapter(chapterId);
+            }
+        });
+        
+        // ========== 键盘翻页（Page Up/Down）- 考虑头部/底部玻璃区域 ==========
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'PageUp' || e.key === 'PageDown') {
+                e.preventDefault();
+                
+                // 获取固定头部和底部的高度
+                const header = document.querySelector('.h0');
+                const footer = document.querySelector('.N0_CLASS');
+                const headerHeight = header ? header.offsetHeight : 80;
+                const footerHeight = footer ? footer.offsetHeight : 70;
+                
+                // 实际可视阅读区域高度 = 视口高度 - 头部 - 底部
+                const viewportHeight = window.innerHeight - headerHeight - footerHeight;
+                
+                const currentScroll = window.scrollY;
+                
+                let targetScroll;
+                if (e.key === 'PageDown') {
+                    targetScroll = currentScroll + viewportHeight * 0.85;
+                } else {
+                    targetScroll = currentScroll - viewportHeight * 0.85;
+                }
+                
+                // 边界限制
+                targetScroll = Math.max(0, targetScroll);
+                targetScroll = Math.min(document.documentElement.scrollHeight - window.innerHeight, targetScroll);
+                
+                window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+            }
+        });
+    }
+    
+    function goToChapter(index) {
+        if (index < 0 || index >= state.totalChapters) return;
+        
+        const wasLastChapter = state.currentChapter === state.totalChapters - 1;
+        const previousChapter = state.currentChapter;
+        state.currentChapter = index;
+        
+        elements.chapters.forEach((chap, i) => {
+            chap.style.display = i === index ? 'block' : 'none';
+        });
+        
+        if (elements.prevBtn) elements.prevBtn.disabled = index === 0;
+        if (elements.nextBtn) elements.nextBtn.disabled = index === state.totalChapters - 1;
+        
+        scrollToChapter(index);
+        updateAllHighlights();
+        
+        if (previousChapter !== index && !wasLastChapter) {
+            state.chaptersCompleted++;
+            saveReadingStats();
+            checkChapterTip(previousChapter, true);
+            checkMilestone();
+            
+            const minutes = Math.floor((Date.now() - state.readingStartTime) / 60000);
+            if (minutes > 0 && minutes % 10 === 0 && minutes <= 60) {
+                const timeTip = tipMessages.timeBased.long;
+                showTip(timeTip.icon, timeTip.text.replace('{minutes}', minutes));
+            }
+        }
+        
+        if (state.mode === 'mobile' && mobile.drawerPanel?.classList.contains('o0')) {
+            closeDrawer();
+        }
+    }
+    
+    function scrollToChapter(index) {
+        const chapterElement = document.getElementById(`chapter-${index}`);
+        if (!chapterElement) return;
+        
+        const headerHeight = elements.header ? elements.header.offsetHeight : 80;
+        const rect = chapterElement.getBoundingClientRect();
+        const scrollTo = window.pageYOffset + rect.top - headerHeight - 20;
+        
+        window.scrollTo({ top: Math.max(0, scrollTo), behavior: 'smooth' });
+    }
+    
+    function updateAllHighlights() {
+        document.querySelectorAll('.b3, .m7').forEach(item => {
+            item.classList.remove('a0');
+        });
+        
+        const activeSidebarItem = document.querySelectorAll('.b3')[state.currentChapter];
+        if (activeSidebarItem) activeSidebarItem.classList.add('a0');
+        
+        if (mobile.drawerChapters) {
+            const activeDrawerItem = mobile.drawerChapters.querySelectorAll('.b3')[state.currentChapter];
+            if (activeDrawerItem) activeDrawerItem.classList.add('a0');
+        }
+    }
+    
+    function handleScroll() {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        
+        if (elements.progressBar) elements.progressBar.style.width = scrolled + '%';
+        if (elements.progressText) elements.progressText.textContent = `${Math.round(scrolled)}%`;
+        
+        if (mobile.backToTop) {
+            if (winScroll > window.innerHeight) {
+                mobile.backToTop.classList.add('w0');
+            } else {
+                mobile.backToTop.classList.remove('w0');
+            }
+        }
+        
+        detectCurrentChapter();
+        
+        const currentChapterData = state.chapterData[state.currentChapter];
+        if (currentChapterData) {
+            const chapterElement = document.getElementById(`chapter-${state.currentChapter}`);
+            if (chapterElement) {
+                const rect = chapterElement.getBoundingClientRect();
+                const totalHeight = rect.height;
+                const scrolledInChapter = Math.abs(rect.top);
+                
+                if (totalHeight > 0) {
+                    const progress = scrolledInChapter / totalHeight;
+                    if (progress > 0.3 && progress < 0.4 && !sessionStorage.getItem('tip-30')) {
+                        checkChapterTip(state.currentChapter, false);
+                        sessionStorage.setItem('tip-30', 'true');
+                    } else if (progress > 0.6 && progress < 0.7 && !sessionStorage.getItem('tip-60')) {
+                        checkChapterTip(state.currentChapter, false);
+                        sessionStorage.setItem('tip-60', 'true');
+                    }
+                }
+            }
+        }
+    }
+    
+    function detectCurrentChapter() {
+        const headerHeight = elements.header ? elements.header.offsetHeight : 80;
+        
+        for (let i = 0; i < elements.chapters.length; i++) {
+            const titleElement = document.getElementById(`chapter-${i}`);
+            if (titleElement) {
+                const rect = titleElement.getBoundingClientRect();
+                if (rect.top <= headerHeight + 50 && rect.bottom > headerHeight) {
+                    if (state.currentChapter !== i) {
+                        state.currentChapter = i;
+                        updateAllHighlights();
+                        sessionStorage.removeItem('tip-30');
+                        sessionStorage.removeItem('tip-60');
+                    }
+                    break;
+                }
+            }
+        }
+    }
+    
+    function toggleDrawer() {
+        if (mobile.drawerPanel?.classList.contains('o0')) {
+            closeDrawer();
+        } else {
+            openDrawer();
+        }
+    }
+    
+    function openDrawer() {
+        if (!mobile.drawerPanel || !mobile.drawerOverlay) return;
+        mobile.drawerPanel.classList.add('o0');
+        mobile.drawerOverlay.classList.add('a0');
+    }
+    
+    function closeDrawer() {
+        if (!mobile.drawerPanel || !mobile.drawerOverlay) return;
+        mobile.drawerPanel.classList.remove('o0');
+        mobile.drawerOverlay.classList.remove('a0');
+    }
+    
+    function toggleTheme() {
+        document.body.classList.toggle('d0');
+        const isDark = document.body.classList.contains('d0');
+        if (elements.themeToggle) {
+            elements.themeToggle.textContent = isDark ? '☀️ 日间' : '🌙 夜间';
+        }
+        localStorage.setItem('darkMode', isDark ? '1' : '0');
+    }
+    
+    function toggleToolExample(e) {
+        e.stopPropagation();
+        const card = e.currentTarget;
+        const example = card.querySelector('.g7');
+        const expandText = card.querySelector('.g4');
+        
+        if (example) {
+            example.classList.toggle('a0');
+            if (expandText) {
+                expandText.textContent = example.classList.contains('a0') ? '收起示例' : '查看示例';
+            }
+        }
+    }
+    
+    function loadThemePreference() {
+        if (localStorage.getItem('darkMode') === '1') {
+            document.body.classList.add('d0');
+            if (elements.themeToggle) {
+                elements.themeToggle.textContent = '☀️ 日间';
+            }
+        }
+    }
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();
+</script>
+</body>
+</html>
