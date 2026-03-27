@@ -1,6 +1,6 @@
 {
-  "lastUpdated": 1774615611274,
-  "totalBooks": 62,
+  "lastUpdated": 1774632284979,
+  "totalBooks": 64,
   "totalCategories": 15,
   "categories": [
     "百科",
@@ -8,9 +8,9 @@
     "心理",
     "传记",
     "侦探",
+    "虚构",
     "网文",
     "科幻",
-    "虚构",
     "历史",
     "奇幻",
     "生活",
@@ -239,6 +239,17 @@
       "size": 406117,
       "lastModified": 1774012608000,
       "addedTime": 1774012608000
+    },
+    {
+      "id": "虚构_Too Good to Be True_Harold.html",
+      "file": "虚构_Too Good to Be True_Harold.html",
+      "filename": "虚构_Too Good to Be True_Harold.html",
+      "title": "Too Good to Be True",
+      "category": "虚构",
+      "author": "Harold",
+      "size": 8792631,
+      "lastModified": 1774632267000,
+      "addedTime": 1774632267000
     },
     {
       "id": "校园_Tweet Cute_艾玛 劳德.html",
@@ -701,6 +712,17 @@
       "size": 455622,
       "lastModified": 1774013164000,
       "addedTime": 1774013164000
+    },
+    {
+      "id": "虚构_黄衣之王_罗伯特.html",
+      "file": "虚构_黄衣之王_罗伯特.html",
+      "filename": "虚构_黄衣之王_罗伯特.html",
+      "title": "黄衣之王",
+      "category": "虚构",
+      "author": "罗伯特",
+      "size": 228184,
+      "lastModified": 1774632267000,
+      "addedTime": 1774632267000
     }
   ],
   "categoryStats": [
@@ -730,6 +752,11 @@
       "icon": "📘"
     },
     {
+      "name": "虚构",
+      "count": 10,
+      "icon": "📘"
+    },
+    {
       "name": "网文",
       "count": 2,
       "icon": "📘"
@@ -738,11 +765,6 @@
       "name": "科幻",
       "count": 6,
       "icon": "🚀"
-    },
-    {
-      "name": "虚构",
-      "count": 8,
-      "icon": "📘"
     },
     {
       "name": "历史",
