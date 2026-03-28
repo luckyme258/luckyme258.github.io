@@ -1,6 +1,6 @@
 {
-  "lastUpdated": 1774701492139,
-  "totalBooks": 64,
+  "lastUpdated": 1774703314346,
+  "totalBooks": 63,
   "totalCategories": 15,
   "categories": [
     "百科",
@@ -659,17 +659,6 @@
       "addedTime": 1774013164000
     },
     {
-      "id": "历史_西方博弈往事_九边.html",
-      "file": "历史_西方博弈往事_九边.html",
-      "filename": "历史_西方博弈往事_九边.html",
-      "title": "西方博弈往事",
-      "category": "历史",
-      "author": "九边",
-      "size": 1945091,
-      "lastModified": 1774013164000,
-      "addedTime": 1774013164000
-    },
-    {
       "id": "历史_财富之城  威尼斯海洋霸权_罗杰 · 克劳利.html",
       "file": "历史_财富之城  威尼斯海洋霸权_罗杰 · 克劳利.html",
       "filename": "历史_财富之城  威尼斯海洋霸权_罗杰 · 克劳利.html",
@@ -768,7 +757,7 @@
     },
     {
       "name": "历史",
-      "count": 8,
+      "count": 7,
       "icon": "🏛️"
     },
     {
