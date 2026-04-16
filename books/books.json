@@ -1,6 +1,6 @@
 {
-  "lastUpdated": 1776324117085,
-  "totalBooks": 63,
+  "lastUpdated": 1776337384089,
+  "totalBooks": 62,
   "totalCategories": 15,
   "categories": [
     "百科",
@@ -701,17 +701,6 @@
       "size": 455622,
       "lastModified": 1774013164000,
       "addedTime": 1774013164000
-    },
-    {
-      "id": "虚构_黄衣之王_罗伯特.html",
-      "file": "虚构_黄衣之王_罗伯特.html",
-      "filename": "虚构_黄衣之王_罗伯特.html",
-      "title": "黄衣之王",
-      "category": "虚构",
-      "author": "罗伯特",
-      "size": 228184,
-      "lastModified": 1774632267000,
-      "addedTime": 1774632267000
     }
   ],
   "categoryStats": [
@@ -742,7 +731,7 @@
     },
     {
       "name": "虚构",
-      "count": 10,
+      "count": 9,
       "icon": "📘"
     },
     {
