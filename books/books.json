@@ -1,6 +1,6 @@
 {
-  "lastUpdated": 1776337384089,
-  "totalBooks": 62,
+  "lastUpdated": 1776337551001,
+  "totalBooks": 61,
   "totalCategories": 15,
   "categories": [
     "百科",
@@ -118,17 +118,6 @@
       "size": 694369,
       "lastModified": 1774012608000,
       "addedTime": 1774012608000
-    },
-    {
-      "id": "校园_Kiss Me Now_Melanie Jacobson.html",
-      "file": "校园_Kiss Me Now_Melanie Jacobson.html",
-      "filename": "校园_Kiss Me Now_Melanie Jacobson.html",
-      "title": "Kiss Me Now",
-      "category": "校园",
-      "author": "Melanie Jacobson",
-      "size": 52228,
-      "lastModified": 1774013164000,
-      "addedTime": 1774013164000
     },
     {
       "id": "校园_Same Time Next Summer_安娜贝尔.html",
@@ -711,7 +700,7 @@
     },
     {
       "name": "校园",
-      "count": 15,
+      "count": 14,
       "icon": "📘"
     },
     {
