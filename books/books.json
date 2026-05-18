@@ -1,6 +1,6 @@
 {
-  "lastUpdated": 1779120872336,
-  "totalBooks": 61,
+  "lastUpdated": 1779121106213,
+  "totalBooks": 62,
   "totalCategories": 16,
   "categories": [
     "百科",
@@ -97,6 +97,17 @@
       "size": 746497,
       "lastModified": 1779116805000,
       "addedTime": 1779116805000
+    },
+    {
+      "id": "How To Have Confidence And Power In Dealing With People (Leslie T. Giblin) (Z-Library).html",
+      "file": "How To Have Confidence And Power In Dealing With People (Leslie T. Giblin) (Z-Library).html",
+      "filename": "How To Have Confidence And Power In Dealing With People (Leslie T. Giblin) (Z-Library).html",
+      "title": "How To Have Confidence And Power In Dealing With People (Leslie T. Giblin) (Z-Library)",
+      "category": "未分类",
+      "author": "",
+      "size": 3365113,
+      "lastModified": 1779121089000,
+      "addedTime": 1779121089000
     },
     {
       "id": "校园_If Were Not Married by Thirty_Anna Bell.html",
@@ -270,9 +281,9 @@
       "title": "中国龙组",
       "category": "网文",
       "author": "风华爵士",
-      "size": 6076350,
-      "lastModified": 1774012690000,
-      "addedTime": 1774012690000
+      "size": 6076377,
+      "lastModified": 1779121089000,
+      "addedTime": 1779121089000
     },
     {
       "id": "科幻_亲切的恶魔_星新一.html",
@@ -600,9 +611,9 @@
       "title": "纽约餐桌：美食城市的缔造者",
       "category": "传记",
       "author": "艾娜·雅洛夫",
-      "size": 662336,
-      "lastModified": 1773857305000,
-      "addedTime": 1773857305000
+      "size": 662290,
+      "lastModified": 1779121089000,
+      "addedTime": 1779121089000
     },
     {
       "id": "社科_维多利亚时代的互联网_汤姆.html",
@@ -706,7 +717,7 @@
     },
     {
       "name": "未分类",
-      "count": 1,
+      "count": 2,
       "icon": "📘"
     },
     {
