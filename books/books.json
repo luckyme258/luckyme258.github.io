@@ -1,6 +1,6 @@
 {
-  "lastUpdated": 1779117773892,
-  "totalBooks": 62,
+  "lastUpdated": 1779117946017,
+  "totalBooks": 61,
   "totalCategories": 16,
   "categories": [
     "百科",
@@ -495,17 +495,6 @@
       "addedTime": 1774012569000
     },
     {
-      "id": "虚构_漂亮朋友_莫泊桑.html",
-      "file": "虚构_漂亮朋友_莫泊桑.html",
-      "filename": "虚构_漂亮朋友_莫泊桑.html",
-      "title": "漂亮朋友",
-      "category": "虚构",
-      "author": "莫泊桑",
-      "size": 605712,
-      "lastModified": 1779116805000,
-      "addedTime": 1779116805000
-    },
-    {
       "id": "虚构_理智与情感_简·奥斯汀.html",
       "file": "虚构_理智与情感_简·奥斯汀.html",
       "filename": "虚构_理智与情感_简·奥斯汀.html",
@@ -737,7 +726,7 @@
     },
     {
       "name": "虚构",
-      "count": 9,
+      "count": 8,
       "icon": "📘"
     },
     {
