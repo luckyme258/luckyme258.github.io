@@ -1,10 +1,11 @@
 {
-  "lastUpdated": 1779116302830,
-  "totalBooks": 61,
-  "totalCategories": 15,
+  "lastUpdated": 1779116822179,
+  "totalBooks": 63,
+  "totalCategories": 16,
   "categories": [
     "百科",
     "校园",
+    "未分类",
     "心理",
     "传记",
     "侦探",
@@ -85,6 +86,17 @@
       "size": 57688,
       "lastModified": 1773255163000,
       "addedTime": 1773255163000
+    },
+    {
+      "id": "Defy the Stars (Claudia Gray [GRAY, CLAUDIA]) (z-library.sk, 1lib.sk, z-lib.sk).html",
+      "file": "Defy the Stars (Claudia Gray [GRAY, CLAUDIA]) (z-library.sk, 1lib.sk, z-lib.sk).html",
+      "filename": "Defy the Stars (Claudia Gray [GRAY, CLAUDIA]) (z-library.sk, 1lib.sk, z-lib.sk).html",
+      "title": "Defy the Stars (Claudia Gray [GRAY, CLAUDIA]) (z-library.sk, 1lib.sk, z-lib.sk)",
+      "category": "未分类",
+      "author": "",
+      "size": 746497,
+      "lastModified": 1779116805000,
+      "addedTime": 1779116805000
     },
     {
       "id": "校园_If Were Not Married by Thirty_Anna Bell.html",
@@ -494,6 +506,17 @@
       "addedTime": 1774012569000
     },
     {
+      "id": "虚构_漂亮朋友_莫泊桑.html",
+      "file": "虚构_漂亮朋友_莫泊桑.html",
+      "filename": "虚构_漂亮朋友_莫泊桑.html",
+      "title": "漂亮朋友",
+      "category": "虚构",
+      "author": "莫泊桑",
+      "size": 605712,
+      "lastModified": 1779116805000,
+      "addedTime": 1779116805000
+    },
+    {
       "id": "虚构_理智与情感_简·奥斯汀.html",
       "file": "虚构_理智与情感_简·奥斯汀.html",
       "filename": "虚构_理智与情感_简·奥斯汀.html",
@@ -643,9 +666,9 @@
       "title": "茶花女",
       "category": "虚构",
       "author": "小仲马",
-      "size": 500898,
-      "lastModified": 1774013164000,
-      "addedTime": 1774013164000
+      "size": 500925,
+      "lastModified": 1779116805000,
+      "addedTime": 1779116805000
     },
     {
       "id": "历史_财富之城  威尼斯海洋霸权_罗杰 · 克劳利.html",
@@ -704,6 +727,11 @@
       "icon": "📘"
     },
     {
+      "name": "未分类",
+      "count": 1,
+      "icon": "📘"
+    },
+    {
       "name": "心理",
       "count": 4,
       "icon": "📘"
@@ -720,7 +748,7 @@
     },
     {
       "name": "虚构",
-      "count": 9,
+      "count": 10,
       "icon": "📘"
     },
     {
