@@ -211,7 +211,7 @@ body {
 .c0 {
     max-width: var(--container-width);
     margin: 0 auto;
-    padding: calc(var(--header-height) + 20px) 16px 120px;
+    padding: calc(var(--header-height) + 20px) 45px 120px;
     background-color: #F8F5F0;
     filter: contrast(1.02);
 }
@@ -251,20 +251,21 @@ body {
 }
 
 .c1 p {
-    font-size: 18px;
+    font-size: 23px;
     line-height: 1.8;
 }
 
 /* ===== 数字编码段落样式 ===== */
-.c1 p[class*="1"] { color: #2D2D2D; font-weight: 550; text-indent: 2em; }
+.c1 p[class*="1"] { color: #2D2D2D; font-weight: 650; text-indent: 2em; }
 
-.c1 p[class^="1"] { margin-bottom: 24px; }
-.c1 p[class^="2"] { margin-bottom: 16px; }
-.c1 p[class^="3"] { margin-bottom: 32px; }
+.c1 p[class^="1"] { margin-bottom: 32px; }
+.c1 p[class^="2"] { margin-bottom: 28px; }
+.c1 p[class^="3"] { margin-bottom: 38px; }
 
 .c1 p[class$="1"] { letter-spacing: 0.02em; line-height: 1.8; }
 .c1 p[class$="2"] {
     letter-spacing: 0.01em;
+    word-spacing: 0.09em; 
     line-height: 1.6;
     text-indent: 0;
     margin-bottom: 1.2em;
@@ -396,7 +397,7 @@ body {
     border-radius: 4px;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1000px) {
     .b0 { display: block; }
     .c0 { margin-left: 260px; }
 }
@@ -453,7 +454,7 @@ body {
     .s5 { margin-left: 48px; padding-left: 0; font-size: 20px; }
     .g0 { margin-left: 48px; grid-template-columns: 1fr; }
     .s6 { margin-left: 48px; }
-    .c1 p { font-size: 18px; line-height: 1.6; }
+    .c1 p { font-size: 19px; line-height: 1.7; }
 }
 
 .m0 {
@@ -1708,40 +1709,43 @@ body {
         }
         
         document.addEventListener('click', (e) => {
-        // ===== 处理 Page Up/Down 翻页，考虑上下玻璃框 =====
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'PageDown' || e.key === 'PageUp') {
-                e.preventDefault();
-               
-                const headerHeight = 85;  // 固定头部高度  顶部留白太多：减小 headerHeight（比如75px，顶部被遮挡：增大 headerHeight（比如85px）
-                const footerHeight = 75;  // 固定底部高度  底部留白太多：减小 footerHeight（比如65px）底部被遮挡：增大 footerHeight（比如75px）
-                const viewportHeight = window.innerHeight;
-                const currentScroll = window.pageYOffset;
-               
-                // 计算安全滚动区域（考虑玻璃框）
-                const safeHeight = viewportHeight - headerHeight - footerHeight;
-               
-                if (e.key === 'PageDown') {
-                    // 向下翻页：滚动一个安全高度
-                    const nextScroll = Math.min(
-                        currentScroll + safeHeight,
-                        document.documentElement.scrollHeight - viewportHeight
-                    );
-                    window.scrollTo({ top: nextScroll, behavior: 'smooth' });
-                } else if (e.key === 'PageUp') {
-                    // 向上翻页
-                    const prevScroll = Math.max(0, currentScroll - safeHeight);
-                    window.scrollTo({ top: prevScroll, behavior: 'smooth' });
-                }
-            }
-        });
-
             const link = e.target.closest('.b3 a, .m7 a');
             if (link) {
                 e.preventDefault();
                 const href = link.getAttribute('href');
                 const chapterId = parseInt(href.replace('#chapter-', ''));
                 goToChapter(chapterId);
+            }
+        });
+        
+        // ========== 键盘翻页（Page Up/Down）- 考虑头部/底部玻璃区域 ==========
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'PageUp' || e.key === 'PageDown') {
+                e.preventDefault();
+                
+                // 获取固定头部和底部的高度
+                const header = document.querySelector('.h0');
+                const footer = document.querySelector('.N0_CLASS');
+                const headerHeight = header ? header.offsetHeight : 80;
+                const footerHeight = footer ? footer.offsetHeight : 70;
+                
+                // 实际可视阅读区域高度 = 视口高度 - 头部 - 底部
+                const viewportHeight = window.innerHeight - headerHeight - footerHeight;
+                
+                const currentScroll = window.scrollY;
+                
+                let targetScroll;
+                if (e.key === 'PageDown') {
+                    targetScroll = currentScroll + viewportHeight * 0.85;
+                } else {
+                    targetScroll = currentScroll - viewportHeight * 0.85;
+                }
+                
+                // 边界限制
+                targetScroll = Math.max(0, targetScroll);
+                targetScroll = Math.min(document.documentElement.scrollHeight - window.innerHeight, targetScroll);
+                
+                window.scrollTo({ top: targetScroll, behavior: 'smooth' });
             }
         });
     }
