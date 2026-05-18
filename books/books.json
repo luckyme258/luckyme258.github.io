@@ -1,6 +1,6 @@
 {
-  "lastUpdated": 1779117946017,
-  "totalBooks": 61,
+  "lastUpdated": 1779119878798,
+  "totalBooks": 60,
   "totalCategories": 16,
   "categories": [
     "百科",
@@ -638,17 +638,6 @@
       "addedTime": 1773859583000
     },
     {
-      "id": "虚构_茶花女_小仲马.html",
-      "file": "虚构_茶花女_小仲马.html",
-      "filename": "虚构_茶花女_小仲马.html",
-      "title": "茶花女",
-      "category": "虚构",
-      "author": "小仲马",
-      "size": 500925,
-      "lastModified": 1779116805000,
-      "addedTime": 1779116805000
-    },
-    {
       "id": "历史_财富之城  威尼斯海洋霸权_罗杰 · 克劳利.html",
       "file": "历史_财富之城  威尼斯海洋霸权_罗杰 · 克劳利.html",
       "filename": "历史_财富之城  威尼斯海洋霸权_罗杰 · 克劳利.html",
@@ -726,7 +715,7 @@
     },
     {
       "name": "虚构",
-      "count": 8,
+      "count": 7,
       "icon": "📘"
     },
     {
