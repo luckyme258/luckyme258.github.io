@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
+    <title>科幻_假面骑士Agito_yaji - 未知作者</title>
+    <style>
+:root {
+    --bg: #ffffff;
+    --bg-rgb: 255, 255, 255;
+    --text: #2d3748;
+    --accent: #4299e1;
+    --light-accent: #e8f4f8;
+    --card-bg: #f5fafe;
+    --card-shadow: 0 2px 8px rgba(66, 153, 225, 0.15);
+    --border-radius: 12px;
+    --line-height: 1.8;
+    --container-width: 800px;
+    --spacing: 32px;
+    --progress-height: 4px;
+    --header-height: 80px;
+    --nav-height: 70px;
+}
+
+.d0 {
+    --bg: #0a0c10;
+    --bg-rgb: 26, 32, 44;
+    --text: #ffffff;
+    --accent: #7472FE;
+    --light-accent: #2d3748;
+    --card-bg: #2d3748;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "思源黑体", "Source Han Sans CN", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: var(--line-height);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.p0 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: var(--progress-height);
+    background: linear-gradient(90deg, var(--accent), #7472FE);
+    z-index: 101;
+    transition: width 0.1s ease;
+    pointer-events: none;
+}
+
+.h0 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(var(--bg-rgb), 0.4);
+    backdrop-filter: blur(11px);
+    border-bottom: 1px solid var(--light-accent);
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    min-height: var(--header-height);
+}
+
+.h1 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+}
+
+.s0 {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    color: var(--accent);
+    padding: 8px 4px;
+    margin-left: -4px;
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+@keyframes shelfBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+.s0.f0 {
+    animation: shelfBounce 0.5s ease 2;
+}
+
+.s0:active {
+    transform: scale(0.95);
+}
+
+.s1 {
+    font-size: 24px;
+    line-height: 1;
+}
+
+.s2 {
+    font-size: 12px;
+    color: var(--accent);
+    opacity: 0.8;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+@media (max-width: 280px) {
+    .s2 {
+        display: none;
+    }
+}
+
+.h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 1;
+    min-width: 30px;
+}
+
+.h2 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.p1 {
+    font-size: 18px;
+    color: var(--text);
+    opacity: 0.9;
+    white-space: nowrap;
+    font-weight: 550;
+    flex-shrink: 0;
+}
+
+.p1::before {
+    content: "阅读进度 ";
+    font-size: inherit;
+    color: inherit;
+    opacity: 0.8;
+}
+
+.t0 {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    color: var(--text);
+    font-size: 14px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    flex-shrink: 0;
+}
+
+.t0:hover {
+    background: var(--accent);
+    color: white;
+}
+
+@media (max-width: 428px) {
+    .p1::before {
+        content: "";
+    }
+}
+
+@media (max-width: 375px) {
+    .h3 {
+        font-size: 16px;
+        max-width: 150px;
+    }
+    .p1 {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 320px) {
+    .h3 {
+        max-width: 120px;
+        font-size: 15px;
+    }
+    .p1 {
+        font-size: 15px;
+        min-width: 45px;
+    }
+    .t0 {
+        padding: 6px 8px;
+        font-size: 13px;
+    }
+}
+
+.c0 {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: calc(var(--header-height) + 20px) 45px 120px;
+    background-color: #F8F5F0;
+    filter: contrast(1.02);
+}
+
+.s3 {
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--light-accent);
+}
+
+.s4 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--text);
+    border-left: 6px solid var(--accent);
+    padding-left: 20px;
+    line-height: 1.3;
+    transition: border-left-color 0.3s ease;
+}
+
+.s4.x0 {
+    animation: titleFlash 0.5s ease;
+}
+
+@keyframes titleFlash {
+    0% { border-left-color: var(--accent); }
+    50% { border-left-color: #ffaa00; }
+    100% { border-left-color: var(--accent); }
+}
+
+.s5 {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 40px 0 20px;
+    color: var(--text);
+}
+
+.c1 p {
+    font-size: 23px;
+    line-height: 1.8;
+}
+
+/* ===== 数字编码段落样式 ===== */
+.c1 p[class*="1"] { color: #2D2D2D; font-weight: 650; text-indent: 2em; }
+
+.c1 p[class^="1"] { margin-bottom: 32px; }
+.c1 p[class^="2"] { margin-bottom: 28px; }
+.c1 p[class^="3"] { margin-bottom: 38px; }
+
+.c1 p[class$="1"] { letter-spacing: 0.02em; line-height: 1.8; }
+.c1 p[class$="2"] {
+    letter-spacing: 0.01em;
+    word-spacing: 0.09em; 
+    line-height: 1.6;
+    text-indent: 0;
+    margin-bottom: 1.2em;
+}
+.c1 p[class$="3"] {
+    letter-spacing: 0.015em;
+    line-height: 1.7;
+    text-indent: 1em;
+}
+
+.d0 .c1 p[class*="1"] { color: var(--text); }
+.d0 .c1 p[class$="1"] { letter-spacing: normal; line-height: var(--line-height); text-indent: 2em; }
+.d0 .c1 p[class$="2"] { text-indent: 0; }
+.d0 .c1 p[class$="3"] { text-indent: 1em; }
+
+.r4 {
+    height: 8px;
+    margin: 16px 0;
+    opacity: 0.3;
+    border-bottom: 1px dashed var(--light-accent);
+}
+
+.h4 {
+    color: #2D2D2D;
+    font-weight: inherit;
+    text-indent: 0;
+}
+
+.g0 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin: 32px 0;
+}
+
+.g1 {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 24px;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    border: 1px solid rgba(66, 153, 225, 0.1);
+}
+
+.g1:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(66, 153, 225, 0.2);
+}
+
+.g2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.g3 {
+    background-color: var(--accent);
+    color: white;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.g4 {
+    color: var(--accent);
+    font-size: 14px;
+}
+
+.g5 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text);
+}
+
+.g6 {
+    font-size: 15px;
+    margin-bottom: 12px;
+    line-height: 1.7;
+}
+
+.g7 {
+    display: none;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--light-accent);
+    font-size: 14px;
+    color: var(--text);
+    opacity: 0.9;
+}
+
+.g7.a0 {
+    display: block;
+}
+
+.s6 {
+    background-color: var(--light-accent);
+    border-radius: var(--border-radius);
+    padding: 28px;
+    margin: 40px 0;
+    border-left: 6px solid var(--accent);
+}
+
+.s7 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--accent);
+}
+
+.b0 {
+    position: fixed;
+    left: 30px;
+    top: 100px;
+    width: 220px;
+    z-index: 85;
+    display: none;
+    overflow-y: auto;
+    max-height: calc(100vh - 150px);
+}
+
+.b0::-webkit-scrollbar { width: 6px; }
+.b0::-webkit-scrollbar-track { background: transparent; }
+.b0::-webkit-scrollbar-thumb {
+    background: rgba(66, 153, 225, 0.2);
+    border-radius: 4px;
+}
+
+@media (min-width: 1000px) {
+    .b0 { display: block; }
+    .c0 { margin-left: 260px; }
+}
+
+.b1 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--light-accent);
+    position: sticky;
+    top: 0;
+    background-color: var(--bg);
+    z-index: 86;
+    padding-top: 4px;
+}
+
+.b2 { list-style: none; margin: 0; padding: 0; }
+
+.b3 { margin-bottom: 4px; }
+
+.b3 a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 15px;
+    padding: 8px 12px;
+    display: block;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+    line-height: 1.4;
+}
+
+.b3.a0 a {
+    background-color: var(--light-accent);
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.b3.v1 a { font-weight: 600; }
+.b3.v2 a { padding-left: 24px; font-size: 14px; }
+.b3.v3 a { padding-left: 36px; font-size: 14px; }
+.b3.v4 a { padding-left: 48px; font-size: 13px; }
+
+@media (max-width: 1199px) {
+    .b0 { display: none !important; }
+    .c0 {
+        max-width: 100%;
+        padding: calc(var(--header-height) + 20px) 16px 100px;
+        margin-left: 0;
+    }
+    .c1 { margin-left: 48px; padding-left: 0; }
+    .s4 { margin-left: 48px; padding-left: 0; font-size: 26px; }
+    .s5 { margin-left: 48px; padding-left: 0; font-size: 20px; }
+    .g0 { margin-left: 48px; grid-template-columns: 1fr; }
+    .s6 { margin-left: 48px; }
+    .c1 p { font-size: 19px; line-height: 1.7; }
+}
+
+.m0 {
+    position: fixed;
+    left: 0;
+    bottom: calc(70px + 16px + env(safe-area-inset-bottom, 0));
+    width: 32px;
+    height: 50px;
+    background: rgba(var(--bg-rgb), 0.4);
+    backdrop-filter: blur(11px);
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    border-right: 1px solid rgba(66, 153, 225, 0.2);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 95;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (max-width: 1199px) {
+    .m0 { display: flex; }
+}
+
+.m0 .m1 {
+    color: var(--accent);
+    font-size: 20px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.m2 {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 80%;
+    max-width: 320px;
+    background: rgba(var(--bg-rgb), 0.95);
+    backdrop-filter: blur(10px);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 100;
+    box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+    border-right: 1px solid rgba(66, 153, 225, 0.2);
+    overflow-y: auto;
+    padding: 20px 0;
+}
+
+.m2.o0 { transform: translateX(0); }
+
+.m3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--light-accent);
+    margin-bottom: 10px;
+}
+
+.m4 { font-size: 18px; font-weight: 600; color: var(--accent); }
+
+.m5 {
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: var(--text);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+}
+
+.m5:hover { background: var(--accent); color: white; }
+
+.m6 { list-style: none; padding: 0; margin: 0; }
+
+.m7 { margin: 2px 0; }
+
+.m7 a {
+    text-decoration: none;
+    color: var(--text);
+    display: block;
+    padding: 10px 20px;
+    font-size: 15px;
+    line-height: 1.4;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+}
+
+.m7 a:active {
+    background: var(--light-accent);
+    border-left-color: var(--accent);
+}
+
+.m7.a0 a {
+    background: var(--light-accent);
+    border-left-color: var(--accent);
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.m8 {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.m8.a0 { opacity: 1; visibility: visible; }
+
+.n0 {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 70px;
+    background: rgba(var(--bg-rgb), 0.4);
+    backdrop-filter: blur(11px);
+    border-top: 1px solid rgba(66, 153, 225, 0.2);
+    padding: 0 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 90;
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+    height: calc(70px + env(safe-area-inset-bottom, 0));
+}
+
+.n1 {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(66, 153, 225, 0.3);
+    padding: 0 20px;
+    height: 52px;
+    border-radius: 26px;
+    cursor: pointer;
+    color: #4299e1;
+    font-size: 15px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    min-width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 1 auto;
+}
+
+.n1:hover:not(:disabled) {
+    background: #4299e1;
+    color: white;
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3);
+    border-color: transparent;
+}
+
+.n1:disabled {
+    background: rgba(200, 200, 200, 0.3);
+    color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(200, 200, 200, 0.2);
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+@media (max-width: 375px) {
+    .n1 { padding: 0 12px; min-width: 80px; font-size: 14px; }
+}
+
+.u0 {
+    position: fixed;
+    bottom: calc(70px + 16px + env(safe-area-inset-bottom, 0));
+    right: 16px;
+    width: 44px;
+    height: 44px;
+    border-radius: 22px;
+    background: rgba(var(--bg-rgb), 0.4);
+    backdrop-filter: blur(11px);
+    border: 1px solid rgba(66, 153, 225, 0.2);
+    color: var(--accent);
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 91;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.u0.w0 { display: flex; }
+.u0:hover { background: var(--accent); color: white; }
+
+.i0 {
+    position: fixed;
+    bottom: calc(70px + 16px + env(safe-area-inset-bottom, 0));
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(var(--bg-rgb), 0.2);
+    backdrop-filter: blur(8px);
+    border-radius: 16px;
+    padding: 8px 12px;
+    color: var(--text);
+    font-size: 14px;
+    z-index: 96;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    animation: tipFadeIn 0.3s ease;
+    pointer-events: none;
+    white-space: nowrap;
+    max-width: 80%;
+    border: 1px solid rgba(66, 153, 225, 0.2);
+}
+
+.i0 .i1 { font-size: 14px; }
+
+.i0.i3 { animation: tipFadeOut 0.2s ease forwards; }
+
+@keyframes tipFadeIn {
+    from { opacity: 0; transform: translate(-50%, 10px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes tipFadeOut {
+    from { opacity: 1; transform: translate(-50%, 0); }
+    to { opacity: 0; transform: translate(-50%, 10px); }
+}
+
+@keyframes progressFlash {
+    0% { height: var(--progress-height); }
+    50% { height: 6px; }
+    100% { height: var(--progress-height); }
+}
+
+.p0.x0 { animation: progressFlash 0.3s ease; }
+
+.d0 .m0 {
+    background: rgba(26, 32, 44, 0.6);
+    border-color: rgba(116, 114, 254, 0.3);
+}
+
+.d0 .m2 {
+    background: rgba(10, 12, 16, 0.98);
+    border-right-color: rgba(116, 114, 254, 0.2);
+}
+
+.d0 .n0 {
+    background: rgba(26, 32, 44, 0.4);
+    border-color: rgba(116, 114, 254, 0.2);
+}
+
+.d0 .n1 {
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid rgba(116, 114, 254, 0.4);
+    color: #7472FE;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.d0 .n1:hover:not(:disabled) {
+    background: #7472FE;
+    color: white;
+    box-shadow: 0 4px 12px rgba(116, 114, 254, 0.3);
+}
+
+.d0 .n1:disabled {
+    background: rgba(50, 50, 50, 0.5);
+    color: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(100, 100, 100, 0.2);
+}
+
+.d0 .u0 {
+    background: rgba(26, 32, 44, 0.6);
+    border-color: rgba(116, 114, 254, 0.3);
+}
+
+.d0 .i0 {
+    background: rgba(26, 32, 44, 0.8);
+    border-color: rgba(116, 114, 254, 0.3);
+}
+
+.d0 .s0,
+.d0 .s2 { color: #7472FE; }
+
+.d0 .c0 { background-color: var(--bg); filter: none; }
+
+.g0, .g1, .g1 *,
+.s6, .s6 * {
+    filter: none !important;
+    background-color: var(--card-bg) !important;
+    color: var(--text) !important;
+    font-weight: inherit !important;
+    text-indent: 0 !important;
+    letter-spacing: normal !important;
+    line-height: var(--line-height) !important;
+    margin-bottom: inherit !important;
+}
+</style>
+    <script>
+        window.__CHAPTER_DATA__ = [{"total_units": 39082, "language_type": "chinese"}, {"total_units": 39082, "language_type": "chinese"}, {"total_units": 39082, "language_type": "chinese"}, {"total_units": 39082, "language_type": "chinese"}, {"total_units": 39082, "language_type": "chinese"}, {"total_units": 49369, "language_type": "chinese"}, {"total_units": 49369, "language_type": "chinese"}];
+    </script>
+</head>
+<body>
+    <div class="p0" id="progressBar"></div>
+    
+    <header class="h0">
+        <div class="h1">
+            <a href="https://luckyme258.github.io/books/index.html" class="s0">
+                <span class="s1">📚</span>
+                <span class="s2">书架</span>
+            </a>
+            <span class="h3" title="科幻_假面骑士Agito_yaji">科幻_假面骑士Agito_yaji</span>
+        </div>
+        <div class="h2">
+            <span class="p1" id="progressText">0%</span>
+            <button class="t0" id="themeToggle">🌙 夜间</button>
+        </div>
+    </header>
+    
+    <div class="b0"><div class="b1">📖 目录</div><ul class="b2">
+<li class="b3 v1">
+    <a href="#chapter-1" title="(Untitled)">(Untitled)</a>
+</li>
+<li class="b3 v2">
+    <a href="#chapter-1" title="序章">序章</a>
+</li>
+<li class="b3 v2">
+    <a href="#chapter-2" title="第一章">第一章</a>
+</li>
+<li class="b3 v2">
+    <a href="#chapter-3" title="第二章">第二章</a>
+</li>
+<li class="b3 v2">
+    <a href="#chapter-4" title="第三章">第三章</a>
+</li>
+<li class="b3 v2">
+    <a href="#chapter-5" title="第四章">第四章</a>
+</li>
+<li class="b3 v2">
+    <a href="#chapter-6" title="终章">终章</a>
+</li></ul></div>
+    
+    <div class="c0">
+        <section class="s3">
+<h1 class="s4" id="chapter-0">
+    (Untitled)
+</h1>
+<div class="c1"><p class="11">一位大约21岁的青年躺在草坪上，仰望着天空。</p><p class="11">仰望着这片没有一片云彩的天空。</p><p class="11">只有那专属于十月上旬的阳光丝丝缕缕地泄入他的心房。</p><p class="11">身旁，风儿轻抚着树叶，金桂的香气缠绕在他的鼻翼间。</p><div class="r4"></div><p class="11">期待着甜美味道的他用力地嗅着风的气息。</p><p class="11">没有味道啊。真是遗憾。</p><p class="11">但即便如此，对于每件事情都仿佛是第一次经历的青年来讲，快乐自然是顺理成章的。</p><p class="11">早上起床、晚上睡觉、吃东西，那些平淡的日常似乎都充满了新鲜感。</p><div class="r4"></div><p class="11">“失去记忆还真是好啊”青年这么想到。</p><p class="11">每一天每一天，就算是失去记忆也不算什么。</p><p class="11">不过，如果每一天都会失去记忆的话又要怎么办呢？</p><p class="11">想啊想啊，最佳的解决办法是什么呢。正当他想不到，而准备放弃时，耳畔突然传来呼唤自己的声音。</p><div class="r4"></div><p class="11">青年撑起上半身，看向声源的位置。</p><p class="11">那里，一个披着米黄色夹克的中年男子正一边擦着汗，一边向他走来。</p><p class="11">青年笑着大声喊道：</p><p class="11">“早安，美杉教授！”</p><div class="r4"></div><p class="11">“早安！这不是挺有精神的嘛！”</p><p class="11">一边说着，美杉一边以温柔的眼神看向青年。</p><p class="11">“是，给您添麻烦了！”</p><p class="11">青年目前所在的地方，是医院门内的空地。</p><div class="r4"></div><p class="11">屋顶上挂着的，是昨天洗过的待干的白色被单，他看了一整天。</p><p class="11">而前天在医院的等候室里，他和一个不认识的老婆婆聊了好久好久。</p><p class="11">还有，明天得去窗外那片大白菜地里视察一下。</p><p class="21">“真是令人惊异的恢复速度啊。一般来讲，失忆者更多地会去思考烦恼的事情，因为他们不知道该怎么对待这个空虚的自我。”</p><div class="r4"></div><p class="11">听着这话，青年再次缓缓看向天空。</p><p class="11">“这样的天气多好啊……早上一睁开眼就能看到这么美丽的天空，还有什么要烦恼的呢？”</p><p class="11">美杉也在他的影响下抬头望向天空。</p><p class="11">澄碧无瑕的秋季天空真的称得上绮丽。</p><div class="r4"></div><p class="11">美杉觉得，自己之所以能够读懂天空的美，都是这个青年的功劳。</p><p class="11">“对了。”美杉弯下腰，向青年问道，“之前跟你说的那件事，有想法了么？”</p><p class="11">“您是说，我住在您家里那件事？”</p><p class="11">寄宿在朋友家里这个想法，是青年的主治医师提出的想法。</p><div class="r4"></div><p class="11">如果是在医院外接受更多事物的话，也许会有助于记忆恢复的。</p><p class="11">正因为如此，美杉用了近似于强迫的粗暴口吻向青年通知了这一提案。</p><p class="21">“不想来我家？如果只是你一个人寄宿的话，是没有问题的。正好我媳妇也去外国出差了，你也可以顺便帮我收拾收拾家务，帮我打打下手什么的。”</p><p class="11">青年开始在美杉身上感受到一股温暖。</p><div class="r4"></div><p class="11">如果能和他住在一起的话，一定能一直体验着这份温暖的吧。</p><p class="11">躺在以前病房的板床上考虑这件事的时候，莫名想起来之前一位护工说的话“又在想什么好事呐”。</p><p class="11">那么，决定了，要一直这样幸福下去。</p><p class="11">所以，一定要尽快向美杉教授回信。</p><div class="r4"></div><p class="11">“辛苦您照顾了。”</p><p class="11">一边说着，青年一边充满热情地低着头。</p><p class="11">美杉高兴地点头回应着，并拉过他的手握在了一起。</p><p class="11">“对对，你的名字应该是……”</p><div class="r4"></div><p class="11">“我的名字……津上翔一，是么？”</p><p class="11">津上翔一——。</p><p class="11">那天他的主治医师给他取的。</p><p class="11">在医院里为了方便所以这么叫下来了。</p><div class="r4"></div><p class="11">出院后，美杉依然管他叫这个名字。</p><p class="11">“我嘛，还是叫我‘翔一’会比较习惯一点。”</p><p class="11">当他得到这个新名字后，他马上用马克笔把名字写在杯子上，仔细地看着这四个汉字。</p><p class="11">也没什么不好的嘛。</p><div class="r4"></div><p class="11">特别是“翔”字，总能诱发一种对天空的联想。</p><p class="11">既然青年对现在这个名字非常满意，那么美杉也就放心了。</p><p class="11">“好！那么赶快咱们就开始庆祝你出院吧。想吃什么随便点。寿司也好，烤肉也好，尽管说就好了！”</p><p class="11">“嗯～～……”</p><div class="r4"></div><p class="11">想了一会儿，青年害羞地说道：</p><p class="11">“抱歉，我忘了我自己喜欢什么了。所以……请每样都来一份谢谢！”</p><h2 class="h6 h4">第一章</h2><h4 class="heading-4 h4">1</h4><p class="21">啊啊，这样下去要怎么办才好啊，我……要怎么活下去啊……真是不想活了……而且作业也不会写……零花钱又少得可怜……绿豆也吃不上……讨厌……真是讨厌到极点了……。</p><p class="21">唉，心情又低落了呢……虽说时常都会这样，可是今天我……貌似特别地严重啊……这也不像是跟别人见面时的那种感觉……反正人多的地方最讨厌了……呜呜，太阳还真是炫目啊……我都要被融化进去了呢……</p><div class="r4"></div><p class="11">我的眼睛呀，已经紧紧地闭在一起了哦。</p><p class="11">我心底的光景，相对于那片放晴的天空而言简直称得上是泾渭分明。</p><p class="11">然后再把自己裹在被子里，蜷成一个球。</p><p class="11">今天就这样混过一天就好了。嗯，这样就好了。</p><div class="r4"></div><p class="11">“真鱼，早上好！多舒服的早晨啊！”</p><p class="11">从房门的对面又传来了那轻浮的响声。</p><p class="11">被迫感染这种情绪还真是让人有点不爽。</p><p class="11">“快点下楼吧。对于今天的早饭我可是挺有自信的哦~”</p><div class="r4"></div><p class="21">我从被子里把头伸出来，用毫无精神可言的声音回应道：“早上好，翔一君……那个，今天我感觉身体不太舒服……所以，麻烦你给老师打个电话帮我请个假吧。”</p><p class="11">“啊，难道是感冒了么？莫非是流感？最近常常听说关于这个的。”</p><p class="11">“不是这样的啦……你不要瞎担心了。”</p><p class="11">“那我一会儿给你熬碗粥君，喝完之后就去睡吧。”</p><div class="r4"></div><p class="11">紧接着传来的是双脚快速走下楼梯的声音。</p><p class="11">真是，让他多余的关心了啊……？</p><p class="11">这么想着，我将手伸向放置在枕头旁的折纸上。</p><p class="11">我躺在床上，用巧妙的方法将一张张淡蓝色的纸折叠起来。</p><div class="r4"></div><p class="11">这样活动着手指的同时，心底也会慢慢沉静下来。对于我来讲，折纸就是类似于精神安定剂之类的东西。</p><p class="11">折什么比较好呢。是纸鹤呢，还是小青蛙？</p><p class="11">然而，今天这样忧郁的日子影响了我的决定。</p><p class="11">为什么我要折一个箱子。</p><div class="r4"></div><p class="11">箱子没有什么特殊的含义。箱子内部也许确是空无一物的。</p><p class="11">在钱包上已经摆下了30个小箱子。</p><p class="11">我在想，这样沉默地一直一直折着箱子的女子看上去是怎样的呢？</p><p class="11">从一旁看起来一定是很招人厌的吧。</p><div class="r4"></div><p class="11">如果用叫妖怪的方式给我取名的话，应该是“折纸箱的少女”这样的称呼吧？</p><p class="11">这样奇怪的爱好，我从来没对其他人说过，也没有人知道。</p><p class="21">但是在我小学四年级的某一天，我正在屋子里折着纸箱，爸爸却突然端着章鱼烧闯了进来。啊，被发现啦……那可真是我一生中最尴尬的瞬间啊……</p><p class="21">虽然父亲看到布满整个房间的纸盒后夸奖我是“折纸盒的天才”，但我依然把他从卧室里赶了出去，并警告他不要再进我的房间一步。而从那时候开始，爸爸也真的再没进过我的房间。</p><div class="r4"></div><p class="11">这样想想，爸爸是不是也有点可怜呢……？</p><p class="11">换个角度想，叔叔他应该是不会发现我这个秘密的。</p><p class="11">如果被他从心理学的角度分析一通的话好讨厌的。</p><p class="11">啊，在我胡思乱想的时候箱子的数量已经暴走了……</p><div class="r4"></div><p class="11">估计有100个了吧……</p><p class="11">还是像往常一样偷偷烧掉吧。</p><p class="11">名为“折纸箱的少女”的我，风谷真鱼，还在一味地折着。</p><p class="11">这时候，翔一君又从门口冲着我喊了起来。</p><div class="r4"></div><p class="11">估计是在端着“粥君”吧，真是谢谢了。</p><p class="11">我一面快速的把纸箱往被褥底下藏，一面叫翔一进来。</p><p class="11">“热粥大人驾到！”</p><p class="11">又来了。翔一那无聊的冷笑话。</p><div class="r4"></div><p class="11">“粥君”和“让君久等”了什么的，有意思么？</p><p class="11">随随便便就把“君”这样的敬语用上，一点也不好笑。</p><p class="11">而我呢，就很有自信咯……看看这个笑的比花还灿烂的我。</p><p class="11">“真没办法啊。看在垫在托盘君上的丸的份上，还有特别赠送哦。”</p><div class="r4"></div><p class="11">我不耐烦地答应道：“好啦好啦。”</p><p class="21">翔一便侧着坐在了我的床前。他拿出调羹舀上一勺粥，“呼呼”地吹凉掉，然后一边说着“张嘴，啊……”一边喂给我喝。完全就像是对待病人似的。</p><p class="11">脸好像离得有点近了啊……</p><p class="11">还是那副和往常一样懒散的笑容啊……</p><div class="r4"></div><p class="11">不好……再这么看下去我也会变得那么懒散的……</p><p class="11">快速地喝下调羹里的粥，然后马上移开视线。</p><p class="11">“……好喝。”</p><p class="11">“因为这碗粥中凝聚了我的真心嘛。”</p><div class="r4"></div><p class="21">这个家伙家务、做饭都很不错，而且也很勤快。唯一美中不足的是喜欢说些无聊的冷笑话。嘛，勉强可以归进帅哥这一栏里吧。</p><p class="11">他做家务也是相当的勤快，当然咯，像我的这样第一懒虫才不会去做呢。</p><p class="21">说实话，一开始叔叔说还要再来一个寄宿的人我是相当反对的：跟个完全不认识的人住在同一屋檐下太荒谬了吧。更何况是个跟我年纪差不多的男的，还有什么，失忆什么的……我可不是什么少女漫画的主角。</p><p class="11">这样想着就慢慢转化成了不安，好苦恼啊。</p><div class="r4"></div><p class="21">可就算这样，我还是稍微想了想要怎么跟他相处之类的事情。结果还是苦恼的想法占了上风，到最后我整个卧室里都装满了纸箱子。</p><p class="11">但是呢，到最后还是相处下去了。</p><p class="11">因为翔一君从一开始到现在都让我感觉是很温柔的样子。尤其是今天我要逃学的时候。</p><p class="11">当翔一君最开始突然来这里的时候，面对着不发一言的我，迅速地用冰箱里还剩下的东西做了一桌丰盛的晚餐。</p><div class="r4"></div><p class="11">“真好吃啊。”</p><p class="11">这是我跟翔一君说的第一句话。</p><p class="11">如果我没有嘴贱说这句话的话，也就不会听到他之后讲述的做菜方法了……</p><p class="11">这样说来，好像自从翔一君来以后，我折纸箱子的数量就慢慢减少了呢。</p><div class="r4"></div><p class="11">和翔一君住在一起，感受很安心呢。</p><p class="11">“我吃好了。”我满足地说道。</p><p class="11">这时碗里还剩差不多一半的粥。</p><p class="11">“麻烦你那么辛苦地煮真的很抱歉，但我已经吃不下了。”</p><div class="r4"></div><p class="11">“这样对身体不太好啊。你瞧你都瘦了。”</p><p class="11">翔一君知道我饭量小，所以没有给我甩脸子。他收拾好碗后，却不知为何拿着一条毛巾又回来了。</p><p class="11">“身上一定冒了很多汗吧？我来给你擦擦身子吧。”</p><p class="11">“什么！？”</p><div class="r4"></div><p class="11">说什么呢！</p><p class="11">“好啦，快脱吧。”</p><p class="11">“这……这样好么……”</p><p class="11">我可是女生耶，你到底知不知道！</p><div class="r4"></div><p class="11">该不会是把我当成小孩子看了吧？</p><p class="11">我可是高中生啊，高中生！已经16岁了！</p><p class="11">我也在正常地成长着好不好！</p><p class="11">……虽然，对胸部还不太满意……</p><div class="r4"></div><p class="11">“怎么了？快脱啊。”</p><p class="11">那么想看的话就让你看好了。</p><p class="11">让你看到我的身体后就去想坏坏的事情吧！</p><p class="11">“我知道啦……那个，我脱的时候你去朝那边站着。”</p><div class="r4"></div><p class="11">翔一君“嗯”了一声就向着窗户站过去了。</p><p class="11">而我则开始一枚一枚地解下睡衣的扣子。</p><p class="11">好紧张啊……</p><p class="11">“好了……转过来吧……”</p><div class="r4"></div><p class="11">翔一君向着我的方向站着。</p><p class="11">我则背冲着他。</p><p class="11">我用手挡着胸部，睡衣的上衣还挂在肩上。</p><p class="11">“把睡衣，拿下来……”</p><div class="r4"></div><p class="11">“嗯。”</p><p class="11">翔一君从我的背上把睡衣滑下去取走了。</p><p class="11">将胳膊很美妙地蜷缩着，毛巾在我的背上静静地移动着。</p><p class="11">在热水里拧过的毛巾好暖和。</p><div class="r4"></div><p class="11">翔一君什么也不说，仅仅是用不强不弱刚刚好的力度给我擦拭着。</p><p class="11">好舒服……</p><p class="11">仔细想想的话，这是第一次有父亲之外的人给我擦身子。翔一君现在又在想着什么呢？</p><p class="11">有没有在想坏坏的事情？</p><div class="r4"></div><p class="11">“真鱼？”</p><p class="11">“嗯？”</p><p class="11">“你的后背，真硬啊……”</p><p class="11">什么……</p><div class="r4"></div><p class="11">这种话，能跟女孩子说么……</p><p class="11">“身体不好嘛……我……”</p><p class="11">“所以要多吃点啊。”</p><p class="11">“我知道啦……”</p><div class="r4"></div><p class="11">擦拭完后，他像个医生一样平静地告诉了我，然后就离开了我的卧室。</p><p class="21">为什么呢，我现在完全不想折箱子了。于是我从床上起来，坐在桌前打开了笔记本电脑。上网后选择我以前收藏的门户网站，无所事事地看着今天的新闻。</p><p class="11">而当我看到这个消息的时候，不自觉地停下了眼神。</p><p class="11">·在绳文时代的地层发现了男性遗体</p><div class="r4"></div><p class="11">之前轰动了世间的那件事也是……</p><p class="11">这么想着，我点击鼠标，浏览了全文。</p><p class="11">果然只能这么想了。</p><p class="11">挖掘过程中，在被挖得不成样子的地层里发现了一个死了没几天的男性尸体。</p><div class="r4"></div><p class="11">由于已经判断了身份，所以同样在这个地层里的绳文时代的人类也都像是才死了没几天的样子。</p><p class="11">难不成是，时间反论？</p><p class="11">嘛，虽然我还不太懂这个词的意思……</p><p class="11">但不管怎么说这都是不可能发生的事情。果然就像之前的那些“不可能犯罪”啊。</p><div class="r4"></div><p class="11">啊……这种忧郁的感觉又来了……</p><p class="11">我又躺在了床上开始折箱子。</p><p class="11">把所有忧郁的感觉都封进箱子里，然后通通埋到地底下去。</p><p class="11">如果可以的话，也把我的秘密一起埋进去吧。</p><div class="r4"></div><h4 class="heading-4 h4">2</h4><p class="11">这是发生在开学不久后四月份的事件。地点则位于文京区立大场中学的操场上。</p><p class="21">第一目击者的是该校的一名二年级女生。她在和同学一起玩球的时候因为校服的裙子飘起来了所以没能接到球，在她印象中球应该是飞到很远的地方去了。</p><p class="21">操场的一角是一片樱花，而球正好滚到了那儿的草丛里。当她从草丛中把球捡起来的时候，视线却捕捉到了另一种东西。</p><p class="11">她看到了，那是在樱树上。</p><div class="r4"></div><p class="11">樱树的洞里闪着一颗还睁着的眼珠。树根上掉落着一副墨绿色的眼镜。</p><p class="11">那副眼镜，好像在哪里见过。</p><p class="11">跟班里那个个头最大，而且长满了痘痘的男生好像是同一副。</p><p class="11">那个男生现在就死在了樱树的洞里。</p><div class="r4"></div><p class="11">现在，樱树的周围被贴上了禁止入内的封条，警察则在忙忙碌碌地勘察现场。</p><p class="11">冰川绷着他那张精悍的脸注视着洞中的尸体。</p><p class="11">从警已经4年了，从没见过这样的画面。</p><p class="21">完全没有现实感，就好像是一场幻象一样。简直就如同一棵狰狞的樱树吞下了那个人，死者的血肉变成了被染上点点淡红色的盛开的花一般。</p><div class="r4"></div></div></section><section class="s3">
+<h2 class="s5" id="chapter-1">
+    序章
+</h2>
+<div class="c1"><p class="11">一位大约21岁的青年躺在草坪上，仰望着天空。</p><p class="11">仰望着这片没有一片云彩的天空。</p><p class="11">只有那专属于十月上旬的阳光丝丝缕缕地泄入他的心房。</p><p class="11">身旁，风儿轻抚着树叶，金桂的香气缠绕在他的鼻翼间。</p><div class="r4"></div><p class="11">期待着甜美味道的他用力地嗅着风的气息。</p><p class="11">没有味道啊。真是遗憾。</p><p class="11">但即便如此，对于每件事情都仿佛是第一次经历的青年来讲，快乐自然是顺理成章的。</p><p class="11">早上起床、晚上睡觉、吃东西，那些平淡的日常似乎都充满了新鲜感。</p><div class="r4"></div><p class="11">“失去记忆还真是好啊”青年这么想到。</p><p class="11">每一天每一天，就算是失去记忆也不算什么。</p><p class="11">不过，如果每一天都会失去记忆的话又要怎么办呢？</p><p class="11">想啊想啊，最佳的解决办法是什么呢。正当他想不到，而准备放弃时，耳畔突然传来呼唤自己的声音。</p><div class="r4"></div><p class="11">青年撑起上半身，看向声源的位置。</p><p class="11">那里，一个披着米黄色夹克的中年男子正一边擦着汗，一边向他走来。</p><p class="11">青年笑着大声喊道：</p><p class="11">“早安，美杉教授！”</p><div class="r4"></div><p class="11">“早安！这不是挺有精神的嘛！”</p><p class="11">一边说着，美杉一边以温柔的眼神看向青年。</p><p class="11">“是，给您添麻烦了！”</p><p class="11">青年目前所在的地方，是医院门内的空地。</p><div class="r4"></div><p class="11">屋顶上挂着的，是昨天洗过的待干的白色被单，他看了一整天。</p><p class="11">而前天在医院的等候室里，他和一个不认识的老婆婆聊了好久好久。</p><p class="11">还有，明天得去窗外那片大白菜地里视察一下。</p><p class="21">“真是令人惊异的恢复速度啊。一般来讲，失忆者更多地会去思考烦恼的事情，因为他们不知道该怎么对待这个空虚的自我。”</p><div class="r4"></div><p class="11">听着这话，青年再次缓缓看向天空。</p><p class="11">“这样的天气多好啊……早上一睁开眼就能看到这么美丽的天空，还有什么要烦恼的呢？”</p><p class="11">美杉也在他的影响下抬头望向天空。</p><p class="11">澄碧无瑕的秋季天空真的称得上绮丽。</p><div class="r4"></div><p class="11">美杉觉得，自己之所以能够读懂天空的美，都是这个青年的功劳。</p><p class="11">“对了。”美杉弯下腰，向青年问道，“之前跟你说的那件事，有想法了么？”</p><p class="11">“您是说，我住在您家里那件事？”</p><p class="11">寄宿在朋友家里这个想法，是青年的主治医师提出的想法。</p><div class="r4"></div><p class="11">如果是在医院外接受更多事物的话，也许会有助于记忆恢复的。</p><p class="11">正因为如此，美杉用了近似于强迫的粗暴口吻向青年通知了这一提案。</p><p class="21">“不想来我家？如果只是你一个人寄宿的话，是没有问题的。正好我媳妇也去外国出差了，你也可以顺便帮我收拾收拾家务，帮我打打下手什么的。”</p><p class="11">青年开始在美杉身上感受到一股温暖。</p><div class="r4"></div><p class="11">如果能和他住在一起的话，一定能一直体验着这份温暖的吧。</p><p class="11">躺在以前病房的板床上考虑这件事的时候，莫名想起来之前一位护工说的话“又在想什么好事呐”。</p><p class="11">那么，决定了，要一直这样幸福下去。</p><p class="11">所以，一定要尽快向美杉教授回信。</p><div class="r4"></div><p class="11">“辛苦您照顾了。”</p><p class="11">一边说着，青年一边充满热情地低着头。</p><p class="11">美杉高兴地点头回应着，并拉过他的手握在了一起。</p><p class="11">“对对，你的名字应该是……”</p><div class="r4"></div><p class="11">“我的名字……津上翔一，是么？”</p><p class="11">津上翔一——。</p><p class="11">那天他的主治医师给他取的。</p><p class="11">在医院里为了方便所以这么叫下来了。</p><div class="r4"></div><p class="11">出院后，美杉依然管他叫这个名字。</p><p class="11">“我嘛，还是叫我‘翔一’会比较习惯一点。”</p><p class="11">当他得到这个新名字后，他马上用马克笔把名字写在杯子上，仔细地看着这四个汉字。</p><p class="11">也没什么不好的嘛。</p><div class="r4"></div><p class="11">特别是“翔”字，总能诱发一种对天空的联想。</p><p class="11">既然青年对现在这个名字非常满意，那么美杉也就放心了。</p><p class="11">“好！那么赶快咱们就开始庆祝你出院吧。想吃什么随便点。寿司也好，烤肉也好，尽管说就好了！”</p><p class="11">“嗯～～……”</p><div class="r4"></div><p class="11">想了一会儿，青年害羞地说道：</p><p class="11">“抱歉，我忘了我自己喜欢什么了。所以……请每样都来一份谢谢！”</p><h2 class="h6 h4">第一章</h2><h4 class="heading-4 h4">1</h4><p class="21">啊啊，这样下去要怎么办才好啊，我……要怎么活下去啊……真是不想活了……而且作业也不会写……零花钱又少得可怜……绿豆也吃不上……讨厌……真是讨厌到极点了……。</p><p class="21">唉，心情又低落了呢……虽说时常都会这样，可是今天我……貌似特别地严重啊……这也不像是跟别人见面时的那种感觉……反正人多的地方最讨厌了……呜呜，太阳还真是炫目啊……我都要被融化进去了呢……</p><div class="r4"></div><p class="11">我的眼睛呀，已经紧紧地闭在一起了哦。</p><p class="11">我心底的光景，相对于那片放晴的天空而言简直称得上是泾渭分明。</p><p class="11">然后再把自己裹在被子里，蜷成一个球。</p><p class="11">今天就这样混过一天就好了。嗯，这样就好了。</p><div class="r4"></div><p class="11">“真鱼，早上好！多舒服的早晨啊！”</p><p class="11">从房门的对面又传来了那轻浮的响声。</p><p class="11">被迫感染这种情绪还真是让人有点不爽。</p><p class="11">“快点下楼吧。对于今天的早饭我可是挺有自信的哦~”</p><div class="r4"></div><p class="21">我从被子里把头伸出来，用毫无精神可言的声音回应道：“早上好，翔一君……那个，今天我感觉身体不太舒服……所以，麻烦你给老师打个电话帮我请个假吧。”</p><p class="11">“啊，难道是感冒了么？莫非是流感？最近常常听说关于这个的。”</p><p class="11">“不是这样的啦……你不要瞎担心了。”</p><p class="11">“那我一会儿给你熬碗粥君，喝完之后就去睡吧。”</p><div class="r4"></div><p class="11">紧接着传来的是双脚快速走下楼梯的声音。</p><p class="11">真是，让他多余的关心了啊……？</p><p class="11">这么想着，我将手伸向放置在枕头旁的折纸上。</p><p class="11">我躺在床上，用巧妙的方法将一张张淡蓝色的纸折叠起来。</p><div class="r4"></div><p class="11">这样活动着手指的同时，心底也会慢慢沉静下来。对于我来讲，折纸就是类似于精神安定剂之类的东西。</p><p class="11">折什么比较好呢。是纸鹤呢，还是小青蛙？</p><p class="11">然而，今天这样忧郁的日子影响了我的决定。</p><p class="11">为什么我要折一个箱子。</p><div class="r4"></div><p class="11">箱子没有什么特殊的含义。箱子内部也许确是空无一物的。</p><p class="11">在钱包上已经摆下了30个小箱子。</p><p class="11">我在想，这样沉默地一直一直折着箱子的女子看上去是怎样的呢？</p><p class="11">从一旁看起来一定是很招人厌的吧。</p><div class="r4"></div><p class="11">如果用叫妖怪的方式给我取名的话，应该是“折纸箱的少女”这样的称呼吧？</p><p class="11">这样奇怪的爱好，我从来没对其他人说过，也没有人知道。</p><p class="21">但是在我小学四年级的某一天，我正在屋子里折着纸箱，爸爸却突然端着章鱼烧闯了进来。啊，被发现啦……那可真是我一生中最尴尬的瞬间啊……</p><p class="21">虽然父亲看到布满整个房间的纸盒后夸奖我是“折纸盒的天才”，但我依然把他从卧室里赶了出去，并警告他不要再进我的房间一步。而从那时候开始，爸爸也真的再没进过我的房间。</p><div class="r4"></div><p class="11">这样想想，爸爸是不是也有点可怜呢……？</p><p class="11">换个角度想，叔叔他应该是不会发现我这个秘密的。</p><p class="11">如果被他从心理学的角度分析一通的话好讨厌的。</p><p class="11">啊，在我胡思乱想的时候箱子的数量已经暴走了……</p><div class="r4"></div><p class="11">估计有100个了吧……</p><p class="11">还是像往常一样偷偷烧掉吧。</p><p class="11">名为“折纸箱的少女”的我，风谷真鱼，还在一味地折着。</p><p class="11">这时候，翔一君又从门口冲着我喊了起来。</p><div class="r4"></div><p class="11">估计是在端着“粥君”吧，真是谢谢了。</p><p class="11">我一面快速的把纸箱往被褥底下藏，一面叫翔一进来。</p><p class="11">“热粥大人驾到！”</p><p class="11">又来了。翔一那无聊的冷笑话。</p><div class="r4"></div><p class="11">“粥君”和“让君久等”了什么的，有意思么？</p><p class="11">随随便便就把“君”这样的敬语用上，一点也不好笑。</p><p class="11">而我呢，就很有自信咯……看看这个笑的比花还灿烂的我。</p><p class="11">“真没办法啊。看在垫在托盘君上的丸的份上，还有特别赠送哦。”</p><div class="r4"></div><p class="11">我不耐烦地答应道：“好啦好啦。”</p><p class="21">翔一便侧着坐在了我的床前。他拿出调羹舀上一勺粥，“呼呼”地吹凉掉，然后一边说着“张嘴，啊……”一边喂给我喝。完全就像是对待病人似的。</p><p class="11">脸好像离得有点近了啊……</p><p class="11">还是那副和往常一样懒散的笑容啊……</p><div class="r4"></div><p class="11">不好……再这么看下去我也会变得那么懒散的……</p><p class="11">快速地喝下调羹里的粥，然后马上移开视线。</p><p class="11">“……好喝。”</p><p class="11">“因为这碗粥中凝聚了我的真心嘛。”</p><div class="r4"></div><p class="21">这个家伙家务、做饭都很不错，而且也很勤快。唯一美中不足的是喜欢说些无聊的冷笑话。嘛，勉强可以归进帅哥这一栏里吧。</p><p class="11">他做家务也是相当的勤快，当然咯，像我的这样第一懒虫才不会去做呢。</p><p class="21">说实话，一开始叔叔说还要再来一个寄宿的人我是相当反对的：跟个完全不认识的人住在同一屋檐下太荒谬了吧。更何况是个跟我年纪差不多的男的，还有什么，失忆什么的……我可不是什么少女漫画的主角。</p><p class="11">这样想着就慢慢转化成了不安，好苦恼啊。</p><div class="r4"></div><p class="21">可就算这样，我还是稍微想了想要怎么跟他相处之类的事情。结果还是苦恼的想法占了上风，到最后我整个卧室里都装满了纸箱子。</p><p class="11">但是呢，到最后还是相处下去了。</p><p class="11">因为翔一君从一开始到现在都让我感觉是很温柔的样子。尤其是今天我要逃学的时候。</p><p class="11">当翔一君最开始突然来这里的时候，面对着不发一言的我，迅速地用冰箱里还剩下的东西做了一桌丰盛的晚餐。</p><div class="r4"></div><p class="11">“真好吃啊。”</p><p class="11">这是我跟翔一君说的第一句话。</p><p class="11">如果我没有嘴贱说这句话的话，也就不会听到他之后讲述的做菜方法了……</p><p class="11">这样说来，好像自从翔一君来以后，我折纸箱子的数量就慢慢减少了呢。</p><div class="r4"></div><p class="11">和翔一君住在一起，感受很安心呢。</p><p class="11">“我吃好了。”我满足地说道。</p><p class="11">这时碗里还剩差不多一半的粥。</p><p class="11">“麻烦你那么辛苦地煮真的很抱歉，但我已经吃不下了。”</p><div class="r4"></div><p class="11">“这样对身体不太好啊。你瞧你都瘦了。”</p><p class="11">翔一君知道我饭量小，所以没有给我甩脸子。他收拾好碗后，却不知为何拿着一条毛巾又回来了。</p><p class="11">“身上一定冒了很多汗吧？我来给你擦擦身子吧。”</p><p class="11">“什么！？”</p><div class="r4"></div><p class="11">说什么呢！</p><p class="11">“好啦，快脱吧。”</p><p class="11">“这……这样好么……”</p><p class="11">我可是女生耶，你到底知不知道！</p><div class="r4"></div><p class="11">该不会是把我当成小孩子看了吧？</p><p class="11">我可是高中生啊，高中生！已经16岁了！</p><p class="11">我也在正常地成长着好不好！</p><p class="11">……虽然，对胸部还不太满意……</p><div class="r4"></div><p class="11">“怎么了？快脱啊。”</p><p class="11">那么想看的话就让你看好了。</p><p class="11">让你看到我的身体后就去想坏坏的事情吧！</p><p class="11">“我知道啦……那个，我脱的时候你去朝那边站着。”</p><div class="r4"></div><p class="11">翔一君“嗯”了一声就向着窗户站过去了。</p><p class="11">而我则开始一枚一枚地解下睡衣的扣子。</p><p class="11">好紧张啊……</p><p class="11">“好了……转过来吧……”</p><div class="r4"></div><p class="11">翔一君向着我的方向站着。</p><p class="11">我则背冲着他。</p><p class="11">我用手挡着胸部，睡衣的上衣还挂在肩上。</p><p class="11">“把睡衣，拿下来……”</p><div class="r4"></div><p class="11">“嗯。”</p><p class="11">翔一君从我的背上把睡衣滑下去取走了。</p><p class="11">将胳膊很美妙地蜷缩着，毛巾在我的背上静静地移动着。</p><p class="11">在热水里拧过的毛巾好暖和。</p><div class="r4"></div><p class="11">翔一君什么也不说，仅仅是用不强不弱刚刚好的力度给我擦拭着。</p><p class="11">好舒服……</p><p class="11">仔细想想的话，这是第一次有父亲之外的人给我擦身子。翔一君现在又在想着什么呢？</p><p class="11">有没有在想坏坏的事情？</p><div class="r4"></div><p class="11">“真鱼？”</p><p class="11">“嗯？”</p><p class="11">“你的后背，真硬啊……”</p><p class="11">什么……</p><div class="r4"></div><p class="11">这种话，能跟女孩子说么……</p><p class="11">“身体不好嘛……我……”</p><p class="11">“所以要多吃点啊。”</p><p class="11">“我知道啦……”</p><div class="r4"></div><p class="11">擦拭完后，他像个医生一样平静地告诉了我，然后就离开了我的卧室。</p><p class="21">为什么呢，我现在完全不想折箱子了。于是我从床上起来，坐在桌前打开了笔记本电脑。上网后选择我以前收藏的门户网站，无所事事地看着今天的新闻。</p><p class="11">而当我看到这个消息的时候，不自觉地停下了眼神。</p><p class="11">·在绳文时代的地层发现了男性遗体</p><div class="r4"></div><p class="11">之前轰动了世间的那件事也是……</p><p class="11">这么想着，我点击鼠标，浏览了全文。</p><p class="11">果然只能这么想了。</p><p class="11">挖掘过程中，在被挖得不成样子的地层里发现了一个死了没几天的男性尸体。</p><div class="r4"></div><p class="11">由于已经判断了身份，所以同样在这个地层里的绳文时代的人类也都像是才死了没几天的样子。</p><p class="11">难不成是，时间反论？</p><p class="11">嘛，虽然我还不太懂这个词的意思……</p><p class="11">但不管怎么说这都是不可能发生的事情。果然就像之前的那些“不可能犯罪”啊。</p><div class="r4"></div><p class="11">啊……这种忧郁的感觉又来了……</p><p class="11">我又躺在了床上开始折箱子。</p><p class="11">把所有忧郁的感觉都封进箱子里，然后通通埋到地底下去。</p><p class="11">如果可以的话，也把我的秘密一起埋进去吧。</p><div class="r4"></div><h4 class="heading-4 h4">2</h4><p class="11">这是发生在开学不久后四月份的事件。地点则位于文京区立大场中学的操场上。</p><p class="21">第一目击者的是该校的一名二年级女生。她在和同学一起玩球的时候因为校服的裙子飘起来了所以没能接到球，在她印象中球应该是飞到很远的地方去了。</p><p class="21">操场的一角是一片樱花，而球正好滚到了那儿的草丛里。当她从草丛中把球捡起来的时候，视线却捕捉到了另一种东西。</p><p class="11">她看到了，那是在樱树上。</p><div class="r4"></div><p class="11">樱树的洞里闪着一颗还睁着的眼珠。树根上掉落着一副墨绿色的眼镜。</p><p class="11">那副眼镜，好像在哪里见过。</p><p class="11">跟班里那个个头最大，而且长满了痘痘的男生好像是同一副。</p><p class="11">那个男生现在就死在了樱树的洞里。</p><div class="r4"></div><p class="11">现在，樱树的周围被贴上了禁止入内的封条，警察则在忙忙碌碌地勘察现场。</p><p class="11">冰川绷着他那张精悍的脸注视着洞中的尸体。</p><p class="11">从警已经4年了，从没见过这样的画面。</p><p class="21">完全没有现实感，就好像是一场幻象一样。简直就如同一棵狰狞的樱树吞下了那个人，死者的血肉变成了被染上点点淡红色的盛开的花一般。</p><div class="r4"></div></div></section><section class="s3">
+<h2 class="s5" id="chapter-2">
+    第一章
+</h2>
+<div class="c1"><p class="11">一位大约21岁的青年躺在草坪上，仰望着天空。</p><p class="11">仰望着这片没有一片云彩的天空。</p><p class="11">只有那专属于十月上旬的阳光丝丝缕缕地泄入他的心房。</p><p class="11">身旁，风儿轻抚着树叶，金桂的香气缠绕在他的鼻翼间。</p><div class="r4"></div><p class="11">期待着甜美味道的他用力地嗅着风的气息。</p><p class="11">没有味道啊。真是遗憾。</p><p class="11">但即便如此，对于每件事情都仿佛是第一次经历的青年来讲，快乐自然是顺理成章的。</p><p class="11">早上起床、晚上睡觉、吃东西，那些平淡的日常似乎都充满了新鲜感。</p><div class="r4"></div><p class="11">“失去记忆还真是好啊”青年这么想到。</p><p class="11">每一天每一天，就算是失去记忆也不算什么。</p><p class="11">不过，如果每一天都会失去记忆的话又要怎么办呢？</p><p class="11">想啊想啊，最佳的解决办法是什么呢。正当他想不到，而准备放弃时，耳畔突然传来呼唤自己的声音。</p><div class="r4"></div><p class="11">青年撑起上半身，看向声源的位置。</p><p class="11">那里，一个披着米黄色夹克的中年男子正一边擦着汗，一边向他走来。</p><p class="11">青年笑着大声喊道：</p><p class="11">“早安，美杉教授！”</p><div class="r4"></div><p class="11">“早安！这不是挺有精神的嘛！”</p><p class="11">一边说着，美杉一边以温柔的眼神看向青年。</p><p class="11">“是，给您添麻烦了！”</p><p class="11">青年目前所在的地方，是医院门内的空地。</p><div class="r4"></div><p class="11">屋顶上挂着的，是昨天洗过的待干的白色被单，他看了一整天。</p><p class="11">而前天在医院的等候室里，他和一个不认识的老婆婆聊了好久好久。</p><p class="11">还有，明天得去窗外那片大白菜地里视察一下。</p><p class="21">“真是令人惊异的恢复速度啊。一般来讲，失忆者更多地会去思考烦恼的事情，因为他们不知道该怎么对待这个空虚的自我。”</p><div class="r4"></div><p class="11">听着这话，青年再次缓缓看向天空。</p><p class="11">“这样的天气多好啊……早上一睁开眼就能看到这么美丽的天空，还有什么要烦恼的呢？”</p><p class="11">美杉也在他的影响下抬头望向天空。</p><p class="11">澄碧无瑕的秋季天空真的称得上绮丽。</p><div class="r4"></div><p class="11">美杉觉得，自己之所以能够读懂天空的美，都是这个青年的功劳。</p><p class="11">“对了。”美杉弯下腰，向青年问道，“之前跟你说的那件事，有想法了么？”</p><p class="11">“您是说，我住在您家里那件事？”</p><p class="11">寄宿在朋友家里这个想法，是青年的主治医师提出的想法。</p><div class="r4"></div><p class="11">如果是在医院外接受更多事物的话，也许会有助于记忆恢复的。</p><p class="11">正因为如此，美杉用了近似于强迫的粗暴口吻向青年通知了这一提案。</p><p class="21">“不想来我家？如果只是你一个人寄宿的话，是没有问题的。正好我媳妇也去外国出差了，你也可以顺便帮我收拾收拾家务，帮我打打下手什么的。”</p><p class="11">青年开始在美杉身上感受到一股温暖。</p><div class="r4"></div><p class="11">如果能和他住在一起的话，一定能一直体验着这份温暖的吧。</p><p class="11">躺在以前病房的板床上考虑这件事的时候，莫名想起来之前一位护工说的话“又在想什么好事呐”。</p><p class="11">那么，决定了，要一直这样幸福下去。</p><p class="11">所以，一定要尽快向美杉教授回信。</p><div class="r4"></div><p class="11">“辛苦您照顾了。”</p><p class="11">一边说着，青年一边充满热情地低着头。</p><p class="11">美杉高兴地点头回应着，并拉过他的手握在了一起。</p><p class="11">“对对，你的名字应该是……”</p><div class="r4"></div><p class="11">“我的名字……津上翔一，是么？”</p><p class="11">津上翔一——。</p><p class="11">那天他的主治医师给他取的。</p><p class="11">在医院里为了方便所以这么叫下来了。</p><div class="r4"></div><p class="11">出院后，美杉依然管他叫这个名字。</p><p class="11">“我嘛，还是叫我‘翔一’会比较习惯一点。”</p><p class="11">当他得到这个新名字后，他马上用马克笔把名字写在杯子上，仔细地看着这四个汉字。</p><p class="11">也没什么不好的嘛。</p><div class="r4"></div><p class="11">特别是“翔”字，总能诱发一种对天空的联想。</p><p class="11">既然青年对现在这个名字非常满意，那么美杉也就放心了。</p><p class="11">“好！那么赶快咱们就开始庆祝你出院吧。想吃什么随便点。寿司也好，烤肉也好，尽管说就好了！”</p><p class="11">“嗯～～……”</p><div class="r4"></div><p class="11">想了一会儿，青年害羞地说道：</p><p class="11">“抱歉，我忘了我自己喜欢什么了。所以……请每样都来一份谢谢！”</p><h2 class="h6 h4">第一章</h2><h4 class="heading-4 h4">1</h4><p class="21">啊啊，这样下去要怎么办才好啊，我……要怎么活下去啊……真是不想活了……而且作业也不会写……零花钱又少得可怜……绿豆也吃不上……讨厌……真是讨厌到极点了……。</p><p class="21">唉，心情又低落了呢……虽说时常都会这样，可是今天我……貌似特别地严重啊……这也不像是跟别人见面时的那种感觉……反正人多的地方最讨厌了……呜呜，太阳还真是炫目啊……我都要被融化进去了呢……</p><div class="r4"></div><p class="11">我的眼睛呀，已经紧紧地闭在一起了哦。</p><p class="11">我心底的光景，相对于那片放晴的天空而言简直称得上是泾渭分明。</p><p class="11">然后再把自己裹在被子里，蜷成一个球。</p><p class="11">今天就这样混过一天就好了。嗯，这样就好了。</p><div class="r4"></div><p class="11">“真鱼，早上好！多舒服的早晨啊！”</p><p class="11">从房门的对面又传来了那轻浮的响声。</p><p class="11">被迫感染这种情绪还真是让人有点不爽。</p><p class="11">“快点下楼吧。对于今天的早饭我可是挺有自信的哦~”</p><div class="r4"></div><p class="21">我从被子里把头伸出来，用毫无精神可言的声音回应道：“早上好，翔一君……那个，今天我感觉身体不太舒服……所以，麻烦你给老师打个电话帮我请个假吧。”</p><p class="11">“啊，难道是感冒了么？莫非是流感？最近常常听说关于这个的。”</p><p class="11">“不是这样的啦……你不要瞎担心了。”</p><p class="11">“那我一会儿给你熬碗粥君，喝完之后就去睡吧。”</p><div class="r4"></div><p class="11">紧接着传来的是双脚快速走下楼梯的声音。</p><p class="11">真是，让他多余的关心了啊……？</p><p class="11">这么想着，我将手伸向放置在枕头旁的折纸上。</p><p class="11">我躺在床上，用巧妙的方法将一张张淡蓝色的纸折叠起来。</p><div class="r4"></div><p class="11">这样活动着手指的同时，心底也会慢慢沉静下来。对于我来讲，折纸就是类似于精神安定剂之类的东西。</p><p class="11">折什么比较好呢。是纸鹤呢，还是小青蛙？</p><p class="11">然而，今天这样忧郁的日子影响了我的决定。</p><p class="11">为什么我要折一个箱子。</p><div class="r4"></div><p class="11">箱子没有什么特殊的含义。箱子内部也许确是空无一物的。</p><p class="11">在钱包上已经摆下了30个小箱子。</p><p class="11">我在想，这样沉默地一直一直折着箱子的女子看上去是怎样的呢？</p><p class="11">从一旁看起来一定是很招人厌的吧。</p><div class="r4"></div><p class="11">如果用叫妖怪的方式给我取名的话，应该是“折纸箱的少女”这样的称呼吧？</p><p class="11">这样奇怪的爱好，我从来没对其他人说过，也没有人知道。</p><p class="21">但是在我小学四年级的某一天，我正在屋子里折着纸箱，爸爸却突然端着章鱼烧闯了进来。啊，被发现啦……那可真是我一生中最尴尬的瞬间啊……</p><p class="21">虽然父亲看到布满整个房间的纸盒后夸奖我是“折纸盒的天才”，但我依然把他从卧室里赶了出去，并警告他不要再进我的房间一步。而从那时候开始，爸爸也真的再没进过我的房间。</p><div class="r4"></div><p class="11">这样想想，爸爸是不是也有点可怜呢……？</p><p class="11">换个角度想，叔叔他应该是不会发现我这个秘密的。</p><p class="11">如果被他从心理学的角度分析一通的话好讨厌的。</p><p class="11">啊，在我胡思乱想的时候箱子的数量已经暴走了……</p><div class="r4"></div><p class="11">估计有100个了吧……</p><p class="11">还是像往常一样偷偷烧掉吧。</p><p class="11">名为“折纸箱的少女”的我，风谷真鱼，还在一味地折着。</p><p class="11">这时候，翔一君又从门口冲着我喊了起来。</p><div class="r4"></div><p class="11">估计是在端着“粥君”吧，真是谢谢了。</p><p class="11">我一面快速的把纸箱往被褥底下藏，一面叫翔一进来。</p><p class="11">“热粥大人驾到！”</p><p class="11">又来了。翔一那无聊的冷笑话。</p><div class="r4"></div><p class="11">“粥君”和“让君久等”了什么的，有意思么？</p><p class="11">随随便便就把“君”这样的敬语用上，一点也不好笑。</p><p class="11">而我呢，就很有自信咯……看看这个笑的比花还灿烂的我。</p><p class="11">“真没办法啊。看在垫在托盘君上的丸的份上，还有特别赠送哦。”</p><div class="r4"></div><p class="11">我不耐烦地答应道：“好啦好啦。”</p><p class="21">翔一便侧着坐在了我的床前。他拿出调羹舀上一勺粥，“呼呼”地吹凉掉，然后一边说着“张嘴，啊……”一边喂给我喝。完全就像是对待病人似的。</p><p class="11">脸好像离得有点近了啊……</p><p class="11">还是那副和往常一样懒散的笑容啊……</p><div class="r4"></div><p class="11">不好……再这么看下去我也会变得那么懒散的……</p><p class="11">快速地喝下调羹里的粥，然后马上移开视线。</p><p class="11">“……好喝。”</p><p class="11">“因为这碗粥中凝聚了我的真心嘛。”</p><div class="r4"></div><p class="21">这个家伙家务、做饭都很不错，而且也很勤快。唯一美中不足的是喜欢说些无聊的冷笑话。嘛，勉强可以归进帅哥这一栏里吧。</p><p class="11">他做家务也是相当的勤快，当然咯，像我的这样第一懒虫才不会去做呢。</p><p class="21">说实话，一开始叔叔说还要再来一个寄宿的人我是相当反对的：跟个完全不认识的人住在同一屋檐下太荒谬了吧。更何况是个跟我年纪差不多的男的，还有什么，失忆什么的……我可不是什么少女漫画的主角。</p><p class="11">这样想着就慢慢转化成了不安，好苦恼啊。</p><div class="r4"></div><p class="21">可就算这样，我还是稍微想了想要怎么跟他相处之类的事情。结果还是苦恼的想法占了上风，到最后我整个卧室里都装满了纸箱子。</p><p class="11">但是呢，到最后还是相处下去了。</p><p class="11">因为翔一君从一开始到现在都让我感觉是很温柔的样子。尤其是今天我要逃学的时候。</p><p class="11">当翔一君最开始突然来这里的时候，面对着不发一言的我，迅速地用冰箱里还剩下的东西做了一桌丰盛的晚餐。</p><div class="r4"></div><p class="11">“真好吃啊。”</p><p class="11">这是我跟翔一君说的第一句话。</p><p class="11">如果我没有嘴贱说这句话的话，也就不会听到他之后讲述的做菜方法了……</p><p class="11">这样说来，好像自从翔一君来以后，我折纸箱子的数量就慢慢减少了呢。</p><div class="r4"></div><p class="11">和翔一君住在一起，感受很安心呢。</p><p class="11">“我吃好了。”我满足地说道。</p><p class="11">这时碗里还剩差不多一半的粥。</p><p class="11">“麻烦你那么辛苦地煮真的很抱歉，但我已经吃不下了。”</p><div class="r4"></div><p class="11">“这样对身体不太好啊。你瞧你都瘦了。”</p><p class="11">翔一君知道我饭量小，所以没有给我甩脸子。他收拾好碗后，却不知为何拿着一条毛巾又回来了。</p><p class="11">“身上一定冒了很多汗吧？我来给你擦擦身子吧。”</p><p class="11">“什么！？”</p><div class="r4"></div><p class="11">说什么呢！</p><p class="11">“好啦，快脱吧。”</p><p class="11">“这……这样好么……”</p><p class="11">我可是女生耶，你到底知不知道！</p><div class="r4"></div><p class="11">该不会是把我当成小孩子看了吧？</p><p class="11">我可是高中生啊，高中生！已经16岁了！</p><p class="11">我也在正常地成长着好不好！</p><p class="11">……虽然，对胸部还不太满意……</p><div class="r4"></div><p class="11">“怎么了？快脱啊。”</p><p class="11">那么想看的话就让你看好了。</p><p class="11">让你看到我的身体后就去想坏坏的事情吧！</p><p class="11">“我知道啦……那个，我脱的时候你去朝那边站着。”</p><div class="r4"></div><p class="11">翔一君“嗯”了一声就向着窗户站过去了。</p><p class="11">而我则开始一枚一枚地解下睡衣的扣子。</p><p class="11">好紧张啊……</p><p class="11">“好了……转过来吧……”</p><div class="r4"></div><p class="11">翔一君向着我的方向站着。</p><p class="11">我则背冲着他。</p><p class="11">我用手挡着胸部，睡衣的上衣还挂在肩上。</p><p class="11">“把睡衣，拿下来……”</p><div class="r4"></div><p class="11">“嗯。”</p><p class="11">翔一君从我的背上把睡衣滑下去取走了。</p><p class="11">将胳膊很美妙地蜷缩着，毛巾在我的背上静静地移动着。</p><p class="11">在热水里拧过的毛巾好暖和。</p><div class="r4"></div><p class="11">翔一君什么也不说，仅仅是用不强不弱刚刚好的力度给我擦拭着。</p><p class="11">好舒服……</p><p class="11">仔细想想的话，这是第一次有父亲之外的人给我擦身子。翔一君现在又在想着什么呢？</p><p class="11">有没有在想坏坏的事情？</p><div class="r4"></div><p class="11">“真鱼？”</p><p class="11">“嗯？”</p><p class="11">“你的后背，真硬啊……”</p><p class="11">什么……</p><div class="r4"></div><p class="11">这种话，能跟女孩子说么……</p><p class="11">“身体不好嘛……我……”</p><p class="11">“所以要多吃点啊。”</p><p class="11">“我知道啦……”</p><div class="r4"></div><p class="11">擦拭完后，他像个医生一样平静地告诉了我，然后就离开了我的卧室。</p><p class="21">为什么呢，我现在完全不想折箱子了。于是我从床上起来，坐在桌前打开了笔记本电脑。上网后选择我以前收藏的门户网站，无所事事地看着今天的新闻。</p><p class="11">而当我看到这个消息的时候，不自觉地停下了眼神。</p><p class="11">·在绳文时代的地层发现了男性遗体</p><div class="r4"></div><p class="11">之前轰动了世间的那件事也是……</p><p class="11">这么想着，我点击鼠标，浏览了全文。</p><p class="11">果然只能这么想了。</p><p class="11">挖掘过程中，在被挖得不成样子的地层里发现了一个死了没几天的男性尸体。</p><div class="r4"></div><p class="11">由于已经判断了身份，所以同样在这个地层里的绳文时代的人类也都像是才死了没几天的样子。</p><p class="11">难不成是，时间反论？</p><p class="11">嘛，虽然我还不太懂这个词的意思……</p><p class="11">但不管怎么说这都是不可能发生的事情。果然就像之前的那些“不可能犯罪”啊。</p><div class="r4"></div><p class="11">啊……这种忧郁的感觉又来了……</p><p class="11">我又躺在了床上开始折箱子。</p><p class="11">把所有忧郁的感觉都封进箱子里，然后通通埋到地底下去。</p><p class="11">如果可以的话，也把我的秘密一起埋进去吧。</p><div class="r4"></div><h4 class="heading-4 h4">2</h4><p class="11">这是发生在开学不久后四月份的事件。地点则位于文京区立大场中学的操场上。</p><p class="21">第一目击者的是该校的一名二年级女生。她在和同学一起玩球的时候因为校服的裙子飘起来了所以没能接到球，在她印象中球应该是飞到很远的地方去了。</p><p class="21">操场的一角是一片樱花，而球正好滚到了那儿的草丛里。当她从草丛中把球捡起来的时候，视线却捕捉到了另一种东西。</p><p class="11">她看到了，那是在樱树上。</p><div class="r4"></div><p class="11">樱树的洞里闪着一颗还睁着的眼珠。树根上掉落着一副墨绿色的眼镜。</p><p class="11">那副眼镜，好像在哪里见过。</p><p class="11">跟班里那个个头最大，而且长满了痘痘的男生好像是同一副。</p><p class="11">那个男生现在就死在了樱树的洞里。</p><div class="r4"></div><p class="11">现在，樱树的周围被贴上了禁止入内的封条，警察则在忙忙碌碌地勘察现场。</p><p class="11">冰川绷着他那张精悍的脸注视着洞中的尸体。</p><p class="11">从警已经4年了，从没见过这样的画面。</p><p class="21">完全没有现实感，就好像是一场幻象一样。简直就如同一棵狰狞的樱树吞下了那个人，死者的血肉变成了被染上点点淡红色的盛开的花一般。</p><div class="r4"></div></div></section><section class="s3">
+<h2 class="s5" id="chapter-3">
+    第二章
+</h2>
+<div class="c1"><p class="11">一位大约21岁的青年躺在草坪上，仰望着天空。</p><p class="11">仰望着这片没有一片云彩的天空。</p><p class="11">只有那专属于十月上旬的阳光丝丝缕缕地泄入他的心房。</p><p class="11">身旁，风儿轻抚着树叶，金桂的香气缠绕在他的鼻翼间。</p><div class="r4"></div><p class="11">期待着甜美味道的他用力地嗅着风的气息。</p><p class="11">没有味道啊。真是遗憾。</p><p class="11">但即便如此，对于每件事情都仿佛是第一次经历的青年来讲，快乐自然是顺理成章的。</p><p class="11">早上起床、晚上睡觉、吃东西，那些平淡的日常似乎都充满了新鲜感。</p><div class="r4"></div><p class="11">“失去记忆还真是好啊”青年这么想到。</p><p class="11">每一天每一天，就算是失去记忆也不算什么。</p><p class="11">不过，如果每一天都会失去记忆的话又要怎么办呢？</p><p class="11">想啊想啊，最佳的解决办法是什么呢。正当他想不到，而准备放弃时，耳畔突然传来呼唤自己的声音。</p><div class="r4"></div><p class="11">青年撑起上半身，看向声源的位置。</p><p class="11">那里，一个披着米黄色夹克的中年男子正一边擦着汗，一边向他走来。</p><p class="11">青年笑着大声喊道：</p><p class="11">“早安，美杉教授！”</p><div class="r4"></div><p class="11">“早安！这不是挺有精神的嘛！”</p><p class="11">一边说着，美杉一边以温柔的眼神看向青年。</p><p class="11">“是，给您添麻烦了！”</p><p class="11">青年目前所在的地方，是医院门内的空地。</p><div class="r4"></div><p class="11">屋顶上挂着的，是昨天洗过的待干的白色被单，他看了一整天。</p><p class="11">而前天在医院的等候室里，他和一个不认识的老婆婆聊了好久好久。</p><p class="11">还有，明天得去窗外那片大白菜地里视察一下。</p><p class="21">“真是令人惊异的恢复速度啊。一般来讲，失忆者更多地会去思考烦恼的事情，因为他们不知道该怎么对待这个空虚的自我。”</p><div class="r4"></div><p class="11">听着这话，青年再次缓缓看向天空。</p><p class="11">“这样的天气多好啊……早上一睁开眼就能看到这么美丽的天空，还有什么要烦恼的呢？”</p><p class="11">美杉也在他的影响下抬头望向天空。</p><p class="11">澄碧无瑕的秋季天空真的称得上绮丽。</p><div class="r4"></div><p class="11">美杉觉得，自己之所以能够读懂天空的美，都是这个青年的功劳。</p><p class="11">“对了。”美杉弯下腰，向青年问道，“之前跟你说的那件事，有想法了么？”</p><p class="11">“您是说，我住在您家里那件事？”</p><p class="11">寄宿在朋友家里这个想法，是青年的主治医师提出的想法。</p><div class="r4"></div><p class="11">如果是在医院外接受更多事物的话，也许会有助于记忆恢复的。</p><p class="11">正因为如此，美杉用了近似于强迫的粗暴口吻向青年通知了这一提案。</p><p class="21">“不想来我家？如果只是你一个人寄宿的话，是没有问题的。正好我媳妇也去外国出差了，你也可以顺便帮我收拾收拾家务，帮我打打下手什么的。”</p><p class="11">青年开始在美杉身上感受到一股温暖。</p><div class="r4"></div><p class="11">如果能和他住在一起的话，一定能一直体验着这份温暖的吧。</p><p class="11">躺在以前病房的板床上考虑这件事的时候，莫名想起来之前一位护工说的话“又在想什么好事呐”。</p><p class="11">那么，决定了，要一直这样幸福下去。</p><p class="11">所以，一定要尽快向美杉教授回信。</p><div class="r4"></div><p class="11">“辛苦您照顾了。”</p><p class="11">一边说着，青年一边充满热情地低着头。</p><p class="11">美杉高兴地点头回应着，并拉过他的手握在了一起。</p><p class="11">“对对，你的名字应该是……”</p><div class="r4"></div><p class="11">“我的名字……津上翔一，是么？”</p><p class="11">津上翔一——。</p><p class="11">那天他的主治医师给他取的。</p><p class="11">在医院里为了方便所以这么叫下来了。</p><div class="r4"></div><p class="11">出院后，美杉依然管他叫这个名字。</p><p class="11">“我嘛，还是叫我‘翔一’会比较习惯一点。”</p><p class="11">当他得到这个新名字后，他马上用马克笔把名字写在杯子上，仔细地看着这四个汉字。</p><p class="11">也没什么不好的嘛。</p><div class="r4"></div><p class="11">特别是“翔”字，总能诱发一种对天空的联想。</p><p class="11">既然青年对现在这个名字非常满意，那么美杉也就放心了。</p><p class="11">“好！那么赶快咱们就开始庆祝你出院吧。想吃什么随便点。寿司也好，烤肉也好，尽管说就好了！”</p><p class="11">“嗯～～……”</p><div class="r4"></div><p class="11">想了一会儿，青年害羞地说道：</p><p class="11">“抱歉，我忘了我自己喜欢什么了。所以……请每样都来一份谢谢！”</p><h2 class="h6 h4">第一章</h2><h4 class="heading-4 h4">1</h4><p class="21">啊啊，这样下去要怎么办才好啊，我……要怎么活下去啊……真是不想活了……而且作业也不会写……零花钱又少得可怜……绿豆也吃不上……讨厌……真是讨厌到极点了……。</p><p class="21">唉，心情又低落了呢……虽说时常都会这样，可是今天我……貌似特别地严重啊……这也不像是跟别人见面时的那种感觉……反正人多的地方最讨厌了……呜呜，太阳还真是炫目啊……我都要被融化进去了呢……</p><div class="r4"></div><p class="11">我的眼睛呀，已经紧紧地闭在一起了哦。</p><p class="11">我心底的光景，相对于那片放晴的天空而言简直称得上是泾渭分明。</p><p class="11">然后再把自己裹在被子里，蜷成一个球。</p><p class="11">今天就这样混过一天就好了。嗯，这样就好了。</p><div class="r4"></div><p class="11">“真鱼，早上好！多舒服的早晨啊！”</p><p class="11">从房门的对面又传来了那轻浮的响声。</p><p class="11">被迫感染这种情绪还真是让人有点不爽。</p><p class="11">“快点下楼吧。对于今天的早饭我可是挺有自信的哦~”</p><div class="r4"></div><p class="21">我从被子里把头伸出来，用毫无精神可言的声音回应道：“早上好，翔一君……那个，今天我感觉身体不太舒服……所以，麻烦你给老师打个电话帮我请个假吧。”</p><p class="11">“啊，难道是感冒了么？莫非是流感？最近常常听说关于这个的。”</p><p class="11">“不是这样的啦……你不要瞎担心了。”</p><p class="11">“那我一会儿给你熬碗粥君，喝完之后就去睡吧。”</p><div class="r4"></div><p class="11">紧接着传来的是双脚快速走下楼梯的声音。</p><p class="11">真是，让他多余的关心了啊……？</p><p class="11">这么想着，我将手伸向放置在枕头旁的折纸上。</p><p class="11">我躺在床上，用巧妙的方法将一张张淡蓝色的纸折叠起来。</p><div class="r4"></div><p class="11">这样活动着手指的同时，心底也会慢慢沉静下来。对于我来讲，折纸就是类似于精神安定剂之类的东西。</p><p class="11">折什么比较好呢。是纸鹤呢，还是小青蛙？</p><p class="11">然而，今天这样忧郁的日子影响了我的决定。</p><p class="11">为什么我要折一个箱子。</p><div class="r4"></div><p class="11">箱子没有什么特殊的含义。箱子内部也许确是空无一物的。</p><p class="11">在钱包上已经摆下了30个小箱子。</p><p class="11">我在想，这样沉默地一直一直折着箱子的女子看上去是怎样的呢？</p><p class="11">从一旁看起来一定是很招人厌的吧。</p><div class="r4"></div><p class="11">如果用叫妖怪的方式给我取名的话，应该是“折纸箱的少女”这样的称呼吧？</p><p class="11">这样奇怪的爱好，我从来没对其他人说过，也没有人知道。</p><p class="21">但是在我小学四年级的某一天，我正在屋子里折着纸箱，爸爸却突然端着章鱼烧闯了进来。啊，被发现啦……那可真是我一生中最尴尬的瞬间啊……</p><p class="21">虽然父亲看到布满整个房间的纸盒后夸奖我是“折纸盒的天才”，但我依然把他从卧室里赶了出去，并警告他不要再进我的房间一步。而从那时候开始，爸爸也真的再没进过我的房间。</p><div class="r4"></div><p class="11">这样想想，爸爸是不是也有点可怜呢……？</p><p class="11">换个角度想，叔叔他应该是不会发现我这个秘密的。</p><p class="11">如果被他从心理学的角度分析一通的话好讨厌的。</p><p class="11">啊，在我胡思乱想的时候箱子的数量已经暴走了……</p><div class="r4"></div><p class="11">估计有100个了吧……</p><p class="11">还是像往常一样偷偷烧掉吧。</p><p class="11">名为“折纸箱的少女”的我，风谷真鱼，还在一味地折着。</p><p class="11">这时候，翔一君又从门口冲着我喊了起来。</p><div class="r4"></div><p class="11">估计是在端着“粥君”吧，真是谢谢了。</p><p class="11">我一面快速的把纸箱往被褥底下藏，一面叫翔一进来。</p><p class="11">“热粥大人驾到！”</p><p class="11">又来了。翔一那无聊的冷笑话。</p><div class="r4"></div><p class="11">“粥君”和“让君久等”了什么的，有意思么？</p><p class="11">随随便便就把“君”这样的敬语用上，一点也不好笑。</p><p class="11">而我呢，就很有自信咯……看看这个笑的比花还灿烂的我。</p><p class="11">“真没办法啊。看在垫在托盘君上的丸的份上，还有特别赠送哦。”</p><div class="r4"></div><p class="11">我不耐烦地答应道：“好啦好啦。”</p><p class="21">翔一便侧着坐在了我的床前。他拿出调羹舀上一勺粥，“呼呼”地吹凉掉，然后一边说着“张嘴，啊……”一边喂给我喝。完全就像是对待病人似的。</p><p class="11">脸好像离得有点近了啊……</p><p class="11">还是那副和往常一样懒散的笑容啊……</p><div class="r4"></div><p class="11">不好……再这么看下去我也会变得那么懒散的……</p><p class="11">快速地喝下调羹里的粥，然后马上移开视线。</p><p class="11">“……好喝。”</p><p class="11">“因为这碗粥中凝聚了我的真心嘛。”</p><div class="r4"></div><p class="21">这个家伙家务、做饭都很不错，而且也很勤快。唯一美中不足的是喜欢说些无聊的冷笑话。嘛，勉强可以归进帅哥这一栏里吧。</p><p class="11">他做家务也是相当的勤快，当然咯，像我的这样第一懒虫才不会去做呢。</p><p class="21">说实话，一开始叔叔说还要再来一个寄宿的人我是相当反对的：跟个完全不认识的人住在同一屋檐下太荒谬了吧。更何况是个跟我年纪差不多的男的，还有什么，失忆什么的……我可不是什么少女漫画的主角。</p><p class="11">这样想着就慢慢转化成了不安，好苦恼啊。</p><div class="r4"></div><p class="21">可就算这样，我还是稍微想了想要怎么跟他相处之类的事情。结果还是苦恼的想法占了上风，到最后我整个卧室里都装满了纸箱子。</p><p class="11">但是呢，到最后还是相处下去了。</p><p class="11">因为翔一君从一开始到现在都让我感觉是很温柔的样子。尤其是今天我要逃学的时候。</p><p class="11">当翔一君最开始突然来这里的时候，面对着不发一言的我，迅速地用冰箱里还剩下的东西做了一桌丰盛的晚餐。</p><div class="r4"></div><p class="11">“真好吃啊。”</p><p class="11">这是我跟翔一君说的第一句话。</p><p class="11">如果我没有嘴贱说这句话的话，也就不会听到他之后讲述的做菜方法了……</p><p class="11">这样说来，好像自从翔一君来以后，我折纸箱子的数量就慢慢减少了呢。</p><div class="r4"></div><p class="11">和翔一君住在一起，感受很安心呢。</p><p class="11">“我吃好了。”我满足地说道。</p><p class="11">这时碗里还剩差不多一半的粥。</p><p class="11">“麻烦你那么辛苦地煮真的很抱歉，但我已经吃不下了。”</p><div class="r4"></div><p class="11">“这样对身体不太好啊。你瞧你都瘦了。”</p><p class="11">翔一君知道我饭量小，所以没有给我甩脸子。他收拾好碗后，却不知为何拿着一条毛巾又回来了。</p><p class="11">“身上一定冒了很多汗吧？我来给你擦擦身子吧。”</p><p class="11">“什么！？”</p><div class="r4"></div><p class="11">说什么呢！</p><p class="11">“好啦，快脱吧。”</p><p class="11">“这……这样好么……”</p><p class="11">我可是女生耶，你到底知不知道！</p><div class="r4"></div><p class="11">该不会是把我当成小孩子看了吧？</p><p class="11">我可是高中生啊，高中生！已经16岁了！</p><p class="11">我也在正常地成长着好不好！</p><p class="11">……虽然，对胸部还不太满意……</p><div class="r4"></div><p class="11">“怎么了？快脱啊。”</p><p class="11">那么想看的话就让你看好了。</p><p class="11">让你看到我的身体后就去想坏坏的事情吧！</p><p class="11">“我知道啦……那个，我脱的时候你去朝那边站着。”</p><div class="r4"></div><p class="11">翔一君“嗯”了一声就向着窗户站过去了。</p><p class="11">而我则开始一枚一枚地解下睡衣的扣子。</p><p class="11">好紧张啊……</p><p class="11">“好了……转过来吧……”</p><div class="r4"></div><p class="11">翔一君向着我的方向站着。</p><p class="11">我则背冲着他。</p><p class="11">我用手挡着胸部，睡衣的上衣还挂在肩上。</p><p class="11">“把睡衣，拿下来……”</p><div class="r4"></div><p class="11">“嗯。”</p><p class="11">翔一君从我的背上把睡衣滑下去取走了。</p><p class="11">将胳膊很美妙地蜷缩着，毛巾在我的背上静静地移动着。</p><p class="11">在热水里拧过的毛巾好暖和。</p><div class="r4"></div><p class="11">翔一君什么也不说，仅仅是用不强不弱刚刚好的力度给我擦拭着。</p><p class="11">好舒服……</p><p class="11">仔细想想的话，这是第一次有父亲之外的人给我擦身子。翔一君现在又在想着什么呢？</p><p class="11">有没有在想坏坏的事情？</p><div class="r4"></div><p class="11">“真鱼？”</p><p class="11">“嗯？”</p><p class="11">“你的后背，真硬啊……”</p><p class="11">什么……</p><div class="r4"></div><p class="11">这种话，能跟女孩子说么……</p><p class="11">“身体不好嘛……我……”</p><p class="11">“所以要多吃点啊。”</p><p class="11">“我知道啦……”</p><div class="r4"></div><p class="11">擦拭完后，他像个医生一样平静地告诉了我，然后就离开了我的卧室。</p><p class="21">为什么呢，我现在完全不想折箱子了。于是我从床上起来，坐在桌前打开了笔记本电脑。上网后选择我以前收藏的门户网站，无所事事地看着今天的新闻。</p><p class="11">而当我看到这个消息的时候，不自觉地停下了眼神。</p><p class="11">·在绳文时代的地层发现了男性遗体</p><div class="r4"></div><p class="11">之前轰动了世间的那件事也是……</p><p class="11">这么想着，我点击鼠标，浏览了全文。</p><p class="11">果然只能这么想了。</p><p class="11">挖掘过程中，在被挖得不成样子的地层里发现了一个死了没几天的男性尸体。</p><div class="r4"></div><p class="11">由于已经判断了身份，所以同样在这个地层里的绳文时代的人类也都像是才死了没几天的样子。</p><p class="11">难不成是，时间反论？</p><p class="11">嘛，虽然我还不太懂这个词的意思……</p><p class="11">但不管怎么说这都是不可能发生的事情。果然就像之前的那些“不可能犯罪”啊。</p><div class="r4"></div><p class="11">啊……这种忧郁的感觉又来了……</p><p class="11">我又躺在了床上开始折箱子。</p><p class="11">把所有忧郁的感觉都封进箱子里，然后通通埋到地底下去。</p><p class="11">如果可以的话，也把我的秘密一起埋进去吧。</p><div class="r4"></div><h4 class="heading-4 h4">2</h4><p class="11">这是发生在开学不久后四月份的事件。地点则位于文京区立大场中学的操场上。</p><p class="21">第一目击者的是该校的一名二年级女生。她在和同学一起玩球的时候因为校服的裙子飘起来了所以没能接到球，在她印象中球应该是飞到很远的地方去了。</p><p class="21">操场的一角是一片樱花，而球正好滚到了那儿的草丛里。当她从草丛中把球捡起来的时候，视线却捕捉到了另一种东西。</p><p class="11">她看到了，那是在樱树上。</p><div class="r4"></div><p class="11">樱树的洞里闪着一颗还睁着的眼珠。树根上掉落着一副墨绿色的眼镜。</p><p class="11">那副眼镜，好像在哪里见过。</p><p class="11">跟班里那个个头最大，而且长满了痘痘的男生好像是同一副。</p><p class="11">那个男生现在就死在了樱树的洞里。</p><div class="r4"></div><p class="11">现在，樱树的周围被贴上了禁止入内的封条，警察则在忙忙碌碌地勘察现场。</p><p class="11">冰川绷着他那张精悍的脸注视着洞中的尸体。</p><p class="11">从警已经4年了，从没见过这样的画面。</p><p class="21">完全没有现实感，就好像是一场幻象一样。简直就如同一棵狰狞的樱树吞下了那个人，死者的血肉变成了被染上点点淡红色的盛开的花一般。</p><div class="r4"></div></div></section><section class="s3">
+<h2 class="s5" id="chapter-4">
+    第三章
+</h2>
+<div class="c1"><p class="11">一位大约21岁的青年躺在草坪上，仰望着天空。</p><p class="11">仰望着这片没有一片云彩的天空。</p><p class="11">只有那专属于十月上旬的阳光丝丝缕缕地泄入他的心房。</p><p class="11">身旁，风儿轻抚着树叶，金桂的香气缠绕在他的鼻翼间。</p><div class="r4"></div><p class="11">期待着甜美味道的他用力地嗅着风的气息。</p><p class="11">没有味道啊。真是遗憾。</p><p class="11">但即便如此，对于每件事情都仿佛是第一次经历的青年来讲，快乐自然是顺理成章的。</p><p class="11">早上起床、晚上睡觉、吃东西，那些平淡的日常似乎都充满了新鲜感。</p><div class="r4"></div><p class="11">“失去记忆还真是好啊”青年这么想到。</p><p class="11">每一天每一天，就算是失去记忆也不算什么。</p><p class="11">不过，如果每一天都会失去记忆的话又要怎么办呢？</p><p class="11">想啊想啊，最佳的解决办法是什么呢。正当他想不到，而准备放弃时，耳畔突然传来呼唤自己的声音。</p><div class="r4"></div><p class="11">青年撑起上半身，看向声源的位置。</p><p class="11">那里，一个披着米黄色夹克的中年男子正一边擦着汗，一边向他走来。</p><p class="11">青年笑着大声喊道：</p><p class="11">“早安，美杉教授！”</p><div class="r4"></div><p class="11">“早安！这不是挺有精神的嘛！”</p><p class="11">一边说着，美杉一边以温柔的眼神看向青年。</p><p class="11">“是，给您添麻烦了！”</p><p class="11">青年目前所在的地方，是医院门内的空地。</p><div class="r4"></div><p class="11">屋顶上挂着的，是昨天洗过的待干的白色被单，他看了一整天。</p><p class="11">而前天在医院的等候室里，他和一个不认识的老婆婆聊了好久好久。</p><p class="11">还有，明天得去窗外那片大白菜地里视察一下。</p><p class="21">“真是令人惊异的恢复速度啊。一般来讲，失忆者更多地会去思考烦恼的事情，因为他们不知道该怎么对待这个空虚的自我。”</p><div class="r4"></div><p class="11">听着这话，青年再次缓缓看向天空。</p><p class="11">“这样的天气多好啊……早上一睁开眼就能看到这么美丽的天空，还有什么要烦恼的呢？”</p><p class="11">美杉也在他的影响下抬头望向天空。</p><p class="11">澄碧无瑕的秋季天空真的称得上绮丽。</p><div class="r4"></div><p class="11">美杉觉得，自己之所以能够读懂天空的美，都是这个青年的功劳。</p><p class="11">“对了。”美杉弯下腰，向青年问道，“之前跟你说的那件事，有想法了么？”</p><p class="11">“您是说，我住在您家里那件事？”</p><p class="11">寄宿在朋友家里这个想法，是青年的主治医师提出的想法。</p><div class="r4"></div><p class="11">如果是在医院外接受更多事物的话，也许会有助于记忆恢复的。</p><p class="11">正因为如此，美杉用了近似于强迫的粗暴口吻向青年通知了这一提案。</p><p class="21">“不想来我家？如果只是你一个人寄宿的话，是没有问题的。正好我媳妇也去外国出差了，你也可以顺便帮我收拾收拾家务，帮我打打下手什么的。”</p><p class="11">青年开始在美杉身上感受到一股温暖。</p><div class="r4"></div><p class="11">如果能和他住在一起的话，一定能一直体验着这份温暖的吧。</p><p class="11">躺在以前病房的板床上考虑这件事的时候，莫名想起来之前一位护工说的话“又在想什么好事呐”。</p><p class="11">那么，决定了，要一直这样幸福下去。</p><p class="11">所以，一定要尽快向美杉教授回信。</p><div class="r4"></div><p class="11">“辛苦您照顾了。”</p><p class="11">一边说着，青年一边充满热情地低着头。</p><p class="11">美杉高兴地点头回应着，并拉过他的手握在了一起。</p><p class="11">“对对，你的名字应该是……”</p><div class="r4"></div><p class="11">“我的名字……津上翔一，是么？”</p><p class="11">津上翔一——。</p><p class="11">那天他的主治医师给他取的。</p><p class="11">在医院里为了方便所以这么叫下来了。</p><div class="r4"></div><p class="11">出院后，美杉依然管他叫这个名字。</p><p class="11">“我嘛，还是叫我‘翔一’会比较习惯一点。”</p><p class="11">当他得到这个新名字后，他马上用马克笔把名字写在杯子上，仔细地看着这四个汉字。</p><p class="11">也没什么不好的嘛。</p><div class="r4"></div><p class="11">特别是“翔”字，总能诱发一种对天空的联想。</p><p class="11">既然青年对现在这个名字非常满意，那么美杉也就放心了。</p><p class="11">“好！那么赶快咱们就开始庆祝你出院吧。想吃什么随便点。寿司也好，烤肉也好，尽管说就好了！”</p><p class="11">“嗯～～……”</p><div class="r4"></div><p class="11">想了一会儿，青年害羞地说道：</p><p class="11">“抱歉，我忘了我自己喜欢什么了。所以……请每样都来一份谢谢！”</p><h2 class="h6 h4">第一章</h2><h4 class="heading-4 h4">1</h4><p class="21">啊啊，这样下去要怎么办才好啊，我……要怎么活下去啊……真是不想活了……而且作业也不会写……零花钱又少得可怜……绿豆也吃不上……讨厌……真是讨厌到极点了……。</p><p class="21">唉，心情又低落了呢……虽说时常都会这样，可是今天我……貌似特别地严重啊……这也不像是跟别人见面时的那种感觉……反正人多的地方最讨厌了……呜呜，太阳还真是炫目啊……我都要被融化进去了呢……</p><div class="r4"></div><p class="11">我的眼睛呀，已经紧紧地闭在一起了哦。</p><p class="11">我心底的光景，相对于那片放晴的天空而言简直称得上是泾渭分明。</p><p class="11">然后再把自己裹在被子里，蜷成一个球。</p><p class="11">今天就这样混过一天就好了。嗯，这样就好了。</p><div class="r4"></div><p class="11">“真鱼，早上好！多舒服的早晨啊！”</p><p class="11">从房门的对面又传来了那轻浮的响声。</p><p class="11">被迫感染这种情绪还真是让人有点不爽。</p><p class="11">“快点下楼吧。对于今天的早饭我可是挺有自信的哦~”</p><div class="r4"></div><p class="21">我从被子里把头伸出来，用毫无精神可言的声音回应道：“早上好，翔一君……那个，今天我感觉身体不太舒服……所以，麻烦你给老师打个电话帮我请个假吧。”</p><p class="11">“啊，难道是感冒了么？莫非是流感？最近常常听说关于这个的。”</p><p class="11">“不是这样的啦……你不要瞎担心了。”</p><p class="11">“那我一会儿给你熬碗粥君，喝完之后就去睡吧。”</p><div class="r4"></div><p class="11">紧接着传来的是双脚快速走下楼梯的声音。</p><p class="11">真是，让他多余的关心了啊……？</p><p class="11">这么想着，我将手伸向放置在枕头旁的折纸上。</p><p class="11">我躺在床上，用巧妙的方法将一张张淡蓝色的纸折叠起来。</p><div class="r4"></div><p class="11">这样活动着手指的同时，心底也会慢慢沉静下来。对于我来讲，折纸就是类似于精神安定剂之类的东西。</p><p class="11">折什么比较好呢。是纸鹤呢，还是小青蛙？</p><p class="11">然而，今天这样忧郁的日子影响了我的决定。</p><p class="11">为什么我要折一个箱子。</p><div class="r4"></div><p class="11">箱子没有什么特殊的含义。箱子内部也许确是空无一物的。</p><p class="11">在钱包上已经摆下了30个小箱子。</p><p class="11">我在想，这样沉默地一直一直折着箱子的女子看上去是怎样的呢？</p><p class="11">从一旁看起来一定是很招人厌的吧。</p><div class="r4"></div><p class="11">如果用叫妖怪的方式给我取名的话，应该是“折纸箱的少女”这样的称呼吧？</p><p class="11">这样奇怪的爱好，我从来没对其他人说过，也没有人知道。</p><p class="21">但是在我小学四年级的某一天，我正在屋子里折着纸箱，爸爸却突然端着章鱼烧闯了进来。啊，被发现啦……那可真是我一生中最尴尬的瞬间啊……</p><p class="21">虽然父亲看到布满整个房间的纸盒后夸奖我是“折纸盒的天才”，但我依然把他从卧室里赶了出去，并警告他不要再进我的房间一步。而从那时候开始，爸爸也真的再没进过我的房间。</p><div class="r4"></div><p class="11">这样想想，爸爸是不是也有点可怜呢……？</p><p class="11">换个角度想，叔叔他应该是不会发现我这个秘密的。</p><p class="11">如果被他从心理学的角度分析一通的话好讨厌的。</p><p class="11">啊，在我胡思乱想的时候箱子的数量已经暴走了……</p><div class="r4"></div><p class="11">估计有100个了吧……</p><p class="11">还是像往常一样偷偷烧掉吧。</p><p class="11">名为“折纸箱的少女”的我，风谷真鱼，还在一味地折着。</p><p class="11">这时候，翔一君又从门口冲着我喊了起来。</p><div class="r4"></div><p class="11">估计是在端着“粥君”吧，真是谢谢了。</p><p class="11">我一面快速的把纸箱往被褥底下藏，一面叫翔一进来。</p><p class="11">“热粥大人驾到！”</p><p class="11">又来了。翔一那无聊的冷笑话。</p><div class="r4"></div><p class="11">“粥君”和“让君久等”了什么的，有意思么？</p><p class="11">随随便便就把“君”这样的敬语用上，一点也不好笑。</p><p class="11">而我呢，就很有自信咯……看看这个笑的比花还灿烂的我。</p><p class="11">“真没办法啊。看在垫在托盘君上的丸的份上，还有特别赠送哦。”</p><div class="r4"></div><p class="11">我不耐烦地答应道：“好啦好啦。”</p><p class="21">翔一便侧着坐在了我的床前。他拿出调羹舀上一勺粥，“呼呼”地吹凉掉，然后一边说着“张嘴，啊……”一边喂给我喝。完全就像是对待病人似的。</p><p class="11">脸好像离得有点近了啊……</p><p class="11">还是那副和往常一样懒散的笑容啊……</p><div class="r4"></div><p class="11">不好……再这么看下去我也会变得那么懒散的……</p><p class="11">快速地喝下调羹里的粥，然后马上移开视线。</p><p class="11">“……好喝。”</p><p class="11">“因为这碗粥中凝聚了我的真心嘛。”</p><div class="r4"></div><p class="21">这个家伙家务、做饭都很不错，而且也很勤快。唯一美中不足的是喜欢说些无聊的冷笑话。嘛，勉强可以归进帅哥这一栏里吧。</p><p class="11">他做家务也是相当的勤快，当然咯，像我的这样第一懒虫才不会去做呢。</p><p class="21">说实话，一开始叔叔说还要再来一个寄宿的人我是相当反对的：跟个完全不认识的人住在同一屋檐下太荒谬了吧。更何况是个跟我年纪差不多的男的，还有什么，失忆什么的……我可不是什么少女漫画的主角。</p><p class="11">这样想着就慢慢转化成了不安，好苦恼啊。</p><div class="r4"></div><p class="21">可就算这样，我还是稍微想了想要怎么跟他相处之类的事情。结果还是苦恼的想法占了上风，到最后我整个卧室里都装满了纸箱子。</p><p class="11">但是呢，到最后还是相处下去了。</p><p class="11">因为翔一君从一开始到现在都让我感觉是很温柔的样子。尤其是今天我要逃学的时候。</p><p class="11">当翔一君最开始突然来这里的时候，面对着不发一言的我，迅速地用冰箱里还剩下的东西做了一桌丰盛的晚餐。</p><div class="r4"></div><p class="11">“真好吃啊。”</p><p class="11">这是我跟翔一君说的第一句话。</p><p class="11">如果我没有嘴贱说这句话的话，也就不会听到他之后讲述的做菜方法了……</p><p class="11">这样说来，好像自从翔一君来以后，我折纸箱子的数量就慢慢减少了呢。</p><div class="r4"></div><p class="11">和翔一君住在一起，感受很安心呢。</p><p class="11">“我吃好了。”我满足地说道。</p><p class="11">这时碗里还剩差不多一半的粥。</p><p class="11">“麻烦你那么辛苦地煮真的很抱歉，但我已经吃不下了。”</p><div class="r4"></div><p class="11">“这样对身体不太好啊。你瞧你都瘦了。”</p><p class="11">翔一君知道我饭量小，所以没有给我甩脸子。他收拾好碗后，却不知为何拿着一条毛巾又回来了。</p><p class="11">“身上一定冒了很多汗吧？我来给你擦擦身子吧。”</p><p class="11">“什么！？”</p><div class="r4"></div><p class="11">说什么呢！</p><p class="11">“好啦，快脱吧。”</p><p class="11">“这……这样好么……”</p><p class="11">我可是女生耶，你到底知不知道！</p><div class="r4"></div><p class="11">该不会是把我当成小孩子看了吧？</p><p class="11">我可是高中生啊，高中生！已经16岁了！</p><p class="11">我也在正常地成长着好不好！</p><p class="11">……虽然，对胸部还不太满意……</p><div class="r4"></div><p class="11">“怎么了？快脱啊。”</p><p class="11">那么想看的话就让你看好了。</p><p class="11">让你看到我的身体后就去想坏坏的事情吧！</p><p class="11">“我知道啦……那个，我脱的时候你去朝那边站着。”</p><div class="r4"></div><p class="11">翔一君“嗯”了一声就向着窗户站过去了。</p><p class="11">而我则开始一枚一枚地解下睡衣的扣子。</p><p class="11">好紧张啊……</p><p class="11">“好了……转过来吧……”</p><div class="r4"></div><p class="11">翔一君向着我的方向站着。</p><p class="11">我则背冲着他。</p><p class="11">我用手挡着胸部，睡衣的上衣还挂在肩上。</p><p class="11">“把睡衣，拿下来……”</p><div class="r4"></div><p class="11">“嗯。”</p><p class="11">翔一君从我的背上把睡衣滑下去取走了。</p><p class="11">将胳膊很美妙地蜷缩着，毛巾在我的背上静静地移动着。</p><p class="11">在热水里拧过的毛巾好暖和。</p><div class="r4"></div><p class="11">翔一君什么也不说，仅仅是用不强不弱刚刚好的力度给我擦拭着。</p><p class="11">好舒服……</p><p class="11">仔细想想的话，这是第一次有父亲之外的人给我擦身子。翔一君现在又在想着什么呢？</p><p class="11">有没有在想坏坏的事情？</p><div class="r4"></div><p class="11">“真鱼？”</p><p class="11">“嗯？”</p><p class="11">“你的后背，真硬啊……”</p><p class="11">什么……</p><div class="r4"></div><p class="11">这种话，能跟女孩子说么……</p><p class="11">“身体不好嘛……我……”</p><p class="11">“所以要多吃点啊。”</p><p class="11">“我知道啦……”</p><div class="r4"></div><p class="11">擦拭完后，他像个医生一样平静地告诉了我，然后就离开了我的卧室。</p><p class="21">为什么呢，我现在完全不想折箱子了。于是我从床上起来，坐在桌前打开了笔记本电脑。上网后选择我以前收藏的门户网站，无所事事地看着今天的新闻。</p><p class="11">而当我看到这个消息的时候，不自觉地停下了眼神。</p><p class="11">·在绳文时代的地层发现了男性遗体</p><div class="r4"></div><p class="11">之前轰动了世间的那件事也是……</p><p class="11">这么想着，我点击鼠标，浏览了全文。</p><p class="11">果然只能这么想了。</p><p class="11">挖掘过程中，在被挖得不成样子的地层里发现了一个死了没几天的男性尸体。</p><div class="r4"></div><p class="11">由于已经判断了身份，所以同样在这个地层里的绳文时代的人类也都像是才死了没几天的样子。</p><p class="11">难不成是，时间反论？</p><p class="11">嘛，虽然我还不太懂这个词的意思……</p><p class="11">但不管怎么说这都是不可能发生的事情。果然就像之前的那些“不可能犯罪”啊。</p><div class="r4"></div><p class="11">啊……这种忧郁的感觉又来了……</p><p class="11">我又躺在了床上开始折箱子。</p><p class="11">把所有忧郁的感觉都封进箱子里，然后通通埋到地底下去。</p><p class="11">如果可以的话，也把我的秘密一起埋进去吧。</p><div class="r4"></div><h4 class="heading-4 h4">2</h4><p class="11">这是发生在开学不久后四月份的事件。地点则位于文京区立大场中学的操场上。</p><p class="21">第一目击者的是该校的一名二年级女生。她在和同学一起玩球的时候因为校服的裙子飘起来了所以没能接到球，在她印象中球应该是飞到很远的地方去了。</p><p class="21">操场的一角是一片樱花，而球正好滚到了那儿的草丛里。当她从草丛中把球捡起来的时候，视线却捕捉到了另一种东西。</p><p class="11">她看到了，那是在樱树上。</p><div class="r4"></div><p class="11">樱树的洞里闪着一颗还睁着的眼珠。树根上掉落着一副墨绿色的眼镜。</p><p class="11">那副眼镜，好像在哪里见过。</p><p class="11">跟班里那个个头最大，而且长满了痘痘的男生好像是同一副。</p><p class="11">那个男生现在就死在了樱树的洞里。</p><div class="r4"></div><p class="11">现在，樱树的周围被贴上了禁止入内的封条，警察则在忙忙碌碌地勘察现场。</p><p class="11">冰川绷着他那张精悍的脸注视着洞中的尸体。</p><p class="11">从警已经4年了，从没见过这样的画面。</p><p class="21">完全没有现实感，就好像是一场幻象一样。简直就如同一棵狰狞的樱树吞下了那个人，死者的血肉变成了被染上点点淡红色的盛开的花一般。</p><div class="r4"></div></div></section><section class="s3">
+<h2 class="s5" id="chapter-5">
+    第四章
+</h2>
+<div class="c1"><p class="21">那天的午餐是由翔一泡制的『 春椰菜腌肉意粉 』。 这些椰菜可是在庭院的菜园里所收割回来的。原本只能在冬天吃到的椰菜，经过品种改良，现在一年四季都能吃到。</p><p class="21">在日本会根据不同收割期作分类，十一至三月的是冬椰菜，七至十月的是夏秋椰菜（高原椰菜），然后，四至六月则是春椰菜，不同的时期会有着不同的滋味。</p><p class="11">春椰菜与爽口且充满口感的冬椰菜相比，特征为菜叶柔软鲜嫩，适合用于制作沙律以及生吃。</p><p class="21">此外，椰菜含有丰富的维他命U，能够调节胃酸，修复肠胃黏膜组织，古希腊时亦被视作为调整肠胃的健康食品。</p><div class="r4"></div><p class="21">真鱼与翔一为了购买晚餐的食材而来到附近的商店街。就像闲聊着晚餐菜式如何般轻松，真鱼尝试向翔一问道是否有想起什么记忆。</p><p class="21">好像还没想起玩什么似的。翔一也是一贯的答案。倏地真鱼想到，就算丧失了记忆，最少也会有记得的一些记忆才对。</p><p class="21">例如说话、一般常识等，在翔一的情况里，尤其是有关料理的记忆。要是能选择留下或者消除记忆的话，我亦想选择丧失记忆。只留下快乐的回忆，讨厌的记忆则消除得干干净净就好。 真鱼一边想着那种事一边走着时，一位年轻女性随便地走近她，并向她搭讪。一百七十厘米以上的修长体型，时尚配色的薄线衫与牛仔裤搭配，栗色长发有着少许的捲曲。</p><p class="11">真鱼觉得她是个彷如模特般的美人。</p><div class="r4"></div><p class="21">“呐，这里今天应该不是休息的，你知道发生什么事吗？” 女性说着，以细长的手指指着已落闸的『 花村蛋糕甜点店 』。</p><p class="21">真鱼与翔一互相对望。翔一以难以启齿的口吻回答道。“店主的花村先生在一星期前过身了……” 女性的脸上忽然蒙上了一片阴霾。 “为什么那么突然……？”</p><p class="11">“那是因为，受害于那不可能犯罪之下。” “呃……真的吗？”</p><p class="11">翔一认真地点头。</p><div class="r4"></div><p class="21">“是么……还以为与我无关的事，可是却在意外的地方受到波及呢……不过，那么花村先生……” 女性低声说罢，即向着闸门双手合十，闭上眼睛并祈祷起来。然后睁开双眼，拨起头发。 “但真是深受打击啊～这里的椰菜蛋糕在网上可是备受好评吧。我啊，很喜欢甜点，还写了美食杂志喔。可是━━━”</p><p class="11">女性叹了口气，显得垂头丧气。“要是我早点来就好了……已经一生也吃不到了吗……”</p><p class="21">“我懂得制作花村先生的椰菜蛋糕啊。”翔一微笑着说。 女性以不可思议的眼神看着翔一。“你懂得制作吗？” “之前我曾经买来吃过，由于美味非常，于是便尝试自己制作看看。最初亦失败了数次，但现在已经能完美地重现那种味道了。对吧，真鱼。”</p><p class="11">唐突地被问及的真鱼，双目低垂地回答。“我觉得与店里的味道没大差别……”</p><div class="r4"></div><p class="11">“只要来我家的话，我便马上可以弄给你吃。”</p><p class="11">女性以长着长长睫毛的眼睛，向翔一上下打量。“你是甜品师傅？”</p><p class="11">“唔～……”稍稍面露懊恼神色的翔一，于是仰天回答道。“也许曾经是吧。”</p><p class="21">“虽然不太明白……不过，看你也不像是在搭讪女生，那我也不客气了。在这充泄着怪事的世界上，能吃的时候就要吃个够呢。”</p><div class="r4"></div><p class="21">“说的没错，*经济环境好，一起来吃蛋糕吧。”说过冷笑话之后，翔一看到了一幕令人难以置信的光景。女生掩着嘴嘻嘻地笑了起来。</p><p class="21">“经济环境好，一起来吃蛋糕……别说了，真是的……”笑着说道的她，看起来是认真的。 翔一的笑话居然会令人发笑，这可是他自有记忆以来的第一次。面对这罕见的反应，反令翔一感到有点不知所措，于是他只有带着不好意思的神色，挠头傻笑。</p><p class="21">真鱼也是首次见到有人会因为翔一的笑话而大笑起来。在震惊的同时，也令她感到十分佩服。同时也感到一种至今从未感到过的心情。不知怎的，心里就有种无名的不安。</p><p class="21">在走到美杉家的途中，三人进行了简单的自我介绍。喜爱甜品的女生━━━小林雪纪是位二十一岁的大学生，现于位处郊外的公寓中独居。</p><div class="r4"></div><p class="21">回到家里，翔一便到厨房去制作椰菜蛋糕，而充满兴致的雪纪亦走进了菜园。由于刚才翔一向雪纪推荐说，家里的蔬菜均没使用农药的关系下，她于是摘下了一片椰菜叶，并放进嘴里咀嚼。比起在超级市场里买到的，也真的好吃许多。</p><p class="21">因此对那椰菜蛋糕也就更为期待了。之后，她坐在客厅的沙发上看着时装杂志，此时翔一和真鱼从厨房里走出来。</p><p class="21">“让你久等了！”说着的翔一，同时将椰菜蛋糕送上。 光从形状和颜色上骤然看去，那确实会令人误认为是卷心菜。外观上简直与花村蛋糕甜点店的一模一样。</p><p class="21">“好可爱～！甜点的外观果然很重要呢～”雪纪幸福地哼着歌般说道，并从袋中拿出数码相机，咔嚓咔嚓地从多角度去拍摄照片。“之后要上传到網誌去呢～”</p><div class="r4"></div><p class="11">看着这样的雪纪，令翔一亦不禁感到幸福的感觉。</p><p class="11">“这椰菜形状的面团，是使用了小麦粉和鸡蛋等，还加入了在菜园里所收割的椰菜。”</p><p class="21">“哪个哪个～？” 雪纪用叉子切开蛋糕边缘并放进嘴里，“好～美味啊～～！”她发出惊叫。 “原来如此，所以是椰菜形状的呢。椰菜面团里面还有另一个蛋糕。这味道……对了，是番茄！是番茄蛋糕！”</p><p class="11">“没错。这是花村蛋糕甜点店的『 椰菜番茄夫妇蛋糕 』！我重申一次，是『 椰菜番茄夫妇蛋糕 』！”</p><div class="r4"></div><p class="11">“为什么要说两次啊。”真鱼没好气地吐槽。</p><p class="21">“椰菜面团与番茄蛋糕，两种蔬菜甜品的甜味在口中融合……啊啊……这种感觉还是第一次……”雪纪沉醉地浸淫在舌头上的余蕴之中。</p><p class="11">过了一会，翔一担心地问道。“雪纪小姐？”</p><p class="21">雪纪满足地点头道。“嗯，值三星！” 那是雪纪所作出的最高评价级别。 “感谢招待。”雪纪礼貌地道谢，而翔一则高兴的微笑着。</p><div class="r4"></div><p class="11">“津上果然是位甜品师傅？还是甜品师傅的学徒呢？”</p><p class="11">“雪纪小姐到访各处去品尝各式的甜品，不也是要朝着成为甜品师傅为目标吗？”</p><p class="21">“我吗？虽然也不是没有兴趣，但我可是吃的专家。而且在家里也完全不会做菜，所以也希望嫁个擅长做菜的老公呢。”</p><p class="11">突然翔一站起来说道。“就由我来教你做菜吧。”</p><div class="r4"></div><p class="11">呃？</p><p class="11">“也对呢……那么，就先从你喜欢的蛋糕开始好吗。” “呃，等、等等……怎么了…？”</p><p class="21">翔一半强迫地拉着雪纪的手，并带她走进厨房去。看着的真鱼，于是不满地坐在沙发上，并怒瞪着翔一的背影。 你都还没教我做菜……。明明约好了的……。</p><p class="11">“那么，来试试做吧。”穿上围裙的翔一，于是提起手提搅拌器。雪纪领悟力挺高的。就如翔一所说━━━。</p><div class="r4"></div><p class="21">将碗放在水中加热，轻轻搅拌内里的鸡蛋和砂糖，再以手提搅拌器打至起泡。然后加入小麦粉、牛油、牛奶，接着放进焗炉里烘焙。将海绵面团分成两块，中间夹住生忌廉。</p><p class="11">“之后再将生忌廉涂满整体表面，最后再放上装饰便大功告成。” 翔一完全是一副老师的口吻。</p><p class="21">雪纪以水果刀将草莓一颗一颗地切开一半。她想若能够亲手制作蛋糕的话，或许是件意外地有趣的事，因此令她雀跃不已。</p><p class="11">翔一以一副老师的样子抱臂胸前。“装饰时太多的修正，便会令忌廉变干，因此无需执着，轻松地涂上即可。”</p><div class="r4"></div><p class="21">“太天真了！”突然的一声大喊，接着啪的一声，雪纪将水果刀用力地扔在砧板之上，并瞪着翔一。翔一被她的气势所压倒，不禁苦笑道。“雪纪小姐很有坚持呢……”</p><p class="11">“我在发怒啊。”雪纪可谓非常认真。</p><p class="11">翔一红着脸说道。“对不起，是我的不对，让我们一起竭尽所能地去装饰蛋糕吧！” “那么，去买东西吧。”</p><p class="21">“买东西？” “就让你看看我的装饰好了。”于是，翔一让雪纪坐上电单车，飞快地驶去。在超级市场里购买了大量的水果之后，便返回厨房去。</p><div class="r4"></div><p class="11">将买回来的水果从塑料袋里拿出，经过一番切割、雕刻及弄烂之下，雪纪看了海绵蛋糕一眼，并喃喃自语道。</p><p class="11">“装饰的灵感出现了！”雪纪想着将蛋糕装饰成为校服的模样。</p><p class="21">她让海绵蛋糕穿上由生忌廉所制成的裙子。再用水果所制成的饰物，来装饰蛋糕的表面。愉快地为蛋糕装饰着的雪纪，看起来就像在翩翩起舞着似的。蛋糕的装饰也都终于完成了。</p><p class="11">雪纪高调地发表出蛋糕的名字。“命名为『 水果天堂.享受假期 』！”</p><div class="r4"></div><p class="21">翔一和真鱼也睁大了双眼。在水果的天堂之中，享受着悠闲的假期━━━。那样的光景就呈现在脑海中。蛋糕上放满野莓、奇异果、鲜橙等色彩鲜艳的水果。那里简直是水果的乐园。</p><p class="11">“……有点奇怪呢？” 雪纪害羞地笑着问翔一。</p><p class="21">“不不，我觉得这种水准已相当不错。” 将蛋糕切开分给众人的翔一，吃了一口便赞不绝口。“全靠雪纪小姐的装饰，才能做出这种前所未有的味道。”</p><p class="11">“真不知道你这句话是否在夸赞人。”真鱼小声地吐槽，然后也吃了一口，不禁“啊，好美味！”地赞叹。</p><div class="r4"></div><p class="11">“嗯，应该也算是两星级。”雪纪也吃了一口，并自吹自擂道。</p><p class="21">“配合我的基本指导以及雪纪小姐的品味，终于完成了这样的一个美味蛋糕。也许我和雪纪小姐的合拍度也不错耶。” 翔一高兴的笑着并看着雪纪。</p><p class="11">突然在胡说什么啊！ 真鱼于是以锐利的目光盯着翔一。</p><p class="11">“什么什么？你刚才若无其事向我表白吧？我可是有很多人追求啊～” 雪纪说着用手肘撞翔一的手臂。</p><div class="r4"></div><p class="11">“啊，对了，雪纪小姐不如一起吃晚饭如何？”翔一彷如想出了个好点子一般，啪的一声击掌。</p><p class="21">真鱼马上向这样的翔一插嘴道。“等等，翔一，对方也有自己的事情啊。别勉强邀约他人，这可令人感到为难啊。”</p><p class="11">“我有空啊。” 雪纪的直言，令真鱼不禁在心中感到不悦地咂嘴。</p><p class="11">“不过连晚饭也要你请客，真不好意思呢。”</p><div class="r4"></div><p class="11">没错，当然了。真鱼心里想着。真鱼也不太清楚为什么，她抚摸胸口松了一口气。</p><p class="21">准备回去的雪纪，于是脱下了围裙，但翔一依然说着“没问题，没问题”的，推住雪纪的背，让她坐到客厅的沙发上。“为了雪纪小姐，就让我来大显身手吧！”</p><p class="21">雪纪不禁傻了眼，无可奈何下接受了好意，对他“加油吧 翔一！” 加以打气。 翔一于是一边哼着歌，一边开始洗菜。站在翔一身后的真鱼，紧紧的睥睨着他。</p><p class="21">不知为何，她就是感到有点不是味儿。 她很了解翔一的性格。翔一并非特别看上雪纪，而是他对任何人都那么温柔亲切，那是因为他喜爱着身边的各人了。</p><div class="r4"></div><p class="21">正因如此，他才会像刚才那般，若无其事的做出些会招人误解的举动来。多亏他这种性格，才会令人家的内心那么坐立不安。真鱼心想无论如何也要将这种令人不安的感觉踢走。</p><p class="21">忽然，桌上放置着的椰菜芯，正刚好进入她的视线。那是弄椰菜蛋糕时的剩余物资。这时，真鱼的眼中流露出一丝的恶意。</p><p class="11">她抓紧椰菜芯，瞄准盥洗盆前的翔一背部。 唉呀，可恶…… 她将不快的感觉也一起的向他掷去。</p><p class="11">嗖。 “痛！” 啪嗒。 翔一看到掉到地上的椰菜芯，一脸疑惑地望向真鱼。“真鱼，这是……”</p><div class="r4"></div><p class="11">“我才不知道耶━━━” 真鱼撅长嘴唇，别过脸去。</p><h4 class="heading-4 h4">2</h4><p class="21">最后一次感到这种快溺毙的感觉，已经是大学运动会的时候。那时，全身疼痛并失去意识的我，是教练跳进泳池里把我救出。</p><p class="11">不过现在不同了。若是失去意识的话，便必死无疑。再也没有人会来救我。已经谁也不会……</p><p class="11">一小时前━━━</p><div class="r4"></div><p class="21">瑟缩在自己房间床上的凉，脑内突然响起了那令人烦厌的声音。以前曾经收拾的那怪物的同伴，似乎再度活跃起来，不知为何直觉上就有这样的感应。</p><p class="21">若身体叫我去战斗的话，我就会去战斗！反正我也不知道该怎么办。凉驾驶着越野电单车，如撕破笼罩着黑夜的漆黑而奔驰着。</p><p class="21">下车后走在公园的路上，看到倒在草丛中如流浪汉般的男性身影。正欲救起那个人，当一抓着那人的手臂时，便发觉那人全身湿透。</p><p class="21">那男人已经断了气，脸色发紫且浮肿。这是……。在小岛上的时候，他曾多次看过这样的尸体。在海边玩耍的小孩和从船上掉入海中的渔夫尸体被冲上岸，那张脸便会像气球似的膨胀，这些他至今仍然记得。那是溺毙的典型特征。</p><div class="r4"></div><p class="21">可是，在公园内根本没有能令男人溺毙的地方。没有沼泽，没有水池，也没用喷水池。凉一边提防警戒，一边环顾着身边的四周。他隐约地听到水流涌出的声音。</p><p class="21">一回头，刚才走过的地面均潺潺地渗出水来。这瞬间，他感觉到继续留在这里会相当危险。突然，周围的地面摇晃起来，并开始下陷。</p><p class="21">怎么了……发生什么事……！？倾斜的地面令凉的身体快要倒下，于是他跪在地上，压低身段以支撑身体，并留意着周围的变化。</p><p class="21">下陷所形成如研缽状的一带，大量的水从当中喷出。流水在那里瞬间积蓄，令下陷的地带形成了如水池般的模样。</p><div class="r4"></div><p class="11">凉被淹没在水中，抬头一看，月光在距离头顶约三米的水面上，朦胧地映出光芒。</p><p class="21">凉朝着月亮伐水而上。下一瞬间，他感到脚掌传来了一阵麻 痹 的疼痛。在水底里，看到如章鱼般的Unknown：章鱼尊者的异形生物。就是这家伙吗……章鱼尊者伸出触手捆缚着凉的脚掌。</p><p class="21">凉的战意高昂，在心中呐喊。变身！全身肌肉蠢蠢欲动的同时，周围的水亦变得沸腾起来，并冒出无数气泡。皮肤的颜色开始染上深绿色。凉变身成异形的野兽━━━Gills。</p><p class="21">将力量集中在双脚的脚踝之上，那里的钩爪化为锋利的刀刃并刺出，瞬间便将触手切断。犹如痛苦嘶叫般的章鱼尊者，从口中冒出大大的气泡。</p><div class="r4"></div><p class="21">Gills朝着章鱼尊者的方向潜进水底 ，章鱼尊者则向Gills伸出无数触手。若是全身被那些触手紧缠的话， 必定返魂乏术。一是被绞杀，一是溺死。我才不会死于水中的！</p><p class="11">Gills于是把四肢上的钩爪伸长。把身体如陀螺般旋转下，将接近而来的触手瞬间切断。</p><p class="21">无数触手的碎片不断散落，Gills脚踝上的刀刃，往章鱼尊者的天灵盖刺去。彷如刺向豆腐般毫似的无抵抗能力。但脚踝上的钩爪，却确实地从头顶贯穿至下颚。</p><p class="21">接着的瞬间，水面随着巨响喷发出巨大水柱。章鱼尊者被炸毙了。形成水池的水，马上被吸进地下，变回人类姿态的凉，独自坐在干涸后露出的地面上。</p><div class="r4"></div><p class="21">不足三十分钟后，他已经回到自己的房间，坐在床上大大的呼了口气。他不自觉地检视自己的双手。发现没有出现之前的老化想象。亦再也没有肌肉撕裂般的痛楚。</p><p class="21">凉把视线投在桌子之上。那里放着一条以小猪的角色人偶手机吊饰。那是当真鱼回去后，在床上所找到的。凉根据真鱼所穿的校服，调查出她所就读高中的地址。</p><p class="21">骑电单车前往的话，也不算太远。其实任何时候都可以还给她。可是，现在的自己到底是否该与别人有所牵连呢，凉对这点确实是没有自信。</p><p class="21">第二天。从绿之丘学园高中部的正门中，正在放学的学生群里，也找到真鱼的身影。结果，对邀请自己加入网球学会的两人，真鱼亦婉拒掉了。</p><div class="r4"></div><p class="21">虽然两人爽朗地叫她不用在意，但真鱼看见两人脸上隐约地露出了可惜的神色。真的感到十分过意不去。可是，我与别人是不同的……。况且我所折的盒子也总是空空如也……。</p><p class="21">低头走着的她，这时背后传来电单车的引擎声，并向她慢慢驶近。电单车停在真鱼旁边，真鱼亦停下了脚步，看着电单车上的凉。</p><p class="11">她并不觉得意外。因为她早就感到会与凉再会。凉什么也没说，默默将小猪手机吊饰递到真鱼面前。</p><p class="21">啊…… 那是翔一在商店街抽奖得到的奖品。它对没有手提电话的翔一来说，可谓一无是处，于是翔一便将它送给了真鱼。</p><div class="r4"></div><p class="11">真鱼很喜欢这个吊饰。小猪被吓一跳般的表情，十分可爱。虽然不知道它到底在怕些什么。 “不是你的么？”</p><p class="21">“是、是我的……” 把吊饰接过来的她，立即从书包掏出手提电话，并将它牢牢挂好，决不让它再次丢失。“太好了，竟然能找回来……谢谢你。”</p><p class="21">“……我走了。” 凉淡淡说道，骑着电单车右转掉头离去。真鱼似乎对这匆匆的道别而感到惋惜的凝望着凉的背影。直至完全消失在其眼前为止，她才转身开始离去。</p><p class="21">心里盼着能与他再多聊几句。相信与凉必定可毫无隔阂地相处下来。这样的人，现在就只有叔叔和翔一两人而已。因为自小时候起，便已经常与叔叔玩耍。而翔一却因为有着这样的性格。苇原先生……则是因为和我一样……。</p><div class="r4"></div><p class="21">“喂。” 突然被呼唤下，被吓了一跳的真鱼于是回头望去。折返而来的凉，再次在她的身旁把车子停了下来。“我忘了向你道谢。”</p><p class="11">呃？</p><p class="21">“托你的福，我的手腕才得以痊愈……体内的痛楚和脑海里的声音也全都消失了……变身的后遗症亦再没有发作了……”</p><p class="11">要道谢的是我才对啊。 真鱼心里想着。在早前的生死攸关之中，曾把我拯救出来。</p><div class="r4"></div><p class="11">“你对我的恩情，日后必定奉还。”</p><p class="21">“那么 我有事想拜托你。”真鱼自然地脱口而出。这可是第一次。就算是对翔一，也不曾如此的拜托过。本以为会是件可怕的事，但居然是种舒适的感觉。</p><p class="21">真鱼坐在凉所驾驶的电单车上。景色在瞬间掠过。总觉得是吵耳的引擎声，但现在听起来却像是轻快的节奏旋律。</p><p class="21">明明速度快得像是身体也快要被吹走一般。但这样抓紧凉的背后，感觉却很安稳。无论何等的恐怖也都会离我而去的感觉。</p><div class="r4"></div><p class="21">抵达临海公园的两人，于是从电单车上走下来。两人从坐着的长椅上，越过栏栅眺望着东京湾。天空挂着一片淡淡的红霞，那赤红与深蓝的水面混集在一起。长椅附近却没有半个人影，非常幽静。</p><p class="21">真鱼往身旁瞥了一眼，而凉只是默默地看着大海。是种难以开展对话的感觉。从这样坐着开始，两人亦一直沉默不语。</p><p class="11">终于由真鱼首先开口。“感谢你让我乘坐你的电单车，亦多得你令我感到精神抖擞。”凉于是望向真鱼。</p><p class="11">“那是所谓Unknown吧，自从被它袭击后，我经常都做着可怕的梦……”</p><div class="r4"></div><p class="11">“……” “呀 我还未告诉你我的名字呢 我是━━━”</p><p class="21">“风谷真鱼……”凉抢先喃喃自语般说道。 “……什么嘛，原来你都知道了吗？” 目光低垂的凉，一脸懊恼的表情下，再次望向真鱼说道。“对不起，我想我必须要向你道歉。” “呃？” “你刚才所说那可怕的梦境……其实我是知道的。”真鱼惊讶地听着，但却不解当中的意思。</p><p class="21">“那天，当你晕倒在床时，我也看到了你所看到的梦境。虽然难以解释，但就像是在脑海里重播着影像般似的。仓库里孤独一人的你……村李的凄惨状况……还有，你的父亲，以及将你父亲杀害的那人的脸孔……”</p><p class="11">一边听着他说的话，一边感到万分惊讶的真鱼，就只懂凝望着凉。</p><div class="r4"></div><p class="21">“或许是接受了你的力量的缘故，又或者这是我本身的能力，我并不清楚其真正的理由，不过无论是什么理由，我也是曾擅自偷窥着别人的记忆，实在对不起。”凉低头道歉。</p><p class="21">“……对不起。” 真鱼同样这样的说道。“其实我也是一样……” 真鱼于是亦不再隐瞒，并把一切都和盘托出。当她触碰到凉的时候，亦不经意地看到了他的记忆片段。</p><p class="21">凉淡淡一笑，抬头仰望天空。“原来如此，那么算是打和了吧。也包括那些遭遇不幸的事呢。”之后两人又再沉默起来。从远处传来一道船笛声。</p><p class="21">打破了二人沉默的是凉。“某天在没什么理由下，我变得不再是自己……” 真鱼凝视着凉那看海的侧脸。 “然后我便失去一切……由于身体出现异常，于是大家也都舍我而去……你不害怕我吗？”</p><div class="r4"></div><p class="21">“……因为我也不是普通人。”真鱼自嘲地微笑着起来。凉的嘴角亦同样翘起。过了一会，真鱼说道。“那么……”</p><p class="11">“怎么了？”</p><p class="11">“就像今天一样，以后可否偶尔也让我坐坐电单车呢？”</p><p class="11">“嗯嗯，没所谓。”</p><div class="r4"></div><p class="21">“约好了啊。”真鱼高兴地说着。在凉的面前弯弯地伸出尾指。凉稍稍点头，并轻轻用自己的尾指扣着她的尾指。真鱼觉得凉的手指长得很漂亮。</p><p class="11">凉感到从真鱼手指所传来的体温下，将自己冰封的内心慢慢地融化掉的感觉。两人于是勾了手指。</p><h4 class="heading-4 h4">3</h4><p class="21">那天，将真鱼的房间打扫完毕后的翔一，回到客厅时，看到坐在沙发上的美杉。“啊，老师，不是差不多要前往大学去了吗？”</p><p class="21">美杉那虚无的眼神，不知在盯着什么地方去。犹如从厌恶的梦境返回现实般，以一脸茫然的表情望向一。“真鱼已经出去了么？”连声音也都那么严肃认真。</p><div class="r4"></div><p class="11">“对，刚才出去了。对了，之后我想拿真鱼的冬季校服到洗衣店去，你有没有其它也想拿去洗的？”</p><p class="21">“不，先不管那个……”美杉拿起眼前的茶杯喝茶。空茶杯还残留着茶的香气。“翔一，有些关于真鱼的事要对你说。”</p><p class="21">察觉到气氛凝重的翔一，于是坐到美杉的斜对面去。“真鱼？怎么了？” “最近，她很晚才回家吧？” 说起来，翔一也那样的认为。</p><p class="11">“間中还过了晚上七时才回来，她又没有学会活动。我啊，很担心她是否结识了什么坏朋友。”</p><div class="r4"></div><p class="11">“真鱼怎么会啊。”</p><p class="11">“所以，翔一我想拜托你……” “是……”</p><p class="11">“我想你暗中调查一下，真鱼在放学后会做些什么。”</p><p class="11">“跟踪她。” 翔一彷如协助犯罪的犯人般低声说道。美杉深深地点头。</p><div class="r4"></div><p class="11">“不知道我能不能办到～……？”</p><p class="11">“还有，万一，我是说万一，对方是男性的话，也想你帮忙调查那个男人。” “明、明白。”</p><p class="11">美杉并没错过翔一那无意听从的表情。“你是想拒绝我的委托了吧？”美杉“咚”的一声大力拍打桌子。</p><p class="21">“别说一宿一饭的恩情，你不是已经受过我的百宿百饭吗！好！要是你不愿做的话，我就从今天开始喝酒！每晚都滥喝！”</p><div class="r4"></div><p class="11">“明、明白了。我做就是了！”除了这个答案，根本再无别的回答。</p><p class="11">从通道的相反方向而来的北条，往这边走近。冰川一如以往的跟在澄子的身后，在警视厅的走廊上走着。</p><p class="21">眼看澄子又快要开始跟北条吵嘴的冰川，内心感到郁闷。可是，北条只是向这边瞄了一瞄，却一言不发的从旁边走过。向北条点过头的冰川，马上松了口气。━━━但不久之后。</p><p class="21">“对了对了，我有些事要告诉你们。”听到他这番话，冰川他们也就如条件反射般停下了脚步。“对于G3系统，包括G3组全体成员，我有个好提议。”</p><div class="r4"></div><p class="11">“好提议？”澄子皱着眉头反问。</p><p class="21">北条在澄子的耳边轻声说道。“很简单，由我来当G3组的指挥官的话，那么一切必能向着更好方向发展下去。”</p><p class="21">澄子在没奈何下，叹了口气。“我知道你的企图，这样你就能够随意找个莫须有的理由将冰川罢免，然后自己坐上装着员的宝座吧。”</p><p class="11">“不知道呢？这要看冰川先生的工作表现了。”</p><div class="r4"></div><p class="11">“虽然冰川仍有些未成熟的地方，但作为装着员的话，可是非他不可。而你可是在最终评审被淘汰了啊。”</p><p class="11">“我也听说过冰川先生拥有很高的潜质，但那不过是你的主观结论而已，这可是难以令人信服呢。”</p><p class="11">“才不是这样啊，那是因为冰川很可爱啊。”</p><p class="11">“可、可爱……”听到这样的答案，就算是北条，亦只能无言以对的站着。</p><div class="r4"></div><p class="11">“那可是很重要的啊。”澄子毫不掩饰地说。</p><p class="21">“现在，我清楚明白了，小泽小姐。”北条像绕口令般一口气说道。“在工作中喝酒，又吃掉了数头和牛，重要人事决定居然说是因为可爱，以这样无聊的理由下作出决定的你实在很奇怪，难道是染上了疯牛症！这可是牛的诅咒！你应该快向警视厅辞职，拒绝的话我就奋力成为警视总监将你解雇！”</p><p class="11">“我很期待喔。”澄子完全没有将他放在眼里。</p><p class="11">“小泽小姐，『可爱』到底是什么意思？” 这次轮到冰川的追问。“因、因为那种理由让我加入G3吗？”</p><div class="r4"></div><p class="11">“嗯，这可是很重要的啊。”</p><p class="21">“不过，不是北条先生操作G3系统比较熟练么？”尾室突然插嘴道。“冰川先生，因为你也是挺笨手笨脚的。”</p><p class="11">“呵呵。”北条将视线移向冰川。“你很笨手笨脚吗？冰川先生。”</p><p class="11">“是啊，真是蛮笨手笨脚的。”尾室说道。看到北条附和着自己的言论，尾室不自觉地显得很高兴。</p><div class="r4"></div><p class="11">“冰川先生，这个，你能办到吗？”北条掏出硬币并放在手背上，令硬币在手指间来来回回的翻滚转动。</p><p class="11">啊～！澄子和尾室不禁拍掌称奇。</p><p class="21">“什、什么嘛，那种程度，我也能做到啊。”这样说着的冰川取出硬币，却完全无法做到。无数硬币从钱包里掉到地上去，冰川于是慌忙地弯身捡起硬币。</p><p class="21">送过美杉出门后，吃过午饭的翔一，于是到庭院的菜园内进行除草。一株一株的将杂草连根拔起。不斩草除根的话，杂草马上就会再次生长出来，因此这是绝对不能大意的。</p><div class="r4"></div><p class="11">蹲下工作的翔一 ，咚咚地用手敲着自己的腰背。一手拭去额头的汗水，环顾菜园。还有一半吗……？</p><p class="21">正当他勒紧捲在头上的毛巾，喊着“好！”地抖擞精神时，玄关却传来了“不好意思～”的叫门声。穿过大门来到菜园的是冰川。</p><p class="11">“午安，冰野先生。不对。汤川先生？可惜全都差一个字。呀呀，金刚寺先生！”</p><p class="11">“……津上先生，你不是在耍我吧？”冰川冷眼说道。</p><div class="r4"></div><p class="11">挠着头的翔一，哈哈的笑着。冰川心想 我果然不懂得应付这个人。</p><p class="11">“今天有什么事吗？找老师的话，他已经到大学去了啊。”</p><p class="11">“也不是什么要事。最近，真鱼小姐过得怎样？”</p><p class="11">翔一不禁笑了出来。“今天真奇怪。刚才老师也问有关真鱼的事呢。”</p><div class="r4"></div><p class="11">“那真是偶然。那么，怎么了？有发生过什么事吗？”</p><p class="11">“要说发生什么事的话，最近真鱼的胃口好像很不错，或者是遇到了什么好事吧？”</p><p class="11">“胃口很不错吗……？”看来没有出现新的Unknown袭击真鱼，令冰川放心地舒了口气。</p><p class="11">“啊，对了。难得一场来到，不如帮我除草吧？”</p><div class="r4"></div><p class="21">“除草……为什么要我？”面对冰川拒绝的口吻，翔一于是背着他蹲下来，带着半分寂寞地沉吟道。“我都告诉了你真鱼的事……”</p><p class="11">“知、知道了。我来帮你除草吧。”脱掉西装外套的冰川，也蹲下来并开始除草。</p><p class="11">“谢谢你！”翔一笑着说道，并再次开始除草。“可是，为什么冰川先生会问有关真鱼的事？”</p><p class="11">“因为……以前曾在某件事上救助过真鱼小姐……所以，直至现在仍有点在意着她……”</p><div class="r4"></div><p class="11">“事件？”感到疑惑的翔一，手亦停了下来。</p><p class="11">“那是件怎样的事件━━━”正想问个究竟而望向冰川的翔一不禁愕然。冰川所拔出的杂草，全都留有根部。</p><p class="11">翔一以惋惜的口吻说道。“呀～……冰川先生，可真是笨手笨脚呢～”</p><p class="21">“笨手笨脚……” 翔一说出了禁语，令冰川相当不忿 。“哼、哼、哼、哼、哼、哼、哼、哼、哼━━━” 他一边发泄心中怒气，一边拔除杂草。可是还是拔不干净，全都留有根部。</p><div class="r4"></div><p class="21">“够、够了啦……”翔一慌忙地拉住他的背部。可是冰川依然继续“哼哼”地拔个不停。然而冰川带来的灾难，还未就此结束。</p><p class="21">正当除草完毕后，坐在客厅的沙发上稍作休息时。翔一捧着放有小食的盘子，从厨房里走出来。玻璃桌上放着为了易于进食而特意切成较为大件的冷豆腐。</p><p class="21">有点肚饿的冰川，马上“我不客气了。”地说着，便拿起筷子准备进食。可是，冷豆腐却无情地从筷子之上滑下，掉在桌面上烂作一团。</p><p class="21">无奈的翔一，率直地把感想脱口而出。“冰川先生，真的很笨手笨脚呢～”又再被翔一说到痛处，冰川依然心生不忿，但这次他按着其怒火，谨慎地、谨慎地、轻轻的以筷子夹着冷豆腐，并慢慢地提起来。</p><div class="r4"></div><p class="11">这是个小小的奇迹。直至送进嘴里去，豆腐依然停留在筷子之上。“怎样了？很完美吧！”</p></div></section><section class="s3">
+<h2 class="s5" id="chapter-6">
+    终章
+</h2>
+<div class="c1"><p class="21">那天的午餐是由翔一泡制的『 春椰菜腌肉意粉 』。 这些椰菜可是在庭院的菜园里所收割回来的。原本只能在冬天吃到的椰菜，经过品种改良，现在一年四季都能吃到。</p><p class="21">在日本会根据不同收割期作分类，十一至三月的是冬椰菜，七至十月的是夏秋椰菜（高原椰菜），然后，四至六月则是春椰菜，不同的时期会有着不同的滋味。</p><p class="11">春椰菜与爽口且充满口感的冬椰菜相比，特征为菜叶柔软鲜嫩，适合用于制作沙律以及生吃。</p><p class="21">此外，椰菜含有丰富的维他命U，能够调节胃酸，修复肠胃黏膜组织，古希腊时亦被视作为调整肠胃的健康食品。</p><div class="r4"></div><p class="21">真鱼与翔一为了购买晚餐的食材而来到附近的商店街。就像闲聊着晚餐菜式如何般轻松，真鱼尝试向翔一问道是否有想起什么记忆。</p><p class="21">好像还没想起玩什么似的。翔一也是一贯的答案。倏地真鱼想到，就算丧失了记忆，最少也会有记得的一些记忆才对。</p><p class="21">例如说话、一般常识等，在翔一的情况里，尤其是有关料理的记忆。要是能选择留下或者消除记忆的话，我亦想选择丧失记忆。只留下快乐的回忆，讨厌的记忆则消除得干干净净就好。 真鱼一边想着那种事一边走着时，一位年轻女性随便地走近她，并向她搭讪。一百七十厘米以上的修长体型，时尚配色的薄线衫与牛仔裤搭配，栗色长发有着少许的捲曲。</p><p class="11">真鱼觉得她是个彷如模特般的美人。</p><div class="r4"></div><p class="21">“呐，这里今天应该不是休息的，你知道发生什么事吗？” 女性说着，以细长的手指指着已落闸的『 花村蛋糕甜点店 』。</p><p class="21">真鱼与翔一互相对望。翔一以难以启齿的口吻回答道。“店主的花村先生在一星期前过身了……” 女性的脸上忽然蒙上了一片阴霾。 “为什么那么突然……？”</p><p class="11">“那是因为，受害于那不可能犯罪之下。” “呃……真的吗？”</p><p class="11">翔一认真地点头。</p><div class="r4"></div><p class="21">“是么……还以为与我无关的事，可是却在意外的地方受到波及呢……不过，那么花村先生……” 女性低声说罢，即向着闸门双手合十，闭上眼睛并祈祷起来。然后睁开双眼，拨起头发。 “但真是深受打击啊～这里的椰菜蛋糕在网上可是备受好评吧。我啊，很喜欢甜点，还写了美食杂志喔。可是━━━”</p><p class="11">女性叹了口气，显得垂头丧气。“要是我早点来就好了……已经一生也吃不到了吗……”</p><p class="21">“我懂得制作花村先生的椰菜蛋糕啊。”翔一微笑着说。 女性以不可思议的眼神看着翔一。“你懂得制作吗？” “之前我曾经买来吃过，由于美味非常，于是便尝试自己制作看看。最初亦失败了数次，但现在已经能完美地重现那种味道了。对吧，真鱼。”</p><p class="11">唐突地被问及的真鱼，双目低垂地回答。“我觉得与店里的味道没大差别……”</p><div class="r4"></div><p class="11">“只要来我家的话，我便马上可以弄给你吃。”</p><p class="11">女性以长着长长睫毛的眼睛，向翔一上下打量。“你是甜品师傅？”</p><p class="11">“唔～……”稍稍面露懊恼神色的翔一，于是仰天回答道。“也许曾经是吧。”</p><p class="21">“虽然不太明白……不过，看你也不像是在搭讪女生，那我也不客气了。在这充泄着怪事的世界上，能吃的时候就要吃个够呢。”</p><div class="r4"></div><p class="21">“说的没错，*经济环境好，一起来吃蛋糕吧。”说过冷笑话之后，翔一看到了一幕令人难以置信的光景。女生掩着嘴嘻嘻地笑了起来。</p><p class="21">“经济环境好，一起来吃蛋糕……别说了，真是的……”笑着说道的她，看起来是认真的。 翔一的笑话居然会令人发笑，这可是他自有记忆以来的第一次。面对这罕见的反应，反令翔一感到有点不知所措，于是他只有带着不好意思的神色，挠头傻笑。</p><p class="21">真鱼也是首次见到有人会因为翔一的笑话而大笑起来。在震惊的同时，也令她感到十分佩服。同时也感到一种至今从未感到过的心情。不知怎的，心里就有种无名的不安。</p><p class="21">在走到美杉家的途中，三人进行了简单的自我介绍。喜爱甜品的女生━━━小林雪纪是位二十一岁的大学生，现于位处郊外的公寓中独居。</p><div class="r4"></div><p class="21">回到家里，翔一便到厨房去制作椰菜蛋糕，而充满兴致的雪纪亦走进了菜园。由于刚才翔一向雪纪推荐说，家里的蔬菜均没使用农药的关系下，她于是摘下了一片椰菜叶，并放进嘴里咀嚼。比起在超级市场里买到的，也真的好吃许多。</p><p class="21">因此对那椰菜蛋糕也就更为期待了。之后，她坐在客厅的沙发上看着时装杂志，此时翔一和真鱼从厨房里走出来。</p><p class="21">“让你久等了！”说着的翔一，同时将椰菜蛋糕送上。 光从形状和颜色上骤然看去，那确实会令人误认为是卷心菜。外观上简直与花村蛋糕甜点店的一模一样。</p><p class="21">“好可爱～！甜点的外观果然很重要呢～”雪纪幸福地哼着歌般说道，并从袋中拿出数码相机，咔嚓咔嚓地从多角度去拍摄照片。“之后要上传到網誌去呢～”</p><div class="r4"></div><p class="11">看着这样的雪纪，令翔一亦不禁感到幸福的感觉。</p><p class="11">“这椰菜形状的面团，是使用了小麦粉和鸡蛋等，还加入了在菜园里所收割的椰菜。”</p><p class="21">“哪个哪个～？” 雪纪用叉子切开蛋糕边缘并放进嘴里，“好～美味啊～～！”她发出惊叫。 “原来如此，所以是椰菜形状的呢。椰菜面团里面还有另一个蛋糕。这味道……对了，是番茄！是番茄蛋糕！”</p><p class="11">“没错。这是花村蛋糕甜点店的『 椰菜番茄夫妇蛋糕 』！我重申一次，是『 椰菜番茄夫妇蛋糕 』！”</p><div class="r4"></div><p class="11">“为什么要说两次啊。”真鱼没好气地吐槽。</p><p class="21">“椰菜面团与番茄蛋糕，两种蔬菜甜品的甜味在口中融合……啊啊……这种感觉还是第一次……”雪纪沉醉地浸淫在舌头上的余蕴之中。</p><p class="11">过了一会，翔一担心地问道。“雪纪小姐？”</p><p class="21">雪纪满足地点头道。“嗯，值三星！” 那是雪纪所作出的最高评价级别。 “感谢招待。”雪纪礼貌地道谢，而翔一则高兴的微笑着。</p><div class="r4"></div><p class="11">“津上果然是位甜品师傅？还是甜品师傅的学徒呢？”</p><p class="11">“雪纪小姐到访各处去品尝各式的甜品，不也是要朝着成为甜品师傅为目标吗？”</p><p class="21">“我吗？虽然也不是没有兴趣，但我可是吃的专家。而且在家里也完全不会做菜，所以也希望嫁个擅长做菜的老公呢。”</p><p class="11">突然翔一站起来说道。“就由我来教你做菜吧。”</p><div class="r4"></div><p class="11">呃？</p><p class="11">“也对呢……那么，就先从你喜欢的蛋糕开始好吗。” “呃，等、等等……怎么了…？”</p><p class="21">翔一半强迫地拉着雪纪的手，并带她走进厨房去。看着的真鱼，于是不满地坐在沙发上，并怒瞪着翔一的背影。 你都还没教我做菜……。明明约好了的……。</p><p class="11">“那么，来试试做吧。”穿上围裙的翔一，于是提起手提搅拌器。雪纪领悟力挺高的。就如翔一所说━━━。</p><div class="r4"></div><p class="21">将碗放在水中加热，轻轻搅拌内里的鸡蛋和砂糖，再以手提搅拌器打至起泡。然后加入小麦粉、牛油、牛奶，接着放进焗炉里烘焙。将海绵面团分成两块，中间夹住生忌廉。</p><p class="11">“之后再将生忌廉涂满整体表面，最后再放上装饰便大功告成。” 翔一完全是一副老师的口吻。</p><p class="21">雪纪以水果刀将草莓一颗一颗地切开一半。她想若能够亲手制作蛋糕的话，或许是件意外地有趣的事，因此令她雀跃不已。</p><p class="11">翔一以一副老师的样子抱臂胸前。“装饰时太多的修正，便会令忌廉变干，因此无需执着，轻松地涂上即可。”</p><div class="r4"></div><p class="21">“太天真了！”突然的一声大喊，接着啪的一声，雪纪将水果刀用力地扔在砧板之上，并瞪着翔一。翔一被她的气势所压倒，不禁苦笑道。“雪纪小姐很有坚持呢……”</p><p class="11">“我在发怒啊。”雪纪可谓非常认真。</p><p class="11">翔一红着脸说道。“对不起，是我的不对，让我们一起竭尽所能地去装饰蛋糕吧！” “那么，去买东西吧。”</p><p class="21">“买东西？” “就让你看看我的装饰好了。”于是，翔一让雪纪坐上电单车，飞快地驶去。在超级市场里购买了大量的水果之后，便返回厨房去。</p><div class="r4"></div><p class="11">将买回来的水果从塑料袋里拿出，经过一番切割、雕刻及弄烂之下，雪纪看了海绵蛋糕一眼，并喃喃自语道。</p><p class="11">“装饰的灵感出现了！”雪纪想着将蛋糕装饰成为校服的模样。</p><p class="21">她让海绵蛋糕穿上由生忌廉所制成的裙子。再用水果所制成的饰物，来装饰蛋糕的表面。愉快地为蛋糕装饰着的雪纪，看起来就像在翩翩起舞着似的。蛋糕的装饰也都终于完成了。</p><p class="11">雪纪高调地发表出蛋糕的名字。“命名为『 水果天堂.享受假期 』！”</p><div class="r4"></div><p class="21">翔一和真鱼也睁大了双眼。在水果的天堂之中，享受着悠闲的假期━━━。那样的光景就呈现在脑海中。蛋糕上放满野莓、奇异果、鲜橙等色彩鲜艳的水果。那里简直是水果的乐园。</p><p class="11">“……有点奇怪呢？” 雪纪害羞地笑着问翔一。</p><p class="21">“不不，我觉得这种水准已相当不错。” 将蛋糕切开分给众人的翔一，吃了一口便赞不绝口。“全靠雪纪小姐的装饰，才能做出这种前所未有的味道。”</p><p class="11">“真不知道你这句话是否在夸赞人。”真鱼小声地吐槽，然后也吃了一口，不禁“啊，好美味！”地赞叹。</p><div class="r4"></div><p class="11">“嗯，应该也算是两星级。”雪纪也吃了一口，并自吹自擂道。</p><p class="21">“配合我的基本指导以及雪纪小姐的品味，终于完成了这样的一个美味蛋糕。也许我和雪纪小姐的合拍度也不错耶。” 翔一高兴的笑着并看着雪纪。</p><p class="11">突然在胡说什么啊！ 真鱼于是以锐利的目光盯着翔一。</p><p class="11">“什么什么？你刚才若无其事向我表白吧？我可是有很多人追求啊～” 雪纪说着用手肘撞翔一的手臂。</p><div class="r4"></div><p class="11">“啊，对了，雪纪小姐不如一起吃晚饭如何？”翔一彷如想出了个好点子一般，啪的一声击掌。</p><p class="21">真鱼马上向这样的翔一插嘴道。“等等，翔一，对方也有自己的事情啊。别勉强邀约他人，这可令人感到为难啊。”</p><p class="11">“我有空啊。” 雪纪的直言，令真鱼不禁在心中感到不悦地咂嘴。</p><p class="11">“不过连晚饭也要你请客，真不好意思呢。”</p><div class="r4"></div><p class="11">没错，当然了。真鱼心里想着。真鱼也不太清楚为什么，她抚摸胸口松了一口气。</p><p class="21">准备回去的雪纪，于是脱下了围裙，但翔一依然说着“没问题，没问题”的，推住雪纪的背，让她坐到客厅的沙发上。“为了雪纪小姐，就让我来大显身手吧！”</p><p class="21">雪纪不禁傻了眼，无可奈何下接受了好意，对他“加油吧 翔一！” 加以打气。 翔一于是一边哼着歌，一边开始洗菜。站在翔一身后的真鱼，紧紧的睥睨着他。</p><p class="21">不知为何，她就是感到有点不是味儿。 她很了解翔一的性格。翔一并非特别看上雪纪，而是他对任何人都那么温柔亲切，那是因为他喜爱着身边的各人了。</p><div class="r4"></div><p class="21">正因如此，他才会像刚才那般，若无其事的做出些会招人误解的举动来。多亏他这种性格，才会令人家的内心那么坐立不安。真鱼心想无论如何也要将这种令人不安的感觉踢走。</p><p class="21">忽然，桌上放置着的椰菜芯，正刚好进入她的视线。那是弄椰菜蛋糕时的剩余物资。这时，真鱼的眼中流露出一丝的恶意。</p><p class="11">她抓紧椰菜芯，瞄准盥洗盆前的翔一背部。 唉呀，可恶…… 她将不快的感觉也一起的向他掷去。</p><p class="11">嗖。 “痛！” 啪嗒。 翔一看到掉到地上的椰菜芯，一脸疑惑地望向真鱼。“真鱼，这是……”</p><div class="r4"></div><p class="11">“我才不知道耶━━━” 真鱼撅长嘴唇，别过脸去。</p><h4 class="heading-4 h4">2</h4><p class="21">最后一次感到这种快溺毙的感觉，已经是大学运动会的时候。那时，全身疼痛并失去意识的我，是教练跳进泳池里把我救出。</p><p class="11">不过现在不同了。若是失去意识的话，便必死无疑。再也没有人会来救我。已经谁也不会……</p><p class="11">一小时前━━━</p><div class="r4"></div><p class="21">瑟缩在自己房间床上的凉，脑内突然响起了那令人烦厌的声音。以前曾经收拾的那怪物的同伴，似乎再度活跃起来，不知为何直觉上就有这样的感应。</p><p class="21">若身体叫我去战斗的话，我就会去战斗！反正我也不知道该怎么办。凉驾驶着越野电单车，如撕破笼罩着黑夜的漆黑而奔驰着。</p><p class="21">下车后走在公园的路上，看到倒在草丛中如流浪汉般的男性身影。正欲救起那个人，当一抓着那人的手臂时，便发觉那人全身湿透。</p><p class="21">那男人已经断了气，脸色发紫且浮肿。这是……。在小岛上的时候，他曾多次看过这样的尸体。在海边玩耍的小孩和从船上掉入海中的渔夫尸体被冲上岸，那张脸便会像气球似的膨胀，这些他至今仍然记得。那是溺毙的典型特征。</p><div class="r4"></div><p class="21">可是，在公园内根本没有能令男人溺毙的地方。没有沼泽，没有水池，也没用喷水池。凉一边提防警戒，一边环顾着身边的四周。他隐约地听到水流涌出的声音。</p><p class="21">一回头，刚才走过的地面均潺潺地渗出水来。这瞬间，他感觉到继续留在这里会相当危险。突然，周围的地面摇晃起来，并开始下陷。</p><p class="21">怎么了……发生什么事……！？倾斜的地面令凉的身体快要倒下，于是他跪在地上，压低身段以支撑身体，并留意着周围的变化。</p><p class="21">下陷所形成如研缽状的一带，大量的水从当中喷出。流水在那里瞬间积蓄，令下陷的地带形成了如水池般的模样。</p><div class="r4"></div><p class="11">凉被淹没在水中，抬头一看，月光在距离头顶约三米的水面上，朦胧地映出光芒。</p><p class="21">凉朝着月亮伐水而上。下一瞬间，他感到脚掌传来了一阵麻 痹 的疼痛。在水底里，看到如章鱼般的Unknown：章鱼尊者的异形生物。就是这家伙吗……章鱼尊者伸出触手捆缚着凉的脚掌。</p><p class="21">凉的战意高昂，在心中呐喊。变身！全身肌肉蠢蠢欲动的同时，周围的水亦变得沸腾起来，并冒出无数气泡。皮肤的颜色开始染上深绿色。凉变身成异形的野兽━━━Gills。</p><p class="21">将力量集中在双脚的脚踝之上，那里的钩爪化为锋利的刀刃并刺出，瞬间便将触手切断。犹如痛苦嘶叫般的章鱼尊者，从口中冒出大大的气泡。</p><div class="r4"></div><p class="21">Gills朝着章鱼尊者的方向潜进水底 ，章鱼尊者则向Gills伸出无数触手。若是全身被那些触手紧缠的话， 必定返魂乏术。一是被绞杀，一是溺死。我才不会死于水中的！</p><p class="11">Gills于是把四肢上的钩爪伸长。把身体如陀螺般旋转下，将接近而来的触手瞬间切断。</p><p class="21">无数触手的碎片不断散落，Gills脚踝上的刀刃，往章鱼尊者的天灵盖刺去。彷如刺向豆腐般毫似的无抵抗能力。但脚踝上的钩爪，却确实地从头顶贯穿至下颚。</p><p class="21">接着的瞬间，水面随着巨响喷发出巨大水柱。章鱼尊者被炸毙了。形成水池的水，马上被吸进地下，变回人类姿态的凉，独自坐在干涸后露出的地面上。</p><div class="r4"></div><p class="21">不足三十分钟后，他已经回到自己的房间，坐在床上大大的呼了口气。他不自觉地检视自己的双手。发现没有出现之前的老化想象。亦再也没有肌肉撕裂般的痛楚。</p><p class="21">凉把视线投在桌子之上。那里放着一条以小猪的角色人偶手机吊饰。那是当真鱼回去后，在床上所找到的。凉根据真鱼所穿的校服，调查出她所就读高中的地址。</p><p class="21">骑电单车前往的话，也不算太远。其实任何时候都可以还给她。可是，现在的自己到底是否该与别人有所牵连呢，凉对这点确实是没有自信。</p><p class="21">第二天。从绿之丘学园高中部的正门中，正在放学的学生群里，也找到真鱼的身影。结果，对邀请自己加入网球学会的两人，真鱼亦婉拒掉了。</p><div class="r4"></div><p class="21">虽然两人爽朗地叫她不用在意，但真鱼看见两人脸上隐约地露出了可惜的神色。真的感到十分过意不去。可是，我与别人是不同的……。况且我所折的盒子也总是空空如也……。</p><p class="21">低头走着的她，这时背后传来电单车的引擎声，并向她慢慢驶近。电单车停在真鱼旁边，真鱼亦停下了脚步，看着电单车上的凉。</p><p class="11">她并不觉得意外。因为她早就感到会与凉再会。凉什么也没说，默默将小猪手机吊饰递到真鱼面前。</p><p class="21">啊…… 那是翔一在商店街抽奖得到的奖品。它对没有手提电话的翔一来说，可谓一无是处，于是翔一便将它送给了真鱼。</p><div class="r4"></div><p class="11">真鱼很喜欢这个吊饰。小猪被吓一跳般的表情，十分可爱。虽然不知道它到底在怕些什么。 “不是你的么？”</p><p class="21">“是、是我的……” 把吊饰接过来的她，立即从书包掏出手提电话，并将它牢牢挂好，决不让它再次丢失。“太好了，竟然能找回来……谢谢你。”</p><p class="21">“……我走了。” 凉淡淡说道，骑着电单车右转掉头离去。真鱼似乎对这匆匆的道别而感到惋惜的凝望着凉的背影。直至完全消失在其眼前为止，她才转身开始离去。</p><p class="21">心里盼着能与他再多聊几句。相信与凉必定可毫无隔阂地相处下来。这样的人，现在就只有叔叔和翔一两人而已。因为自小时候起，便已经常与叔叔玩耍。而翔一却因为有着这样的性格。苇原先生……则是因为和我一样……。</p><div class="r4"></div><p class="21">“喂。” 突然被呼唤下，被吓了一跳的真鱼于是回头望去。折返而来的凉，再次在她的身旁把车子停了下来。“我忘了向你道谢。”</p><p class="11">呃？</p><p class="21">“托你的福，我的手腕才得以痊愈……体内的痛楚和脑海里的声音也全都消失了……变身的后遗症亦再没有发作了……”</p><p class="11">要道谢的是我才对啊。 真鱼心里想着。在早前的生死攸关之中，曾把我拯救出来。</p><div class="r4"></div><p class="11">“你对我的恩情，日后必定奉还。”</p><p class="21">“那么 我有事想拜托你。”真鱼自然地脱口而出。这可是第一次。就算是对翔一，也不曾如此的拜托过。本以为会是件可怕的事，但居然是种舒适的感觉。</p><p class="21">真鱼坐在凉所驾驶的电单车上。景色在瞬间掠过。总觉得是吵耳的引擎声，但现在听起来却像是轻快的节奏旋律。</p><p class="21">明明速度快得像是身体也快要被吹走一般。但这样抓紧凉的背后，感觉却很安稳。无论何等的恐怖也都会离我而去的感觉。</p><div class="r4"></div><p class="21">抵达临海公园的两人，于是从电单车上走下来。两人从坐着的长椅上，越过栏栅眺望着东京湾。天空挂着一片淡淡的红霞，那赤红与深蓝的水面混集在一起。长椅附近却没有半个人影，非常幽静。</p><p class="21">真鱼往身旁瞥了一眼，而凉只是默默地看着大海。是种难以开展对话的感觉。从这样坐着开始，两人亦一直沉默不语。</p><p class="11">终于由真鱼首先开口。“感谢你让我乘坐你的电单车，亦多得你令我感到精神抖擞。”凉于是望向真鱼。</p><p class="11">“那是所谓Unknown吧，自从被它袭击后，我经常都做着可怕的梦……”</p><div class="r4"></div><p class="11">“……” “呀 我还未告诉你我的名字呢 我是━━━”</p><p class="21">“风谷真鱼……”凉抢先喃喃自语般说道。 “……什么嘛，原来你都知道了吗？” 目光低垂的凉，一脸懊恼的表情下，再次望向真鱼说道。“对不起，我想我必须要向你道歉。” “呃？” “你刚才所说那可怕的梦境……其实我是知道的。”真鱼惊讶地听着，但却不解当中的意思。</p><p class="21">“那天，当你晕倒在床时，我也看到了你所看到的梦境。虽然难以解释，但就像是在脑海里重播着影像般似的。仓库里孤独一人的你……村李的凄惨状况……还有，你的父亲，以及将你父亲杀害的那人的脸孔……”</p><p class="11">一边听着他说的话，一边感到万分惊讶的真鱼，就只懂凝望着凉。</p><div class="r4"></div><p class="21">“或许是接受了你的力量的缘故，又或者这是我本身的能力，我并不清楚其真正的理由，不过无论是什么理由，我也是曾擅自偷窥着别人的记忆，实在对不起。”凉低头道歉。</p><p class="21">“……对不起。” 真鱼同样这样的说道。“其实我也是一样……” 真鱼于是亦不再隐瞒，并把一切都和盘托出。当她触碰到凉的时候，亦不经意地看到了他的记忆片段。</p><p class="21">凉淡淡一笑，抬头仰望天空。“原来如此，那么算是打和了吧。也包括那些遭遇不幸的事呢。”之后两人又再沉默起来。从远处传来一道船笛声。</p><p class="21">打破了二人沉默的是凉。“某天在没什么理由下，我变得不再是自己……” 真鱼凝视着凉那看海的侧脸。 “然后我便失去一切……由于身体出现异常，于是大家也都舍我而去……你不害怕我吗？”</p><div class="r4"></div><p class="21">“……因为我也不是普通人。”真鱼自嘲地微笑着起来。凉的嘴角亦同样翘起。过了一会，真鱼说道。“那么……”</p><p class="11">“怎么了？”</p><p class="11">“就像今天一样，以后可否偶尔也让我坐坐电单车呢？”</p><p class="11">“嗯嗯，没所谓。”</p><div class="r4"></div><p class="21">“约好了啊。”真鱼高兴地说着。在凉的面前弯弯地伸出尾指。凉稍稍点头，并轻轻用自己的尾指扣着她的尾指。真鱼觉得凉的手指长得很漂亮。</p><p class="11">凉感到从真鱼手指所传来的体温下，将自己冰封的内心慢慢地融化掉的感觉。两人于是勾了手指。</p><h4 class="heading-4 h4">3</h4><p class="21">那天，将真鱼的房间打扫完毕后的翔一，回到客厅时，看到坐在沙发上的美杉。“啊，老师，不是差不多要前往大学去了吗？”</p><p class="21">美杉那虚无的眼神，不知在盯着什么地方去。犹如从厌恶的梦境返回现实般，以一脸茫然的表情望向一。“真鱼已经出去了么？”连声音也都那么严肃认真。</p><div class="r4"></div><p class="11">“对，刚才出去了。对了，之后我想拿真鱼的冬季校服到洗衣店去，你有没有其它也想拿去洗的？”</p><p class="21">“不，先不管那个……”美杉拿起眼前的茶杯喝茶。空茶杯还残留着茶的香气。“翔一，有些关于真鱼的事要对你说。”</p><p class="21">察觉到气氛凝重的翔一，于是坐到美杉的斜对面去。“真鱼？怎么了？” “最近，她很晚才回家吧？” 说起来，翔一也那样的认为。</p><p class="11">“間中还过了晚上七时才回来，她又没有学会活动。我啊，很担心她是否结识了什么坏朋友。”</p><div class="r4"></div><p class="11">“真鱼怎么会啊。”</p><p class="11">“所以，翔一我想拜托你……” “是……”</p><p class="11">“我想你暗中调查一下，真鱼在放学后会做些什么。”</p><p class="11">“跟踪她。” 翔一彷如协助犯罪的犯人般低声说道。美杉深深地点头。</p><div class="r4"></div><p class="11">“不知道我能不能办到～……？”</p><p class="11">“还有，万一，我是说万一，对方是男性的话，也想你帮忙调查那个男人。” “明、明白。”</p><p class="11">美杉并没错过翔一那无意听从的表情。“你是想拒绝我的委托了吧？”美杉“咚”的一声大力拍打桌子。</p><p class="21">“别说一宿一饭的恩情，你不是已经受过我的百宿百饭吗！好！要是你不愿做的话，我就从今天开始喝酒！每晚都滥喝！”</p><div class="r4"></div><p class="11">“明、明白了。我做就是了！”除了这个答案，根本再无别的回答。</p><p class="11">从通道的相反方向而来的北条，往这边走近。冰川一如以往的跟在澄子的身后，在警视厅的走廊上走着。</p><p class="21">眼看澄子又快要开始跟北条吵嘴的冰川，内心感到郁闷。可是，北条只是向这边瞄了一瞄，却一言不发的从旁边走过。向北条点过头的冰川，马上松了口气。━━━但不久之后。</p><p class="21">“对了对了，我有些事要告诉你们。”听到他这番话，冰川他们也就如条件反射般停下了脚步。“对于G3系统，包括G3组全体成员，我有个好提议。”</p><div class="r4"></div><p class="11">“好提议？”澄子皱着眉头反问。</p><p class="21">北条在澄子的耳边轻声说道。“很简单，由我来当G3组的指挥官的话，那么一切必能向着更好方向发展下去。”</p><p class="21">澄子在没奈何下，叹了口气。“我知道你的企图，这样你就能够随意找个莫须有的理由将冰川罢免，然后自己坐上装着员的宝座吧。”</p><p class="11">“不知道呢？这要看冰川先生的工作表现了。”</p><div class="r4"></div><p class="11">“虽然冰川仍有些未成熟的地方，但作为装着员的话，可是非他不可。而你可是在最终评审被淘汰了啊。”</p><p class="11">“我也听说过冰川先生拥有很高的潜质，但那不过是你的主观结论而已，这可是难以令人信服呢。”</p><p class="11">“才不是这样啊，那是因为冰川很可爱啊。”</p><p class="11">“可、可爱……”听到这样的答案，就算是北条，亦只能无言以对的站着。</p><div class="r4"></div><p class="11">“那可是很重要的啊。”澄子毫不掩饰地说。</p><p class="21">“现在，我清楚明白了，小泽小姐。”北条像绕口令般一口气说道。“在工作中喝酒，又吃掉了数头和牛，重要人事决定居然说是因为可爱，以这样无聊的理由下作出决定的你实在很奇怪，难道是染上了疯牛症！这可是牛的诅咒！你应该快向警视厅辞职，拒绝的话我就奋力成为警视总监将你解雇！”</p><p class="11">“我很期待喔。”澄子完全没有将他放在眼里。</p><p class="11">“小泽小姐，『可爱』到底是什么意思？” 这次轮到冰川的追问。“因、因为那种理由让我加入G3吗？”</p><div class="r4"></div><p class="11">“嗯，这可是很重要的啊。”</p><p class="21">“不过，不是北条先生操作G3系统比较熟练么？”尾室突然插嘴道。“冰川先生，因为你也是挺笨手笨脚的。”</p><p class="11">“呵呵。”北条将视线移向冰川。“你很笨手笨脚吗？冰川先生。”</p><p class="11">“是啊，真是蛮笨手笨脚的。”尾室说道。看到北条附和着自己的言论，尾室不自觉地显得很高兴。</p><div class="r4"></div><p class="11">“冰川先生，这个，你能办到吗？”北条掏出硬币并放在手背上，令硬币在手指间来来回回的翻滚转动。</p><p class="11">啊～！澄子和尾室不禁拍掌称奇。</p><p class="21">“什、什么嘛，那种程度，我也能做到啊。”这样说着的冰川取出硬币，却完全无法做到。无数硬币从钱包里掉到地上去，冰川于是慌忙地弯身捡起硬币。</p><p class="21">送过美杉出门后，吃过午饭的翔一，于是到庭院的菜园内进行除草。一株一株的将杂草连根拔起。不斩草除根的话，杂草马上就会再次生长出来，因此这是绝对不能大意的。</p><div class="r4"></div><p class="11">蹲下工作的翔一 ，咚咚地用手敲着自己的腰背。一手拭去额头的汗水，环顾菜园。还有一半吗……？</p><p class="21">正当他勒紧捲在头上的毛巾，喊着“好！”地抖擞精神时，玄关却传来了“不好意思～”的叫门声。穿过大门来到菜园的是冰川。</p><p class="11">“午安，冰野先生。不对。汤川先生？可惜全都差一个字。呀呀，金刚寺先生！”</p><p class="11">“……津上先生，你不是在耍我吧？”冰川冷眼说道。</p><div class="r4"></div><p class="11">挠着头的翔一，哈哈的笑着。冰川心想 我果然不懂得应付这个人。</p><p class="11">“今天有什么事吗？找老师的话，他已经到大学去了啊。”</p><p class="11">“也不是什么要事。最近，真鱼小姐过得怎样？”</p><p class="11">翔一不禁笑了出来。“今天真奇怪。刚才老师也问有关真鱼的事呢。”</p><div class="r4"></div><p class="11">“那真是偶然。那么，怎么了？有发生过什么事吗？”</p><p class="11">“要说发生什么事的话，最近真鱼的胃口好像很不错，或者是遇到了什么好事吧？”</p><p class="11">“胃口很不错吗……？”看来没有出现新的Unknown袭击真鱼，令冰川放心地舒了口气。</p><p class="11">“啊，对了。难得一场来到，不如帮我除草吧？”</p><div class="r4"></div><p class="21">“除草……为什么要我？”面对冰川拒绝的口吻，翔一于是背着他蹲下来，带着半分寂寞地沉吟道。“我都告诉了你真鱼的事……”</p><p class="11">“知、知道了。我来帮你除草吧。”脱掉西装外套的冰川，也蹲下来并开始除草。</p><p class="11">“谢谢你！”翔一笑着说道，并再次开始除草。“可是，为什么冰川先生会问有关真鱼的事？”</p><p class="11">“因为……以前曾在某件事上救助过真鱼小姐……所以，直至现在仍有点在意着她……”</p><div class="r4"></div><p class="11">“事件？”感到疑惑的翔一，手亦停了下来。</p><p class="11">“那是件怎样的事件━━━”正想问个究竟而望向冰川的翔一不禁愕然。冰川所拔出的杂草，全都留有根部。</p><p class="11">翔一以惋惜的口吻说道。“呀～……冰川先生，可真是笨手笨脚呢～”</p><p class="21">“笨手笨脚……” 翔一说出了禁语，令冰川相当不忿 。“哼、哼、哼、哼、哼、哼、哼、哼、哼━━━” 他一边发泄心中怒气，一边拔除杂草。可是还是拔不干净，全都留有根部。</p><div class="r4"></div><p class="21">“够、够了啦……”翔一慌忙地拉住他的背部。可是冰川依然继续“哼哼”地拔个不停。然而冰川带来的灾难，还未就此结束。</p><p class="21">正当除草完毕后，坐在客厅的沙发上稍作休息时。翔一捧着放有小食的盘子，从厨房里走出来。玻璃桌上放着为了易于进食而特意切成较为大件的冷豆腐。</p><p class="21">有点肚饿的冰川，马上“我不客气了。”地说着，便拿起筷子准备进食。可是，冷豆腐却无情地从筷子之上滑下，掉在桌面上烂作一团。</p><p class="21">无奈的翔一，率直地把感想脱口而出。“冰川先生，真的很笨手笨脚呢～”又再被翔一说到痛处，冰川依然心生不忿，但这次他按着其怒火，谨慎地、谨慎地、轻轻的以筷子夹着冷豆腐，并慢慢地提起来。</p><div class="r4"></div><p class="11">这是个小小的奇迹。直至送进嘴里去，豆腐依然停留在筷子之上。“怎样了？很完美吧！”</p></div></section>
+    </div>
+    
+    <div class="n0">
+        <button class="n1" id="prevChapter" disabled>← 上一章</button>
+        <button class="n1" id="nextChapter">下一章 →</button>
+    </div>
+    
+    <script>
+(function() {
+    'use strict';
+    
+    const state = {
+        currentChapter: 0,
+        totalChapters: 0,
+        mode: 'desktop',
+        chapters: [],
+        chapterData: [],
+        readingStartTime: Date.now(),
+        chaptersCompleted: 0,
+        lastTipTime: 0,
+        fatigueLevel: 1.0,
+        lastLanguageSwitch: 0,
+        technicalTermCount: 0,
+        tipCount: 0,
+        drawerClickCount: 0,
+        shelfClickCount: 0
+    };
+    
+    const elements = {
+        header: null,
+        chapters: [],
+        sidebarChapters: [],
+        progressBar: null,
+        progressText: null,
+        prevBtn: null,
+        nextBtn: null,
+        themeToggle: null,
+        shelfLink: null
+    };
+    
+    const mobile = {
+        drawerTrigger: null,
+        drawerPanel: null,
+        drawerClose: null,
+        drawerOverlay: null,
+        drawerChapters: null,
+        backToTop: null
+    };
+    
+    window.__CHAPTER_DATA__ = window.__CHAPTER_DATA__ || [];
+    
+    const tipMessages = {
+        chinese: {
+            short: [
+                { icon: "✌️", text: "这一节get到了" },
+                { icon: "📖", text: "又读完一小节" },
+                { icon: "✨", text: "知识点+1" }
+            ],
+            medium: [
+                { icon: "🌱", text: "理解加深中" },
+                { icon: "💪", text: "状态不错，继续" },
+                { icon: "🔍", text: "这个观点有意思" }
+            ],
+            long: [
+                { icon: "🏃", text: "已经读完1/3了" },
+                { icon: "⛰️", text: "半山腰了，加油" },
+                { icon: "🎪", text: "快到章节结尾了" }
+            ]
+        },
+        mixed: {
+            short: [
+                { icon: "🌐", text: "中英切换自如" },
+                { icon: "🎯", text: "Technical terms get!" },
+                { icon: "📚", text: "Bilingual reading" }
+            ],
+            medium: [
+                { icon: "🌍", text: "Great progress!" },
+                { icon: "⚡", text: "You're on fire!" },
+                { icon: "💡", text: "理解无国界" }
+            ],
+            long: [
+                { icon: "📊", text: "Halfway through" },
+                { icon: "🚀", text: "保持这个节奏" },
+                { icon: "🎯", text: "目标越来越近" }
+            ]
+        },
+        english: {
+            short: [
+                { icon: "🌍", text: "Great progress!" },
+                { icon: "⚡", text: "You're on fire!" },
+                { icon: "🎯", text: "Nailing it!" }
+            ],
+            medium: [
+                { icon: "💪", text: "Keep going!" },
+                { icon: "🌟", text: "You're doing great" },
+                { icon: "📈", text: "Making progress" }
+            ],
+            long: [
+                { icon: "🏃", text: "1/3 done, keep it up" },
+                { icon: "⛰️", text: "Halfway there" },
+                { icon: "🎪", text: "Almost there" }
+            ]
+        },
+        milestone: {
+            25: { icon: "🏁", text: "征程开始，已完成1/4" },
+            50: { icon: "🎪", text: "半程回顾，收获满满" },
+            75: { icon: "🚀", text: "冲刺阶段，即将完成" },
+            100: { icon: "🏆", text: "恭喜！你读完了整本书" }
+        },
+        rest: [
+            { icon: "☕", text: "累了？休息一下" },
+            { icon: "🧘", text: "眼睛需要放松" },
+            { icon: "🌙", text: "读完这章就休息" }
+        ],
+        timeBased: {
+            morning: { icon: "🌅", text: "早安，用阅读开启新的一天" },
+            night: { icon: "🌙", text: "夜深了，读完这章就休息吧" },
+            long: { icon: "⏰", text: "已专注阅读 {minutes} 分钟" }
+        }
+    };
+    
+    function init() {
+        cacheElements();
+        loadChapterData();
+        detectMode();
+        setupMobileElements();
+        setupEventListeners();
+        setupResizeListener();
+        loadThemePreference();
+        initReadingTracker();
+        initShelfAnimation();
+        
+        if (elements.chapters.length > 0) {
+            state.totalChapters = elements.chapters.length;
+            state.chapterData = window.__CHAPTER_DATA__;
+            goToChapter(0);
+            
+            setTimeout(() => {
+                const hour = new Date().getHours();
+                if (hour >= 5 && hour <= 8) {
+                    showTip(tipMessages.timeBased.morning.icon, tipMessages.timeBased.morning.text, 2000);
+                } else if (hour >= 22 || hour <= 4) {
+                    showTip(tipMessages.timeBased.night.icon, tipMessages.timeBased.night.text, 2000);
+                }
+            }, 1000);
+        }
+    }
+    
+    function initShelfAnimation() {
+        if (!elements.shelfLink) return;
+        
+        const saved = localStorage.getItem('shelfClickCount');
+        state.shelfClickCount = saved ? parseInt(saved) : 0;
+        
+        if (state.shelfClickCount < 3) {
+            elements.shelfLink.classList.add('f0');
+            setTimeout(() => {
+                elements.shelfLink.classList.remove('f0');
+            }, 3000);
+        }
+        
+        elements.shelfLink.addEventListener('click', (e) => {
+            state.shelfClickCount++;
+            localStorage.setItem('shelfClickCount', state.shelfClickCount);
+            elements.shelfLink.classList.remove('f0');
+        });
+    }
+    
+    function loadChapterData() {
+        console.log('📚 加载章节数据:', window.__CHAPTER_DATA__.length, '章');
+    }
+    
+    function cacheElements() {
+        elements.header = document.querySelector('.h0');
+        elements.chapters = document.querySelectorAll('.s3');
+        elements.sidebarChapters = document.querySelectorAll('.b3');
+        elements.progressBar = document.getElementById('progressBar');
+        elements.progressText = document.getElementById('progressText');
+        elements.prevBtn = document.getElementById('prevChapter');
+        elements.nextBtn = document.getElementById('nextChapter');
+        elements.themeToggle = document.getElementById('themeToggle');
+        elements.shelfLink = document.querySelector('.s0');
+    }
+    
+    function detectMode() {
+        state.mode = window.innerWidth > 1200 ? 'desktop' : 'mobile';
+        document.body.setAttribute('data-mode', state.mode);
+    }
+    
+    function setupResizeListener() {
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                const newMode = window.innerWidth > 1200 ? 'desktop' : 'mobile';
+                if (newMode !== state.mode) {
+                    state.mode = newMode;
+                    document.body.setAttribute('data-mode', state.mode);
+                }
+            }, 250);
+        });
+    }
+    
+    function initReadingTracker() {
+        state.readingStartTime = Date.now();
+        
+        const saved = localStorage.getItem('readingStats');
+        if (saved) {
+            try {
+                const stats = JSON.parse(saved);
+                state.chaptersCompleted = stats.chaptersCompleted || 0;
+                state.tipCount = stats.tipCount || 0;
+                state.drawerClickCount = stats.drawerClickCount || 0;
+            } catch (e) {}
+        }
+        
+        setInterval(updateFatigueLevel, 60000);
+    }
+    
+    function updateFatigueLevel() {
+        const minutes = Math.floor((Date.now() - state.readingStartTime) / 60000);
+        state.fatigueLevel = 1.0 + (minutes * 0.1);
+        
+        const lastSwitch = (Date.now() - state.lastLanguageSwitch) / 60000;
+        if (lastSwitch < 5) state.fatigueLevel += 0.2;
+        
+        state.fatigueLevel += state.technicalTermCount * 0.01;
+        state.fatigueLevel = Math.min(state.fatigueLevel, 3.0);
+        
+        if (state.fatigueLevel > 2.0) showRestTip();
+    }
+    
+    function saveReadingStats() {
+        const stats = {
+            chaptersCompleted: state.chaptersCompleted,
+            tipCount: state.tipCount,
+            drawerClickCount: state.drawerClickCount,
+            lastRead: new Date().toISOString()
+        };
+        localStorage.setItem('readingStats', JSON.stringify(stats));
+    }
+    
+    function showTip(icon, text, duration = 3000) {
+        const now = Date.now();
+        const hourAgo = now - 3600000;
+        if (state.lastTipTime > hourAgo && state.tipCount >= 3) return;
+        if (state.fatigueLevel > 2.5 && Math.random() > 0.3) return;
+        
+        state.lastTipTime = now;
+        state.tipCount++;
+        saveReadingStats();
+        
+        const oldTip = document.querySelector('.i0');
+        if (oldTip) oldTip.remove();
+        
+        const tip = document.createElement('div');
+        tip.className = 'i0';
+        tip.innerHTML = `<span class="i1">${icon}</span><span class="i2">${text}</span>`;
+        document.body.appendChild(tip);
+        
+        setTimeout(() => {
+            tip.classList.add('i3');
+            setTimeout(() => tip.remove(), 200);
+        }, duration);
+    }
+    
+    function showRestTip() {
+        const rest = tipMessages.rest[Math.floor(Math.random() * tipMessages.rest.length)];
+        showTip(rest.icon, rest.text, 2000);
+    }
+    
+    function getChapterTip(chapterIndex, progress) {
+        const chapter = state.chapterData[chapterIndex];
+        if (!chapter) return null;
+        
+        const languageType = chapter.language_type || 'chinese';
+        const totalUnits = chapter.total_units || 500;
+        
+        let lengthType = 'medium';
+        if (totalUnits < 500) lengthType = 'short';
+        else if (totalUnits > 1500) lengthType = 'long';
+        
+        let tipPool;
+        if (progress === 'complete') {
+            if (languageType === 'chinese') tipPool = tipMessages.chinese[lengthType];
+            else if (languageType === 'english') tipPool = tipMessages.english[lengthType];
+            else tipPool = tipMessages.mixed[lengthType];
+        } else {
+            if (languageType === 'chinese') tipPool = tipMessages.chinese.medium;
+            else if (languageType === 'english') tipPool = tipMessages.english.medium;
+            else tipPool = tipMessages.mixed.medium;
+        }
+        
+        if (!tipPool || tipPool.length === 0) return null;
+        return tipPool[Math.floor(Math.random() * tipPool.length)];
+    }
+    
+    function checkChapterTip(chapterIndex, isComplete = false) {
+        const chapter = state.chapterData[chapterIndex];
+        if (!chapter) return;
+        
+        const totalUnits = chapter.total_units || 500;
+        const languageType = chapter.language_type || 'chinese';
+        
+        let baseProbability = 0.3;
+        
+        if (isComplete) {
+            if (totalUnits < 500) baseProbability = 0.2;
+            else baseProbability = 1.0;
+        } else {
+            if (languageType === 'chinese') baseProbability = 0.4;
+            else if (languageType === 'english') baseProbability = 0.8;
+            else baseProbability = 0.6;
+        }
+        
+        baseProbability *= (1 + (state.fatigueLevel - 1.0) * 0.5);
+        if (Math.random() > baseProbability) return;
+        
+        const tip = getChapterTip(chapterIndex, isComplete ? 'complete' : 'midway');
+        if (tip) {
+            showTip(tip.icon, tip.text);
+            
+            if (isComplete) {
+                if (elements.progressBar) {
+                    elements.progressBar.classList.add('x0');
+                    setTimeout(() => elements.progressBar.classList.remove('x0'), 300);
+                }
+                const titleElement = document.getElementById(`chapter-${chapterIndex}`);
+                if (titleElement) {
+                    titleElement.classList.add('x0');
+                    setTimeout(() => titleElement.classList.remove('x0'), 500);
+                }
+            }
+        }
+    }
+    
+    function checkMilestone() {
+        const percent = Math.round((state.currentChapter + 1) / state.totalChapters * 100);
+        
+        if ([25, 50, 75, 100].includes(percent)) {
+            const milestone = tipMessages.milestone[percent];
+            if (milestone) {
+                showTip(milestone.icon, milestone.text, 4000);
+                if (percent === 100 && elements.progressBar) {
+                    elements.progressBar.style.height = '8px';
+                    setTimeout(() => {
+                        elements.progressBar.style.height = 'var(--progress-height)';
+                    }, 2000);
+                }
+            }
+        }
+    }
+    
+    function setupMobileElements() {
+        const drawerHTML = `
+            <div class="m0" id="drawerTrigger">
+                <span class="m1">☰</span>
+            </div>
+            <div class="m2" id="drawerPanel">
+                <div class="m3">
+                    <span class="m4">📖 目录</span>
+                    <button class="m5" id="drawerClose">✕</button>
+                </div>
+                <ul class="m6" id="drawerChapters"></ul>
+            </div>
+            <div class="m8" id="drawerOverlay"></div>
+            <button class="u0" id="backToTop">↑</button>
+        `;
+        
+        document.body.insertAdjacentHTML('afterbegin', drawerHTML);
+        
+        mobile.drawerTrigger = document.getElementById('drawerTrigger');
+        mobile.drawerPanel = document.getElementById('drawerPanel');
+        mobile.drawerClose = document.getElementById('drawerClose');
+        mobile.drawerOverlay = document.getElementById('drawerOverlay');
+        mobile.drawerChapters = document.getElementById('drawerChapters');
+        mobile.backToTop = document.getElementById('backToTop');
+        
+        populateDrawer();
+        bindMobileEvents();
+    }
+    
+    function populateDrawer() {
+        if (!mobile.drawerChapters || !elements.sidebarChapters.length) return;
+        
+        elements.sidebarChapters.forEach(item => {
+            const link = item.querySelector('a');
+            if (link) {
+                const newLi = document.createElement('li');
+                newLi.className = item.className;
+                newLi.innerHTML = link.outerHTML;
+                mobile.drawerChapters.appendChild(newLi);
+            }
+        });
+    }
+    
+    function bindMobileEvents() {
+        if (!mobile.drawerTrigger || !mobile.drawerClose || !mobile.drawerOverlay) return;
+        
+        mobile.drawerTrigger.addEventListener('click', () => {
+            toggleDrawer();
+            state.drawerClickCount++;
+            saveReadingStats();
+            if (!localStorage.getItem('drawerUsed')) {
+                showTip("📖", "目录已打开");
+                localStorage.setItem('drawerUsed', 'true');
+            }
+        });
+        
+        mobile.drawerClose.addEventListener('click', closeDrawer);
+        mobile.drawerOverlay.addEventListener('click', closeDrawer);
+        
+        let touchStartX = 0;
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        });
+        
+        document.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            if (touchStartX < 30 && touchEndX - touchStartX > 50) {
+                if (!mobile.drawerPanel?.classList.contains('o0')) openDrawer();
+            }
+            if (mobile.drawerPanel?.classList.contains('o0') && touchStartX - touchEndX > 50) {
+                closeDrawer();
+            }
+        });
+        
+        if (mobile.backToTop) {
+            mobile.backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    }
+    
+    function setupEventListeners() {
+        window.addEventListener('scroll', handleScroll);
+        
+        if (elements.themeToggle) {
+            elements.themeToggle.addEventListener('click', toggleTheme);
+        }
+        
+        document.querySelectorAll('.g1').forEach(card => {
+            card.addEventListener('click', toggleToolExample);
+        });
+        
+        if (elements.prevBtn) {
+            elements.prevBtn.addEventListener('click', () => goToChapter(state.currentChapter - 1));
+        }
+        if (elements.nextBtn) {
+            elements.nextBtn.addEventListener('click', () => goToChapter(state.currentChapter + 1));
+        }
+        
+        document.addEventListener('click', (e) => {
+            const link = e.target.closest('.b3 a, .m7 a');
+            if (link) {
+                e.preventDefault();
+                const href = link.getAttribute('href');
+                const chapterId = parseInt(href.replace('#chapter-', ''));
+                goToChapter(chapterId);
+            }
+        });
+        
+        // ========== 键盘翻页（Page Up/Down）- 考虑头部/底部玻璃区域 ==========
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'PageUp' || e.key === 'PageDown') {
+                e.preventDefault();
+                
+                // 获取固定头部和底部的高度
+                const header = document.querySelector('.h0');
+                const footer = document.querySelector('.N0_CLASS');
+                const headerHeight = header ? header.offsetHeight : 80;
+                const footerHeight = footer ? footer.offsetHeight : 70;
+                
+                // 实际可视阅读区域高度 = 视口高度 - 头部 - 底部
+                const viewportHeight = window.innerHeight - headerHeight - footerHeight;
+                
+                const currentScroll = window.scrollY;
+                
+                let targetScroll;
+                if (e.key === 'PageDown') {
+                    targetScroll = currentScroll + viewportHeight * 0.85;
+                } else {
+                    targetScroll = currentScroll - viewportHeight * 0.85;
+                }
+                
+                // 边界限制
+                targetScroll = Math.max(0, targetScroll);
+                targetScroll = Math.min(document.documentElement.scrollHeight - window.innerHeight, targetScroll);
+                
+                window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+            }
+        });
+    }
+    
+    function goToChapter(index) {
+        if (index < 0 || index >= state.totalChapters) return;
+        
+        const wasLastChapter = state.currentChapter === state.totalChapters - 1;
+        const previousChapter = state.currentChapter;
+        state.currentChapter = index;
+        
+        elements.chapters.forEach((chap, i) => {
+            chap.style.display = i === index ? 'block' : 'none';
+        });
+        
+        if (elements.prevBtn) elements.prevBtn.disabled = index === 0;
+        if (elements.nextBtn) elements.nextBtn.disabled = index === state.totalChapters - 1;
+        
+        scrollToChapter(index);
+        updateAllHighlights();
+        
+        if (previousChapter !== index && !wasLastChapter) {
+            state.chaptersCompleted++;
+            saveReadingStats();
+            checkChapterTip(previousChapter, true);
+            checkMilestone();
+            
+            const minutes = Math.floor((Date.now() - state.readingStartTime) / 60000);
+            if (minutes > 0 && minutes % 10 === 0 && minutes <= 60) {
+                const timeTip = tipMessages.timeBased.long;
+                showTip(timeTip.icon, timeTip.text.replace('{minutes}', minutes));
+            }
+        }
+        
+        if (state.mode === 'mobile' && mobile.drawerPanel?.classList.contains('o0')) {
+            closeDrawer();
+        }
+    }
+    
+    function scrollToChapter(index) {
+        const chapterElement = document.getElementById(`chapter-${index}`);
+        if (!chapterElement) return;
+        
+        const headerHeight = elements.header ? elements.header.offsetHeight : 80;
+        const rect = chapterElement.getBoundingClientRect();
+        const scrollTo = window.pageYOffset + rect.top - headerHeight - 20;
+        
+        window.scrollTo({ top: Math.max(0, scrollTo), behavior: 'smooth' });
+    }
+    
+    function updateAllHighlights() {
+        document.querySelectorAll('.b3, .m7').forEach(item => {
+            item.classList.remove('a0');
+        });
+        
+        const activeSidebarItem = document.querySelectorAll('.b3')[state.currentChapter];
+        if (activeSidebarItem) activeSidebarItem.classList.add('a0');
+        
+        if (mobile.drawerChapters) {
+            const activeDrawerItem = mobile.drawerChapters.querySelectorAll('.b3')[state.currentChapter];
+            if (activeDrawerItem) activeDrawerItem.classList.add('a0');
+        }
+    }
+    
+    function handleScroll() {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        
+        if (elements.progressBar) elements.progressBar.style.width = scrolled + '%';
+        if (elements.progressText) elements.progressText.textContent = `${Math.round(scrolled)}%`;
+        
+        if (mobile.backToTop) {
+            if (winScroll > window.innerHeight) {
+                mobile.backToTop.classList.add('w0');
+            } else {
+                mobile.backToTop.classList.remove('w0');
+            }
+        }
+        
+        detectCurrentChapter();
+        
+        const currentChapterData = state.chapterData[state.currentChapter];
+        if (currentChapterData) {
+            const chapterElement = document.getElementById(`chapter-${state.currentChapter}`);
+            if (chapterElement) {
+                const rect = chapterElement.getBoundingClientRect();
+                const totalHeight = rect.height;
+                const scrolledInChapter = Math.abs(rect.top);
+                
+                if (totalHeight > 0) {
+                    const progress = scrolledInChapter / totalHeight;
+                    if (progress > 0.3 && progress < 0.4 && !sessionStorage.getItem('tip-30')) {
+                        checkChapterTip(state.currentChapter, false);
+                        sessionStorage.setItem('tip-30', 'true');
+                    } else if (progress > 0.6 && progress < 0.7 && !sessionStorage.getItem('tip-60')) {
+                        checkChapterTip(state.currentChapter, false);
+                        sessionStorage.setItem('tip-60', 'true');
+                    }
+                }
+            }
+        }
+    }
+    
+    function detectCurrentChapter() {
+        const headerHeight = elements.header ? elements.header.offsetHeight : 80;
+        
+        for (let i = 0; i < elements.chapters.length; i++) {
+            const titleElement = document.getElementById(`chapter-${i}`);
+            if (titleElement) {
+                const rect = titleElement.getBoundingClientRect();
+                if (rect.top <= headerHeight + 50 && rect.bottom > headerHeight) {
+                    if (state.currentChapter !== i) {
+                        state.currentChapter = i;
+                        updateAllHighlights();
+                        sessionStorage.removeItem('tip-30');
+                        sessionStorage.removeItem('tip-60');
+                    }
+                    break;
+                }
+            }
+        }
+    }
+    
+    function toggleDrawer() {
+        if (mobile.drawerPanel?.classList.contains('o0')) {
+            closeDrawer();
+        } else {
+            openDrawer();
+        }
+    }
+    
+    function openDrawer() {
+        if (!mobile.drawerPanel || !mobile.drawerOverlay) return;
+        mobile.drawerPanel.classList.add('o0');
+        mobile.drawerOverlay.classList.add('a0');
+    }
+    
+    function closeDrawer() {
+        if (!mobile.drawerPanel || !mobile.drawerOverlay) return;
+        mobile.drawerPanel.classList.remove('o0');
+        mobile.drawerOverlay.classList.remove('a0');
+    }
+    
+    function toggleTheme() {
+        document.body.classList.toggle('d0');
+        const isDark = document.body.classList.contains('d0');
+        if (elements.themeToggle) {
+            elements.themeToggle.textContent = isDark ? '☀️ 日间' : '🌙 夜间';
+        }
+        localStorage.setItem('darkMode', isDark ? '1' : '0');
+    }
+    
+    function toggleToolExample(e) {
+        e.stopPropagation();
+        const card = e.currentTarget;
+        const example = card.querySelector('.g7');
+        const expandText = card.querySelector('.g4');
+        
+        if (example) {
+            example.classList.toggle('a0');
+            if (expandText) {
+                expandText.textContent = example.classList.contains('a0') ? '收起示例' : '查看示例';
+            }
+        }
+    }
+    
+    function loadThemePreference() {
+        if (localStorage.getItem('darkMode') === '1') {
+            document.body.classList.add('d0');
+            if (elements.themeToggle) {
+                elements.themeToggle.textContent = '☀️ 日间';
+            }
+        }
+    }
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();
+</script>
+</body>
+</html>
