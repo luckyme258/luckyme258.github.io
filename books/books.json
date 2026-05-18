@@ -1,6 +1,6 @@
 {
-  "lastUpdated": 1779116822179,
-  "totalBooks": 63,
+  "lastUpdated": 1779117649243,
+  "totalBooks": 62,
   "totalCategories": 16,
   "categories": [
     "百科",
@@ -350,17 +350,6 @@
       "size": 2948000,
       "lastModified": 1774012569000,
       "addedTime": 1774012569000
-    },
-    {
-      "id": "虚构_堂吉诃德_塞万提斯.html",
-      "file": "虚构_堂吉诃德_塞万提斯.html",
-      "filename": "虚构_堂吉诃德_塞万提斯.html",
-      "title": "堂吉诃德",
-      "category": "虚构",
-      "author": "塞万提斯",
-      "size": 4326809,
-      "lastModified": 1774012690000,
-      "addedTime": 1774012690000
     },
     {
       "id": "历史_大英帝国3000年_伯纳德·克鲁格, 安德烈亚斯·法迈尔.html",
@@ -748,7 +737,7 @@
     },
     {
       "name": "虚构",
-      "count": 10,
+      "count": 9,
       "icon": "📘"
     },
     {
