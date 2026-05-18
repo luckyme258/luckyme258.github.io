@@ -1,6 +1,6 @@
 {
-  "lastUpdated": 1779121106213,
-  "totalBooks": 62,
+  "lastUpdated": 1779124912429,
+  "totalBooks": 65,
   "totalCategories": 16,
   "categories": [
     "百科",
@@ -286,6 +286,17 @@
       "addedTime": 1779121089000
     },
     {
+      "id": "为美好的世界献上祝福 01 (Unknown) (z-library.sk, 1lib.sk, z-lib.sk).html",
+      "file": "为美好的世界献上祝福 01 (Unknown) (z-library.sk, 1lib.sk, z-lib.sk).html",
+      "filename": "为美好的世界献上祝福 01 (Unknown) (z-library.sk, 1lib.sk, z-lib.sk).html",
+      "title": "为美好的世界献上祝福 01 (Unknown) (z-library.sk, 1lib.sk, z-lib.sk)",
+      "category": "未分类",
+      "author": "",
+      "size": 174812,
+      "lastModified": 1779124891000,
+      "addedTime": 1779124891000
+    },
+    {
       "id": "科幻_亲切的恶魔_星新一.html",
       "file": "科幻_亲切的恶魔_星新一.html",
       "filename": "科幻_亲切的恶魔_星新一.html",
@@ -306,6 +317,28 @@
       "size": 417975,
       "lastModified": 1774013164000,
       "addedTime": 1774013164000
+    },
+    {
+      "id": "科幻_假面骑士Agito_yaji.html",
+      "file": "科幻_假面骑士Agito_yaji.html",
+      "filename": "科幻_假面骑士Agito_yaji.html",
+      "title": "假面骑士Agito",
+      "category": "科幻",
+      "author": "yaji",
+      "size": 206244,
+      "lastModified": 1779124891000,
+      "addedTime": 1779124891000
+    },
+    {
+      "id": "科幻_假面骑士空我_荒川稔久.html",
+      "file": "科幻_假面骑士空我_荒川稔久.html",
+      "filename": "科幻_假面骑士空我_荒川稔久.html",
+      "title": "假面骑士空我",
+      "category": "科幻",
+      "author": "荒川稔久",
+      "size": 261021,
+      "lastModified": 1779124891000,
+      "addedTime": 1779124891000
     },
     {
       "id": "虚构_傲慢与偏见_简·奥斯汀.html",
@@ -717,7 +750,7 @@
     },
     {
       "name": "未分类",
-      "count": 2,
+      "count": 3,
       "icon": "📘"
     },
     {
@@ -747,7 +780,7 @@
     },
     {
       "name": "科幻",
-      "count": 6,
+      "count": 8,
       "icon": "🚀"
     },
     {
