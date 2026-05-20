@@ -1,6 +1,6 @@
 {
-  "lastUpdated": 1779244708438,
-  "totalBooks": 65,
+  "lastUpdated": 1779251985745,
+  "totalBooks": 64,
   "totalCategories": 16,
   "categories": [
     "百科",
@@ -284,17 +284,6 @@
       "size": 6076377,
       "lastModified": 1779121089000,
       "addedTime": 1779121089000
-    },
-    {
-      "id": "为美好的世界献上祝福 01 (Unknown) (z-library.sk, 1lib.sk, z-lib.sk).html",
-      "file": "为美好的世界献上祝福 01 (Unknown) (z-library.sk, 1lib.sk, z-lib.sk).html",
-      "filename": "为美好的世界献上祝福 01 (Unknown) (z-library.sk, 1lib.sk, z-lib.sk).html",
-      "title": "为美好的世界献上祝福 01 (Unknown) (z-library.sk, 1lib.sk, z-lib.sk)",
-      "category": "未分类",
-      "author": "",
-      "size": 174812,
-      "lastModified": 1779124891000,
-      "addedTime": 1779124891000
     },
     {
       "id": "科幻_亲切的恶魔_星新一.html",
@@ -750,7 +739,7 @@
     },
     {
       "name": "未分类",
-      "count": 3,
+      "count": 2,
       "icon": "📘"
     },
     {
