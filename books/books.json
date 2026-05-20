@@ -1,6 +1,6 @@
 {
-  "lastUpdated": 1779251985745,
-  "totalBooks": 64,
+  "lastUpdated": 1779252290028,
+  "totalBooks": 63,
   "totalCategories": 16,
   "categories": [
     "百科",
@@ -306,17 +306,6 @@
       "size": 417975,
       "lastModified": 1774013164000,
       "addedTime": 1774013164000
-    },
-    {
-      "id": "科幻_假面骑士Agito_yaji.html",
-      "file": "科幻_假面骑士Agito_yaji.html",
-      "filename": "科幻_假面骑士Agito_yaji.html",
-      "title": "假面骑士Agito",
-      "category": "科幻",
-      "author": "yaji",
-      "size": 206244,
-      "lastModified": 1779124891000,
-      "addedTime": 1779124891000
     },
     {
       "id": "科幻_假面骑士空我_荒川稔久.html",
@@ -769,7 +758,7 @@
     },
     {
       "name": "科幻",
-      "count": 8,
+      "count": 7,
       "icon": "🚀"
     },
     {
