@@ -9,7 +9,14 @@
     "阅读": {
       "__files__": [
         "阅读的基本框架"
-      ]
+      ],
+      "books": {
+        "newbook": {
+          "__files__": [
+            "chapter1"
+          ]
+        }
+      }
     },
     "topics": {
       "nasa moon": {
