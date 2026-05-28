@@ -22,9 +22,18 @@
             margin: 0 auto;
             padding: 2rem;
         }
-        .back-link {
-            display: inline-block;
+        /* 导航栏 */
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #b0c4d4;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .back-link {
             color: #6a8a8a;
             text-decoration: none;
             font-size: 0.95rem;
@@ -32,6 +41,84 @@
         .back-link:hover {
             text-decoration: underline;
         }
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-btn {
+            background: none;
+            border: 1px solid #b0c4d4;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #2c5a5a;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .nav-btn:hover {
+            background: #e0ecec;
+            border-color: #8aa8a8;
+        }
+        .nav-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        /* 目录大纲 */
+        .outline {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            max-width: 250px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 1rem;
+            font-size: 0.85rem;
+            max-height: 70vh;
+            overflow-y: auto;
+            z-index: 100;
+        }
+        .outline h4 {
+            color: #2c5a5a;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.3rem;
+            border-bottom: 1px solid #e0ecec;
+        }
+        .outline a {
+            display: block;
+            color: #6a8a8a;
+            text-decoration: none;
+            padding: 0.2rem 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .outline a:hover {
+            color: #c47a44;
+            text-decoration: underline;
+        }
+        /* 大纲切换按钮 */
+        .toggle-outline {
+            position: fixed;
+            right: 2rem;
+            bottom: 2rem;
+            background: #2c5a5a;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            z-index: 101;
+            transition: all 0.2s;
+        }
+        .toggle-outline:hover {
+            background: #c47a44;
+        }
+        /* 主内容区 */
         .markdown-body {
             background: white;
             padding: 2.5rem;
@@ -39,8 +126,7 @@
             box-shadow: 0 2px 12px rgba(0,0,0,0.08);
             overflow-x: auto;
         }
-        
-        /* ========== 表格样式（词汇表常用） ========== */
+        /* 表格样式 */
         .markdown-body table {
             border-collapse: collapse;
             width: 100%;
@@ -65,8 +151,18 @@
         .markdown-body tr:hover {
             background-color: #eef4f2;
         }
-        
-        /* 其他样式 */
+        /* 代码块 */
+        .markdown-body pre {
+            background: #eef4f2;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        .markdown-body code {
+            background: #eef4f2;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
         .markdown-body h1 {
             color: #2c5a5a;
             border-bottom: 2px solid #b0c4d4;
@@ -90,21 +186,6 @@
             color: #6a8a8a;
             font-style: italic;
         }
-        .markdown-body pre {
-            background: #eef4f2;
-            padding: 1rem;
-            border-radius: 8px;
-            overflow-x: auto;
-        }
-        .markdown-body code {
-            background: #eef4f2;
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-        }
-        .markdown-body ul, .markdown-body ol {
-            margin: 0.8rem 0 0.8rem 2rem;
-        }
-        
         .loading, .error {
             text-align: center;
             padding: 3rem;
@@ -115,7 +196,20 @@
         .error {
             color: #c44;
         }
-        
+        /* 响应式 */
+        @media (max-width: 1200px) {
+            .outline {
+                display: none;
+            }
+            .toggle-outline {
+                display: block;
+            }
+        }
+        @media (min-width: 1201px) {
+            .toggle-outline {
+                display: none;
+            }
+        }
         @media (max-width: 640px) {
             .container { padding: 1rem; }
             .markdown-body { padding: 1.2rem; }
@@ -125,14 +219,27 @@
 </head>
 <body>
 <div class="container">
-    <a href="index.html" class="back-link">← 返回词汇目录</a>
+    <div class="nav-bar">
+        <a href="index.html" class="back-link">← 返回词汇目录</a>
+        <div class="nav-buttons">
+            <button class="nav-btn" id="prevBtn" title="上一篇">◀ 上一篇</button>
+            <button class="nav-btn" id="nextBtn" title="下一篇">下一篇 ▶</button>
+        </div>
+    </div>
     <div id="content" class="markdown-body">
         <div class="loading">📖 加载词汇中...</div>
     </div>
 </div>
 
+<!-- 大纲侧边栏 -->
+<div id="outline" class="outline" style="display: none;">
+    <h4>📑 目录大纲</h4>
+    <div id="outline-content"></div>
+</div>
+<button id="toggleOutlineBtn" class="toggle-outline">📑</button>
+
 <script>
-    // 配置 marked 支持表格
+    // 配置 marked
     if (typeof marked !== 'undefined') {
         if (typeof marked.setOptions === 'function') {
             marked.setOptions({ gfm: true, tables: true, breaks: false });
@@ -141,15 +248,104 @@
         }
     }
 
+    // 获取当前文件名
     const urlParams = new URLSearchParams(window.location.search);
-    const mdFileName = urlParams.get('file');
+    let currentFile = urlParams.get('file');
     
-    if (!mdFileName) {
-        document.getElementById('content').innerHTML = '<div class="error">❌ 未指定词汇文件</div>';
-    } else {
-        fetch(`${mdFileName}.md`)
+    // 文件列表（用于上一篇/下一篇）
+    let fileList = [];
+    let currentIndex = -1;
+    
+    // 加载文件列表
+    function loadFileList() {
+        const timestamp = new Date().getTime();
+        return fetch(`/雅思词汇/ielts_vocab_list.json?t=${timestamp}`)
+            .then(res => res.json())
+            .then(treeData => {
+                // 扁平化树形结构，获取所有文件路径
+                fileList = [];
+                function flatten(node, currentPath = '') {
+                    for (const [key, value] of Object.entries(node)) {
+                        if (key === '__files__') {
+                            value.forEach(file => {
+                                const fullPath = currentPath ? `${currentPath}/${file}` : file;
+                                fileList.push(fullPath);
+                            });
+                        } else if (typeof value === 'object') {
+                            const newPath = currentPath ? `${currentPath}/${key}` : key;
+                            flatten(value, newPath);
+                        }
+                    }
+                }
+                flatten(treeData);
+                
+                // 找到当前文件索引
+                currentIndex = fileList.indexOf(currentFile);
+                updateNavButtons();
+            })
+            .catch(err => console.warn('加载文件列表失败:', err));
+    }
+    
+    // 更新导航按钮状态
+    function updateNavButtons() {
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        if (prevBtn && nextBtn) {
+            prevBtn.disabled = currentIndex <= 0;
+            nextBtn.disabled = currentIndex >= fileList.length - 1;
+        }
+    }
+    
+    // 上一篇
+    function prevFile() {
+        if (currentIndex > 0) {
+            currentFile = fileList[currentIndex - 1];
+            window.history.pushState({}, '', `?file=${encodeURIComponent(currentFile)}`);
+            loadContent();
+        }
+    }
+    
+    // 下一篇
+    function nextFile() {
+        if (currentIndex < fileList.length - 1) {
+            currentFile = fileList[currentIndex + 1];
+            window.history.pushState({}, '', `?file=${encodeURIComponent(currentFile)}`);
+            loadContent();
+        }
+    }
+    
+    // 生成目录大纲
+    function generateOutline(html) {
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = html;
+        const headers = tempDiv.querySelectorAll('h1, h2, h3');
+        if (headers.length === 0) return '';
+        
+        let outlineHtml = '';
+        headers.forEach(header => {
+            const level = parseInt(header.tagName[1]);
+            const indent = (level - 1) * 12;
+            const text = header.textContent;
+            const id = `heading-${Date.now()}-${Math.random()}`;
+            header.id = id;
+            outlineHtml += `<a href="#${id}" style="padding-left: ${indent}px">${escapeHtml(text)}</a>`;
+        });
+        return outlineHtml;
+    }
+    
+    // 加载并渲染内容
+    function loadContent() {
+        if (!currentFile) {
+            document.getElementById('content').innerHTML = '<div class="error">❌ 未指定词汇文件</div>';
+            return;
+        }
+        
+        document.getElementById('content').innerHTML = '<div class="loading">📖 加载词汇中...</div>';
+        document.title = `${decodeURIComponent(currentFile)} - 雅思词汇`;
+        
+        fetch(`${currentFile}.md`)
             .then(response => {
-                if (!response.ok) throw new Error(`找不到文件：${mdFileName}.md`);
+                if (!response.ok) throw new Error(`找不到文件：${currentFile}.md`);
                 return response.text();
             })
             .then(markdown => {
@@ -168,19 +364,57 @@
             .then(renderedHtml => {
                 if (renderedHtml && typeof renderedHtml.then === 'undefined' && renderedHtml !== undefined) {
                     document.getElementById('content').innerHTML = renderedHtml;
+                    // 生成大纲
+                    const outlineHtml = generateOutline(renderedHtml);
+                    const outlineContent = document.getElementById('outline-content');
+                    if (outlineContent && outlineHtml) {
+                        outlineContent.innerHTML = outlineHtml;
+                        document.getElementById('outline').style.display = 'block';
+                    } else if (outlineContent) {
+                        outlineContent.innerHTML = '<span style="color:#aaa;">无标题</span>';
+                    }
                 }
-                document.title = `${mdFileName} - 雅思词汇`;
+                // 滚动到顶部
+                window.scrollTo(0, 0);
+                // 更新导航按钮状态
+                updateNavButtons();
             })
             .catch(error => {
+                console.error('Error:', error);
                 document.getElementById('content').innerHTML = `
                     <div class="error">
                         ❌ 无法加载词汇<br>
                         <small>${error.message}</small><br><br>
-                        💡 请确保 <strong>${mdFileName}.md</strong> 文件存在于 "雅思词汇" 文件夹中
+                        💡 请确保文件路径正确
                     </div>
                 `;
             });
     }
+    
+    // 初始化
+    loadFileList().then(() => {
+        loadContent();
+    });
+    
+    // 绑定事件
+    document.getElementById('prevBtn').addEventListener('click', prevFile);
+    document.getElementById('nextBtn').addEventListener('click', nextFile);
+    
+    // 大纲切换
+    let outlineVisible = true;
+    const outlineEl = document.getElementById('outline');
+    const toggleBtn = document.getElementById('toggleOutlineBtn');
+    
+    toggleBtn.addEventListener('click', () => {
+        if (outlineVisible) {
+            outlineEl.style.display = 'none';
+            toggleBtn.textContent = '📑';
+        } else {
+            outlineEl.style.display = 'block';
+            toggleBtn.textContent = '✖';
+        }
+        outlineVisible = !outlineVisible;
+    });
     
     function escapeHtml(text) {
         const div = document.createElement('div');
