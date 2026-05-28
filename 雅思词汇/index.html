@@ -143,19 +143,19 @@
         if (!node) return '';
         
         const files = node.__files__ || [];
-        let html = '<ul class="tree-node" style="padding-left: 0">';
+        let html = '<ul class="tree-node">';
         
         // 渲染子目录
         for (const [key, value] of Object.entries(node)) {
             if (key === '__files__') continue;
             
             const newPath = currentPath ? `${currentPath}/${key}` : key;
-            const childHasChildren = Object.keys(value).some(k => k !== '__files__') || (value.__files__ && value.__files__.length > 0);
+            const hasChildren = Object.keys(value).some(k => k !== '__files__') || (value.__files__ && value.__files__.length > 0);
             
             html += `
                 <li>
-                    <div class="node-content" onclick="toggleNode(this)">
-                        <span class="toggle-icon">${childHasChildren ? '▶' : '•'}</span>
+                    <div class="node-content" data-path="${escapeHtml(newPath)}">
+                        <span class="toggle-icon">${hasChildren ? '▶' : '•'}</span>
                         <span class="folder-icon">📁</span>
                         <span class="node-name">${escapeHtml(key)}</span>
                     </div>
@@ -166,7 +166,7 @@
             `;
         }
         
-        // 渲染当前层级的文件（使用完整路径）
+        // 渲染当前层级的文件
         if (files.length > 0) {
             files.forEach(file => {
                 const fullPath = currentPath ? `${currentPath}/${file}` : file;
@@ -185,23 +185,52 @@
         return html;
     }
     
-    // 切换文件夹展开/收起
-    window.toggleNode = function(element) {
-        const li = element.closest('li');
-        const childrenDiv = li.querySelector('.children');
-        const toggleIcon = element.querySelector('.toggle-icon');
+    // 切换文件夹展开/收起（使用事件委托）
+    function setupTreeEvents() {
+        const container = document.getElementById('tree-container');
+        if (!container) return;
         
-        if (childrenDiv) {
-            const isOpen = li.classList.contains('open');
-            if (isOpen) {
-                li.classList.remove('open');
-                toggleIcon.textContent = '▶';
-            } else {
-                li.classList.add('open');
-                toggleIcon.textContent = '▼';
+        container.addEventListener('click', function(e) {
+            // 找到被点击的 .node-content 元素
+            const nodeContent = e.target.closest('.node-content');
+            if (!nodeContent) return;
+            
+            const li = nodeContent.closest('li');
+            if (!li) return;
+            
+            const childrenDiv = li.querySelector(':scope > .children');
+            const toggleIcon = nodeContent.querySelector('.toggle-icon');
+            
+            if (childrenDiv) {
+                const isOpen = li.classList.contains('open');
+                if (isOpen) {
+                    li.classList.remove('open');
+                    if (toggleIcon) toggleIcon.textContent = '▶';
+                } else {
+                    li.classList.add('open');
+                    if (toggleIcon) toggleIcon.textContent = '▼';
+                }
             }
-        }
-    };
+        });
+    }
+    
+    // 递归展开所有层级
+    function expandAllNodes(element, depth = 0, maxDepth = 10) {
+        if (depth > maxDepth) return;
+        
+        const nodes = element.querySelectorAll(':scope > li');
+        nodes.forEach(li => {
+            const childrenDiv = li.querySelector(':scope > .children');
+            const toggleIcon = li.querySelector(':scope > .node-content > .toggle-icon');
+            
+            if (childrenDiv && childrenDiv.children.length > 0) {
+                li.classList.add('open');
+                if (toggleIcon) toggleIcon.textContent = '▼';
+                // 递归展开子节点
+                expandAllNodes(childrenDiv, depth + 1, maxDepth);
+            }
+        });
+    }
     
     // 加载数据
     fetch(jsonUrl)
@@ -224,20 +253,16 @@
             }
             countFiles(treeData);
             
+            // 渲染树
             const html = renderTree(treeData);
             container.innerHTML = html;
             document.getElementById('count').innerHTML = `共 ${totalFiles} 组词汇`;
             
-            // 默认展开第一层
-            document.querySelectorAll('.tree-node > li > .node-content').forEach(el => {
-                const li = el.closest('li');
-                const childrenDiv = li.querySelector('.children');
-                if (childrenDiv && childrenDiv.children.length > 0) {
-                    li.classList.add('open');
-                    const toggleIcon = el.querySelector('.toggle-icon');
-                    if (toggleIcon) toggleIcon.textContent = '▼';
-                }
-            });
+            // 设置事件监听（事件委托）
+            setupTreeEvents();
+            
+            // 默认展开所有层级（这样用户可以看到完整结构）
+            expandAllNodes(container);
         })
         .catch(error => {
             console.error('Error:', error);
