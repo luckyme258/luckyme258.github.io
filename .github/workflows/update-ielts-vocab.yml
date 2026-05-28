@@ -15,15 +15,23 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: 生成目录文件
+      - name: 生成雅思词汇目录文件
         run: |
           cd 雅思词汇
-          echo '[' > ielts_vocab_list.json
-          ls *.md | grep -v index | sed 's/.md$//' | while read name; do
-            echo "\"$name\"," >> ielts_vocab_list.json
+          
+          # 使用 printf 避免多余逗号
+          printf '[' > ielts_vocab_list.json
+          first=true
+          for file in $(ls *.md 2>/dev/null | grep -v '^index.md$' | sort); do
+            name=$(basename "$file" .md)
+            if [ "$first" = true ]; then
+              printf '"%s"' "$name" >> ielts_vocab_list.json
+              first=false
+            else
+              printf ',"%s"' "$name" >> ielts_vocab_list.json
+            fi
           done
-          echo ']' >> ielts_vocab_list.json
-          sed -i '$ s/,$/]/' ielts_vocab_list.json
+          printf ']' >> ielts_vocab_list.json
           
       - name: 提交更新
         run: |
