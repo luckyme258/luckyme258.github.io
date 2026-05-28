@@ -3,7 +3,7 @@ name: 更新诗歌目录
 on:
   push:
     paths:
-      - '诗歌/*.md'          # 只有 .md 文件变化才触发
+      - '诗歌/*.md'
     branches:
       - main
 
@@ -18,12 +18,15 @@ jobs:
       - name: 生成诗歌目录文件
         run: |
           cd 诗歌
-          echo '[' > poetry_list.json
-          ls *.md | grep -v index | sed 's/.md$//' | while read name; do
-            echo "\"$name\"," >> poetry_list.json
-          done
-          echo ']' >> poetry_list.json
-          sed -i '$ s/,$/]/' poetry_list.json
+          # 获取所有 .md 文件名（不含扩展名）
+          files=$(ls *.md 2>/dev/null | grep -v index | sed 's/.md$//' | jq -R . | jq -s .)
+          
+          # 如果没有文件，输出空数组
+          if [ -z "$files" ] || [ "$files" = "[]" ]; then
+            echo '[]' > poetry_list.json
+          else
+            echo "$files" > poetry_list.json
+          fi
           
       - name: 提交更新
         run: |
