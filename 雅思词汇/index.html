@@ -36,7 +36,9 @@
             color: #6a8a8a;
             text-decoration: none;
         }
-        /* 树形目录样式 */
+        .back-link:hover {
+            text-decoration: underline;
+        }
         .tree {
             background: white;
             border-radius: 16px;
@@ -64,7 +66,6 @@
             width: 24px;
             font-size: 1rem;
             color: #6a8a8a;
-            cursor: pointer;
         }
         .tree-node .folder-icon {
             margin-right: 0.5rem;
@@ -137,19 +138,18 @@
     const timestamp = new Date().getTime();
     const jsonUrl = `/雅思词汇/ielts_vocab_list.json?t=${timestamp}`;
     
-    // 递归渲染树
-    function renderTree(node, level = 0) {
+    // 递归渲染树（带路径累积）
+    function renderTree(node, currentPath = '') {
         if (!node) return '';
         
-        const hasChildren = Object.keys(node).some(key => key !== '__files__');
         const files = node.__files__ || [];
-        
         let html = '<ul class="tree-node" style="padding-left: 0">';
         
         // 渲染子目录
         for (const [key, value] of Object.entries(node)) {
             if (key === '__files__') continue;
             
+            const newPath = currentPath ? `${currentPath}/${key}` : key;
             const childHasChildren = Object.keys(value).some(k => k !== '__files__') || (value.__files__ && value.__files__.length > 0);
             
             html += `
@@ -160,20 +160,19 @@
                         <span class="node-name">${escapeHtml(key)}</span>
                     </div>
                     <div class="children">
-                        ${renderTree(value, level + 1)}
+                        ${renderTree(value, newPath)}
                     </div>
                 </li>
             `;
         }
         
-        // 渲染当前层级的文件
+        // 渲染当前层级的文件（使用完整路径）
         if (files.length > 0) {
             files.forEach(file => {
-                // 构建文件路径（需要从树结构反推，这里简化处理）
-                // 实际使用时需要传递完整路径，这里先按文件名处理
+                const fullPath = currentPath ? `${currentPath}/${file}` : file;
                 html += `
                     <li>
-                        <a href="viewer.html?file=${encodeURIComponent(file)}" class="file-link">
+                        <a href="viewer.html?file=${encodeURIComponent(fullPath)}" class="file-link">
                             <span class="file-icon">📖</span>
                             <span>${escapeHtml(file)}</span>
                         </a>
@@ -235,7 +234,8 @@
                 const childrenDiv = li.querySelector('.children');
                 if (childrenDiv && childrenDiv.children.length > 0) {
                     li.classList.add('open');
-                    el.querySelector('.toggle-icon').textContent = '▼';
+                    const toggleIcon = el.querySelector('.toggle-icon');
+                    if (toggleIcon) toggleIcon.textContent = '▼';
                 }
             });
         })
