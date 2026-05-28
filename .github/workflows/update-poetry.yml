@@ -3,7 +3,7 @@ name: 更新诗歌目录
 on:
   push:
     paths:
-      - '诗歌/*.md'
+      - '诗歌/*.md'          # 新增或删除都会触发
     branches:
       - main
 
@@ -18,20 +18,25 @@ jobs:
       - name: 生成诗歌目录文件
         run: |
           cd 诗歌
-          # 获取所有 .md 文件名（不含扩展名）
-          files=$(ls *.md 2>/dev/null | grep -v index | sed 's/.md$//' | jq -R . | jq -s .)
           
-          # 如果没有文件，输出空数组
-          if [ -z "$files" ] || [ "$files" = "[]" ]; then
-            echo '[]' > poetry_list.json
-          else
-            echo "$files" > poetry_list.json
-          fi
+          # 构建 JSON 数组（排除 index.md）
+          echo '[' > poetry_list.json
+          first=true
+          for file in $(ls *.md 2>/dev/null | grep -v '^index.md$' | sort); do
+            name=$(basename "$file" .md)
+            if [ "$first" = true ]; then
+              echo "\"$name\"" >> poetry_list.json
+              first=false
+            else
+              echo ",\"$name\"" >> poetry_list.json
+            fi
+          done
+          echo ']' >> poetry_list.json
           
       - name: 提交更新
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add 诗歌/poetry_list.json
-          git diff --staged --quiet || git commit -m "自动更新诗歌目录"
+          git diff --staged --quiet || git commit -m "自动更新诗歌目录（新增/删除）"
           git push
