@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>雅思词汇阅读器</title>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
@@ -11,45 +11,168 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
             background: #f0f4f8;
             color: #1a3a3a;
             line-height: 1.8;
         }
-        .container {
-            max-width: 1000px;
+
+        /* 桌面端布局：左右两栏 */
+        .desktop-layout {
+            display: flex;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 2rem;
+            gap: 2rem;
         }
+
+        /* 主内容区域 */
+        .main-content {
+            flex: 1;
+            min-width: 0;  /* 防止溢出 */
+        }
+
+        /* 大纲侧边栏（桌面端） */
+        .outline-sidebar {
+            width: 280px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 2rem;
+            align-self: flex-start;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 1rem;
+            max-height: calc(100vh - 4rem);
+            overflow-y: auto;
+            font-size: 0.85rem;
+        }
+        .outline-sidebar h4 {
+            color: #2c5a5a;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #b0c4d4;
+        }
+        .outline-sidebar a {
+            display: block;
+            color: #4a6a6a;
+            text-decoration: none;
+            padding: 0.3rem 0;
+            border-left: 2px solid transparent;
+            transition: all 0.2s;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .outline-sidebar a:hover {
+            color: #c47a44;
+            border-left-color: #c47a44;
+            padding-left: 0.5rem;
+        }
+
+        /* 移动端大纲按钮 + 抽屉 */
+        .mobile-outline-btn {
+            display: none;
+            position: fixed;
+            right: 1.5rem;
+            bottom: 1.5rem;
+            background: #2c5a5a;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 52px;
+            height: 52px;
+            font-size: 1.4rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: all 0.2s;
+        }
+        .mobile-outline-btn:hover {
+            background: #c47a44;
+            transform: scale(1.02);
+        }
+
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100%;
+            background: white;
+            box-shadow: -2px 0 12px rgba(0,0,0,0.15);
+            z-index: 1001;
+            transition: right 0.3s ease;
+            padding: 1rem;
+            overflow-y: auto;
+            font-size: 0.9rem;
+        }
+        .mobile-drawer.open {
+            right: 0;
+        }
+        .mobile-drawer h4 {
+            color: #2c5a5a;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #b0c4d4;
+        }
+        .mobile-drawer a {
+            display: block;
+            color: #4a6a6a;
+            text-decoration: none;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #e0ecec;
+        }
+        .mobile-drawer a:active {
+            background: #f0f6f4;
+        }
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 1000;
+            display: none;
+        }
+        .drawer-overlay.open {
+            display: block;
+        }
+
         /* 导航栏 */
         .nav-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
             border-bottom: 1px solid #b0c4d4;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 0.8rem;
         }
         .back-link {
             color: #6a8a8a;
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            background: #eef2f0;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
         }
         .back-link:hover {
-            text-decoration: underline;
+            background: #e0ecec;
         }
         .nav-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 0.8rem;
         }
         .nav-btn {
-            background: none;
+            background: white;
             border: 1px solid #b0c4d4;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
+            padding: 0.3rem 1rem;
+            border-radius: 24px;
             font-size: 0.85rem;
             color: #2c5a5a;
             cursor: pointer;
@@ -63,132 +186,69 @@
             opacity: 0.4;
             cursor: not-allowed;
         }
-        /* 目录大纲 */
-        .outline {
-            position: fixed;
-            right: 2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            max-width: 250px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            padding: 1rem;
-            font-size: 0.85rem;
-            max-height: 70vh;
-            overflow-y: auto;
-            z-index: 100;
-        }
-        .outline h4 {
-            color: #2c5a5a;
-            margin-bottom: 0.5rem;
-            padding-bottom: 0.3rem;
-            border-bottom: 1px solid #e0ecec;
-        }
-        .outline a {
-            display: block;
-            color: #6a8a8a;
-            text-decoration: none;
-            padding: 0.2rem 0;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        .outline a:hover {
-            color: #c47a44;
-            text-decoration: underline;
-        }
-        /* 大纲切换按钮 */
-        .toggle-outline {
-            position: fixed;
-            right: 2rem;
-            bottom: 2rem;
-            background: #2c5a5a;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 48px;
-            height: 48px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-            z-index: 101;
-            transition: all 0.2s;
-        }
-        .toggle-outline:hover {
-            background: #c47a44;
-        }
-        /* 主内容区 */
+
+        /* Markdown 内容样式 */
         .markdown-body {
             background: white;
-            padding: 2.5rem;
+            padding: 2rem;
             border-radius: 16px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
             overflow-x: auto;
         }
-        /* 表格样式 */
+        /* 表格 */
         .markdown-body table {
             border-collapse: collapse;
             width: 100%;
-            margin: 1.5rem 0;
-            font-size: 0.95rem;
+            margin: 1.2rem 0;
         }
-        .markdown-body th,
-        .markdown-body td {
+        .markdown-body th, .markdown-body td {
             border: 1px solid #b0c4d4;
-            padding: 0.75rem 1rem;
-            vertical-align: top;
+            padding: 0.6rem 0.8rem;
             text-align: left;
+            vertical-align: top;
         }
         .markdown-body th {
             background: #e0ecec;
-            font-weight: 700;
-            border-bottom: 2px solid #8aa8a8;
+            font-weight: 600;
         }
         .markdown-body tr:nth-child(even) {
-            background-color: #f8fafc;
+            background: #f8fafc;
         }
-        .markdown-body tr:hover {
-            background-color: #eef4f2;
-        }
-        /* 代码块 */
-        .markdown-body pre {
-            background: #eef4f2;
-            padding: 1rem;
-            border-radius: 8px;
-            overflow-x: auto;
-        }
-        .markdown-body code {
-            background: #eef4f2;
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-        }
+        /* 标题样式 */
         .markdown-body h1 {
             color: #2c5a5a;
             border-bottom: 2px solid #b0c4d4;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1rem;
+            padding-bottom: 0.4rem;
+            margin: 1rem 0 0.8rem;
         }
         .markdown-body h2 {
             color: #3a6a6a;
-            margin-top: 1.5rem;
+            margin-top: 1.2rem;
         }
         .markdown-body h3 {
             color: #4a7a7a;
-            margin-top: 1.2rem;
         }
-        .markdown-body p {
-            margin: 1rem 0;
+        .markdown-body code {
+            background: #eef4f2;
+            padding: 0.2rem 0.3rem;
+            border-radius: 4px;
+        }
+        .markdown-body pre {
+            background: #eef4f2;
+            padding: 0.8rem;
+            border-radius: 8px;
+            overflow-x: auto;
         }
         .markdown-body blockquote {
             border-left: 4px solid #b0c4d4;
             padding-left: 1rem;
-            color: #6a8a8a;
-            font-style: italic;
+            color: #5a7a7a;
+            margin: 0.8rem 0;
         }
+
         .loading, .error {
             text-align: center;
-            padding: 3rem;
+            padding: 2rem;
             background: white;
             border-radius: 16px;
             color: #6a8a8a;
@@ -196,50 +256,64 @@
         .error {
             color: #c44;
         }
-        /* 响应式 */
-        @media (max-width: 1200px) {
-            .outline {
+
+        /* 响应式：小屏幕时隐藏侧边栏，显示浮动按钮 */
+        @media (max-width: 900px) {
+            .desktop-layout {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            .outline-sidebar {
                 display: none;
             }
-            .toggle-outline {
-                display: block;
+            .mobile-outline-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
         }
-        @media (min-width: 1201px) {
-            .toggle-outline {
+
+        /* 中等屏幕（比如平板）也可以保留侧边栏，但若太挤则隐藏 */
+        @media (min-width: 901px) {
+            .mobile-outline-btn, .mobile-drawer, .drawer-overlay {
                 display: none;
             }
-        }
-        @media (max-width: 640px) {
-            .container { padding: 1rem; }
-            .markdown-body { padding: 1.2rem; }
-            .markdown-body th, .markdown-body td { padding: 0.4rem 0.6rem; font-size: 0.85rem; }
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="nav-bar">
-        <a href="index.html" class="back-link">← 返回词汇目录</a>
-        <div class="nav-buttons">
-            <button class="nav-btn" id="prevBtn" title="上一篇">◀ 上一篇</button>
-            <button class="nav-btn" id="nextBtn" title="下一篇">下一篇 ▶</button>
+<div class="desktop-layout">
+    <!-- 主内容区 -->
+    <div class="main-content">
+        <div class="nav-bar">
+            <a href="index.html" class="back-link">← 返回词汇目录</a>
+            <div class="nav-buttons">
+                <button class="nav-btn" id="prevBtn" title="上一篇">◀ 上一篇</button>
+                <button class="nav-btn" id="nextBtn" title="下一篇">下一篇 ▶</button>
+            </div>
+        </div>
+        <div id="content" class="markdown-body">
+            <div class="loading">📖 加载词汇中...</div>
         </div>
     </div>
-    <div id="content" class="markdown-body">
-        <div class="loading">📖 加载词汇中...</div>
-    </div>
+
+    <!-- 桌面端大纲侧边栏 -->
+    <aside class="outline-sidebar" id="desktopOutline">
+        <h4>📑 本页目录</h4>
+        <div id="outline-content-desktop"></div>
+    </aside>
 </div>
 
-<!-- 大纲侧边栏 -->
-<div id="outline" class="outline" style="display: none;">
+<!-- 移动端组件 -->
+<button class="mobile-outline-btn" id="mobileOutlineBtn">📑</button>
+<div class="mobile-drawer" id="mobileDrawer">
     <h4>📑 目录大纲</h4>
-    <div id="outline-content"></div>
+    <div id="outline-content-mobile"></div>
 </div>
-<button id="toggleOutlineBtn" class="toggle-outline">📑</button>
+<div class="drawer-overlay" id="drawerOverlay"></div>
 
 <script>
-    // 配置 marked
+    // ==================== 配置 marked ====================
     if (typeof marked !== 'undefined') {
         if (typeof marked.setOptions === 'function') {
             marked.setOptions({ gfm: true, tables: true, breaks: false });
@@ -248,179 +322,187 @@
         }
     }
 
-    // 获取当前文件名
+    // ==================== 全局变量 ====================
     const urlParams = new URLSearchParams(window.location.search);
     let currentFile = urlParams.get('file');
-    
-    // 文件列表（用于上一篇/下一篇）
     let fileList = [];
     let currentIndex = -1;
-    
-    // 加载文件列表
-    function loadFileList() {
-        const timestamp = new Date().getTime();
-        return fetch(`/雅思词汇/ielts_vocab_list.json?t=${timestamp}`)
-            .then(res => res.json())
-            .then(treeData => {
-                // 扁平化树形结构，获取所有文件路径
-                fileList = [];
-                function flatten(node, currentPath = '') {
-                    for (const [key, value] of Object.entries(node)) {
-                        if (key === '__files__') {
-                            value.forEach(file => {
-                                const fullPath = currentPath ? `${currentPath}/${file}` : file;
-                                fileList.push(fullPath);
-                            });
-                        } else if (typeof value === 'object') {
-                            const newPath = currentPath ? `${currentPath}/${key}` : key;
-                            flatten(value, newPath);
-                        }
-                    }
-                }
-                flatten(treeData);
-                
-                // 找到当前文件索引
-                currentIndex = fileList.indexOf(currentFile);
-                updateNavButtons();
-            })
-            .catch(err => console.warn('加载文件列表失败:', err));
-    }
-    
-    // 更新导航按钮状态
-    function updateNavButtons() {
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        if (prevBtn && nextBtn) {
-            prevBtn.disabled = currentIndex <= 0;
-            nextBtn.disabled = currentIndex >= fileList.length - 1;
-        }
-    }
-    
-    // 上一篇
-    function prevFile() {
-        if (currentIndex > 0) {
-            currentFile = fileList[currentIndex - 1];
-            window.history.pushState({}, '', `?file=${encodeURIComponent(currentFile)}`);
-            loadContent();
-        }
-    }
-    
-    // 下一篇
-    function nextFile() {
-        if (currentIndex < fileList.length - 1) {
-            currentFile = fileList[currentIndex + 1];
-            window.history.pushState({}, '', `?file=${encodeURIComponent(currentFile)}`);
-            loadContent();
-        }
-    }
-    
-    // 生成目录大纲
-    function generateOutline(html) {
-        const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = html;
-        const headers = tempDiv.querySelectorAll('h1, h2, h3');
-        if (headers.length === 0) return '';
-        
-        let outlineHtml = '';
-        headers.forEach(header => {
-            const level = parseInt(header.tagName[1]);
-            const indent = (level - 1) * 12;
-            const text = header.textContent;
-            const id = `heading-${Date.now()}-${Math.random()}`;
-            header.id = id;
-            outlineHtml += `<a href="#${id}" style="padding-left: ${indent}px">${escapeHtml(text)}</a>`;
-        });
-        return outlineHtml;
-    }
-    
-    // 加载并渲染内容
-    function loadContent() {
-        if (!currentFile) {
-            document.getElementById('content').innerHTML = '<div class="error">❌ 未指定词汇文件</div>';
-            return;
-        }
-        
-        document.getElementById('content').innerHTML = '<div class="loading">📖 加载词汇中...</div>';
-        document.title = `${decodeURIComponent(currentFile)} - 雅思词汇`;
-        
-        fetch(`${currentFile}.md`)
-            .then(response => {
-                if (!response.ok) throw new Error(`找不到文件：${currentFile}.md`);
-                return response.text();
-            })
-            .then(markdown => {
-                if (typeof marked !== 'undefined') {
-                    const result = marked.parse(markdown);
-                    if (result && typeof result.then === 'function') {
-                        return result;
-                    } else {
-                        document.getElementById('content').innerHTML = result;
-                        return result;
-                    }
-                } else {
-                    document.getElementById('content').innerHTML = `<pre>${escapeHtml(markdown)}</pre>`;
-                }
-            })
-            .then(renderedHtml => {
-                if (renderedHtml && typeof renderedHtml.then === 'undefined' && renderedHtml !== undefined) {
-                    document.getElementById('content').innerHTML = renderedHtml;
-                    // 生成大纲
-                    const outlineHtml = generateOutline(renderedHtml);
-                    const outlineContent = document.getElementById('outline-content');
-                    if (outlineContent && outlineHtml) {
-                        outlineContent.innerHTML = outlineHtml;
-                        document.getElementById('outline').style.display = 'block';
-                    } else if (outlineContent) {
-                        outlineContent.innerHTML = '<span style="color:#aaa;">无标题</span>';
-                    }
-                }
-                // 滚动到顶部
-                window.scrollTo(0, 0);
-                // 更新导航按钮状态
-                updateNavButtons();
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                document.getElementById('content').innerHTML = `
-                    <div class="error">
-                        ❌ 无法加载词汇<br>
-                        <small>${error.message}</small><br><br>
-                        💡 请确保文件路径正确
-                    </div>
-                `;
-            });
-    }
-    
-    // 初始化
-    loadFileList().then(() => {
-        loadContent();
-    });
-    
-    // 绑定事件
-    document.getElementById('prevBtn').addEventListener('click', prevFile);
-    document.getElementById('nextBtn').addEventListener('click', nextFile);
-    
-    // 大纲切换
-    let outlineVisible = true;
-    const outlineEl = document.getElementById('outline');
-    const toggleBtn = document.getElementById('toggleOutlineBtn');
-    
-    toggleBtn.addEventListener('click', () => {
-        if (outlineVisible) {
-            outlineEl.style.display = 'none';
-            toggleBtn.textContent = '📑';
-        } else {
-            outlineEl.style.display = 'block';
-            toggleBtn.textContent = '✖';
-        }
-        outlineVisible = !outlineVisible;
-    });
-    
+
+    // DOM 元素
+    const contentDiv = document.getElementById('content');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const desktopOutlineDiv = document.getElementById('outline-content-desktop');
+    const mobileOutlineDiv = document.getElementById('outline-content-mobile');
+
+    // ==================== 辅助函数 ====================
     function escapeHtml(text) {
         const div = document.createElement('div');
         div.textContent = text;
         return div.innerHTML;
     }
+
+    // 基于真实 DOM 生成大纲（同时为标题添加 ID）
+    function buildOutlineFromDOM() {
+        const headers = document.querySelectorAll('#content h1, #content h2, #content h3');
+        if (headers.length === 0) return '';
+
+        let outlineHtml = '';
+        headers.forEach((header, idx) => {
+            const level = parseInt(header.tagName[1]);
+            const indent = (level - 1) * 12;
+            let text = header.textContent.trim();
+            if (!text) text = `标题${idx+1}`;
+            // 生成稳定的 ID（基于文本+索引，避免特殊字符）
+            const baseId = text.replace(/[^\w\u4e00-\u9fa5]/g, '-').substring(0, 30);
+            const id = `heading-${baseId}-${idx}`;
+            header.id = id;
+            outlineHtml += `<a href="#${id}" style="padding-left: ${indent}px; display: block;">${escapeHtml(text)}</a>`;
+        });
+        return outlineHtml;
+    }
+
+    // 更新大纲内容（桌面端和移动端同步）
+    function updateOutline() {
+        const outlineHtml = buildOutlineFromDOM();
+        if (outlineHtml) {
+            if (desktopOutlineDiv) desktopOutlineDiv.innerHTML = outlineHtml;
+            if (mobileOutlineDiv) mobileOutlineDiv.innerHTML = outlineHtml;
+        } else {
+            const noContent = '<span style="color:#aaa;">无标题</span>';
+            if (desktopOutlineDiv) desktopOutlineDiv.innerHTML = noContent;
+            if (mobileOutlineDiv) mobileOutlineDiv.innerHTML = noContent;
+        }
+    }
+
+    // 更新导航按钮状态
+    function updateNavButtons() {
+        if (prevBtn && nextBtn) {
+            prevBtn.disabled = currentIndex <= 0;
+            nextBtn.disabled = currentIndex >= fileList.length - 1;
+        }
+    }
+
+    // 加载文件列表（扁平化树形 JSON）
+    async function loadFileList() {
+        const timestamp = Date.now();
+        try {
+            const res = await fetch(`/雅思词汇/ielts_vocab_list.json?t=${timestamp}`);
+            if (!res.ok) throw new Error('加载文件列表失败');
+            const treeData = await res.json();
+            fileList = [];
+            function flatten(node, currentPath = '') {
+                for (const [key, value] of Object.entries(node)) {
+                    if (key === '__files__') {
+                        value.forEach(file => {
+                            const fullPath = currentPath ? `${currentPath}/${file}` : file;
+                            fileList.push(fullPath);
+                        });
+                    } else if (typeof value === 'object') {
+                        const newPath = currentPath ? `${currentPath}/${key}` : key;
+                        flatten(value, newPath);
+                    }
+                }
+            }
+            flatten(treeData);
+            currentIndex = fileList.indexOf(currentFile);
+            updateNavButtons();
+        } catch (err) {
+            console.warn('文件列表加载失败:', err);
+            // 不影响正文显示，只是上一篇下一篇不可用
+            fileList = [];
+            currentIndex = -1;
+            updateNavButtons();
+        }
+    }
+
+    // 加载并显示当前 Markdown 文件
+    async function loadContent() {
+        if (!currentFile) {
+            contentDiv.innerHTML = '<div class="error">❌ 未指定词汇文件</div>';
+            return;
+        }
+        contentDiv.innerHTML = '<div class="loading">📖 加载词汇中...</div>';
+        document.title = `${decodeURIComponent(currentFile)} - 雅思词汇`;
+
+        try {
+            const response = await fetch(`${currentFile}.md`);
+            if (!response.ok) throw new Error(`找不到文件：${currentFile}.md`);
+            const markdown = await response.text();
+            // marked.parse 可能返回 Promise 或 string
+            let html = marked.parse(markdown);
+            if (html && typeof html.then === 'function') html = await html;
+            contentDiv.innerHTML = html;
+            // 生成大纲（基于真实 DOM）
+            updateOutline();
+            // 滚动到顶部
+            window.scrollTo(0, 0);
+        } catch (error) {
+            console.error(error);
+            contentDiv.innerHTML = `
+                <div class="error">
+                    ❌ 无法加载词汇<br>
+                    <small>${error.message}</small><br><br>
+                    💡 请确保文件路径正确
+                </div>
+            `;
+        }
+    }
+
+    // 上一篇 / 下一篇
+    function prevFile() {
+        if (currentIndex > 0) {
+            currentFile = fileList[currentIndex - 1];
+            window.history.pushState({}, '', `?file=${encodeURIComponent(currentFile)}`);
+            loadContent();
+            loadFileList().then(() => { /* 按钮状态已在 loadFileList 中更新 */ });
+        }
+    }
+    function nextFile() {
+        if (currentIndex < fileList.length - 1) {
+            currentFile = fileList[currentIndex + 1];
+            window.history.pushState({}, '', `?file=${encodeURIComponent(currentFile)}`);
+            loadContent();
+            loadFileList().then(() => {});
+        }
+    }
+
+    // ==================== 移动端抽屉控制 ====================
+    const mobileBtn = document.getElementById('mobileOutlineBtn');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const drawerOverlay = document.getElementById('drawerOverlay');
+
+    function openMobileDrawer() {
+        mobileDrawer.classList.add('open');
+        drawerOverlay.classList.add('open');
+    }
+    function closeMobileDrawer() {
+        mobileDrawer.classList.remove('open');
+        drawerOverlay.classList.remove('open');
+    }
+    if (mobileBtn) {
+        mobileBtn.addEventListener('click', openMobileDrawer);
+        drawerOverlay.addEventListener('click', closeMobileDrawer);
+        // 点击抽屉内的链接后关闭抽屉
+        mobileDrawer.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                closeMobileDrawer();
+            }
+        });
+    }
+
+    // ==================== 初始化 ====================
+    (async () => {
+        await loadFileList();
+        await loadContent();
+        // 绑定导航按钮事件
+        if (prevBtn) prevBtn.addEventListener('click', prevFile);
+        if (nextBtn) nextBtn.addEventListener('click', nextFile);
+        // 监听 hash 变化（点击大纲链接后浏览器滚动，可保持抽屉关闭）
+        window.addEventListener('hashchange', () => {
+            if (window.innerWidth <= 900) closeMobileDrawer();
+        });
+    })();
 </script>
 </body>
 </html>
