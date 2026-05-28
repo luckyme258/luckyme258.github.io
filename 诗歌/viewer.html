@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>诗歌阅读器</title>
-    <!-- 使用 marked 并启用 GFM 表格 -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
-        /* 保持原有样式，增加表格样式 */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
             background: #f9f6ef;
@@ -16,7 +18,7 @@
             line-height: 1.8;
         }
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 2rem;
         }
@@ -27,6 +29,9 @@
             text-decoration: none;
             font-size: 0.95rem;
         }
+        .back-link:hover {
+            text-decoration: underline;
+        }
         .markdown-body {
             background: white;
             padding: 2.5rem;
@@ -34,26 +39,43 @@
             box-shadow: 0 2px 12px rgba(0,0,0,0.08);
             overflow-x: auto;
         }
-        /* 表格样式 */
+        
+        /* ========== 表格样式 - 确保边框清晰可见 ========== */
         .markdown-body table {
-            border-collapse: collapse;
+            border-collapse: collapse;      /* 合并边框，避免双线 */
             width: 100%;
-            margin: 1rem 0;
-            font-size: 0.9rem;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+            font-family: inherit;
         }
+        
+        /* 表格单元格 - 上下左右都有边框 */
         .markdown-body th,
         .markdown-body td {
-            border: 1px solid #d4c5b0;
-            padding: 0.5rem 1rem;
+            border: 1px solid #aaa;         /* 深灰色实线边框，清晰可见 */
+            padding: 0.75rem 1rem;
+            vertical-align: top;
             text-align: left;
         }
+        
+        /* 表头样式：深色背景 + 加粗 */
         .markdown-body th {
-            background: #f5f0e8;
-            font-weight: 600;
+            background: #e8e0d5;
+            font-weight: 700;
+            border-bottom: 2px solid #8b7355;  /* 底部加粗强调 */
         }
+        
+        /* 交替行背景色，更易阅读（可选） */
         .markdown-body tr:nth-child(even) {
-            background: #faf7f2;
+            background-color: #faf7f2;
         }
+        
+        /* 鼠标悬停高亮（可选） */
+        .markdown-body tr:hover {
+            background-color: #f0eade;
+        }
+        
+        /* 其他 Markdown 元素样式 */
         .markdown-body h1 {
             color: #5a3e2b;
             border-bottom: 2px solid #d4c5b0;
@@ -64,6 +86,10 @@
             color: #7a5a3a;
             margin-top: 1.5rem;
         }
+        .markdown-body h3, .markdown-body h4 {
+            color: #8b6946;
+            margin-top: 1.2rem;
+        }
         .markdown-body p {
             margin: 1rem 0;
         }
@@ -72,13 +98,30 @@
             padding-left: 1rem;
             color: #7a6a5c;
             font-style: italic;
+            margin: 1rem 0;
         }
         .markdown-body pre {
             background: #f5f0e8;
             padding: 1rem;
             border-radius: 8px;
             overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            margin: 1rem 0;
         }
+        .markdown-body code {
+            background: #f5f0e8;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        .markdown-body ul, .markdown-body ol {
+            margin: 0.8rem 0 0.8rem 2rem;
+        }
+        .markdown-body li {
+            margin: 0.3rem 0;
+        }
+        
         .loading, .error {
             text-align: center;
             padding: 3rem;
@@ -86,7 +129,24 @@
             border-radius: 16px;
             color: #8b7355;
         }
-        .error { color: #c44; }
+        .error {
+            color: #c44;
+        }
+        
+        /* 移动端适配 */
+        @media (max-width: 640px) {
+            .container {
+                padding: 1rem;
+            }
+            .markdown-body {
+                padding: 1.2rem;
+            }
+            .markdown-body th,
+            .markdown-body td {
+                padding: 0.4rem 0.6rem;
+                font-size: 0.85rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -100,15 +160,19 @@
 <script>
     // 配置 marked 以支持 GFM 表格
     if (typeof marked !== 'undefined') {
-        marked.setOptions({
-            gfm: true,           // 启用 GitHub Flavored Markdown
-            tables: true,        // 启用表格支持
-            breaks: false,       // 禁用换行转 <br>
-            pedantic: false,
-            sanitize: false,
-            smartLists: true,
-            smartypants: false
-        });
+        // marked v4+ 使用 setOptions；v11+ 推荐用 marked.use
+        if (typeof marked.setOptions === 'function') {
+            marked.setOptions({
+                gfm: true,
+                tables: true,
+                breaks: false
+            });
+        } else if (typeof marked.use === 'function') {
+            marked.use({
+                gfm: true,
+                tables: true
+            });
+        }
     }
 
     const urlParams = new URLSearchParams(window.location.search);
@@ -125,23 +189,28 @@
                 return response.text();
             })
             .then(markdown => {
-                // 使用 marked 解析并渲染 markdown
                 let html;
                 if (typeof marked !== 'undefined') {
-                    html = marked.parse(markdown);
+                    // marked.parse 可能返回 Promise (v8+) 或 string (旧版)
+                    const result = marked.parse(markdown);
+                    if (result && typeof result.then === 'function') {
+                        return result;
+                    } else {
+                        html = result;
+                    }
                 } else {
-                    // 降级方案：简单转义
                     html = `<pre>${escapeHtml(markdown)}</pre>`;
                 }
-                // marked.parse 可能返回 Promise 或 string
-                if (html && html.then) {
-                    html.then(result => {
-                        document.getElementById('content').innerHTML = result;
-                    });
-                } else {
+                if (html) {
                     document.getElementById('content').innerHTML = html;
                 }
                 document.title = `${mdFileName} - 诗歌集`;
+                return html;
+            })
+            .then(renderedHtml => {
+                if (renderedHtml && renderedHtml.then) {
+                    return renderedHtml;
+                }
             })
             .catch(error => {
                 console.error('Error:', error);
