@@ -1,11 +1,5 @@
 {
   "简要笔记": {
-    "指令词": {
-      "__files__": [
-        "生成",
-        "老友记风格英语动词对话创作 Prompt"
-      ]
-    },
     "阅读": {
       "__files__": [
         "阅读的基本框架"
@@ -13,11 +7,12 @@
       "books": {
         "垂暮之战": {
           "__files__": [
-            "人物图鉴4",
             "全书词频",
-            "人物图鉴1",
+            "人物图鉴4",
             "人物图鉴3",
-            "人物图鉴2"
+            "吃瓜名场面",
+            "人物图鉴2",
+            "人物图鉴1"
           ]
         },
         "newbook": {
@@ -27,7 +22,18 @@
         }
       }
     },
+    "指令词": {
+      "__files__": [
+        "老友记风格英语动词对话创作 Prompt",
+        "生成"
+      ]
+    },
     "topics": {
+      "tech hardware": {
+        "__files__": [
+          "The reinvention of BlackBerry"
+        ]
+      },
       "nasa moon": {
         "__files__": [
           "NASA reveals plan for astronauts to live on the Moon inside 'lunar glass' domes"
@@ -35,13 +41,8 @@
       },
       "tiktok addiction": {
         "__files__": [
-          "Why TikTok Keeps You Scrolling",
-          "TikTok is killing your brain, one short-form video at a time"
-        ]
-      },
-      "tech hardware": {
-        "__files__": [
-          "The reinvention of BlackBerry"
+          "TikTok is killing your brain, one short-form video at a time",
+          "Why TikTok Keeps You Scrolling"
         ]
       }
     }
