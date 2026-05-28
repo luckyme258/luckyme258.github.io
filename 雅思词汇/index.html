@@ -13,7 +13,7 @@
             padding: 2rem;
         }
         .container {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
         }
         header {
@@ -36,40 +36,66 @@
             color: #6a8a8a;
             text-decoration: none;
         }
-        .back-link:hover {
-            text-decoration: underline;
-        }
-        .file-list {
+        /* 树形目录样式 */
+        .tree {
             background: white;
             border-radius: 16px;
+            padding: 0.5rem 0;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            overflow: hidden;
         }
-        .file-item {
+        .tree-node {
+            list-style: none;
+            padding-left: 0;
+        }
+        .tree-node .node-content {
             display: flex;
             align-items: center;
-            padding: 1rem 1.5rem;
-            border-bottom: 1px solid #e0ecec;
+            padding: 0.6rem 1rem;
+            cursor: pointer;
+            user-select: none;
+            border-radius: 8px;
+            margin: 0.1rem 0.5rem;
             transition: background 0.2s;
         }
-        .file-item:hover {
+        .tree-node .node-content:hover {
             background: #f0f6f4;
         }
-        .file-icon {
-            font-size: 1.5rem;
-            margin-right: 1rem;
+        .tree-node .toggle-icon {
+            width: 24px;
+            font-size: 1rem;
+            color: #6a8a8a;
+            cursor: pointer;
         }
-        .file-name {
-            flex: 1;
-        }
-        .file-name a {
-            color: #2c5a5a;
-            text-decoration: none;
+        .tree-node .folder-icon {
+            margin-right: 0.5rem;
             font-size: 1.1rem;
         }
-        .file-name a:hover {
-            text-decoration: underline;
-            color: #c47a44;
+        .tree-node .node-name {
+            flex: 1;
+            font-weight: 500;
+        }
+        .tree-node .file-link {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 1rem 0.5rem 2rem;
+            text-decoration: none;
+            color: #2c5a5a;
+            border-radius: 8px;
+            margin: 0.1rem 0.5rem;
+        }
+        .tree-node .file-link:hover {
+            background: #f0f6f4;
+        }
+        .tree-node .file-icon {
+            margin-right: 0.5rem;
+            font-size: 1rem;
+        }
+        .tree-node .children {
+            padding-left: 1.5rem;
+            display: none;
+        }
+        .tree-node.open > .children {
+            display: block;
         }
         .loading, .error {
             text-align: center;
@@ -100,42 +126,122 @@
         <p class="sub">每日一组 · 积少成多</p>
     </header>
 
-    <div id="file-list" class="file-list">
+    <div id="tree-container" class="tree">
         <div class="loading">📡 正在加载目录...</div>
     </div>
     <div id="count" class="count"></div>
-    <div class="update-note">✨ 新增词汇组后，GitHub Actions 会自动更新目录</div>
+    <div class="update-note">✨ 点击文件夹展开/收起 | 新增词汇后自动更新</div>
 </div>
 
 <script>
-    fetch('ielts_vocab_list.json')
-        .then(response => {
-            if (!response.ok) throw new Error('目录文件不存在，请等待 GitHub Actions 首次运行');
-            return response.json();
-        })
-        .then(files => {
-            if (!files || files.length === 0) {
-                document.getElementById('file-list').innerHTML = '<div class="error">📭 暂无词汇文件</div>';
-                document.getElementById('count').textContent = '共 0 组词汇';
-                return;
-            }
+    const timestamp = new Date().getTime();
+    const jsonUrl = `/雅思词汇/ielts_vocab_list.json?t=${timestamp}`;
+    
+    // 递归渲染树
+    function renderTree(node, level = 0) {
+        if (!node) return '';
+        
+        const hasChildren = Object.keys(node).some(key => key !== '__files__');
+        const files = node.__files__ || [];
+        
+        let html = '<ul class="tree-node" style="padding-left: 0">';
+        
+        // 渲染子目录
+        for (const [key, value] of Object.entries(node)) {
+            if (key === '__files__') continue;
             
-            let listHtml = '';
-            files.forEach(name => {
-                listHtml += `
-                    <div class="file-item">
-                        <span class="file-icon">📖</span>
-                        <div class="file-name"><a href="viewer.html?file=${encodeURIComponent(name)}">${escapeHtml(name)}</a></div>
+            const childHasChildren = Object.keys(value).some(k => k !== '__files__') || (value.__files__ && value.__files__.length > 0);
+            
+            html += `
+                <li>
+                    <div class="node-content" onclick="toggleNode(this)">
+                        <span class="toggle-icon">${childHasChildren ? '▶' : '•'}</span>
+                        <span class="folder-icon">📁</span>
+                        <span class="node-name">${escapeHtml(key)}</span>
                     </div>
+                    <div class="children">
+                        ${renderTree(value, level + 1)}
+                    </div>
+                </li>
+            `;
+        }
+        
+        // 渲染当前层级的文件
+        if (files.length > 0) {
+            files.forEach(file => {
+                // 构建文件路径（需要从树结构反推，这里简化处理）
+                // 实际使用时需要传递完整路径，这里先按文件名处理
+                html += `
+                    <li>
+                        <a href="viewer.html?file=${encodeURIComponent(file)}" class="file-link">
+                            <span class="file-icon">📖</span>
+                            <span>${escapeHtml(file)}</span>
+                        </a>
+                    </li>
                 `;
             });
+        }
+        
+        html += '</ul>';
+        return html;
+    }
+    
+    // 切换文件夹展开/收起
+    window.toggleNode = function(element) {
+        const li = element.closest('li');
+        const childrenDiv = li.querySelector('.children');
+        const toggleIcon = element.querySelector('.toggle-icon');
+        
+        if (childrenDiv) {
+            const isOpen = li.classList.contains('open');
+            if (isOpen) {
+                li.classList.remove('open');
+                toggleIcon.textContent = '▶';
+            } else {
+                li.classList.add('open');
+                toggleIcon.textContent = '▼';
+            }
+        }
+    };
+    
+    // 加载数据
+    fetch(jsonUrl)
+        .then(response => {
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            return response.json();
+        })
+        .then(treeData => {
+            const container = document.getElementById('tree-container');
             
-            document.getElementById('file-list').innerHTML = listHtml;
-            document.getElementById('count').innerHTML = `共 ${files.length} 组词汇`;
+            // 统计文件总数
+            let totalFiles = 0;
+            function countFiles(node) {
+                if (node.__files__) totalFiles += node.__files__.length;
+                for (const [key, value] of Object.entries(node)) {
+                    if (key !== '__files__' && typeof value === 'object') {
+                        countFiles(value);
+                    }
+                }
+            }
+            countFiles(treeData);
+            
+            const html = renderTree(treeData);
+            container.innerHTML = html;
+            document.getElementById('count').innerHTML = `共 ${totalFiles} 组词汇`;
+            
+            // 默认展开第一层
+            document.querySelectorAll('.tree-node > li > .node-content').forEach(el => {
+                const li = el.closest('li');
+                const childrenDiv = li.querySelector('.children');
+                if (childrenDiv && childrenDiv.children.length > 0) {
+                    li.classList.add('open');
+                    el.querySelector('.toggle-icon').textContent = '▼';
+                }
+            });
         })
         .catch(error => {
-            document.getElementById('file-list').innerHTML = `<div class="error">⚠️ ${error.message}</div>`;
-            document.getElementById('count').innerHTML = '';
+            console.error('Error:', error);
+            document.getElementById('tree-container').innerHTML = `<div class="error">⚠️ 加载失败: ${error.message}</div>`;
         });
     
     function escapeHtml(text) {
