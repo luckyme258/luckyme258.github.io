@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>诗歌阅读器</title>
+    <!-- 引入 marked.js 将 markdown 转为 HTML -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #f9f6ef;
+            color: #2c3e2f;
+            line-height: 1.6;
+        }
+        .back {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #8b7355;
+            text-decoration: none;
+        }
+        .markdown-body {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .markdown-body h1 { color: #5a3e2b; border-bottom: 2px solid #d4c5b0; }
+        .loading { text-align: center; padding: 3rem; color: #8b7355; }
+        .error { color: #c44; text-align: center; padding: 2rem; }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back">← 返回诗歌目录</a>
+    <div id="content" class="markdown-body">
+        <div class="loading">📖 加载中...</div>
+    </div>
+
+    <script>
+        // 从 URL 参数获取要读取的 md 文件名，例如 ?file=行道树
+        const urlParams = new URLSearchParams(window.location.search);
+        const mdFile = urlParams.get('file');
+        
+        if (!mdFile) {
+            document.getElementById('content').innerHTML = '<div class="error">❌ 未指定要阅读的诗歌文件</div>';
+        } else {
+            // 读取对应的 .md 文件
+            fetch(`${mdFile}.md`)
+                .then(response => {
+                    if (!response.ok) throw new Error('文件不存在');
+                    return response.text();
+                })
+                .then(markdown => {
+                    // 使用 marked 将 markdown 转为 HTML
+                    const html = marked.parse(markdown);
+                    document.getElementById('content').innerHTML = html;
+                })
+                .catch(error => {
+                    document.getElementById('content').innerHTML = `<div class="error">❌ 无法加载 ${mdFile}.md<br><small>${error.message}</small></div>`;
+                });
+        }
+    </script>
+</body>
+</html>
