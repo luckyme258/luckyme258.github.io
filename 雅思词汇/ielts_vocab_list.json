@@ -1,21 +1,16 @@
 {
   "简要笔记": {
-    "阅读": {
-      "__files__": [
-        "阅读的基本框架"
-      ]
-    },
     "指令词": {
       "__files__": [
         "生成"
       ]
     },
+    "阅读": {
+      "__files__": [
+        "阅读的基本框架"
+      ]
+    },
     "topics": {
-      "tech hardware": {
-        "__files__": [
-          "The reinvention of BlackBerry"
-        ]
-      },
       "nasa moon": {
         "__files__": [
           "NASA reveals plan for astronauts to live on the Moon inside 'lunar glass' domes"
@@ -23,7 +18,13 @@
       },
       "tiktok addiction": {
         "__files__": [
-          "Why TikTok Keeps You Scrolling"
+          "Why TikTok Keeps You Scrolling",
+          "TikTok is killing your brain, one short-form video at a time"
+        ]
+      },
+      "tech hardware": {
+        "__files__": [
+          "The reinvention of BlackBerry"
         ]
       }
     }
