@@ -45,11 +45,10 @@
             padding: 0.5rem 0;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
-        .tree-node {
+        .folder-item, .file-item {
             list-style: none;
-            padding-left: 0;
         }
-        .tree-node .node-content {
+        .folder-label {
             display: flex;
             align-items: center;
             padding: 0.6rem 1rem;
@@ -59,23 +58,22 @@
             margin: 0.1rem 0.5rem;
             transition: background 0.2s;
         }
-        .tree-node .node-content:hover {
+        .folder-label:hover {
             background: #f0f6f4;
         }
-        .tree-node .toggle-icon {
+        .toggle-icon {
             width: 24px;
             font-size: 1rem;
             color: #6a8a8a;
         }
-        .tree-node .folder-icon {
+        .folder-icon, .file-icon {
             margin-right: 0.5rem;
             font-size: 1.1rem;
         }
-        .tree-node .node-name {
-            flex: 1;
+        .folder-name {
             font-weight: 500;
         }
-        .tree-node .file-link {
+        .file-link {
             display: flex;
             align-items: center;
             padding: 0.5rem 1rem 0.5rem 2rem;
@@ -84,18 +82,14 @@
             border-radius: 8px;
             margin: 0.1rem 0.5rem;
         }
-        .tree-node .file-link:hover {
+        .file-link:hover {
             background: #f0f6f4;
         }
-        .tree-node .file-icon {
-            margin-right: 0.5rem;
-            font-size: 1rem;
-        }
-        .tree-node .children {
+        .children {
             padding-left: 1.5rem;
             display: none;
         }
-        .tree-node.open > .children {
+        .open > .children {
             display: block;
         }
         .loading, .error {
@@ -138,14 +132,12 @@
     const timestamp = new Date().getTime();
     const jsonUrl = `/雅思词汇/ielts_vocab_list.json?t=${timestamp}`;
     
-    // 递归渲染树（带路径累积）
+    // 递归渲染树
     function renderTree(node, currentPath = '') {
         if (!node) return '';
         
-        const files = node.__files__ || [];
-        let html = '<ul class="tree-node">';
+        let html = '';
         
-        // 渲染子目录
         for (const [key, value] of Object.entries(node)) {
             if (key === '__files__') continue;
             
@@ -153,83 +145,42 @@
             const hasChildren = Object.keys(value).some(k => k !== '__files__') || (value.__files__ && value.__files__.length > 0);
             
             html += `
-                <li>
-                    <div class="node-content" data-path="${escapeHtml(newPath)}">
-                        <span class="toggle-icon">${hasChildren ? '▶' : '•'}</span>
+                <li class="folder-item">
+                    <div class="folder-label">
+                        <span class="toggle-icon">▶</span>
                         <span class="folder-icon">📁</span>
-                        <span class="node-name">${escapeHtml(key)}</span>
+                        <span class="folder-name">${escapeHtml(key)}</span>
                     </div>
                     <div class="children">
-                        ${renderTree(value, newPath)}
+                        <ul>
+            `;
+            
+            // 递归渲染子文件夹
+            html += renderTree(value, newPath);
+            
+            // 渲染当前文件夹下的文件
+            if (value.__files__ && value.__files__.length > 0) {
+                value.__files__.forEach(file => {
+                    const fullPath = newPath ? `${newPath}/${file}` : file;
+                    html += `
+                        <li class="file-item">
+                            <a href="viewer.html?file=${encodeURIComponent(fullPath)}" class="file-link">
+                                <span class="file-icon">📖</span>
+                                <span>${escapeHtml(file)}</span>
+                            </a>
+                        </li>
+                    `;
+                });
+            }
+            
+            html += `
+                        </ul>
                     </div>
                 </li>
             `;
         }
         
-        // 渲染当前层级的文件
-        if (files.length > 0) {
-            files.forEach(file => {
-                const fullPath = currentPath ? `${currentPath}/${file}` : file;
-                html += `
-                    <li>
-                        <a href="viewer.html?file=${encodeURIComponent(fullPath)}" class="file-link">
-                            <span class="file-icon">📖</span>
-                            <span>${escapeHtml(file)}</span>
-                        </a>
-                    </li>
-                `;
-            });
-        }
-        
-        html += '</ul>';
         return html;
-    }
-    
-    // 切换文件夹展开/收起（使用事件委托）
-    function setupTreeEvents() {
-        const container = document.getElementById('tree-container');
-        if (!container) return;
-        
-        container.addEventListener('click', function(e) {
-            // 找到被点击的 .node-content 元素
-            const nodeContent = e.target.closest('.node-content');
-            if (!nodeContent) return;
-            
-            const li = nodeContent.closest('li');
-            if (!li) return;
-            
-            const childrenDiv = li.querySelector(':scope > .children');
-            const toggleIcon = nodeContent.querySelector('.toggle-icon');
-            
-            if (childrenDiv) {
-                const isOpen = li.classList.contains('open');
-                if (isOpen) {
-                    li.classList.remove('open');
-                    if (toggleIcon) toggleIcon.textContent = '▶';
-                } else {
-                    li.classList.add('open');
-                    if (toggleIcon) toggleIcon.textContent = '▼';
-                }
-            }
-        });
-    }
-    
-    // 递归展开所有层级
-    function expandAllNodes(element, depth = 0, maxDepth = 10) {
-        if (depth > maxDepth) return;
-        
-        const nodes = element.querySelectorAll(':scope > li');
-        nodes.forEach(li => {
-            const childrenDiv = li.querySelector(':scope > .children');
-            const toggleIcon = li.querySelector(':scope > .node-content > .toggle-icon');
-            
-            if (childrenDiv && childrenDiv.children.length > 0) {
-                li.classList.add('open');
-                if (toggleIcon) toggleIcon.textContent = '▼';
-                // 递归展开子节点
-                expandAllNodes(childrenDiv, depth + 1, maxDepth);
-            }
-        });
     }
     
     // 加载数据
@@ -253,16 +204,40 @@
             }
             countFiles(treeData);
             
-            // 渲染树
-            const html = renderTree(treeData);
+            // 渲染
+            const html = `<ul>${renderTree(treeData)}</ul>`;
             container.innerHTML = html;
             document.getElementById('count').innerHTML = `共 ${totalFiles} 组词汇`;
             
-            // 设置事件监听（事件委托）
-            setupTreeEvents();
+            // 绑定点击事件（事件委托）
+            container.addEventListener('click', function(e) {
+                const folderLabel = e.target.closest('.folder-label');
+                if (!folderLabel) return;
+                
+                const li = folderLabel.closest('.folder-item');
+                if (!li) return;
+                
+                const childrenDiv = li.querySelector(':scope > .children');
+                const toggleIcon = folderLabel.querySelector('.toggle-icon');
+                
+                if (childrenDiv) {
+                    const isOpen = li.classList.contains('open');
+                    if (isOpen) {
+                        li.classList.remove('open');
+                        if (toggleIcon) toggleIcon.textContent = '▶';
+                    } else {
+                        li.classList.add('open');
+                        if (toggleIcon) toggleIcon.textContent = '▼';
+                    }
+                }
+            });
             
-            // 默认展开所有层级（这样用户可以看到完整结构）
-            expandAllNodes(container);
+            // 默认展开所有文件夹
+            document.querySelectorAll('.folder-item').forEach(folder => {
+                folder.classList.add('open');
+                const toggleIcon = folder.querySelector('.toggle-icon');
+                if (toggleIcon) toggleIcon.textContent = '▼';
+            });
         })
         .catch(error => {
             console.error('Error:', error);
