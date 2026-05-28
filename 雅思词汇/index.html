@@ -36,6 +36,9 @@
             color: #6a8a8a;
             text-decoration: none;
         }
+        .back-link:hover {
+            text-decoration: underline;
+        }
         .file-list {
             background: white;
             border-radius: 16px;
@@ -110,7 +113,8 @@
 </head>
 <body>
 <div class="container">
-    <a href="/luckyme258.github.io/" class="back-link">← 返回首页</a>
+    <!-- ✅ 修复了返回首页的链接 -->
+    <a href="/" class="back-link">← 返回首页</a>
     <header>
         <h1>📚 雅思词汇</h1>
         <p class="sub">每日一组 · 积少成多</p>
@@ -181,7 +185,6 @@
             return;
         }
         
-        // 按文件名排序（group1, group2...）
         const sorted = [...mdFiles].sort((a, b) => a.name.localeCompare(b.name));
         
         let listHtml = '';
