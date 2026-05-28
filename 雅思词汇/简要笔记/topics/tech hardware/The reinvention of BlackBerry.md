@@ -1,6 +1,6 @@
-The reinvention of BlackBerry
+# The reinvention of BlackBerry
 
-黑莓的革新
+# 黑莓的革新
 
 BlackBerry, the Canadian manufacturer of a once-iconic messaging accessory used by business people with dextrous thumbs, has been in decline for more than a decade. Its reluctance to replace the devices’ fiddly buttons with touchscreens, and its failure to embrace apps, ceded the smartphone market to Apple and Android. 
 
