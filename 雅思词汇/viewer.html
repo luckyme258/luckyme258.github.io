@@ -12,43 +12,61 @@
             box-sizing: border-box;
         }
 
-        /* 深色模式变量 (默认浅色) */
+        /* ================= 科学阅读配色 ================= */
         :root {
-            --bg-body: #f0f4f8;
-            --text-primary: #1a3a3a;
-            --card-bg: white;
-            --border-light: #b0c4d4;
-            --nav-bg: #eef2f0;
-            --btn-hover: #e0ecec;
-            --heading-color: #2c5a5a;
-            --link-color: #4a6a6a;
+            /* 浅色模式 - 暖米白纸张风格 */
+            --bg-body: #f8f6f2;
+            --text-primary: #2c3e2f;
+            --text-secondary: #5c6e5a;
+            --card-bg: #ffffff;
+            --card-shadow: 0 4px 16px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+            --border-light: #e2dcd2;
+            --nav-bg: #f0ece6;
+            --btn-hover: #e8e2d8;
+            --heading-color: #3a5a3a;
+            --link-color: #5c6e5a;
             --link-hover: #c47a44;
-            --code-bg: #eef4f2;
-            --table-header-bg: #e0ecec;
-            --table-row-alt: #f8fafc;
+            --code-bg: #f0ece6;
+            --table-header-bg: #ece6df;
+            --table-row-alt: #fcfaf7;
+            --blockquote-border: #d4c9bc;
+            --blockquote-text: #6a7a64;
+            --outline-active: #c47a44;
+            --btn-border: #d4c9bc;
         }
 
         body.dark {
-            --bg-body: #1a2a2a;
-            --text-primary: #e0e8e8;
-            --card-bg: #2a3a3a;
-            --border-light: #4a6a6a;
-            --nav-bg: #2a3a3a;
-            --btn-hover: #3a5a5a;
-            --heading-color: #9ac4c4;
-            --link-color: #b8d0d0;
+            /* 深色模式 - 暖灰黑，低蓝光 */
+            --bg-body: #1e2420;
+            --text-primary: #e2e0d6;
+            --text-secondary: #a8b2a5;
+            --card-bg: #2a322c;
+            --card-shadow: 0 4px 16px rgba(0,0,0,0.3);
+            --border-light: #3d453d;
+            --nav-bg: #262e28;
+            --btn-hover: #3a4238;
+            --heading-color: #cbd8c0;
+            --link-color: #b8c0b0;
             --link-hover: #e0a878;
-            --code-bg: #1e2e2e;
-            --table-header-bg: #3a5a5a;
-            --table-row-alt: #2e3e3e;
+            --code-bg: #262e28;
+            --table-header-bg: #3a4238;
+            --table-row-alt: #2e362e;
+            --blockquote-border: #5a6a5a;
+            --blockquote-text: #b0b8a8;
+            --outline-active: #e0a878;
+            --btn-border: #4a5648;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Roboto, "Helvetica Neue", sans-serif;
             background: var(--bg-body);
             color: var(--text-primary);
-            line-height: 1.8;
+            line-height: 1.7;
+            font-size: 17px;
+            font-weight: 400;
             transition: background 0.2s, color 0.2s;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
         }
 
         /* 桌面端布局 */
@@ -64,6 +82,9 @@
         .main-content {
             flex: 1;
             min-width: 0;
+            max-width: 860px;
+            margin: 0 auto;
+            width: 100%;
         }
 
         /* 桌面端大纲侧边栏（初始隐藏） */
@@ -74,8 +95,8 @@
             top: 2rem;
             align-self: flex-start;
             background: var(--card-bg);
-            border-radius: 16px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
             padding: 1rem;
             max-height: calc(100vh - 4rem);
             overflow-y: auto;
@@ -107,6 +128,17 @@
             border-left-color: var(--link-hover);
             padding-left: 0.5rem;
         }
+        .outline-sidebar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .outline-sidebar::-webkit-scrollbar-track {
+            background: var(--border-light);
+            border-radius: 4px;
+        }
+        .outline-sidebar::-webkit-scrollbar-thumb {
+            background: var(--link-hover);
+            border-radius: 4px;
+        }
 
         /* 导航栏 */
         .nav-bar {
@@ -125,7 +157,7 @@
             font-size: 0.9rem;
             background: var(--nav-bg);
             padding: 0.3rem 0.8rem;
-            border-radius: 20px;
+            border-radius: 40px;
         }
         .back-link:hover {
             background: var(--btn-hover);
@@ -136,9 +168,9 @@
         }
         .nav-btn, .outline-toggle-btn, .dark-mode-toggle {
             background: var(--card-bg);
-            border: 1px solid var(--border-light);
-            padding: 0.3rem 1rem;
-            border-radius: 24px;
+            border: 1px solid var(--btn-border);
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
             font-size: 0.85rem;
             color: var(--heading-color);
             cursor: pointer;
@@ -146,7 +178,7 @@
         }
         .nav-btn:hover, .outline-toggle-btn:hover, .dark-mode-toggle:hover {
             background: var(--btn-hover);
-            border-color: #8aa8a8;
+            border-color: var(--link-hover);
         }
         .nav-btn:disabled {
             opacity: 0.4;
@@ -160,10 +192,12 @@
         /* Markdown 内容样式 */
         .markdown-body {
             background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            padding: 2.2rem 2.4rem;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
             overflow-x: auto;
+            font-size: 1rem;
+            line-height: 1.7;
         }
         .markdown-body table {
             border-collapse: collapse;
@@ -172,7 +206,7 @@
         }
         .markdown-body th, .markdown-body td {
             border: 1px solid var(--border-light);
-            padding: 0.6rem 0.8rem;
+            padding: 0.8rem 1rem;
             text-align: left;
             vertical-align: top;
         }
@@ -187,35 +221,47 @@
             color: var(--heading-color);
             border-bottom: 2px solid var(--border-light);
             padding-bottom: 0.4rem;
-            margin: 1rem 0 0.8rem;
+            margin: 1.2rem 0 0.8rem;
+            font-weight: 600;
         }
-        .markdown-body h2, .markdown-body h3 {
+        .markdown-body h2 {
             color: var(--heading-color);
+            margin-top: 1.4rem;
+            font-weight: 500;
+        }
+        .markdown-body h3 {
+            color: var(--heading-color);
+            font-weight: 500;
         }
         .markdown-body code {
             background: var(--code-bg);
             padding: 0.2rem 0.3rem;
-            border-radius: 4px;
+            border-radius: 6px;
+            font-size: 0.9em;
         }
         .markdown-body pre {
             background: var(--code-bg);
-            padding: 0.8rem;
-            border-radius: 8px;
+            padding: 1rem;
+            border-radius: 12px;
             overflow-x: auto;
         }
         .markdown-body blockquote {
-            border-left: 4px solid var(--border-light);
-            padding-left: 1rem;
-            color: var(--link-color);
-            margin: 0.8rem 0;
+            border-left: 4px solid var(--blockquote-border);
+            padding-left: 1.2rem;
+            margin: 1rem 0;
+            color: var(--blockquote-text);
+            font-style: normal;
+        }
+        .markdown-body p {
+            margin: 1.2em 0;
         }
 
         .loading, .error {
             text-align: center;
             padding: 2rem;
             background: var(--card-bg);
-            border-radius: 16px;
-            color: var(--link-color);
+            border-radius: 20px;
+            color: var(--text-secondary);
         }
         .error {
             color: #c44;
@@ -227,7 +273,7 @@
             position: fixed;
             right: 1.5rem;
             bottom: 1.5rem;
-            background: #2c5a5a;
+            background: var(--heading-color);
             color: white;
             border: none;
             border-radius: 50%;
@@ -240,11 +286,8 @@
             transition: all 0.2s;
         }
         .mobile-outline-btn:hover {
-            background: #c47a44;
+            background: var(--link-hover);
             transform: scale(1.02);
-        }
-        body.dark .mobile-outline-btn {
-            background: #4a7a7a;
         }
         .mobile-drawer {
             position: fixed;
@@ -293,16 +336,6 @@
             display: block;
         }
 
-        /* 桌面端大纲显示按钮（仅当侧边栏隐藏时显示） */
-        .show-outline-btn {
-            background: var(--card-bg);
-            border: 1px solid var(--border-light);
-            border-radius: 24px;
-            padding: 0.3rem 1rem;
-            font-size: 0.85rem;
-            cursor: pointer;
-        }
-
         /* 响应式 */
         @media (max-width: 900px) {
             .desktop-layout {
@@ -317,13 +350,22 @@
                 align-items: center;
                 justify-content: center;
             }
-            .show-outline-btn {
-                display: none;
-            }
         }
         @media (min-width: 901px) {
             .mobile-outline-btn, .mobile-drawer, .drawer-overlay {
                 display: none;
+            }
+        }
+        @media (max-width: 640px) {
+            .markdown-body {
+                padding: 1.2rem;
+            }
+            .nav-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .right-actions {
+                justify-content: flex-end;
             }
         }
     </style>
@@ -407,7 +449,6 @@
             const indent = (level - 1) * 12;
             let text = header.textContent.trim();
             if (!text) text = `标题${idx+1}`;
-            // 生成稳定的 ID
             const baseId = text.replace(/[^\w\u4e00-\u9fa5]/g, '-').substring(0, 30);
             const id = `heading-${baseId}-${idx}`;
             header.id = id;
@@ -416,18 +457,18 @@
         return outlineHtml;
     }
 
-    // 更新大纲内容（桌面端和移动端）
+    // 更新大纲内容（桌面端和移动端），并绑定平滑滚动事件
     function updateOutline() {
         const outlineHtml = buildOutlineFromDOM();
         if (outlineHtml) {
             if (desktopOutlineDiv) desktopOutlineDiv.innerHTML = outlineHtml;
             if (mobileOutlineDiv) mobileOutlineDiv.innerHTML = outlineHtml;
         } else {
-            const noContent = '<span style="color: #aaa;">无标题</span>';
+            const noContent = '<span style="color: var(--text-secondary);">无标题</span>';
             if (desktopOutlineDiv) desktopOutlineDiv.innerHTML = noContent;
             if (mobileOutlineDiv) mobileOutlineDiv.innerHTML = noContent;
         }
-        // 重新绑定大纲链接的点击事件（使用平滑滚动）
+        // 绑定大纲链接的点击事件（平滑滚动）
         document.querySelectorAll('.outline-sidebar a, .mobile-drawer a').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -435,8 +476,9 @@
                 const targetElement = document.getElementById(targetId);
                 if (targetElement) {
                     targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // 更新 URL 哈希但不触发跳转（可选）
+                    history.pushState(null, '', `#${targetId}`);
                 }
-                // 移动端点击后关闭抽屉
                 if (window.innerWidth <= 900) {
                     closeMobileDrawer();
                 }
@@ -563,11 +605,13 @@
         mobileBtn.addEventListener('click', openMobileDrawer);
         drawerOverlay.addEventListener('click', closeMobileDrawer);
         // 移动端抽屉内的链接点击后关闭
-        mobileDrawer.addEventListener('click', (e) => {
-            if (e.target.tagName === 'A') {
-                closeMobileDrawer();
-            }
-        });
+        if (mobileDrawer) {
+            mobileDrawer.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    closeMobileDrawer();
+                }
+            });
+        }
     }
 
     // ==================== 深色模式 ====================
@@ -594,7 +638,7 @@
     } else if (savedDarkMode === 'disabled') {
         setDarkMode(false);
     } else {
-        // 可选：跟随系统，但为了简单，默认浅色
+        // 默认浅色模式
         setDarkMode(false);
     }
     if (darkModeToggle) {
@@ -607,7 +651,7 @@
         await loadContent();
         if (prevBtn) prevBtn.addEventListener('click', prevFile);
         if (nextBtn) nextBtn.addEventListener('click', nextFile);
-        // 监听 hash 变化（点击大纲链接后浏览器滚动，移动端关闭抽屉）
+        // 监听 hash 变化（移动端关闭抽屉）
         window.addEventListener('hashchange', () => {
             if (window.innerWidth <= 900) closeMobileDrawer();
         });
