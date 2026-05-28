@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>诗歌集 - 自动目录</title>
+    <title>诗歌集 - 目录</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -26,11 +26,18 @@
             font-size: 2rem;
             color: #5a3e2b;
         }
+        .sub {
+            color: #7a6a5c;
+            margin-top: 0.5rem;
+        }
         .back-link {
             display: inline-block;
             margin-bottom: 1rem;
             color: #8b7355;
             text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
         }
         .file-list {
             background: white;
@@ -75,25 +82,6 @@
             color: #8b7355;
             font-size: 0.9rem;
         }
-        .cache-info {
-            text-align: center;
-            margin-top: 1rem;
-            font-size: 0.75rem;
-            color: #a08c78;
-        }
-        .refresh-btn {
-            background: none;
-            border: 1px solid #d4c5b0;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            color: #8b7355;
-            cursor: pointer;
-            margin-left: 0.5rem;
-        }
-        .refresh-btn:hover {
-            background: #f0e8dc;
-        }
         .update-note {
             text-align: center;
             margin-top: 2rem;
@@ -106,212 +94,56 @@
 </head>
 <body>
 <div class="container">
-    <a href="/luckyme258.github.io/" class="back-link">← 返回首页</a>
+    <a href="/" class="back-link">← 返回首页</a>
     <header>
         <h1>📖 诗歌集</h1>
-        <p class="sub">诗是灵魂的低语 · 目录自动更新</p>
+        <p class="sub">诗是灵魂的低语</p>
     </header>
 
     <div id="file-list" class="file-list">
-        <div class="loading">📡 正在扫描诗歌目录...</div>
+        <div class="loading">📡 正在加载目录...</div>
     </div>
     <div id="count" class="count"></div>
-    <div id="cache-info" class="cache-info"></div>
-    <div class="update-note">✨ 新增 .md 文件后，刷新页面即可自动显示（缓存10分钟）</div>
+    <div class="update-note">✨ 新增诗歌后，GitHub Actions 会自动更新目录</div>
 </div>
 
 <script>
-    // ==================== 配置 ====================
-    const USERNAME = 'luckyme258';
-    const REPO = 'luckyme258.github.io';
-    const DIR_PATH = '诗歌';
-    const CACHE_KEY = 'poetry_cache';
-    const CACHE_DURATION = 10 * 60 * 1000;  // 10分钟（毫秒）
-    
-    // ==================== 缓存函数 ====================
-    function getCachedData() {
-        try {
-            const cached = localStorage.getItem(CACHE_KEY);
-            if (!cached) return null;
-            
-            const { data, timestamp } = JSON.parse(cached);
-            const now = Date.now();
-            
-            // 检查是否过期
-            if (now - timestamp < CACHE_DURATION) {
-                return data;
-            }
-            return null;
-        } catch (e) {
-            console.warn('读取缓存失败:', e);
-            return null;
-        }
-    }
-    
-    function setCachedData(data) {
-        try {
-            const cacheItem = {
-                data: data,
-                timestamp: Date.now()
-            };
-            localStorage.setItem(CACHE_KEY, JSON.stringify(cacheItem));
-        } catch (e) {
-            console.warn('写入缓存失败:', e);
-        }
-    }
-    
-    function clearCache() {
-        localStorage.removeItem(CACHE_KEY);
-    }
-    
-    function getCacheAge() {
-        try {
-            const cached = localStorage.getItem(CACHE_KEY);
-            if (!cached) return null;
-            const { timestamp } = JSON.parse(cached);
-            const ageMs = Date.now() - timestamp;
-            const ageMin = Math.floor(ageMs / 60000);
-            const ageSec = Math.floor((ageMs % 60000) / 1000);
-            return { min: ageMin, sec: ageSec, totalMs: ageMs };
-        } catch (e) {
-            return null;
-        }
-    }
-    
-    // ==================== 渲染文件列表 ====================
-    function renderFileList(mdFiles) {
-        const listContainer = document.getElementById('file-list');
-        const countContainer = document.getElementById('count');
-        
-        if (!mdFiles || mdFiles.length === 0) {
-            listContainer.innerHTML = '<div class="error">📭 暂无诗歌文件</div>';
-            countContainer.textContent = '共 0 首诗歌';
-            return;
-        }
-        
-        let listHtml = '';
-        mdFiles.forEach(file => {
-            const displayName = file.name.replace('.md', '');
-            listHtml += `
-                <div class="file-item">
-                    <span class="file-icon">📜</span>
-                    <div class="file-name"><a href="viewer.html?file=${encodeURIComponent(displayName)}">${escapeHtml(displayName)}</a></div>
-                </div>
-            `;
-        });
-        
-        listContainer.innerHTML = listHtml;
-        countContainer.textContent = `共 ${mdFiles.length} 首诗歌`;
-    }
-    
-    function showLoading() {
-        document.getElementById('file-list').innerHTML = '<div class="loading">📡 正在扫描诗歌目录...</div>';
-        document.getElementById('count').textContent = '';
-    }
-    
-    function showError(message) {
-        document.getElementById('file-list').innerHTML = `<div class="error">⚠️ ${escapeHtml(message)}</div>`;
-        document.getElementById('count').textContent = '';
-    }
-    
-    function updateCacheInfo(isFromCache, age = null) {
-        const infoDiv = document.getElementById('cache-info');
-        if (isFromCache && age) {
-            infoDiv.innerHTML = `💾 来自本地缓存 · ${age.min}分${age.sec}秒前更新 <button class="refresh-btn" onclick="forceRefresh()">🔄 强制刷新</button>`;
-        } else if (!isFromCache) {
-            infoDiv.innerHTML = `🌐 已从 GitHub 获取最新数据 <button class="refresh-btn" onclick="forceRefresh()">🔄 刷新</button>`;
-        } else {
-            infoDiv.innerHTML = `<button class="refresh-btn" onclick="forceRefresh()">🔄 手动刷新目录</button>`;
-        }
-    }
-    
-    // ==================== 获取数据（带缓存） ====================
-    async function fetchMarkdownFiles(forceRefresh = false) {
-        const listContainer = document.getElementById('file-list');
-        
-        // 如果不是强制刷新，尝试读取缓存
-        if (!forceRefresh) {
-            const cachedData = getCachedData();
-            if (cachedData) {
-                const age = getCacheAge();
-                renderFileList(cachedData);
-                updateCacheInfo(true, age);
+    // 读取 Actions 自动生成的 poetry_list.json
+    fetch('poetry_list.json')
+        .then(response => {
+            if (!response.ok) throw new Error('目录文件不存在，请等待 GitHub Actions 首次运行');
+            return response.json();
+        })
+        .then(files => {
+            if (!files || files.length === 0) {
+                document.getElementById('file-list').innerHTML = '<div class="error">📭 暂无诗歌文件</div>';
+                document.getElementById('count').textContent = '共 0 首诗歌';
                 return;
             }
-        }
-        
-        // 需要请求 API
-        showLoading();
-        updateCacheInfo(false);
-        
-        try {
-            const apiUrl = `https://api.github.com/repos/${USERNAME}/${REPO}/contents/${encodeURIComponent(DIR_PATH)}`;
-            const response = await fetch(apiUrl);
             
-            if (!response.ok) {
-                if (response.status === 403) {
-                    // API 限流，尝试使用过期缓存（如果有）
-                    const expiredCache = getExpiredCacheAsFallback();
-                    if (expiredCache) {
-                        renderFileList(expiredCache);
-                        updateCacheInfo(false);
-                        showError('⚠️ GitHub API 已达今日限制，显示的是过期缓存数据');
-                        return;
-                    }
-                    throw new Error('API 限流，且无可用缓存，请稍后再试');
-                }
-                throw new Error('无法获取文件列表');
-            }
+            let listHtml = '';
+            files.forEach(name => {
+                listHtml += `
+                    <div class="file-item">
+                        <span class="file-icon">📜</span>
+                        <div class="file-name"><a href="viewer.html?file=${encodeURIComponent(name)}">${escapeHtml(name)}</a></div>
+                    </div>
+                `;
+            });
             
-            const files = await response.json();
-            const mdFiles = files.filter(file => file.name.endsWith('.md') && file.type === 'file');
-            
-            // 存入缓存
-            setCachedData(mdFiles);
-            
-            renderFileList(mdFiles);
-            updateCacheInfo(false, null);
-            
-        } catch (error) {
-            console.error('Error:', error);
-            // 出错时尝试使用过期缓存
-            const expiredCache = getExpiredCacheAsFallback();
-            if (expiredCache) {
-                renderFileList(expiredCache);
-                updateCacheInfo(false);
-                showError(`⚠️ 网络错误，显示缓存数据。原因: ${error.message}`);
-            } else {
-                showError('加载失败，请检查网络后刷新重试');
-            }
-        }
-    }
-    
-    // 获取过期缓存（作为降级方案）
-    function getExpiredCacheAsFallback() {
-        try {
-            const cached = localStorage.getItem(CACHE_KEY);
-            if (!cached) return null;
-            const { data } = JSON.parse(cached);
-            return data;
-        } catch (e) {
-            return null;
-        }
-    }
-    
-    // 强制刷新（清除缓存后重新请求）
-    window.forceRefresh = function() {
-        clearCache();
-        fetchMarkdownFiles(true);
-    };
+            document.getElementById('file-list').innerHTML = listHtml;
+            document.getElementById('count').innerHTML = `共 ${files.length} 首诗歌`;
+        })
+        .catch(error => {
+            document.getElementById('file-list').innerHTML = `<div class="error">⚠️ ${error.message}</div>`;
+            document.getElementById('count').innerHTML = '';
+        });
     
     function escapeHtml(text) {
         const div = document.createElement('div');
         div.textContent = text;
         return div.innerHTML;
     }
-    
-    // ==================== 页面启动 ====================
-    fetchMarkdownFiles(false);
 </script>
 </body>
 </html>
