@@ -12,52 +12,88 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
-            background: #f0f4f8;
-            color: #1a3a3a;
-            line-height: 1.8;
+        /* 深色模式变量 (默认浅色) */
+        :root {
+            --bg-body: #f0f4f8;
+            --text-primary: #1a3a3a;
+            --card-bg: white;
+            --border-light: #b0c4d4;
+            --nav-bg: #eef2f0;
+            --btn-hover: #e0ecec;
+            --heading-color: #2c5a5a;
+            --link-color: #4a6a6a;
+            --link-hover: #c47a44;
+            --code-bg: #eef4f2;
+            --table-header-bg: #e0ecec;
+            --table-row-alt: #f8fafc;
         }
 
-        /* 桌面端布局：左右两栏 */
+        body.dark {
+            --bg-body: #1a2a2a;
+            --text-primary: #e0e8e8;
+            --card-bg: #2a3a3a;
+            --border-light: #4a6a6a;
+            --nav-bg: #2a3a3a;
+            --btn-hover: #3a5a5a;
+            --heading-color: #9ac4c4;
+            --link-color: #b8d0d0;
+            --link-hover: #e0a878;
+            --code-bg: #1e2e2e;
+            --table-header-bg: #3a5a5a;
+            --table-row-alt: #2e3e3e;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            background: var(--bg-body);
+            color: var(--text-primary);
+            line-height: 1.8;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        /* 桌面端布局 */
         .desktop-layout {
             display: flex;
             max-width: 1400px;
             margin: 0 auto;
             padding: 2rem;
             gap: 2rem;
+            position: relative;
         }
 
-        /* 主内容区域 */
         .main-content {
             flex: 1;
-            min-width: 0;  /* 防止溢出 */
+            min-width: 0;
         }
 
-        /* 大纲侧边栏（桌面端） */
+        /* 桌面端大纲侧边栏（初始隐藏） */
         .outline-sidebar {
             width: 280px;
             flex-shrink: 0;
             position: sticky;
             top: 2rem;
             align-self: flex-start;
-            background: white;
+            background: var(--card-bg);
             border-radius: 16px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             padding: 1rem;
             max-height: calc(100vh - 4rem);
             overflow-y: auto;
             font-size: 0.85rem;
+            transition: opacity 0.2s;
+        }
+        .outline-sidebar.hidden {
+            display: none;
         }
         .outline-sidebar h4 {
-            color: #2c5a5a;
+            color: var(--heading-color);
             margin-bottom: 0.75rem;
             padding-bottom: 0.5rem;
-            border-bottom: 2px solid #b0c4d4;
+            border-bottom: 2px solid var(--border-light);
         }
         .outline-sidebar a {
             display: block;
-            color: #4a6a6a;
+            color: var(--link-color);
             text-decoration: none;
             padding: 0.3rem 0;
             border-left: 2px solid transparent;
@@ -67,12 +103,125 @@
             white-space: nowrap;
         }
         .outline-sidebar a:hover {
-            color: #c47a44;
-            border-left-color: #c47a44;
+            color: var(--link-hover);
+            border-left-color: var(--link-hover);
             padding-left: 0.5rem;
         }
 
-        /* 移动端大纲按钮 + 抽屉 */
+        /* 导航栏 */
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-light);
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        .back-link {
+            color: var(--link-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            background: var(--nav-bg);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+        .back-link:hover {
+            background: var(--btn-hover);
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 0.8rem;
+        }
+        .nav-btn, .outline-toggle-btn, .dark-mode-toggle {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
+            padding: 0.3rem 1rem;
+            border-radius: 24px;
+            font-size: 0.85rem;
+            color: var(--heading-color);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .nav-btn:hover, .outline-toggle-btn:hover, .dark-mode-toggle:hover {
+            background: var(--btn-hover);
+            border-color: #8aa8a8;
+        }
+        .nav-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        .right-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        /* Markdown 内容样式 */
+        .markdown-body {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            overflow-x: auto;
+        }
+        .markdown-body table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1.2rem 0;
+        }
+        .markdown-body th, .markdown-body td {
+            border: 1px solid var(--border-light);
+            padding: 0.6rem 0.8rem;
+            text-align: left;
+            vertical-align: top;
+        }
+        .markdown-body th {
+            background: var(--table-header-bg);
+            font-weight: 600;
+        }
+        .markdown-body tr:nth-child(even) {
+            background: var(--table-row-alt);
+        }
+        .markdown-body h1 {
+            color: var(--heading-color);
+            border-bottom: 2px solid var(--border-light);
+            padding-bottom: 0.4rem;
+            margin: 1rem 0 0.8rem;
+        }
+        .markdown-body h2, .markdown-body h3 {
+            color: var(--heading-color);
+        }
+        .markdown-body code {
+            background: var(--code-bg);
+            padding: 0.2rem 0.3rem;
+            border-radius: 4px;
+        }
+        .markdown-body pre {
+            background: var(--code-bg);
+            padding: 0.8rem;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        .markdown-body blockquote {
+            border-left: 4px solid var(--border-light);
+            padding-left: 1rem;
+            color: var(--link-color);
+            margin: 0.8rem 0;
+        }
+
+        .loading, .error {
+            text-align: center;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 16px;
+            color: var(--link-color);
+        }
+        .error {
+            color: #c44;
+        }
+
+        /* 移动端组件 */
         .mobile-outline-btn {
             display: none;
             position: fixed;
@@ -94,14 +243,16 @@
             background: #c47a44;
             transform: scale(1.02);
         }
-
+        body.dark .mobile-outline-btn {
+            background: #4a7a7a;
+        }
         .mobile-drawer {
             position: fixed;
             top: 0;
             right: -300px;
             width: 280px;
             height: 100%;
-            background: white;
+            background: var(--card-bg);
             box-shadow: -2px 0 12px rgba(0,0,0,0.15);
             z-index: 1001;
             transition: right 0.3s ease;
@@ -113,20 +264,20 @@
             right: 0;
         }
         .mobile-drawer h4 {
-            color: #2c5a5a;
+            color: var(--heading-color);
             margin-bottom: 1rem;
             padding-bottom: 0.5rem;
-            border-bottom: 2px solid #b0c4d4;
+            border-bottom: 2px solid var(--border-light);
         }
         .mobile-drawer a {
             display: block;
-            color: #4a6a6a;
+            color: var(--link-color);
             text-decoration: none;
             padding: 0.6rem 0;
-            border-bottom: 1px solid #e0ecec;
+            border-bottom: 1px solid var(--border-light);
         }
         .mobile-drawer a:active {
-            background: #f0f6f4;
+            background: var(--btn-hover);
         }
         .drawer-overlay {
             position: fixed;
@@ -142,122 +293,17 @@
             display: block;
         }
 
-        /* 导航栏 */
-        .nav-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 1px solid #b0c4d4;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-        }
-        .back-link {
-            color: #6a8a8a;
-            text-decoration: none;
-            font-size: 0.9rem;
-            background: #eef2f0;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-        }
-        .back-link:hover {
-            background: #e0ecec;
-        }
-        .nav-buttons {
-            display: flex;
-            gap: 0.8rem;
-        }
-        .nav-btn {
-            background: white;
-            border: 1px solid #b0c4d4;
-            padding: 0.3rem 1rem;
+        /* 桌面端大纲显示按钮（仅当侧边栏隐藏时显示） */
+        .show-outline-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
             border-radius: 24px;
+            padding: 0.3rem 1rem;
             font-size: 0.85rem;
-            color: #2c5a5a;
             cursor: pointer;
-            transition: all 0.2s;
-        }
-        .nav-btn:hover {
-            background: #e0ecec;
-            border-color: #8aa8a8;
-        }
-        .nav-btn:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
         }
 
-        /* Markdown 内容样式 */
-        .markdown-body {
-            background: white;
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-            overflow-x: auto;
-        }
-        /* 表格 */
-        .markdown-body table {
-            border-collapse: collapse;
-            width: 100%;
-            margin: 1.2rem 0;
-        }
-        .markdown-body th, .markdown-body td {
-            border: 1px solid #b0c4d4;
-            padding: 0.6rem 0.8rem;
-            text-align: left;
-            vertical-align: top;
-        }
-        .markdown-body th {
-            background: #e0ecec;
-            font-weight: 600;
-        }
-        .markdown-body tr:nth-child(even) {
-            background: #f8fafc;
-        }
-        /* 标题样式 */
-        .markdown-body h1 {
-            color: #2c5a5a;
-            border-bottom: 2px solid #b0c4d4;
-            padding-bottom: 0.4rem;
-            margin: 1rem 0 0.8rem;
-        }
-        .markdown-body h2 {
-            color: #3a6a6a;
-            margin-top: 1.2rem;
-        }
-        .markdown-body h3 {
-            color: #4a7a7a;
-        }
-        .markdown-body code {
-            background: #eef4f2;
-            padding: 0.2rem 0.3rem;
-            border-radius: 4px;
-        }
-        .markdown-body pre {
-            background: #eef4f2;
-            padding: 0.8rem;
-            border-radius: 8px;
-            overflow-x: auto;
-        }
-        .markdown-body blockquote {
-            border-left: 4px solid #b0c4d4;
-            padding-left: 1rem;
-            color: #5a7a7a;
-            margin: 0.8rem 0;
-        }
-
-        .loading, .error {
-            text-align: center;
-            padding: 2rem;
-            background: white;
-            border-radius: 16px;
-            color: #6a8a8a;
-        }
-        .error {
-            color: #c44;
-        }
-
-        /* 响应式：小屏幕时隐藏侧边栏，显示浮动按钮 */
+        /* 响应式 */
         @media (max-width: 900px) {
             .desktop-layout {
                 flex-direction: column;
@@ -271,9 +317,10 @@
                 align-items: center;
                 justify-content: center;
             }
+            .show-outline-btn {
+                display: none;
+            }
         }
-
-        /* 中等屏幕（比如平板）也可以保留侧边栏，但若太挤则隐藏 */
         @media (min-width: 901px) {
             .mobile-outline-btn, .mobile-drawer, .drawer-overlay {
                 display: none;
@@ -283,13 +330,18 @@
 </head>
 <body>
 <div class="desktop-layout">
-    <!-- 主内容区 -->
     <div class="main-content">
         <div class="nav-bar">
             <a href="index.html" class="back-link">← 返回词汇目录</a>
-            <div class="nav-buttons">
-                <button class="nav-btn" id="prevBtn" title="上一篇">◀ 上一篇</button>
-                <button class="nav-btn" id="nextBtn" title="下一篇">下一篇 ▶</button>
+            <div style="display: flex; gap: 0.8rem;">
+                <div class="nav-buttons">
+                    <button class="nav-btn" id="prevBtn" title="上一篇">◀ 上一篇</button>
+                    <button class="nav-btn" id="nextBtn" title="下一篇">下一篇 ▶</button>
+                </div>
+                <div class="right-actions">
+                    <button id="desktopOutlineToggle" class="outline-toggle-btn" title="显示目录大纲">📑 目录</button>
+                    <button id="darkModeToggle" class="dark-mode-toggle" title="深色模式">🌙 深色</button>
+                </div>
             </div>
         </div>
         <div id="content" class="markdown-body">
@@ -297,8 +349,8 @@
         </div>
     </div>
 
-    <!-- 桌面端大纲侧边栏 -->
-    <aside class="outline-sidebar" id="desktopOutline">
+    <!-- 桌面端大纲侧边栏（初始隐藏） -->
+    <aside id="desktopOutline" class="outline-sidebar hidden">
         <h4>📑 本页目录</h4>
         <div id="outline-content-desktop"></div>
     </aside>
@@ -334,6 +386,8 @@
     const nextBtn = document.getElementById('nextBtn');
     const desktopOutlineDiv = document.getElementById('outline-content-desktop');
     const mobileOutlineDiv = document.getElementById('outline-content-mobile');
+    const desktopOutlineSidebar = document.getElementById('desktopOutline');
+    const desktopOutlineToggle = document.getElementById('desktopOutlineToggle');
 
     // ==================== 辅助函数 ====================
     function escapeHtml(text) {
@@ -342,7 +396,7 @@
         return div.innerHTML;
     }
 
-    // 基于真实 DOM 生成大纲（同时为标题添加 ID）
+    // 为当前内容中的标题生成 ID 并返回大纲 HTML
     function buildOutlineFromDOM() {
         const headers = document.querySelectorAll('#content h1, #content h2, #content h3');
         if (headers.length === 0) return '';
@@ -353,26 +407,41 @@
             const indent = (level - 1) * 12;
             let text = header.textContent.trim();
             if (!text) text = `标题${idx+1}`;
-            // 生成稳定的 ID（基于文本+索引，避免特殊字符）
+            // 生成稳定的 ID
             const baseId = text.replace(/[^\w\u4e00-\u9fa5]/g, '-').substring(0, 30);
             const id = `heading-${baseId}-${idx}`;
             header.id = id;
-            outlineHtml += `<a href="#${id}" style="padding-left: ${indent}px; display: block;">${escapeHtml(text)}</a>`;
+            outlineHtml += `<a href="#${id}" data-id="${id}" style="padding-left: ${indent}px; display: block;">${escapeHtml(text)}</a>`;
         });
         return outlineHtml;
     }
 
-    // 更新大纲内容（桌面端和移动端同步）
+    // 更新大纲内容（桌面端和移动端）
     function updateOutline() {
         const outlineHtml = buildOutlineFromDOM();
         if (outlineHtml) {
             if (desktopOutlineDiv) desktopOutlineDiv.innerHTML = outlineHtml;
             if (mobileOutlineDiv) mobileOutlineDiv.innerHTML = outlineHtml;
         } else {
-            const noContent = '<span style="color:#aaa;">无标题</span>';
+            const noContent = '<span style="color: #aaa;">无标题</span>';
             if (desktopOutlineDiv) desktopOutlineDiv.innerHTML = noContent;
             if (mobileOutlineDiv) mobileOutlineDiv.innerHTML = noContent;
         }
+        // 重新绑定大纲链接的点击事件（使用平滑滚动）
+        document.querySelectorAll('.outline-sidebar a, .mobile-drawer a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                // 移动端点击后关闭抽屉
+                if (window.innerWidth <= 900) {
+                    closeMobileDrawer();
+                }
+            });
+        });
     }
 
     // 更新导航按钮状态
@@ -409,7 +478,6 @@
             updateNavButtons();
         } catch (err) {
             console.warn('文件列表加载失败:', err);
-            // 不影响正文显示，只是上一篇下一篇不可用
             fileList = [];
             currentIndex = -1;
             updateNavButtons();
@@ -429,13 +497,10 @@
             const response = await fetch(`${currentFile}.md`);
             if (!response.ok) throw new Error(`找不到文件：${currentFile}.md`);
             const markdown = await response.text();
-            // marked.parse 可能返回 Promise 或 string
             let html = marked.parse(markdown);
             if (html && typeof html.then === 'function') html = await html;
             contentDiv.innerHTML = html;
-            // 生成大纲（基于真实 DOM）
-            updateOutline();
-            // 滚动到顶部
+            updateOutline();      // 生成大纲并为标题添加ID
             window.scrollTo(0, 0);
         } catch (error) {
             console.error(error);
@@ -455,7 +520,7 @@
             currentFile = fileList[currentIndex - 1];
             window.history.pushState({}, '', `?file=${encodeURIComponent(currentFile)}`);
             loadContent();
-            loadFileList().then(() => { /* 按钮状态已在 loadFileList 中更新 */ });
+            loadFileList().then(() => {});
         }
     }
     function nextFile() {
@@ -465,6 +530,20 @@
             loadContent();
             loadFileList().then(() => {});
         }
+    }
+
+    // ==================== 桌面端大纲显示/隐藏 ====================
+    function toggleDesktopOutline() {
+        if (desktopOutlineSidebar.classList.contains('hidden')) {
+            desktopOutlineSidebar.classList.remove('hidden');
+            desktopOutlineToggle.textContent = '✖ 关闭目录';
+        } else {
+            desktopOutlineSidebar.classList.add('hidden');
+            desktopOutlineToggle.textContent = '📑 目录';
+        }
+    }
+    if (desktopOutlineToggle) {
+        desktopOutlineToggle.addEventListener('click', toggleDesktopOutline);
     }
 
     // ==================== 移动端抽屉控制 ====================
@@ -483,7 +562,7 @@
     if (mobileBtn) {
         mobileBtn.addEventListener('click', openMobileDrawer);
         drawerOverlay.addEventListener('click', closeMobileDrawer);
-        // 点击抽屉内的链接后关闭抽屉
+        // 移动端抽屉内的链接点击后关闭
         mobileDrawer.addEventListener('click', (e) => {
             if (e.target.tagName === 'A') {
                 closeMobileDrawer();
@@ -491,14 +570,44 @@
         });
     }
 
+    // ==================== 深色模式 ====================
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    function setDarkMode(enabled) {
+        if (enabled) {
+            document.body.classList.add('dark');
+            localStorage.setItem('darkMode', 'enabled');
+            if (darkModeToggle) darkModeToggle.textContent = '☀️ 亮色';
+        } else {
+            document.body.classList.remove('dark');
+            localStorage.setItem('darkMode', 'disabled');
+            if (darkModeToggle) darkModeToggle.textContent = '🌙 深色';
+        }
+    }
+    function toggleDarkMode() {
+        const isDark = document.body.classList.contains('dark');
+        setDarkMode(!isDark);
+    }
+    // 加载保存的偏好
+    const savedDarkMode = localStorage.getItem('darkMode');
+    if (savedDarkMode === 'enabled') {
+        setDarkMode(true);
+    } else if (savedDarkMode === 'disabled') {
+        setDarkMode(false);
+    } else {
+        // 可选：跟随系统，但为了简单，默认浅色
+        setDarkMode(false);
+    }
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', toggleDarkMode);
+    }
+
     // ==================== 初始化 ====================
     (async () => {
         await loadFileList();
         await loadContent();
-        // 绑定导航按钮事件
         if (prevBtn) prevBtn.addEventListener('click', prevFile);
         if (nextBtn) nextBtn.addEventListener('click', nextFile);
-        // 监听 hash 变化（点击大纲链接后浏览器滚动，可保持抽屉关闭）
+        // 监听 hash 变化（点击大纲链接后浏览器滚动，移动端关闭抽屉）
         window.addEventListener('hashchange', () => {
             if (window.innerWidth <= 900) closeMobileDrawer();
         });
