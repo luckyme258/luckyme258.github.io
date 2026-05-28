@@ -1,16 +1,21 @@
 {
   "简要笔记": {
-    "指令词": {
-      "__files__": [
-        "生成"
-      ]
-    },
     "阅读": {
       "__files__": [
         "阅读的基本框架"
       ]
     },
+    "指令词": {
+      "__files__": [
+        "生成"
+      ]
+    },
     "topics": {
+      "tech hardware": {
+        "__files__": [
+          "The reinvention of BlackBerry"
+        ]
+      },
       "nasa moon": {
         "__files__": [
           "NASA reveals plan for astronauts to live on the Moon inside 'lunar glass' domes"
