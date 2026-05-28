@@ -24,8 +24,9 @@
             --nav-bg: #f0ece6;
             --btn-hover: #e8e2d8;
             --heading-color: #3a5a3a;
-            --link-color: #5c6e5a;
-            --link-hover: #c47a44;
+            /* 超链接颜色 - 橘黄色系 */
+            --link-color: #c47a44;
+            --link-hover: #a05e2e;
             --code-bg: #f0ece6;
             --table-header-bg: #ece6df;
             --table-row-alt: #fcfaf7;
@@ -46,8 +47,9 @@
             --nav-bg: #262e28;
             --btn-hover: #3a4238;
             --heading-color: #cbd8c0;
-            --link-color: #b8c0b0;
-            --link-hover: #e0a878;
+            /* 深色模式下超链接颜色 - 亮橘黄色 */
+            --link-color: #e0a878;
+            --link-hover: #f0c090;
             --code-bg: #262e28;
             --table-header-bg: #3a4238;
             --table-row-alt: #2e362e;
@@ -136,7 +138,7 @@
             border-radius: 4px;
         }
         .outline-sidebar::-webkit-scrollbar-thumb {
-            background: var(--link-hover);
+            background: var(--link-color);
             border-radius: 4px;
         }
 
@@ -161,6 +163,7 @@
         }
         .back-link:hover {
             background: var(--btn-hover);
+            color: var(--link-hover);
         }
         .nav-buttons {
             display: flex;
@@ -176,9 +179,9 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-        .nav-btn:hover, .outline-toggle-btn:hover, .dark-mode-toggle:hover {
+        .nav-btn:hover, .dark-mode-toggle:hover {
             background: var(--btn-hover);
-            border-color: var(--link-hover);
+            border-color: var(--link-color);
         }
         .nav-btn:disabled {
             opacity: 0.4;
@@ -187,6 +190,17 @@
         .right-actions {
             display: flex;
             gap: 0.5rem;
+        }
+
+        /* 大纲按钮悬停半透明 + 缩小效果 */
+        .outline-toggle-btn {
+            transition: all 0.2s ease;
+        }
+        .outline-toggle-btn:hover {
+            opacity: 0.65;
+            transform: scale(0.8);
+            background: var(--card-bg);
+            border-color: var(--link-color);
         }
 
         /* Markdown 内容样式 */
@@ -255,6 +269,16 @@
         .markdown-body p {
             margin: 1.2em 0;
         }
+        .markdown-body a {
+            color: var(--link-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+        .markdown-body a:hover {
+            color: var(--link-hover);
+            border-bottom-color: var(--link-hover);
+        }
 
         .loading, .error {
             text-align: center;
@@ -283,11 +307,12 @@
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             z-index: 1000;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
         }
         .mobile-outline-btn:hover {
-            background: var(--link-hover);
-            transform: scale(1.02);
+            opacity: 0.65;
+            transform: scale(0.85);
+            background: var(--heading-color);
         }
         .mobile-drawer {
             position: fixed;
@@ -476,7 +501,6 @@
                 const targetElement = document.getElementById(targetId);
                 if (targetElement) {
                     targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    // 更新 URL 哈希但不触发跳转（可选）
                     history.pushState(null, '', `#${targetId}`);
                 }
                 if (window.innerWidth <= 900) {
@@ -542,7 +566,7 @@
             let html = marked.parse(markdown);
             if (html && typeof html.then === 'function') html = await html;
             contentDiv.innerHTML = html;
-            updateOutline();      // 生成大纲并为标题添加ID
+            updateOutline();
             window.scrollTo(0, 0);
         } catch (error) {
             console.error(error);
@@ -604,7 +628,6 @@
     if (mobileBtn) {
         mobileBtn.addEventListener('click', openMobileDrawer);
         drawerOverlay.addEventListener('click', closeMobileDrawer);
-        // 移动端抽屉内的链接点击后关闭
         if (mobileDrawer) {
             mobileDrawer.addEventListener('click', (e) => {
                 if (e.target.tagName === 'A') {
@@ -631,14 +654,12 @@
         const isDark = document.body.classList.contains('dark');
         setDarkMode(!isDark);
     }
-    // 加载保存的偏好
     const savedDarkMode = localStorage.getItem('darkMode');
     if (savedDarkMode === 'enabled') {
         setDarkMode(true);
     } else if (savedDarkMode === 'disabled') {
         setDarkMode(false);
     } else {
-        // 默认浅色模式
         setDarkMode(false);
     }
     if (darkModeToggle) {
@@ -651,7 +672,6 @@
         await loadContent();
         if (prevBtn) prevBtn.addEventListener('click', prevFile);
         if (nextBtn) nextBtn.addEventListener('click', nextFile);
-        // 监听 hash 变化（移动端关闭抽屉）
         window.addEventListener('hashchange', () => {
             if (window.innerWidth <= 900) closeMobileDrawer();
         });
