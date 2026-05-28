@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雅思词汇 - 自动目录</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f0f4f8;
+            color: #1a3a3a;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #b0c4d4;
+        }
+        h1 {
+            font-size: 2rem;
+            color: #2c5a5a;
+        }
+        .sub {
+            color: #6a8a8a;
+            margin-top: 0.5rem;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1rem;
+            color: #6a8a8a;
+            text-decoration: none;
+        }
+        .file-list {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .file-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e0ecec;
+            transition: background 0.2s;
+        }
+        .file-item:hover {
+            background: #f0f6f4;
+        }
+        .file-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+        }
+        .file-name {
+            flex: 1;
+        }
+        .file-name a {
+            color: #2c5a5a;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+        .file-name a:hover {
+            text-decoration: underline;
+            color: #c47a44;
+        }
+        .loading, .error {
+            text-align: center;
+            padding: 2rem;
+            color: #6a8a8a;
+        }
+        .count {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #6a8a8a;
+            font-size: 0.9rem;
+        }
+        .cache-info {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.75rem;
+            color: #8aa8a8;
+        }
+        .refresh-btn {
+            background: none;
+            border: 1px solid #b0c4d4;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            color: #6a8a8a;
+            cursor: pointer;
+            margin-left: 0.5rem;
+        }
+        .refresh-btn:hover {
+            background: #e0ecec;
+        }
+        .update-note {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px dashed #b0c4d4;
+            font-size: 0.8rem;
+            color: #8aa8a8;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <a href="/luckyme258.github.io/" class="back-link">← 返回首页</a>
+    <header>
+        <h1>📚 雅思词汇</h1>
+        <p class="sub">每日一组 · 积少成多</p>
+    </header>
+
+    <div id="file-list" class="file-list">
+        <div class="loading">📡 正在扫描词汇列表...</div>
+    </div>
+    <div id="count" class="count"></div>
+    <div id="cache-info" class="cache-info"></div>
+    <div class="update-note">✨ 新增 .md 文件后，刷新页面即可自动显示（缓存10分钟）</div>
+</div>
+
+<script>
+    // ==================== 配置 ====================
+    const USERNAME = 'luckyme258';
+    const REPO = 'luckyme258.github.io';
+    const DIR_PATH = '雅思词汇';
+    const CACHE_KEY = 'ielts_vocab_cache';
+    const CACHE_DURATION = 10 * 60 * 1000;  // 10分钟
+    
+    // ==================== 缓存函数 ====================
+    function getCachedData() {
+        try {
+            const cached = localStorage.getItem(CACHE_KEY);
+            if (!cached) return null;
+            const { data, timestamp } = JSON.parse(cached);
+            if (Date.now() - timestamp < CACHE_DURATION) return data;
+            return null;
+        } catch (e) {
+            return null;
+        }
+    }
+    
+    function setCachedData(data) {
+        try {
+            localStorage.setItem(CACHE_KEY, JSON.stringify({
+                data: data,
+                timestamp: Date.now()
+            }));
+        } catch (e) {}
+    }
+    
+    function clearCache() {
+        localStorage.removeItem(CACHE_KEY);
+    }
+    
+    function getCacheAge() {
+        try {
+            const cached = localStorage.getItem(CACHE_KEY);
+            if (!cached) return null;
+            const { timestamp } = JSON.parse(cached);
+            const ageMs = Date.now() - timestamp;
+            return { min: Math.floor(ageMs / 60000), sec: Math.floor((ageMs % 60000) / 1000) };
+        } catch (e) {
+            return null;
+        }
+    }
+    
+    // ==================== 渲染 ====================
+    function renderFileList(mdFiles) {
+        const listContainer = document.getElementById('file-list');
+        const countContainer = document.getElementById('count');
+        
+        if (!mdFiles || mdFiles.length === 0) {
+            listContainer.innerHTML = '<div class="error">📭 暂无词汇文件</div>';
+            countContainer.textContent = '共 0 组词汇';
+            return;
+        }
+        
+        // 按文件名排序（group1, group2...）
+        const sorted = [...mdFiles].sort((a, b) => a.name.localeCompare(b.name));
+        
+        let listHtml = '';
+        sorted.forEach(file => {
+            const displayName = file.name.replace('.md', '');
+            listHtml += `
+                <div class="file-item">
+                    <span class="file-icon">📖</span>
+                    <div class="file-name"><a href="viewer.html?file=${encodeURIComponent(displayName)}">${escapeHtml(displayName)}</a></div>
+                </div>
+            `;
+        });
+        
+        listContainer.innerHTML = listHtml;
+        countContainer.textContent = `共 ${mdFiles.length} 组词汇`;
+    }
+    
+    function showLoading() {
+        document.getElementById('file-list').innerHTML = '<div class="loading">📡 正在扫描词汇列表...</div>';
+    }
+    
+    function showError(message) {
+        document.getElementById('file-list').innerHTML = `<div class="error">⚠️ ${escapeHtml(message)}</div>`;
+        document.getElementById('count').textContent = '';
+    }
+    
+    function updateCacheInfo(isFromCache, age = null) {
+        const infoDiv = document.getElementById('cache-info');
+        if (isFromCache && age) {
+            infoDiv.innerHTML = `💾 来自本地缓存 · ${age.min}分${age.sec}秒前更新 <button class="refresh-btn" onclick="forceRefresh()">🔄 强制刷新</button>`;
+        } else {
+            infoDiv.innerHTML = `<button class="refresh-btn" onclick="forceRefresh()">🔄 手动刷新目录</button>`;
+        }
+    }
+    
+    // ==================== 获取数据 ====================
+    async function fetchMarkdownFiles(forceRefresh = false) {
+        if (!forceRefresh) {
+            const cachedData = getCachedData();
+            if (cachedData) {
+                const age = getCacheAge();
+                renderFileList(cachedData);
+                updateCacheInfo(true, age);
+                return;
+            }
+        }
+        
+        showLoading();
+        updateCacheInfo(false);
+        
+        try {
+            const apiUrl = `https://api.github.com/repos/${USERNAME}/${REPO}/contents/${encodeURIComponent(DIR_PATH)}`;
+            const response = await fetch(apiUrl);
+            
+            if (!response.ok) throw new Error('无法获取文件列表');
+            
+            const files = await response.json();
+            const mdFiles = files.filter(file => file.name.endsWith('.md') && file.type === 'file');
+            
+            setCachedData(mdFiles);
+            renderFileList(mdFiles);
+            updateCacheInfo(false);
+            
+        } catch (error) {
+            const expiredCache = (() => {
+                try {
+                    const cached = localStorage.getItem(CACHE_KEY);
+                    return cached ? JSON.parse(cached).data : null;
+                } catch { return null; }
+            })();
+            
+            if (expiredCache) {
+                renderFileList(expiredCache);
+                showError(`⚠️ 网络错误，显示缓存数据。原因: ${error.message}`);
+            } else {
+                showError('加载失败，请检查网络后刷新重试');
+            }
+        }
+    }
+    
+    window.forceRefresh = function() {
+        clearCache();
+        fetchMarkdownFiles(true);
+    };
+    
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+    
+    fetchMarkdownFiles(false);
+</script>
+</body>
+</html>
