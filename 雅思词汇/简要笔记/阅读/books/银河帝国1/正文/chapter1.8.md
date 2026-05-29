@@ -1,81 +1,343 @@
-Foundation (Isaac Asimov) (z-library.sk, 1lib.sk, z-lib.sk)
-8.
-Foundation 1 - Foundation
+# 🚖 THE EXILE — A Plan Within a Plan
 
-For a long while, they sat silently as the taxi whined through the hundreds of miles of worm-like tunnels toward the University. And then Gaal stirred. He said:
+## The Truth Comes Out
 
-“Was what you told the Commissioner true? Would your execution have really hastened the Fall?”
+---
 
-Seldon said, “I never lie about psychohistoric findings. Nor would it have availed me in this case. Chen knew I spoke the truth. He is a very clever politician and politicians by the very nature of their work must have an instinctive feeling for the truths of psychohistory.”
+## 🚕 In the Taxi
 
-“Then need you have accepted exile,” Gaal wondered, but Seldon did not answer.
+*Whining through hundreds of miles of worm-like tunnels toward the University.*
 
-When they burst out upon the University grounds, Gaal’s muscles took action of their own; or rather, inaction. He had to be carried, almost, out of the taxi.
+**Gaal stirs.** A question has been burning in his mind.
 
-All the University was a blaze of light. Gaal had almost forgotten that a sun could exist.
+---
 
-The University structures lacked the hard steel-gray of the rest of Trantor. They were silvery, rather. The metallic luster was almost ivory in color.
+### Gaal's Question
 
-Seldon said, “Soldiers, it seems.”
+> *"Was what you told the Commissioner true? Would your execution have really hastened the Fall?"*
 
-“What?” Gaal brought his eyes to the prosaic ground and found a sentinel ahead of them.
+| Seldon's Answer | Why it matters |
+|:---|:---|
+| "I never lie about psychohistoric findings." | He's serious. |
+| "Nor would it have availed me in this case." | Chen already knew. |
+| "Chen is a clever politician. Politicians have an **instinctive feeling** for psychohistoric truths." | Even without math, Chen *felt* it was true. |
 
-They stopped before him, and a soft-spoken captain materialized from a near-by doorway.
+> 🧾 *availed* = helped
+> 🧾 *instinctive* = natural, without thinking
 
-He said, “Dr. Seldon?”
+---
 
-“We have been waiting for you. You and your men will be under martial law henceforth. I have been instructed to inform you that six months will be allowed you for preparations to leave for Terminus.”
+### Gaal's Follow-Up
 
-“Six months!” began Gaal, but Seldon’s fingers were upon his elbow with gentle pressure.
+> *"Then need you have accepted exile?"*
 
-“These are my instructions,” repeated the captain.
+**Seldon does not answer.** 🤫
 
-He was gone, and Gaal turned to Seldon, “Why, what can be done in six months? This is but slower murder.”
+---
 
-“Quietly. Quietly. Let us reach my office.”
+## 🏛️ The University
 
-It was not a large office, but it was quite spy-proof and quite undetectably so. Spy-beams trained upon it received neither a suspicious silence nor an even more suspicious static. They received, rather, a conversation constructed at random out of a vast stock of innocuous phrases in various tones and voices.
+---
 
-“Now,” said Seldon, at his ease, “six months will be enough.”
+### First Impression
 
-“I don’t see how.”
+**Gaal's muscles take over — or rather, *inaction*.** He has to be carried almost out of the taxi.
 
-“Because, my boy, in a plan such as ours, the actions of others are bent to our needs. Have I not said to you already that Chen’s temperamental makeup has been subjected to greater scrutiny than that of any other single man in history. The trial was not allowed to begin until the time and circumstances were fight for the ending of our own choosing.”
+| What Gaal sees | Difference from rest of Trantor |
+|:---|:---|
+| **A blaze of light** | He forgot a sun could exist |
+| Silvery structures | Not hard steel-gray |
+| Metallic luster | Almost **ivory** in color |
 
-“But could you have arranged-“
+> 🧾 *blaze* = bright flame/light
+> 🧾 *luster* = shine
+> 🧾 *ivory* =白象牙色
 
-“-to be exiled to Terminus? Why not?” He put his fingers on a certain spot on his desk and a small section of the wall behind him slid aside. Only his own fingers could have done so, since only his particular print-pattern could have activated the scanner beneath.
+---
 
-“You will find several microfilms inside,” said Seldon. “Take the one marked with the letter, T.”
+### 🪖 The Soldiers
 
-Gaal did so and waited while Seldon fixed it within the projector and handed the young man a pair of eyepieces. Gaal adjusted them, and watched the film unroll before his eyes.
+**Seldon:** "Soldiers, it seems."
 
-He said, “But then-“
+**Gaal:** "What?" *(He brings his eyes to the ground.)*
 
-Seldon said, “What surprises you?”
+A sentinel ahead. A soft-spoken captain materializes.
 
-“Have you been preparing to leave for two years?”
+---
 
-“Two and a half. Of course, we could not be certain that it would be Terminus he would choose, but we hoped it might be and we acted upon that assumption-“
+### The Captain's Message
 
-“But why, Dr. Seldon? If you arranged the exile, why? Could not events be far better controlled here on Trantor?”
+| Statement | Detail |
+|:---|:---|
+| "Dr. Seldon?" | — |
+| "You and your men are under **martial law** henceforth." | Military control |
+| "Six months will be allowed for preparations to leave for Terminus." | Countdown begins |
 
-“Why, there are some reasons. Working on Terminus, we will have Imperial support without ever rousing fears that we would endanger Imperial safety.”
+> 🧾 *martial law* = military rule (军事管制)
+> 🧾 *henceforth* = from now on
 
-Gaal said, “But you aroused those fears only to force exile. I still do not understand.”
+**Gaal:** "Six months! What can be done in six months? This is but slower murder!"
 
-“Twenty thousand families would not travel to the end of the Galaxy of their own will perhaps.”
+**Seldon's fingers on his elbow:** *Gentle pressure.*
 
-“But why should they be forced there?” Gaal paused, “May I not know?”
+*"Quietly. Quietly. Let us reach my office."*
 
-Seldon said, “Not yet. It is enough for the moment that you know that a scientific refuge will be established on Terminus. And another will be established at the other end of the Galaxy, let us say,” and he smiled, “at Star’s End. And as for the rest, I will die soon, and you will see more than I. -No, no. Spare me your shock and good wishes. My doctors tell me that I cannot live longer than a year or two. But then, I have accomplished in life what I have intended and under what circumstances may one better die.”
+---
 
-“And after you die, sir?”
+## 🚪 Seldon's Office
 
-“Why, there will be successors - perhaps even yourself. And these successors will be able to apply the final touch in the scheme and instigate the revolt on Anacreon at the right time and in the right manner. Thereafter, events may roll unheeded.”
+---
 
-“I do not understand.”
+### The Setup
 
-“You will.” Seldon’s lined face grew peaceful and tired, both at once, “Most will leave for Terminus, but some will stay. It will be easy to arrange. -But as for me,” and he concluded in a whisper, so that Gaal could scarcely hear him, “I am finished.”
+| Feature | Detail |
+|:---|:---|
+| Size | Not large |
+| Security | **Spy-proof** — and undetectably so |
+| How it works | Spy-beams receive *fake conversations* — random phrases, various tones/voices — not silence, not static |
 
-← 上一章 下一章 →
+> 🧾 *undetectably* =无法被发现的
+> 🧾 *static* =干扰噪音（静电声）
+> 🧾 *innocuous* =无害的，中性的
+
+---
+
+### Seldon's Assurance
+
+> *"Six months will be enough."*
+
+**Gaal:** "I don't see how."
+
+**Seldon:** *"Because, my boy, in a plan such as ours, the actions of others are bent to our needs."*
+
+---
+
+## 🗝️ The Revelation
+
+---
+
+### The Hidden Compartment
+
+Seldon puts his fingers on a certain spot on his desk.
+
+A small section of the wall **slides aside**.
+
+| Security measure | Why |
+|:---|:---|
+| Only Seldon's fingers | His **print-pattern** activates the scanner |
+| No one else could do it | Biometric lock |
+
+> 🧾 *compartment* = secret section
+> 🧾 *scanner* =扫描器
+> 🧾 *print-pattern* = 指纹 pattern
+
+---
+
+### The Microfilms
+
+**Seldon:** "Take the one marked with the letter **T**."
+
+Gaal takes it. Seldon fixes it in the projector. Hands Gaal eyepieces.
+
+*Gaal watches the film unroll before his eyes.*
+
+> 🧾 *microfilms* =微型胶片（存储信息）
+> 🧾 *projector* =投影仪
+> 🧾 *eyepieces* =目镜
+
+---
+
+## 😲 Gaal's Realization
+
+> *"But then —"*
+
+**Seldon:** "What surprises you?"
+
+**Gaal:** "Have you been **preparing to leave for two years**?"
+
+> 🧾 *preparing* =准备
+
+---
+
+### Seldon's Answer
+
+> *"Two and a half."*
+
+| What Seldon admits |
+|:---|
+| They couldn't be *certain* Terminus would be chosen |
+| But they **hoped** it might be |
+| They acted upon that assumption |
+
+> 🧾 *assumption* = assumption, working belief
+
+---
+
+## ❓ Gaal's Confusion
+
+> *"Why, Dr. Seldon? If you **arranged** the exile, why? Couldn't events be far better controlled here on Trantor?"*
+
+---
+
+### Seldon's Reasons
+
+| Reason | Explanation |
+|:---|:---|
+| Imperial support | On Terminus, they'll have it — without rousing fear |
+| On Trantor | People would always fear they endanger Imperial safety |
+
+> 🧾 *endanger* = put at risk
+
+**Gaal:** "But you aroused those fears **only to force exile**. I still don't understand."
+
+**Seldon:** "Twenty thousand families would not travel to the end of the Galaxy of their own will, perhaps."
+
+> 🧾 *of their own will* = voluntarily, by choice
+
+---
+
+## 🗣️ Gaal Presses
+
+> *"But why should they be **forced** there? May I not know?"*
+
+---
+
+### Seldon's Partial Answer
+
+| What Seldon reveals | What he hides |
+|:---|:---|
+| A scientific refuge will be established on **Terminus** | The full plan |
+| Another will be established at the other end of the Galaxy — **"Star's End"** | — |
+| He will die soon (a year or two) | — |
+| There will be successors — perhaps even **Gaal** | — |
+
+> 🧾 *refuge* = safe place, shelter
+> 🧾 *successors* =接班人
+
+---
+
+### The Final Touch
+
+> *"These successors will be able to apply the final touch — and instigate the **revolt on Anacreon** at the right time and in the right manner. Thereafter, events may roll unheeded."*
+
+> 🧾 *instigate* = provoke, start
+> 🧾 *revolt* = rebellion
+> 🧾 *unheeded* = unnoticed, without interference
+
+**Gaal:** "I do not understand."
+
+**Seldon:** *"You will."*
+
+---
+
+## 🕯️ The End
+
+*Seldon's lined face grows peaceful and tired — both at once.*
+
+> *"Most will leave for Terminus, but some will stay. It will be easy to arrange."*
+
+*And then — a whisper, so faint Gaal can scarcely hear him:*
+
+> *"I am finished."* 😔
+
+> 🧾 *scarcely* = barely, almost not
+
+---
+
+## 📋 Chapter Summary
+
+| Stage | What Happened |
+|:---|:---|
+| In the taxi | Gaal asks if execution would really hasten the Fall — Seldon says yes, Chen knew it |
+| At the University | Soldiers, martial law, six months to leave |
+| Seldon's office | Spy-proof. Hidden microfilms. |
+| The revelation | They've been preparing for **2.5 years** |
+| Why exile? | Imperial support without fear. Families wouldn't go voluntarily. |
+| Two refuges | Terminus + Star's End |
+| Seldon's health | A year or two left |
+| The future | Successors. Revolt on Anacreon. |
+| Last words | *"I am finished."* |
+
+---
+
+## 🎯 Key Quotes
+
+| Speaker | Quote |
+|:---|:---|
+| Seldon | "I never lie about psychohistoric findings." |
+| Seldon | "In a plan such as ours, the actions of others are bent to our needs." |
+| Seldon | "Twenty thousand families would not travel to the end of the Galaxy of their own will." |
+| Seldon | "I am finished." |
+
+---
+
+## 💭 Think About This
+
+Seldon **orchestrated his own exile**.
+
+He spent 2.5 years preparing.
+
+He manipulated Chen — one of the most powerful men in the Galaxy — into sending him exactly where he wanted to go.
+
+*Who really won the trial?*
+
+And what is he planning for **Anacreon**? 🤔
+
+---
+
+## 📚 Vocabulary Review
+
+| Word | Meaning |
+|:---|:---|
+| availed | helped |
+| instinctive | natural, automatic |
+| blaze | bright flame/light |
+| luster | shine |
+| ivory | 白象牙色 |
+| martial law | military rule |
+| henceforth | from now on |
+| undetectably |无法被发现的 |
+| static | interference noise |
+| innocuous | harmless |
+| compartment | secret section |
+| scanner | 扫描器 |
+| print-pattern | 指纹 |
+| microfilms | 微型胶片 |
+| projector | 投影仪 |
+| eyepieces | 目镜 |
+| preparing | 准备 |
+| assumption | assumption |
+| endanger | put at risk |
+| of their own will | voluntarily |
+| refuge | safe place |
+| successors | 接班人 |
+| instigate | provoke, start |
+| revolt | rebellion |
+| unheeded | unnoticed |
+| scarcely | barely |
+
+---
+
+## 🎯 Quick Check
+
+| Question | Your Answer |
+|:---|:---|
+| Did Seldon lie to the Commissioner? | |
+| How long have they been preparing to leave? | |
+| Why does Seldon want exile instead of staying on Trantor? | |
+| Why wouldn't the families go voluntarily? | |
+| What is the second refuge called? | |
+| How long does Seldon have to live? | |
+| What does Seldon say at the end? | |
+
+---
+
+## 🔮 The Real Winner
+
+| Chen thinks... | Seldon knows... |
+|:---|:---|
+| He exiled Seldon | He was **manipulated** into it |
+| He won | Seldon won |
+| The problem is gone | The plan is just beginning |
+
+*"I am finished"* — but the **plan** is not. 😌
