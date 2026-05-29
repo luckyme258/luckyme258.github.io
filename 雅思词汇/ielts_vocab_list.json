@@ -21,17 +21,20 @@
             "人物图鉴2"
           ]
         },
-        "newbook": {
-          "__files__": [
-            "chapter1"
-          ]
-        },
         "银河帝国1": {
+          "__files__": [
+            "词频表"
+          ],
           "正文": {
             "__files__": [
               "chapter1.1"
             ]
           }
+        },
+        "newbook": {
+          "__files__": [
+            "chapter1"
+          ]
         }
       }
     },
