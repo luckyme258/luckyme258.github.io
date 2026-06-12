@@ -1,10 +1,5 @@
 {
   "简要笔记": {
-    "抖音网页的优化": {
-      "__files__": [
-        "描述文档"
-      ]
-    },
     "本地大模型的清单": {
       "__files__": [
         "概览",
@@ -14,6 +9,7 @@
     },
     "指令词": {
       "__files__": [
+        "银河帝国背景的单词场景",
         "老友记风格英语动词对话创作 Prompt"
       ]
     },
@@ -22,33 +18,23 @@
         "阅读的基本框架"
       ],
       "books": {
-        "垂暮之战": {
-          "__files__": [
-            "吃瓜名场面",
-            "人物图鉴4",
-            "全书词频",
-            "人物图鉴1",
-            "人物图鉴3",
-            "人物图鉴2"
-          ]
-        },
         "银河帝国1": {
           "__files__": [
-            "销售思维",
-            "词频表",
+            "提示词",
             "分级词频表",
-            "提示词"
+            "词频表",
+            "销售思维"
           ],
           "正文": {
             "__files__": [
-              "chapter1.3",
-              "chapter1.6",
-              "chapter1.2",
-              "chapter1.4",
               "chapter1.7",
+              "chapter1.4",
               "chapter1.1",
+              "chapter1.8",
               "chapter1.5",
-              "chapter1.8"
+              "chapter1.2",
+              "chapter1.3",
+              "chapter1.6"
             ]
           }
         },
@@ -56,15 +42,25 @@
           "__files__": [
             "chapter1"
           ]
+        },
+        "垂暮之战": {
+          "__files__": [
+            "人物图鉴4",
+            "人物图鉴1",
+            "全书词频",
+            "人物图鉴3",
+            "吃瓜名场面",
+            "人物图鉴2"
+          ]
         }
       }
     },
+    "抖音网页的优化": {
+      "__files__": [
+        "描述文档"
+      ]
+    },
     "topics": {
-      "nasa moon": {
-        "__files__": [
-          "NASA reveals plan for astronauts to live on the Moon inside 'lunar glass' domes"
-        ]
-      },
       "tiktok addiction": {
         "__files__": [
           "Why TikTok Keeps You Scrolling",
@@ -74,6 +70,11 @@
       "tech hardware": {
         "__files__": [
           "The reinvention of BlackBerry"
+        ]
+      },
+      "nasa moon": {
+        "__files__": [
+          "NASA reveals plan for astronauts to live on the Moon inside 'lunar glass' domes"
         ]
       }
     }
