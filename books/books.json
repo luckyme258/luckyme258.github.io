@@ -1,6 +1,6 @@
 {
-  "lastUpdated": 1782270543384,
-  "totalBooks": 60,
+  "lastUpdated": 1782270666733,
+  "totalBooks": 59,
   "totalCategories": 16,
   "categories": [
     "百科",
@@ -16,9 +16,9 @@
     "奇幻",
     "生活",
     "社评",
-    "剧情",
     "推理",
-    "社科"
+    "社科",
+    "剧情"
   ],
   "books": [
     {
@@ -473,17 +473,6 @@
       "addedTime": 1773256184000
     },
     {
-      "id": "剧情_正常人_normal peole.html",
-      "file": "剧情_正常人_normal peole.html",
-      "filename": "剧情_正常人_normal peole.html",
-      "title": "正常人",
-      "category": "剧情",
-      "author": "normal peole",
-      "size": 465403,
-      "lastModified": 1774013164000,
-      "addedTime": 1774013164000
-    },
-    {
       "id": "传记_湖濱散記_梭罗.html",
       "file": "传记_湖濱散記_梭罗.html",
       "filename": "传记_湖濱散記_梭罗.html",
@@ -749,11 +738,6 @@
       "icon": "📘"
     },
     {
-      "name": "剧情",
-      "count": 2,
-      "icon": "📘"
-    },
-    {
       "name": "推理",
       "count": 1,
       "icon": "📘"
@@ -761,6 +745,11 @@
     {
       "name": "社科",
       "count": 2,
+      "icon": "📘"
+    },
+    {
+      "name": "剧情",
+      "count": 1,
       "icon": "📘"
     }
   ]
