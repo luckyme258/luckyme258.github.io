@@ -1,6 +1,6 @@
 {
-  "lastUpdated": 1782268616388,
-  "totalBooks": 62,
+  "lastUpdated": 1782270446825,
+  "totalBooks": 61,
   "totalCategories": 16,
   "categories": [
     "百科",
@@ -627,17 +627,6 @@
       "addedTime": 1774012569000
     },
     {
-      "id": "百科_美元真相：跟踪1美元的全球之旅 _达尔辛妮·大卫.html",
-      "file": "百科_美元真相：跟踪1美元的全球之旅 _达尔辛妮·大卫.html",
-      "filename": "百科_美元真相：跟踪1美元的全球之旅 _达尔辛妮·大卫.html",
-      "title": "美元真相：跟踪1美元的全球之旅 ",
-      "category": "百科",
-      "author": "达尔辛妮·大卫",
-      "size": 602382,
-      "lastModified": 1779120482000,
-      "addedTime": 1779120482000
-    },
-    {
       "id": "历史_美国四百年  冒险、创新与财富塑造的历史_布·斯里尼瓦桑.html",
       "file": "历史_美国四百年  冒险、创新与财富塑造的历史_布·斯里尼瓦桑.html",
       "filename": "历史_美国四百年  冒险、创新与财富塑造的历史_布·斯里尼瓦桑.html",
@@ -707,7 +696,7 @@
   "categoryStats": [
     {
       "name": "百科",
-      "count": 5,
+      "count": 4,
       "icon": "📘"
     },
     {
