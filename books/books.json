@@ -1,6 +1,6 @@
 {
-  "lastUpdated": 1782270446825,
-  "totalBooks": 61,
+  "lastUpdated": 1782270543384,
+  "totalBooks": 60,
   "totalCategories": 16,
   "categories": [
     "百科",
@@ -462,17 +462,6 @@
       "addedTime": 1774012690000
     },
     {
-      "id": "传记_昨日的世界_茨威格.html",
-      "file": "传记_昨日的世界_茨威格.html",
-      "filename": "传记_昨日的世界_茨威格.html",
-      "title": "昨日的世界",
-      "category": "传记",
-      "author": "茨威格",
-      "size": 950374,
-      "lastModified": 1779120081000,
-      "addedTime": 1779120081000
-    },
-    {
       "id": "心理_欲罢不能：刷屏时代如何摆脱行为上瘾_亚当 · 奥尔特.html",
       "file": "心理_欲罢不能：刷屏时代如何摆脱行为上瘾_亚当 · 奥尔特.html",
       "filename": "心理_欲罢不能：刷屏时代如何摆脱行为上瘾_亚当 · 奥尔特.html",
@@ -716,7 +705,7 @@
     },
     {
       "name": "传记",
-      "count": 4,
+      "count": 3,
       "icon": "📜"
     },
     {
