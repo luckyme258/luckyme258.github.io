@@ -234,7 +234,7 @@
 
         /* ========== 引用块（诗歌玻璃块） ========== */
         .markdown-body blockquote {
-            display: inline-block;
+            display: block;
             max-width: 640px;
             width: auto;
             margin: 1.8rem auto;
@@ -484,14 +484,14 @@
         function postProcessDOM() {
             try {
                 // --- 2a. 处理引用块：添加 poetry-block 类 ---
-                const blockquotes = document.querySelectorAll('.markdown-body blockquote');
+                var blockquotes = document.querySelectorAll('.markdown-body blockquote');
                 blockquotes.forEach(function(block) {
                     block.classList.add('poetry-block');
                 });
 
                 // --- 2b. 处理标题：随机涂鸦装饰 ---
-                const headings = document.querySelectorAll('.markdown-body h1, .markdown-body h2, .markdown-body h3');
-                const decorationTypes = [
+                var headings = document.querySelectorAll('.markdown-body h1, .markdown-body h2, .markdown-body h3');
+                var decorationTypes = [
                     'underline-wavy',
                     'underline-double',
                     'left-block',
@@ -499,7 +499,7 @@
                     'underline-dots',
                     'zigzag'
                 ];
-                const colorPool = [
+                var colorPool = [
                     '#d4a574',
                     '#b8a08a',
                     '#c4b0a0',
@@ -573,7 +573,7 @@
         }
 
         // ============================================================
-        // 4. 加载 Markdown 文件（保持原有接口，新增后处理调用）
+        // 4. 加载 Markdown 文件（保持原有接口）
         // ============================================================
         var urlParams = new URLSearchParams(window.location.search);
         var mdFileName = urlParams.get('file');
@@ -602,9 +602,7 @@
                     }
                     if (html) {
                         document.getElementById('content').innerHTML = html;
-                        // ★ 唯一新增调用点：渲染完成后执行 DOM 后处理
                         postProcessDOM();
-                        // 启动诗歌块观察
                         setupPoetryObserver();
                     }
                     document.title = mdFileName + ' - 诗歌集';
