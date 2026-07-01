@@ -4,102 +4,315 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>诗歌阅读器</title>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js">
+    </script>
     <style>
+        /* ========== 基础重置 & 全局 ========== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
             background: #f9f6ef;
             color: #2c3e2f;
             line-height: 1.8;
+            min-height: 100vh;
         }
+
+        /* ========== 背景噪点（径向渐变模拟） ========== */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background-image:
+                radial-gradient(ellipse at 20% 50%, rgba(200, 185, 170, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(180, 170, 160, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(190, 180, 170, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 10% 90%, rgba(160, 150, 140, 0.04) 0%, transparent 40%),
+                radial-gradient(circle at 90% 70%, rgba(170, 160, 150, 0.04) 0%, transparent 40%);
+            background-blend-mode: multiply;
+        }
+
         .container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 2rem;
+            position: relative;
+            z-index: 1;
         }
+
         .back-link {
             display: inline-block;
             margin-bottom: 2rem;
             color: #8b7355;
             text-decoration: none;
             font-size: 0.95rem;
+            position: relative;
+            z-index: 2;
         }
         .back-link:hover {
             text-decoration: underline;
         }
+
         .markdown-body {
-            background: white;
+            background: rgba(255, 252, 248, 0.92);
             padding: 2.5rem;
             border-radius: 16px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
             overflow-x: auto;
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
         }
-        
-        /* ========== 表格样式 - 确保边框清晰可见 ========== */
+
+        /* ========== 表格样式 ========== */
         .markdown-body table {
-            border-collapse: collapse;      /* 合并边框，避免双线 */
+            border-collapse: collapse;
             width: 100%;
             margin: 1.5rem 0;
             font-size: 0.95rem;
             font-family: inherit;
         }
-        
-        /* 表格单元格 - 上下左右都有边框 */
+
         .markdown-body th,
         .markdown-body td {
-            border: 1px solid #aaa;         /* 深灰色实线边框，清晰可见 */
+            border: 1px solid #aaa;
             padding: 0.75rem 1rem;
             vertical-align: top;
             text-align: left;
         }
-        
-        /* 表头样式：深色背景 + 加粗 */
+
         .markdown-body th {
             background: #e8e0d5;
             font-weight: 700;
-            border-bottom: 2px solid #8b7355;  /* 底部加粗强调 */
+            border-bottom: 2px solid #8b7355;
         }
-        
-        /* 交替行背景色，更易阅读（可选） */
+
         .markdown-body tr:nth-child(even) {
             background-color: #faf7f2;
         }
-        
-        /* 鼠标悬停高亮（可选） */
+
         .markdown-body tr:hover {
             background-color: #f0eade;
         }
-        
-        /* 其他 Markdown 元素样式 */
+
+        /* ========== 标题：通用 ========== */
+        .markdown-body h1,
+        .markdown-body h2,
+        .markdown-body h3 {
+            position: relative;
+            display: inline-block;
+            margin-top: 1.8rem;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.3rem;
+            color: #3d2e22;
+        }
+
         .markdown-body h1 {
-            color: #5a3e2b;
-            border-bottom: 2px solid #d4c5b0;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1rem;
+            font-size: 2rem;
         }
         .markdown-body h2 {
-            color: #7a5a3a;
-            margin-top: 1.5rem;
+            font-size: 1.6rem;
         }
-        .markdown-body h3, .markdown-body h4 {
-            color: #8b6946;
+        .markdown-body h3 {
+            font-size: 1.3rem;
+        }
+        .markdown-body h4 {
+            font-size: 1.1rem;
+            color: #5a4a3a;
             margin-top: 1.2rem;
         }
+
+        /* ========== 标题：涂鸦装饰（伪元素随机生成） ========== */
+        .markdown-body h1::after,
+        .markdown-body h2::after,
+        .markdown-body h3::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        /* 装饰类型通过 data-* 控制，由 JS 随机分配 */
+        .markdown-body h1[data-decoration="underline-wavy"]::after,
+        .markdown-body h2[data-decoration="underline-wavy"]::after,
+        .markdown-body h3[data-decoration="underline-wavy"]::after {
+            background: repeating-linear-gradient(90deg,
+                    var(--decoration-color, #d4a574) 0px,
+                    var(--decoration-color, #d4a574) 6px,
+                    transparent 6px,
+                    transparent 10px);
+            height: 3px;
+            border-radius: 2px;
+        }
+
+        .markdown-body h1[data-decoration="underline-double"]::after,
+        .markdown-body h2[data-decoration="underline-double"]::after,
+        .markdown-body h3[data-decoration="underline-double"]::after {
+            background: transparent;
+            height: 6px;
+            border-bottom: 2px solid var(--decoration-color, #b8a08a);
+            box-shadow: 0 4px 0 0 var(--decoration-color, #b8a08a);
+            border-radius: 0;
+        }
+
+        .markdown-body h1[data-decoration="left-block"]::before,
+        .markdown-body h2[data-decoration="left-block"]::before,
+        .markdown-body h3[data-decoration="left-block"]::before {
+            content: '';
+            position: absolute;
+            left: -12px;
+            top: 2px;
+            width: 6px;
+            height: 70%;
+            background: var(--decoration-color, #c4b0a0);
+            border-radius: 4px;
+            opacity: 0.5;
+        }
+
+        .markdown-body h1[data-decoration="left-line"]::before,
+        .markdown-body h2[data-decoration="left-line"]::before,
+        .markdown-body h3[data-decoration="left-line"]::before {
+            content: '';
+            position: absolute;
+            left: -12px;
+            top: 2px;
+            width: 3px;
+            height: 80%;
+            background: var(--decoration-color, #a8b8a8);
+            border-radius: 2px;
+            opacity: 0.5;
+        }
+
+        .markdown-body h1[data-decoration="underline-dots"]::after,
+        .markdown-body h2[data-decoration="underline-dots"]::after,
+        .markdown-body h3[data-decoration="underline-dots"]::after {
+            background: radial-gradient(circle,
+                    var(--decoration-color, #c4a8a8) 2px,
+                    transparent 2px);
+            background-size: 10px 4px;
+            background-repeat: repeat-x;
+            height: 4px;
+            border-radius: 0;
+        }
+
+        .markdown-body h1[data-decoration="zigzag"]::after,
+        .markdown-body h2[data-decoration="zigzag"]::after,
+        .markdown-body h3[data-decoration="zigzag"]::after {
+            background: repeating-linear-gradient(45deg,
+                    transparent 0px,
+                    transparent 4px,
+                    var(--decoration-color, #b0b0c0) 4px,
+                    var(--decoration-color, #b0b0c0) 5px,
+                    transparent 5px,
+                    transparent 10px);
+            height: 4px;
+            opacity: 0.4;
+        }
+
+        /* ========== 段落（散文块） ========== */
         .markdown-body p {
             margin: 1rem 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #2c3e2f;
+            letter-spacing: 0.01em;
         }
+
+        /* ========== 引用块（诗歌玻璃块） ========== */
         .markdown-body blockquote {
-            border-left: 4px solid #d4c5b0;
-            padding-left: 1rem;
-            color: #7a6a5c;
-            font-style: italic;
-            margin: 1rem 0;
+            display: inline-block;
+            max-width: 640px;
+            width: auto;
+            margin: 1.8rem auto;
+            padding: 1.8rem 2.4rem;
+            border-radius: 16px;
+            background: rgba(255, 252, 245, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+            font-family: Georgia, "宋体", "SimSun", "Times New Roman", serif;
+            font-size: 1rem;
+            line-height: 2.2;
+            color: #3d2e22;
+            text-align: left;
+            transition: opacity 0.35s ease-out, transform 0.35s ease-out, box-shadow 0.35s ease-out;
+            position: relative;
+            overflow: hidden;
+            /* 初始隐藏，由 IntersectionObserver 控制显示 */
+            opacity: 0;
+            transform: translateY(12px);
         }
+
+        .markdown-body blockquote.visible {
+            opacity: 1;
+            transform: translateY(0);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .markdown-body blockquote.leaving {
+            opacity: 0;
+            transform: translateY(8px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            transition-duration: 0.3s;
+            transition-timing-function: ease-in;
+        }
+
+        /* 引用块内部段落保持统一 */
+        .markdown-body blockquote p {
+            margin: 0.2rem 0;
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit;
+            color: inherit;
+            letter-spacing: 0.02em;
+        }
+
+        .markdown-body blockquote p:first-child {
+            margin-top: 0;
+        }
+        .markdown-body blockquote p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 引用块内的加粗 */
+        .markdown-body blockquote strong {
+            font-weight: 600;
+            color: inherit;
+            font-family: inherit;
+        }
+
+        /* 引用块内的斜体 */
+        .markdown-body blockquote em {
+            font-style: italic;
+            color: #5a4a3a;
+            font-family: inherit;
+        }
+
+        /* ========== 分隔线 ========== */
+        .markdown-body hr {
+            border: none;
+            border-top: 1px solid #d4c5b0;
+            margin: 2.5rem 0;
+            opacity: 0.5;
+        }
+
+        /* ========== 代码块（保持中性，不参与玻璃效果） ========== */
         .markdown-body pre {
             background: #f5f0e8;
             padding: 1rem;
@@ -108,6 +321,7 @@
             font-family: 'Courier New', monospace;
             margin: 1rem 0;
         }
+
         .markdown-body code {
             background: #f5f0e8;
             padding: 0.2rem 0.4rem;
@@ -115,14 +329,26 @@
             font-family: 'Courier New', monospace;
             font-size: 0.9em;
         }
-        .markdown-body ul, .markdown-body ol {
+
+        .markdown-body pre code {
+            background: transparent;
+            padding: 0;
+            border-radius: 0;
+            font-size: 0.9em;
+        }
+
+        /* ========== 列表 ========== */
+        .markdown-body ul,
+        .markdown-body ol {
             margin: 0.8rem 0 0.8rem 2rem;
         }
         .markdown-body li {
             margin: 0.3rem 0;
         }
-        
-        .loading, .error {
+
+        /* ========== 加载 & 错误 ========== */
+        .loading,
+        .error {
             text-align: center;
             padding: 3rem;
             background: white;
@@ -132,103 +358,346 @@
         .error {
             color: #c44;
         }
-        
-        /* 移动端适配 */
-        @media (max-width: 640px) {
+
+        /* ========== 移动端适配 ========== */
+        @media (max-width: 768px) {
             .container {
                 padding: 1rem;
             }
             .markdown-body {
                 padding: 1.2rem;
             }
+            .markdown-body blockquote {
+                max-width: calc(100% - 0rem);
+                padding: 1.2rem 1.2rem;
+                border-radius: 12px;
+                font-size: 0.95rem;
+                line-height: 2.0;
+                box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+                margin: 1.2rem auto;
+            }
+            .markdown-body blockquote.visible {
+                box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+            }
+            .markdown-body h1 {
+                font-size: 1.6rem;
+            }
+            .markdown-body h2 {
+                font-size: 1.3rem;
+            }
+            .markdown-body h3 {
+                font-size: 1.1rem;
+            }
             .markdown-body th,
             .markdown-body td {
                 padding: 0.4rem 0.6rem;
                 font-size: 0.85rem;
             }
+            .markdown-body blockquote strong {
+                font-weight: 600;
+            }
+            .markdown-body blockquote em {
+                color: #5a4a3a;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .markdown-body blockquote {
+                padding: 1rem 0.8rem;
+                border-radius: 10px;
+                font-size: 0.9rem;
+                line-height: 1.9;
+                max-width: calc(100% - 0rem);
+            }
+            .markdown-body {
+                padding: 0.8rem;
+            }
+            .container {
+                padding: 0.6rem;
+            }
+        }
+
+        /* ========== 打印样式 ========== */
+        @media print {
+            .back-link {
+                display: none;
+            }
+            .markdown-body {
+                background: white;
+                box-shadow: none;
+                padding: 1rem;
+            }
+            .markdown-body blockquote {
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+                background: #f5f0e8;
+                box-shadow: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+                border: 1px solid #ccc;
+            }
+            body::before {
+                display: none;
+            }
+        }
+
+        /* ========== 动画过渡增强 ========== */
+        .markdown-body blockquote {
+            will-change: transform, opacity, box-shadow;
+        }
+
+        /* 减少动画偏好 */
+        @media (prefers-reduced-motion: reduce) {
+            .markdown-body blockquote {
+                transition: opacity 0.15s ease;
+                will-change: auto;
+            }
+            .markdown-body blockquote.visible {
+                opacity: 1;
+                transform: none;
+            }
+            .markdown-body blockquote.leaving {
+                opacity: 0;
+                transform: none;
+            }
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <a href="index.html" class="back-link">← 返回诗歌目录</a>
-    <div id="content" class="markdown-body">
-        <div class="loading">📖 诗卷展开中...</div>
+    <div class="container">
+        <a href="index.html" class="back-link">← 返回诗歌目录</a>
+        <div id="content" class="markdown-body">
+            <div class="loading">📖 诗卷展开中...</div>
+        </div>
     </div>
-</div>
 
-<script>
-    // 配置 marked 以支持 GFM 表格
-    if (typeof marked !== 'undefined') {
-        // marked v4+ 使用 setOptions；v11+ 推荐用 marked.use
-        if (typeof marked.setOptions === 'function') {
-            marked.setOptions({
-                gfm: true,
-                tables: true,
-                breaks: false
-            });
-        } else if (typeof marked.use === 'function') {
-            marked.use({
-                gfm: true,
-                tables: true
-            });
+    <script>
+        // ============================================================
+        // 1. 配置 marked（保持原有接口）
+        // ============================================================
+        if (typeof marked !== 'undefined') {
+            if (typeof marked.setOptions === 'function') {
+                marked.setOptions({
+                    gfm: true,
+                    tables: true,
+                    breaks: false
+                });
+            } else if (typeof marked.use === 'function') {
+                marked.use({
+                    gfm: true,
+                    tables: true
+                });
+            }
         }
-    }
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const mdFileName = urlParams.get('file');
-    
-    if (!mdFileName) {
-        document.getElementById('content').innerHTML = '<div class="error">❌ 未指定诗歌文件</div>';
-    } else {
-        fetch(`${mdFileName}.md`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`找不到文件：${mdFileName}.md`);
-                }
-                return response.text();
-            })
-            .then(markdown => {
-                let html;
-                if (typeof marked !== 'undefined') {
-                    // marked.parse 可能返回 Promise (v8+) 或 string (旧版)
-                    const result = marked.parse(markdown);
-                    if (result && typeof result.then === 'function') {
-                        return result;
-                    } else {
-                        html = result;
-                    }
-                } else {
-                    html = `<pre>${escapeHtml(markdown)}</pre>`;
-                }
-                if (html) {
-                    document.getElementById('content').innerHTML = html;
-                }
-                document.title = `${mdFileName} - 诗歌集`;
+        // ============================================================
+        // 2. 自定义 Renderer：给 blockquote 添加类 + 标题涂鸦装饰
+        // ============================================================
+        function customizeMarked() {
+            if (typeof marked === 'undefined') return;
+
+            const renderer = new marked.Renderer();
+
+            // --- 2a. blockquote：添加 poetry-block 类，并保留原始内容 ---
+            const originalBlockquote = renderer.blockquote.bind(renderer);
+            renderer.blockquote = function(quote) {
+                // 去除可能存在的多余换行，保留内容
+                const content = quote.trim();
+                // 用原始方法渲染，但包裹在带有 poetry-block 类的 blockquote 中
+                return `<blockquote class="poetry-block">${content}</blockquote>`;
+            };
+
+            // --- 2b. heading：添加随机涂鸦装饰 data 属性 ---
+            const originalHeading = renderer.heading.bind(renderer);
+            renderer.heading = function(text, level, raw, slugger) {
+                // 装饰类型池
+                const decorationTypes = [
+                    'underline-wavy',
+                    'underline-double',
+                    'left-block',
+                    'left-line',
+                    'underline-dots',
+                    'zigzag'
+                ];
+                // 颜色池（低饱和度）
+                const colorPool = [
+                    '#d4a574', // 暖褐
+                    '#b8a08a', // 灰褐
+                    '#c4b0a0', // 米褐
+                    '#a8b8a8', // 灰绿
+                    '#c4a8a8', // 灰粉
+                    '#b0b0c0' // 灰蓝
+                ];
+
+                // 每个标题独立随机
+                const type = decorationTypes[Math.floor(Math.random() * decorationTypes.length)];
+                const color = colorPool[Math.floor(Math.random() * colorPool.length)];
+
+                // 调用原始 heading 渲染，然后注入 data 属性
+                let html = originalHeading(text, level, raw, slugger);
+                // 在开头的 <hx> 标签中插入 data-decoration 和 style
+                html = html.replace(
+                    /<h([1-6])>/,
+                    `<h$1 data-decoration="${type}" style="--decoration-color: ${color}; color: #3d2e22;">`
+                );
                 return html;
-            })
-            .then(renderedHtml => {
-                if (renderedHtml && renderedHtml.then) {
-                    return renderedHtml;
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                document.getElementById('content').innerHTML = `
-                    <div class="error">
-                        ❌ 无法加载诗歌<br>
-                        <small>${error.message}</small><br><br>
-                        💡 请确保 <strong>${mdFileName}.md</strong> 文件存在于 "诗歌" 文件夹中
-                    </div>
-                `;
-            });
-    }
+            };
 
-    function escapeHtml(text) {
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
-    }
-</script>
+            // 应用自定义 renderer
+            if (typeof marked.use === 'function') {
+                marked.use({ renderer });
+            } else if (typeof marked.setOptions === 'function') {
+                marked.setOptions({
+                    renderer: renderer,
+                    gfm: true,
+                    tables: true,
+                    breaks: false
+                });
+            }
+        }
+
+        // 执行自定义
+        customizeMarked();
+
+        // ============================================================
+        // 3. IntersectionObserver：控制诗歌玻璃块浮现与沉没
+        // ============================================================
+        function setupPoetryObserver() {
+            const poetryBlocks = document.querySelectorAll('blockquote.poetry-block');
+            if (poetryBlocks.length === 0) return;
+
+            // 如果用户偏好减少动画，直接用简单逻辑
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const block = entry.target;
+                    if (entry.isIntersecting) {
+                        // 进入视口：浮起
+                        block.classList.remove('leaving');
+                        block.classList.add('visible');
+                    } else {
+                        // 离开视口：沉没
+                        if (prefersReducedMotion) {
+                            block.classList.remove('visible');
+                            block.classList.add('leaving');
+                        } else {
+                            block.classList.remove('visible');
+                            block.classList.add('leaving');
+                            // 延迟移除 leaving 类，让动画完成
+                            setTimeout(() => {
+                                block.classList.remove('leaving');
+                            }, 350);
+                        }
+                    }
+                });
+            }, {
+                threshold: 0.3, // 30% 可见时触发
+                rootMargin: '0px 0px -20px 0px' // 略微提前触发
+            });
+
+            poetryBlocks.forEach(block => {
+                // 初始状态不可见
+                block.classList.remove('visible', 'leaving');
+                observer.observe(block);
+            });
+
+            // 手动触发一次，检查初始可见的块
+            setTimeout(() => {
+                poetryBlocks.forEach(block => {
+                    const rect = block.getBoundingClientRect();
+                    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+                    const threshold = 0.3;
+                    const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
+                    const ratio = visibleHeight / rect.height;
+                    if (ratio > threshold) {
+                        block.classList.add('visible');
+                    }
+                });
+            }, 100);
+        }
+
+        // ============================================================
+        // 4. 加载 Markdown 文件（保持原有接口）
+        // ============================================================
+        const urlParams = new URLSearchParams(window.location.search);
+        const mdFileName = urlParams.get('file');
+
+        if (!mdFileName) {
+            document.getElementById('content').innerHTML = '<div class="error">❌ 未指定诗歌文件</div>';
+        } else {
+            fetch(`${mdFileName}.md`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`找不到文件：${mdFileName}.md`);
+                    }
+                    return response.text();
+                })
+                .then(markdown => {
+                    let html;
+                    if (typeof marked !== 'undefined') {
+                        const result = marked.parse(markdown);
+                        if (result && typeof result.then === 'function') {
+                            return result;
+                        } else {
+                            html = result;
+                        }
+                    } else {
+                        html = `<pre>${escapeHtml(markdown)}</pre>`;
+                    }
+                    if (html) {
+                        document.getElementById('content').innerHTML = html;
+                        // 内容渲染后，启动诗歌块观察
+                        setupPoetryObserver();
+                    }
+                    document.title = `${mdFileName} - 诗歌集`;
+                    return html;
+                })
+                .then(renderedHtml => {
+                    if (renderedHtml && renderedHtml.then) {
+                        return renderedHtml;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('content').innerHTML = `
+                                <div class="error">
+                                    ❌ 无法加载诗歌<br>
+                                    <small>${error.message}</small><br><br>
+                                    💡 请确保 <strong>${mdFileName}.md</strong> 文件存在于当前目录中
+                                </div>
+                            `;
+                });
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // ============================================================
+        // 5. 窗口 resize 时重新检测可见性（可选）
+        // ============================================================
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                const blocks = document.querySelectorAll('blockquote.poetry-block');
+                blocks.forEach(block => {
+                    const rect = block.getBoundingClientRect();
+                    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+                    const threshold = 0.3;
+                    const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
+                    const ratio = visibleHeight / rect.height;
+                    if (ratio > threshold) {
+                        block.classList.add('visible');
+                    } else {
+                        block.classList.remove('visible');
+                    }
+                });
+            }, 200);
+        });
+    </script>
 </body>
 </html>
