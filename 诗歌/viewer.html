@@ -132,7 +132,7 @@
             margin-top: 1.2rem;
         }
 
-        /* ========== 标题：涂鸦装饰（伪元素随机生成） ========== */
+        /* ========== 标题：涂鸦装饰（由 JS 通过 data-* 控制） ========== */
         .markdown-body h1::after,
         .markdown-body h2::after,
         .markdown-body h3::after {
@@ -146,7 +146,6 @@
             opacity: 0.6;
         }
 
-        /* 装饰类型通过 data-* 控制，由 JS 随机分配 */
         .markdown-body h1[data-decoration="underline-wavy"]::after,
         .markdown-body h2[data-decoration="underline-wavy"]::after,
         .markdown-body h3[data-decoration="underline-wavy"]::after {
@@ -254,7 +253,6 @@
             transition: opacity 0.35s ease-out, transform 0.35s ease-out, box-shadow 0.35s ease-out;
             position: relative;
             overflow: hidden;
-            /* 初始隐藏，由 IntersectionObserver 控制显示 */
             opacity: 0;
             transform: translateY(12px);
         }
@@ -273,7 +271,6 @@
             transition-timing-function: ease-in;
         }
 
-        /* 引用块内部段落保持统一 */
         .markdown-body blockquote p {
             margin: 0.2rem 0;
             font-family: inherit;
@@ -290,14 +287,12 @@
             margin-bottom: 0;
         }
 
-        /* 引用块内的加粗 */
         .markdown-body blockquote strong {
             font-weight: 600;
             color: inherit;
             font-family: inherit;
         }
 
-        /* 引用块内的斜体 */
         .markdown-body blockquote em {
             font-style: italic;
             color: #5a4a3a;
@@ -312,7 +307,7 @@
             opacity: 0.5;
         }
 
-        /* ========== 代码块（保持中性，不参与玻璃效果） ========== */
+        /* ========== 代码块 ========== */
         .markdown-body pre {
             background: #f5f0e8;
             padding: 1rem;
@@ -393,12 +388,6 @@
                 padding: 0.4rem 0.6rem;
                 font-size: 0.85rem;
             }
-            .markdown-body blockquote strong {
-                font-weight: 600;
-            }
-            .markdown-body blockquote em {
-                color: #5a4a3a;
-            }
         }
 
         @media (max-width: 400px) {
@@ -446,7 +435,6 @@
             will-change: transform, opacity, box-shadow;
         }
 
-        /* 减少动画偏好 */
         @media (prefers-reduced-motion: reduce) {
             .markdown-body blockquote {
                 transition: opacity 0.15s ease;
@@ -473,7 +461,7 @@
 
     <script>
         // ============================================================
-        // 1. 配置 marked（保持原有接口）
+        // 1. 配置 marked（保持原有接口，不做任何自定义 renderer）
         // ============================================================
         if (typeof marked !== 'undefined') {
             if (typeof marked.setOptions === 'function') {
@@ -491,26 +479,18 @@
         }
 
         // ============================================================
-        // 2. 自定义 Renderer：给 blockquote 添加类 + 标题涂鸦装饰
+        // 2. DOM 后处理：给元素添加类名和属性（不依赖 marked 内部 API）
         // ============================================================
-        function customizeMarked() {
-            if (typeof marked === 'undefined') return;
+        function postProcessDOM() {
+            try {
+                // --- 2a. 处理引用块：添加 poetry-block 类 ---
+                const blockquotes = document.querySelectorAll('.markdown-body blockquote');
+                blockquotes.forEach(function(block) {
+                    block.classList.add('poetry-block');
+                });
 
-            const renderer = new marked.Renderer();
-
-            // --- 2a. blockquote：添加 poetry-block 类，并保留原始内容 ---
-            const originalBlockquote = renderer.blockquote.bind(renderer);
-            renderer.blockquote = function(quote) {
-                // 去除可能存在的多余换行，保留内容
-                const content = quote.trim();
-                // 用原始方法渲染，但包裹在带有 poetry-block 类的 blockquote 中
-                return `<blockquote class="poetry-block">${content}</blockquote>`;
-            };
-
-            // --- 2b. heading：添加随机涂鸦装饰 data 属性 ---
-            const originalHeading = renderer.heading.bind(renderer);
-            renderer.heading = function(text, level, raw, slugger) {
-                // 装饰类型池
+                // --- 2b. 处理标题：随机涂鸦装饰 ---
+                const headings = document.querySelectorAll('.markdown-body h1, .markdown-body h2, .markdown-body h3');
                 const decorationTypes = [
                     'underline-wavy',
                     'underline-double',
@@ -519,98 +499,73 @@
                     'underline-dots',
                     'zigzag'
                 ];
-                // 颜色池（低饱和度）
                 const colorPool = [
-                    '#d4a574', // 暖褐
-                    '#b8a08a', // 灰褐
-                    '#c4b0a0', // 米褐
-                    '#a8b8a8', // 灰绿
-                    '#c4a8a8', // 灰粉
-                    '#b0b0c0' // 灰蓝
+                    '#d4a574',
+                    '#b8a08a',
+                    '#c4b0a0',
+                    '#a8b8a8',
+                    '#c4a8a8',
+                    '#b0b0c0'
                 ];
 
-                // 每个标题独立随机
-                const type = decorationTypes[Math.floor(Math.random() * decorationTypes.length)];
-                const color = colorPool[Math.floor(Math.random() * colorPool.length)];
-
-                // 调用原始 heading 渲染，然后注入 data 属性
-                let html = originalHeading(text, level, raw, slugger);
-                // 在开头的 <hx> 标签中插入 data-decoration 和 style
-                html = html.replace(
-                    /<h([1-6])>/,
-                    `<h$1 data-decoration="${type}" style="--decoration-color: ${color}; color: #3d2e22;">`
-                );
-                return html;
-            };
-
-            // 应用自定义 renderer
-            if (typeof marked.use === 'function') {
-                marked.use({ renderer });
-            } else if (typeof marked.setOptions === 'function') {
-                marked.setOptions({
-                    renderer: renderer,
-                    gfm: true,
-                    tables: true,
-                    breaks: false
+                headings.forEach(function(heading) {
+                    var type = decorationTypes[Math.floor(Math.random() * decorationTypes.length)];
+                    var color = colorPool[Math.floor(Math.random() * colorPool.length)];
+                    heading.setAttribute('data-decoration', type);
+                    heading.style.setProperty('--decoration-color', color);
                 });
+            } catch (e) {
+                // 后处理失败不影响页面内容展示
+                console.warn('DOM 后处理出错（不影响阅读）:', e.message);
             }
         }
-
-        // 执行自定义
-        customizeMarked();
 
         // ============================================================
         // 3. IntersectionObserver：控制诗歌玻璃块浮现与沉没
         // ============================================================
         function setupPoetryObserver() {
-            const poetryBlocks = document.querySelectorAll('blockquote.poetry-block');
+            var poetryBlocks = document.querySelectorAll('blockquote.poetry-block');
             if (poetryBlocks.length === 0) return;
 
-            // 如果用户偏好减少动画，直接用简单逻辑
-            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    const block = entry.target;
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    var block = entry.target;
                     if (entry.isIntersecting) {
-                        // 进入视口：浮起
                         block.classList.remove('leaving');
                         block.classList.add('visible');
                     } else {
-                        // 离开视口：沉没
                         if (prefersReducedMotion) {
                             block.classList.remove('visible');
                             block.classList.add('leaving');
                         } else {
                             block.classList.remove('visible');
                             block.classList.add('leaving');
-                            // 延迟移除 leaving 类，让动画完成
-                            setTimeout(() => {
+                            setTimeout(function() {
                                 block.classList.remove('leaving');
                             }, 350);
                         }
                     }
                 });
             }, {
-                threshold: 0.3, // 30% 可见时触发
-                rootMargin: '0px 0px -20px 0px' // 略微提前触发
+                threshold: 0.3,
+                rootMargin: '0px 0px -20px 0px'
             });
 
-            poetryBlocks.forEach(block => {
-                // 初始状态不可见
+            poetryBlocks.forEach(function(block) {
                 block.classList.remove('visible', 'leaving');
                 observer.observe(block);
             });
 
-            // 手动触发一次，检查初始可见的块
-            setTimeout(() => {
-                poetryBlocks.forEach(block => {
-                    const rect = block.getBoundingClientRect();
-                    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-                    const threshold = 0.3;
-                    const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
-                    const ratio = visibleHeight / rect.height;
-                    if (ratio > threshold) {
+            // 检查初始可见的块
+            setTimeout(function() {
+                poetryBlocks.forEach(function(block) {
+                    var rect = block.getBoundingClientRect();
+                    var windowHeight = window.innerHeight || document.documentElement.clientHeight;
+                    var visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
+                    var ratio = visibleHeight / rect.height;
+                    if (ratio > 0.3) {
                         block.classList.add('visible');
                     }
                 });
@@ -618,79 +573,74 @@
         }
 
         // ============================================================
-        // 4. 加载 Markdown 文件（保持原有接口）
+        // 4. 加载 Markdown 文件（保持原有接口，新增后处理调用）
         // ============================================================
-        const urlParams = new URLSearchParams(window.location.search);
-        const mdFileName = urlParams.get('file');
+        var urlParams = new URLSearchParams(window.location.search);
+        var mdFileName = urlParams.get('file');
 
         if (!mdFileName) {
             document.getElementById('content').innerHTML = '<div class="error">❌ 未指定诗歌文件</div>';
         } else {
-            fetch(`${mdFileName}.md`)
-                .then(response => {
+            fetch(mdFileName + '.md')
+                .then(function(response) {
                     if (!response.ok) {
-                        throw new Error(`找不到文件：${mdFileName}.md`);
+                        throw new Error('找不到文件：' + mdFileName + '.md');
                     }
                     return response.text();
                 })
-                .then(markdown => {
-                    let html;
+                .then(function(markdown) {
+                    var html;
                     if (typeof marked !== 'undefined') {
-                        const result = marked.parse(markdown);
+                        var result = marked.parse(markdown);
                         if (result && typeof result.then === 'function') {
                             return result;
                         } else {
                             html = result;
                         }
                     } else {
-                        html = `<pre>${escapeHtml(markdown)}</pre>`;
+                        html = '<pre>' + escapeHtml(markdown) + '</pre>';
                     }
                     if (html) {
                         document.getElementById('content').innerHTML = html;
-                        // 内容渲染后，启动诗歌块观察
+                        // ★ 唯一新增调用点：渲染完成后执行 DOM 后处理
+                        postProcessDOM();
+                        // 启动诗歌块观察
                         setupPoetryObserver();
                     }
-                    document.title = `${mdFileName} - 诗歌集`;
+                    document.title = mdFileName + ' - 诗歌集';
                     return html;
                 })
-                .then(renderedHtml => {
+                .then(function(renderedHtml) {
                     if (renderedHtml && renderedHtml.then) {
                         return renderedHtml;
                     }
                 })
-                .catch(error => {
+                .catch(function(error) {
                     console.error('Error:', error);
-                    document.getElementById('content').innerHTML = `
-                                <div class="error">
-                                    ❌ 无法加载诗歌<br>
-                                    <small>${error.message}</small><br><br>
-                                    💡 请确保 <strong>${mdFileName}.md</strong> 文件存在于当前目录中
-                                </div>
-                            `;
+                    document.getElementById('content').innerHTML = '\n                        <div class="error">\n                            ❌ 无法加载诗歌<br>\n                            <small>' + error.message + '</small><br><br>\n                            💡 请确保 <strong>' + mdFileName + '.md</strong> 文件存在于当前目录中\n                        </div>\n                    ';
                 });
         }
 
         function escapeHtml(text) {
-            const div = document.createElement('div');
+            var div = document.createElement('div');
             div.textContent = text;
             return div.innerHTML;
         }
 
         // ============================================================
-        // 5. 窗口 resize 时重新检测可见性（可选）
+        // 5. 窗口 resize 时重新检测可见性
         // ============================================================
-        let resizeTimer;
-        window.addEventListener('resize', () => {
+        var resizeTimer;
+        window.addEventListener('resize', function() {
             clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => {
-                const blocks = document.querySelectorAll('blockquote.poetry-block');
-                blocks.forEach(block => {
-                    const rect = block.getBoundingClientRect();
-                    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-                    const threshold = 0.3;
-                    const visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
-                    const ratio = visibleHeight / rect.height;
-                    if (ratio > threshold) {
+            resizeTimer = setTimeout(function() {
+                var blocks = document.querySelectorAll('blockquote.poetry-block');
+                blocks.forEach(function(block) {
+                    var rect = block.getBoundingClientRect();
+                    var windowHeight = window.innerHeight || document.documentElement.clientHeight;
+                    var visibleHeight = Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
+                    var ratio = visibleHeight / rect.height;
+                    if (ratio > 0.3) {
                         block.classList.add('visible');
                     } else {
                         block.classList.remove('visible');
